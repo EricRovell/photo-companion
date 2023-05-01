@@ -1,0 +1,5 @@
+.date {
+	font-variant-numeric: tabular-nums;
+	font-family: monospace;
+	font-size: 1.75rem;
+}
