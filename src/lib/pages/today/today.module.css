@@ -1,0 +1,24 @@
+.root {
+	display: grid;
+	grid-auto-rows: min-content;
+}
+
+.state {
+	font-weight: 500;
+	color: var(--color-danger);
+}
+
+.state:global(.active) {
+	color: var(--color-success);
+}
+
+.marked {
+	text-decoration: underline;
+}
+
+.note {
+	font-size: var(--font-size-3);
+	color: var(--color-text-secondary);
+	font-weight: 300;
+	margin-top: var(--space-2);
+}
