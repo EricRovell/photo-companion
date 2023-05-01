@@ -10,8 +10,8 @@
 		state = getScheduleState(new Date().getTime(), scheduleData)!;
 	};
 
-	$: messageNow = state.lights ? "включено" : "выключено";
-	$: messageSoon = state.lights ? "выключено" : "включено";
+	$: messageNow = state?.lights ? "включено" : "выключено";
+	$: messageSoon = state?.lights ? "выключено" : "включено";
 </script>
 
 <section id="today" class="{styles.root}">

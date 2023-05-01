@@ -2,11 +2,18 @@ import { YEAR } from "../constants.js";
 import { scheduleRawData } from "../../data/data.2023";
 import type { ScheduleDataItem } from "../../types.js";
 
-const TIMESTAMP_START: Date = new Date(
-	new Date(`01.01.${YEAR}, 00:00:00`).toLocaleString("ru-RU", {
-		timeZone: "Europe/Moscow"
-	})
-);
+let date = new Date();
+date.setFullYear(YEAR);
+date.setMonth(0);
+date.setDate(1);
+date.setHours(0);
+date.setMinutes(0);
+date.setMilliseconds(0);
+/* date = date.toLocaleDateString("ru-RU", {
+	timeZone: "Europe/Moscow"
+}); */
+
+const TIMESTAMP_START = new Date(date);
 
 const getTimestamp = (month: number, date: number, hours: number, minutes: number): number => {
 	const d = new Date(TIMESTAMP_START.getTime());
@@ -50,7 +57,9 @@ const getScheduleData = (): ScheduleDataItem[] => {
 	result.push({
 		lights: true,
 		timestamp: getTimestamp(12, 31, 23, 59)
-	})
+	});
+
+	console.log(TIMESTAMP_START);
 
 	return result;
 };
