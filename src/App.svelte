@@ -23,9 +23,10 @@
 <style>
 	main {
 		display: grid;
+		grid-auto-rows: min-content;
 		justify-items: center;
-		gap: 1rem;
-		width: min(100%, 45ch);
+		gap: var(--space-5);
+		width: min(100%, 60ch);
 	}
 
 	header {
@@ -40,14 +41,10 @@
 		border-radius: 7.5px;
 		overflow: hidden;
 		padding-bottom: 1rem;
+		height: min-content;
 	}
 
 	main > :global(section > *) {
 		padding-inline: 1rem;
-	}
-
-	h1 {
-		display: flex;
-		flex-direction: column;
 	}
 </style>
