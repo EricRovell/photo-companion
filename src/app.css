@@ -27,9 +27,13 @@
 	--color-accent: darkcyan;
 	--color-text: rgb(255 255 255 / 0.9);
 	--color-text-secondary: rgb(255 255 255 / 0.75);
-	--color-link: rgb(101, 221, 221);
-	--color-link-hover: rgb(213, 226, 226);
+	--color-link: rgb(101 221 221);
+	--color-link-hover: rgb(213 226 226);
 	--color-bg: #242424;
+	--color-success: rgb(15 202 202);
+	--color-danger: rgb(206 103 103);
+
+	--radius: 5px;
 
 	color-scheme: dark;
 	color: var(--color-text);
