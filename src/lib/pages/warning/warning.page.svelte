@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { YEAR } from "../../constants";
-
-	const currentYear = new Date().getFullYear();
+	import { ACTUAL_DATA } from "../../constants";
 </script>
 
-{#if currentYear !== YEAR}
+{#if !ACTUAL_DATA}
 	<section id="warning">
 		<h2>
 			Предупреждение
 		</h2>
-		К сожалению, данные веб-приложения устарели.
+		<p>К сожалению, данные веб-приложения устарели.</p>
+		<p>Часто, расписание не сильно отличается от прошлогоднего, можно продолжать пользоваться, однако возможны расхождения.</p>
 	</section>
 {/if}
