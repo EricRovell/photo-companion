@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { Timer } from "../../../lib/components";
+  import type { ScheduleDataItem } from "../../../types";
 	import { getScheduleState } from "../../core/get-schedule-state";
-	import { scheduleData } from "../../core/transform-data";
 	import styles from "./today.module.css";
 
-	let state = getScheduleState(new Date().getTime(), scheduleData)!;
+	let state: ScheduleDataItem | null = getScheduleState(new Date().getTime());
 
 	const handleAlarm = () => {
-		state = getScheduleState(new Date().getTime(), scheduleData)!;
+		state = getScheduleState(new Date().getTime());
 	};
 
 	$: messageNow = state?.lights ? "включено" : "выключено";

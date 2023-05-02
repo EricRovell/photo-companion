@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { getScheduleStateByDay } from "../../core/get-schedule-state";
-	import { scheduleData } from "../../core/transform-data";
-	import { YEAR } from "../../constants";
+	import { getScheduleStateByDate } from "../../core/get-schedule-by-date";
+	import { currentYear } from "../../constants";
 	import styles from "./info-by-date.module.css";
 
 	let userInput: string = new Date().toISOString().substring(0, 10);
-	let state = getScheduleStateByDay(new Date(userInput).getTime(), scheduleData);
+	let state = getScheduleStateByDate(new Date(userInput).getTime());
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;
 		userInput = target.value;
-		state = getScheduleStateByDay(new Date(userInput).getTime(), scheduleData);
+		state = getScheduleStateByDate(new Date(userInput).getTime());
 	};
 
 	const formatDate = (timestamp: number) => {
@@ -29,8 +28,8 @@
 		<input
 			type="date"
 			value="{userInput}"
-			min={`${YEAR}-01-01`}
-			max={`${YEAR}-12-31`}
+			min={`${currentYear}-01-01`}
+			max={`${currentYear}-12-31`}
 			on:change="{handleChange}"
 		/>
 	</label>
