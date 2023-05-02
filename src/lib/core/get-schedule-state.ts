@@ -1,36 +1,17 @@
-import { type ScheduleDataItem } from "../../types";
+import { scheduleIntervals } from "./schedule-intervals";
 
 /**
  * Returns the current illumination state.
  */
-export const getScheduleState = (timestamp: number, data: ScheduleDataItem[]) => {
-	for (let i = 0; i < data.length; i++) {
-		const left = data[i];
-		const right = data[i + 1];
+export const getScheduleState = (timestamp: number) => {
+	for (let i = 0; i < scheduleIntervals.length; i++) {
+		const left = scheduleIntervals[i];
+		const right = scheduleIntervals[i + 1];
 
 		if (timestamp >= left.timestamp && timestamp < right.timestamp) {
 			return {
 				lights: left.lights,
 				timestamp: right.timestamp
-			};
-		}
-	}
-
-	return null;
-};
-
-/**
- * Returns the illumination schedule by given date.
- */
-export const getScheduleStateByDay = (timestamp: number, data: ScheduleDataItem[]) => {
-	for (let i = 0; i < data.length; i++) {
-		const left = data[i];
-		const right = data[i + 1];
-
-		if (timestamp >= left.timestamp && timestamp < right.timestamp) {
-			return {
-				timestampOn: left.timestamp,
-				timestampOff: right.timestamp
 			};
 		}
 	}
