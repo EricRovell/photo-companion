@@ -1,6 +1,6 @@
 import { type ScheduleRawData } from "../types";
 
-export const scheduleRawData: ScheduleRawData[] = [
+export const schedule: ScheduleRawData[] = [
 	[ 1, 1, 5, 16, 15, 9, 50 ],
 	[ 1, 6, 10, 16, 25, 9, 45 ],
 	[ 1, 11, 15, 16, 35, 9, 40 ],
@@ -54,7 +54,7 @@ export const scheduleRawData: ScheduleRawData[] = [
 	[ 9, 11, 15, 19, 45, 6, 0 ],
 	[ 9, 16, 20, 19, 30, 6, 10 ],
 	[ 9, 21, 25, 19, 15, 6, 25 ],
-	[ 9, 2, -30, 19, 0, 6, 40 ],
+	[ 9, 26, 30, 19, 0, 6, 40 ],
 	[ 10, 1, 5, 18, 30, 7, 0 ],
 	[ 10, 6, 10, 18, 10, 7, 20 ],
 	[ 10, 11, 15, 17, 50, 7, 35 ],
