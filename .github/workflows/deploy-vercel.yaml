@@ -29,12 +29,16 @@ jobs:
         run: |
           npm i pnpm -g
           pnpm i
+      - name: Tests
+        run: |
+          pnpm run test
       - name: build
         run: |
           pnpm run build
 
   push_to_vercel:
 
+    needs: build_test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
