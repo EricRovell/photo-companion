@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"parse": "node ./src/scripts/parse-data.js"
+		"test": "vitest run"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^2.1.1",
@@ -18,5 +18,8 @@
 		"tslib": "^2.5.0",
 		"typescript": "^5.0.4",
 		"vite": "^4.3.3"
+	},
+	"dependencies": {
+		"vitest": "^0.30.1"
 	}
 }
