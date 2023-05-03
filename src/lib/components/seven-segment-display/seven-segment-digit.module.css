@@ -1,0 +1,13 @@
+.digit {
+	width: 100%;
+	height: min-content;
+}
+
+.digit polyline {
+	fill: var(--segment-fill, rgb(12, 58, 56));
+	transition: fill 0.2s linear;
+}
+
+.digit polyline[data-light="1"] {
+	--segment-fill: var(--color-accent);
+}
