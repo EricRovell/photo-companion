@@ -1,1 +1,1 @@
-export { default as Timer } from "./Timer/Timer.svelte";
+export { default as Timer } from "./timer/timer.svelte";

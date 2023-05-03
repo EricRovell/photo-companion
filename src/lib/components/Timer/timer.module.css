@@ -1,5 +1,12 @@
-.date {
-	font-variant-numeric: tabular-nums;
-	font-family: monospace;
-	font-size: 1.75rem;
+.timer {
+	display: grid;
+	grid-template: 3.5rem / 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr;
+	gap: 0.25em;
+	width: min(100%, 8 * 2rem);
+	justify-self: center;
+	padding: 1rem;
+}
+
+.timer svg {
+	height: 3.5rem;
 }

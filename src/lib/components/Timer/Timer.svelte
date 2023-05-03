@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher } from "svelte";
+	import Digit from "../seven-segment-display/seven-segment-digit.svelte";
+	import Colon from "../seven-segment-display/segment-colon.svelte";
 	import { formatTime, calcSecondsLeft } from "./timer.helpers";
 	import styles from "./timer.module.css";
 
@@ -7,14 +9,14 @@
 
 	const dispatch = createEventDispatcher();
 	let secondsLeft: number = calcSecondsLeft(timestamp);
-	let timer: number | undefined = undefined;
+	let intervalId: number | undefined = undefined;
 
 	onMount(() => {
-		timer = setInterval(() => {
+		intervalId = setInterval(() => {
 			secondsLeft -= 1;
 		}, 1000);
 
-		return () => clearInterval(timer);
+		return () => clearInterval(intervalId);
 	});
 
 	$: time = formatTime(secondsLeft);
@@ -23,6 +25,13 @@
 	}
 </script>
 
-<output class="{styles.date}" lang="en">
-	{time.hours}:{time.minutes}:{time.seconds}
+<output class="{styles.timer}">
+	<Digit digit="{time.hours[0]}" />
+	<Digit digit="{time.hours[1]}" />
+	<Colon />
+	<Digit digit="{time.minutes[0]}" />
+	<Digit digit="{time.minutes[1]}" />
+	<Colon />
+	<Digit digit="{time.seconds[0]}" />
+	<Digit digit="{time.seconds[1]}" />
 </output>
