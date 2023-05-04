@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Bulb } from "../../components";
 	import { getScheduleStateByDate } from "../../core/get-schedule-by-date";
 	import { currentYear } from "../../constants";
 	import styles from "./info-by-date.module.css";
@@ -21,9 +22,43 @@
 </script>
 
 <section id="info-by-date" class="{styles.root}">
-	<h2>
-		По дате
-	</h2>
+	<header>
+		<h2>
+			Данные об освещении по датам
+		</h2>
+	</header>
+	{#if state}
+		<ol class="{styles.time}">
+			<li class="{styles.wire}" />
+			<li class="{styles.bulb}">
+				<Bulb
+					title="Выключение"
+				/>
+				<time
+					lang="en"
+					datetime="{new Date(state.timestampOff).toISOString()}"
+				>
+					{formatDate(state.timestampOff)}
+				</time>
+			</li>
+			<li class="{styles.wire}" />
+			<li class="{styles.bulb}">
+				<Bulb
+					glow="{true}"
+					title="Включение"
+				/>
+				<time
+					lang="en"
+					datetime="{new Date(state.timestampOff).toISOString()}"
+				>
+					{formatDate(state.timestampOn)}
+				</time>
+			</li>
+			<li class="{styles.wire}" />
+		</ol>
+	{:else}
+		<p>Пожалуйста, введите дату для отображения данных.</p>
+	{/if}
 	<label class="{styles["date-input"]}">
 		<input
 			type="date"
@@ -32,23 +67,6 @@
 			max={`${currentYear}-12-31`}
 			on:change="{handleChange}"
 		/>
+		<span>Введите дату</span>
 	</label>
-	{#if state}
-		<div class="{styles.state}">
-			<p>
-				<output lang="en">
-					{formatDate(state.timestampOff)}
-				</output>
-				<span>Выключение</span>
-			</p>
-			<p>
-				<output lang="en">
-					{formatDate(state.timestampOn)}
-				</output>
-				<span>Включение</span>
-			</p>
-		</div>
-	{:else}
-		<p>Что-то пошло не так: нет данных</p>
-	{/if}
 </section>

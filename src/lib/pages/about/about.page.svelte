@@ -3,9 +3,11 @@
 </script>
 
 <section id="about" class="{styles.root}">
-	<h2>
-		Общая информация
-	</h2>
+	<header>
+		<h2>
+			Общая информация
+		</h2>
+	</header>
 	<p>
 		Веб-приложение использует данные о <a target="_blank" href="https://lensvet.spb.ru/grafik_raboty_naruzhnogo_osvescheni/">графике наружного освещения в Санкт-Петербурге</a> на <a target="_blank" href="https://lensvet.spb.ru/d/26909/d/no-2023-gbu-utverzhden-1.pdf">2023 год</a>.
 	</p>

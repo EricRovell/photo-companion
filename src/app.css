@@ -6,15 +6,20 @@
 
 :root {
 	font-size: 16px;
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.3;
 	font-weight: 400;
+	font-family: var(--font-main);
 
 	--space-1: 0.25rem;
 	--space-2: 0.5rem;
 	--space-3: 0.75rem;
 	--space-4: 0.1rem;
 	--space-5: 1.25rem;
+	--space-6: 1.5rem;
+	--space-7: 2rem;
+	--space-8: 3rem;
+	--space-9: 4rem;
+	--space-10: 8rem;
 
 	--font-scale: 1.2rem;
 	--font-size-1: calc(0.75 * var(--font-scale));
@@ -25,25 +30,63 @@
 	--font-size-6: calc(1.25 * var(--font-scale));
 	--font-size-7: calc(1.35 * var(--font-scale));
 
-	--color-accent: darkcyan;
+	--color-accent: rgb(0 139 139);
 	--color-text: rgb(255 255 255 / 0.9);
 	--color-text-secondary: rgb(255 255 255 / 0.75);
-	--color-link: rgb(101 221 221);
-	--color-link-hover: rgb(213 226 226);
-	--color-bg: #242424;
+	--color-link: hsl(180 85% 45%);
+	--color-link-hover: hsl(180 85% 85%);
+	--color-surface-1: hsl(210, 23%, 10%);
+	--color-surface-2: hsl(210, 23%, 15%);
+	--color-surface-3: hsl(210, 23%, 20%);
+	--color-surface-4: hsl(210, 23%, 24%);
 	--color-success: rgb(15 202 202);
-	--color-danger: rgb(206 103 103);
+	--color-danger: rgb(230 72 72);
+	--border: 1px solid hsl(210 23% 25%);
 
 	--radius: 5px;
 
+	--font-main: var(--font-fallback);
+	--font-fallback:
+		system-ui,
+		-apple-system,
+		blinkmacsystemfont,
+		"Segoe UI",
+		roboto,
+		"Helvetica Neue",
+		arial,
+		"Noto Sans",
+		sans-serif,
+		"Apple Color Emoji",
+		"Segoe UI Emoji",
+		"Segoe UI Symbol",
+		"Noto Color Emoji";
+
 	color-scheme: dark;
 	color: var(--color-text);
-	background-color: var(--color-bg);
+	background-color: var(--color-surface-1);
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+}
+
+/* variation fonts */
+@font-face {
+	font-family: montserrat-vf;
+	src: url("/montserrat-vf.woff2") format("woff2-variations");
+}
+
+/* fallbacks, regular */
+@font-face {
+	font-family: montserrat-medium-regular;
+	src: url("/montserrat-medium-regular.woff2") format("woff2");
+}
+
+@supports (font-variation-settings: normal) {
+	:root {
+		--font-main: "montserrat-vf", var(--font-fallback);
+	}
 }
 
 #app {
@@ -52,7 +95,7 @@
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
-	margin-bottom: 3rem;
+	margin-block: var(--space-7) var(--space-10);
 }
 
 a {
@@ -66,6 +109,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+a:focus-visible {
+	outline: 1px solid var(--color-accent);
+	outline-offset: 0.25em;
+}
+
 body {
 	margin: 0;
 	display: flex;
@@ -73,22 +121,63 @@ body {
 	padding-inline: var(--space-2);
 }
 
+body > header {
+	display: flex;
+	padding: 0.25em 0.5em;
+	padding-top: 1em;
+}
+
+main {
+	display: grid;
+	grid-auto-rows: min-content;
+	justify-items: center;
+	gap: var(--space-6);
+	width: min(100%, 60ch);
+}
+
 h1 {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: var(--space-5);
+	margin-block: var(--space-4);
 	font-size: var(--font-size-7);
 	line-height: 1.2;
 	text-align: center;
+	font-variation-settings: "wght" 200;
 }
 
 h2 {
-	width: min(100%, 60ch);
-	border: 1px solid var(--color-accent);
-	background-color: var(--color-accent);
 	font-size: var(--font-size-3);
-	width: 100%;
+	justify-self: center;
 	display: flex;
-	margin-block-end: var(--space-3);
-	padding-block: var(--space-1);
+	font-variation-settings: "wght" 600;
+}
+
+section {
+	width: 100%;
+	/* overflow: hidden; */
+	height: fit-content;
+	/* border: var(--border); */
+	border-radius: 10px;
+	padding-block-end: var(--space-7);
+	background-color: var(--color-surface-2);
+}
+
+section > header {
+	background-color: var(--color-surface-3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px 10px 0 0;
+	padding: var(--space-2) var(--space-5);
+	margin-block-end: var(--space-5);
+}
+
+section > header ~ * {
+	margin-inline: var(--space-5);
+}
+
+p {
+	font-size: var(--font-size-2);
+	text-align: justify;
+	font-variation-settings: "wght" 200;
 }

@@ -4,10 +4,10 @@
 }
 
 .digit polyline {
-	fill: var(--segment-fill, rgb(12, 58, 56));
+	fill: var(--segment-fill, hsl(177, 38%, 22%));
 	transition: fill 0.2s linear;
 }
 
 .digit polyline[data-light="1"] {
-	--segment-fill: var(--color-accent);
+	--segment-fill: hsl(177, 38%, 50%);
 }

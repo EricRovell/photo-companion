@@ -1,11 +1,21 @@
 .root {
 	display: grid;
 	grid-auto-rows: min-content;
+	gap: var(--space-2);
 	font-size: var(--font-size-6);
 }
 
+.root p {
+	justify-self: center;
+}
+
+.root > svg {
+	height: 4rem;
+	justify-self: center;
+}
+
 .state {
-	font-weight: 500;
+	font-variation-settings: "wght" 500;
 	color: var(--color-danger);
 }
 
@@ -13,13 +23,9 @@
 	color: var(--color-success);
 }
 
-.marked {
-	text-decoration: underline;
-}
-
 .note {
 	font-size: var(--font-size-2);
 	color: var(--color-text-secondary);
 	font-weight: 300;
-	margin-top: var(--space-2);
+	margin-bottom: var(--space-2);
 }

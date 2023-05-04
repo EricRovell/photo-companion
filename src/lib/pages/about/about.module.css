@@ -3,7 +3,3 @@
 	gap: var(--space-1);
 }
 
-.root p {
-	font-size: var(--font-size-3);
-	text-align: start;
-}
