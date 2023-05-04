@@ -1,12 +1,17 @@
 .timer {
+	--timer-size: 2rem;
+
 	display: grid;
-	grid-template: 3.5rem / 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr;
+	grid-template: var(--timer-size) / 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr;
 	gap: 0.25em;
-	width: min(100%, 8 * 2rem);
+	width: min(100%, 8 * var(--timer-size) * 0.85);
 	justify-self: center;
-	padding: 1rem;
+	padding: 0.75rem 1rem;
+	background-color: var(--color-surface-4);
+	border: 1px solid var(--color-accent);
+	border-radius: 5px;
 }
 
 .timer svg {
-	height: 3.5rem;
+	height: var(--timer-size);
 }
