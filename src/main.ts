@@ -17,6 +17,8 @@ const registerServiceWorker = async () => {
 	}
 };
 
-registerServiceWorker();
+if (import.meta.env.PROD) {
+	registerServiceWorker();
+}
 
 export default app;
