@@ -1,0 +1,17 @@
+{
+	"short_name": "Illumination SPB",
+	"name": "Illumination Schedule, Saint-Petersburg",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "/icon.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"background_color": "#008B8B",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#008B8B",
+	"description": "Данные о включении и выключении наружного освещения города Санкт-Петербурга."
+}
