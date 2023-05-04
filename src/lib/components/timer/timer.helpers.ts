@@ -1,12 +1,12 @@
 /**
- * Corrects the time output for smaller values (below 10):
- * - 12 -> 12
- * - 5  -> 05
+ * Breaks a 2-digit number into 2 digits.
  */
-const correctTimeNumber = (number: number) => {
-	return number < 10
-		? `${0}${number}`
-		: number.toString();
+const toDigits = (number: number): number[] => {
+	if (number < 10) {
+		return [ 0, number ];
+	}
+
+	return [ Math.floor((number / 10) % 10), number % 10 ];
 };
 
 /**
@@ -26,8 +26,8 @@ export const formatTime = (seconds: number) => {
 	seconds -= minutes * 60;
 
 	return {
-		hours: correctTimeNumber(hours),
-		minutes: correctTimeNumber(minutes),
-		seconds: correctTimeNumber(seconds)
+		hours: toDigits(hours),
+		minutes: toDigits(minutes),
+		seconds: toDigits(seconds)
 	};
 };

@@ -41,7 +41,7 @@
 		border-radius: 7.5px;
 		overflow: hidden;
 		padding-bottom: 1rem;
-		height: min-content;
+		height: fit-content;
 	}
 
 	main > :global(section > *) {
