@@ -19,32 +19,3 @@
 	<PageInfoByDate />
 	<PageAbout />
 </main>
-
-<style>
-	main {
-		display: grid;
-		grid-auto-rows: min-content;
-		justify-items: center;
-		gap: var(--space-5);
-		width: min(100%, 60ch);
-	}
-
-	header {
-		display: flex;
-		padding: 0.25em 0.5em;
-		padding-top: 1em;
-	}
-
-	main > :global(section) {
-		width: 100%;
-		border: 1.5px solid darkcyan;
-		border-radius: 7.5px;
-		overflow: hidden;
-		padding-bottom: 1rem;
-		height: fit-content;
-	}
-
-	main > :global(section > *) {
-		padding-inline: 1rem;
-	}
-</style>
