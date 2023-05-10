@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "static-cache-v3";
+const CACHE_NAME = "static-cache-v4";
 
 self.addEventListener("activate", event => {
 	self.skipWaiting();
