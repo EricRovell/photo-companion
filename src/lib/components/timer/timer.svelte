@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from "svelte";
+	import { afterUpdate, onMount, createEventDispatcher } from "svelte";
 	import Digit from "../seven-segment-display/seven-segment-digit.svelte";
 	import Colon from "../seven-segment-display/segment-colon.svelte";
 	import { formatTime, calcSecondsLeft } from "./timer.helpers";
@@ -11,16 +11,32 @@
 	let secondsLeft: number = calcSecondsLeft(timestamp);
 	let intervalId: number | undefined = undefined;
 
-	onMount(() => {
+	const startTimer = () => {
 		intervalId = setInterval(() => {
 			secondsLeft -= 1;
 		}, 1000);
+	};
 
-		return () => clearInterval(intervalId);
+	const stopTimer = () => {
+		clearInterval(intervalId);
+	};
+
+	onMount(() => {
+		startTimer();
+
+		return () => stopTimer();
+	});
+
+	afterUpdate(() => {
+		stopTimer();
+		dispatch("alarm");
+		secondsLeft = calcSecondsLeft(timestamp);
+		startTimer();
 	});
 
 	$: time = formatTime(secondsLeft);
 	$: if (secondsLeft <= 0) {
+		stopTimer();
 		dispatch("alarm");
 	}
 </script>
