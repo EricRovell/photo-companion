@@ -21,7 +21,7 @@
 	};
 </script>
 
-<section id="info-by-date" class="{styles.root}">
+<section id="info-by-date" class="card {styles.root}">
 	<header>
 		<h2>
 			Данные об освещении по датам

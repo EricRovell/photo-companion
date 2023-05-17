@@ -4,7 +4,7 @@
 </script>
 
 {#if !ACTUAL_DATA}
-	<section id="warning" class="{styles.page}">
+	<section id="warning" class="card {styles.page}">
 		<header>
 			<h2>
 				Предупреждение

@@ -14,7 +14,7 @@
 	$: messageSoon = state?.lights ? "выключено" : "включено";
 </script>
 
-<section id="today" class="{styles.root}">
+<section id="today" class="card {styles.root}">
 	<header>
 		<h2>
 			Сейчас
@@ -24,18 +24,18 @@
 		glow="{state.lights}"
 	/>
 	<p>
-		Городское освещение <span class="{styles.state}" class:active={state.lights}>{messageNow}</span>
+		Городское освещение <span class="{styles.state}" class:success={state.lights} class:danger={!state.lights}>{messageNow}</span>
 	</p>
 </section>
 
-<section id="today" class="{styles.root}">
+<section id="today" class="card {styles.root}">
 	<header>
 		<h2>
 			Отсчёт
 		</h2>
 	</header>
 	<p class="{styles.note}">
-		Городское освещение будет <span class="{styles.state}" class:active={state.lights}>{messageSoon}</span> через:
+		Городское освещение будет <span class="{styles.state}" class:success={!state.lights} class:danger={state.lights}>{messageSoon}</span> через:
 	</p>
 	<Timer
 		timestamp="{state?.timestamp}"
