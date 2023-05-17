@@ -4,7 +4,7 @@
 	import styles from "./about.module.css";
 </script>
 
-<section id="about" class="{styles.root}">
+<section id="about" class="card {styles.root}">
 	<header>
 		<h2>
 			Общая информация

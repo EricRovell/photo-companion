@@ -14,7 +14,7 @@
 	$: messageSoon = state?.lights ? "выключено" : "включено";
 </script>
 
-<section id="today" class="{styles.root}">
+<section id="today" class="card {styles.root}">
 	<header>
 		<h2>
 			Сейчас
@@ -28,7 +28,7 @@
 	</p>
 </section>
 
-<section id="today" class="{styles.root}">
+<section id="today" class="card {styles.root}">
 	<header>
 		<h2>
 			Отсчёт
