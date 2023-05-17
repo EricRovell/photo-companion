@@ -31,3 +31,23 @@ export const formatTime = (seconds: number) => {
 		seconds: toDigits(seconds)
 	};
 };
+
+const formatDigit = (input: number) => {
+	return input < 10
+		? `0${input}`
+		: input;
+};
+
+/**
+ * Creates a `datetime` attribute string from timestamp.
+ */
+export const getDateTimeString = (timestamp: number) => {
+	const d = new Date(timestamp);
+	const year = d.getFullYear();
+	let month = d.getMonth() + 1;
+	let date = d.getDate();
+	let hours = d.getHours();
+	let minutes = d.getMinutes();
+	
+	return `${year}-${formatDigit(month)}-${formatDigit(date)}T${formatDigit(hours)}:${formatDigit(minutes)}:00.000`;
+};

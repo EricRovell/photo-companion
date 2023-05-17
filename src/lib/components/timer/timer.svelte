@@ -2,7 +2,7 @@
 	import { afterUpdate, onMount, createEventDispatcher } from "svelte";
 	import Digit from "../seven-segment-display/seven-segment-digit.svelte";
 	import Colon from "../seven-segment-display/segment-colon.svelte";
-	import { formatTime, calcSecondsLeft } from "./timer.helpers";
+	import { formatTime, calcSecondsLeft, getDateTimeString } from "./timer.helpers";
 	import styles from "./timer.module.css";
 
 	export let timestamp: number;
@@ -41,7 +41,7 @@
 	}
 </script>
 
-<output class="{styles.timer}">
+<time datetime="{getDateTimeString(timestamp)}" class="{styles.timer}">
 	<Digit digit="{time.hours[0]}" />
 	<Digit digit="{time.hours[1]}" />
 	<Colon />
@@ -50,4 +50,4 @@
 	<Colon />
 	<Digit digit="{time.seconds[0]}" />
 	<Digit digit="{time.seconds[1]}" />
-</output>
+</time>
