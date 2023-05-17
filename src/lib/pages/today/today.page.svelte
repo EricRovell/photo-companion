@@ -24,7 +24,7 @@
 		glow="{state.lights}"
 	/>
 	<p>
-		Городское освещение <span class="{styles.state}" class:active={state.lights}>{messageNow}</span>
+		Городское освещение <span class="{styles.state}" class:success={state.lights} class:danger={!state.lights}>{messageNow}</span>
 	</p>
 </section>
 
@@ -35,7 +35,7 @@
 		</h2>
 	</header>
 	<p class="{styles.note}">
-		Городское освещение будет <span class="{styles.state}" class:active={state.lights}>{messageSoon}</span> через:
+		Городское освещение будет <span class="{styles.state}" class:success={!state.lights} class:danger={state.lights}>{messageSoon}</span> через:
 	</p>
 	<Timer
 		timestamp="{state?.timestamp}"
