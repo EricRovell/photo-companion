@@ -19,7 +19,7 @@ export function describeArc(x: number, y: number, radius: number, angleStart: nu
 		largeArcFlag = (angleEnd + 360.0) - angleStart <= 180 ? "0" : "1";
 	}
 
-	var d = [
+	const d = [
 		"M", start.x, start.y, 
 		"A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
 	].join(" ");
@@ -32,7 +32,7 @@ interface Point {
 	y1: number;
 	x2: number;
 	y2: number;
-};
+}
 
 /**
  * Generates the polygon's vertices coordinates.

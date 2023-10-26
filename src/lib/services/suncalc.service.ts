@@ -1,3 +1,4 @@
+// @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
 
 interface Time {
@@ -37,7 +38,7 @@ export const calcEphemeridesData = (date: Date = new Date, lat: number, lon: num
 		sunrise: calcTime(dataSun.sunriseStart.value),
 		sunset: calcTime(dataSun.sunsetEnd.value),
 		moonrise: calcTime(dataMoon.rise),
-		moonset: calcTime(dataMoon.set),
+		moonset: calcTime(dataMoon.set)
 	};
 };
 

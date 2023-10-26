@@ -5,28 +5,28 @@
 
 .gauge text {
 	font-size: 5px;
-	fill: var(--gauge-text-color, hsl(0 50% 100%));
+	fill: var(--gauge-text-color, hsl(0deg 50% 100%));
 	transform-box: fill-box;
 	text-anchor: middle;
 }
 
 .progress-background {
 	fill: none;
-	stroke: var(--gauge-background, hsl(0 50% 100% / 0.5));
+	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
 	opacity: 0.5;
 }
 
 .progress {
 	fill: none;
-	stroke: var(--gauge-color, hsl(195 41% 58%));
+	stroke: var(--gauge-color, hsl(195deg 41% 58%));
 }
 
 .marks line {
 	stroke-width: var(--gauge-mark-width, 0.125);
-	stroke: var(--gauge-mark-color, hsl(0 50% 100% / 0.5));
+	stroke: var(--gauge-mark-color, hsl(0deg 50% 100% / 50%));
 }
 
 .marks line:nth-child(n + 25):nth-child(-n + 28) {
 	stroke-width: var(--gauge-mark-prime-width, 0.25);
-	stroke: var(--gauge-markprime-color, hsla(0 5% 50%));
+	stroke: var(--gauge-markprime-color, hsl(0deg 5% 50%));
 }

@@ -48,7 +48,7 @@ const getScheduleData = (): ScheduleDataItem[] => {
 				{
 					lights: true,
 					timestamp: getTimestamp(currentYear, month, date, hoursOff, minutesOff)
-				},
+				}
 			);
 		}
 	}

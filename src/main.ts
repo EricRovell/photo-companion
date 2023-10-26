@@ -5,7 +5,7 @@ import "./styles/utils.css";
 import "./styles/main.css";
 
 const app = new App({
-	target: document.getElementById("app")
+	target: document.getElementById("app") as HTMLElement
 });
 
 const registerServiceWorker = async () => {
@@ -21,7 +21,7 @@ const registerServiceWorker = async () => {
 };
 
 if (import.meta.env.PROD) {
-	registerServiceWorker();
+	void registerServiceWorker();
 }
 
 export default app;

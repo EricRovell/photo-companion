@@ -35,7 +35,7 @@
 	cursor: pointer;
 }
 
-.date-input input[type=date]::-webkit-calendar-picker-indicator {
+.date-input input[type="date"]::-webkit-calendar-picker-indicator {
 	margin-left: var(--space-2);
 	cursor: pointer;
 }
@@ -69,14 +69,14 @@
 }
 
 .bulb {
-	margin-inline: 0rem;
+	margin-inline: 0;
 }
 
 .wire {
 	display: block;
 	width: 100%;
 	height: 1.5px;
-	border: 1px solid #FFA200b2;
+	border: 1px solid #FFA200B2;
 }
 
 .wire:nth-child(3) {

@@ -20,12 +20,16 @@
 			Сейчас
 		</h2>
 	</header>
-	<Bulb 
-		glow="{state.lights}"
-	/>
-	<p>
-		Городское освещение <span class="{styles.state}" class:success={state.lights} class:danger={!state.lights}>{messageNow}</span>
-	</p>
+	{#if !state}
+		<p>Что-то пошло не так...</p>
+	{:else}
+		<Bulb 
+			glow="{state.lights}"
+		/>
+		<p>
+			Городское освещение <span class="{styles.state}" class:success={state.lights} class:danger={!state.lights}>{messageNow}</span>
+		</p>
+	{/if}
 </section>
 
 <section id="today" class="card {styles.root}">
@@ -34,11 +38,15 @@
 			Отсчёт
 		</h2>
 	</header>
-	<p class="{styles.note}">
-		Городское освещение будет <span class="{styles.state}" class:success={!state.lights} class:danger={state.lights}>{messageSoon}</span> через:
-	</p>
-	<Timer
-		timestamp="{state?.timestamp}"
-		on:alarm={handleAlarm}
-	/>
+	{#if !state}
+		<p>Что-то пошло не так...</p>
+	{:else}
+		<p class="{styles.note}">
+			Городское освещение будет <span class="{styles.state}" class:success={!state.lights} class:danger={state.lights}>{messageSoon}</span> через:
+		</p>
+		<Timer
+			timestamp="{state?.timestamp}"
+			on:alarm={handleAlarm}
+		/>
+	{/if}
 </section>

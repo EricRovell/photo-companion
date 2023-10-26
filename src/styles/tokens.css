@@ -14,9 +14,7 @@
 	--space-8: 3rem;
 	--space-9: 4rem;
 	--space-10: 8rem;
-
 	--content-width: min(100%, 60ch);
-
 	--font-scale: 1.2rem;
 	--font-size-1: calc(0.75 * var(--font-scale));
 	--font-size-2: calc(0.85 * var(--font-scale));
@@ -25,44 +23,28 @@
 	--font-size-5: calc(1.15 * var(--font-scale));
 	--font-size-6: calc(1.25 * var(--font-scale));
 	--font-size-7: calc(1.35 * var(--font-scale));
-
 	--color-accent: rgb(0 139 139);
-	--color-text: rgb(255 255 255 / 0.9);
-	--color-text-secondary: rgb(255 255 255 / 0.75);
-	--color-link: hsl(180 85% 45%);
-	--color-link-hover: hsl(180 85% 85%);
-	--color-surface-1: hsl(210, 23%, 10%);
-	--color-surface-2: hsl(210, 23%, 15%);
-	--color-surface-3: hsl(210, 23%, 20%);
-	--color-surface-4: hsl(210, 23%, 24%);
+	--color-text: rgb(255 255 255 / 90%);
+	--color-text-secondary: rgb(255 255 255 / 75%);
+	--color-link: hsl(180deg 85% 45%);
+	--color-link-hover: hsl(180deg 85% 85%);
+	--color-surface-1: hsl(210deg 23% 10%);
+	--color-surface-2: hsl(210deg 23% 15%);
+	--color-surface-3: hsl(210deg 23% 20%);
+	--color-surface-4: hsl(210deg 23% 24%);
 	--color-success: rgb(15 202 202);
-	--color-danger: rgb(255, 80, 80);
-	--border: 1px solid hsl(210 23% 25%);
-
+	--color-danger: rgb(255 80 80);
+	--border: 1px solid hsl(210deg 23% 25%);
 	--radius: 5px;
-
 	--font-main: var(--font-fallback);
-	--font-fallback:
-		system-ui,
-		-apple-system,
-		blinkmacsystemfont,
-		"Segoe UI",
-		roboto,
-		"Helvetica Neue",
-		arial,
-		"Noto Sans",
-		sans-serif,
-		"Apple Color Emoji",
-		"Segoe UI Emoji",
-		"Segoe UI Symbol",
-		"Noto Color Emoji";
+	--font-fallback: system-ui, "Segoe UI", roboto, "Helvetica Neue", arial;
 
 	color-scheme: dark;
 	color: var(--color-text);
 	background-color: var(--color-surface-1);
 	font-synthesis: none;
-	text-rendering: optimizeLegibility;
+	text-rendering: optimizelegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
 }
