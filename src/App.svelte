@@ -3,7 +3,8 @@
 		PageWarning,
 		PageToday,
 		PageInfoByDate,
-		PageAbout
+		PageAbout,
+		PageEphemeris
 	} from "./lib/pages";
 	import { author, version } from "../package.json";
 	import { urlAuthorGithub, urlGithub } from "./lib/paths";
@@ -20,6 +21,7 @@
 	<PageWarning />
 	<PageToday />
 	<PageInfoByDate />
+	<PageEphemeris />
 	<PageAbout />
 </main>
 <footer>
