@@ -1,6 +1,12 @@
 <script lang="ts">
 	import styles from "./seven-segment-digit.module.css";
 
+	interface Segment {
+		orientation: "horizontal" | "vertical";
+		name: string;
+		transform?: string;
+	}
+
 	export let digit = 0;
 
 	const digits = [ 0x7e, 0x30, 0x6d, 0x79, 0x33, 0x5b, 0x5f, 0x70, 0x7f, 0x7b ];
@@ -13,7 +19,7 @@
 		return (digits[value] >> shift) & 1;
 	};
 
-	const segments = [
+	const segments: Segment[] = [
 		{
 			orientation: "horizontal",
 			name: "A"

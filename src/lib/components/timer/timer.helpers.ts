@@ -44,10 +44,10 @@ const formatDigit = (input: number) => {
 export const getDateTimeString = (timestamp: number) => {
 	const d = new Date(timestamp);
 	const year = d.getFullYear();
-	let month = d.getMonth() + 1;
-	let date = d.getDate();
-	let hours = d.getHours();
-	let minutes = d.getMinutes();
+	const month = d.getMonth() + 1;
+	const date = d.getDate();
+	const hours = d.getHours();
+	const minutes = d.getMinutes();
 	
 	return `${year}-${formatDigit(month)}-${formatDigit(date)}T${formatDigit(hours)}:${formatDigit(minutes)}:00.000`;
 };

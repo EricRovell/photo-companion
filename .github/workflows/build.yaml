@@ -1,0 +1,55 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - "**/README.md"
+  pull_request:
+    paths-ignore:
+      - "**/README.md"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install dependencies
+        run: |
+          npm i pnpm -g
+          pnpm i
+
+      - name: lint
+        run: |
+          pnpm run lint:code
+          pnpm run lint:styles
+          pnpm run lint:types
+
+      - name: unit testing
+        run: |
+          pnpm run test:unit
+
+      - name: build
+        run: |
+          pnpm run build
+
+      - name: build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ./dist
+          if-no-files-found: error
