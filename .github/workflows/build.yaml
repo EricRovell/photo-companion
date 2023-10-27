@@ -50,6 +50,6 @@ jobs:
       - name: build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist
+          name: build
           path: ./dist
           if-no-files-found: error
