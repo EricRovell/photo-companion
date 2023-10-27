@@ -1,6 +1,6 @@
 <script>
 	import { Gauge } from "../../components";
-	import { calcEphemeridesData, calcMoonIllumination } from "../../services/suncalc.service";
+	import { calcEphemeridesData, calcMoonIllumination } from "../../services/suncalc";
 	import { LAT, LON } from "../../constants";
 	import styles from "./ephemeris.module.css";
 
