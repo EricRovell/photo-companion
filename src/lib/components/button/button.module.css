@@ -1,0 +1,28 @@
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--space-2);
+	border-radius: var(--radius);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.button:hover {
+	background-color: var(--color-surface-3);
+}
+
+.button:active {
+	background-color: var(--color-surface-4);
+}
+
+.button:disabled {
+	cursor: not-allowed;
+	opacity: 0.75;
+}
+
+.button svg {
+	pointer-events: none;
+}
