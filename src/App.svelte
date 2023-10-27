@@ -1,14 +1,32 @@
 <script lang="ts">
 	import {
-		PageWarning,
-		PageToday,
-		PageInfoByDate,
+		//PageWarning,
+		PageIllumination,
 		PageAbout,
 		PageEphemeris
 	} from "./lib/pages";
+	import { Tabs } from "./lib/components";
 	import { author, version } from "../package.json";
 	import { urlAuthorGithub, urlGithub } from "./lib/paths";
 	import { ACTUAL_DATA } from "./lib/constants";
+
+	const tabs = [
+		{
+			label: "Освещение",
+			value: "illumination",
+			component: PageIllumination 
+		},
+		{
+			label: "Эфемериды",
+			value: "ephemerids",
+			component: PageEphemeris
+		},
+		{
+			label: "О приложении",
+			value: "about",
+			component: PageAbout 
+		}
+	];
 </script>
 
 <header>
@@ -18,11 +36,7 @@
 	</h1>
 </header>
 <main>
-	<PageWarning />
-	<PageToday />
-	<PageInfoByDate />
-	<PageEphemeris />
-	<PageAbout />
+	<Tabs {tabs} />
 </main>
 <footer>
 	<p>Данные расписания <span class:success={ACTUAL_DATA} class:danger={!ACTUAL_DATA}>{ACTUAL_DATA ? "актуальны" : "не актуальны"}</span></p>

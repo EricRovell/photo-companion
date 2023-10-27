@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Timer, Bulb } from "../../../lib/components";
+	import { Timer, Bulb } from "../../components";
 	import { getScheduleState } from "../../services/schedule";
 	import type { ScheduleDataItem } from "../../../types";
 	import styles from "./today.module.css";

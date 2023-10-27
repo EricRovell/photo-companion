@@ -14,7 +14,7 @@
 	--space-8: 3rem;
 	--space-9: 4rem;
 	--space-10: 8rem;
-	--content-width: min(100%, 60ch);
+	--content-width: min(100%, 55ch);
 	--font-scale: 1.2rem;
 	--font-size-1: calc(0.75 * var(--font-scale));
 	--font-size-2: calc(0.85 * var(--font-scale));
