@@ -1,13 +1,9 @@
-name: Vercel Deployment
+name: deploy-vercel
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - "**/README.md"
     tags:
-      - 'v\d+.\d+.\d+'
+      - '*'
 
 jobs:
   build-workflow:
