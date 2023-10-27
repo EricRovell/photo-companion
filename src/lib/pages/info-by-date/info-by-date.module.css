@@ -8,6 +8,17 @@
 	text-align: center;
 }
 
+.root button > svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: var(--color-text);
+	transition: transform 0.125s ease-in-out;
+}
+
+.root button:active > svg {
+	transform: scale(0.85);
+}
+
 .date-input {
 	justify-self: center;
 	display: grid;
@@ -47,7 +58,7 @@
 
 .state {
 	display: grid;
-	grid-template: 1fr / 1fr;
+	grid-template: 1fr / auto 1fr auto;
 	justify-items: center;
+	margin-inline: 0 !important;
 }
-

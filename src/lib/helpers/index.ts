@@ -1,3 +1,5 @@
+import { YEAR } from "../constants";
+
 /**
  * Formats time from `Date` object as "HH:MM".
  */
@@ -15,4 +17,11 @@ export const getAngleFromTime = (date = new Date()): number => {
 	const hours = date.getHours();
 	const minutes = date.getMinutes();
 	return Math.round(360 * (hours * 60 + minutes) / (24 * 60));
+};
+
+/**
+ * Validate if the given date is within actual schedule.
+ */
+export const validateDate = (date: Date) => {
+	return date.getFullYear() === YEAR;
 };
