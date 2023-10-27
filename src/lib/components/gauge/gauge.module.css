@@ -5,6 +5,8 @@
 
 .gauge text {
 	font-size: 5px;
+	font-family: monospace;
+	font-weight: 600;
 	fill: var(--gauge-text-color, hsl(0deg 50% 100%));
 	transform-box: fill-box;
 	text-anchor: middle;
@@ -19,6 +21,7 @@
 .progress {
 	fill: none;
 	stroke: var(--gauge-color, hsl(195deg 41% 58%));
+	filter: drop-shadow(0 0 4px var(--gauge-color, hsl(195deg 41% 58%)));
 }
 
 .marks line {

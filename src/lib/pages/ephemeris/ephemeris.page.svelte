@@ -18,7 +18,9 @@
 			angleEnd={data.sunset.angle}
 			labelEnd="{data.sunset.time}"
 		>
-			Sun
+			<text x="0" y="0" dominant-baseline="central">
+				Sun
+			</text>
 		</Gauge>
 		<Gauge
 			angleStart={data.moonrise.angle}
@@ -26,7 +28,9 @@
 			angleEnd={data.moonset.angle}
 			labelEnd="{data.moonset.time}"
 		>
-			Moon, {calcMoonIllumination()}%
+			<text x="0" y="0" dominant-baseline="central">
+				Moon, {calcMoonIllumination()}%
+			</text>
 		</Gauge>
 	</div>
 </section>
