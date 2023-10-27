@@ -7,7 +7,7 @@
 	import styles from "./info-by-date.module.css";
 
 	let userInput: string = new Date().toISOString().substring(0, 10);
-	let state;
+	let state: ReturnType<typeof getScheduleStateByDate> | null = null;
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;

@@ -2,10 +2,15 @@ import { schedule } from "../../data/data";
 import { getTimestamp } from "./schedule-intervals";
 import { currentYear } from "../constants";
 
+interface ScheduleState {
+	timestampOn: number;
+	timestampOff: number;
+}
+
 /**
  * Returns the current illumination state.
  */
-export const getScheduleStateByDate = (timestamp: number) => {
+export const getScheduleStateByDate = (timestamp: number): ScheduleState | null => {
 	const queryDate = new Date(timestamp);
 	const query = {
 		month: queryDate.getMonth() + 1,

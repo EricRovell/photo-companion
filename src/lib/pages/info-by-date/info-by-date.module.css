@@ -1,5 +1,5 @@
 .root {
-	--gauge-color: rgba(223, 219, 16, 0.897);
+	--gauge-color: hsl(59deg 87% 47% / 90%);
 
 	display: grid;
 }
