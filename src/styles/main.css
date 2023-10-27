@@ -1,5 +1,6 @@
 #app {
 	display: grid;
+	grid-template: auto auto 1fr / 1fr;
 	grid-auto-rows: min-content;
 	justify-items: center;
 	gap: var(--space-6);
@@ -7,6 +8,7 @@
 	text-align: center;
 	margin-block-start: var(--space-7);
 	margin-inline: auto;
+	width: 100%;
 }
 
 body > header {
@@ -24,6 +26,7 @@ main {
 }
 
 footer {
+	align-self: end;
 	display: grid;
 	justify-items: center;
 	width: var(--content-width);
