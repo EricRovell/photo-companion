@@ -32,13 +32,7 @@
 			<line {x1} {y1} {x2} {y2} />
 		{/each}
 	</g>
-	<text
-		x="0"
-		y="0"
-		dominant-baseline="central"
-	>
-		<slot />
-	</text>
+	<slot />
 	<text
 		class="{styles.label}"
 		x="{polarToCartesian(0, 0, radius + labelGap, angleStart).x}"
