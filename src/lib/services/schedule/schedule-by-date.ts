@@ -1,6 +1,6 @@
-import { schedule } from "../../data/data";
+import { schedule } from "../../../data/data";
 import { getTimestamp } from "./schedule-intervals";
-import { currentYear } from "../constants";
+import { currentYear } from "../../constants";
 
 interface ScheduleState {
 	timestampOn: number;

@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getScheduleStateByDate } from "../src/lib/core/get-schedule-by-date";
-import { getTimestamp } from "../src/lib/core/schedule-intervals";
+import { getScheduleStateByDate, getTimestamp } from "../src/lib/services/schedule";
 import { schedule } from "../src/data/data";
 import { currentYear } from "../src/lib/constants";
 

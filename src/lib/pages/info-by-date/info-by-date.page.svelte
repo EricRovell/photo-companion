@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
 	import { Bulb, Gauge, Button } from "../../components";
-	import { getScheduleStateByDate } from "../../core/get-schedule-by-date";
+	import { getScheduleStateByDate } from "../../services/schedule/schedule-by-date";
 	import { currentYear } from "../../constants";
 	import { formatTime, getAngleFromTime, validateDate } from "../../helpers";
 	import styles from "./info-by-date.module.css";

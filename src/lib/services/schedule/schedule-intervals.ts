@@ -1,6 +1,6 @@
-import { schedule } from "../../data/data";
-import { currentYear } from "../constants";
-import type { ScheduleDataItem } from "../../types.js";
+import { schedule } from "../../../data/data";
+import { currentYear } from "../../constants";
+import type { ScheduleDataItem } from "../../../types.js";
 
 export const getTimestamp = (
 	year: number,
