@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { Bulb } from "../../components";
+	import { Bulb, Gauge } from "../../components";
 	import { getScheduleStateByDate } from "../../core/get-schedule-by-date";
 	import { currentYear } from "../../constants";
+	import { formatTime, getAngleFromTime } from "../../helpers";
 	import styles from "./info-by-date.module.css";
 
 	let userInput: string = new Date().toISOString().substring(0, 10);
@@ -12,50 +13,23 @@
 		userInput = target.value;
 		state = getScheduleStateByDate(new Date(userInput).getTime());
 	};
-
-	const formatDate = (timestamp: number) => {
-		return Intl.DateTimeFormat("ru-RU", {
-			hour: "numeric",
-			minute: "numeric"
-		}).format(timestamp);
-	};
 </script>
 
 <section id="info-by-date" class="card {styles.root}">
 	<header>
-		<h2>
-			Данные об освещении по датам
-		</h2>
+		<h2>Данные об освещении по датам</h2>
 	</header>
 	{#if state}
-		<ol class="{styles.time}">
-			<li class="{styles.wire}" />
-			<li class="{styles.bulb}">
-				<Bulb
-					title="Выключение"
-				/>
-				<time
-					lang="en"
-					datetime="{new Date(state.timestampOff).toISOString()}"
-				>
-					{formatDate(state.timestampOff)}
-				</time>
-			</li>
-			<li class="{styles.wire}" />
-			<li class="{styles.bulb}">
-				<Bulb
-					glow="{true}"
-					title="Включение"
-				/>
-				<time
-					lang="en"
-					datetime="{new Date(state.timestampOff).toISOString()}"
-				>
-					{formatDate(state.timestampOn)}
-				</time>
-			</li>
-			<li class="{styles.wire}" />
-		</ol>
+		<div class="{styles.state}">
+			<Gauge
+				angleStart="{getAngleFromTime(new Date(state.timestampOn))}"
+				angleEnd="{getAngleFromTime(new Date(state.timestampOff))}"
+				labelStart="{formatTime(state.timestampOn)}"
+				labelEnd="{formatTime(state.timestampOff)}"
+			>
+				<Bulb x="-10" y="-10" width="20" height="20" glow />
+			</Gauge>
+		</div>
 	{:else}
 		<p>Пожалуйста, введите дату для отображения данных.</p>
 	{/if}
