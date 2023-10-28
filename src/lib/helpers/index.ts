@@ -25,3 +25,14 @@ export const getAngleFromTime = (date = new Date()): number => {
 export const validateDate = (date: Date) => {
 	return date.getFullYear() === YEAR;
 };
+
+/**
+ * Increments the given date by number of days.
+ */
+export const incrementDateByDay = (date: Date | string, dayCount: number): Date => {
+	const currentDate = new Date(date);
+	const nextDate = new Date(currentDate.getTime());
+	nextDate.setDate(nextDate.getDate() + dayCount);
+
+	return nextDate;
+};

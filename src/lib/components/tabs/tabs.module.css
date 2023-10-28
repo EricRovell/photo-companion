@@ -9,13 +9,23 @@
 	margin-block-end: var(--space-5);
 	padding-block-end: var(--space-5);
 	border-bottom: 1px solid hsl(0deg 0% 50% / 25%);
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+}
+
+.tab {
+	scroll-snap-align: start;
 }
 
 .tab span {
+	display: flex;
+	place-content: center;
 	background-color: var(--color-surface-2);
 	padding: var(--space-2);
 	border-radius: var(--radius);
+	transition: background-color 0.125s linear;
 	cursor: pointer;
+	white-space: nowrap;
 	user-select: none;
 }
 
@@ -33,6 +43,11 @@
 
 .tab input:checked ~ span {
 	background-color: var(--color-accent);
+}
+
+.tab input:focus-visible ~ span {
+	outline: 2px dashed var(--color-accent);
+	outline-offset: 2px;
 }
 
 .tab-panel-wrapper {
