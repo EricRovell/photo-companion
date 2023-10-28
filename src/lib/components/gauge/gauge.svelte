@@ -32,6 +32,15 @@
 			<line {x1} {y1} {x2} {y2} />
 		{/each}
 	</g>
+	{#if angleStart > angleEnd}
+		<line
+			x1="{0}"
+			y1="{-radius + width / 2}"
+			x2="{0}" y2="{-radius - width / 2}"
+			stroke="var(--color-surface-1)"
+			stroke-width="0.5px"
+		/>
+	{/if}
 	<slot />
 	<text
 		class="{styles.label}"
