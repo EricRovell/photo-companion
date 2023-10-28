@@ -72,3 +72,7 @@ p {
 	text-align: justify;
 	font-variation-settings: "wght" 300;
 }
+
+strong {
+	font-variation-settings: "wght" 600;
+}

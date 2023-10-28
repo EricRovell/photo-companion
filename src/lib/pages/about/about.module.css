@@ -2,3 +2,16 @@
 	display: grid;
 	gap: var(--space-1);
 }
+
+.root h2 {
+	justify-self: start;
+	width: 100%;
+	padding-block-end: var(--space-2);
+	margin-block: var(--space-6) var(--space-2);
+	color: hsl(0deg 0% 90%);
+	border-bottom: 1px solid hsl(0deg 0% 90% / 0.1);
+}
+
+.root h2:first-of-type {
+	margin-block-start: 0;
+}
