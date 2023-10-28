@@ -12,7 +12,7 @@
 	const handleIncrement = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const value = Number(target.dataset.value) ?? 0;
-		const nextDate = incrementDateByDay(date, value)
+		const nextDate = incrementDateByDay(date, value);
 
 		date = nextDate.toISOString().substring(0, 10);
 	};

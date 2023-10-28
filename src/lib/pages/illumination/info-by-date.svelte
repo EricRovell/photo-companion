@@ -3,7 +3,7 @@
 	import { Gauge, Bulb } from "../../components";
 	import { ViewDate } from "../../layout";
 	import { getScheduleStateByDate } from "../../services/schedule/schedule-by-date";
-	import { formatTime, getAngleFromTime, validateDate } from "../../helpers";
+	import { formatTime, getAngleFromTime } from "../../helpers";
 	import { currentYear } from "../../constants";
 	import styles from "./info-by-date.module.css";
 
