@@ -10,7 +10,6 @@
 		state = getScheduleState(new Date().getTime());
 	};
 
-	$: messageNow = state?.lights ? "включено" : "выключено";
 	$: messageSoon = state?.lights ? "выключено" : "включено";
 </script>
 

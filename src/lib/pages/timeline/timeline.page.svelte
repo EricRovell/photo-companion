@@ -21,7 +21,7 @@
 		timeline.push({
 			date: new Date(),
 			items: getTimeline(date)
-		})
+		});
 	}
 </script>
 

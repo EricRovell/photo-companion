@@ -43,13 +43,11 @@
 }
 
 .timeline-entry time {
-	justify-self: end;
-	align-self: center;
+	place-self: center end;
 }
 
 .timeline-entry p {
-	justify-self: start;
-	align-self: center;
+	place-self: center start;
 	text-align: left;
 	font-size: 0.9em;
 }
