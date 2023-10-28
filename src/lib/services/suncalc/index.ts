@@ -1,5 +1,6 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
+import { round } from "../../helpers";
 
 interface Time {
 	angle: number;
@@ -44,5 +45,5 @@ export const calcEphemeridesData = (date: Date = new Date, lat: number, lon: num
 
 export const calcMoonIllumination = (date: Date = new Date()): number => {
 	const value = SunCalc.getMoonIllumination(date).fraction;
-	return value.toFixed(2) * 100;
+	return round(value * 100, 1);
 };

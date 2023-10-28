@@ -8,9 +8,11 @@
 
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state: ReturnType<typeof calcEphemeridesData>;
+	let illumination = calcMoonIllumination();
 
 	afterUpdate(() => {
 		state = calcEphemeridesData(new Date(date), LAT, LON);
+		illumination = calcMoonIllumination(new Date(date));
 	});
 </script>
 
@@ -27,7 +29,7 @@
 				labelEnd="{state.moonset.time}"
 			>
 				<text x="0" y="0" dominant-baseline="central">
-					Moon, {calcMoonIllumination()}%
+					Moon, {illumination}%
 				</text>
 			</Gauge>
 		</ViewDate>
