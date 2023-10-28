@@ -7,9 +7,8 @@
 		PageTimeline
 	} from "./lib/pages";
 	import { Tabs } from "./lib/components";
-	import { author, version } from "../package.json";
-	import { urlAuthorGithub, urlGithub } from "./lib/paths";
-	import { ACTUAL_DATA } from "./lib/constants";
+	import { version } from "../package.json";
+	import { urlGithub } from "./lib/paths";
 
 	const tabs = [
 		{
@@ -45,12 +44,8 @@
 	<Tabs {tabs} />
 </main>
 <footer>
-	<p>Данные расписания <span class:success={ACTUAL_DATA} class:danger={!ACTUAL_DATA}>{ACTUAL_DATA ? "актуальны" : "не актуальны"}</span></p>
 	<p>
 		Illumination Schedule SPB, v.{version}
-	</p>
-	<p>
-		Made by <a target="_blank" href="{urlAuthorGithub}">{author}</a>
 	</p>
 	<a href="{urlGithub}" target="_blank" class="github">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
