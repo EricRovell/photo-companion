@@ -1,36 +1,7 @@
 <script>
-	import { Gauge } from "../../components";
-	import { calcEphemeridesData, calcMoonIllumination } from "../../services/suncalc";
-	import { LAT, LON } from "../../constants";
-	import styles from "./ephemeris.module.css";
-
-	const data = calcEphemeridesData(new Date(), LAT, LON);
+	import Sun from "./sun.svelte";
+	import Moon from "./moon.svelte";
 </script>
 
-<section id="ephemeris" class="card {styles.root}">
-	<header>
-		<h2>Эфемериды</h2>
-	</header>
-	<div>
-		<Gauge
-		angleStart={data.sunrise.angle}
-			labelStart="{data.sunrise.time}"
-			angleEnd={data.sunset.angle}
-			labelEnd="{data.sunset.time}"
-		>
-			<text x="0" y="0" dominant-baseline="central">
-				Sun
-			</text>
-		</Gauge>
-		<Gauge
-			angleStart={data.moonrise.angle}
-			labelStart="{data.moonrise.time}"
-			angleEnd={data.moonset.angle}
-			labelEnd="{data.moonset.time}"
-		>
-			<text x="0" y="0" dominant-baseline="central">
-				Moon, {calcMoonIllumination()}%
-			</text>
-		</Gauge>
-	</div>
-</section>
+<Sun />
+<Moon />

@@ -7,15 +7,20 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
-	background-color: transparent;
-}
-
-.button:hover {
 	background-color: var(--color-surface-3);
 }
 
-.button:active {
+.button:hover {
 	background-color: var(--color-surface-4);
+}
+
+.button:active {
+	background-color: var(--color-surface-3);
+}
+
+.button:focus-visible {
+	outline: 2px dashed var(--color-accent);
+	outline-offset: 2px;
 }
 
 .button:disabled {
