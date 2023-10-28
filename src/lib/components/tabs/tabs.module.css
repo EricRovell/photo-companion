@@ -4,6 +4,10 @@
 }
 
 .tab-list {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background-color: var(--color-surface-1);
 	display: flex;
 	gap: var(--space-4);
 	margin-block-end: var(--space-5);
@@ -11,6 +15,7 @@
 	border-bottom: 1px solid hsl(0deg 0% 50% / 25%);
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
+	font-size: var(--font-size-1);
 }
 
 .tab {

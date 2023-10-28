@@ -19,6 +19,10 @@
 		const target = event.target as HTMLInputElement;
 		const value = target.value;
 		current = value;
+		scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
 	};
 </script>
 
