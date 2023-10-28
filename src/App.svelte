@@ -3,7 +3,8 @@
 		//PageWarning,
 		PageIllumination,
 		PageAbout,
-		PageEphemeris
+		PageEphemeris,
+		PageTimeline
 	} from "./lib/pages";
 	import { Tabs } from "./lib/components";
 	import { author, version } from "../package.json";
@@ -11,6 +12,11 @@
 	import { ACTUAL_DATA } from "./lib/constants";
 
 	const tabs = [
+		{
+			label: "Cобытия",
+			value: "timeline",
+			component: PageTimeline 
+		},
 		{
 			label: "Освещение",
 			value: "illumination",
