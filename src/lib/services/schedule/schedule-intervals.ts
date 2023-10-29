@@ -11,15 +11,7 @@ export const getTimestamp = (
 	seconds: number = 0,
 	miliseconds: number = 0
 ): number => {
-	const d = new Date();
-	d.setFullYear(year);
-	d.setMonth(month - 1);
-	d.setDate(date);
-	d.setHours(hours);
-	d.setMinutes(minutes);
-	d.setSeconds(seconds);
-	d.setMilliseconds(miliseconds);
-
+	const d = new Date(year, month - 1, date, hours, minutes, seconds, miliseconds);
 	return d.getTime();
 };
 
