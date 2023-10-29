@@ -1,17 +1,23 @@
 {
-	"short_name": "Illumination SPB",
-	"name": "Illumination Schedule, Saint-Petersburg",
+	"short_name": "Photo Companion",
+	"name": "Photo Companion",
 	"start_url": "/",
 	"icons": [
 		{
 			"src": "/icon.png",
 			"type": "image/png",
 			"sizes": "512x512"
+		},
+		{
+			"src": "/icon-maskable.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
 		}
 	],
 	"background_color": "#008B8B",
 	"display": "standalone",
 	"scope": "/",
 	"theme_color": "#008B8B",
-	"description": "Данные о включении и выключении наружного освещения города Санкт-Петербурга."
+	"description": "Minimalistic photography toolkit progressive web application."
 }

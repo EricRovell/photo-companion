@@ -1,11 +1,12 @@
 {
-	"name": "illumination-schedule-spb",
+	"name": "photo-companion",
+	"description": "Minimalistic photography toolkit progressive web application.",
 	"private": true,
 	"version": "1.1.0",
 	"type": "module",
 	"author": "Eric Rovell",
 	"license": "MIT",
-	"homepage": "https://github.com/ericrovell/illumination-schedule-spb#readme",
+	"homepage": "https://github.com/EricRovell/photo-companion#readme",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
@@ -15,6 +16,11 @@
 		"lint:types": "svelte-check --tsconfig ./tsconfig.json",
 		"test:unit": "vitest run"
 	},
+	"keywords": [
+		"photography",
+		"scheduler",
+		"web-application"
+	],
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^2.4.6",
 		"@tsconfig/svelte": "^5.0.2",
