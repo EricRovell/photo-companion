@@ -1,9 +1,0 @@
-.page {
-	display: grid;
-	gap: var(--space-2);
-}
-
-.page,
-.page header {
-	border-color: var(--color-danger);
-}
