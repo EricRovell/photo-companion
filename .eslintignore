@@ -2,3 +2,4 @@ svelte.config.js
 vite.config.js
 public/service-worker.js
 test/*.test.js
+scripts/*.js
