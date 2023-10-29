@@ -15,7 +15,7 @@
 		"lint:styles": "npx stylelint src/**/*.css",
 		"lint:types": "svelte-check --tsconfig ./tsconfig.json",
 		"test:unit": "vitest run",
-		"sw:update": "node scripts/update-service-worker.js"
+		"sw:update": "node scripts/update-service-worker.js && git commit public/service-worker.js -m \"chore: update service-worker\""
 	},
 	"keywords": [
 		"photography",
