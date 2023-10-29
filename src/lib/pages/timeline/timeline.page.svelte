@@ -4,8 +4,6 @@
 	import { data } from "./timeline.data";
 	import styles from "./timeline.module.css";
 
-	let daysAhead = 1;
-
 	interface Timeline {
 		date: Date;
 		items: ReturnType<typeof getTimeline>;
@@ -15,11 +13,11 @@
 
 	for (let i = 0; i < 3; i++) {
 		const date = i > 0
-			? incrementDateByDay(new Date(), daysAhead)
+			? incrementDateByDay(new Date(), i)
 			: new Date();
 
 		timeline.push({
-			date: new Date(),
+			date: date,
 			items: getTimeline(date)
 		});
 	}
