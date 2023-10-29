@@ -6,4 +6,4 @@ export const ACTUAL_DATA = currentYear === YEAR;
 export const LAT = 59.937500;
 export const LON = 30.308611;
 
-export const title = "Наружное освещение г.Санкт-Петербурга";
+export const title = "Photo Companion";

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import {
-		//PageWarning,
-		PageIllumination,
 		PageAbout,
 		PageEphemeris,
+		PageIllumination,
 		PageTimeline
 	} from "./lib/pages";
 	import { Tabs } from "./lib/components";
+	import { title } from "./lib/constants";
 	import { version } from "../package.json";
 	import { urlGithub } from "./lib/paths";
 
@@ -35,17 +35,14 @@
 </script>
 
 <header>
-	<h1>
-		<span>Наружное освещение</span>
-		<span>Санкт-Петербурга</span>
-	</h1>
+	<h1>{title}</h1>
 </header>
 <main>
 	<Tabs {tabs} />
 </main>
 <footer>
 	<p>
-		Illumination Schedule SPB, v.{version}
+		{title}, v.{version}
 	</p>
 	<a href="{urlGithub}" target="_blank" class="github">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
