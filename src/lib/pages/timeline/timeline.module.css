@@ -1,5 +1,5 @@
 .wrapper {
-	--timeline-icon-size: 3.25rem;
+	--timeline-icon-size: 3.75rem;
 	--timeline-wire-width: 3px;
 
 	position: relative;
@@ -54,16 +54,23 @@
 
 .icon {
 	position: relative;
+	display: flex;
+	place-items: center;
+	justify-content: center;
 	width: var(--timeline-icon-size);
 	height: var(--timeline-icon-size);
+	border-radius: 50%;
+	border: var(--timeline-wire-width) solid var(--color-surface-3);
 }
 
 .icon svg {
+	--icon-width: var(--timeline-icon-size);
+	--icon-height: var(--timeline-icon-size);
+	--bulb-glow-size: 5px;
+
 	width: var(--timeline-icon-size);
 	height: var(--timeline-icon-size);
 	padding: var(--space-3);
-	border-radius: 50%;
-	border: var(--timeline-wire-width) solid var(--color-surface-3);
 }
 
 .icon::before,
@@ -72,7 +79,7 @@
 	position: absolute;
 	left: calc(50% - var(--timeline-wire-width) / 2);
 	width: var(--timeline-wire-width);
-	height: var(--space-6);
+	height: calc(var(--space-6) + var(--timeline-wire-width));
 	background-color: var(--color-surface-3);
 }
 
