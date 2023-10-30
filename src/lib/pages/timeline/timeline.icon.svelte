@@ -10,7 +10,7 @@
 	interface IconData {
 		label: string;
 		icon: ComponentType;
-		props: Record<string, any>;
+		props: Record<string, unknown>;
 	}
 
 	const data: Record<EventName, IconData> = {
