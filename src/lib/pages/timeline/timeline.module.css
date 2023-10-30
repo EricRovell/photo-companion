@@ -1,4 +1,8 @@
 .wrapper {
+	--timeline-icon-size: 3.25rem;
+	--timeline-wire-width: 3px;
+
+	position: relative;
 	display: grid;
 	gap: var(--space-6);
 }
@@ -13,22 +17,14 @@
 }
 
 .timeline > time {
-	position: relative;
+	position: sticky;
+	top: calc(var(--tabs-height) + var(--space-4));
+	z-index: 9;
 	width: max-content;
 	justify-self: center;
 	background-color: var(--color-surface-3);
 	padding: var(--space-2) var(--space-3);
 	border-radius: var(--radius);
-}
-
-.timeline > time::after {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: calc(50% - 1.5px);
-	width: 3px;
-	height: var(--space-6);
-	background-color: var(--color-surface-3);
 }
 
 .timeline-entries {
@@ -38,7 +34,7 @@
 
 .timeline-entry {
 	display: grid;
-	grid-template: 1fr / 1fr 3.25rem 1fr;
+	grid-template: 1fr / 1fr var(--timeline-icon-size) 1fr;
 	gap: var(--space-4);
 }
 
@@ -49,7 +45,7 @@
 .timeline-entry p {
 	place-self: center start;
 	text-align: left;
-	font-size: 0.9em;
+	font-size: 0.85em;
 }
 
 .timeline-entry.empty > article {
@@ -58,28 +54,55 @@
 
 .icon {
 	position: relative;
-	width: 3.25rem;
-	height: 3.25rem;
+	width: var(--timeline-icon-size);
+	height: var(--timeline-icon-size);
 }
 
 .icon svg {
-	width: 3.25rem;
-	height: 3.25rem;
+	width: var(--timeline-icon-size);
+	height: var(--timeline-icon-size);
 	padding: var(--space-3);
 	border-radius: 50%;
-	border: 3px solid var(--color-surface-3);
+	border: var(--timeline-wire-width) solid var(--color-surface-3);
 }
 
+.icon::before,
 .icon::after {
 	content: "";
 	position: absolute;
-	top: 100%;
-	left: calc(50% - 1.5px);
-	width: 3px;
+	left: calc(50% - var(--timeline-wire-width) / 2);
+	width: var(--timeline-wire-width);
 	height: var(--space-6);
 	background-color: var(--color-surface-3);
 }
 
+.icon::after {
+	top: 100%;
+}
+
+.icon::before {
+	bottom: 100%;
+}
+
 .timeline:last-of-type .timeline-entry:last-of-type .icon::after {
 	content: initial;
+}
+
+@media screen and (width <= 600px) {
+	.timeline > time {
+		position: sticky;
+		top: calc(var(--tabs-height) + var(--space-4));
+		width: 100%;
+		background-color: var(--color-surface-1);
+		border: var(--timeline-wire-width) solid var(--color-surface-3);
+		z-index: 9;
+	}
+
+	.timeline > time::after {
+		left: calc(6ch + var(--space-4) + var(--timeline-icon-size) / 2);
+	}
+
+	.timeline-entry {
+		grid-template: 1fr / 6ch var(--timeline-icon-size) 1fr;
+	}
 }
