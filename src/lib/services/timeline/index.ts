@@ -1,9 +1,10 @@
 import { getScheduleStateByDate } from "../schedule";
 import { calcEphemeridesData } from "../suncalc";
 import { LAT, LON } from "../../constants";
+import type { EventName } from "../../types";
 
 interface TimelineEntry {
-	name: string;
+	name: EventName;
 	timestamp: number;
 }
 
@@ -29,7 +30,7 @@ export const getTimeline = (date = new Date()) => {
 	for (const [ key, { date } ] of Object.entries(ephemerisData)) {
 		entries.push(
 			{
-				name: key,
+				name: key as EventName,
 				timestamp: date.getTime()
 			}
 		);

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getTimeline } from "../../services/timeline";
 	import { incrementDateByDay } from "../../helpers";
-	import { data } from "./timeline.data";
+	import Icon from "./timeline.icon.svelte";
 	import styles from "./timeline.module.css";
 
 	interface Timeline {
@@ -43,12 +43,7 @@
 								minute: "2-digit"
 							}).format(new Date(timestamp))}
 						</time>
-						<div class="{styles.icon}">
-							<svg viewBox="0 0 256 256" fill="{data[name].fill}">
-								<path d="{data[name].icon}" />
-							</svg>
-						</div>
-						<p>{data[name].label}</p>
+						<Icon eventName="{name}" />
 					</li>
 				{:else}
 					<li class="{styles["timeline-entry"]} {styles.empty}">
@@ -62,6 +57,7 @@
 								</svg>
 							</div>
 						</article>
+						<p>Никаких событий на сегодня</p>
 					</li>
 				{/each}
 			</ol>

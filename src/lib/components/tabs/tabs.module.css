@@ -1,4 +1,6 @@
 .tabs {
+	--tabs-height: calc(2 * var(--space-5) + 2 * var(--space-2) + 1.5em);
+
 	display: grid;
 	width: var(--content-width);
 }
@@ -10,15 +12,19 @@
 	background-color: var(--color-surface-1);
 	display: flex;
 	gap: var(--space-4);
+	height: var(--tabs-height);
 	margin-block-end: var(--space-5);
-	padding-block-end: var(--space-5);
-	border-bottom: 1px solid hsl(0deg 0% 50% / 25%);
+	padding-block: var(--space-5);
+	border-bottom: 3px solid hsl(0deg 0% 50% / 25%);
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
+	scroll-padding-inline-start: var(--space-4);
 	font-size: var(--font-size-1);
 }
 
 .tab {
+	position: relative;
+	display: flex;
 	scroll-snap-align: start;
 }
 
@@ -58,9 +64,16 @@
 .tab-panel-wrapper {
 	display: grid;
 	gap: var(--space-5);
+	padding-inline: var(--space-3);
 }
 
 .tab-panel {
 	display: grid;
 	grid-gap: var(--space-4);
+}
+
+@media screen and (width <= 600px) {
+	.tab-list {
+		padding-inline: var(--space-4);
+	}
 }
