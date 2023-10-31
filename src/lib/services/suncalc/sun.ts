@@ -36,6 +36,6 @@ export interface SunTimes {
 	nadir: SunTime;
 }
 
-export const getSunData = (date: Date = new Date, lat: number, lon: number): SunData => {
+export const getSunData = (date: Date = new Date, lat: number, lon: number): SunTimes => {
 	return SunCalc.getSunTimes(date, lat, lon);
 };

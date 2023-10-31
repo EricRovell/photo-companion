@@ -1,6 +1,6 @@
 .moon {
 	--moon-illumination-color: lightblue;
-	--moon-shadow-color: rgb(51, 56, 77);
+	--moon-shadow-color: rgb(51 56 77);
 
 	position: relative;
 	display: flex;
