@@ -11,14 +11,18 @@
 	margin-block: var(--space-6) var(--space-2);
 	color: hsl(0deg 0% 90%);
 	border-bottom: 1px solid hsl(0deg 0% 90% / 10%);
-	font-size: var(--font-size-3);
+	font-size: var(--font-size-5);
 }
 
 .root h3 {
 	text-align: left;
-	font-size: var(--font-size-2);
+	font-size: var(--font-size-4);
 }
 
 .root h2:first-of-type {
 	margin-block-start: 0;
+}
+
+.root p {
+	font-size: var(--font-size-4);
 }

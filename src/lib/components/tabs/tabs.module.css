@@ -19,7 +19,7 @@
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	scroll-padding-inline-start: var(--space-4);
-	font-size: var(--font-size-1);
+	font-size: var(--font-size-3);
 }
 
 .tab {

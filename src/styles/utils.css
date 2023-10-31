@@ -27,6 +27,10 @@
 	padding: var(--space-2) var(--space-5);
 }
 
+.card h2 {
+	font-size: var(--font-size-4);
+}
+
 .card > header ~ * {
 	margin-inline: var(--space-5);
 }
