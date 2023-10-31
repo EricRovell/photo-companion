@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
-	import { Gauge, Bulb } from "../../components";
+	import { GaugeTime, Bulb } from "../../components";
 	import { ViewDate } from "../../layout";
 	import { getScheduleStateByDate } from "../../services/schedule/schedule-by-date";
-	import { formatTime, getAngleFromTime } from "../../helpers";
 	import { currentYear } from "../../constants";
 	import styles from "./info-by-date.module.css";
 
@@ -27,14 +26,12 @@
 			maxDate={`${currentYear}-12-31`}
 			minDate={`${currentYear}-01-01`}
 		>
-			<Gauge
-				angleStart="{getAngleFromTime(new Date(state.timestampOn))}"
-				angleEnd="{getAngleFromTime(new Date(state.timestampOff))}"
-				labelStart="{formatTime(state.timestampOn)}"
-				labelEnd="{formatTime(state.timestampOff)}"
+			<GaugeTime
+				timeFrom="{new Date(state.timestampOn)}"
+				timeTo="{new Date(state.timestampOff)}"
 			>
 				<Bulb x="-10" y="-10" width="20" height="20" glow />
-			</Gauge>
+			</GaugeTime>
 		</ViewDate>
 	{/if}
 </section>

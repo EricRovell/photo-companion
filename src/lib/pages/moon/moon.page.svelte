@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
-	import { Gauge, Moon } from "../../components";
+	import { GaugeTime, Moon } from "../../components";
 	import { ViewDate } from "../../layout";
 	import { getMoonData } from "../../services/suncalc/moon";
 	import { LAT, LON } from "../../constants";
@@ -22,11 +22,9 @@
 	</header>
 	{#if state}
 		<ViewDate bind:date>
-			<Gauge
-				angleStart={state.moonrise.angle}
-				labelStart="{state.moonrise.time}"
-				angleEnd={state.moonset.angle}
-				labelEnd="{state.moonset.time}"
+			<GaugeTime
+				timeFrom="{state.moonrise}"
+				timeTo="{state.moonset}"
 			>
 				<foreignObject
 					xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +39,7 @@
 						rotation="{state.angle}"
 					/>
 				</foreignObject>
-			</Gauge>
+			</GaugeTime>
 		</ViewDate>
 	{/if}
 </section>
