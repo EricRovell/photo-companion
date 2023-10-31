@@ -1,0 +1,51 @@
+.moon {
+	--moon-illumination-color: hsl(64, 82%, 70%);
+	--moon-shadow-color: rgb(46, 50, 68);
+
+	position: relative;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	border-radius: 50%;
+	background-color: var(--moon-shadow-color);
+	width: var(--moon-size, 50px);
+	height: var(--moon-size, 50px);
+	border: var(--moon-border);
+	transition: transform 1s ease 0;
+}
+
+.diff {
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	width: var(--moon-size, 50px);
+	height: var(--moon-size, 50px);
+	border-radius: 50%;
+	background-color: var(--moon-illumination-color);
+	transform: translateX(-50%) rotateY(var(--moon-disk-angle));
+}
+
+.diff:global(.dark) {
+	background-color: var(--moon-shadow-color);
+}
+
+.half {
+	width: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
+
+.half:global(.visible) {
+	opacity: 1;
+}
+
+.half:last-of-type {
+	transform: scaleX(-1);
+}
+
+.circle {
+	width: var(--moon-size, 50px);
+	height: var(--moon-size, 50px);
+	border-radius: 50%;
+	background-color: var(--moon-illumination-color);
+}
