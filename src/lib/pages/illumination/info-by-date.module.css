@@ -1,5 +1,5 @@
 .root {
-	--gauge-color: hsl(59deg 87% 47% / 90%);
+	--gauge-color: gold;
 
 	display: grid;
 }

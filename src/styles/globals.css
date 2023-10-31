@@ -54,7 +54,7 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	margin-block: var(--space-4);
-	font-size: var(--font-size-7);
+	font-size: var(--font-size-9);
 	line-height: 1.2;
 	text-align: center;
 	font-variation-settings: "wght" 200;

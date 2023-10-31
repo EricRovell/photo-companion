@@ -25,6 +25,7 @@
 	background-color: var(--color-surface-3);
 	padding: var(--space-2) var(--space-3);
 	border-radius: var(--radius);
+	font-size: var(--font-size-3);
 }
 
 .timeline-entries {
@@ -45,7 +46,7 @@
 .timeline-entry p {
 	place-self: center start;
 	text-align: left;
-	font-size: 0.85em;
+	font-size: var(--font-size-2);
 }
 
 .timeline-entry.empty > article {

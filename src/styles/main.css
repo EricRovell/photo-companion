@@ -35,7 +35,7 @@ footer {
 	justify-content: space-between;
 	align-items: center;
 	width: var(--content-width);
-	margin-block-start: var(--space-9);
+	margin-block-start: 30vh;
 	border-block-start: 3px solid var(--color-surface-3);
 	padding-block: var(--space-4);
 }

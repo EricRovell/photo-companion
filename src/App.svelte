@@ -1,9 +1,10 @@
 <script lang="ts">
 	import {
 		PageAbout,
-		PageEphemeris,
 		PageIllumination,
-		PageTimeline
+		PageTimeline,
+		PageMoon,
+		PageSun
 	} from "./lib/pages";
 	import { Tabs } from "./lib/components";
 	import { title } from "./lib/constants";
@@ -22,9 +23,14 @@
 			component: PageIllumination 
 		},
 		{
-			label: "Эфемериды",
-			value: "ephemerids",
-			component: PageEphemeris
+			label: "Солнце",
+			value: "sun",
+			component: PageSun
+		},
+		{
+			label: "Луна",
+			value: "moon",
+			component: PageMoon
 		},
 		{
 			label: "О приложении",

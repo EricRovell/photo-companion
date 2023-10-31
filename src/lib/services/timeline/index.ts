@@ -1,5 +1,6 @@
 import { getScheduleStateByDate } from "../schedule";
-import { calcEphemeridesData } from "../suncalc";
+import { getSunData } from "../suncalc/sun";
+import { getMoonData } from "../suncalc/moon";
 import { LAT, LON } from "../../constants";
 import type { EventName } from "../../types";
 
@@ -10,7 +11,8 @@ interface TimelineEntry {
 
 export const getTimeline = (date = new Date()) => {
 	const scheduleDate = getScheduleStateByDate(date.getTime());
-	const ephemerisData = calcEphemeridesData(date, LAT, LON);
+	const sunData = getSunData(date, LAT, LON);
+	const moonData = getMoonData(date, LAT, LON);
 
 	let entries: TimelineEntry[] = [];
 
@@ -27,14 +29,27 @@ export const getTimeline = (date = new Date()) => {
 		);
 	}
 
-	for (const [ key, { date } ] of Object.entries(ephemerisData)) {
-		entries.push(
-			{
-				name: key as EventName,
-				timestamp: date.getTime()
-			}
-		);
-	}
+	entries.push(
+		{
+			name: "sunrise",
+			timestamp: sunData.sunriseStart.value.getTime()
+		},
+		{
+			name: "sunset",
+			timestamp: sunData.sunsetEnd.value.getTime()
+		}
+	);
+
+	entries.push(
+		{
+			name: "moonrise",
+			timestamp: moonData.moonrise.getTime()
+		},
+		{
+			name: "moonset",
+			timestamp: moonData.moonset.getTime()
+		}
+	);
 
 	const today = new Date().getTime();
 
