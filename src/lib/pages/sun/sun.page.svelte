@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
-	import { Gauge } from "../../components";
+	import { Gauge, Sun } from "../../components";
 	import { ViewDate } from "../../layout";
 	import { calcEphemeridesData } from "../../services/suncalc";
 	import { LAT, LON } from "../../constants";
-	import styles from "./ephemeris.module.css";
+	import styles from "./sun.module.css";
 
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state: ReturnType<typeof calcEphemeridesData>;
@@ -12,11 +12,13 @@
 	afterUpdate(() => {
 		state = calcEphemeridesData(new Date(date), LAT, LON);
 	});
+
+	let sunSize = 43;
 </script>
 
 <section id="ephemeris-sun" class="card {styles.root}">
 	<header>
-		<h2>Солнце</h2>
+		<h2>Времена восхода и захода</h2>
 	</header>
 	{#if state}
 		<ViewDate bind:date>
@@ -26,9 +28,12 @@
 				angleEnd={state.sunset.angle}
 				labelEnd="{state.sunset.time}"
 			>
-				<text x="0" y="0" dominant-baseline="central">
-					Sun
-				</text>
+				<Sun
+					x="-{sunSize / 2}"
+					y="-{sunSize / 2}"
+					width="{sunSize}"
+					height="{sunSize}"
+				/>
 			</Gauge>
 		</ViewDate>
 	{/if}

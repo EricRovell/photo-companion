@@ -1,0 +1,12 @@
+.root {
+	--gauge-color: gold;
+
+	display: grid;
+	grid-auto-rows: min-content;
+	font-size: var(--font-size-6);
+}
+
+.root > div {
+	display: grid;
+	justify-content: center;
+}
