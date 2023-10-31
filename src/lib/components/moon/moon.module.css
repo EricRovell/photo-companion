@@ -1,6 +1,6 @@
 .moon {
-	--moon-illumination-color: hsl(64, 82%, 70%);
-	--moon-shadow-color: rgb(46, 50, 68);
+	--moon-illumination-color: lightblue;
+	--moon-shadow-color: rgb(51, 56, 77);
 
 	position: relative;
 	display: flex;
