@@ -15,18 +15,16 @@
 	width: 100%;
 	height: fit-content;
 	border-radius: 10px;
-	padding-block-end: var(--space-7);
-	background-color: var(--color-surface-2);
+	border: 3px solid var(--color-surface-3);
 }
 
 .card > header {
-	background-color: var(--color-surface-3);
+	border-bottom: 3px solid var(--color-surface-3);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 10px 10px 0 0;
 	padding: var(--space-2) var(--space-5);
-	margin-block-end: var(--space-5);
 }
 
 .card > header ~ * {

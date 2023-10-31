@@ -3,6 +3,7 @@
 	grid-auto-rows: min-content;
 	gap: var(--space-2);
 	font-size: var(--font-size-6);
+	padding-block-end: var(--space-6);
 }
 
 .root p {
@@ -12,6 +13,7 @@
 .root > svg {
 	height: 4rem;
 	justify-self: center;
+	margin-block-start: var(--space-2);
 }
 
 .state {

@@ -7,9 +7,10 @@
 
 .layout > form {
 	grid-row: 2;
-	grid-column: 1 / span 3;
+	grid-column: 2;
 	display: flex;
 	gap: var(--space-2);
+	padding-block: var(--space-6);
 }
 
 .layout > button {
@@ -17,6 +18,20 @@
 	background-color: transparent;
 }
 
+.layout > button:first-of-type {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+}
+
+.layout > button:last-of-type {
+	grid-column: 3;
+	grid-row: 1 / span 2;
+}
+
 .layout > button svg {
 	fill: currentcolor;
+}
+
+.layout > button:active svg {
+	transform: scale(0.85);
 }
