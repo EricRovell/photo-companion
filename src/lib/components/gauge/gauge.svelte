@@ -1,3 +1,5 @@
+<svelte:options namespace="svg" />
+
 <script lang="ts">
 	import { describeArc, polarToCartesian, createMarksCoords } from "./gauge.helpers";
 	import styles from "./gauge.module.css";
