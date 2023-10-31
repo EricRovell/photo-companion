@@ -1,10 +1,18 @@
 import { YEAR } from "../constants";
 
 /**
+ * Round the number up to the desired precision.
+ */
+export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.round(number * base) / base + 0;
+}
+
+/**
  * Formats time from `Date` object as "HH:MM".
  */
 export const formatTime = (timestamp: number) => {
 	return Intl.DateTimeFormat("ru-RU", {
+		hour12: false,
 		hour: "numeric",
 		minute: "numeric"
 	}).format(timestamp);
@@ -36,10 +44,3 @@ export const incrementDateByDay = (date: Date | string, dayCount: number): Date 
 
 	return nextDate;
 };
-
-/**
- * Round the number up to the desired precision.
- */
-export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {
-	return Math.round(number * base) / base + 0;
-}
