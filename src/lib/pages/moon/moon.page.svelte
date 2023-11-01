@@ -9,7 +9,8 @@
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state: ReturnType<typeof getMoonData>;
 
-	const moonSize = 20;
+	const moonSize = 25;
+	const moonPadding = 1;
 
 	afterUpdate(() => {
 		state = getMoonData(new Date(date), LAT, LON);
@@ -28,11 +29,11 @@
 			>
 				<foreignObject
 					xmlns="http://www.w3.org/2000/svg"
-					x="-{moonSize / 2}"
-					y="-{moonSize / 2}"
-					width="{moonSize}"
-					height="{moonSize}"
-					style="--moon-size: {moonSize}px"
+					x="-{moonSize / 2 - moonPadding}"
+					y="-{moonSize / 2 - moonPadding}"
+					width="{moonSize + 2 * moonPadding}"
+					height="{moonSize + 2 * moonPadding}"
+					style="--moon-size: {moonSize - 2 * moonPadding}px"
 				>
 					<Moon
 						phase="{state.phaseValue}"
