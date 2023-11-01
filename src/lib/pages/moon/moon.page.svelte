@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
+	import { tweened } from "svelte/motion";
 	import { GaugeTime, Moon } from "../../components";
 	import { ViewDate } from "../../layout";
 	import { getMoonData } from "../../services/suncalc/moon";
@@ -17,9 +18,9 @@
 
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state: ReturnType<typeof getMoonData> = defaultState;
+	let phase = tweened(state.phaseValue);
 
-	const moonSize = 25;
-	const moonPadding = 1;
+	const moonSize = 35;
 
 	afterUpdate(() => {
 		if (date) {
@@ -27,6 +28,8 @@
 		} else {
 			state = defaultState;
 		}
+
+		phase.set(state.phaseValue);
 	});
 </script>
 
@@ -41,15 +44,15 @@
 		>
 			<foreignObject
 				xmlns="http://www.w3.org/2000/svg"
-				x="-{moonSize / 2 - moonPadding}"
-				y="-{moonSize / 2 - moonPadding}"
-				width="{moonSize + 2 * moonPadding}"
-				height="{moonSize + 2 * moonPadding}"
-				style="--moon-size: {moonSize - 2 * moonPadding}px"
+				x="-{moonSize / 2}"
+				y="-{moonSize / 2}"
+				width="{moonSize}"
+				height="{moonSize}"
 			>
 				<Moon
-					phase="{state.phaseValue}"
+					phase="{$phase}"
 					rotation="{state.angle}"
+					size="{moonSize}"
 				/>
 			</foreignObject>
 		</GaugeTime>
