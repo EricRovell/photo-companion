@@ -8,7 +8,7 @@
 
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state: ReturnType<typeof getSunData>;
-	const sunSize = 43;
+	const sunSize = 57;
 
 	afterUpdate(() => {
 		state = getSunData(new Date(date), LAT, LON);
