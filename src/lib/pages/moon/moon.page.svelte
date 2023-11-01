@@ -1,18 +1,35 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
+	import { tweened } from "svelte/motion";
 	import { GaugeTime, Moon } from "../../components";
 	import { ViewDate } from "../../layout";
 	import { getMoonData } from "../../services/suncalc/moon";
 	import { LAT, LON } from "../../constants";
 	import styles from "./moon.module.css";
 
-	let date: string = new Date().toISOString().substring(0, 10);
-	let state: ReturnType<typeof getMoonData>;
+	const defaultState = {
+		moonrise: new Date("null"),
+		moonset: new Date("null"),
+		phaseValue: 0,
+		angle: 0,
+		fraction: 0,
+		waxing: false
+	};
 
-	const moonSize = 20;
+	let date: string = new Date().toISOString().substring(0, 10);
+	let state: ReturnType<typeof getMoonData> = defaultState;
+	let phase = tweened(state.phaseValue);
+
+	const moonSize = 35;
 
 	afterUpdate(() => {
-		state = getMoonData(new Date(date), LAT, LON);
+		if (date) {
+			state = getMoonData(new Date(date), LAT, LON);
+		} else {
+			state = defaultState;
+		}
+
+		void phase.set(state.phaseValue);
 	});
 </script>
 
@@ -20,26 +37,24 @@
 	<header>
 		<h2>Времена восхода и захода</h2>
 	</header>
-	{#if state}
-		<ViewDate bind:date>
-			<GaugeTime
-				timeFrom="{state.moonrise}"
-				timeTo="{state.moonset}"
+	<ViewDate bind:date>
+		<GaugeTime
+			timeFrom="{state.moonrise}"
+			timeTo="{state.moonset}"
+		>
+			<foreignObject
+				xmlns="http://www.w3.org/2000/svg"
+				x="-{moonSize / 2}"
+				y="-{moonSize / 2}"
+				width="{moonSize}"
+				height="{moonSize}"
 			>
-				<foreignObject
-					xmlns="http://www.w3.org/2000/svg"
-					x="-{moonSize / 2}"
-					y="-{moonSize / 2}"
-					width="{moonSize}"
-					height="{moonSize}"
-					style="--moon-size: {moonSize}px"
-				>
-					<Moon
-						phase="{state.phaseValue}"
-						rotation="{state.angle}"
-					/>
-				</foreignObject>
-			</GaugeTime>
-		</ViewDate>
-	{/if}
+				<Moon
+					phase="{$phase}"
+					rotation="{state.angle}"
+					size="{moonSize}"
+				/>
+			</foreignObject>
+		</GaugeTime>
+	</ViewDate>
 </section>

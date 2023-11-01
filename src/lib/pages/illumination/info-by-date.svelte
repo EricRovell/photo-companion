@@ -6,11 +6,20 @@
 	import { currentYear } from "../../constants";
 	import styles from "./info-by-date.module.css";
 
+	const defaultState: ReturnType<typeof getScheduleStateByDate> = {
+		timestampOn: NaN,
+		timestampOff: NaN
+	};
+
 	let date: string = new Date().toISOString().substring(0, 10);
-	let state: ReturnType<typeof getScheduleStateByDate>;
+	let state: ReturnType<typeof getScheduleStateByDate> = defaultState;
 
 	afterUpdate(() => {
-		state = getScheduleStateByDate(new Date(date).getTime());
+		if (date) {
+			state = getScheduleStateByDate(new Date(date).getTime());
+		} else {
+			state = defaultState;
+		}
 	});
 </script>
 
@@ -18,20 +27,18 @@
 	<header>
 		<h2>Данные об освещении по датам</h2>
 	</header>
-	{#if state}
-		<ViewDate
-			bind:date
-			disabledPreviousControl="{new Date(date).getDate() === 1 && new Date(date).getMonth() === 0}"
-			disabledNextControl="{new Date(date).getDate() === 31 && new Date(date).getMonth() === 11}"
-			maxDate={`${currentYear}-12-31`}
-			minDate={`${currentYear}-01-01`}
+	<ViewDate
+		bind:date
+		disabledPreviousControl="{new Date(date).getDate() === 1 && new Date(date).getMonth() === 0}"
+		disabledNextControl="{new Date(date).getDate() === 31 && new Date(date).getMonth() === 11}"
+		maxDate={`${currentYear}-12-31`}
+		minDate={`${currentYear}-01-01`}
+	>
+		<GaugeTime
+			timeFrom="{new Date(state?.timestampOn || "")}"
+			timeTo="{new Date(state?.timestampOff || "")}"
 		>
-			<GaugeTime
-				timeFrom="{new Date(state.timestampOn)}"
-				timeTo="{new Date(state.timestampOff)}"
-			>
-				<Bulb x="-10" y="-10" width="20" height="20" glow />
-			</GaugeTime>
-		</ViewDate>
-	{/if}
+			<Bulb x="-10" y="-10" width="20" height="20" glow />
+		</GaugeTime>
+	</ViewDate>
 </section>

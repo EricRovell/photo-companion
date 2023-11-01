@@ -31,7 +31,7 @@
 	<Button
 		aria-label="Предыдущий день"
 		data-value="-1"
-		disabled="{disabledPreviousControl}"
+		disabled="{disabledPreviousControl || !date.length}"
 		on:click={handleIncrement}
 		title="Предыдущий день">
 		<svg viewBox="0 0 256 256">
@@ -42,7 +42,7 @@
 	<Button
 		aria-label="Следующий день"
 		data-value="1"
-		disabled="{disabledNextControl}"
+		disabled="{disabledNextControl || !date.length}"
 		on:click={handleIncrement}
 		title="Следующий день"
 	>
