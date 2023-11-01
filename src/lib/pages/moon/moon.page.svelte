@@ -14,7 +14,7 @@
 		angle: 0,
 		fraction: 0,
 		waxing: false
-	}
+	};
 
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state: ReturnType<typeof getMoonData> = defaultState;
@@ -29,7 +29,7 @@
 			state = defaultState;
 		}
 
-		phase.set(state.phaseValue);
+		void phase.set(state.phaseValue);
 	});
 </script>
 

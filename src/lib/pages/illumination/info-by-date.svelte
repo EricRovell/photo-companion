@@ -18,7 +18,7 @@
 		if (date) {
 			state = getScheduleStateByDate(new Date(date).getTime());
 		} else {
-			state = defaultState
+			state = defaultState;
 		}
 	});
 </script>
