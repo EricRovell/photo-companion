@@ -44,3 +44,15 @@ export const incrementDateByDay = (date: Date | string, dayCount: number): Date 
 
 	return nextDate;
 };
+
+export const isValidDate = (date: Date | number | string | undefined): boolean => {
+	if (date instanceof Date) {
+		return !isNaN(date.getTime());
+	}
+
+	if (typeof date === "number" || typeof date === "string") {
+		return isValidDate(new Date(date));
+	}
+
+	return false;
+};
