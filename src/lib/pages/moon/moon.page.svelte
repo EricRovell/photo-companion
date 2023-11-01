@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { afterUpdate } from "svelte";
 	import { tweened } from "svelte/motion";
 	import { GaugeTime, Moon } from "../../components";
 	import { ViewDate } from "../../layout";
@@ -22,15 +21,17 @@
 
 	const moonSize = 35;
 
-	afterUpdate(() => {
+	$: {
 		if (date) {
 			state = getMoonData(new Date(date), LAT, LON);
 		} else {
 			state = defaultState;
 		}
+	}
 
+	$: {
 		void phase.set(state.phaseValue);
-	});
+	}
 </script>
 
 <section id="ephemeris-moon" class="card {styles.root}">
