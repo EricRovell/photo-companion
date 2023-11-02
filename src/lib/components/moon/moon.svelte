@@ -25,8 +25,8 @@
 	class="{styles.moon}"
 	viewBox="0 0 {size} {size}"
 	style="
-		--transform: rotate({rotation})deg;
 		--moon-disk-angle: {getNormalizedAngleRad(phase)}rad;
+		transform: rotate({-rotation / 4}rad);
 	"
 >
 	<clipPath id="moon-semicircle-left">

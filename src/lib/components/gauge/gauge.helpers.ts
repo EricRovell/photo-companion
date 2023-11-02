@@ -8,6 +8,10 @@ export function polarToCartesian(centerX: number, centerY: number, radius: numbe
 }
 
 export function describeArc(x: number, y: number, radius: number, angleStart: number, angleEnd: number){
+	if (angleStart === angleEnd) {
+		return "";
+	}
+
 	const start = polarToCartesian(x, y, radius, angleEnd);
 	const end = polarToCartesian(x, y, radius, angleStart);
 

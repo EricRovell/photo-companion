@@ -1,15 +1,21 @@
 <script lang="ts">
+	import { Timeline, TimelineSection, TimelineEntry } from "../../components";
 	import { getTimeline } from "../../services/timeline";
 	import { incrementDateByDay } from "../../helpers";
 	import Icon from "./timeline.icon.svelte";
-	import styles from "./timeline.module.css";
+	import { dict } from "../../dict";
 
 	interface Timeline {
 		date: Date;
 		items: ReturnType<typeof getTimeline>;
 	}
 
-	const timeline: Timeline[] = [];
+	const timeline: Timeline[] = [
+		{
+			date: new Date(),
+			items: []
+		}
+	];
 
 	for (let i = 0; i < 3; i++) {
 		const date = i > 0
@@ -23,45 +29,29 @@
 	}
 </script>
 
-<div class="{styles.wrapper}">
+<Timeline>
 	{#each timeline as { date, items }}
-		<article class="{styles["timeline"]}">
-			<time datetime="">
-				{new Intl.DateTimeFormat("ru-RU", {
-					year: "numeric",
-					month: "long",
-					day: "numeric"
-				}).format(new Date(date))}
-			</time>
-			<ol class="{styles["timeline-entries"]}">
-				{#each items as { name, timestamp }}
-					<li class="{styles["timeline-entry"]}">
-						<time>
-							{new Intl.DateTimeFormat("ru-RU", {
-								hour12: false,
-								hour: "2-digit",
-								minute: "2-digit"
-							}).format(new Date(timestamp))}
-						</time>
-						<Icon eventName="{name}" />
-					</li>
-				{:else}
-					<li class="{styles["timeline-entry"]} {styles.empty}">
-						<article>
-							<div class="{styles.icon}">
-								<svg viewBox="0 0 256 256" fill="currentcolor">
-									<rect width="256" height="256" fill="none"/>
-									<circle cx="128" cy="128" r="12"/>
-									<circle cx="196" cy="128" r="12"/>
-									<circle cx="60" cy="128" r="12"/>
-								</svg>
-							</div>
-						</article>
-						<p>Никаких событий на сегодня</p>
-					</li>
-				{/each}
-			</ol>
-		</article>
+		<TimelineSection {date}>
+			{#each items as { name, timestamp }}
+				<TimelineEntry date={new Date(timestamp)}>
+					<Icon eventName="{name}" />
+					<p slot="label">
+						{dict[name]}
+					</p>
+				</TimelineEntry>
+			{:else}
+				<TimelineEntry>
+					<svg viewBox="0 0 256 256" fill="currentcolor">
+						<rect width="256" height="256" fill="none"/>
+						<circle cx="128" cy="128" r="12"/>
+						<circle cx="196" cy="128" r="12"/>
+						<circle cx="60" cy="128" r="12"/>
+					</svg>
+					<p slot="label">
+						Никаких событий на сегодня
+					</p>
+				</TimelineEntry>
+			{/each}
+		</TimelineSection>
 	{/each}
-</div>
-
+</Timeline>

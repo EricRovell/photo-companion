@@ -1,6 +1,6 @@
 export type EventName =
-	| "lights-on"
-	| "lights-off"
+	| "lights:start"
+	| "lights:end"
 	| "moonrise"
 	| "moonset"
 	| "sunrise"

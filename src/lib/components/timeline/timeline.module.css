@@ -39,6 +39,10 @@
 	gap: var(--space-4);
 }
 
+.timeline-entry:global(.no-date) time {
+	opacity: 0;
+}
+
 .timeline-entry time {
 	place-self: center end;
 }

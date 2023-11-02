@@ -8,8 +8,8 @@
 	export let angleEnd = 240;
 	export let radius = 25;
 	export let width = 10;
-	export let labelStart: string | undefined = "21:20";
-	export let labelEnd: string | undefined = "22:40";
+	export let labelStart: string | undefined = "";
+	export let labelEnd: string | undefined = "";
 	export let labelGap = 15;
 </script>
 
