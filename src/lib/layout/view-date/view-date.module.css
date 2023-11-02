@@ -13,6 +13,11 @@
 	padding-block: var(--space-6);
 }
 
+.layout > form > button {
+	background-color: transparent;
+	outline: 3px solid var(--color-surface-2);
+}
+
 .layout > button {
 	inline-size: 2rem;
 	background-color: transparent;
