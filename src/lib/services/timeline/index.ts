@@ -19,11 +19,11 @@ export const getTimeline = (date = new Date()) => {
 	if (scheduleDate) {
 		entries.push(
 			{
-				name: "lights-on",
+				name: "lights:start",
 				timestamp: scheduleDate.timestampOn
 			},
 			{
-				name: "lights-off",
+				name: "lights:end",
 				timestamp: scheduleDate.timestampOff
 			}
 		);
