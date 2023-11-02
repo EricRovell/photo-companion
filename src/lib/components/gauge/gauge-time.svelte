@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tweened } from "svelte/motion";
 	import Gauge from "./gauge.svelte";
-	import { getAngleFromTime, formatTime, isValidDate } from "../../helpers";
+	import { getAngleFromTime, formatTime } from "../../helpers";
 
 	export let timeFrom: Date;
 	export let timeTo: Date;

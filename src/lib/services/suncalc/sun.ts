@@ -37,13 +37,18 @@ export interface SunTimes {
 	nadir: SunTime;
 }
 
+interface SunEvent {
+	name: SunEventName;
+	timestamp: number;
+}
+
 export const getSunData = (date: Date = new Date, lat: number, lon: number): SunTimes => {
 	return SunCalc.getSunTimes(date, lat, lon);
 };
 
-export const getSunTimeline = (date: Date = new Date, lat: number, lon: number): Record<SunEventName, number>[] => {
+export const getSunTimeline = (date: Date = new Date, lat: number, lon: number): SunEvent[] => {
 	const data = getSunData(date, lat, lon);
-	const events: Record<SunEventName, number>[] = [
+	const events: SunEvent[] = [
 		{
 			name: "dawn:astronomical",
 			timestamp: data.astronomicalDawn.ts
