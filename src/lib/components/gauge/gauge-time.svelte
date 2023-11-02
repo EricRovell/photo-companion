@@ -1,29 +1,40 @@
 <script lang="ts">
+	import { tweened } from "svelte/motion";
 	import Gauge from "./gauge.svelte";
 	import { getAngleFromTime, formatTime, isValidDate } from "../../helpers";
 
 	export let timeFrom: Date;
 	export let timeTo: Date;
+
+	let angles = tweened({
+		start: getAngleFromTime(timeFrom),
+		end: getAngleFromTime(timeTo)
+	}, {
+		duration: 500
+	});
+
+	let labelStart = formatTime(timeFrom.getTime());
+	let labelEnd = formatTime(timeTo.getTime());
+
+	const calcProps = (timeFrom: Date, timeTo: Date) => {
+		void angles.set({
+			start: getAngleFromTime(timeFrom),
+			end: getAngleFromTime(timeTo)
+		});
+
+		labelStart = formatTime(timeFrom.getTime());
+		labelEnd = formatTime(timeTo.getTime());
+	};
+
+	$: calcProps(timeFrom, timeTo);
 </script>
 
-{#if !isValidDate(timeFrom) || !isValidDate(timeTo)}
-	<Gauge
-		angleStart={0}
-		labelStart=""
-		angleEnd={0}
-		labelEnd=""
-		{...$$restProps}
-	>
-		<slot />
-	</Gauge>
-{:else}
-	<Gauge
-		angleStart={getAngleFromTime(timeFrom)}
-		labelStart="{formatTime(timeFrom.getTime())}"
-		angleEnd={getAngleFromTime(timeTo)}
-		labelEnd="{formatTime(timeTo.getTime())}"
-		{...$$restProps}
-		>
-		<slot />
-	</Gauge>
-{/if}
+<Gauge
+	angleStart="{$angles.start}"
+	angleEnd="{$angles.end}"
+	{labelStart}
+	{labelEnd}
+	{...$$restProps}
+>
+	<slot />
+</Gauge>
