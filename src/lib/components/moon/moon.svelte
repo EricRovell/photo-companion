@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tweened } from "svelte/motion";
 	import styles from "./moon.module.css";
 
 	export let phase = 0;
@@ -7,6 +8,7 @@
 	export let radius = size / 2 - 5;
 
 	let center = size / 2;
+	const phaseTweened = tweened(phase);
 
 	const getNormalizedPhase = (phase: number) => {
 		return phase <= 0.5
@@ -19,13 +21,15 @@
 		const radians = (Math.PI * norm) / 0.5;
 		return radians;
 	};
+
+	$: void phaseTweened.set(phase);
 </script>
 
 <svg
 	class="{styles.moon}"
 	viewBox="0 0 {size} {size}"
 	style="
-		--moon-disk-angle: {getNormalizedAngleRad(phase)}rad;
+		--moon-disk-angle: {getNormalizedAngleRad($phaseTweened)}rad;
 		transform: rotate({-rotation / 4}rad);
 	"
 >
@@ -43,7 +47,7 @@
 	/>
 	<circle
 		class="{styles.semicircle}"
-		class:visible="{phase >= 0.5}"
+		class:visible="{$phaseTweened >= 0.5}"
 		cx="{center}"
 		cy="{center}"
 		r="{radius}"
@@ -51,7 +55,7 @@
 	/>
 	<circle
 		class="{styles.semicircle}"
-		class:visible="{phase <= 0.5}"
+		class:visible="{$phaseTweened <= 0.5}"
 		cx="{center}"
 		cy="{center}"
 		r="{radius}"
@@ -59,7 +63,7 @@
 	/>
 	<circle
 	class="{styles.diff}"
-	class:dark="{0.5 / getNormalizedPhase(phase) > 2}"
+	class:dark="{0.5 / getNormalizedPhase($phaseTweened) > 2}"
 	cx="{center}"
 	cy="{center}"
 	r="{radius}"
