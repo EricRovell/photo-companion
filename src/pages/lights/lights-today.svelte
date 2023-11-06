@@ -1,23 +1,21 @@
 <script lang="ts">
-	import { Timer, Bulb } from "../../components";
-	import { getScheduleState } from "../../services/schedule";
-	import type { ScheduleDataItem } from "../../../types";
-	import styles from "./today.module.css";
+	import { Timer, Bulb } from "@lib/components";
+	import { getLightsStateByDate } from "@services/lights";
+	import type { ScheduleDataItem } from "@lib/types";
+	import styles from "./lights-today.module.css";
 
-	let state: ScheduleDataItem | null = getScheduleState(new Date().getTime());
+	let state: ScheduleDataItem = getLightsStateByDate();
 
 	const handleAlarm = () => {
-		state = getScheduleState(new Date().getTime());
+		state = getLightsStateByDate();
 	};
 
 	$: messageSoon = state?.lights ? "выключено" : "включено";
 </script>
 
-<section id="today" class="card {styles.root}">
+<section class="card {styles.root}">
 	<header>
-		<h2>
-			Сейчас
-		</h2>
+		<h2>Сейчас</h2>
 	</header>
 	{#if !state}
 		<p>Что-то пошло не так...</p>

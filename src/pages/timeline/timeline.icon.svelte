@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Bulb, Icon } from "../../components";
-	import { iconMoonrise, iconMoonset, iconSunrise, iconSunset } from "../../icons";
+	import { Bulb, Icon } from "@lib/components";
+	import { iconMoonrise, iconMoonset, iconSunrise, iconSunset } from "@lib/icons";
 	import type { ComponentType } from "svelte";
-	import type { EventName } from "../../types";
+	import type { EventName } from "@lib/types";
 
 	export let eventName: EventName;
 
@@ -11,7 +11,7 @@
 		props: Record<string, unknown>;
 	}
 
-	const data: Record<EventName, IconData> = {
+	const data: Partial<Record<EventName, IconData>> = {
 		"lights:start": {
 			component: Bulb,
 			props: {
@@ -70,6 +70,6 @@
 </script>
 
 <svelte:component
-	this="{data[eventName].component}"
-	{...data[eventName].props}
+	this="{data[eventName]?.component}"
+	{...data[eventName]?.props}
 />

@@ -7,7 +7,12 @@
 		"resolveJsonModule": true,
 		"allowJs": true,
 		"checkJs": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		"baseUrl": "./",
+		"paths": {
+			"@lib/*": [ "./src/lib/*" ],
+			"@services/*": [ "./src/services/*" ],
+		}
 	},
 	"include": [
 		"src/**/*.d.ts",

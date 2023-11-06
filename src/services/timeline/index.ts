@@ -1,8 +1,8 @@
-import { getScheduleStateByDate } from "../schedule";
-import { getSunData } from "../suncalc/sun";
-import { getMoonData } from "../suncalc/moon";
-import { LAT, LON } from "../../constants";
-import type { EventName } from "../../types";
+import { getLightsScheduleByDate } from "../lights";
+import { getSunData } from "../sun";
+import { getMoonData } from "../moon";
+import { LAT, LON } from "@lib/constants";
+import type { EventName } from "@lib/types";
 
 interface TimelineEntry {
 	name: EventName;
@@ -10,7 +10,7 @@ interface TimelineEntry {
 }
 
 export const getTimeline = (date = new Date()) => {
-	const scheduleDate = getScheduleStateByDate(date.getTime());
+	const scheduleDate = getLightsScheduleByDate(date);
 	const sunData = getSunData(date, LAT, LON);
 	const moonData = getMoonData(date, LAT, LON);
 
@@ -20,11 +20,11 @@ export const getTimeline = (date = new Date()) => {
 		entries.push(
 			{
 				name: "lights:start",
-				timestamp: scheduleDate.timestampOn
+				timestamp: scheduleDate["lights:start"]
 			},
 			{
 				name: "lights:end",
-				timestamp: scheduleDate.timestampOff
+				timestamp: scheduleDate["lights:end"]
 			}
 		);
 	}

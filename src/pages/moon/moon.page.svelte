@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { tweened } from "svelte/motion";
-	import { GaugeTime, Moon } from "../../components";
-	import { ViewDate } from "../../layout";
-	import { getMoonData } from "../../services/suncalc/moon";
-	import { LAT, LON } from "../../constants";
+	import { GaugeTime, Moon } from "@lib/components";
+	import { ViewDate } from "@lib/layout";
+	import { getMoonData } from "@services/moon";
+	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
 
 	const defaultState = {
@@ -16,8 +15,7 @@
 	};
 
 	let date: string = new Date().toISOString().substring(0, 10);
-	let state: ReturnType<typeof getMoonData> = defaultState;
-	let phase = tweened(state.phaseValue);
+	let state = getMoonData(new Date(date), LAT, LON);
 
 	const moonSize = 35;
 
@@ -27,10 +25,6 @@
 		} else {
 			state = defaultState;
 		}
-	}
-
-	$: {
-		void phase.set(state.phaseValue);
 	}
 </script>
 
@@ -51,7 +45,7 @@
 				height="{moonSize}"
 			>
 				<Moon
-					phase="{$phase}"
+					phase="{state.phaseValue}"
 					rotation="{state.angle}"
 					size="{moonSize}"
 				/>

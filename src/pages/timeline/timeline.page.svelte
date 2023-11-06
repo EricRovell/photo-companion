@@ -1,21 +1,16 @@
 <script lang="ts">
-	import { Timeline, TimelineSection, TimelineEntry } from "../../components";
-	import { getTimeline } from "../../services/timeline";
-	import { incrementDateByDay } from "../../helpers";
+	import { Timeline, TimelineSection, TimelineEntry } from "@lib/components";
+	import { getTimeline } from "@services/timeline";
+	import { incrementDateByDay } from "@lib/helpers";
 	import Icon from "./timeline.icon.svelte";
-	import { dict } from "../../dict";
+	import { dict } from "@lib/dict";
 
 	interface Timeline {
 		date: Date;
 		items: ReturnType<typeof getTimeline>;
 	}
 
-	const timeline: Timeline[] = [
-		{
-			date: new Date(),
-			items: []
-		}
-	];
+	const timeline: Timeline[] = [];
 
 	for (let i = 0; i < 3; i++) {
 		const date = i > 0
