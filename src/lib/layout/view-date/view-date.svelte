@@ -4,10 +4,6 @@
 	import styles from "./view-date.module.css";
 
 	export let date: string = new Date().toISOString().substring(0, 10);
-	export let disabledPreviousControl = false;
-	export let disabledNextControl = false;
-	export let maxDate: string | undefined = undefined;
-	export let minDate: string | undefined = undefined;
 
 	const handleIncrement = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
@@ -31,7 +27,7 @@
 	<Button
 		aria-label="Предыдущий день"
 		data-value="-1"
-		disabled="{disabledPreviousControl || !date.length}"
+		disabled="{!date.length}"
 		on:click={handleIncrement}
 		title="Предыдущий день">
 		<svg viewBox="0 0 256 256">
@@ -42,7 +38,7 @@
 	<Button
 		aria-label="Следующий день"
 		data-value="1"
-		disabled="{disabledNextControl || !date.length}"
+		disabled="{!date.length}"
 		on:click={handleIncrement}
 		title="Следующий день"
 	>
@@ -53,8 +49,6 @@
 	<form on:submit|preventDefault>
 		<InputDate
 			aria-label="Выберите дату"
-			max="{maxDate}"
-			min="{minDate}"
 			on:change="{handleChange}"
 			title="Выберите дату"
 			value="{date}"
