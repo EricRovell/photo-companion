@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getLightsScheduleByDateSPb, getLightsStateByDateSpb } from "../src/lib/services/lights/illumination-spb";
+import { getLightsScheduleByDateSPb, getLightsStateByDateSpb } from "../src/services/lights/illumination-spb";
 import data from "../src/data/lights-spb.json" assert { type: "json" };
 
 const fixtures = [
@@ -78,7 +78,7 @@ const fixtures = [
 ];
 
 const testFn = (month, date) => (...output) => {
-	const schedule = getScheduleByDateSPb(new Date(2023, month - 1, date));
+	const schedule = getLightsScheduleByDateSPb(new Date(2023, month - 1, date));
 	const dateStart = new Date(schedule["lights:start"]);
 	const dateEnd = new Date(schedule["lights:end"]);
 
@@ -129,7 +129,7 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 	});
 	describe("Nearest illumination event", () => {
 		it("The time is before the lights end today", () => {
-			const state = getIlluminationStateSpb(new Date(2023, 7, 31, 4, 15));
+			const state = getLightsStateByDateSpb(new Date(2023, 7, 31, 4, 15));
 			expect(state).toEqual({
 				lights: true,
 				event: "lights:end",
@@ -137,7 +137,7 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 			});
 		});
 		it("The time is before the lights start today", () => {
-			const state = getIlluminationStateSpb(new Date(2023, 7, 31, 10, 20));
+			const state = getLightsStateByDateSpb(new Date(2023, 7, 31, 10, 20));
 			expect(state).toEqual({
 				lights: false,
 				event: "lights:start",
@@ -145,7 +145,7 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 			});
 		});
 		it("The time is during the lights today, they will turn off the next day", () => {
-			const state = getIlluminationStateSpb(new Date(2023, 7, 31, 21, 20));
+			const state = getLightsStateByDateSpb(new Date(2023, 7, 31, 21, 20));
 			expect(state).toEqual({
 				lights: true,
 				event: "lights:end",
