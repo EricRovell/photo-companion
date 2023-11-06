@@ -1,6 +1,6 @@
-import data from "../../../data/lights-spb.json" assert { type: "json" };
-import { incrementDateByDay, isValidDate } from "../../helpers";
-import type { LightsEventName } from "../../../types";
+import data from "../../data/lights-spb.json" assert { type: "json" };
+import { incrementDateByDay, isValidDate } from "@lib/helpers";
+import type { LightsEventName } from "@lib/types";
 
 interface IlluminationSchedule {
 	"lights:start": number;

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { urlScheduleSource, urlSheduleDocument } from "../../paths";
-	import { ACTUAL_DATA, currentYear, title } from "../../constants";
+	import { urlScheduleSource, urlSheduleDocument } from "@lib/paths";
+	import { ACTUAL_DATA, currentYear, title } from "@lib/constants";
 	import styles from "./about.module.css";
 </script>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Timer, Bulb } from "../../components";
-	import { getLightsStateByDate } from "../../services/lights";
-	import type { ScheduleDataItem } from "../../../types";
+	import { Timer, Bulb } from "@lib/components";
+	import { getLightsStateByDate } from "@services/lights";
+	import type { ScheduleDataItem } from "@lib/types";
 	import styles from "./lights-today.module.css";
 
 	let state: ScheduleDataItem = getLightsStateByDate();

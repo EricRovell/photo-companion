@@ -1,8 +1,8 @@
 import { getLightsScheduleByDate } from "../lights";
-import { getSunData } from "../suncalc/sun";
-import { getMoonData } from "../suncalc/moon";
-import { LAT, LON } from "../../constants";
-import type { EventName } from "../../../types";
+import { getSunData } from "../sun";
+import { getMoonData } from "../moon";
+import { LAT, LON } from "@lib/constants";
+import type { EventName } from "@lib/types";
 
 interface TimelineEntry {
 	name: EventName;

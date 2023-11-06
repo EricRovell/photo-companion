@@ -1,11 +1,5 @@
 <script lang="ts">
-	import {
-		PageAbout,
-		PageLights,
-		PageTimeline,
-		PageMoon,
-		PageSun
-	} from "./lib/pages";
+	import { PageAbout, PageLights, PageTimeline, PageMoon, PageSun } from "./pages";
 	import { Tabs } from "./lib/components";
 	import { title } from "./lib/constants";
 	import { version } from "../package.json";

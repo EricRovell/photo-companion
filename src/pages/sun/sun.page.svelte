@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
-	import { GaugeTime, Sun } from "../../components";
-	import { ViewDate } from "../../layout";
-	import { getSunData } from "../../services/suncalc/sun";
-	import { LAT, LON } from "../../constants";
+	import { GaugeTime, Sun } from "@lib/components";
+	import { ViewDate } from "@lib/layout";
+	import { getSunData } from "@services/sun";
+	import { LAT, LON } from "@lib/constants";
 	import styles from "./sun.module.css";
 
 	let date: string = new Date().toISOString().substring(0, 10);

@@ -1,15 +1,17 @@
 export type SunEventName =
-	|"dawn:astronomical"
+	| "dawn:astronomical"
 	| "dawn:nautical"
 	| "dawn:blue-hour:start"
 	| "dawn:civil"
 	| "dawn:blue-hour:end"
 	| "dawn:golden-hour:start"
+	| "sunrise"
 	| "sunrise:start"
 	| "sunrise:end"
 	| "dawn:golden-hour:end"
 	| "solar-noon"
 	| "dusk:golden-hour:start"
+	| "sunset"
 	| "sunset:start"
 	| "sunset:end"
 	| "dusk:golden-hour:end"
@@ -26,7 +28,7 @@ export type MoonEventName =
 
 export type LightsEventName =
 	| "lights:start"
-	| "light:end";
+	| "lights:end";
 
 export type EventName =
 	| LightsEventName

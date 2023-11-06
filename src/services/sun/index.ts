@@ -1,6 +1,6 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
-import type { SunEventName } from "../../../types";
+import type { SunEventName } from "@lib/types";
 
 interface SunTime {
 	elevation: number;

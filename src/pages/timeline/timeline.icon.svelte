@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Bulb, Icon } from "../../components";
-	import { iconMoonrise, iconMoonset, iconSunrise, iconSunset } from "../../icons";
+	import { Bulb, Icon } from "@lib/components";
+	import { iconMoonrise, iconMoonset, iconSunrise, iconSunset } from "@lib/icons";
 	import type { ComponentType } from "svelte";
-	import type { EventName } from "../../types";
+	import type { EventName } from "@lib/types";
 
 	export let eventName: EventName;
 

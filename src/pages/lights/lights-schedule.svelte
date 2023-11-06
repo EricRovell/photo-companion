@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { afterUpdate } from "svelte";
-	import { GaugeTime, Bulb } from "../../components";
-	import { ViewDate } from "../../layout";
-	import { getLightsScheduleByDate } from "../../services/lights";
+	import { GaugeTime, Bulb } from "@lib/components";
+	import { ViewDate } from "@lib/layout";
+	import { getLightsScheduleByDate } from "@services/lights";
 	import styles from "./lights-schedule.module.css";
 
 	let date = new Date().toISOString().substring(0, 10);

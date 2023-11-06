@@ -1,6 +1,6 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
-import { round } from "../../helpers";
+import { round } from "@lib/helpers";
 
 export interface MoonData {
 	moonrise: Date;

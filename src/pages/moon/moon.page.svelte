@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { tweened } from "svelte/motion";
-	import { GaugeTime, Moon } from "../../components";
-	import { ViewDate } from "../../layout";
-	import { getMoonData } from "../../services/suncalc/moon";
-	import { LAT, LON } from "../../constants";
+	import { GaugeTime, Moon } from "@lib/components";
+	import { ViewDate } from "@lib/layout";
+	import { getMoonData } from "@services/moon";
+	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
 
 	const defaultState = {
