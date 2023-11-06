@@ -10,12 +10,7 @@
 		items: ReturnType<typeof getTimeline>;
 	}
 
-	const timeline: Timeline[] = [
-		{
-			date: new Date(),
-			items: []
-		}
-	];
+	const timeline: Timeline[] = [];
 
 	for (let i = 0; i < 3; i++) {
 		const date = i > 0
