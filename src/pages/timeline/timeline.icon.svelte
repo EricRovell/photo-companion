@@ -11,7 +11,7 @@
 		props: Record<string, unknown>;
 	}
 
-	const data: Record<EventName, IconData> = {
+	const data: Partial<Record<EventName, IconData>> = {
 		"lights:start": {
 			component: Bulb,
 			props: {
@@ -70,6 +70,6 @@
 </script>
 
 <svelte:component
-	this="{data[eventName].component}"
-	{...data[eventName].props}
+	this="{data[eventName]?.component}"
+	{...data[eventName]?.props}
 />

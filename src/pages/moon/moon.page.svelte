@@ -15,7 +15,7 @@
 	};
 
 	let date: string = new Date().toISOString().substring(0, 10);
-	let state = getMoonData(new Date(date), LAT, LON);;
+	let state = getMoonData(new Date(date), LAT, LON);
 
 	const moonSize = 35;
 
