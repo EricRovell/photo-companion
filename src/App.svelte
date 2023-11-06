@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {
 		PageAbout,
-		PageIllumination,
+		PageLights,
 		PageTimeline,
 		PageMoon,
 		PageSun
@@ -19,8 +19,8 @@
 		},
 		{
 			label: "Освещение",
-			value: "illumination",
-			component: PageIllumination 
+			value: "lights",
+			component: PageLights 
 		},
 		{
 			label: "Солнце",

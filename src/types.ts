@@ -1,18 +1,3 @@
-export interface ScheduleDataItem {
-	lights: boolean;
-	timestamp: number
-}
-
-export type ScheduleRawData = [
-	month: number,
-	dateFrom: number,
-	dateTo: number,
-	hoursOff: number,
-	minutesOff: number,
-	hoursOn: number,
-	minutesOn: number
-];
-
 export type SunEventName =
 	|"dawn:astronomical"
 	| "dawn:nautical"
@@ -39,6 +24,17 @@ export type MoonEventName =
 	| "moonrise"
 	| "moonset";
 
-export type IlluminationEventName =
+export type LightsEventName =
 	| "lights:start"
 	| "light:end";
+
+export type EventName =
+	| LightsEventName
+	| SunEventName
+	| MoonEventName;
+
+export interface ScheduleDataItem {
+	lights: boolean;
+	event: LightsEventName;
+	timestamp: number
+}
