@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { GaugeTime, Moon } from "@lib/components";
+	import { GaugeTime, Moon, Datetime } from "@lib/components";
 	import { ViewDate } from "@lib/layout";
-	import { getMoonData } from "@services/moon";
+	import { getMoonData, getMoonPhases } from "@services/moon";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
 
@@ -14,7 +14,7 @@
 		waxing: false
 	};
 
-	let date: string = new Date().toISOString().substring(0, 10);
+	let date: string = new Date().toISOString().substring(0, 16);
 	let state = getMoonData(new Date(date), LAT, LON);
 
 	const moonSize = 35;
@@ -32,7 +32,7 @@
 	<header>
 		<h2>Времена восхода и захода</h2>
 	</header>
-	<ViewDate bind:date>
+	<ViewDate bind:date input="date-time">
 		<GaugeTime
 			timeFrom="{state.moonrise}"
 			timeTo="{state.moonset}"
@@ -52,4 +52,14 @@
 			</foreignObject>
 		</GaugeTime>
 	</ViewDate>
+</section>
+
+<section class="card {styles.phases}">
+	<header>Лунный календарь</header>
+	<div>
+		{#each getMoonPhases(new Date(date)) as { phase, timestamp } (`${phase}/${timestamp}`)}
+			<Moon phase="{phase}" size={40} />
+			<Datetime date="{new Date(timestamp)}" />
+		{/each}
+	</div>
 </section>
