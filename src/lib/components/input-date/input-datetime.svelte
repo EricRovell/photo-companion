@@ -6,13 +6,13 @@
 	export let title: string | undefined = undefined;
 	export let value: string = new Date().toISOString();
 
-	$: inputValue = value.substring(0, 10);
+	$: inputValue = value.substring(0, 16);
 </script>
 
 <label class="{styles["input-date"]}">
 	<slot />
 	<input
-		type="date"
+		type="datetime-local"
 		{max}
 		{min}
 		on:change
