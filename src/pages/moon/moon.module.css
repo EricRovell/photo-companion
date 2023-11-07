@@ -19,6 +19,11 @@
 	padding-block: var(--space-4);
 }
 
+.phases > div > p {
+	grid-row: 1 / -1;
+	grid-column: 1 / -1;
+}
+
 .phases time {
 	font-size: min(2.5vmin, var(--font-size-2));
 }

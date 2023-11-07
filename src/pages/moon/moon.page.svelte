@@ -14,10 +14,11 @@
 		waxing: false
 	};
 
+	const moonSize = 35;
 	let date: string = new Date().toISOString().substring(0, 16);
 	let state = getMoonData(new Date(date), LAT, LON);
 
-	const moonSize = 35;
+	$: phases = getMoonPhases(new Date(date));
 
 	$: {
 		if (date) {
@@ -57,9 +58,11 @@
 <section class="card {styles.phases}">
 	<header>Лунный календарь</header>
 	<div>
-		{#each getMoonPhases(new Date(date)) as { phase, timestamp } (`${phase}/${timestamp}`)}
+		{#each phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 			<Moon phase="{phase}" size={40} />
 			<Datetime date="{new Date(timestamp)}" />
+		{:else}
+			<p>Введите дату для отображения данных</p>
 		{/each}
 	</div>
 </section>

@@ -1,6 +1,6 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
-import { round } from "@lib/helpers";
+import { isValidDate, round } from "@lib/helpers";
 
 export interface MoonData {
 	moonrise: Date;
@@ -16,7 +16,7 @@ interface MoonPhase {
 	timestamp: number;
 }
 
-export const getMoonData = (date: Date = new Date, lat: number, lon: number): MoonData => {
+export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
 	const moonTimes = SunCalc.getMoonTimes(date, lat, lon);
 	const illumination = SunCalc.getMoonIllumination(date);
 	//const dataMoon = SunCalc.getMoonData(date, lat, lon);
@@ -31,7 +31,11 @@ export const getMoonData = (date: Date = new Date, lat: number, lon: number): Mo
 	};
 };
 
-export const getMoonPhases = (date: Date = new Date): MoonPhase[] => {
+export const getMoonPhases = (date: Date = new Date()): MoonPhase[] => {
+	if (!isValidDate(date)) {
+		return [];
+	}
+
 	const dataCurr = SunCalc.getMoonIllumination(date);
 	const dataNext = SunCalc.getMoonIllumination(
 		new Date(dataCurr.next.newMoon.value)
