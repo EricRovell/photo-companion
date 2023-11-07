@@ -18,25 +18,45 @@
 	outline: 3px solid var(--color-surface-2);
 }
 
-.layout > button {
-	inline-size: 2rem;
+.button {
+	inline-size: 3rem;
 	background-color: transparent;
 }
 
-.layout > button:first-of-type {
+.button:first-of-type {
 	grid-column: 1;
 	grid-row: 1 / span 2;
 }
 
-.layout > button:last-of-type {
+.button:last-of-type {
 	grid-column: 3;
 	grid-row: 1 / span 2;
 }
 
-.layout > button svg {
+.button svg {
 	fill: currentcolor;
+	border-radius: 50%;
+	padding: var(--space-2);
 }
 
-.layout > button:active svg {
-	transform: scale(0.85);
+.button:hover {
+	background-color: transparent;
+}
+
+.button:hover svg {
+	background-color: var(--color-surface-2);
+}
+
+.button:focus-visible {
+	outline: none;
+}
+
+.button:focus-visible svg {
+	outline: 2px solid var(--color-accent);
+	background-color: var(--color-surface-3);
+}
+
+.button:active svg {
+	transform: scale(0.95);
+	background-color: var(--color-surface-4);
 }

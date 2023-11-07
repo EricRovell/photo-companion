@@ -27,6 +27,7 @@
 <div class="{styles.layout}">
 	<Button
 		aria-label="Предыдущий день"
+		className="{styles.button}"
 		data-value="-1"
 		disabled="{!date.length}"
 		on:click={handleIncrement}
@@ -38,6 +39,7 @@
 	<slot />
 	<Button
 		aria-label="Следующий день"
+		className="{styles.button}"
 		data-value="1"
 		disabled="{!date.length}"
 		on:click={handleIncrement}
