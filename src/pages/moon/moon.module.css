@@ -10,3 +10,15 @@
 	display: grid;
 	justify-content: center;
 }
+
+.phases > div {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template: 1fr auto / repeat(5, 1fr);
+	justify-items: center;
+	padding-block: var(--space-4);
+}
+
+.phases time {
+	font-size: min(2.5vmin, var(--font-size-2));
+}

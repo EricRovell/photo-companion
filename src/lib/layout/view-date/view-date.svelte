@@ -1,16 +1,17 @@
 <script lang="ts">
-	import { Button, InputDate } from "../../components";
+	import { Button, InputDate, InputDatetime } from "../../components";
 	import { incrementDateByDay } from "../../helpers";
 	import styles from "./view-date.module.css";
 
-	export let date: string = new Date().toISOString().substring(0, 10);
+	export let date: string = new Date().toISOString();
+	export let input: "date" | "date-time" = "date";
 
 	const handleIncrement = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const value = Number(target.dataset.value) ?? 0;
 		const nextDate = incrementDateByDay(date, value);
 
-		date = nextDate.toISOString().substring(0, 10);
+		date = nextDate.toISOString();
 	};
 
 	const handleChange = (event: Event) => {
@@ -19,7 +20,7 @@
 	};
 
 	const handleDateReset = () => {
-		date = new Date().toISOString().substring(0, 10);
+		date = new Date().toISOString();
 	};
 </script>
 
@@ -47,14 +48,23 @@
 		</svg>
 	</Button>
 	<form on:submit|preventDefault>
-		<InputDate
-			aria-label="Выберите дату"
-			on:change="{handleChange}"
-			title="Выберите дату"
-			value="{date}"
-		/>
+		{#if input === "date"}
+			<InputDate
+				aria-label="Выберите дату"
+				on:change="{handleChange}"
+				title="Выберите дату"
+				value="{date}"
+			/>
+		{:else}
+			<InputDatetime
+				aria-label="Выберите дату и время"
+				on:change="{handleChange}"
+				title="Выберите дату и время"
+				value="{date}"
+			/>
+		{/if}
 		<Button on:click={handleDateReset}>
-			Сегодня
+			Сейчас
 		</Button>
 	</form>
 </div>

@@ -1,6 +1,8 @@
 .moon {
 	--moon-illumination-color: lightblue;
 	--moon-shadow-color: rgb(51 56 77);
+
+	transition: transform 0.35s linear;
 }
 
 .shadow {
@@ -20,6 +22,14 @@
 .semicircle {
 	opacity: 0;
 	fill: var(--moon-illumination-color);
+}
+
+.semicircle[data-left] {
+	clip-path: inset(0 50% 0 0);
+}
+
+.semicircle[data-right] {
+	clip-path: inset(0 0 0 50%);
 }
 
 .semicircle:global(.visible) {
