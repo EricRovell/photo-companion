@@ -1,11 +1,19 @@
-.tabs {
-	--tabs-height: calc(2 * var(--space-5) + 2 * var(--space-2) + 1.5em);
-
-	display: grid;
-	width: var(--content-width);
+.title {
+	display: flex;
+	padding: 0.25em 0.5em;
+	padding-top: 1em;
 }
 
-.tab-list {
+.title h1 {
+	font-variation-settings: "wght" 600;
+	max-width: 20ch;
+}
+
+.title a {
+	text-decoration: unset;
+}
+
+.header {
 	position: sticky;
 	top: 0;
 	z-index: 10;
@@ -20,15 +28,13 @@
 	scroll-snap-type: x mandatory;
 	scroll-padding-inline-start: var(--space-4);
 	font-size: var(--font-size-3);
+	width: 100%;
 }
 
-.tab {
+.link {
 	position: relative;
-	display: flex;
 	scroll-snap-align: start;
-}
-
-.tab span {
+	color: inherit;
 	display: flex;
 	place-content: center;
 	background-color: var(--color-surface-2);
@@ -38,42 +44,27 @@
 	cursor: pointer;
 	white-space: nowrap;
 	user-select: none;
+	text-decoration: unset;
 }
 
-.tab:hover span {
+.link:hover {
+	text-decoration: unset;
 	background-color: var(--color-surface-3);
 }
 
-.tab:active span {
+.link:active {
 	background-color: var(--color-surface-4);
 }
 
-.tab input {
+.link input {
 	appearance: none;
 }
 
-.tab input:checked ~ span {
+.link[aria-current] {
 	background-color: var(--color-accent);
 }
 
-.tab input:focus-visible ~ span {
+.link:focus-visible {
 	outline: 2px dashed var(--color-accent);
 	outline-offset: 2px;
-}
-
-.tab-panel-wrapper {
-	display: grid;
-	gap: var(--space-5);
-	padding-inline: var(--space-3);
-}
-
-.tab-panel {
-	display: grid;
-	grid-gap: var(--space-4);
-}
-
-@media screen and (width <= 600px) {
-	.tab-list {
-		padding-inline: var(--space-4);
-	}
 }

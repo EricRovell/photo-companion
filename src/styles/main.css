@@ -10,18 +10,8 @@
 	width: 100%;
 }
 
-body > header {
-	display: flex;
-	padding: 0.25em 0.5em;
-	padding-top: 1em;
-}
-
-h1 {
-	font-variation-settings: "wght" 600;
-	max-width: 20ch;
-}
-
 main {
+	position: relative;
 	display: grid;
 	grid-auto-rows: min-content;
 	justify-items: center;

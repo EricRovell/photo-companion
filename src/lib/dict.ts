@@ -1,4 +1,9 @@
 export const dict: Record<string, string> = {
+	"timeline": "События",
+	"lights": "Освещение",
+	"sun": "Солнце",
+	"moon": "Луна",
+	"about": "Справка",
 	"lights:start": "Включение городского освещения",
 	"lights:end": "Выключение городского освещения",
 	"sunrise": "Восход Солнца",

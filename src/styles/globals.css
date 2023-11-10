@@ -24,25 +24,6 @@
 	}
 }
 
-a {
-	font-weight: 500;
-	color: var(--color-link);
-	text-decoration: inherit;
-	border-radius: 5px;
-	transition: outline-offset 0.125s ease-in-out;
-}
-
-a:hover {
-	text-decoration: underline;
-	color: var(--color-link-hover);
-}
-
-a:focus-visible {
-	color: var(--color-link-hover);
-	outline: 1px dashed var(--color-link-hover);
-	outline-offset: 0.25em;
-}
-
 body {
 	margin: 0;
 	display: flex;
