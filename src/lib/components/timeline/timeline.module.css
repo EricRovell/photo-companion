@@ -78,8 +78,8 @@
 	padding: var(--space-3);
 }
 
-.icon::before,
-.icon::after {
+.timeline-entry:not(:first-child) .icon::before,
+.timeline-entry:not(:last-child) .icon::after {
 	content: "";
 	position: absolute;
 	left: calc(50% - var(--timeline-wire-width) / 2);
@@ -94,10 +94,6 @@
 
 .icon::before {
 	bottom: 100%;
-}
-
-.timeline:last-of-type .timeline-entry:last-of-type .icon::after {
-	content: initial;
 }
 
 @media screen and (width <= 600px) {
