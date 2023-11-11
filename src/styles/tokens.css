@@ -15,6 +15,7 @@
 	--space-9: 4rem;
 	--space-10: 8rem;
 	--content-width: min(100%, 55ch);
+	--max-width: min(100%, 1440px);
 	--font-scale: 1rem;
 	--font-size-1: calc(0.6 * var(--font-scale));
 	--font-size-2: calc(0.75 * var(--font-scale));
@@ -30,6 +31,7 @@
 	--color-text-secondary: rgb(255 255 255 / 75%);
 	--color-link: hsl(180deg 85% 45%);
 	--color-link-hover: hsl(180deg 85% 85%);
+	--color-surface-0: hsl(210deg 23% 7%);
 	--color-surface-1: hsl(210deg 23% 10%);
 	--color-surface-2: hsl(210deg 23% 15%);
 	--color-surface-3: hsl(210deg 23% 20%);
@@ -40,7 +42,6 @@
 	--radius: 5px;
 	--font-main: var(--font-fallback);
 	--font-fallback: system-ui, "Segoe UI", roboto, "Helvetica Neue", arial;
-	--tabs-height: calc(2 * var(--space-5) + 2 * var(--space-2) + 1.5em);
 
 	color-scheme: dark;
 	color: var(--color-text);

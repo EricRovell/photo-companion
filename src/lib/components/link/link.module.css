@@ -6,7 +6,7 @@
 	font-size: inherit;
 	font-weight: 500;
 	border-radius: var(--radius);
-	text-decoration: underline;
+	text-decoration: unset;
 	transition: outline-offset 0.125s ease-in-out;
 }
 
