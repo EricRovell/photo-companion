@@ -68,7 +68,6 @@
 	background-color: var(--color-surface-2);
 	padding: var(--space-2);
 	border-radius: var(--radius);
-	transition: background-color 0.125s linear;
 	white-space: nowrap;
 	user-select: none;
 	text-decoration: unset;
@@ -118,7 +117,6 @@ footer p {
 	justify-self: center;
 	display: flex;
 	align-items: center;
-	justify-self: center;
 	width: var(--max-width);
 }
 
