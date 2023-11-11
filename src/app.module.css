@@ -60,7 +60,7 @@
 
 .link {
 	position: relative;
-	scroll-snap-align: start;
+	scroll-snap-align: left;
 	color: inherit;
 	display: flex;
 	place-content: center;
@@ -125,4 +125,43 @@ footer p {
 .header > div,
 .footer > div {
 	justify-content: space-between;
+}
+
+@media screen and (width <= 600px) {
+	.header {
+		margin-bottom: var(--space-7);
+		padding-bottom: var(--space-3);
+		border-block-end: 3px solid var(--color-surface-3);
+	}
+
+	.header,
+	.navigation,
+	.footer {
+		padding-inline: var(--space-4);
+	}
+
+	.header,
+	.footer {
+		background-color: var(--color-surface-1);
+	}
+
+	.navigation {
+		position: fixed;
+		top: unset;
+		bottom: 0;
+		left: 0;
+		height: min-content;
+		margin: 0;
+		border-block-start: 2px solid var(--color-surface-2);
+		border-block-end: unset;
+	}
+
+	.navigation ul {
+		width: max-content;
+	}
+
+	.footer {
+		padding-block-end: var(--header-menu-height);
+		border-block-end: 3px solid var(--color-surface-3);
+	}
 }

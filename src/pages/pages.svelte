@@ -20,7 +20,7 @@
 {#key $path}
 	<div
 		in:fade="{{ duration: 450 }}"
-		style="display: grid; gap: var(--space-4); width: 100%"
+		style="display: grid; gap: var(--space-4); width: 100%; padding-inline: var(--space-2)"
 	>
 		{#if $pattern(routeTimeline)}
 			<PageTimeline />

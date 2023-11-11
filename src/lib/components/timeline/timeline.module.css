@@ -99,7 +99,7 @@
 @media screen and (width <= 600px) {
 	.timeline > time {
 		position: sticky;
-		top: calc(var(--tabs-height) + var(--space-4));
+		top: var(--space-4);
 		width: 100%;
 		background-color: var(--color-surface-1);
 		border: var(--timeline-wire-width) solid var(--color-surface-3);
