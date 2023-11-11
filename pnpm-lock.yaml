@@ -43,6 +43,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.5.2
     version: 3.5.2(postcss@8.4.31)(svelte@4.2.2)
+  svelte-pathfinder:
+    specifier: ^4.7.1
+    version: 4.7.1(svelte@4.2.2)
   tslib:
     specifier: ^2.6.2
     version: 2.6.2
@@ -2412,6 +2415,15 @@ packages:
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
       svelte: ^3.19.0 || ^4.0.0
+    dependencies:
+      svelte: 4.2.2
+    dev: true
+
+  /svelte-pathfinder@4.7.1(svelte@4.2.2):
+    resolution: {integrity: sha512-tmzXIDL/h3SBox1xvYQ9KsiSnPBEGdcoOPDKCtAlw/KyETKavK3p+bbgEb+en23xsUvq3Z6x5FRf7riEt0runQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      svelte: '>=3 <5'
     dependencies:
       svelte: 4.2.2
     dev: true

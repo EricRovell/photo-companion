@@ -1,0 +1,27 @@
+.link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25em;
+	color: var(--color-link);
+	font-size: inherit;
+	font-weight: 500;
+	border-radius: var(--radius);
+	text-decoration: unset;
+	transition: outline-offset 0.125s ease-in-out;
+}
+
+.link:focus-visible {
+	color: var(--color-link-hover);
+	outline: 1px dashed var(--color-link-hover);
+	outline-offset: 0.25em;
+}
+
+.link:active {
+	color: var(--color-link-active);
+	background-color: var(--color-link-active-bg);
+}
+
+.link:hover {
+	color: var(--color-link-hover, currentColor);
+	text-decoration: underline;
+}

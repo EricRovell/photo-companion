@@ -18,7 +18,7 @@
 
 .timeline > time {
 	position: sticky;
-	top: calc(var(--tabs-height) + var(--space-4));
+	top: var(--header-menu-height);
 	z-index: 9;
 	width: max-content;
 	justify-self: center;
@@ -78,8 +78,8 @@
 	padding: var(--space-3);
 }
 
-.icon::before,
-.icon::after {
+.timeline-entry:not(:first-child) .icon::before,
+.timeline-entry:not(:last-child) .icon::after {
 	content: "";
 	position: absolute;
 	left: calc(50% - var(--timeline-wire-width) / 2);
@@ -96,14 +96,10 @@
 	bottom: 100%;
 }
 
-.timeline:last-of-type .timeline-entry:last-of-type .icon::after {
-	content: initial;
-}
-
 @media screen and (width <= 600px) {
 	.timeline > time {
 		position: sticky;
-		top: calc(var(--tabs-height) + var(--space-4));
+		top: var(--space-4);
 		width: 100%;
 		background-color: var(--color-surface-1);
 		border: var(--timeline-wire-width) solid var(--color-surface-3);

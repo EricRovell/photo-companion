@@ -1,55 +1,67 @@
 <script lang="ts">
-	import { PageAbout, PageLights, PageTimeline, PageMoon, PageSun } from "./pages";
-	import { Tabs } from "./lib/components";
-	import { title } from "./lib/constants";
+	import { click, pattern, url }from "svelte-pathfinder";
+	import Pages from "./pages/pages.svelte";
+	import { Link, Icon } from "@lib/components";
+	import { iconGithub, iconQuestion, iconTimeline, iconLights, iconSun, iconMoon } from "@lib/icons";
+	import {routeAbout, routeLights, routeMoon, routeSun, routeTimeline, urlGithub } from "@lib/routes";
 	import { version } from "../package.json";
-	import { urlGithub } from "./lib/paths";
+	import { title } from "@lib/constants";
+	import { dict } from "@lib/dict";
+	import styles from "./app.module.css";
 
-	const tabs = [
-		{
-			label: "Cобытия",
-			value: "timeline",
-			component: PageTimeline 
-		},
-		{
-			label: "Освещение",
-			value: "lights",
-			component: PageLights 
-		},
-		{
-			label: "Солнце",
-			value: "sun",
-			component: PageSun
-		},
-		{
-			label: "Луна",
-			value: "moon",
-			component: PageMoon
-		},
-		{
-			label: "О приложении",
-			value: "about",
-			component: PageAbout 
-		}
+	const sections = [
+		{ label: "timeline", href: routeTimeline, icon: iconTimeline, root: true },
+		{ label: "lights", href: routeLights, icon: iconLights },
+		{ label: "sun", href: routeSun, icon: iconSun },
+		{ label: "moon", href: routeMoon, icon: iconMoon }
 	];
+
+	const handleClick = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	};
 </script>
 
-<header>
-	<h1>{title}</h1>
+<svelte:window on:click="{click}" />
+
+<header class="{styles.header}">
+	<div class="{styles.content}">
+		<Link href="/">
+			<h1>{title}</h1>
+		</Link>
+		<Link className="{styles.faq}" href="{routeAbout}" title="FAQ">
+			<Icon path="{iconQuestion}" viewBox="0 0 256 256" />
+		</Link>
+	</div>
 </header>
+<nav class="{styles.navigation}">
+	<ul class="{styles.content}">
+		{#each sections as { label, href, icon, root }}
+			<li>
+				<Link
+					current="{($pattern(href) || ($url === "/" && root)) ? "page" : undefined}"
+					className="{styles.link}"
+					{href}
+					on:click="{handleClick}"
+				>
+					<Icon path="{icon}" viewBox="0 0 256 256" />
+					{dict[label]}
+				</Link>
+			</li>
+		{/each}
+	</ul>
+</nav>
 <main>
-	<Tabs {tabs} />
+	<Pages />
 </main>
-<footer>
-	<p>
-		{title}, v.{version}
-	</p>
-	<a href="{urlGithub}" target="_blank" class="github">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
-			<path fill="currentColor" d="m17.99.5C8.33.5.5,8.54.5,18.45c0,7.72,4.82,14.57,11.96,17.02.87.17,1.2-.39,1.2-.86,0-.43-.02-1.84-.02-3.34-4.87,1.09-5.9-2.12-5.9-2.12-.8-2.07-1.94-2.62-1.94-2.62-1.59-1.11.12-1.09.12-1.09,1.75.13,2.69,1.85,2.69,1.85,1.56,2.74,4.09,1.95,5.09,1.49.16-1.16.61-1.95,1.11-2.39-3.89-.45-7.97-1.99-7.97-8.86-.02-1.78.62-3.51,1.8-4.82-.18-.45-.78-2.28.17-4.75,0,0,1.47-.48,4.81,1.84,2.87-.8,5.89-.8,8.76,0,3.35-2.33,4.81-1.85,4.81-1.85.95,2.47.35,4.3.17,4.75,1.18,1.31,1.83,3.03,1.8,4.82,0,6.89-4.09,8.41-7.99,8.85.63.56,1.19,1.65,1.19,3.32,0,2.39-.02,4.33-.02,4.92,0,.48.32,1.04,1.2.86,9.17-3.14,14.12-13.3,11.06-22.7C32.21,5.44,25.52.5,17.99.5h0Z"/>
-		</svg>
-		<span>
-			Github
-		</span>
-	</a>
+<footer class="{styles.footer}">
+	<div class="{styles.content}">
+		<p>{title}, v.{version}</p>
+		<Link href="{urlGithub}">
+			<Icon path="{iconGithub}" viewBox="0 0 36 36"/>
+			<span>Github</span>
+		</Link>
+	</div>
 </footer>

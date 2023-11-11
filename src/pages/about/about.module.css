@@ -26,3 +26,8 @@
 .root p {
 	font-size: var(--font-size-4);
 }
+
+.root a {
+	display: inline;
+	text-decoration: underline;
+}
