@@ -18,7 +18,7 @@
 
 .timeline > time {
 	position: sticky;
-	top: calc(var(--tabs-height) + var(--space-4));
+	top: var(--header-menu-height);
 	z-index: 9;
 	width: max-content;
 	justify-self: center;
