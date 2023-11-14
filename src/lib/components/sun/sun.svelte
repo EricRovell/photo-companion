@@ -46,8 +46,8 @@
 			break;
 		case "sunset:start":
 		case "sunset:end":
-		color = "#9C4438";
-				break;
+			color = "#9C4438";
+			break;
 		case "dusk:golden-hour:end":
 			color = "#9A9EEC";
 			break;
