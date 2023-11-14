@@ -1,4 +1,5 @@
 export {
 	getLightsScheduleByDateSPb as getLightsScheduleByDate,
-	getLightsStateByDateSpb as getLightsStateByDate
+	getLightsStateByDateSpb as getLightsStateByDate,
+	getLightsEvents
 } from "./illumination-spb";
