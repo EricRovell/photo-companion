@@ -20,7 +20,8 @@
 	};
 
 	const handleDateReset = () => {
-		date = new Date().toISOString();
+		const timezoneOffset = new Date().getTimezoneOffset() * 60000;
+		date = (new Date(Date.now() - timezoneOffset)).toISOString();
 	};
 </script>
 
