@@ -14,7 +14,7 @@
 		waxing: false
 	};
 
-	const moonSize = 35;
+	const moonSize = 48;
 	let date: string = new Date().toISOString().substring(0, 16);
 	let state = getMoonData(new Date(date), LAT, LON);
 
