@@ -1,4 +1,8 @@
 .sun circle {
-	fill: gold;
-	filter: drop-shadow(0 0 10px #E6E60B) drop-shadow(0 0 5px rgb(236 155 5));
+	fill: var(--sun-color, gold);
+	transition: fill 0.125s linear;
+}
+
+.sun {
+	filter: drop-shadow(0 0 var(--sun-glow-size, 12px) var(--sun-color, #E6E60B));
 }

@@ -1,6 +1,6 @@
 import data from "../../data/lights-spb.json" assert { type: "json" };
 import { incrementDateByDay, isValidDate } from "@lib/helpers";
-import type { LightsEventName } from "@lib/types";
+import type { Event, LightsEventName } from "@lib/types";
 
 interface IlluminationSchedule {
 	"lights:start": number;
@@ -74,4 +74,21 @@ export function getLightsStateByDateSpb(dateInput = new Date()): IlluminationSta
 		event: "lights:end",
 		timestamp: scheduleNext["lights:end"]
 	};
+}
+
+export function getLightsEvents(date: Date = new Date()): Event<LightsEventName>[] {
+	const data = getLightsScheduleByDateSPb(date);
+
+	return [
+		{
+			name: "lights:start",
+			timestamp: data["lights:start"],
+			data: {}
+		},
+		{
+			name: "lights:end",
+			timestamp: data["lights:end"],
+			data: {}
+		}
+	];
 }

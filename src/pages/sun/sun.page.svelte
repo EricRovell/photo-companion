@@ -8,7 +8,7 @@
 	let date: string = new Date().toISOString().substring(0, 10);
 	let state = getSunData(new Date(date), LAT, LON);
 
-	const sunSize = 57;
+	const sunSize = 30;
 
 	$: state = getSunData(new Date(date), LAT, LON);
 </script>

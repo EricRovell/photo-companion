@@ -1,0 +1,79 @@
+.event {
+	display: grid;
+	grid-template: 1fr / 1fr var(--timeline-icon-size) 1fr;
+	gap: var(--space-4);
+}
+
+.event time {
+	font-size: var(--font-size-2);
+	font-variant-numeric: tabular-nums;
+	place-self: center end;
+}
+
+.event > article {
+	display: grid;
+	gap: var(--space-1);
+	place-self: center start;
+	text-align: left;
+	font-size: var(--font-size-2);
+}
+
+.event article p {
+	text-align: left;
+	text-wrap: balance;
+}
+
+.event > article p:nth-of-type(2) {
+	font-size: var(--font-size-1);
+	color: var(--color-text-secondary);
+}
+
+.icon {
+	--sun-glow-size: 10px;
+
+	position: relative;
+	display: grid;
+	width: var(--timeline-icon-size);
+	height: var(--timeline-icon-size);
+	border-radius: 50%;
+	border: var(--timeline-wire-width) solid var(--color-surface-3);
+}
+
+.icon svg {
+	--icon-size: 100%;
+	--bulb-glow-size: 5px;
+
+	padding: var(--space-3);
+}
+
+.event:not(:first-child) .icon::before,
+.event:not(:last-child) .icon::after {
+	content: "";
+	position: absolute;
+	left: calc(50% - var(--timeline-wire-width) / 2);
+	width: var(--timeline-wire-width);
+	height: calc(var(--space-6) + var(--timeline-wire-width));
+	background-color: var(--color-surface-3);
+}
+
+.icon::after {
+	top: 100%;
+}
+
+.icon::before {
+	bottom: 100%;
+}
+
+.event.empty .icon {
+	grid-column: 2;
+}
+
+.event.empty > article {
+	grid-column: 3;
+}
+
+@media screen and (width <= 600px) {
+	.event {
+		grid-template: 1fr / 5ch var(--timeline-icon-size) 1fr;
+	}
+}

@@ -5,7 +5,7 @@
 	export let phase = 0;
 	export let rotation = 0;
 	export let size = 100;
-	export let radius = size / 2 - 5;
+	export let radius = size / 2 - 10;
 	export let precision = 0.025;
 
 	let center = size / 2;
