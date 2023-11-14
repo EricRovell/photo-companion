@@ -25,8 +25,6 @@
 			})
 		});
 	}
-
-	console.log(timeline);
 </script>
 
 <Timeline>
