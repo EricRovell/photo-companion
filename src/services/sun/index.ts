@@ -13,7 +13,7 @@ const eventMapping = {
 	sunriseStart: "sunrise:start",
 	sunriseEnd: "sunrise:end",
 	goldenHourDawnEnd: "dawn:golden-hour:end",
-	solarNoon: "solar-noon",
+	//solarNoon: "solar-noon",
 	goldenHourDuskStart: "dusk:golden-hour:start",
 	sunsetStart: "sunset:start",
 	sunsetEnd: "sunset:end",
@@ -34,13 +34,24 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	const data = SunCalc.getSunTimes(date, lat, lon);
 	// the API returns the "nadir" for the next date
 	const nadir = SunCalc.getSunTimes(incrementDateByDay(date, -1), lat, lon).nadir;
+	const positionNadir = SunCalc.getPosition(data.nadir.ts, lat, lon);
+	const positionNoon = SunCalc.getPosition(data.solarNoon.ts, lat, lon);
 
 	const sunEvents: SunEvent[] = [
 		{
 			name: "nadir",
 			timestamp: nadir.ts,
 			data: {
-				azimuth: round(SunCalc.getPosition(data.nadir.ts, lat, lon).azimuthDegrees)
+				azimuth: round(positionNadir.azimuthDegrees),
+				elevation: round(positionNadir.altitudeDegrees, 1)
+			}
+		},
+		{
+			name: "solar-noon",
+			timestamp: data.solarNoon.ts,
+			data: {
+				azimuth: round(positionNoon.azimuthDegrees),
+				elevation: round(positionNoon.altitudeDegrees, 1)
 			}
 		}
 	];
@@ -50,7 +61,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 			name: value as SunEventName,
 			timestamp: data[key].ts,
 			data: {
-				azimuth: round(SunCalc.getPosition(data[key].ts, lat, lon).azimuthDegrees)
+				azimuth: round(SunCalc.getPosition(data[key].ts, lat, lon).azimuthDegrees),
+				elevation: data[key].elevation
 			}
 		});
 	}
