@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { Timeline, TimelineSection, TimelineEntry } from "@lib/components";
-	import { getTimeline } from "@services/timeline";
+	import { Timeline, TimelineSection, Event, EventEmpty } from "@lib/components";
+	import { getTimeline } from "@services/events";
 	import { incrementDateByDay } from "@lib/helpers";
-	import Icon from "./timeline.icon.svelte";
-	import { dict } from "@lib/dict";
+	import { LAT, LON } from "@lib/constants";
 
 	interface Timeline {
 		date: Date;
@@ -12,6 +11,8 @@
 
 	const timeline: Timeline[] = [];
 
+	const now = new Date().getTime();
+
 	for (let i = 0; i < 3; i++) {
 		const date = i > 0
 			? incrementDateByDay(new Date(), i)
@@ -19,33 +20,22 @@
 
 		timeline.push({
 			date: date,
-			items: getTimeline(date)
+			items: getTimeline(date, LAT, LON, {
+				predicate: event => event.timestamp > now
+			})
 		});
 	}
+
+	console.log(timeline);
 </script>
 
 <Timeline>
 	{#each timeline as { date, items }}
 		<TimelineSection {date}>
-			{#each items as { name, timestamp }}
-				<TimelineEntry date={new Date(timestamp)}>
-					<Icon eventName="{name}" />
-					<p slot="label">
-						{dict[name]}
-					</p>
-				</TimelineEntry>
+			{#each items as event}
+				<Event {event} />
 			{:else}
-				<TimelineEntry>
-					<svg viewBox="0 0 256 256" fill="currentcolor">
-						<rect width="256" height="256" fill="none"/>
-						<circle cx="128" cy="128" r="12"/>
-						<circle cx="196" cy="128" r="12"/>
-						<circle cx="60" cy="128" r="12"/>
-					</svg>
-					<p slot="label">
-						Никаких событий на сегодня
-					</p>
-				</TimelineEntry>
+				<EventEmpty />
 			{/each}
 		</TimelineSection>
 	{/each}

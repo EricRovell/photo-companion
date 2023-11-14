@@ -11,5 +11,5 @@ export { default as InputDatetime } from "./input-date/input-datetime.svelte";
 export { default as Link } from "./link/Link.svelte";
 export { default as Moon } from "./moon/moon.svelte";
 export { default as Sun } from "./sun/sun.svelte";
-export { Timeline, TimelineSection, TimelineEntry } from "./timeline";
+export { Timeline, TimelineSection } from "./timeline";
 export { default as Timer } from "./timer/timer.svelte";
