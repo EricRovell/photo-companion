@@ -24,7 +24,7 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 	return {
 		moonrise: moonTimes.rise,
 		moonset: moonTimes.set,
-		fraction: round(illumination.fraction, 2),
+		fraction: round(illumination.fraction, 3),
 		waxing: illumination.angle < 0,
 		phaseValue: round(illumination.phaseValue, 4),
 		angle: moonTimes.angle
@@ -41,7 +41,7 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 			name: "moonrise",
 			timestamp: data.moonrise.getTime(),
 			data: {
-				fraction: rise.fraction,
+				fraction: round(rise.fraction * 100, 1),
 				phase: rise.phaseValue,
 				waxing: rise.waxing
 			}
@@ -50,7 +50,7 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 			name: "moonset",
 			timestamp: data.moonset.getTime(),
 			data: {
-				fraction: set.fraction,
+				fraction: round(set.fraction * 100, 1),
 				phase: set.phaseValue,
 				waxing: set.waxing
 			}
