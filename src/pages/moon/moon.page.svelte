@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { GaugeTime, Moon, Datetime } from "@lib/components";
-	import { ViewDate } from "@lib/layout";
 	import { getMoonData, getMoonPhases } from "@services/moon";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
+
+	export let date = new Date().getTime();
 
 	const defaultState = {
 		moonrise: new Date("null"),
@@ -15,7 +16,6 @@
 	};
 
 	const moonSize = 48;
-	let date: string = new Date().toISOString().substring(0, 16);
 	let state = getMoonData(new Date(date), LAT, LON);
 
 	$: phases = getMoonPhases(new Date(date));
@@ -33,26 +33,24 @@
 	<header>
 		<h2>Времена восхода и захода</h2>
 	</header>
-	<ViewDate bind:date input="date-time">
-		<GaugeTime
-			timeFrom="{state.moonrise}"
-			timeTo="{state.moonset}"
+	<GaugeTime
+		timeFrom="{state.moonrise}"
+		timeTo="{state.moonset}"
+	>
+		<foreignObject
+			xmlns="http://www.w3.org/2000/svg"
+			x="-{moonSize / 2}"
+			y="-{moonSize / 2}"
+			width="{moonSize}"
+			height="{moonSize}"
 		>
-			<foreignObject
-				xmlns="http://www.w3.org/2000/svg"
-				x="-{moonSize / 2}"
-				y="-{moonSize / 2}"
-				width="{moonSize}"
-				height="{moonSize}"
-			>
-				<Moon
-					phase="{state.phaseValue}"
-					rotation="{state.angle}"
-					size="{moonSize}"
-				/>
-			</foreignObject>
-		</GaugeTime>
-	</ViewDate>
+			<Moon
+				phase="{state.phaseValue}"
+				rotation="{state.angle}"
+				size="{moonSize}"
+			/>
+		</foreignObject>
+	</GaugeTime>
 </section>
 
 <section class="card {styles.phases}">

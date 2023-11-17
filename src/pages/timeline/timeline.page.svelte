@@ -3,38 +3,48 @@
 	import { getTimeline } from "@services/events";
 	import { incrementDateByDay } from "@lib/helpers";
 	import { LAT, LON } from "@lib/constants";
+	import { afterUpdate } from "svelte";
 
 	interface Timeline {
 		date: Date;
 		items: ReturnType<typeof getTimeline>;
 	}
 
-	const timeline: Timeline[] = [];
+	export let date: string = "";
 
-	const now = new Date().getTime();
+	let timeline: Timeline[] = [];
 
-	for (let i = 0; i < 3; i++) {
-		const date = i > 0
-			? incrementDateByDay(new Date(), i)
-			: new Date();
+	afterUpdate(() => {
+		const thisDate = new Date(date);
+		const nextDate = incrementDateByDay(thisDate, 1);
 
-		timeline.push({
-			date: date,
-			items: getTimeline(date, LAT, LON, {
-				predicate: event => event.timestamp > now
-			})
-		});
-	}
+		timeline = [
+			{
+				date: thisDate,
+				items: getTimeline(thisDate, LAT, LON, {
+					predicate: event => event.timestamp > thisDate.getTime()
+				})
+			},
+			{
+				date: nextDate,
+				items: getTimeline(nextDate, LAT, LON, {
+					predicate: event => event.timestamp > thisDate.getTime()
+				})
+			}
+		];
+	});
 </script>
 
 <Timeline>
 	{#each timeline as { date, items }}
 		<TimelineSection {date}>
-			{#each items as event}
+			{#each items as event (`${event.timestamp}/${event.name}`)}
 				<Event {event} />
 			{:else}
 				<EventEmpty />
 			{/each}
 		</TimelineSection>
+	{:else}
+		<p>Invalid date</p>
 	{/each}
 </Timeline>

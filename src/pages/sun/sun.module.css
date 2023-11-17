@@ -4,6 +4,11 @@
 	display: grid;
 	grid-auto-rows: min-content;
 	font-size: var(--font-size-6);
+	justify-items: center;
+}
+
+.root > header {
+	width: 100%;
 }
 
 .root > div {

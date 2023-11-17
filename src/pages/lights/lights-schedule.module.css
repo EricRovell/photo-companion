@@ -2,6 +2,11 @@
 	--gauge-color: gold;
 
 	display: grid;
+	justify-items: center;
+}
+
+.root header {
+	width: 100%;
 }
 
 .root p {
