@@ -1,0 +1,8 @@
+.date-input {
+	justify-self: center;
+	z-index: 12;
+	position: sticky;
+	bottom: var(--space-5);
+	align-self: end;
+	margin-block-end: var(--space-5);
+}
