@@ -1,1 +1,1 @@
-export { default as ViewDate } from "./view-date/view-date.svelte";
+export { default as Navigation } from "./navigation/navigation.svelte";

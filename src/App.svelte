@@ -1,27 +1,13 @@
 <script lang="ts">
-	import { click, pattern, url }from "svelte-pathfinder";
+	import { click }from "svelte-pathfinder";
 	import Pages from "./pages/pages.svelte";
 	import { Link, Icon } from "@lib/components";
-	import { iconGithub, iconQuestion, iconTimeline, iconLights, iconSun, iconMoon } from "@lib/icons";
-	import {routeAbout, routeLights, routeMoon, routeSun, routeTimeline, urlGithub } from "@lib/routes";
+	import { iconGithub, iconQuestion } from "@lib/icons";
+	import { routeAbout, urlGithub } from "@lib/routes";
+	import { Navigation } from "@lib/layout";
 	import { version } from "../package.json";
 	import { title } from "@lib/constants";
-	import { dict } from "@lib/dict";
 	import styles from "./app.module.css";
-
-	const sections = [
-		{ label: "timeline", href: routeTimeline, icon: iconTimeline, root: true },
-		{ label: "lights", href: routeLights, icon: iconLights },
-		{ label: "sun", href: routeSun, icon: iconSun },
-		{ label: "moon", href: routeMoon, icon: iconMoon }
-	];
-
-	const handleClick = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth"
-		});
-	};
 </script>
 
 <svelte:window on:click="{click}" />
@@ -36,23 +22,7 @@
 		</Link>
 	</div>
 </header>
-<nav class="{styles.navigation}">
-	<ul class="{styles.content}">
-		{#each sections as { label, href, icon, root }}
-			<li>
-				<Link
-					current="{($pattern(href) || ($url === "/" && root)) ? "page" : undefined}"
-					className="{styles.link}"
-					{href}
-					on:click="{handleClick}"
-				>
-					<Icon path="{icon}" viewBox="0 0 256 256" />
-					{dict[label]}
-				</Link>
-			</li>
-		{/each}
-	</ul>
-</nav>
+<Navigation />
 <main>
 	<Pages />
 </main>

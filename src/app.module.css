@@ -16,6 +16,13 @@
 	text-decoration: unset;
 }
 
+.content {
+	justify-self: center;
+	display: flex;
+	align-items: center;
+	width: var(--max-width);
+}
+
 .faq {
 	--icon-size: 1.5rem;
 
@@ -31,73 +38,11 @@
 	background-color: var(--color-surface-4);
 }
 
-.navigation {
-	--icon-size: 1.25em;
-
-	position: sticky;
-	top: 0;
-	z-index: 10;
-	display: flex;
-	background-color: var(--color-surface-0);
-	border-bottom: 3px solid hsl(0deg 0% 50% / 25%);
-	margin-bottom: var(--space-8);
-	font-size: var(--font-size-2);
-	width: 100%;
-	overflow-x: auto;
-	scroll-snap-type: x mandatory;
-	scroll-padding-inline-start: var(--space-4);
-}
-
-.navigation ul {
-	list-style: none;
-	justify-self: center;
-	display: flex;
-	gap: var(--space-4);
-	height: var(--tabs-height);
-	padding-block: var(--space-3);
-	margin-inline: auto;
-}
-
-.link {
-	position: relative;
-	scroll-snap-align: left;
-	color: inherit;
-	display: flex;
-	place-content: center;
-	gap: 0.5em;
-	background-color: var(--color-surface-2);
-	padding: var(--space-2);
-	border-radius: var(--radius);
-	white-space: nowrap;
-	user-select: none;
-	text-decoration: unset;
-	transition: background-color 0.125s linear;
-}
-
-.link:hover {
-	text-decoration: unset;
-	background-color: var(--color-surface-3);
-}
-
-.link:active {
-	background-color: var(--color-surface-2);
-}
-
-.link[aria-current] {
-	background-color: var(--color-accent);
-}
-
-.link:focus-visible {
-	outline: 2px dashed var(--color-accent);
-	outline-offset: 2px;
-}
-
 .footer {
 	align-self: end;
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	margin-block-start: 30vh;
 	border-block-start: 3px solid var(--color-surface-3);
 	padding-block: var(--space-4);
 	background-color: var(--color-surface-0);
@@ -108,16 +53,8 @@ footer p {
 }
 
 .header,
-.navigation,
 .footer {
 	padding-inline: var(--space-2);
-}
-
-.content {
-	justify-self: center;
-	display: flex;
-	align-items: center;
-	width: var(--max-width);
 }
 
 .header > div,
@@ -133,7 +70,6 @@ footer p {
 	}
 
 	.header,
-	.navigation,
 	.footer {
 		padding-inline: var(--space-4);
 	}
@@ -141,21 +77,6 @@ footer p {
 	.header,
 	.footer {
 		background-color: var(--color-surface-1);
-	}
-
-	.navigation {
-		position: fixed;
-		top: unset;
-		bottom: 0;
-		left: 0;
-		height: min-content;
-		margin: 0;
-		border-block-start: 2px solid var(--color-surface-2);
-		border-block-end: unset;
-	}
-
-	.navigation ul {
-		width: max-content;
 	}
 
 	.footer {
