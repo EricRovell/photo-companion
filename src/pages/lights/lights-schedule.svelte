@@ -3,12 +3,12 @@
 	import { getLightsScheduleByDate } from "@services/lights";
 	import styles from "./lights-schedule.module.css";
 
-	export let date = new Date().getTime();
+	export let date: Date;
 
-	let state = getLightsScheduleByDate(new Date(date));
+	let state = getLightsScheduleByDate(date);
 
 	$: {
-		state = getLightsScheduleByDate(new Date(date));
+		state = getLightsScheduleByDate(date);
 	}
 </script>
 

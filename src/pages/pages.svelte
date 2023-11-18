@@ -21,10 +21,11 @@
 
 	const routes = {
 		"datetime": {
+			"/": PageTimeline,
 			[routeLights]: PageLights,
 			[routeSun]: PageSun,
 			[routeMoon]: PageMoon,
-			[routeTimeline]: PageTimeline,
+			[routeTimeline]: PageTimeline
 		},
 		"page": {
 			[routeAbout]: PageAbout

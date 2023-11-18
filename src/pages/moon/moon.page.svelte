@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { GaugeTime, Moon, Datetime } from "@lib/components";
-	import { getMoonData, getMoonPhases } from "@services/moon";
+	import { getMoonData } from "@services/moon";
 	import { LAT, LON } from "@lib/constants";
+	import { isValidDate } from "@lib/helpers";
 	import styles from "./moon.module.css";
 
-	export let date = new Date().getTime();
+	export let date: Date;
 
 	const defaultState = {
 		moonrise: new Date("null"),
@@ -12,17 +13,16 @@
 		phaseValue: 0,
 		angle: 0,
 		fraction: 0,
-		waxing: false
+		waxing: false,
+		phases: []
 	};
 
 	const moonSize = 48;
-	let state = getMoonData(new Date(date), LAT, LON);
-
-	$: phases = getMoonPhases(new Date(date));
+	let state = getMoonData(date, LAT, LON);
 
 	$: {
-		if (date) {
-			state = getMoonData(new Date(date), LAT, LON);
+		if (isValidDate(date)) {
+			state = getMoonData(date, LAT, LON);
 		} else {
 			state = defaultState;
 		}
@@ -56,7 +56,7 @@
 <section class="card {styles.phases}">
 	<header>Лунный календарь</header>
 	<div>
-		{#each phases as { phase, timestamp } (`${phase}/${timestamp}`)}
+		{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 			<Moon phase="{phase}" size={40} />
 			<Datetime date="{new Date(timestamp)}" />
 		{:else}
