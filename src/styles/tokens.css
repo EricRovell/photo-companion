@@ -38,6 +38,7 @@
 	--color-surface-4: hsl(210deg 23% 24%);
 	--color-success: rgb(42 119 119);
 	--color-danger: rgb(192 53 53);
+	--color-info: #003C5A;
 	--border: 1px solid hsl(210deg 23% 25%);
 	--radius: 5px;
 	--font-main: var(--font-fallback);

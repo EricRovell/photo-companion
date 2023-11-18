@@ -1,5 +1,3 @@
-import { YEAR } from "../constants";
-
 /**
  * Round the number up to the desired precision.
  */
@@ -34,13 +32,6 @@ export function getAngleFromTime(date = new Date()): number {
 	const minutes = date.getMinutes();
 	return Math.round(360 * (hours * 60 + minutes) / (24 * 60));
 }
-
-/**
- * Validate if the given date is within actual schedule.
- */
-export const validateDate = (date: Date) => {
-	return date.getFullYear() === YEAR;
-};
 
 /**
  * Increments the given date by number of days.
