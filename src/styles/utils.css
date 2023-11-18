@@ -15,11 +15,11 @@
 	width: 100%;
 	height: fit-content;
 	border-radius: 10px;
-	border: 3px solid var(--color-surface-3);
+	border: 3px solid var(--card-border-color, var(--color-surface-3));
 }
 
 .card > header {
-	border-bottom: 3px solid var(--color-surface-3);
+	border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
 	display: flex;
 	justify-content: center;
 	align-items: center;

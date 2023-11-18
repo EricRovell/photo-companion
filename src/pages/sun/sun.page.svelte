@@ -3,16 +3,14 @@
 	import { getSunData } from "@services/sun";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./sun.module.css";
-	import { afterUpdate } from "svelte";
 
 	export let date: Date;
+
 	let state: ReturnType<typeof getSunData> = getSunData(date, LAT, LON);
 
 	const sunSize = 30;
 
-	afterUpdate(() => {
-		state = getSunData(date, LAT, LON);
-	});
+	$: state = getSunData(date, LAT, LON);
 </script>
 
 <section id="sun" class="card {styles.root}">

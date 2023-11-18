@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Timeline, TimelineSection, Event, EventEmpty } from "@lib/components";
 	import { getTimeline } from "@services/events";
-	import { incrementDateByDay, isValidDate } from "@lib/helpers";
+	import { incrementDateByDay } from "@lib/helpers";
 	import { LAT, LON } from "@lib/constants";
 
 	interface Timeline {
@@ -33,18 +33,14 @@
 	}
 </script>
 
-{#if !isValidDate(date)}
-	<p>Invalid date</p>
-{:else}
-	<Timeline>
-		{#each timeline as { date, items } (date.getTime())}
-			<TimelineSection {date}>
-				{#each items as event (`${event.timestamp}/${event.name}`)}
-					<Event {event} />
-				{:else}
-					<EventEmpty />
-				{/each}
-			</TimelineSection>
-		{/each}
-	</Timeline>
-{/if}
+<Timeline>
+	{#each timeline as { date, items } (date.getTime())}
+		<TimelineSection {date}>
+			{#each items as event (`${event.timestamp}/${event.name}`)}
+				<Event {event} />
+			{:else}
+				<EventEmpty />
+			{/each}
+		</TimelineSection>
+	{/each}
+</Timeline>

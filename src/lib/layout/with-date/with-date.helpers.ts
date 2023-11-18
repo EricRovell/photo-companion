@@ -6,16 +6,17 @@ function formatNumber(input: number): string {
 		: input.toString();
 }
 
-export function parseQueryDate(input: string): string | null {
+export function parseQueryDate(input: string): string {
 	if (!input) {
-		return null;
+		return getDateTimeString();
 	}
 
 	const [ yy, mm, dd, h, m ] = input.split("-").map(Number);
+
 	const date = new Date(yy, mm - 1, dd, h, m);
 
 	if (!isValidDate(date)) {
-		return null;
+		return "invalid";
 	}
 
 	return getDateTimeString(date);

@@ -2,31 +2,14 @@
 	import { GaugeTime, Moon, Datetime } from "@lib/components";
 	import { getMoonData } from "@services/moon";
 	import { LAT, LON } from "@lib/constants";
-	import { isValidDate } from "@lib/helpers";
 	import styles from "./moon.module.css";
 
 	export let date: Date;
 
-	const defaultState = {
-		moonrise: new Date("null"),
-		moonset: new Date("null"),
-		phaseValue: 0,
-		angle: 0,
-		fraction: 0,
-		waxing: false,
-		phases: []
-	};
-
 	const moonSize = 48;
 	let state = getMoonData(date, LAT, LON);
 
-	$: {
-		if (isValidDate(date)) {
-			state = getMoonData(date, LAT, LON);
-		} else {
-			state = defaultState;
-		}
-	}
+	$: state = getMoonData(date, LAT, LON);
 </script>
 
 <section id="ephemeris-moon" class="card {styles.root}">

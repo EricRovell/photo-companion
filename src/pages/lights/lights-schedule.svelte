@@ -7,9 +7,7 @@
 
 	let state = getLightsScheduleByDate(date);
 
-	$: {
-		state = getLightsScheduleByDate(date);
-	}
+	$: state = getLightsScheduleByDate(date);
 </script>
 
 <section id="info-by-date" class="card {styles.root}">
