@@ -9,20 +9,22 @@
 	export let max: string | undefined = undefined;
 	export let min: string | undefined = undefined;
 	export let title: string | undefined = undefined;
-	export let value: string = new Date().toISOString();
+	export let value = getDateTimeString();
 
 	const handleReset = () => {
 		value = getDateTimeString();
 	};
 
-	function handleClick(event: Event) {
+	const handleClick = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const step = Number(target.dataset.step);
-		const nextDate = incrementDateByDay(new Date(value), step);
-		value = getDateTimeString(nextDate);
+		value = getDateTimeString(incrementDateByDay(value, step));
 	};
 
-	$: inputValue = value.substring(0, 16);
+	const handleChange = (event: Event) => {
+		const target = event.target as HTMLButtonElement;
+		value = target.value;
+	};
 </script>
 
 <form on:submit|preventDefault class="{styles.form} {className}">
@@ -44,9 +46,10 @@
 				{max}
 				{min}
 				on:change
+				on:change="{handleChange}"
 				{title}
 				type="datetime-local"
-				value="{inputValue}"
+				{value}
 				{...$$restProps}
 			/>
 		</label>
@@ -60,7 +63,7 @@
 	</div>
 	<Button
 		className="{styles["button-increment"]}"
-		data-step="-1"
+		data-step="1"
 		on:click="{handleClick}"
 	>
 		<Icon

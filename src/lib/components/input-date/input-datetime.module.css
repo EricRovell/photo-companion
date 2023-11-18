@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template: 1fr / repeat(3, auto);
 	width: fit-content;
-	box-shadow: 0 0 5px rgb(24, 23, 23);
+	box-shadow: 0 0 5px rgb(24 24 24);
 	border-radius: 8px;
 }
 
@@ -12,11 +12,9 @@
 	place-content: center;
 	width: auto;
 	outline-offset: -3px;
-
 	padding: var(--space-1) var(--space-2);
 	font-size: var(--font-size-3);
 	color: inherit;
-	background-color: transparent;
 	border: 3px solid var(--color-surface-4);
 	border-radius: 0;
 	cursor: pointer;
