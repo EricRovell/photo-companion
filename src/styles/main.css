@@ -15,13 +15,3 @@ main {
 	gap: var(--space-6);
 	width: var(--content-width);
 }
-
-@media screen and (width <= 600px) {
-	#app > form {
-		bottom: 4.5rem;
-	}
-
-	#app > form input {
-		font-size: var(--font-size-2);
-	}
-}

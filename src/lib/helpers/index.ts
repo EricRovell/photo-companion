@@ -69,25 +69,3 @@ export function getDateTimeString(date = new Date()): string {
 	const timezoneOffset = date.getTimezoneOffset() * 60000;
 	return (new Date(date.getTime() - timezoneOffset)).toISOString().slice(0, 16);
 }
-
-export function dateAsParams(date = new Date()): [ number, number, number, number, number ] {
-	return [
-		date.getFullYear(),
-		date.getMonth() + 1,
-		date.getDate(),
-		date.getHours(),
-		date.getMinutes()
-	];
-}
-
-export function dateToString(date = new Date()): string {
-	return dateAsParams(date).join("-");
-}
-
-export function parseDateString(input: string): Date {
-	const [ dateString, timeString ] = input.split("T");
-	const [ year, month, date ] = dateString.split(":").map(Number);
-	const [ hours, minutes ] = timeString.split(":").map(Number);
-
-	return new Date(year, month - 1, date, hours, minutes);
-}

@@ -28,7 +28,6 @@
 	padding-block: var(--space-3);
 	margin-inline: auto;
 	width: var(--max-width);
-
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	scroll-padding-inline-start: var(--space-4);

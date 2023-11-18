@@ -72,10 +72,6 @@ footer p {
 	.header,
 	.footer {
 		padding-inline: var(--space-4);
-	}
-
-	.header,
-	.footer {
 		background-color: var(--color-surface-1);
 	}
 
