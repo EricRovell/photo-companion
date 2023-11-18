@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pattern, url } from "svelte-pathfinder";
+	import { pattern, url, query } from "svelte-pathfinder";
 	import { Icon, Link } from "@lib/components";
 	import { dict } from "@lib/dict";
 	import { iconTimeline, iconLights, iconSun, iconMoon } from "@lib/icons";
@@ -28,7 +28,7 @@
 				<Link
 					current="{($pattern(href) || ($url === "/" && root)) ? "page" : undefined}"
 					className="{styles.link}"
-					{href}
+					href="{href}?date={$query.date}"
 					on:click="{handleClick}"
 				>
 					<Icon path="{icon}" viewBox="0 0 256 256" />
