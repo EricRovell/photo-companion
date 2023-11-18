@@ -8,7 +8,7 @@ export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: nu
 		props: {
 			phase: event.data.phase
 		},
-		message: `${event.data.waxing ? dict["waxing"] : dict["waning"]}, ${event.data.fraction * 100}%`,
+		message: `${event.data.waxing ? dict["waxing"] : dict["waning"]}, ${event.data.fraction}%`,
 		title: dict[event.name]
 	};
 }

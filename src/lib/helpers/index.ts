@@ -1,5 +1,3 @@
-import { YEAR } from "../constants";
-
 /**
  * Round the number up to the desired precision.
  */
@@ -36,13 +34,6 @@ export function getAngleFromTime(date = new Date()): number {
 }
 
 /**
- * Validate if the given date is within actual schedule.
- */
-export const validateDate = (date: Date) => {
-	return date.getFullYear() === YEAR;
-};
-
-/**
  * Increments the given date by number of days.
  */
 export function incrementDateByDay(date: Date | string, dayCount: number): Date {
@@ -63,4 +54,9 @@ export function isValidDate(date: Date | number | string | undefined): boolean {
 	}
 
 	return false;
+}
+
+export function getDateTimeString(date = new Date()): string {
+	const timezoneOffset = date.getTimezoneOffset() * 60000;
+	return (new Date(date.getTime() - timezoneOffset)).toISOString().slice(0, 16);
 }

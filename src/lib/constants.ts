@@ -1,6 +1,4 @@
-export const YEAR = 2023;
-export const currentYear = new Date().getFullYear();
-export const ACTUAL_DATA = currentYear === YEAR;
+export const LIGHTS_SCHEDULE_DATE = 2023;
 
 // Saint-Petersburg, Russia
 export const LAT = 59.844404;

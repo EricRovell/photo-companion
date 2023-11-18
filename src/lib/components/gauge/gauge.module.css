@@ -1,10 +1,10 @@
 .gauge {
-	width: var(--gauge-size, min(100%, 300px));
-	height: var(--gauge-size, min(100%, 300px));
+	width: var(--gauge-size, min(100%, 50vh));
+	height: var(--gauge-size, min(100%, 50vh));
 }
 
 .gauge text {
-	font-size: 5px;
+	font-size: 4px;
 	font-family: monospace;
 	font-weight: 600;
 	fill: var(--gauge-text-color, hsl(0deg 50% 100%));

@@ -1,64 +1,45 @@
 <script lang="ts">
 	import { GaugeTime, Moon, Datetime } from "@lib/components";
-	import { ViewDate } from "@lib/layout";
-	import { getMoonData, getMoonPhases } from "@services/moon";
+	import { getMoonData } from "@services/moon";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
 
-	const defaultState = {
-		moonrise: new Date("null"),
-		moonset: new Date("null"),
-		phaseValue: 0,
-		angle: 0,
-		fraction: 0,
-		waxing: false
-	};
+	export let date: Date;
 
 	const moonSize = 48;
-	let date: string = new Date().toISOString().substring(0, 16);
-	let state = getMoonData(new Date(date), LAT, LON);
+	let state = getMoonData(date, LAT, LON);
 
-	$: phases = getMoonPhases(new Date(date));
-
-	$: {
-		if (date) {
-			state = getMoonData(new Date(date), LAT, LON);
-		} else {
-			state = defaultState;
-		}
-	}
+	$: state = getMoonData(date, LAT, LON);
 </script>
 
 <section id="ephemeris-moon" class="card {styles.root}">
 	<header>
 		<h2>Времена восхода и захода</h2>
 	</header>
-	<ViewDate bind:date input="date-time">
-		<GaugeTime
-			timeFrom="{state.moonrise}"
-			timeTo="{state.moonset}"
+	<GaugeTime
+		timeFrom="{state.moonrise}"
+		timeTo="{state.moonset}"
+	>
+		<foreignObject
+			xmlns="http://www.w3.org/2000/svg"
+			x="-{moonSize / 2}"
+			y="-{moonSize / 2}"
+			width="{moonSize}"
+			height="{moonSize}"
 		>
-			<foreignObject
-				xmlns="http://www.w3.org/2000/svg"
-				x="-{moonSize / 2}"
-				y="-{moonSize / 2}"
-				width="{moonSize}"
-				height="{moonSize}"
-			>
-				<Moon
-					phase="{state.phaseValue}"
-					rotation="{state.angle}"
-					size="{moonSize}"
-				/>
-			</foreignObject>
-		</GaugeTime>
-	</ViewDate>
+			<Moon
+				phase="{state.phaseValue}"
+				rotation="{state.angle}"
+				size="{moonSize}"
+			/>
+		</foreignObject>
+	</GaugeTime>
 </section>
 
 <section class="card {styles.phases}">
 	<header>Лунный календарь</header>
 	<div>
-		{#each phases as { phase, timestamp } (`${phase}/${timestamp}`)}
+		{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 			<Moon phase="{phase}" size={40} />
 			<Datetime date="{new Date(timestamp)}" />
 		{:else}

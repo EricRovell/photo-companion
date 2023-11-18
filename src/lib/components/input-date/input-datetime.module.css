@@ -1,0 +1,99 @@
+.form {
+	display: grid;
+	grid-template: 1fr / repeat(3, auto);
+	width: fit-content;
+	box-shadow: 0 0 5px rgb(24 24 24);
+	border-radius: 8px;
+}
+
+.input-wrapper {
+	display: grid;
+	grid-auto-flow: column;
+	place-content: center;
+	width: auto;
+	outline-offset: -3px;
+	padding: var(--space-1) var(--space-2);
+	font-size: var(--font-size-3);
+	color: inherit;
+	border: 3px solid var(--color-surface-4);
+	border-radius: 0;
+	cursor: pointer;
+	background-color: var(--color-surface-1);
+}
+
+.input-wrapper:focus-within {
+	border-color: var(--color-accent);
+	background-color: var(--color-surface-2);
+}
+
+.input-wrapper:hover {
+	background-color: var(--color-surface-2);
+}
+
+.label {
+	justify-self: center;
+	display: grid;
+	align-items: center;
+	width: fit-content;
+	text-align: center;
+}
+
+.input-date span {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+	margin-block-start: var(--space-1);
+}
+
+.input {
+	font-size: var(--font-size-3);
+	color: inherit;
+	font-family: inherit;
+	font-variant-numeric: tabular-nums;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+.button {
+	aspect-ratio: 1 / 1;
+	background-color: transparent;
+	padding: var(--space-1);
+}
+
+.button-increment {
+	background-color: var(--color-surface-1);
+	border: 3px solid var(--color-surface-4);
+	outline-offset: -3px;
+	border-radius: 5px;
+	padding-inline: var(--space-3);
+}
+
+.button-increment:hover {
+	outline-color: var(--color-accent);
+	background-color: var(--color-surface-2);
+}
+
+.button-increment:active {
+	background-color: var(--color-surface-3);
+}
+
+.button-increment:active svg {
+	transform: scale(0.85);
+}
+
+.button-increment:focus-visible {
+	border-color: var(--color-accent);
+	outline-offset: -3px;
+}
+
+.button-increment:first-child {
+	border-radius: 12px 0 0 12px;
+	border-inline-end: unset;
+}
+
+.button-increment:last-child {
+	border-radius: 0 12px 12px 0;
+	border-inline-start: unset;
+}

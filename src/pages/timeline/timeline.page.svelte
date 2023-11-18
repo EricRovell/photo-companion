@@ -9,28 +9,34 @@
 		items: ReturnType<typeof getTimeline>;
 	}
 
-	const timeline: Timeline[] = [];
+	export let date: Date;
 
-	const now = new Date().getTime();
+	let timeline: Timeline[] = [];
 
-	for (let i = 0; i < 3; i++) {
-		const date = i > 0
-			? incrementDateByDay(new Date(), i)
-			: new Date();
+	$: {
+		const nextDate = incrementDateByDay(date, 1);
 
-		timeline.push({
-			date: date,
-			items: getTimeline(date, LAT, LON, {
-				predicate: event => event.timestamp > now
-			})
-		});
+		timeline = [
+			{
+				date: date,
+				items: getTimeline(date, LAT, LON, {
+					predicate: event => event.timestamp > date.getTime()
+				})
+			},
+			{
+				date: nextDate,
+				items: getTimeline(nextDate, LAT, LON, {
+					predicate: event => event.timestamp > date.getTime()
+				})
+			}
+		];
 	}
 </script>
 
 <Timeline>
-	{#each timeline as { date, items }}
+	{#each timeline as { date, items } (date.getTime())}
 		<TimelineSection {date}>
-			{#each items as event}
+			{#each items as event (`${event.timestamp}/${event.name}`)}
 				<Event {event} />
 			{:else}
 				<EventEmpty />

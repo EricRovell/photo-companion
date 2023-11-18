@@ -1,6 +1,7 @@
 import { getLightsEvents } from "../lights";
 import { getSunEvents } from "../sun";
 import { getMoonEvents } from "../moon";
+import { isValidDate } from "@lib/helpers";
 import type { TimelineEvent, MoonEvent, LightsEvent, SunEvent } from "@lib/types";
 
 interface Options {
@@ -21,6 +22,10 @@ export function isSunEvent(event: TimelineEvent): event is SunEvent {
 }
 
 export function getTimeline(date = new Date(), lat: number, lon: number, options: Partial<Options> = {}) {
+	if (!isValidDate(date)) {
+		return [];
+	}
+
 	const {
 		comparator = (a, b) => a.timestamp - b.timestamp
 	} = options;

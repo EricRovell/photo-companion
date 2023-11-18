@@ -27,7 +27,6 @@
 body {
 	margin: 0;
 	display: flex;
-	min-height: 100vh;
 	position: relative;
 }
 
@@ -55,4 +54,9 @@ p {
 
 strong {
 	font-variation-settings: "wght" 600;
+}
+
+main {
+	min-height: 125vh;
+	padding-block-end: var(--space-8);
 }
