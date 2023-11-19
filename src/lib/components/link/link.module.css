@@ -14,12 +14,12 @@
 		outline: 1px dashed var(--color-link-hover);
 		outline-offset: 0.25em;
 	}
-	
+
 	&:active {
 		color: var(--color-link-active);
 		background-color: var(--color-link-active-bg);
 	}
-	
+
 	&:hover {
 		color: var(--color-link-hover, currentColor);
 		text-decoration: underline;

@@ -9,7 +9,7 @@
 	& > header {
 		width: 100%;
 	}
-	
+
 	& > div {
 		display: grid;
 		justify-content: center;

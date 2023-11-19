@@ -9,7 +9,7 @@
 	& > header {
 		width: 100%;
 	}
-	
+
 	& > div {
 		display: grid;
 		justify-content: center;
@@ -24,12 +24,12 @@
 		justify-items: center;
 		padding-block: var(--space-4);
 	}
-	
+
 	& > div > p {
 		grid-row: 1 / -1;
 		grid-column: 1 / -1;
 	}
-	
+
 	& time {
 		font-size: min(2.5vmin, var(--font-size-2));
 	}

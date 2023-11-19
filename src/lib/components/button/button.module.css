@@ -13,21 +13,21 @@
 	&:hover {
 		background-color: var(--color-surface-4);
 	}
-	
+
 	&:active {
 		background-color: var(--color-surface-3);
 	}
-	
+
 	&:focus-visible {
 		outline: 3px solid var(--color-accent);
 		outline-offset: 2px;
 	}
-	
+
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 0.75;
 	}
-	
+
 	& svg {
 		pointer-events: none;
 	}
