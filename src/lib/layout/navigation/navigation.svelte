@@ -26,7 +26,7 @@
 		{#each sections as { label, href, icon, root }}
 			<li>
 				<Link
-					current="{($pattern(href) || ($url === "/" && root)) ? "page" : undefined}"
+					current="{($pattern(href) || ($pattern("/") && root)) ? "page" : undefined}"
 					className="{styles.link}"
 					href="{href}?date={$query.date}"
 					on:click="{handleClick}"
