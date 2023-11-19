@@ -11,38 +11,38 @@
 
 	display: grid;
 	gap: var(--space-3);
-}
 
-.error ul {
-	list-style-position: inside;
-}
-
-.error li {
-	text-align: left;
-	list-style-type: "— ";
-}
-
-.error :is(p, li) {
-	font-size: var(--font-size-3);
-}
-
-.error strong {
-	font-weight: 500;
-}
-
-.error button {
-	justify-self: center;
-	width: fit-content;
-	background-color: var(--color-success);
-	margin-block-end: var(--space-5);
+	ul {
+		list-style-position: inside;
+	}
+	
+	li {
+		text-align: left;
+		list-style-type: "— ";
+	}
+	
+	:is(p, li) {
+		font-size: var(--font-size-3);
+	}
+	
+	strong {
+		font-weight: 500;
+	}
+	
+	button {
+		justify-self: center;
+		width: fit-content;
+		background-color: var(--color-success);
+		margin-block-end: var(--space-5);
+	}
 }
 
 @media screen and (width <= 600px) {
 	.date-input {
 		bottom: calc(2 * var(--space-3) + 2 * var(--space-2) + var(--font-size-2) + var(--space-4));
-	}
 
-	.date-input input {
-		font-size: var(--font-size-2);
+		input {
+			font-size: var(--font-size-2);
+		}
 	}
 }

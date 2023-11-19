@@ -3,25 +3,14 @@
 
 	display: grid;
 	justify-items: center;
-}
 
-.root header {
-	width: 100%;
-}
-
-.root p {
-	text-align: center;
-}
-
-.root button > svg {
-	width: 1.5rem;
-	height: 1.5rem;
-	fill: var(--color-text);
-	transition: transform 0.125s ease-in-out;
-}
-
-.root button:active > svg {
-	transform: scale(0.85);
+	header {
+		width: 100%;
+	}
+	
+	p {
+		text-align: center;
+	}
 }
 
 .state {

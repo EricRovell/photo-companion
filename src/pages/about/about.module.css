@@ -4,49 +4,48 @@
 	display: grid;
 	gap: var(--space-3);
 	margin-bottom: 25vh;
-}
 
-.root h2,
-.root h3 {
-	justify-self: start;
-	width: 100%;
-	padding-block-end: var(--space-2);
-	color: hsl(0deg 0% 90%);
-	border-bottom: 1px solid hsl(0deg 0% 90% / 10%);
-	font-size: var(--font-size-5);
-}
+	:is(h2, h3) {
+		justify-self: start;
+		width: 100%;
+		padding-block-end: var(--space-2);
+		color: hsl(0deg 0% 90%);
+		border-bottom: 1px solid hsl(0deg 0% 90% / 10%);
+		font-size: var(--font-size-5);
+	}
 
-.root h2 {
-	margin-block-start: var(--space-4);
-}
+	h2 {
+		margin-block-start: var(--space-4);
+	}
 
-.root h3 {
-	text-align: left;
-	font-size: var(--font-size-4);
-}
+	h3 {
+		text-align: left;
+		font-size: var(--font-size-4);
+	}
 
-.root p {
-	font-size: var(--font-size-4);
-}
+	p {
+		font-size: var(--font-size-4);
+	}
 
-.root a {
-	display: inline;
-	text-decoration: underline;
-}
+	a {
+		display: inline;
+		text-decoration: underline;
+	}
 
-.root aside[data-note] {
-	display: grid;
-	gap: var(--space-1);
-	background-color: var(--color-info);
-	border-radius: var(--radius);
-	padding: var(--space-3);
-	margin-block: var(--space-1);
-}
+	aside[data-note] {
+		display: grid;
+		gap: var(--space-1);
+		background-color: var(--color-info);
+		border-radius: var(--radius);
+		padding: var(--space-3);
+		margin-block: var(--space-1);
 
-.root aside[data-note="success"] {
-	background-color: var(--color-success);
-}
-
-.root aside[data-note="danger"] {
-	background-color: var(--color-danger);
+		&[data-note="success"] {
+			background-color: var(--color-success);
+		}
+	
+		&[data-note="danger"] {
+			background-color: var(--color-danger);
+		}
+	}
 }

@@ -10,22 +10,22 @@
 .timeline {
 	display: grid;
 	gap: var(--space-6);
-}
 
-.timeline ol {
-	list-style: none;
-}
-
-.timeline > time {
-	position: sticky;
-	top: var(--header-menu-height);
-	z-index: 9;
-	width: max-content;
-	justify-self: center;
-	background-color: var(--color-surface-3);
-	padding: var(--space-2) var(--space-3);
-	border-radius: var(--radius);
-	font-size: var(--font-size-3);
+	& ol {
+		list-style: none;
+	}
+	
+	& > time {
+		position: sticky;
+		top: var(--header-menu-height);
+		z-index: 9;
+		width: max-content;
+		justify-self: center;
+		background-color: var(--color-surface-3);
+		padding: var(--space-2) var(--space-3);
+		border-radius: var(--radius);
+		font-size: var(--font-size-3);
+	}
 }
 
 .timeline-entries {

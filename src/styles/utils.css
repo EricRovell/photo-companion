@@ -16,21 +16,21 @@
 	height: fit-content;
 	border-radius: 10px;
 	border: 3px solid var(--card-border-color, var(--color-surface-3));
-}
 
-.card > header {
-	border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 10px 10px 0 0;
-	padding: var(--space-2) var(--space-5);
-}
+	& > header {
+		border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px 10px 0 0;
+		padding: var(--space-2) var(--space-5);
 
-.card h2 {
-	font-size: var(--font-size-4);
-}
+		& ~ * {
+			margin-inline: var(--space-5);
+		}
+	}
 
-.card > header ~ * {
-	margin-inline: var(--space-5);
+	h2 {
+		font-size: var(--font-size-4);
+	}
 }

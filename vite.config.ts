@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import pluginPostCssNesting from "postcss-nesting";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,4 +14,11 @@ export default defineConfig({
 	plugins: [
 		svelte()
 	],
+	css: {
+		postcss: {
+			plugins: [
+				pluginPostCssNesting
+			]
+		}
+	}
 });
