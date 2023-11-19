@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Timer, Bulb } from "@lib/components";
 	import { getLightsStateByDate } from "@services/lights";
+	import { dict } from "@lib/dict";
 	import type { ScheduleDataItem } from "@lib/types";
 	import styles from "./lights-today.module.css";
 
@@ -15,7 +16,7 @@
 
 <section class="card {styles.root}">
 	<header>
-		<h2>Сейчас</h2>
+		<h2>{dict["header-lights-timer"]}</h2>
 	</header>
 	{#if !state}
 		<p>Что-то пошло не так...</p>

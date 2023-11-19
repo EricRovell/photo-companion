@@ -56,5 +56,11 @@ export const dict: Record<string, string> = {
 	"nadir:info": "Темнейший момент ночи",
 	"saint-petersburg": "г. Санкт-Петербург",
 	"next-day": "Следующий день",
-	"prev-day": "Предыдущий день"
+	"prev-day": "Предыдущий день",
+	"date-and-time": "Дата и время",
+	"header-lights-by-date": "Данные об освещении по датам",
+	"header-lights-timer": "Отсчёт переключения подсветки",
+	"header-moon-moontimes": "Времена восхода и захода Луны",
+	"header-moon-phase-calendar": "Календарь Лунных фаз",
+	"header-sun-moontimes": "Времена восхода и захода Солнца"
 };

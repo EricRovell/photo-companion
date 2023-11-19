@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { GaugeTime, Sun } from "@lib/components";
 	import { getSunData } from "@services/sun";
+	import { dict } from "@lib/dict";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./sun.module.css";
 
@@ -15,7 +16,7 @@
 
 <section id="sun" class="card {styles.root}">
 	<header>
-		<h2>Времена восхода и захода</h2>
+		<h2>{dict["header-sun-moontimes"]}</h2>
 	</header>
 	<GaugeTime
 		timeFrom="{state.sunriseStart.value}"

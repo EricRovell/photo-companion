@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { GaugeTime, Moon, Datetime } from "@lib/components";
 	import { getMoonData } from "@services/moon";
+	import { dict } from "@lib/dict";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
 
@@ -14,7 +15,7 @@
 
 <section id="ephemeris-moon" class="card {styles.root}">
 	<header>
-		<h2>Времена восхода и захода</h2>
+		<h2>{dict["header-moon-moontimes"]}</h2>
 	</header>
 	<GaugeTime
 		timeFrom="{state.moonrise}"
@@ -37,7 +38,7 @@
 </section>
 
 <section class="card {styles.phases}">
-	<header>Лунный календарь</header>
+	<header>{dict["header-moon-phase-calendar"]}</header>
 	<div>
 		{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 			<Moon phase="{phase}" size={40} />

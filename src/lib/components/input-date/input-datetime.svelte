@@ -44,7 +44,7 @@
 		<label class="{styles.label}">
 			<slot />
 			<input
-				aria-label="Date and time"
+				aria-label="{dict["date-and-time"]}"
 				class="{styles.input}"
 				{max}
 				{min}
