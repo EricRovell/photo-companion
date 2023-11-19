@@ -14,7 +14,7 @@
 	& ol {
 		list-style: none;
 	}
-	
+
 	& > time {
 		position: sticky;
 		top: var(--header-menu-height);

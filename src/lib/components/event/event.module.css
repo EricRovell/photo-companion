@@ -8,7 +8,7 @@
 		font-variant-numeric: tabular-nums;
 		place-self: center end;
 	}
-	
+
 	& > article {
 		display: grid;
 		gap: var(--space-1);
@@ -40,7 +40,7 @@
 	&.empty .icon {
 		grid-column: 2;
 	}
-	
+
 	&.empty > article {
 		grid-column: 3;
 	}
@@ -59,14 +59,14 @@
 	&::after {
 		top: 100%;
 	}
-	
+
 	&::before {
 		bottom: 100%;
 	}
 
 	svg {
 		--bulb-glow-size: 5px;
-	
+
 		padding: var(--space-3);
 		width: 100%;
 		height: 100%;

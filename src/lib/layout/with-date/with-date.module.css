@@ -15,20 +15,20 @@
 	ul {
 		list-style-position: inside;
 	}
-	
+
 	li {
 		text-align: left;
 		list-style-type: "— ";
 	}
-	
+
 	:is(p, li) {
 		font-size: var(--font-size-3);
 	}
-	
+
 	strong {
 		font-weight: 500;
 	}
-	
+
 	button {
 		justify-self: center;
 		width: fit-content;

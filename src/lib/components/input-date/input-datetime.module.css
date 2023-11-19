@@ -24,7 +24,7 @@
 		border-color: var(--color-accent);
 		background-color: var(--color-surface-2);
 	}
-	
+
 	&:hover {
 		background-color: var(--color-surface-2);
 	}
@@ -73,25 +73,25 @@
 		outline-color: var(--color-accent);
 		background-color: var(--color-surface-2);
 	}
-	
+
 	&:active {
 		background-color: var(--color-surface-3);
 	}
-	
+
 	&:active svg {
 		transform: scale(0.85);
 	}
-	
+
 	&:focus-visible {
 		border-color: var(--color-accent);
 		outline-offset: -3px;
 	}
-	
+
 	&:first-child {
 		border-radius: 12px 0 0 12px;
 		border-inline-end: unset;
 	}
-	
+
 	&:last-child {
 		border-radius: 0 12px 12px 0;
 		border-inline-start: unset;

@@ -16,7 +16,7 @@
 	& > form {
 		display: none;
 	}
-	
+
 	ul {
 		list-style: none;
 		justify-self: center;
@@ -52,15 +52,15 @@
 		text-decoration: unset;
 		background-color: var(--color-surface-3);
 	}
-	
+
 	&:active {
 		background-color: var(--color-surface-2);
 	}
-	
+
 	&[aria-current] {
 		background-color: var(--color-accent);
 	}
-	
+
 	&:focus-visible {
 		outline: 2px dashed var(--color-accent);
 		outline-offset: 2px;

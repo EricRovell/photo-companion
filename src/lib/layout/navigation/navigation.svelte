@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pattern, url, query } from "svelte-pathfinder";
+	import { pattern, query } from "svelte-pathfinder";
 	import { Icon, Link } from "@lib/components";
 	import { dict } from "@lib/dict";
 	import { iconTimeline, iconLights, iconSun, iconMoon } from "@lib/icons";

@@ -26,11 +26,11 @@
 	&[data-left] {
 		clip-path: inset(0 50% 0 0);
 	}
-	
+
 	&[data-right] {
 		clip-path: inset(0 0 0 50%);
 	}
-	
+
 	&:global(.visible) {
 		opacity: 1;
 	}

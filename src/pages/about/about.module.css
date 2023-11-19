@@ -43,7 +43,7 @@
 		&[data-note="success"] {
 			background-color: var(--color-success);
 		}
-	
+
 		&[data-note="danger"] {
 			background-color: var(--color-danger);
 		}

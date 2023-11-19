@@ -8,7 +8,7 @@
 		justify-self: center;
 		font-size: var(--font-size-3);
 	}
-	
+
 	& > svg {
 		height: 4rem;
 		justify-self: center;
