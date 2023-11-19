@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { click }from "svelte-pathfinder";
+	import { click, query }from "svelte-pathfinder";
 	import Pages from "./pages/pages.svelte";
 	import { Link, Icon } from "@lib/components";
 	import { iconGithub, iconQuestion } from "@lib/icons";
@@ -14,7 +14,7 @@
 
 <header class="{styles.header}">
 	<div class="{styles.content}">
-		<Link href="/">
+		<Link href="/?date={$query.date}">
 			<h1>{title}</h1>
 		</Link>
 		<Link className="{styles.faq}" href="{routeAbout}" title="FAQ">
