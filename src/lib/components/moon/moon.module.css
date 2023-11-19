@@ -13,25 +13,25 @@
 	fill: var(--moon-illumination-color);
 	transform: rotateY(var(--moon-disk-angle));
 	transform-origin: 50% 50%;
-}
 
-.diff:global(.dark) {
-	fill: var(--moon-shadow-color);
+	&:global(.dark) {
+		fill: var(--moon-shadow-color);
+	}
 }
 
 .semicircle {
 	opacity: 0;
 	fill: var(--moon-illumination-color);
-}
 
-.semicircle[data-left] {
-	clip-path: inset(0 50% 0 0);
-}
-
-.semicircle[data-right] {
-	clip-path: inset(0 0 0 50%);
-}
-
-.semicircle:global(.visible) {
-	opacity: 1;
+	&[data-left] {
+		clip-path: inset(0 50% 0 0);
+	}
+	
+	&[data-right] {
+		clip-path: inset(0 0 0 50%);
+	}
+	
+	&:global(.visible) {
+		opacity: 1;
+	}
 }

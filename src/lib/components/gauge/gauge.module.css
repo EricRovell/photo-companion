@@ -1,15 +1,15 @@
 .gauge {
 	width: var(--gauge-size, min(100%, 50vh));
 	height: var(--gauge-size, min(100%, 50vh));
-}
 
-.gauge text {
-	font-size: 4px;
-	font-family: monospace;
-	font-weight: 600;
-	fill: var(--gauge-text-color, hsl(0deg 50% 100%));
-	transform-box: fill-box;
-	text-anchor: middle;
+	& text {
+		font-size: 4px;
+		font-family: monospace;
+		font-weight: 600;
+		fill: var(--gauge-text-color, hsl(0deg 50% 100%));
+		transform-box: fill-box;
+		text-anchor: middle;
+	}
 }
 
 .progress-background {

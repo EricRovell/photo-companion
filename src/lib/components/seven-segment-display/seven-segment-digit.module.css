@@ -1,13 +1,13 @@
 .digit {
 	width: 100%;
 	height: min-content;
-}
 
-.digit polyline {
-	fill: var(--segment-fill, hsl(177deg 38% 22%));
-	transition: fill 0.2s linear;
-}
-
-.digit polyline[data-light="1"] {
-	--segment-fill: hsl(177deg 38% 50%);
+	& polyline {
+		fill: var(--segment-fill, hsl(177deg 38% 22%));
+		transition: fill 0.2s linear;
+	}
+	
+	& polyline[data-light="1"] {
+		--segment-fill: hsl(177deg 38% 50%);
+	}
 }

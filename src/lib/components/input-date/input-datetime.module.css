@@ -19,15 +19,15 @@
 	border-radius: 0;
 	cursor: pointer;
 	background-color: var(--color-surface-1);
-}
 
-.input-wrapper:focus-within {
-	border-color: var(--color-accent);
-	background-color: var(--color-surface-2);
-}
-
-.input-wrapper:hover {
-	background-color: var(--color-surface-2);
+	&:focus-within {
+		border-color: var(--color-accent);
+		background-color: var(--color-surface-2);
+	}
+	
+	&:hover {
+		background-color: var(--color-surface-2);
+	}
 }
 
 .label {
@@ -68,32 +68,32 @@
 	outline-offset: -3px;
 	border-radius: 5px;
 	padding-inline: var(--space-3);
-}
 
-.button-increment:hover {
-	outline-color: var(--color-accent);
-	background-color: var(--color-surface-2);
-}
-
-.button-increment:active {
-	background-color: var(--color-surface-3);
-}
-
-.button-increment:active svg {
-	transform: scale(0.85);
-}
-
-.button-increment:focus-visible {
-	border-color: var(--color-accent);
-	outline-offset: -3px;
-}
-
-.button-increment:first-child {
-	border-radius: 12px 0 0 12px;
-	border-inline-end: unset;
-}
-
-.button-increment:last-child {
-	border-radius: 0 12px 12px 0;
-	border-inline-start: unset;
+	&:hover {
+		outline-color: var(--color-accent);
+		background-color: var(--color-surface-2);
+	}
+	
+	&:active {
+		background-color: var(--color-surface-3);
+	}
+	
+	&:active svg {
+		transform: scale(0.85);
+	}
+	
+	&:focus-visible {
+		border-color: var(--color-accent);
+		outline-offset: -3px;
+	}
+	
+	&:first-child {
+		border-radius: 12px 0 0 12px;
+		border-inline-end: unset;
+	}
+	
+	&:last-child {
+		border-radius: 0 12px 12px 0;
+		border-inline-start: unset;
+	}
 }

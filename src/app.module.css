@@ -4,16 +4,16 @@
 	background-color: var(--color-surface-0);
 	width: 100%;
 	padding-top: var(--space-3);
-}
 
-.header h1 {
-	font-size: var(--font-size-5);
-	font-variation-settings: "wght" 600;
-	margin: 0;
-}
+	h1 {
+		font-size: var(--font-size-5);
+		font-variation-settings: "wght" 600;
+		margin: 0;
+	}
 
-.header > a {
-	text-decoration: unset;
+	& > a {
+		text-decoration: unset;
+	}
 }
 
 .content {
@@ -28,14 +28,14 @@
 
 	padding: var(--space-1);
 	background-color: var(--color-surface-2);
-}
 
-.faq:hover {
-	background-color: var(--color-surface-3);
-}
+	&:hover {
+		background-color: var(--color-surface-3);
+	}
 
-.faq:active {
-	background-color: var(--color-surface-4);
+	&:active {
+		background-color: var(--color-surface-4);
+	}
 }
 
 .footer {
@@ -46,10 +46,10 @@
 	border-block-start: 3px solid var(--color-surface-3);
 	padding-block: var(--space-4);
 	background-color: var(--color-surface-0);
-}
 
-footer p {
-	font-size: 0.9em;
+	p {
+		font-size: 0.9em;
+	}
 }
 
 .header,

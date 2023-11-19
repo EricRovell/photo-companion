@@ -10,8 +10,8 @@
 	background-color: var(--color-surface-4);
 	border: 1px solid var(--color-accent);
 	border-radius: 5px;
-}
 
-.timer svg {
-	height: var(--timer-size);
+	svg {
+		height: var(--timer-size);
+	}
 }

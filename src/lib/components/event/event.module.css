@@ -2,30 +2,48 @@
 	display: grid;
 	grid-template: 1fr / 1fr var(--timeline-icon-size) 1fr;
 	gap: var(--space-4);
-}
 
-.event time {
-	font-size: var(--font-size-2);
-	font-variant-numeric: tabular-nums;
-	place-self: center end;
-}
+	& time {
+		font-size: var(--font-size-2);
+		font-variant-numeric: tabular-nums;
+		place-self: center end;
+	}
+	
+	& > article {
+		display: grid;
+		gap: var(--space-1);
+		place-self: center start;
+		text-align: left;
+		font-size: var(--font-size-2);
 
-.event > article {
-	display: grid;
-	gap: var(--space-1);
-	place-self: center start;
-	text-align: left;
-	font-size: var(--font-size-2);
-}
+		p {
+			text-align: left;
+			text-wrap: balance;
+		}
 
-.event article p {
-	text-align: left;
-	text-wrap: balance;
-}
+		p:nth-of-type(2) {
+			font-size: var(--font-size-1);
+			color: var(--color-text-secondary);
+		}
+	}
 
-.event > article p:nth-of-type(2) {
-	font-size: var(--font-size-1);
-	color: var(--color-text-secondary);
+	&:not(:first-child) .icon::before,
+	&:not(:last-child) .icon::after {
+		content: "";
+		position: absolute;
+		left: calc(50% - var(--timeline-wire-width) / 2);
+		width: var(--timeline-wire-width);
+		height: calc(var(--space-6) + var(--timeline-wire-width));
+		background-color: var(--color-surface-3);
+	}
+
+	&.empty .icon {
+		grid-column: 2;
+	}
+	
+	&.empty > article {
+		grid-column: 3;
+	}
 }
 
 .icon {
@@ -37,40 +55,22 @@
 	height: var(--timeline-icon-size);
 	border-radius: 50%;
 	border: var(--timeline-wire-width) solid var(--color-surface-3);
-}
 
-.icon svg {
-	--bulb-glow-size: 5px;
+	&::after {
+		top: 100%;
+	}
+	
+	&::before {
+		bottom: 100%;
+	}
 
-	padding: var(--space-3);
-	width: 100%;
-	height: 100%;
-}
-
-.event:not(:first-child) .icon::before,
-.event:not(:last-child) .icon::after {
-	content: "";
-	position: absolute;
-	left: calc(50% - var(--timeline-wire-width) / 2);
-	width: var(--timeline-wire-width);
-	height: calc(var(--space-6) + var(--timeline-wire-width));
-	background-color: var(--color-surface-3);
-}
-
-.icon::after {
-	top: 100%;
-}
-
-.icon::before {
-	bottom: 100%;
-}
-
-.event.empty .icon {
-	grid-column: 2;
-}
-
-.event.empty > article {
-	grid-column: 3;
+	svg {
+		--bulb-glow-size: 5px;
+	
+		padding: var(--space-3);
+		width: 100%;
+		height: 100%;
+	}
 }
 
 @media screen and (width <= 600px) {
