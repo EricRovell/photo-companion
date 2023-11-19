@@ -5,7 +5,7 @@ export { default as Event } from "./event/event.svelte";
 export { default as EventEmpty } from "./event/event.empty.svelte";
 export { default as Gauge } from "./gauge/gauge.svelte";
 export { default as GaugeTime } from "./gauge/gauge-time.svelte";
-export { default as Icon } from "./icon.svelte";
+export { default as Icon } from "./icon/icon.svelte";
 export { default as InputDatetime } from "./input-date/input-datetime.svelte";
 export { default as Link } from "./link/Link.svelte";
 export { default as Moon } from "./moon/moon.svelte";
