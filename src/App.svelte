@@ -2,7 +2,6 @@
 	import { click, query }from "svelte-pathfinder";
 	import Pages from "./pages/pages.svelte";
 	import { Link, Icon } from "@lib/components";
-	import { ServiceWorker } from "@lib/layout";
 	import { iconGithub, iconQuestion } from "@lib/icons";
 	import { routeAbout, urlGithub } from "@lib/routes";
 	import { Navigation } from "@lib/layout";
@@ -12,10 +11,6 @@
 </script>
 
 <svelte:window on:click="{click}" />
-
-{#if import.meta.env.PROD}
-	<ServiceWorker />
-{/if}
 
 <header class="{styles.header}">
 	<div class="{styles.content}">
