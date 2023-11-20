@@ -62,5 +62,8 @@ export const dict: Record<string, string> = {
 	"header-lights-timer": "Отсчёт переключения подсветки",
 	"header-moon-moontimes": "Времена восхода и захода Луны",
 	"header-moon-phase-calendar": "Календарь Лунных фаз",
-	"header-sun-moontimes": "Времена восхода и захода Солнца"
+	"header-sun-moontimes": "Времена восхода и захода Солнца",
+	"update": "Обновление",
+	"update-message": "Обновление готово к установке. Для установки, пожалуйста, перезагрузите приложение или страницу.",
+	"reload": "Перезапустить"
 };

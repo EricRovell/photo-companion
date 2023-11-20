@@ -2,6 +2,12 @@
 
 const CACHE_NAME = "v2.5.0";
 
+self.addEventListener("message", event => {
+	if (event.data.action === "skipWaiting") {
+		self.skipWaiting();
+	}
+});
+
 self.addEventListener("activate", event => {
 	self.skipWaiting();
 
