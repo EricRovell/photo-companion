@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 	import { pattern, path } from "svelte-pathfinder";
-	import { WithDateURL } from "@lib/layout";
+	import { WithDateURL, Article } from "@lib/layout";
 
-	import PageAbout from "./about/about.page.svelte";
+	import PageAbout from "./about/about.page.mdx";
 	import PageLights from "./lights/lights.page.svelte";
 	import PageMoon from "./moon/moon.page.svelte";
 	import PageSun from "./sun/sun.page.svelte";
@@ -45,9 +45,10 @@
 		{/each}
 		{#each Object.entries(routes["page"]) as [ route, Page ]}
 			{#if $pattern(route)}
-				<Page />
+				<Article>
+					<Page />
+				</Article>
 			{/if}
 		{/each}
 	</div>
 {/key}
-
