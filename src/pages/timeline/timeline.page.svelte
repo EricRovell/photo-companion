@@ -20,13 +20,13 @@
 			{
 				date: date,
 				items: getTimeline(date, LAT, LON, {
-					predicate: event => event.timestamp > date.getTime()
+					predicate: event => event.timestamp >= date.getTime()
 				})
 			},
 			{
 				date: nextDate,
 				items: getTimeline(nextDate, LAT, LON, {
-					predicate: event => event.timestamp > date.getTime()
+					predicate: event => event.timestamp >= date.getTime()
 				})
 			}
 		];

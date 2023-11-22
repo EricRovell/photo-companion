@@ -4,8 +4,8 @@ import { isValidDate, round } from "@lib/helpers";
 import type { MoonEvent } from "@lib/types";
 
 export interface MoonData {
-	moonrise: Date;
-	moonset: Date;
+	moonrise: Date | null;
+	moonset: Date | null;
 	fraction: number;
 	waxing: boolean;
 	phaseValue: number;
@@ -50,13 +50,21 @@ export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
 	];
 };
 
+/**
+ * SunCalc sometimes return the moonrise/moonset for different days.
+ * So, we have to validate the output ourselves.
+ */
+const isSameDay = (a: Date, b: Date) => {
+	return a.getDate() === b.getDate();
+};
+
 export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
 	const moonTimes = SunCalc.getMoonTimes(date, lat, lon);
 	const illumination = SunCalc.getMoonIllumination(date);
 
 	return {
-		moonrise: moonTimes.rise,
-		moonset: moonTimes.set,
+		moonrise: isSameDay(date, moonTimes.rise) ? moonTimes.rise : null,
+		moonset: isSameDay(date, moonTimes.set) ? moonTimes.set : null,
 		fraction: round(illumination.fraction, 3),
 		waxing: illumination.angle < 0,
 		phaseValue: round(illumination.phaseValue, 4),
@@ -66,12 +74,13 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 };
 
 export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number): MoonEvent[] => {
+	const events: MoonEvent[] = [];
 	const data = getMoonData(date, lat, lon);
-	const rise = getMoonData(data.moonrise, lat, lon);
-	const set = getMoonData(data.moonset, lat, lon);
 
-	return [
-		{
+	if (data.moonrise) {
+		const rise = getMoonData(data.moonrise, lat, lon);
+
+		events.push({
 			name: "moonrise",
 			timestamp: data.moonrise.getTime(),
 			data: {
@@ -79,8 +88,13 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 				phase: rise.phaseValue,
 				waxing: rise.waxing
 			}
-		},
-		{
+		});
+	}
+
+	if (data.moonset) {
+		const set = getMoonData(data.moonset, lat, lon);
+
+		events.push({
 			name: "moonset",
 			timestamp: data.moonset.getTime(),
 			data: {
@@ -88,6 +102,8 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 				phase: set.phaseValue,
 				waxing: set.waxing
 			}
-		}
-	];
+		});
+	}
+
+	return events;
 };

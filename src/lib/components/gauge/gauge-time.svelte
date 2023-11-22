@@ -1,32 +1,45 @@
-<script lang="ts">
+<script lang="ts" context="module">
 	import { tweened } from "svelte/motion";
 	import Gauge from "./gauge.svelte";
 	import { getAngleFromTime, formatTime } from "../../helpers";
 
-	export let timeFrom: Date;
-	export let timeTo: Date;
-
-	let angles = tweened({
-		start: getAngleFromTime(timeFrom),
-		end: getAngleFromTime(timeTo)
-	}, {
-		duration: 500
+	const getState = (timeFrom: Date | null, timeTo: Date | null) => ({
+		angleStart: timeFrom ? getAngleFromTime(timeFrom) : 0,
+		angleEnd:  timeTo ? getAngleFromTime(timeTo) : 360,
+		labelStart: timeFrom ? formatTime(timeFrom.getTime()) : "",
+		labelEnd: timeTo ? formatTime(timeTo.getTime()) : ""
 	});
+</script>
 
-	let labelStart = formatTime(timeFrom.getTime());
-	let labelEnd = formatTime(timeTo.getTime());
+<script lang="ts">
+	export let timeFrom: Date | null = null;
+	export let timeTo: Date | null = null;
 
-	const calcProps = (timeFrom: Date, timeTo: Date) => {
+	let {
+		angleStart,
+		angleEnd,
+		labelStart,
+		labelEnd
+	} = getState(timeFrom, timeTo);
+
+	const angles = tweened({
+		start: angleStart,
+		end: angleEnd
+	}, { duration: 500 });
+
+	const updateState = (timeFrom: Date | null, timeTo: Date | null) => {
+		const state = getState(timeFrom, timeTo);
+
 		void angles.set({
-			start: getAngleFromTime(timeFrom),
-			end: getAngleFromTime(timeTo)
+			start: state.angleStart,
+			end: state.angleEnd
 		});
 
-		labelStart = formatTime(timeFrom.getTime());
-		labelEnd = formatTime(timeTo.getTime());
+		labelStart = state.labelStart;
+		labelEnd = state.labelEnd;
 	};
 
-	$: calcProps(timeFrom, timeTo);
+	$: updateState(timeFrom, timeTo);
 </script>
 
 <Gauge
