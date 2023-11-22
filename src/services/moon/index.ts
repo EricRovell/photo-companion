@@ -14,6 +14,7 @@ export interface MoonData {
 		phase: 0 | 0.25 | 0.5 | 0.75;
 		timestamp: number;
 	}[]
+	zenithAngle: number;
 }
 
 export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
@@ -61,6 +62,7 @@ const isSameDay = (a: Date, b: Date) => {
 export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
 	const moonTimes = SunCalc.getMoonTimes(date, lat, lon);
 	const illumination = SunCalc.getMoonIllumination(date);
+	const data = SunCalc.getMoonData(date, lat, lon);
 
 	return {
 		moonrise: isSameDay(date, moonTimes.rise) ? moonTimes.rise : null,
@@ -69,7 +71,8 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 		waxing: illumination.angle < 0,
 		phaseValue: round(illumination.phaseValue, 4),
 		angle: moonTimes.angle,
-		phases: getMoonPhases(date)
+		phases: getMoonPhases(date),
+		zenithAngle: -data.zenithAngle / 4
 	};
 };
 
@@ -86,7 +89,8 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 			data: {
 				fraction: round(rise.fraction * 100, 1),
 				phase: rise.phaseValue,
-				waxing: rise.waxing
+				waxing: rise.waxing,
+				zenithAngle: rise.zenithAngle
 			}
 		});
 	}
@@ -100,7 +104,8 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 			data: {
 				fraction: round(set.fraction * 100, 1),
 				phase: set.phaseValue,
-				waxing: set.waxing
+				waxing: set.waxing,
+				zenithAngle: set.zenithAngle
 			}
 		});
 	}

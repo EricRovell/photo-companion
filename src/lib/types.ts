@@ -61,7 +61,8 @@ export type LightsEvent = Event<LightsEventName>;
 export type MoonEvent = Event<MoonEventName, {
 	phase: number,
 	waxing: boolean,
-	fraction: number
+	fraction: number;
+	zenithAngle: number;
 }>;
 
 export type SunEvent = Event<SunEventName, {

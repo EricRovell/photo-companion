@@ -30,7 +30,7 @@
 		>
 			<Moon
 				phase="{state.phaseValue}"
-				rotation="{state.angle}"
+				rotation="{state.zenithAngle}"
 				size="{moonSize}"
 			/>
 		</foreignObject>
