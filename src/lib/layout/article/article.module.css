@@ -1,4 +1,4 @@
-.root {
+.article {
 	--gauge-size: 200px;
 
 	display: grid;
@@ -10,17 +10,17 @@
 		width: 100%;
 		padding-block-end: var(--space-2);
 		color: hsl(0deg 0% 90%);
-		border-bottom: 1px solid hsl(0deg 0% 90% / 10%);
-		font-size: var(--font-size-5);
 	}
 
 	h2 {
-		margin-block-start: var(--space-4);
+		font-size: var(--font-size-7);
+		margin-block: var(--space-4);
 	}
 
 	h3 {
 		text-align: left;
 		font-size: var(--font-size-4);
+		border-bottom: 1px solid hsl(0deg 0% 90% / 10%);
 	}
 
 	p {
@@ -30,6 +30,17 @@
 	a {
 		display: inline;
 		text-decoration: underline;
+	}
+
+	ul {
+		display: grid;
+		gap: var(--space-2);
+		margin-left: 1em;
+		margin-block-end: var(--space-4);
+	}
+
+	li {
+		text-align: left;
 	}
 
 	aside[data-note] {

@@ -1,14 +1,16 @@
 <script lang="ts">
-	import { click, query }from "svelte-pathfinder";
+	import { click, query, prefs }from "svelte-pathfinder";
 	import Pages from "./pages/pages.svelte";
 	import { Link, Icon } from "@lib/components";
 	import { ServiceWorker } from "@lib/layout";
 	import { iconGithub, iconQuestion } from "@lib/icons";
-	import { routeAbout, urlGithub } from "@lib/routes";
+	import { routeAbout, routeChangelog, urlGithub } from "@lib/routes";
 	import { Navigation } from "@lib/layout";
 	import { version } from "../package.json";
 	import { title } from "@lib/constants";
 	import styles from "./app.module.css";
+
+	prefs.scroll = true;
 </script>
 
 <svelte:window on:click="{click}" />
@@ -33,7 +35,7 @@
 </main>
 <footer class="{styles.footer}">
 	<div class="{styles.content}">
-		<p>{title}, v.{version}</p>
+		<p>{title}, <Link href="{routeChangelog}">v.{version}</Link></p>
 		<Link href="{urlGithub}">
 			<Icon path="{iconGithub}" viewBox="0 0 36 36"/>
 			<span>Github</span>

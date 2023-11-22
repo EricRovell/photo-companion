@@ -6,13 +6,23 @@
 	font-size: var(--font-size-6);
 	justify-items: center;
 
-	& > header {
+	& > :is(header, footer) {
 		width: 100%;
 	}
 
 	& > div {
 		display: grid;
 		justify-content: center;
+	}
+
+	& > footer {
+		justify-content: space-between;
+		align-items: center;
+
+		p {
+			font-size: var(--font-size-3);
+			font-variant-numeric: tabular-nums;
+		}
 	}
 }
 

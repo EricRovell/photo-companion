@@ -4,6 +4,7 @@
 	import { dict } from "@lib/dict";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
+	import { round } from "@lib/helpers";
 
 	export let date: Date;
 
@@ -30,11 +31,15 @@
 		>
 			<Moon
 				phase="{state.phaseValue}"
-				rotation="{state.angle}"
+				rotation="{state.zenithAngle}"
 				size="{moonSize}"
 			/>
 		</foreignObject>
 	</GaugeTime>
+	<footer>
+		<p>{dict[state.name]}</p>
+		<p>{round(state.fraction * 100, 2)}%</p>
+	</footer>
 </section>
 
 <section class="card {styles.phases}">

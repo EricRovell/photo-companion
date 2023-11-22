@@ -1,11 +1,11 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
 import { isValidDate, round } from "@lib/helpers";
-import type { MoonEvent } from "@lib/types";
+import type { MoonEvent, MoonPhaseName } from "@lib/types";
 
 export interface MoonData {
-	moonrise: Date;
-	moonset: Date;
+	moonrise: Date | null;
+	moonset: Date | null;
 	fraction: number;
 	waxing: boolean;
 	phaseValue: number;
@@ -14,6 +14,8 @@ export interface MoonData {
 		phase: 0 | 0.25 | 0.5 | 0.75;
 		timestamp: number;
 	}[]
+	zenithAngle: number;
+	name: MoonPhaseName;
 }
 
 export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
@@ -50,44 +52,65 @@ export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
 	];
 };
 
+/**
+ * SunCalc sometimes return the moonrise/moonset for different days.
+ * So, we have to validate the output ourselves.
+ */
+const isSameDay = (a: Date, b: Date) => {
+	return a.getDate() === b.getDate();
+};
+
 export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
 	const moonTimes = SunCalc.getMoonTimes(date, lat, lon);
 	const illumination = SunCalc.getMoonIllumination(date);
+	const data = SunCalc.getMoonData(date, lat, lon);
 
 	return {
-		moonrise: moonTimes.rise,
-		moonset: moonTimes.set,
+		moonrise: isSameDay(date, moonTimes.rise) ? moonTimes.rise : null,
+		moonset: isSameDay(date, moonTimes.set) ? moonTimes.set : null,
 		fraction: round(illumination.fraction, 3),
 		waxing: illumination.angle < 0,
 		phaseValue: round(illumination.phaseValue, 4),
 		angle: moonTimes.angle,
-		phases: getMoonPhases(date)
+		phases: getMoonPhases(date),
+		zenithAngle: -data.zenithAngle / 4,
+		name: illumination.phase.name.toLowerCase().replace(" ", "-")
 	};
 };
 
 export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number): MoonEvent[] => {
+	const events: MoonEvent[] = [];
 	const data = getMoonData(date, lat, lon);
-	const rise = getMoonData(data.moonrise, lat, lon);
-	const set = getMoonData(data.moonset, lat, lon);
 
-	return [
-		{
+	if (data.moonrise) {
+		const rise = getMoonData(data.moonrise, lat, lon);
+
+		events.push({
 			name: "moonrise",
 			timestamp: data.moonrise.getTime(),
 			data: {
 				fraction: round(rise.fraction * 100, 1),
 				phase: rise.phaseValue,
-				waxing: rise.waxing
+				waxing: rise.waxing,
+				zenithAngle: rise.zenithAngle
 			}
-		},
-		{
+		});
+	}
+
+	if (data.moonset) {
+		const set = getMoonData(data.moonset, lat, lon);
+
+		events.push({
 			name: "moonset",
 			timestamp: data.moonset.getTime(),
 			data: {
 				fraction: round(set.fraction * 100, 1),
 				phase: set.phaseValue,
-				waxing: set.waxing
+				waxing: set.waxing,
+				zenithAngle: set.zenithAngle
 			}
-		}
-	];
+		});
+	}
+
+	return events;
 };

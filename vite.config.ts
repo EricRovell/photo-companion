@@ -20,5 +20,8 @@ export default defineConfig({
 				pluginPostCssNesting
 			]
 		}
+	},
+	optimizeDeps: {
+		exclude: [ "fsevents" ]
 	}
 });

@@ -12,13 +12,6 @@
 		{ label: "sun", href: routeSun, icon: iconSun },
 		{ label: "moon", href: routeMoon, icon: iconMoon }
 	];
-
-	const handleClick = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth"
-		});
-	};
 </script>
 
 <nav class="{styles.navigation}">
@@ -29,7 +22,6 @@
 					current="{($pattern(href) || ($pattern("/") && root)) ? "page" : undefined}"
 					className="{styles.link}"
 					href="{href}?date={$query.date}"
-					on:click="{handleClick}"
 				>
 					<Icon path="{icon}" viewBox="0 0 256 256" />
 					{dict[label]}

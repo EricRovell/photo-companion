@@ -65,5 +65,13 @@ export const dict: Record<string, string> = {
 	"header-sun-moontimes": "Времена восхода и захода Солнца",
 	"update": "Обновление",
 	"update-message": "Обновление готово к установке. Для установки, пожалуйста, перезагрузите приложение или страницу.",
-	"reload": "Перезапустить"
+	"reload": "Перезапустить",
+	"new-moon": "Новолуние",
+	"waxing-crescent": "Растущий месяц",
+	"first-quarter": "Первая четверть",
+	"waxing-gibbous": "Растущая Луна",
+	"full-moon": "Полнолуние",
+	"waning-gibbous": "Убывающая Луна",
+	"third-quarter": "Третья четверть",
+	"waning-crescent": "Убывающий месяц"
 };

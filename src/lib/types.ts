@@ -1,5 +1,15 @@
 import type { ComponentType } from "svelte";
 
+export type MoonPhaseName =
+	| "new-moon"
+	| "waxing-crescent"
+	| "first-quarter"
+	| "waxing-gibbous"
+	| "full-moon"
+	| "waning-gibbous"
+	| "third-quarter"
+	| "waning-crescent";
+
 export type SunEventName =
 	| "dawn:astronomical"
 	| "dawn:nautical"
@@ -61,7 +71,8 @@ export type LightsEvent = Event<LightsEventName>;
 export type MoonEvent = Event<MoonEventName, {
 	phase: number,
 	waxing: boolean,
-	fraction: number
+	fraction: number;
+	zenithAngle: number;
 }>;
 
 export type SunEvent = Event<SunEventName, {
