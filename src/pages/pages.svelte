@@ -18,7 +18,7 @@
 		routeLights,
 		routeMoon,
 		routeSun,
-		routeTimeline,
+		routeTimeline
 	} from "@lib/routes";
 
 	const routes = {

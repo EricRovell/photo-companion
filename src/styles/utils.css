@@ -30,6 +30,13 @@
 		}
 	}
 
+	& > footer {
+		display: flex;
+		padding: var(--space-2) var(--space-5);
+		border-top: 3px solid var(--card-border-color, var(--color-surface-3));
+		border-radius: 0 0 10px 10px;
+	}
+
 	h2 {
 		font-size: var(--font-size-4);
 	}

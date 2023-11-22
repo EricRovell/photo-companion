@@ -14,8 +14,7 @@
 
 	h2 {
 		font-size: var(--font-size-7);
-		margin-block-start: var(--space-4);
-		margin-block-end: var(--space-4);
+		margin-block: var(--space-4);
 	}
 
 	h3 {

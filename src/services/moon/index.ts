@@ -1,7 +1,7 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
 import { isValidDate, round } from "@lib/helpers";
-import type { MoonEvent } from "@lib/types";
+import type { MoonEvent, MoonPhaseName } from "@lib/types";
 
 export interface MoonData {
 	moonrise: Date | null;
@@ -15,6 +15,7 @@ export interface MoonData {
 		timestamp: number;
 	}[]
 	zenithAngle: number;
+	name: MoonPhaseName;
 }
 
 export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
@@ -72,7 +73,8 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 		phaseValue: round(illumination.phaseValue, 4),
 		angle: moonTimes.angle,
 		phases: getMoonPhases(date),
-		zenithAngle: -data.zenithAngle / 4
+		zenithAngle: -data.zenithAngle / 4,
+		name: illumination.phase.name.toLowerCase().replace(" ", "-")
 	};
 };
 
