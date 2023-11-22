@@ -4,6 +4,7 @@
 	import { WithDateURL, Article } from "@lib/layout";
 
 	import PageAbout from "./about/about.page.mdx";
+	import PageChangelog from "./changelog.page.mdx";
 	import PageLights from "./lights/lights.page.svelte";
 	import PageMoon from "./moon/moon.page.svelte";
 	import PageSun from "./sun/sun.page.svelte";
@@ -12,11 +13,12 @@
 	import styles from "./pages.module.css";
 
 	import {
-		routeLights,
 		routeAbout,
+		routeChangelog,
+		routeLights,
 		routeMoon,
 		routeSun,
-		routeTimeline
+		routeTimeline,
 	} from "@lib/routes";
 
 	const routes = {
@@ -28,7 +30,8 @@
 			[routeTimeline]: PageTimeline
 		},
 		"page": {
-			[routeAbout]: PageAbout
+			[routeAbout]: PageAbout,
+			[routeChangelog]: PageChangelog
 		}
 	};
 </script>
