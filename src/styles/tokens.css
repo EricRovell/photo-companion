@@ -28,7 +28,7 @@
 	--font-size-9: calc(2 * var(--font-scale));
 	--color-accent: rgb(0 139 139);
 	--color-text: rgb(255 255 255 / 90%);
-	--color-text-secondary: rgb(255 255 255 / 75%);
+	--color-text-secondary: rgba(240 220 220 / 75%);
 	--color-link: hsl(180deg 85% 45%);
 	--color-link-hover: hsl(180deg 85% 85%);
 	--color-surface-0: hsl(210deg 23% 7%);
