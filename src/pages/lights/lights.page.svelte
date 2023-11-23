@@ -1,10 +1,25 @@
 <script lang="ts">
-	import { Timer, Bulb, GaugeTime } from "@lib/components";
+	import { Bulb, Event, GaugeTime, Timeline, Timer } from "@lib/components";
 	import { getLightsScheduleByDate, getLightsStateByDate } from "@services/lights";
+	import { getTimeline } from "@services/events";
+	import { LAT, LON } from "@lib/constants";
 	import { dict, template } from "@lib/dict";
+	import type { EventName } from "@lib/types";
 	import styles from "./lights.module.css";
 
 	export let date: Date;
+
+	const timelineEvents: Set<EventName> = new Set([
+		"lights:start",
+		"lights:end",
+		"sunrise:start",
+		"sunset:end"
+	]);
+
+	const timelineEventsSecondary: Set<EventName> = new Set([
+		"sunrise:start",
+		"sunset:end"
+	]);
 
 	let schedule = getLightsScheduleByDate(date);
 	let state = getLightsStateByDate();
@@ -27,6 +42,16 @@
 		>
 			<Bulb x="-10" y="-10" width="20" height="20" glow />
 		</GaugeTime>
+	</section>
+	<section data-label="timeline">
+		<Timeline>
+			{#each getTimeline(date, LAT, LON, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
+				<Event
+					{event}
+					secondary="{timelineEventsSecondary.has(event.name)}"
+				/>
+			{/each}
+		</Timeline>
 	</section>
 	<section
 		data-active="{state.lights ? "" : undefined}"

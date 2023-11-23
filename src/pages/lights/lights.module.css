@@ -1,9 +1,15 @@
 .page {
 	--gauge-color: gold;
+	--timeline-icon-size: 4.5rem;
+	--timeline-icon-secondary-size: 2.75rem;
+	--timeline-wire-width: 3px;
+	--timeline-gap: var(--space-8);
+	--timeline-edge-wire-length-start: var(--space-8);
+	--timeline-edge-wire-length-end: var(--space-8);
 
 	display: grid;
 	grid-auto-rows: min-content;
-	gap: var(--space-6);
+	gap: var(--space-8);
 	width: var(--content-width);
 
 	section[data-label="lights-schedule"] {
