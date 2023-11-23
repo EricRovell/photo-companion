@@ -1,17 +1,12 @@
-.root {
+.page {
 	--gauge-color: gold;
+	--timeline-icon-size: 4rem;
+	--timeline-wire-width: 3px;
+	--timeline-gap: var(--space-6);
+	--timeline-edge-wire-length-start: var(--space-6);
 
 	display: grid;
 	grid-auto-rows: min-content;
-	font-size: var(--font-size-6);
-	justify-items: center;
-
-	& > header {
-		width: 100%;
-	}
-
-	& > div {
-		display: grid;
-		justify-content: center;
-	}
+	gap: var(--space-6);
+	width: var(--content-width);
 }
