@@ -1,4 +1,4 @@
-export const dict: Record<string, string> = {
+export const dict = {
 	"timeline": "События",
 	"lights": "Освещение",
 	"sun": "Солнце",
@@ -9,6 +9,7 @@ export const dict: Record<string, string> = {
 	"sunrise": "Восход Солнца",
 	"sunset": "Заход Солнца",
 	"no-events": "Никаких событий на сегодня",
+	"something-wrong": "Что-то пошло не так...",
 	"error": "Произошла ошибка",
 	"date-error-desc": "Выбрана неверная дата. Для решения проблемы",
 	"date-error-check-url": "Проверьте адресную строку, дата должна соответствовать формату",
@@ -74,4 +75,8 @@ export const dict: Record<string, string> = {
 	"waning-gibbous": "Убывающая Луна",
 	"third-quarter": "Третья четверть",
 	"waning-crescent": "Убывающий месяц"
+};
+
+export const template = {
+	"lights-event": (state: boolean) => `Городское освещение будет <strong>${state ? "выключено" : "включено"}</strong> через`
 };
