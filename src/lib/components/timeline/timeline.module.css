@@ -1,6 +1,7 @@
 .wrapper {
 	--timeline-icon-size: 3.75rem;
 	--timeline-wire-width: 3px;
+	--timeline-gap: var(--space-7);
 
 	position: relative;
 	display: grid;
@@ -26,11 +27,19 @@
 		border-radius: var(--radius);
 		font-size: var(--font-size-3);
 	}
+
+	& [data-event-name]:first-child [data-event-icon]::before {
+		height: calc(var(--timeline-edge-wire-length-start, 0) + var(--timeline-wire-width));
+	}
+
+	& [data-event-name]:last-child [data-event-icon]::after {
+		height: calc(var(--timeline-edge-wire-length-end, 0) + var(--timeline-wire-width));
+	}
 }
 
 .timeline-entries {
 	display: grid;
-	gap: var(--space-6);
+	gap: var(--timeline-gap);
 }
 
 .timeline-entry {

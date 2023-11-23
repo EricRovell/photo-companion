@@ -1,6 +1,7 @@
 .event {
 	display: grid;
 	grid-template: 1fr / 1fr var(--timeline-icon-size) 1fr;
+	justify-items: center;
 	gap: var(--space-4);
 
 	& time {
@@ -27,13 +28,13 @@
 		}
 	}
 
-	&:not(:first-child) .icon::before,
-	&:not(:last-child) .icon::after {
+	& .icon::before,
+	& .icon::after {
 		content: "";
 		position: absolute;
 		left: calc(50% - var(--timeline-wire-width) / 2);
 		width: var(--timeline-wire-width);
-		height: calc(var(--space-6) + var(--timeline-wire-width));
+		height: calc(var(--timeline-gap) + var(--timeline-wire-width));
 		background-color: var(--color-surface-3);
 	}
 
@@ -43,6 +44,24 @@
 
 	&.empty > article {
 		grid-column: 3;
+	}
+
+	&[data-secondary] {
+		.icon {
+			--timeline-icon-size: var(--timeline-icon-secondary-size, 2.75rem);
+		}
+
+		& :is(time, p) {
+			color: var(--color-text-secondary);
+		}
+
+		& p {
+			font-size: var(--font-size-1);
+		}
+
+		p:nth-of-type(2) {
+			display: none;
+		}
 	}
 }
 
