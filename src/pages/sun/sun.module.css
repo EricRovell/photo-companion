@@ -9,4 +9,16 @@
 	grid-auto-rows: min-content;
 	gap: var(--space-6);
 	width: var(--content-width);
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-variant-numeric: tabular-nums;
+
+		span, output {
+			font-size: var(--font-size-3);
+			font-variant-numeric: tabular-nums;
+		}
+	}
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Event, GaugeTime, Sun, Timeline } from "@lib/components";
 	import { getSunData, getSunEvents } from "@services/sun";
-	import { dict } from "@lib/dict";
+	import { dict, template } from "@lib/dict";
 	import { LAT, LON } from "@lib/constants";
 	import styles from "./sun.module.css";
 
@@ -20,8 +20,8 @@
 			<h2>{dict["header-sun-moontimes"]}</h2>
 		</header>
 		<GaugeTime
-			timeFrom="{state.sunriseStart.value}"
-			timeTo="{state.sunsetEnd.value}"
+			timeFrom="{state.sunrise}"
+			timeTo="{state.sunset}"
 		>
 			<Sun
 				x="-{sunSize / 2}"
@@ -30,6 +30,12 @@
 				height="{sunSize}"
 			/>
 		</GaugeTime>
+		<footer>
+			<span>{dict["duration-daylight"]}</span>
+			<output>
+				{template["hours-and-minutes"](state.dayDuration)}
+			</output>
+		</footer>
 	</section>
 	<section data-label="timeline">
 		<Timeline>
