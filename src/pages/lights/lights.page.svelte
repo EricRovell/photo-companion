@@ -43,7 +43,7 @@
 			<Bulb x="-10" y="-10" width="20" height="20" glow />
 		</GaugeTime>
 		<footer>
-			<span>Длительность освещения</span>
+			<span>{dict["duration-lights"]}</span>
 			<output>
 				{template["hours-and-minutes"](schedule.duration)}
 			</output>

@@ -25,10 +25,6 @@
 		width: 100%;
 		border-radius: 10px 10px 0 0;
 		padding: var(--space-2) var(--space-5);
-
-		& ~ * {
-			margin-inline: var(--space-5);
-		}
 	}
 
 	& > footer {
