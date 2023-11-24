@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "v2.8.0";
+const CACHE_NAME = "v2.8.1";
 
 self.addEventListener("message", event => {
 	if (event.data.action === "skipWaiting") {
