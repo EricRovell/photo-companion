@@ -1,8 +1,9 @@
 import data from "../../data/lights-spb.json" assert { type: "json" };
-import { incrementDateByDay, isValidDate } from "@lib/helpers";
+import { calcEventDuration, secondsToHoursAndMinutes, incrementDateByDay, isValidDate } from "@lib/helpers";
 import type { Event, LightsEventName } from "@lib/types";
 
 interface IlluminationSchedule {
+	duration: [ hours: number, minutes: number ];
 	"lights:start": number;
 	"lights:end": number;
 }
@@ -19,6 +20,7 @@ interface IlluminationState {
 export function getLightsScheduleByDateSPb(dateInput = new Date()): IlluminationSchedule {
 	if (!isValidDate(dateInput)) {
 		return {
+			duration: [ 0, 0 ],
 			"lights:start": NaN,
 			"lights:end": NaN
 		};
@@ -31,9 +33,13 @@ export function getLightsScheduleByDateSPb(dateInput = new Date()): Illumination
 	const row = (month * 6 - 6) + Math.min(Math.floor((date - 1) / 5), 5);
 	const index = row * 4;
 
+	const start = new Date(year, month - 1, date, data[index], data[index + 1]);
+	const end = new Date(year, month - 1, date, data[index + 2], data[index + 3]);
+
 	return {
-		"lights:start": new Date(year, month - 1, date, data[index], data[index + 1]).getTime(),
-		"lights:end": new Date(year, month - 1, date, data[index + 2], data[index + 3]).getTime()
+		duration: secondsToHoursAndMinutes(calcEventDuration(start, end)),
+		"lights:start": start.getTime(),
+		"lights:end": end.getTime()
 	};
 }
 

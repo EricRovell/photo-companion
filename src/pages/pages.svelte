@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { fade } from "svelte/transition";
-	import { pattern, path } from "svelte-pathfinder";
+	import { pattern } from "svelte-pathfinder";
 	import { WithDateURL, Article } from "@lib/layout";
 
 	import PageAbout from "./about/about.page.mdx";
@@ -9,8 +8,6 @@
 	import PageMoon from "./moon/moon.page.svelte";
 	import PageSun from "./sun/sun.page.svelte";
 	import PageTimeline from "./timeline/timeline.page.svelte";
-
-	import styles from "./pages.module.css";
 
 	import {
 		routeAbout,
@@ -36,22 +33,15 @@
 	};
 </script>
 
-{#key $path}
-	<div
-		class="{styles.page}"
-		in:fade="{{ duration: 450 }}"
-	>
-		{#each Object.entries(routes["datetime"]) as [ route, Page ]}
-			{#if $pattern(route)}
-				<WithDateURL page="{Page}" />
-			{/if}
-		{/each}
-		{#each Object.entries(routes["page"]) as [ route, Page ]}
-			{#if $pattern(route)}
-				<Article>
-					<Page />
-				</Article>
-			{/if}
-		{/each}
-	</div>
-{/key}
+{#each Object.entries(routes["datetime"]) as [ route, Page ]}
+	{#if $pattern(route)}
+		<WithDateURL page="{Page}" />
+	{/if}
+{/each}
+{#each Object.entries(routes["page"]) as [ route, Page ]}
+	{#if $pattern(route)}
+		<Article>
+			<Page />
+		</Article>
+	{/if}
+{/each}

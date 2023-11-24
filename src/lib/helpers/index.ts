@@ -88,3 +88,60 @@ export function preventPageScroll(condition: boolean) {
 		behavior: "auto"
 	});
 }
+
+export function calcEventDuration(start: Date | null = null, end: Date | null = null): number {
+	if (!start && !end) {
+		throw new Error("Both dates should be provided");
+	}
+
+	if (!start && end) {
+		start = new Date(end);
+		start.setHours(0);
+		start.setMinutes(0);
+		end.setSeconds(0);
+
+		return (end.getTime() - start.getTime()) / 1000;
+	}
+
+	if (start && !end) {
+		end = new Date(start);
+		end.setHours(24);
+		end.setMinutes(0);
+		end.setSeconds(0);
+
+		return (end.getTime() - start.getTime()) / 1000;
+	}
+
+	const startTime = (start as Date).getTime();
+	const endTime = (end as Date).getTime();
+
+	if (endTime >= startTime) {
+		return (endTime - startTime) / 1000;
+	}
+
+	const midStart = new Date(start as Date);
+	midStart.setHours(0);
+	midStart.setMinutes(0);
+	midStart.setSeconds(0);
+	const midStartTime = midStart.getTime();
+
+	const midEnd = new Date(end as Date);
+	midEnd.setHours(24);
+	midEnd.setMinutes(0);
+	midEnd.setSeconds(0);
+	const midEndTime = midEnd.getTime();
+
+	return ((midEndTime - startTime) + (endTime - midStartTime)) / 1000;
+}
+
+/**
+ * Convert the number of seconds to HH:MM:SS format.
+ */
+export const secondsToHoursAndMinutes = (seconds: number): [ hours: number, minutes: number ] => {
+	const hours = Math.floor(seconds / 3600);
+	seconds -= hours * 3600;
+	const minutes = Math.floor(seconds / 60);
+	seconds -= minutes * 60;
+
+	return [ hours, minutes ];
+};

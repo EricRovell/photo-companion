@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Timeline, TimelineSection, Event, EventEmpty } from "@lib/components";
+	import { Datetime, TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
 	import { getTimeline } from "@services/events";
 	import { incrementDateByDay } from "@lib/helpers";
 	import { LAT, LON } from "@lib/constants";
@@ -33,14 +33,24 @@
 	}
 </script>
 
-<Timeline>
+<TimelineGroup>
 	{#each timeline as { date, items } (date.getTime())}
-		<TimelineSection {date}>
+		<Timeline>
+			<svelte:fragment slot="date">
+				<Datetime
+					{date}
+					options={{
+						year: "numeric",
+						month: "long",
+						day: "numeric" 
+					}}
+				/>
+			</svelte:fragment>
 			{#each items as event (`${event.timestamp}/${event.name}`)}
 				<Event {event} />
 			{:else}
 				<EventEmpty />
 			{/each}
-		</TimelineSection>
+		</Timeline>
 	{/each}
-</Timeline>
+</TimelineGroup>

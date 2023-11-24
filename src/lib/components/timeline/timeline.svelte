@@ -2,6 +2,9 @@
 	import styles from "./timeline.module.css";
 </script>
 
-<div class="{styles.wrapper}">
-	<slot />
-</div>
+<article class="{styles["timeline"]}">
+	<slot name="date" />
+	<ol class="{styles["timeline-entries"]}">
+		<slot />
+	</ol>
+</article>

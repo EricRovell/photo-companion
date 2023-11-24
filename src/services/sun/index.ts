@@ -1,6 +1,6 @@
 // @ts-expect-error: no types for this package
 import SunCalc from "suncalc3";
-import { incrementDateByDay, round } from "@lib/helpers";
+import { calcEventDuration, incrementDateByDay, round, secondsToHoursAndMinutes } from "@lib/helpers";
 import type { SunEventName, SunEvent } from "@lib/types";
 
 const eventMapping = {
@@ -27,7 +27,16 @@ const eventMapping = {
 };
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
-	return SunCalc.getSunTimes(date, lat, lon);
+	const suntimes = SunCalc.getSunTimes(date, lat, lon);
+	const sunrise: Date = suntimes.sunriseStart.value;
+	const sunset: Date = suntimes.sunsetEnd.value;
+	const dayDuration = secondsToHoursAndMinutes(calcEventDuration(sunrise, sunset));
+
+	return {
+		dayDuration,
+		sunrise,
+		sunset
+	};
 };
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {

@@ -1,4 +1,4 @@
-export const dict: Record<string, string> = {
+export const dict = {
 	"timeline": "События",
 	"lights": "Освещение",
 	"sun": "Солнце",
@@ -9,6 +9,9 @@ export const dict: Record<string, string> = {
 	"sunrise": "Восход Солнца",
 	"sunset": "Заход Солнца",
 	"no-events": "Никаких событий на сегодня",
+	"duration-lights": "Длительность освещения",
+	"duration-daylight": "Длительность солнечного дня",
+	"something-wrong": "Что-то пошло не так...",
 	"error": "Произошла ошибка",
 	"date-error-desc": "Выбрана неверная дата. Для решения проблемы",
 	"date-error-check-url": "Проверьте адресную строку, дата должна соответствовать формату",
@@ -74,4 +77,22 @@ export const dict: Record<string, string> = {
 	"waning-gibbous": "Убывающая Луна",
 	"third-quarter": "Третья четверть",
 	"waning-crescent": "Убывающий месяц"
+};
+
+export const template = {
+	"lights-event": (state: boolean) => `Городское освещение будет <strong>${state ? "выключено" : "включено"}</strong> через`,
+	"hours-and-minutes": (arg: [ hours: number, minutes: number ]) => {
+		const map = {
+			"zero": [ "часов", "минут" ],
+			"one": [ "час", "минута" ],
+			"two": [ "часа", "минуты" ],
+			"few": [ "часа", "минуты" ],
+			"other": [ "часов", "минут" ],
+			"many": [ "часов", "минут" ]
+		};
+
+		const rules = new Intl.PluralRules("ru-RU");
+
+		return `${arg[0]} ${map[rules.select(arg[0])][0]} ${arg[1]} ${map[rules.select(arg[1])][1]}`;
+	}
 };

@@ -1,0 +1,68 @@
+.page {
+	--gauge-color: gold;
+	--timeline-icon-size: 4.5rem;
+	--timeline-icon-secondary-size: 2.75rem;
+	--timeline-wire-width: 3px;
+	--timeline-gap: var(--space-8);
+	--timeline-edge-wire-length-start: var(--space-8);
+	--timeline-edge-wire-length-end: var(--space-8);
+
+	display: grid;
+	grid-auto-rows: min-content;
+	gap: var(--space-8);
+	width: var(--content-width);
+
+	section[data-label="lights-schedule"] {
+		display: grid;
+		justify-items: center;
+	}
+
+	section[data-label="lights-event-timer"] {
+		display: grid;
+		grid-auto-rows: min-content;
+		gap: var(--space-2);
+		padding-block-end: var(--space-6);
+
+		p {
+			justify-self: center;
+			font-size: var(--font-size-3);
+		}
+
+		& > svg {
+			height: 4rem;
+			justify-self: center;
+			margin-block-start: var(--space-2);
+		}
+
+		strong {
+			color: var(--color-success);
+		}
+
+		&[data-active] strong {
+			color: var(--color-danger);
+		}
+	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-variant-numeric: tabular-nums;
+
+		span,
+		output {
+			font-size: var(--font-size-3);
+			font-variant-numeric: tabular-nums;
+		}
+	}
+}
+
+.note {
+	font-size: var(--font-size-2);
+	color: var(--color-text-secondary);
+	font-weight: 300;
+	margin-bottom: var(--space-2);
+	text-align: center;
+	text-wrap: balance;
+	max-width: 30ch;
+}
