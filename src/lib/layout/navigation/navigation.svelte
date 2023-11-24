@@ -6,7 +6,14 @@
 	import { routeLights, routeMoon, routeSun, routeTimeline } from "@lib/routes";
 	import styles from "./navigation.module.css";
 
-	const sections = [
+	interface Section {
+		label: "timeline" | "lights" | "sun" | "moon";
+		href: string;
+		icon: string;
+		root?: boolean;
+	}
+
+	const sections: Section[] = [
 		{ label: "timeline", href: routeTimeline, icon: iconTimeline, root: true },
 		{ label: "lights", href: routeLights, icon: iconLights },
 		{ label: "sun", href: routeSun, icon: iconSun },

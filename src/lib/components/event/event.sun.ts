@@ -3,9 +3,22 @@ import { dict } from "@lib/dict";
 import type { SunEvent, EventComponent, SunEventName } from "@lib/types";
 
 export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunEventName, elevation: number }> {
-	const message = (event.name === "sunrise:start" || event.name === "sunset:end")
-		? `${event.data.azimuth}°, ${dict[`${event.name}:info`]}`
-		: dict[`${event.name}:info`];
+	let message: string | undefined = undefined;
+
+	switch (event.name) {
+		case "sunrise:start":
+		case "sunset:end":
+			message= `${event.data.azimuth}°, ${dict[`${event.name}:info`]}`;
+			break;
+		case "dawn:blue-hour:start":
+		case "dawn:blue-hour:end":
+		case "solar-noon":
+		case "dusk:golden-hour:end":
+		case "dusk:blue-hour:end":
+			break;
+		default:
+			message = dict[`${event.name}:info`];
+	}
 
 	return {
 		component: Sun,

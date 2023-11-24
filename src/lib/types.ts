@@ -90,6 +90,6 @@ export interface TimelineEntry {
 export interface EventComponent<Props> {
 	component: ComponentType;
 	props: Props;
-	message: string;
+	message?: string;
 	title: string;
 }
