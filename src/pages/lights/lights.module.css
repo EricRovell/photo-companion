@@ -42,6 +42,13 @@
 			color: var(--color-danger);
 		}
 	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-variant-numeric: tabular-nums;
+	}
 }
 
 .note {

@@ -36,6 +36,7 @@
 		padding: var(--space-2) var(--space-5);
 		border-top: 3px solid var(--card-border-color, var(--color-surface-3));
 		border-radius: 0 0 10px 10px;
+		width: 100%;
 	}
 
 	h2 {

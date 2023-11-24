@@ -78,5 +78,19 @@ export const dict = {
 };
 
 export const template = {
-	"lights-event": (state: boolean) => `Городское освещение будет <strong>${state ? "выключено" : "включено"}</strong> через`
+	"lights-event": (state: boolean) => `Городское освещение будет <strong>${state ? "выключено" : "включено"}</strong> через`,
+	"hours-and-minutes": (arg: [ hours: number, minutes: number ]) => {
+		const map = {
+			"zero": [ "часов", "минут" ],
+			"one": [ "час", "минута" ],
+			"two": [ "часа", "минуты" ],
+			"few": [ "часа", "минуты" ],
+			"other": [ "часов", "минут" ],
+			"many": [ "часов", "минут" ]
+		};
+
+		const rules = new Intl.PluralRules("ru-RU");
+
+		return `${arg[0]} ${map[rules.select(arg[0])][0]} ${arg[1]} ${map[rules.select(arg[1])][1]}`;
+	}
 };
