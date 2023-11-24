@@ -43,7 +43,7 @@
 		</GaugeTime>
 		<footer>
 			<p>{dict[state.name]}</p>
-			<p>{round(state.fraction * 100, 2)}%</p>
+			<output>{round(state.fraction * 100, 2)}%</output>
 		</footer>
 	</section>
 	<section data-label="timeline">

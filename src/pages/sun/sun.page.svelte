@@ -31,7 +31,7 @@
 			/>
 		</GaugeTime>
 		<footer>
-			<span>{dict["duration-daylight"]}</span>
+			<p>{dict["duration-daylight"]}</p>
 			<output>
 				{template["hours-and-minutes"](state.dayDuration)}
 			</output>
