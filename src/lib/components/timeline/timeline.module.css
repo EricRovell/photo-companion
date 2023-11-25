@@ -1,6 +1,5 @@
 .wrapper {
 	--timeline-icon-size: 3.75rem;
-	--timeline-wire-width: 3px;
 	--timeline-gap: var(--space-7);
 
 	position: relative;
