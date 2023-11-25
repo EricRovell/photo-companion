@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from "svelte";
 	import Button from "../button/button.svelte";
 	import Icon from "../icon/icon.svelte";
 	import { iconTimeline, iconChevronLeft, iconChevronRight } from "@lib/icons";
@@ -12,19 +13,24 @@
 	export let title: string | undefined = undefined;
 	export let value = getDateTimeString();
 
+	const dispatch = createEventDispatcher();
+
 	const handleReset = () => {
 		value = getDateTimeString();
+		dispatch("datechange", { value });
 	};
 
 	const handleClick = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const step = Number(target.dataset.step);
 		value = getDateTimeString(incrementDateByDay(value, step));
+		dispatch("datechange", { value });
 	};
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		value = target.value;
+		dispatch("datechange", { value });
 	};
 </script>
 
@@ -48,7 +54,6 @@
 				class="{styles.input}"
 				{max}
 				{min}
-				on:change
 				on:change="{handleChange}"
 				{title}
 				type="datetime-local"
