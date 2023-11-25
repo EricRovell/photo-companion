@@ -52,9 +52,11 @@
 	<section data-label="timeline">
 		<Timeline>
 			{#each getTimeline(date, LAT, LON, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
+				{@const secondary = timelineEventsSecondary.has(event.name)}
 				<Event
+					page="{secondary ? "lights" : undefined}"
 					{event}
-					secondary="{timelineEventsSecondary.has(event.name)}"
+					{secondary}
 				/>
 			{/each}
 		</Timeline>

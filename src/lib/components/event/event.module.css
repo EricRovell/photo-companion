@@ -105,6 +105,24 @@
 	}
 }
 
+.link {
+	border-radius: 50%;
+	transition: outline 0.125s linear;
+
+	&:focus-visible {
+		outline-offset: 0.35em;
+		outline-width: 2px;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			outline-offset: 0;
+			outline-width: 2px;
+			outline: var(--timeline-wire-width) solid var(--color-link-hover);
+		}
+	}
+}
+
 @media screen and (width <= 600px) {
 	.event {
 		grid-template: 1fr / 5ch var(--timeline-icon-size) 1fr;

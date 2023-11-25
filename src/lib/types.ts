@@ -92,4 +92,5 @@ export interface EventComponent<Props> {
 	props: Props;
 	message?: string;
 	title: string;
+	type: "lights" | "moon" | "sun";
 }

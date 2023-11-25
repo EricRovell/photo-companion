@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
 	import Datetime from "../datetime/datetime.svelte";
+	import Link from "../link/Link.svelte";
 	import { lightsEventComponent } from "./event.lights";
 	import { sunEventComponent } from "./event.sun";
 	import { moonEventComponent } from "./event.moon";
@@ -9,10 +10,14 @@
 	import type { TimelineEvent } from "@lib/types";
 	import styles from "./event.module.css";
 
+	// when need event reference for another page, usually secondary
+	export let page: string | undefined = undefined;
 	export let event: TimelineEvent;
 	export let secondary = false;
 
 	let current = false;
+	let dateQuery = createQueryDate(new Date(event.timestamp));
+	let search: string = "";
 
 	const eventComponent = (event: TimelineEvent) => {
 		if (isLightsEvent(event)) {
@@ -26,16 +31,22 @@
 		return sunEventComponent(event);
 	};
 
-	let { component, props, message, title } = eventComponent(event);
+	let { component, props, message, title, type } = eventComponent(event);
 
 	$: {
 		if ($query.date) {
-			const eventDate = createQueryDate(new Date(event.timestamp));
-
-			current = ($query.date === eventDate);
+			current = ($query.date === dateQuery);
 		} else {
 			current = false;
 		}
+	}
+
+	$: {
+		const { date: _, ...rest } = $query;
+		search = new URLSearchParams({
+			...rest,
+			date: dateQuery
+		}).toString();
 	}
 </script>
 
@@ -54,11 +65,17 @@
 		}}
 	/>
 	<div class="{styles.icon}" data-event-icon>
-		<svelte:component
-			this="{component}"
-			{...props}
-		/>
+		<Link
+			className="{styles.link}"
+			href="/{page ?? type}?{search}"
+		>
+			<svelte:component
+				this="{component}"
+				{...props}
+			/>
+		</Link>
 	</div>
+	
 	<article>
 		<p>{title}</p>
 		{#if message}
