@@ -31,6 +31,7 @@
 	& .icon::before,
 	& .icon::after {
 		content: "";
+		z-index: -1;
 		position: absolute;
 		left: calc(50% - var(--timeline-wire-width) / 2);
 		width: var(--timeline-wire-width);
@@ -63,6 +64,18 @@
 			display: none;
 		}
 	}
+
+	&[aria-current] {
+		.icon {
+			border-color: var(--event-current-color);
+		}
+
+		article p:first-child,
+		time {
+			font-variation-settings: "wght" 600;
+			color: var(--color-success);
+		}
+	}
 }
 
 .icon {
@@ -73,7 +86,7 @@
 	width: var(--timeline-icon-size);
 	height: var(--timeline-icon-size);
 	border-radius: 50%;
-	border: var(--timeline-wire-width) solid var(--color-surface-3);
+	border: var(--timeline-wire-width) solid var(--timeline-wire-color);
 
 	&::after {
 		top: 100%;
