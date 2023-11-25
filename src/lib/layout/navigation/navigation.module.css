@@ -51,6 +51,7 @@
 	&:hover {
 		text-decoration: unset;
 		background-color: var(--color-surface-3);
+		color: inherit;
 	}
 
 	&:active {
