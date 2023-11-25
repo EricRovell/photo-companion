@@ -42,9 +42,8 @@
 	}
 
 	$: {
-		const { date: _, ...rest } = $query;
 		search = new URLSearchParams({
-			...rest,
+			...$query,
 			date: dateQuery
 		}).toString();
 	}
