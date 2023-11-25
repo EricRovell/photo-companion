@@ -9,6 +9,7 @@ export function lightsEventComponent(event: LightsEvent): EventComponent<{ glow:
 			glow: event.name === "lights:start"
 		},
 		message: dict["saint-petersburg"],
-		title: dict[event.name]
+		title: dict[event.name],
+		type: "lights"
 	};
 }

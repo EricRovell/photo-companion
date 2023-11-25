@@ -10,6 +10,7 @@ export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: nu
 			rotation: event.data.zenithAngle
 		},
 		message: `${event.data.waxing ? dict["waxing"] : dict["waning"]}, ${event.data.fraction}%`,
-		title: dict[event.name]
+		title: dict[event.name],
+		type: "moon"
 	};
 }

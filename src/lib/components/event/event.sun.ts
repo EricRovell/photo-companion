@@ -27,6 +27,7 @@ export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunE
 			elevation: event.data.elevation
 		},
 		message,
-		title: dict[event.name]
+		title: dict[event.name],
+		type: "sun"
 	};
 }

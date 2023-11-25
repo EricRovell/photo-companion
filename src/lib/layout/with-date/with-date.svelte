@@ -19,14 +19,19 @@
 		$query.date = createQueryDate(date);
 	};
 
-	$: {
-		date = new Date(value);
+	const handleChange = (event: CustomEvent<{ value: string }>) => {
+		date = new Date(event.detail.value);
 		$query.date = createQueryDate(date);
-		scrollTo({
-			top: 0,
-			behavior: "smooth"
-		});
-	}
+	};
+
+	query.hook(($updated) => {
+		if (!$updated) {
+			return false;
+		}
+
+		value = parseQueryDate($updated.date as string);
+		date = new Date(value);
+	});
 </script>
 
 {#if isValidDate(date)}
@@ -48,5 +53,6 @@
 
 <InputDatetime
 	className="{styles["date-input"]}"
-	bind:value
+	on:datechange="{handleChange}"
+	{value}
 />
