@@ -146,6 +146,9 @@ export const secondsToHoursAndMinutes = (seconds: number): [ hours: number, minu
 	return [ hours, minutes ];
 };
 
+export function isValidLocation(lat: number, lon: number): boolean {
+	return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
+}
 
 export function parseQueryDate(input: string): string {
 	if (!input) {
@@ -175,3 +178,21 @@ export function createQueryDate(d: Date = new Date()): string {
 		.join("-");
 }
 
+export async function getUserLocation(): Promise<{ lat: number, lon: number } | null> {
+	if (!navigator.geolocation) {
+		return null;
+	}
+
+	const position: GeolocationPosition = await new Promise<GeolocationPosition>((resolve, reject) => {
+		return navigator.geolocation.getCurrentPosition(resolve, reject);
+	});
+
+	if (position) {
+		return {
+			lat: position.coords.latitude,
+			lon: position.coords.longitude
+		};
+	}
+
+	return null;
+}
