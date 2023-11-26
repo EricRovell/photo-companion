@@ -50,7 +50,7 @@
 	& > div {
 		display: grid;
 		grid-auto-flow: column;
-		grid-template: 1fr auto / repeat(5, 1fr);
+		grid-template: 1fr / repeat(5, 1fr);
 		justify-items: center;
 		padding-block: var(--space-4);
 	}
@@ -62,5 +62,17 @@
 
 	& time {
 		font-size: min(2.5vmin, var(--font-size-2));
+	}
+
+	a {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			width: 85%;
+			height: 85%;
+		}
 	}
 }

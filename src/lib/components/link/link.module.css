@@ -11,7 +11,7 @@
 
 	&:focus-visible {
 		color: var(--color-link-hover);
-		outline: 1px dashed var(--color-link-hover);
+		outline: 3px dashed var(--color-link-hover);
 		outline-offset: 0.25em;
 	}
 

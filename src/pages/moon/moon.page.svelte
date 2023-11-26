@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { GaugeTime, Moon, Datetime, Timeline, Event } from "@lib/components";
+	import { query } from "svelte-pathfinder";
+	import { GaugeTime, Moon, Datetime, Timeline, Event, Link } from "@lib/components";
 	import { getMoonData } from "@services/moon";
 	import { getTimeline } from "@services/events";
 	import { dict } from "@lib/dict";
 	import styles from "./moon.module.css";
-	import { round } from "@lib/helpers";
+	import { createQueryDate, round } from "@lib/helpers";
 
 	export let date: Date;
 	export let lat: number;
@@ -63,8 +64,12 @@
 		<header>{dict["header-moon-phase-calendar"]}</header>
 		<div>
 			{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
-				<Moon phase="{phase}" size={40} />
-				<Datetime date="{new Date(timestamp)}" />
+				<Link
+					href="/moon?{new URLSearchParams({ ...$query, date: createQueryDate(new Date(timestamp)) })}"
+				>
+					<Moon phase="{phase}" size={75} />
+					<Datetime date="{new Date(timestamp)}" />
+				</Link>
 			{/each}
 		</div>
 	</section>
