@@ -9,7 +9,7 @@
 
 	display: grid;
 	grid-auto-rows: min-content;
-	gap: var(--space-8);
+	gap: var(--space-6);
 	width: var(--content-width);
 
 	section[data-label="lights-schedule"] {
@@ -43,6 +43,10 @@
 		}
 	}
 
+	section[data-label="timeline"] {
+		margin-block: var(--space-6);
+	}
+
 	footer {
 		display: flex;
 		justify-content: space-between;
@@ -73,6 +77,8 @@
 }
 
 .warning {
+	--card-border-color: rgb(136 65 65);
+
 	p {
 		text-align: center;
 		text-wrap: balance;

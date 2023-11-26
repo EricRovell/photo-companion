@@ -38,9 +38,9 @@
 	{#if round(lat) !== 60 && round(lon) !== 30}
 		<section data-label="geolocation-warning" class="card {styles.warning}">
 			<header>
-				<h2>Уведомление</h2>
+				<h2>{dict["warning"]}</h2>
 			</header>
-			<p>Указанная геолокация, скорее всего, находится за пределами г.Санкт-Петербург</p>
+			<p>{dict["location-off"]} {dict["saint-petersburg"]}</p>
 		</section>
 	{/if}
 	<section data-label="lights-schedule" class="card">
