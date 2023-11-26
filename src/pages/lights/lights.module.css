@@ -71,3 +71,12 @@
 	text-wrap: balance;
 	max-width: 30ch;
 }
+
+.warning {
+	p {
+		text-align: center;
+		text-wrap: balance;
+		padding: var(--space-4);
+		font-size: var(--font-size-3);
+	}
+}

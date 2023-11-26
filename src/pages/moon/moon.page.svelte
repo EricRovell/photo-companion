@@ -3,19 +3,20 @@
 	import { getMoonData } from "@services/moon";
 	import { getTimeline } from "@services/events";
 	import { dict } from "@lib/dict";
-	import { LAT, LON } from "@lib/constants";
 	import styles from "./moon.module.css";
 	import { round } from "@lib/helpers";
 
 	export let date: Date;
+	export let lat: number;
+	export let lon: number;
 
 	const moonSize = 48;
 	const timelineEvents = new Set([ "sunrise:start", "sunset:end", "moonrise", "moonset" ]);
 	const timelineEventsSecondary = new Set([ "sunrise:start", "sunset:end" ]);
 
-	let state = getMoonData(date, LAT, LON);
+	let state = getMoonData(date, lat, lon);
 
-	$: state = getMoonData(date, LAT, LON);
+	$: state = getMoonData(date, lat, lon);
 </script>
 
 <div class="{styles.page}">
@@ -48,7 +49,7 @@
 	</section>
 	<section data-label="timeline">
 		<Timeline>
-			{#each getTimeline(date, LAT, LON, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
+			{#each getTimeline(date, lat, lon, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
 				{@const secondary = timelineEventsSecondary.has(event.name)}
 				<Event
 					page="{secondary ? "moon" : undefined}"
@@ -64,8 +65,6 @@
 			{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 				<Moon phase="{phase}" size={40} />
 				<Datetime date="{new Date(timestamp)}" />
-			{:else}
-				<p>Введите дату для отображения данных</p>
 			{/each}
 		</div>
 	</section>

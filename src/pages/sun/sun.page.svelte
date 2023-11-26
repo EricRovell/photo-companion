@@ -2,16 +2,17 @@
 	import { Event, GaugeTime, Sun, Timeline } from "@lib/components";
 	import { getSunData, getSunEvents } from "@services/sun";
 	import { dict, template } from "@lib/dict";
-	import { LAT, LON } from "@lib/constants";
 	import styles from "./sun.module.css";
 
 	export let date: Date;
+	export let lat: number;
+	export let lon: number;
 
-	let state: ReturnType<typeof getSunData> = getSunData(date, LAT, LON);
+	let state: ReturnType<typeof getSunData> = getSunData(date, lat, lon);
 
 	const sunSize = 30;
 
-	$: state = getSunData(date, LAT, LON);
+	$: state = getSunData(date, lat, lon);
 </script>
 
 <div class="{styles.page}">
@@ -39,7 +40,7 @@
 	</section>
 	<section data-label="timeline">
 		<Timeline>
-			{#each getSunEvents(date, LAT, LON).sort((a, b) => a.timestamp - b.timestamp) as event (`${event.timestamp}/${event.name}`)}
+			{#each getSunEvents(date, lat, lon).sort((a, b) => a.timestamp - b.timestamp) as event (`${event.timestamp}/${event.name}`)}
 				<Event {event} />
 			{/each}
 		</Timeline>
