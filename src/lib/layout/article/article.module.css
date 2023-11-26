@@ -1,5 +1,5 @@
 .article {
-	--gauge-size: 200px;
+	--gauge-size: min(25ch, 100%);
 
 	display: grid;
 	gap: var(--space-3);
@@ -52,7 +52,7 @@
 		margin-block: var(--space-1);
 
 		&[data-note="success"] {
-			background-color: var(--color-success);
+			background-color: var(--color-accent);
 		}
 
 		&[data-note="danger"] {

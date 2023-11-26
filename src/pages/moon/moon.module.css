@@ -70,9 +70,15 @@
 		justify-content: center;
 		align-items: center;
 
+		&:hover svg {
+			filter: drop-shadow(0 0 1em lightblue);
+		}
+
 		svg {
 			width: 85%;
 			height: 85%;
+			aspect-ratio: 1 / 1;
+			transition: filter 0.125s ease-in-out;
 		}
 	}
 }

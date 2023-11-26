@@ -4,6 +4,10 @@
 	display: grid;
 	gap: var(--space-3);
 
+	& :is(p, ul) {
+		margin-inline: var(--space-5);
+	}
+
 	ul {
 		list-style-position: inside;
 	}
@@ -24,7 +28,7 @@
 	button {
 		justify-self: center;
 		width: fit-content;
-		background-color: var(--color-success);
+		background-color: var(--color-accent);
 		margin-block-end: var(--space-5);
 	}
 }
