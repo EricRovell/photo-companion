@@ -28,7 +28,7 @@
 				<Link
 					current="{($pattern(href) || ($pattern("/") && root)) ? "page" : undefined}"
 					className="{styles.link}"
-					href="{href}?date={$query.date}"
+					href="{href}{$query}"
 				>
 					<Icon path="{icon}" viewBox="0 0 256 256" />
 					{dict[label]}
