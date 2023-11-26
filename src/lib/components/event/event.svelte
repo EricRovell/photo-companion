@@ -6,7 +6,7 @@
 	import { sunEventComponent } from "./event.sun";
 	import { moonEventComponent } from "./event.moon";
 	import { isLightsEvent, isMoonEvent } from "@services/events";
-	import { createQueryDate } from "@lib/layout/with-date/with-date.helpers";
+	import { createQueryDate } from "@lib/helpers";
 	import type { TimelineEvent } from "@lib/types";
 	import styles from "./event.module.css";
 
@@ -17,7 +17,6 @@
 
 	let current = false;
 	let dateQuery = createQueryDate(new Date(event.timestamp));
-	let search: string = "";
 
 	const eventComponent = (event: TimelineEvent) => {
 		if (isLightsEvent(event)) {
@@ -40,13 +39,6 @@
 			current = false;
 		}
 	}
-
-	$: {
-		search = new URLSearchParams({
-			...$query,
-			date: dateQuery
-		}).toString();
-	}
 </script>
 
 <li
@@ -66,7 +58,7 @@
 	<div class="{styles.icon}" data-event-icon>
 		<Link
 			className="{styles.link}"
-			href="/{page ?? type}?{search}"
+			href="/{page ?? type}?{new URLSearchParams({ ...$query, date: dateQuery }).toString()}"
 		>
 			<svelte:component
 				this="{component}"
@@ -74,7 +66,6 @@
 			/>
 		</Link>
 	</div>
-	
 	<article>
 		<p>{title}</p>
 		{#if message}

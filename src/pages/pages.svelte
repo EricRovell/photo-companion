@@ -38,6 +38,7 @@
 		<WithDateURL page="{Page}" />
 	{/if}
 {/each}
+
 {#each Object.entries(routes["page"]) as [ route, Page ]}
 	{#if $pattern(route)}
 		<Article>

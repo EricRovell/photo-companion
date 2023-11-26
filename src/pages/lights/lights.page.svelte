@@ -2,12 +2,15 @@
 	import { Bulb, Event, GaugeTime, Timeline, Timer } from "@lib/components";
 	import { getLightsScheduleByDate, getLightsStateByDate } from "@services/lights";
 	import { getTimeline } from "@services/events";
+	import { round } from "@lib/helpers";
 	import { LAT, LON } from "@lib/constants";
 	import { dict, template } from "@lib/dict";
 	import type { EventName } from "@lib/types";
 	import styles from "./lights.module.css";
 
 	export let date: Date;
+	export let lat: number;
+	export let lon: number;
 
 	const timelineEvents: Set<EventName> = new Set([
 		"lights:start",
@@ -32,6 +35,14 @@
 </script>
 
 <div class="{styles.page}">
+	{#if round(lat) !== 60 && round(lon) !== 30}
+		<section data-label="geolocation-warning" class="card {styles.warning}">
+			<header>
+				<h2>{dict["warning"]}</h2>
+			</header>
+			<p>{dict["location-off"]} {dict["saint-petersburg"]}</p>
+		</section>
+	{/if}
 	<section data-label="lights-schedule" class="card">
 		<header>
 			<h2>{dict["header-lights-by-date"]}</h2>

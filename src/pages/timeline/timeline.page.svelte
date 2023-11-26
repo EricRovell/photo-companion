@@ -2,7 +2,6 @@
 	import { Datetime, TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
 	import { getTimeline } from "@services/events";
 	import { incrementDateByDay } from "@lib/helpers";
-	import { LAT, LON } from "@lib/constants";
 
 	interface Timeline {
 		date: Date;
@@ -10,6 +9,8 @@
 	}
 
 	export let date: Date;
+	export let lat: number;
+	export let lon: number;
 
 	let timeline: Timeline[] = [];
 
@@ -19,13 +20,13 @@
 		timeline = [
 			{
 				date: date,
-				items: getTimeline(date, LAT, LON, {
+				items: getTimeline(date, lat, lon, {
 					predicate: event => event.timestamp >= date.getTime()
 				})
 			},
 			{
 				date: nextDate,
-				items: getTimeline(nextDate, LAT, LON, {
+				items: getTimeline(nextDate, lat, lon, {
 					predicate: event => event.timestamp >= date.getTime()
 				})
 			}

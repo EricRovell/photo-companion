@@ -1,0 +1,82 @@
+.header {
+	display: grid;
+	gap: var(--space-2);
+	background-color: var(--color-surface-0);
+	width: 100%;
+	padding-top: var(--space-3);
+
+	h1 {
+		font-size: var(--font-size-5);
+		font-variation-settings: "wght" 600;
+		margin: 0;
+	}
+
+	& > a {
+		text-decoration: unset;
+	}
+}
+
+.content {
+	justify-self: center;
+	display: flex;
+	align-items: center;
+	width: var(--max-width);
+}
+
+.faq {
+	--icon-size: 1.5rem;
+
+	padding: var(--space-1);
+	background-color: var(--color-surface-2);
+
+	&:hover {
+		background-color: var(--color-surface-3);
+	}
+
+	&:active {
+		background-color: var(--color-surface-4);
+	}
+}
+
+.footer {
+	align-self: end;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	border-block-start: 3px solid var(--color-surface-3);
+	padding-block: var(--space-4);
+	background-color: var(--color-surface-0);
+
+	p {
+		font-size: 0.9em;
+	}
+}
+
+.header,
+.footer {
+	padding-inline: var(--space-2);
+}
+
+.header > div,
+.footer > div {
+	justify-content: space-between;
+}
+
+@media screen and (width <= 600px) {
+	.header {
+		margin-bottom: var(--space-7);
+		padding-bottom: var(--space-3);
+		border-block-end: 3px solid var(--color-surface-3);
+	}
+
+	.header,
+	.footer {
+		padding-inline: var(--space-4);
+		background-color: var(--color-surface-1);
+	}
+
+	.footer {
+		padding-block-end: var(--header-menu-height);
+		border-block-end: 3px solid var(--color-surface-3);
+	}
+}
