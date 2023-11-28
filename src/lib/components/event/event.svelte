@@ -31,6 +31,10 @@
 	};
 
 	let { component, props, message, title, type } = eventComponent(event);
+	let linkTitle = `${title}: ${new Intl.DateTimeFormat("ru-RU", {
+		dateStyle: "full",
+		timeStyle: "full"
+	}).format(new Date(event.timestamp))}`;
 
 	$: {
 		if ($query.date) {
@@ -59,6 +63,7 @@
 		<Link
 			className="{styles.link}"
 			href="/{page ?? type}?{new URLSearchParams({ ...$query, date: dateQuery }).toString()}"
+			title="{linkTitle}"
 		>
 			<svelte:component
 				this="{component}"

@@ -31,7 +31,7 @@
 					href="{href}{$query}"
 				>
 					<Icon path="{icon}" viewBox="0 0 256 256" />
-					{dict[label]}
+					<span>{dict[label]}</span>
 				</Link>
 			</li>
 		{/each}
