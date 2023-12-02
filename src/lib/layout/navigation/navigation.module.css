@@ -79,6 +79,7 @@
 		border-block-start: 2px solid var(--color-surface-2);
 		border-block-end: unset;
 		padding-inline: 0;
+		height: auto;
 
 		ul {
 			padding-inline: var(--space-4);
