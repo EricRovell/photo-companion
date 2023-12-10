@@ -2,12 +2,16 @@
 	import { afterUpdate, onMount, createEventDispatcher } from "svelte";
 	import Digit from "../seven-segment-display/seven-segment-digit.svelte";
 	import Colon from "../seven-segment-display/segment-colon.svelte";
-	import { formatTime, calcSecondsLeft, getDateTimeString } from "./timer.helpers";
+	import { formatTime, calcSecondsLeft } from "./timer.helpers";
 	import styles from "./timer.module.css";
 
 	export let timestamp: number;
 
 	const dispatch = createEventDispatcher();
+	let title = new Intl.DateTimeFormat("ru-RU", {
+		dateStyle: "long",
+		timeStyle: "long"
+	}).format(new Date(timestamp));
 	let secondsLeft: number = calcSecondsLeft(timestamp);
 	let intervalId: number | undefined = undefined;
 
@@ -41,7 +45,11 @@
 	}
 </script>
 
-<time datetime="{getDateTimeString(timestamp)}" class="{styles.timer}">
+<time
+	class="{styles.timer}"
+	datetime="{title}"
+	{title}
+>
 	<Digit digit="{time.hours[0]}" />
 	<Digit digit="{time.hours[1]}" />
 	<Colon />

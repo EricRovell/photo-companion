@@ -3,11 +3,11 @@
 	height: min-content;
 
 	& polyline {
-		fill: var(--segment-fill, hsl(177deg 38% 22%));
+		fill: var(--segment-color-off);
 		transition: fill 0.2s linear;
 	}
 
 	& polyline[data-light="1"] {
-		--segment-fill: hsl(177deg 38% 50%);
+		fill: var(--segment-color-on);
 	}
 }
