@@ -4,6 +4,7 @@
 	display: grid;
 	gap: var(--space-3);
 	margin-bottom: 25vh;
+	width: 100%;
 
 	:is(h2, h3) {
 		justify-self: start;

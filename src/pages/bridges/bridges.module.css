@@ -1,0 +1,8 @@
+.page {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+	justify-items: center;
+	align-items: stretch;
+	gap: var(--space-6);
+	width: var(--max-width);
+}

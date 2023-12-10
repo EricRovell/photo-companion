@@ -13,5 +13,4 @@ main {
 	grid-auto-rows: min-content;
 	justify-items: center;
 	gap: var(--space-6);
-	width: var(--content-width);
 }

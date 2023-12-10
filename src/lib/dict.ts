@@ -78,7 +78,26 @@ export const dict = {
 	"full-moon": "Полнолуние",
 	"waning-gibbous": "Убывающая Луна",
 	"third-quarter": "Третья четверть",
-	"waning-crescent": "Убывающий месяц"
+	"waning-crescent": "Убывающий месяц",
+	"bridge": "мост",
+	"bridges": "Мосты",
+	"alexander-nevsky": "Александра Невского",
+	"exchange": "Биржевой",
+	"annunciation": "Благовещенский",
+	"bolsheokhtinsky": "Большеохтинский",
+	"volodarsky": "Володарский",
+	"palace": "Дворцовый",
+	"liteyny": "Литейный",
+	"trinity": "Троицкий",
+	"tuchkov": "Тучков",
+	"sampsonievsky": "Сампсониевский",
+	"grenadersky": "Гренадёрский",
+	"kantemirovsky": "Кантемировский",
+	"bridge-till-opening": "До следующего сведения",
+	"bridge-till-closing": "До следующего разведения",
+	"bridge-opened": "Разведён",
+	"bridge-closed": "Сведён",
+	"bridge-exception": "Разводка этого моста производится по предварительной заявке за 2 суток."
 };
 
 export const template = {
