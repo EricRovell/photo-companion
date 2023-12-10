@@ -1,5 +1,19 @@
 import type { ComponentType } from "svelte";
 
+export type BridgeName =
+	| "alexander-nevsky"
+	| "annunciation"
+	| "exchange"
+	| "bolsheokhtinsky"
+	| "volodarsky"
+	| "palace"
+	| "liteyny"
+	| "trinity"
+	| "tuchkov"
+	| "sampsonievsky"
+	| "grenadersky"
+	| "kantemirovsky";
+
 export type MoonPhaseName =
 	| "new-moon"
 	| "waxing-crescent"
@@ -93,4 +107,31 @@ export interface EventComponent<Props> {
 	message?: string;
 	title: string;
 	type: "lights" | "moon" | "sun";
+}
+
+export type BridgeShedule = Array<[
+	hoursOpen: number,
+	minutesOpen: number,
+	hoursClose: number,
+	minutesClose: number
+]>;
+
+export interface NavigationSchedule {
+	// the date the schedule was updated
+	year: number;
+	// the navigation period dates
+	navigation: [
+		monthStart: number,
+		dateStart: number,
+		monthEnd: number,
+		dateEnd: number
+	],
+	exception: Array<BridgeName>;
+	shedule: Record<BridgeName, BridgeShedule>;
+}
+
+export interface BridgeState {
+	name: BridgeName;
+	open: boolean;
+	timestamp: number;
 }
