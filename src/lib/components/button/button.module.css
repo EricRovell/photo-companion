@@ -32,3 +32,15 @@
 		pointer-events: none;
 	}
 }
+
+.button[data-appearance="ghost"] {
+	background-color: transparent;
+
+	&:hover {
+		background-color: var(--color-surface-2);
+	}
+
+	&:active {
+		background-color: var(--color-surface-3);
+	}
+}
