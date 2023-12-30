@@ -1,6 +1,7 @@
 import { incrementDateByDay } from "@lib/helpers";
 import schedule from "../../data/bridges-spb.json" assert { type: "json" };
-import type { BridgeName, BridgeState } from "@lib/types";
+import { countDays } from "@lib/helpers";
+import type { BridgeName, BridgeShedule, BridgeState } from "@lib/types";
 
 export const BRIDGE_NAME_SET = new Set<BridgeName>([
 	"alexander-nevsky",
@@ -19,6 +20,34 @@ export const BRIDGE_NAME_SET = new Set<BridgeName>([
 
 export function isBridgeException(name: BridgeName): boolean {
 	return schedule.exception.includes(name);
+}
+
+export function getNavigationState(date: Date): { navigation: boolean, days: number } {
+	const now = date.getTime();
+	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0).getTime();
+	const end = new Date(date.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999).getTime();
+
+	if (now < start) {
+		return {
+			navigation: false,
+			days: countDays(now, start)
+		};
+	}
+
+	if (now >= start && now <= end) {
+		return {
+			navigation: true,
+			days: countDays(now, start)
+		};
+	}
+
+	const nextYearStartDate = new Date(start);
+	nextYearStartDate.setFullYear(date.getFullYear() + 1);
+
+	return {
+		navigation: false,
+		days: countDays(now, nextYearStartDate)
+	};
 }
 
 export function isNavigationTime(date: Date): boolean {
@@ -41,6 +70,7 @@ export function getTimestampFromTime(date: Date, hours: number, minutes: number)
 	).getTime();
 }
 
+export function getBridgeStateByDate(name: BridgeName, date: Date, ignoreNavigationSchedule: true): BridgeState
 export function getBridgeStateByDate(name: BridgeName, date: Date, ignoreNavigationSchedule = false): BridgeState | null {
 	if (!ignoreNavigationSchedule && !isNavigationTime(date)) {
 		return null;
@@ -120,4 +150,22 @@ export function getBridgeStateByDate(name: BridgeName, date: Date, ignoreNavigat
 	}
 
 	throw new Error(`The calculations are wrong, there is one opening for ${name} bridge and no result is found at ${date}.`);
+}
+
+export function getNextBridgeEvent(date = new Date()): BridgeState {
+	let nextEventState: BridgeState;
+
+	for (const name of BRIDGE_NAME_SET) {
+		const state = getBridgeStateByDate(name, date, true);
+
+		if (!nextEventState! || state.timestamp < nextEventState.timestamp) {
+			nextEventState = state;
+		}
+	}
+
+	return nextEventState!;
+}
+
+export function getBridgeSchedule(name: BridgeName): BridgeShedule {
+	return schedule["bridges"][name] as BridgeShedule;
 }

@@ -1,8 +1,9 @@
 .card {
-	--timer-size: 1.25rem;
+	--timer-size: 1rem;
 
 	display: grid;
-	width: min(100%, 45ch);
+	gap: var(--space-2);
+	width: 100%;
 	height: fit-content;
 	border-radius: 10px;
 	border: 3px solid var(--card-border-color, var(--color-surface-3));
@@ -16,6 +17,11 @@
 	}
 
 	h2 {
+		--icon-color: gold;
+
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
 		font-size: var(--font-size-4);
 	}
 
@@ -26,6 +32,8 @@
 
 	footer {
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		gap: var(--space-1);
 		padding: var(--space-2);
 		border-top: 3px solid var(--card-border-color, var(--color-surface-3));
@@ -46,5 +54,29 @@
 		align-items: center;
 		gap: var(--space-2);
 		margin-block: var(--space-4);
+	}
+
+	time {
+		border: none;
+	}
+}
+
+
+.sparkline {
+	width: 100%;
+
+	& path {
+		stroke: var(--color-success);
+	}
+
+	& path[data-stroke-water] {
+		stroke: rgb(159, 148, 255);
+	}
+
+	& text {
+		font-family: var(--font-main);
+		font-variant-numeric: tabular-nums;
+		opacity: 0.6;
+		cursor: default;
 	}
 }
