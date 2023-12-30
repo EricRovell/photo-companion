@@ -1,4 +1,4 @@
-import data from "../../data/lights-spb.json" assert { type: "json" };
+import data from "../../data/lights-saint-petersburg.json" assert { type: "json" };
 import { calcEventDuration, secondsToHoursAndMinutes, incrementDateByDay, isValidDate } from "@lib/helpers";
 import type { Event, LightsEventName } from "@lib/types";
 
@@ -33,8 +33,8 @@ export function getLightsScheduleByDateSPb(dateInput = new Date()): Illumination
 	const row = (month * 6 - 6) + Math.min(Math.floor((date - 1) / 5), 5);
 	const index = row * 4;
 
-	const start = new Date(year, month - 1, date, data[index], data[index + 1]);
-	const end = new Date(year, month - 1, date, data[index + 2], data[index + 3]);
+	const start = new Date(year, month - 1, date, data.schedule[index], data.schedule[index + 1]);
+	const end = new Date(year, month - 1, date, data.schedule[index + 2], data.schedule[index + 3]);
 
 	return {
 		duration: secondsToHoursAndMinutes(calcEventDuration(start, end)),
