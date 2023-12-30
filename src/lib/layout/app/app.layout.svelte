@@ -26,7 +26,10 @@
 </main>
 <footer class="{styles.footer}">
 	<div class="{styles.content}">
-		<p>{title}, <Link href="{routeChangelog}{$query}">v.{version}</Link></p>
+		<p>
+			{title}, <Link href="{routeChangelog}{$query}">v.{version}</Link> 
+			<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">#__COMMIT_HASH__</Link>
+		</p>
 		<Link href="{urlGithub}">
 			<Icon path="{iconGithub}" viewBox="0 0 36 36"/>
 			<span>Github</span>
