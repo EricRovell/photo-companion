@@ -1,13 +1,13 @@
 <script lang="ts" context="module">
 	import { tweened } from "svelte/motion";
 	import Gauge from "./gauge.svelte";
-	import { getAngleFromTime, formatTime } from "../../helpers";
+	import { getAngleFromTime, renderDatetime } from "../../helpers";
 
 	const getState = (timeFrom: Date | null, timeTo: Date | null) => ({
 		angleStart: timeFrom ? getAngleFromTime(timeFrom) : 0,
 		angleEnd:  timeTo ? getAngleFromTime(timeTo) : 360,
-		labelStart: timeFrom ? formatTime(timeFrom.getTime()) : "",
-		labelEnd: timeTo ? formatTime(timeTo.getTime()) : ""
+		labelStart: timeFrom ? renderDatetime(timeFrom, { timeStyle: "short" }) : "",
+		labelEnd: timeTo ? renderDatetime(timeTo, { timeStyle: "short" }) : ""
 	});
 </script>
 
