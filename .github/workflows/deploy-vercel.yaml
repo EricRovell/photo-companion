@@ -22,7 +22,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: install Vercel CLI
-        run: npm i --global vercel
+        run: |
+          npm i pnpm -g
+          npm i --global vercel
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
