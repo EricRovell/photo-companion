@@ -2,8 +2,7 @@
 	position: relative;
 	display: grid;
 	grid-template: 1fr / 4fr 2fr;
-	justify-items: center;
-	align-items: stretch;
+	place-items: stretch center;
 	gap: var(--space-8);
 	width: min(1140px, 100%);
 	margin-block-end: calc(2 * var(--space-9));

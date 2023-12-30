@@ -33,7 +33,7 @@
 			[routeChangelog]: PageChangelog
 		},
 		"page": {
-			[routeBridges]: PageBridges,
+			[routeBridges]: PageBridges
 		}
 	};
 </script>

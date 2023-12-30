@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {
 		BRIDGE_NAME_SET,
-		isBridgeException,
+		isBridgeException
 	} from "@services/bridges";
 	import { CardBridge, Icon, Button } from "@lib/components";
 	import NextBridgeEvent from "./next-bridge-event.svelte";

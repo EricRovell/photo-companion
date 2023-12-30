@@ -133,5 +133,5 @@ export const template = {
 		};
 
 		return plurals[new Intl.PluralRules("ru-RU").select(days)];
-	},
+	}
 };

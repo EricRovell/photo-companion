@@ -44,7 +44,7 @@
 			<Timer
 				timestamp={state.timestamp}
 				on:alarm="{() => {
-					state = getBridgeStateByDate(name, new Date(), true)
+					state = getBridgeStateByDate(name, new Date(), true);
 				}}"
 			/>
 		</footer>

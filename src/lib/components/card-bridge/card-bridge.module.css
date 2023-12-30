@@ -27,7 +27,7 @@
 
 	output {
 		font-size: var(--font-size-2);
-		color: var(--color-text-secondary)
+		color: var(--color-text-secondary);
 	}
 
 	footer {
@@ -61,7 +61,6 @@
 	}
 }
 
-
 .sparkline {
 	width: 100%;
 
@@ -70,7 +69,7 @@
 	}
 
 	& path[data-stroke-water] {
-		stroke: rgb(159, 148, 255);
+		stroke: rgb(159 148 255);
 	}
 
 	& text {
