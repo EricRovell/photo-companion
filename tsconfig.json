@@ -12,7 +12,8 @@
 		"paths": {
 			"@lib/*": [ "./src/lib/*" ],
 			"@services/*": [ "./src/services/*" ],
-		}
+		},
+		"lib": [ "WebWorker", "ESNext" ]
 	},
 	"include": [
 		"src/**/*.d.ts",
