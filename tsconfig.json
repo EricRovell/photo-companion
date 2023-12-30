@@ -21,6 +21,9 @@
 		"src/**/*.js",
 		"src/**/*.svelte"
 	],
+	"exclude": [
+		"src/service-worker.js"
+	],
 	"references": [
 		{ "path": "./tsconfig.node.json" }
 	]
