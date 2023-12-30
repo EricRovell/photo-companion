@@ -196,3 +196,53 @@ export async function getUserLocation(): Promise<{ lat: number, lon: number } | 
 
 	return null;
 }
+
+export function countDays(from: Date | number, to: Date | number) {
+	if (typeof from === "number") {
+		from = new Date(from);
+	}
+
+	if (typeof to === "number") {
+		to = new Date(to);
+	}
+
+	return Math.ceil(
+		Math.abs(to.getTime() - from.getTime()) / (24 * 60 * 60 * 1000)
+	);
+}
+
+interface DateParams {
+	year: number,
+	month: number
+	date: number
+	hours: number
+	minutes: number
+	seconds: number
+	milliseconds: number
+}
+
+export function getDate({ year, month, date, hours, minutes, seconds, milliseconds }: Partial<DateParams>) {
+	const now = new Date();
+
+	(typeof year === "number") && now.setFullYear(year);
+	(typeof month === "number") && now.setMonth(month);
+	(typeof date === "number") && now.setDate(date);
+	(typeof hours === "number") && now.setHours(hours);
+	(typeof minutes === "number") && now.setMinutes(minutes);
+	(typeof seconds === "number") && now.setSeconds(seconds);
+	(typeof milliseconds === "number") && now.setMilliseconds(milliseconds);
+
+	return now;
+}
+
+export function renderDatetime(
+	date: Date | number = new Date,
+	options: Intl.DateTimeFormatOptions = {},
+	locales: string | string[] = "ru-RU"
+) {
+	if (typeof date === "number") {
+		date = new Date(date);
+	}
+
+	return Intl.DateTimeFormat(locales, options).format(date);
+}

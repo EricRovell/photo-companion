@@ -78,7 +78,29 @@ export const dict = {
 	"full-moon": "Полнолуние",
 	"waning-gibbous": "Убывающая Луна",
 	"third-quarter": "Третья четверть",
-	"waning-crescent": "Убывающий месяц"
+	"waning-crescent": "Убывающий месяц",
+	"bridge": "мост",
+	"bridges": "Разводные мосты",
+	"alexander-nevsky": "Александра Невского",
+	"exchange": "Биржевой",
+	"annunciation": "Благовещенский",
+	"bolsheokhtinsky": "Большеохтинский",
+	"volodarsky": "Володарский",
+	"palace": "Дворцовый",
+	"liteyny": "Литейный",
+	"trinity": "Троицкий",
+	"tuchkov": "Тучков",
+	"sampsonievsky": "Сампсониевский",
+	"grenadersky": "Гренадёрский",
+	"kantemirovsky": "Кантемировский",
+	"bridge-opened": "Разведён",
+	"bridge-closed": "Сведён",
+	"bridge-exception": "Разводка этого моста производится по предварительной заявке за 2 суток.",
+	"bridge-schedule-spb": "Расписание разведения мостов г. Санкт-Петербург",
+	"navigation-opened": "Навигация открыта",
+	"navigation-closed": "Навигация закрыта",
+	"till-navigation": "До начала навигации",
+	"closest-event": "Ближайшее событие"
 };
 
 export const template = {
@@ -96,5 +118,20 @@ export const template = {
 		const rules = new Intl.PluralRules("ru-RU");
 
 		return `${arg[0]} ${map[rules.select(arg[0])][0]} ${arg[1]} ${map[rules.select(arg[1])][1]}`;
+	},
+	"bridge-next-event": (state: boolean) => {
+		return `Мост будет ${state ? "сведён" : "разведён"} через`;
+	},
+	"days": (days: number) => {
+		const plurals = {
+			"zero": "дней",
+			"one": "день",
+			"two": "дня",
+			"few": "дня",
+			"other": "дни",
+			"many": "дней"
+		};
+
+		return plurals[new Intl.PluralRules("ru-RU").select(days)];
 	}
 };

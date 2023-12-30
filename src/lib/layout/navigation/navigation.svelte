@@ -2,12 +2,12 @@
 	import { pattern, query } from "svelte-pathfinder";
 	import { Icon, Link } from "@lib/components";
 	import { dict } from "@lib/dict";
-	import { iconTimeline, iconLights, iconSun, iconMoon } from "@lib/icons";
-	import { routeLights, routeMoon, routeSun, routeTimeline } from "@lib/routes";
+	import { iconTimeline, iconLights, iconSun, iconMoon, iconBridge } from "@lib/icons";
+	import { routeBridges, routeLights, routeMoon, routeSun, routeTimeline } from "@lib/routes";
 	import styles from "./navigation.module.css";
 
 	interface Section {
-		label: "timeline" | "lights" | "sun" | "moon";
+		label: "timeline" | "lights" | "sun" | "moon" | "bridges";
 		href: string;
 		icon: string;
 		root?: boolean;
@@ -17,7 +17,8 @@
 		{ label: "timeline", href: routeTimeline, icon: iconTimeline, root: true },
 		{ label: "lights", href: routeLights, icon: iconLights },
 		{ label: "sun", href: routeSun, icon: iconSun },
-		{ label: "moon", href: routeMoon, icon: iconMoon }
+		{ label: "moon", href: routeMoon, icon: iconMoon },
+		{ label: "bridges", href: routeBridges, icon: iconBridge }
 	];
 </script>
 

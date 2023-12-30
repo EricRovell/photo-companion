@@ -3,6 +3,7 @@
 	import { WithDateURL, Article } from "@lib/layout";
 
 	import PageAbout from "./about/about.page.mdx";
+	import PageBridges from "./bridges/bridges.page.svelte";
 	import PageChangelog from "./changelog.page.mdx";
 	import PageLights from "./lights/lights.page.svelte";
 	import PageMoon from "./moon/moon.page.svelte";
@@ -11,6 +12,7 @@
 
 	import {
 		routeAbout,
+		routeBridges,
 		routeChangelog,
 		routeLights,
 		routeMoon,
@@ -26,9 +28,12 @@
 			[routeMoon]: PageMoon,
 			[routeTimeline]: PageTimeline
 		},
-		"page": {
+		"article": {
 			[routeAbout]: PageAbout,
 			[routeChangelog]: PageChangelog
+		},
+		"page": {
+			[routeBridges]: PageBridges
 		}
 	};
 </script>
@@ -39,10 +44,16 @@
 	{/if}
 {/each}
 
-{#each Object.entries(routes["page"]) as [ route, Page ]}
+{#each Object.entries(routes["article"]) as [ route, Page ]}
 	{#if $pattern(route)}
 		<Article>
 			<Page />
 		</Article>
+	{/if}
+{/each}
+
+{#each Object.entries(routes["page"]) as [ route, Page ]}
+	{#if $pattern(route)}
+		<Page />
 	{/if}
 {/each}
