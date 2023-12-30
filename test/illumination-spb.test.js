@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { getLightsScheduleByDateSPb, getLightsStateByDateSpb } from "../src/services/lights/illumination-spb";
-import data from "../src/data/lights-spb.json" assert { type: "json" };
+import { schedule } from "../src/data/lights-saint-petersburg.json" assert { type: "json" };
 
 const fixtures = [
 	[ 1, 1, 5, 16, 15, 9, 50 ],
@@ -74,7 +74,7 @@ const fixtures = [
 	[ 12, 11, 15, 16, 0, 9, 40 ],
 	[ 12, 16, 20, 16, 0, 9, 50 ],
 	[ 12, 21, 25, 16, 0, 9, 50 ],
-	[ 12, 26, 31, 16, 1, 9, 50 ]
+	[ 12, 26, 31, 16, 10, 9, 50 ]
 ];
 
 const testFn = (month, date) => (...output) => {
@@ -94,27 +94,27 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 	describe("Data validation", () => {
 		it("Has the correct record length", () => {
 			// check data README to understand the number of records
-			expect(data.length).toBe(4 * 6 * 12);
+			expect(schedule.length).toBe(4 * 6 * 12);
 		});
 		it("Has the correct types", () => {
-			for (const record of data) {
+			for (const record of schedule) {
 				expect(Number.isInteger(record)).toBe(true);
 			}
 		});
 		it("Has the correct hours values", () => {
-			for (let i = 0; i < data.length; i += 2) {
-				expect(data[i]).toBeGreaterThanOrEqual(0);
-				expect(data[i]).toBeLessThanOrEqual(23);
-				expect(data[i]).toBeGreaterThanOrEqual(0);
-				expect(data[i]).toBeLessThanOrEqual(23);
+			for (let i = 0; i < schedule.length; i += 2) {
+				expect(schedule[i]).toBeGreaterThanOrEqual(0);
+				expect(schedule[i]).toBeLessThanOrEqual(23);
+				expect(schedule[i]).toBeGreaterThanOrEqual(0);
+				expect(schedule[i]).toBeLessThanOrEqual(23);
 			}
 		});
 		it("Has the correct minutes values", () => {
-			for (let i = 1; i < data.length; i += 2) {
-				expect(data[i]).toBeGreaterThanOrEqual(0);
-				expect(data[i]).toBeLessThanOrEqual(59);
-				expect(data[i]).toBeGreaterThanOrEqual(0);
-				expect(data[i]).toBeLessThanOrEqual(59);
+			for (let i = 1; i < schedule.length; i += 2) {
+				expect(schedule[i]).toBeGreaterThanOrEqual(0);
+				expect(schedule[i]).toBeLessThanOrEqual(59);
+				expect(schedule[i]).toBeGreaterThanOrEqual(0);
+				expect(schedule[i]).toBeLessThanOrEqual(59);
 			}
 		});
 	});

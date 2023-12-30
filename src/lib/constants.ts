@@ -1,4 +1,4 @@
-export const LIGHTS_SCHEDULE_DATE = 2023;
+export const LIGHTS_SCHEDULE_DATE = 2024;
 
 // Saint-Petersburg, Russia
 export const LAT = 59.844404;
