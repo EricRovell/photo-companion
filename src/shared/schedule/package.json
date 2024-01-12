@@ -1,0 +1,12 @@
+{
+	"name": "@shared/schedule",
+	"type": "module",
+	"private": true,
+	"description": "Project data",
+	"main": "./src/index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Eric Rovell",
+	"license": "MIT"
+}

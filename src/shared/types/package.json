@@ -1,0 +1,14 @@
+{
+	"name": "@shared/types",
+	"private": true,
+	"description": "Project common types",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"types"
+	],
+	"author": "Eric Rovell",
+	"license": "MIT"
+}

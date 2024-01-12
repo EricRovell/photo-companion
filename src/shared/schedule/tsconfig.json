@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"strict": true
+	},
+	"include": [
+		"./src/*.ts"
+, "src/data/bridges-spb.ts", "src/data/lights-moscow.ts", "src/data/lights-saint-petersburg.ts"	]
+}

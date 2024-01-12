@@ -1,4 +1,3 @@
-svelte.config.js
-vite.config.js
-test/*.test.js
-src/service-worker.js
+dist/
+node_modules/
+service-worker.js

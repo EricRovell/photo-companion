@@ -1,0 +1,33 @@
+{
+	"extends": "@tsconfig/svelte/tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"allowJs": true,
+		"checkJs": true,
+		"isolatedModules": true,
+		"baseUrl": "./",
+		"paths": {
+			"@lib/*": [ "./src/lib/*" ],
+			"@services/*": [ "./src/services/*" ],
+		},
+		"lib": [
+			"WebWorker",
+			"ESNext"
+		]
+	},
+	"include": [
+		"src/**/*.d.ts",
+		"src/**/*.ts",
+		"src/**/*.js",
+		"src/**/*.svelte",
+		"./*.js",
+		"./*.ts",
+		"test/*.js"
+	],
+	"exclude": [
+		"src/service-worker.js"
+	]
+}

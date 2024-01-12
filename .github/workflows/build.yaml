@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 18.x ]
+        node-version: [ 20.x ]
 
     steps:
       - name: checkout
@@ -31,25 +31,39 @@ jobs:
       - name: install dependencies
         run: |
           npm i pnpm -g
-          pnpm i
+          pnpm i -r
 
       - name: lint
         run: |
           pnpm run lint:code
           pnpm run lint:styles
-          pnpm run lint:types
+          pnpm run lint:svelte
 
       - name: unit testing
         run: |
-          pnpm run test:unit
+          pnpm run test:unit:ci
+
+      - name: test artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: ./coverage
+          if-no-files-found: error
 
       - name: build
         run: |
           pnpm run build
 
-      - name: build artifacts
+      - name: package build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build
-          path: ./dist
+          name: moon-sun-calc
+          path: ./src/packages/moon-sun-calc/dist
+          if-no-files-found: error
+
+      - name: application build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: photo-companion
+          path: ./src/apps/photo-companion/dist
           if-no-files-found: error

@@ -1,5 +1,5 @@
 {
-  "recommendations": [
+	"recommendations": [
 		"svelte.svelte-vscode",
 		"editorconfig.editorconfig"
 	]
