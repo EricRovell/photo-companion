@@ -1,20 +1,29 @@
 {
 	"env": {
 		"browser": true,
-		"es2021": true
+		"es2021": true,
+		"node": true
 	},
 	"extends": [
-		"plugin:svelte/recommended",
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:@typescript-eslint/recommended-requiring-type-checking"
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"plugin:svelte/recommended"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaVersion": 2022,
+		"ecmaVersion": "latest",
 		"sourceType": "module",
-		"extraFileExtensions": [ ".svelte" ],
-		"project": "./tsconfig.json"
+		"extraFileExtensions": [
+			".svelte"
+		],
+		"project": [
+			"./tsconfig.base.json",
+			"./src/**/tsconfig.json"
+		]
+	},
+	"globals": {
+		"__dirname": true
 	},
 	"overrides": [
 		{

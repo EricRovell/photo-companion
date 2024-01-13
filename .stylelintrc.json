@@ -1,19 +1,24 @@
 {
 	"extends": [
-		"stylelint-config-standard",
-		"stylelint-stylistic/config"
+		"stylelint-config-standard"
+	],
+	"ignoreFiles": [
+		"**/dist/**/*.css"
+	],
+	"plugins": [
+		"@stylistic/stylelint-plugin"
 	],
 	"rules": {
 		"no-descending-specificity": null,
-		"stylistic/indentation": "tab",
 		"selector-pseudo-class-no-unknown": [ true,	{
-				"ignorePseudoClasses": [ "global" ]
+			"ignorePseudoClasses": [ "global" ]
 		}],
-		"stylistic/color-hex-case": "upper",
 		"property-no-unknown": [ true, {
 			"ignoreProperties": [
 				"composes"
 			]
-		}]
+		}],
+		"@stylistic/indentation": "tab",
+		"@stylistic/color-hex-case": "upper"
 	}
 }

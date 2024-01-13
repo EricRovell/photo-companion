@@ -1,9 +1,24 @@
 {
+	"buildCommand": "pnpm build",
 	"cleanUrls": true,
+	"devCommand": "pnpm build:package && pnpm dev:app",
+	"framework": "svelte",
+	"headers": [
+		{
+			"source": "/service-worker.js",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=0, must-revalidate"
+				}
+			]
+		}
+	],
 	"github": {
 		"enabled": false,
 		"silent": true
 	},
+	"outputDirectory": "src/apps/photo-companion/dist",
 	"rewrites": [
 		{
 			"source": "/robots.txt",

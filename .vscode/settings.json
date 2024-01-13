@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"*.mdx": "markdown"
+	},
+	"eslint.workingDirectories": [
+		"./src/apps/*",
+		"./src/packages/*",
+		"./src/shared/*"
+	]
+}

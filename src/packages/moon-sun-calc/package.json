@@ -1,0 +1,41 @@
+{
+	"name": "moon-sun-calc",
+	"version": "0.1.0",
+	"description": "JavaScript library for Sun and Moon calculations.",
+	"keywords": [
+		"sun",
+		"astronomy",
+		"math",
+		"calculation",
+		"sunrise",
+		"sunset",
+		"twilight",
+		"moon"
+	],
+	"types": "dist/index.d.ts",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"scripts": {
+		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
+		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
+		"bundle:types": "node ./scripts/bundle-dts.js"
+	},
+	"type": "module",
+	"dependencies": {
+		"esbuild": "^0.19.11"
+	},
+	"devDependencies": {
+		"@shared/types": "workspace:*"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"CHANGELOG.md",
+		"dist"
+	]
+}
