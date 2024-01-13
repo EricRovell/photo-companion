@@ -3,8 +3,8 @@
 	import Pages from "../../../pages/pages.svelte";
 	import { Link, Icon } from "@lib/components";
 	import { version } from "@lib/constants";
-	import { iconGithub, iconQuestion } from "@lib/icons";
-	import { routeAbout, routeChangelog, urlGithub } from "@lib/routes";
+	import { iconGithub, iconQuestion, iconSettings } from "@lib/icons";
+	import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
 	import styles from "./app.layout.module.css";
@@ -15,9 +15,14 @@
 		<Link href="/{$query}">
 			<h1>{title}</h1>
 		</Link>
-		<Link className="{styles.faq}" href="{routeAbout}{$query}" title="FAQ">
-			<Icon path="{iconQuestion}" viewBox="0 0 256 256" />
-		</Link>
+		<nav>
+			<Link className="{styles.icon}" href="{routeSettings}{$query}" title="Settings">
+				<Icon path="{iconSettings}" viewBox="0 0 256 256" />
+			</Link>
+			<Link className="{styles.icon}" href="{routeAbout}{$query}" title="FAQ">
+				<Icon path="{iconQuestion}" viewBox="0 0 256 256" />
+			</Link>
+		</nav>
 	</div>
 </header>
 <Navigation />

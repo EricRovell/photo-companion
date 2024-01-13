@@ -7,6 +7,7 @@
 	import PageChangelog from "./changelog.page.mdx";
 	import PageLights from "./lights/lights.page.svelte";
 	import PageMoon from "./moon/moon.page.svelte";
+	import PageSettings from "./settings/settings.page.svelte";
 	import PageSun from "./sun/sun.page.svelte";
 	import PageTimeline from "./timeline/timeline.page.svelte";
 
@@ -16,6 +17,7 @@
 		routeChangelog,
 		routeLights,
 		routeMoon,
+		routeSettings,
 		routeSun,
 		routeTimeline
 	} from "@lib/routes";
@@ -33,7 +35,8 @@
 			[routeChangelog]: PageChangelog
 		},
 		"page": {
-			[routeBridges]: PageBridges
+			[routeBridges]: PageBridges,
+			[routeSettings]: PageSettings
 		}
 	};
 </script>

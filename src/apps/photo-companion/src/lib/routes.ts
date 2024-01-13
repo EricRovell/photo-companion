@@ -12,3 +12,4 @@ export const routeMoon = "/moon";
 export const routeAbout = "/about";
 export const routeTimeline = "/timeline";
 export const routeChangelog = "/changelog";
+export const routeSettings = "/settings";
