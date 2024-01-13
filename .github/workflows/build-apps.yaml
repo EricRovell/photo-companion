@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: setup
-        uses: ./.github/actions/setup.yaml
+        uses: ./.github/actions/setup
 
       - name: install dependencies
         run: pnpm i -r
