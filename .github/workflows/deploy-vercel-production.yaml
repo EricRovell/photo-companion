@@ -1,3 +1,4 @@
+# Deploys the production version of "Photo Companion" to vercel
 name: deploy-vercel-production
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

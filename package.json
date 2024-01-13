@@ -13,7 +13,7 @@
 		"dev:app": "pnpm --filter photo-companion run dev",
 		"test:unit": "vitest run",
 		"test:unit:ci": "vitest run --coverage",
-		"lint": "pnpm lint:code && pnpm lint:styles && pnpm lint:svelte",
+		"lint:all": "pnpm lint:code && pnpm lint:styles && pnpm lint:svelte",
 		"lint:code": "eslint ./src/**/*.{ts,js,svelte}",
 		"lint:styles": "npx stylelint src/**/*.css",
 		"lint:svelte": "pnpm --filter ./src/apps/* run lint:svelte"
@@ -25,6 +25,7 @@
 	],
 	"devDependencies": {
 		"@stylistic/stylelint-plugin": "^2.0.0",
+		"@types/node": "^20.11.0",
 		"@typescript-eslint/eslint-plugin": "^6.11.0",
 		"@typescript-eslint/parser": "^6.11.0",
 		"@vitest/coverage-v8": "^1.1.3",

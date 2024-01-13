@@ -1,0 +1,18 @@
+name: setup
+description: 'Shared action to install pnpm and node'
+
+runs:
+  using: 'composite'
+  steps:
+
+    - uses: pnpm/action-setup@v2.4.0
+      name: Install pnpm
+      with:
+        version: latest
+        run_install: true
+
+    - name: Node Setup
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'pnpm'

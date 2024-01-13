@@ -23,8 +23,6 @@
 		"src/**/*.ts",
 		"src/**/*.js",
 		"src/**/*.svelte",
-		"./*.js",
-		"./*.ts",
 		"test/*.js"
 	],
 	"exclude": [
