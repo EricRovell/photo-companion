@@ -2,12 +2,13 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: var(--space-2);
+	padding: var(--space-2) var(--space-4);
 	border-radius: var(--radius);
 	border: none;
 	outline: none;
 	color: inherit;
 	cursor: pointer;
+	font-family: inherit;
 	background-color: var(--color-surface-3);
 
 	&:hover {

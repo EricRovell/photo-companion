@@ -39,6 +39,7 @@
 	--color-success: rgb(32 230 230);
 	--color-danger: rgb(192 53 53);
 	--color-info: #003C5A;
+	--color-border: hsl(210deg 23% 25%);
 	--border: 1px solid hsl(210deg 23% 25%);
 	--radius: 5px;
 	--font-main: var(--font-fallback);

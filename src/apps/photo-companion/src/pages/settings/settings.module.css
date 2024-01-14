@@ -1,3 +1,20 @@
 .page {
 	display: grid;
+	gap: var(--space-4);
+	width: min(100%, 40ch);
+
+	h2 {
+		justify-self: start;
+		font-size: var(--font-size-5);
+	}
+}
+
+.submit {
+	border: none;
+
+	& > div {
+		display: flex;
+		justify-content: flex-end;
+		padding: 0;
+	}
 }
