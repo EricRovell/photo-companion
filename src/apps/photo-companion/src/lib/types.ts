@@ -64,3 +64,8 @@ export interface EventComponent<Props> {
 	title: string;
 	type: "lights" | "moon" | "sun";
 }
+
+export interface SettingsStore {
+	lat: number;
+	lon: number;
+}

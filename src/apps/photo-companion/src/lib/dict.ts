@@ -9,6 +9,8 @@ export const dict = {
 	"longitude": "Долгота",
 	"geoposition": "Геолокация",
 	"get-geo-device": "Запросить данные с устройства",
+	"get-geo-device-success": "Данные обновлены",
+	"get-geo-device-danger": "Не удалось получить данные",
 	"save": "Сохранить",
 	"reset": "Сбросить",
 	"waxing": "Растущая",

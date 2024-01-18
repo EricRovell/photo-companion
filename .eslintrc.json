@@ -23,7 +23,9 @@
 		]
 	},
 	"globals": {
-		"__dirname": true
+		"__dirname": true,
+		"Nullable": true,
+		"Optional": true
 	},
 	"overrides": [
 		{
