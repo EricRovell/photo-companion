@@ -55,6 +55,7 @@ export function persistable<T>(key: string, defaultValue: T = {} as T) {
 		persist,
 		purge,
 		reset,
+		set,
 		subscribe
 	};
 }

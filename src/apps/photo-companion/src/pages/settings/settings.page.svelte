@@ -17,7 +17,7 @@
 	let settings = settingsStore.get();
 
 	const handlePersist = () => {
-		settingsStore.persist(settings);
+		settingsStore.set(settings);
 	};
 
 	const handleReset = () => {
@@ -26,7 +26,7 @@
 	};
 
 	const LIGHTS_CITY_OPTIONS: Option[] = [
-		{ label: "Отключить", value: dict["off"] },
+		{ label: dict["off"], value: "off" },
 		...lightsCityList.map(item => ({ label: dict[item], value: item }))
 	];
 </script>
