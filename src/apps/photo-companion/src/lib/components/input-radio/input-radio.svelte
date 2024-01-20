@@ -24,6 +24,7 @@
 	<label class="{styles.label}">
 		<input
 			class="{styles.radio}"
+			checked="{value === option.value}"
 			{disabled}
 			{name}
 			on:change="{handleChange}"
