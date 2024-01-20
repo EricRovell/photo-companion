@@ -1,8 +1,16 @@
 <script lang="ts">
-	import { Button, Form, Fieldset, InputNumber } from "@lib/components";
+	import {
+		Button,
+		Form,
+		Fieldset,
+		InputNumber,
+		InputRadio,
+		type Option
+	} from "@lib/components";
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/settings-store";
 	import { dict } from "@lib/dict";
+	import { lightsCityList } from "@lib/constants";
 
 	import styles from "./settings.module.css";
 
@@ -16,12 +24,15 @@
 		settingsStore.reset();
 		settings = settingsStore.get();
 	};
+
+	const LIGHTS_CITY_OPTIONS: Option[] = [
+		{ label: "Отключить", value: dict["off"] },
+		...lightsCityList.map(item => ({ label: dict[item], value: item }))
+	];
 </script>
 
 <div class="{styles.page}">
-	<h2>
-		{dict["settings"]}
-	</h2>
+	<h2>{dict["settings"]}</h2>
 	<Form on:submit="{handlePersist}">
 		<Fieldset legend="{dict["geoposition"]}">
 			<InputNumber
@@ -47,6 +58,13 @@
 					settings.lat = lat;
 					settings.lon = lon;
 				}}
+			/>
+		</Fieldset>
+		<Fieldset legend="Городское освещение">
+			<InputRadio
+				bind:value="{settings["lights-city"]}"
+				name="lights-city"
+				options={LIGHTS_CITY_OPTIONS}
 			/>
 		</Fieldset>
 		<Fieldset className="{styles.submit}">

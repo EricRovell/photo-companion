@@ -70,6 +70,7 @@ export const dict = {
 	"nadir": "Солнце в надире",
 	"nadir:info": "Темнейший момент ночи",
 	"saint-petersburg": "г. Санкт-Петербург",
+	"moscow": "г. Москва",
 	"next-day": "Следующий день",
 	"prev-day": "Предыдущий день",
 	"date-and-time": "Дата и время",
@@ -110,7 +111,8 @@ export const dict = {
 	"navigation-opened": "Навигация открыта",
 	"navigation-closed": "Навигация закрыта",
 	"till-navigation": "До начала навигации",
-	"closest-event": "Ближайшее событие"
+	"closest-event": "Ближайшее событие",
+	"off": "Отключить"
 };
 
 export const template = {

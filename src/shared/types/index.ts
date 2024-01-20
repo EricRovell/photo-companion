@@ -109,3 +109,7 @@ export interface IlluminationState {
 	event: LightsEventName;
 	timestamp: number;
 }
+
+export type LightsCity =
+	| "saint-petersburg"
+	| "moscow";

@@ -1,4 +1,4 @@
-import type { SunEventName } from "@shared/types";
+import type { LightsCity, SunEventName } from "@shared/types";
 import type { ComponentType } from "svelte";
 
 export type MoonPhaseName =
@@ -66,6 +66,7 @@ export interface EventComponent<Props> {
 }
 
 export interface SettingsStore {
-	lat: number;
-	lon: number;
+	"lat": number;
+	"lights-city": LightsCity | "off";
+	"lon": number;
 }
