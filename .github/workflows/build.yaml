@@ -22,8 +22,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: setup
-        uses: ./.github/actions/setup
+      - name: install pnpm
+        run: npm i pnpm -g
 
       - name: install dependencies
         run: pnpm i -r
@@ -38,7 +38,7 @@ jobs:
         run: pnpm run test:unit:ci
 
       - name: test artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: ./coverage
@@ -48,7 +48,7 @@ jobs:
         run: pnpm run build
 
       - name: application build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: photo-companion
           path: ./src/apps/photo-companion/dist
