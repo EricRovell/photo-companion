@@ -17,7 +17,9 @@
 		"./src/**/*.js",
 		"./src/**/*.svelte",
 		"./*.js",
-		"./*.ts"
+		"./*.ts",
+		"**/*.d.ts",
+		"../../../global.d.ts"
 	],
 	"exclude": [
 		"node_modules/"

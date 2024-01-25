@@ -4,6 +4,7 @@
 
 <form
 	class="{styles.form}"
+	on:change
 	on:submit|preventDefault
 	{...$$restProps}
 >

@@ -98,8 +98,9 @@ export interface BridgeState {
 	timestamp: number;
 }
 
-export interface IlluminationSchedule {
-	duration: [ hours: number, minutes: number ];
+export interface LightsSchedule {
+	// duration of the lights turned on in seconds
+	duration: number;
 	"lights:start": number;
 	"lights:end": number;
 }
@@ -113,3 +114,32 @@ export interface IlluminationState {
 export type LightsCity =
 	| "saint-petersburg"
 	| "moscow";
+
+export interface ScheduleDataItem {
+	lights: boolean;
+	event: LightsEventName;
+	timestamp: number
+}
+
+export interface Event<Name extends string, Data = Partial<Record<string, never>>> {
+	name: Name;
+	timestamp: number;
+	data: Data;
+}
+
+export type LightsEvent = Event<LightsEventName, { city: LightsCity }>;
+
+export type MoonEvent = Event<MoonEventName, {
+	phase: number,
+	waxing: boolean,
+	fraction: number;
+	zenithAngle: number;
+}>;
+
+export type SunEvent = Event<SunEventName, {
+	azimuth: number,
+	elevation: number;
+}>;
+
+export type TimelineEvent = LightsEvent | MoonEvent | SunEvent;
+

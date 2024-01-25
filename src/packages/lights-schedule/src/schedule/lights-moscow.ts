@@ -1,7 +1,8 @@
-import type { LightsSchedule } from "../types";
+import { isLeapYear } from "@shared/utils";
+import type { CityLightsSchedule } from "../types";
 
-export const schedule: LightsSchedule = {
-	"year": 2023,
+export const schedule: CityLightsSchedule = {
+	"year": 2024,
 	"city": "moscow",
 	"schedule": [
 		16,17,8,36,
@@ -63,6 +64,7 @@ export const schedule: LightsSchedule = {
 		18,5,7,19,
 		18,7,7,17,
 		18,9,7,11,
+		18,14,7,9,
 		18,14,7,9,
 		18,15,7,7,
 		18,17,7,5,
@@ -369,5 +371,20 @@ export const schedule: LightsSchedule = {
 		16,15,8,36,
 		16,16,8,36,
 		16,16,8,36
-	]
+	],
+	getter: (date: Date) => {
+		const days = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+		const month = date.getMonth();
+		let count = date.getDate();
+
+		if (isLeapYear(date.getFullYear())) {
+			days[1] = 29;
+		}
+
+		for (let i = 0; i < month; i++) {
+			count += days[i];
+		}
+
+		return (count - 1) * 4;
+	}
 };

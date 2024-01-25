@@ -1,17 +1,10 @@
-export type BridgeName =
-	| "alexander-nevsky"
-	| "annunciation"
-	| "exchange"
-	| "bolsheokhtinsky"
-	| "volodarsky"
-	| "palace"
-	| "liteyny"
-	| "trinity"
-	| "tuchkov"
-	| "sampsonievsky"
-	| "grenadersky"
-	| "kantemirovsky";
+# Bridges
 
+## Saint-Petersburg, Russia
+
+The bridges shedule data has such an interface:
+
+```ts
 export type BridgeShedule = Array<[
 	hoursOpen: number,
 	minutesOpen: number,
@@ -30,11 +23,6 @@ export interface NavigationSchedule {
 		dateEnd: number
 	],
 	exception: Array<BridgeName>;
-	bridges: Record<BridgeName, BridgeShedule>;
+	shedule: Record<BridgeName, BridgeShedule>;
 }
-
-export interface LightsSchedule {
-	year: number;
-	city: string;
-	schedule: number[];
-}
+```

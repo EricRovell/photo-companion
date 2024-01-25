@@ -1,4 +1,4 @@
-name: build-apps
+name: build
 
 on:
   push:
@@ -28,17 +28,6 @@ jobs:
       - name: install dependencies
         run: pnpm i -r
 
-        # Need to be able to run lint propely
-      - name: build workspace dependency
-        run: pnpm build:package
-
-      - name: package build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: moon-sun-calc
-          path: ./src/packages/moon-sun-calc/dist
-          if-no-files-found: error
-
       - name: lint
         run: |
           pnpm run lint:code
@@ -46,8 +35,7 @@ jobs:
           pnpm run lint:svelte
 
       - name: unit testing
-        run: |
-          pnpm run test:unit:ci
+        run: pnpm run test:unit:ci
 
       - name: test artifacts
         uses: actions/upload-artifact@v3
@@ -57,8 +45,7 @@ jobs:
           if-no-files-found: error
 
       - name: build
-        run: |
-          pnpm run build:app
+        run: pnpm run build
 
       - name: application build artifacts
         uses: actions/upload-artifact@v3

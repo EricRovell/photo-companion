@@ -3,7 +3,8 @@
 	import Button from "../button/button.svelte";
 	import Icon from "../icon/icon.svelte";
 	import { iconTimeline, iconChevronLeft, iconChevronRight } from "@lib/icons";
-	import { getDateTimeString, incrementDateByDay } from "@lib/helpers";
+	import { getDateTimeString } from "@lib/helpers";
+	import { incrementDateByDay } from "@shared/utils";
 	import { dict } from "@lib/dict";
 	import styles from "./input-datetime.module.css";
 

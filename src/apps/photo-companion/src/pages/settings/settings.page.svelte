@@ -13,6 +13,7 @@
 	import { lightsCityList } from "@lib/constants";
 
 	import styles from "./settings.module.css";
+	import type { LightsCity } from "@shared/types";
 
 	let settings = settingsStore.get();
 
@@ -26,30 +27,55 @@
 	};
 
 	const LIGHTS_CITY_OPTIONS: Option[] = [
-		{ label: dict["off"], value: "off" },
+		{ label: dict["off"], value: "" },
 		...lightsCityList.map(item => ({ label: dict[item], value: item }))
 	];
+
+	const handleChange = (event: Event) => {
+		const target = event.target as HTMLInputElement;
+		const { name, value } = target;
+
+		switch (name) {
+			case "latitude": {
+				settings.lat = Number(value);
+				break;
+			}
+			case "longitude": {
+				settings.lon = Number(value);
+				break;
+			}
+			case "lights-city": {
+				if (value) {
+					settings["lights-city"] = value as LightsCity;
+				} else {
+					settings["lights-city"] = null;
+				}
+			}
+		}
+	};
 </script>
 
 <div class="{styles.page}">
 	<h2>{dict["settings"]}</h2>
-	<Form on:submit="{handlePersist}">
+	<Form on:submit="{handlePersist}" on:change={handleChange}>
 		<Fieldset legend="{dict["geoposition"]}">
 			<InputNumber
-				bind:value="{settings.lat}"
 				min={-90}
 				max={90}
+				name="latitude"
 				step="{0.000001}"
 				inputmode="numeric"
+				value="{settings.lat}"
 			>
 				{dict["latitude"]}
 			</InputNumber>
 			<InputNumber
-				bind:value="{settings.lon}"
 				min={-180}
 				max={180}
+				name="longitude"
 				step="{0.000001}"
 				inputmode="numeric"
+				value="{settings.lon}"
 			>
 				{dict["longitude"]}
 			</InputNumber>
@@ -62,9 +88,9 @@
 		</Fieldset>
 		<Fieldset legend="Городское освещение">
 			<InputRadio
-				bind:value="{settings["lights-city"]}"
 				name="lights-city"
 				options={LIGHTS_CITY_OPTIONS}
+				value="{settings["lights-city"] ?? ""}"
 			/>
 		</Fieldset>
 		<Fieldset className="{styles.submit}">

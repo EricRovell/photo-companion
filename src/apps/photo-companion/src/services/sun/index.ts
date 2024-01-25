@@ -1,5 +1,6 @@
 import { getSunTimes, getSunPosition } from "moon-sun-calc";
-import { calcEventDuration, incrementDateByDay, round, secondsToHoursAndMinutes } from "@lib/helpers";
+import { round, secondsToHoursAndMinutes } from "@lib/helpers";
+import { calcDuration, incrementDateByDay } from "@shared/utils";
 import type { SunEventName } from "@shared/types";
 import type { SunEvent } from "@lib/types";
 
@@ -7,7 +8,7 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
 	const sunrise: Date = suntimes["sunrise:start"].value;
 	const sunset: Date = suntimes["sunset:end"].value;
-	const dayDuration = secondsToHoursAndMinutes(calcEventDuration(sunrise, sunset));
+	const dayDuration = secondsToHoursAndMinutes(calcDuration(sunrise, sunset));
 
 	return {
 		dayDuration,

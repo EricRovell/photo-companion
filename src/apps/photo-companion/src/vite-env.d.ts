@@ -13,6 +13,3 @@ declare module "*.mdx" {
 	}
 	export const metadata: Record<string, unknown>;
 }
-
-type Nullable<T> = T | undefined | null;
-type Optional<T> = T | undefined;

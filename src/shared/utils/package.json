@@ -1,5 +1,5 @@
 {
-	"name": "@shared/schedule",
+	"name": "@shared/utils",
 	"type": "module",
 	"private": true,
 	"description": "Project data",

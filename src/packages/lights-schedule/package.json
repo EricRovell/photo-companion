@@ -1,16 +1,9 @@
 {
-	"name": "moon-sun-calc",
+	"name": "lights-schedule",
 	"version": "0.1.0",
-	"description": "JavaScript library for Sun and Moon calculations.",
+	"description": "City illumination schedule data provider.",
 	"keywords": [
-		"sun",
-		"astronomy",
-		"math",
-		"calculation",
-		"sunrise",
-		"sunset",
-		"twilight",
-		"moon"
+		"lights"
 	],
 	"main": "./src/index.ts",
 	"scripts": {
@@ -19,11 +12,9 @@
 		"bundle:types": "node ./scripts/bundle-dts.js"
 	},
 	"type": "module",
-	"dependencies": {
-		"esbuild": "^0.19.11"
-	},
 	"devDependencies": {
-		"@shared/types": "workspace:*"
+		"@shared/types": "workspace:*",
+		"@shared/utils": "workspace:*"
 	},
 	"files": [
 		"CHANGELOG.md",

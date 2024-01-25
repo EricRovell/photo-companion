@@ -75,14 +75,3 @@
 	text-wrap: balance;
 	max-width: 30ch;
 }
-
-.warning {
-	--card-border-color: rgb(136 65 65);
-
-	p {
-		text-align: center;
-		text-wrap: balance;
-		padding: var(--space-4);
-		font-size: var(--font-size-3);
-	}
-}

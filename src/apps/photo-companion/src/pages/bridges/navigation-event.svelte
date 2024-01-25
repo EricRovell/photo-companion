@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from "@lib/components";
-	import { getNavigationState } from "@services/bridges";
+	import { getNavigationState } from "bridge-schedule";
 	import { iconAnchor } from "@lib/icons";
 	import { dict, template } from "@lib/dict";
 	import styles from "./bridges.module.css";

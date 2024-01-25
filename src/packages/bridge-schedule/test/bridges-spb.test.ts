@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { BRIDGE_NAME_SET, isNavigationTime, getBridgeStateByDate } from "../src/services/bridges";
-import { type BridgeName, scheduleBridgesSPb as data } from "@shared/schedule";
+import { isNavigationTime, getBridgeState } from "../src";
+import { SUPPORTED_BRIDGES_NAME_SET } from "../src/const";
+import type { BridgeName } from "../src/types";
+import { schedule as data } from "../src/schedule";
 
 const BETWEEN_OPENINGS_GAP_MINUTES = 10;
 const OPENING_GAP_MINUTES = 30;
@@ -98,28 +100,28 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 	describe("Bridge state with navigation time", () => {
 		it("Detects the navigation time", () => {
 			// bridge name is not relevant here
-			expect(getBridgeStateByDate("palace", beforeNavigation)).toBeNull();
-			expect(getBridgeStateByDate("palace", startingNavigation)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", duringNavigation)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", endingNavigation)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", afterNavigation)).toBeNull();
+			expect(getBridgeState("palace", beforeNavigation)).toBeNull();
+			expect(getBridgeState("palace", startingNavigation)).not.toBeNull();
+			expect(getBridgeState("palace", duringNavigation)).not.toBeNull();
+			expect(getBridgeState("palace", endingNavigation)).not.toBeNull();
+			expect(getBridgeState("palace", afterNavigation)).toBeNull();
 		});
 		it("Ignores the navigation schedule when specified", () => {
 			// bridge name is not relevant here
-			expect(getBridgeStateByDate("palace", beforeNavigation, true)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", startingNavigation, true)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", duringNavigation, true)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", endingNavigation, true)).not.toBeNull();
-			expect(getBridgeStateByDate("palace", afterNavigation, true)).not.toBeNull();
+			expect(getBridgeState("palace", beforeNavigation, true)).not.toBeNull();
+			expect(getBridgeState("palace", startingNavigation, true)).not.toBeNull();
+			expect(getBridgeState("palace", duringNavigation, true)).not.toBeNull();
+			expect(getBridgeState("palace", endingNavigation, true)).not.toBeNull();
+			expect(getBridgeState("palace", afterNavigation, true)).not.toBeNull();
 		});
 	});
 	describe("Bridge schedule state", () => {
-		for (const bridgeName of BRIDGE_NAME_SET) {
+		for (const bridgeName of SUPPORTED_BRIDGES_NAME_SET) {
 			it(`Getting the schedule of ${bridgeName}`, () => {
 				const fixtures = generateBridgeScheduleFixtures(bridgeName);
 
 				for (const { open, date, timestamp } of fixtures) {
-					expect(getBridgeStateByDate(bridgeName, date, true)).toEqual({
+					expect(getBridgeState(bridgeName, date, true)).toEqual({
 						name: bridgeName,
 						open,
 						timestamp

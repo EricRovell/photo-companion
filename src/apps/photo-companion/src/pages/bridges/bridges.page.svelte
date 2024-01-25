@@ -1,8 +1,5 @@
 <script lang="ts">
-	import {
-		BRIDGE_NAME_SET,
-		isBridgeException
-	} from "@services/bridges";
+	import {SUPPORTED_BRIDGES_NAME_SET, isBridgeException } from "bridge-schedule";
 	import { CardBridge, Icon, Button } from "@lib/components";
 	import NextBridgeEvent from "./next-bridge-event.svelte";
 	import NavigationEvent from "./navigation-event.svelte";
@@ -17,7 +14,7 @@
 			{dict["bridge-schedule-spb"]}
 		</h2>
 		<ul>
-			{#each BRIDGE_NAME_SET as name}
+			{#each SUPPORTED_BRIDGES_NAME_SET as name}
 				<li>
 					<CardBridge
 						{name}

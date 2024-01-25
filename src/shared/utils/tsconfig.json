@@ -9,5 +9,5 @@
 	},
 	"include": [
 		"./src/*.ts"
-, "src/data/bridges-spb.ts", "src/data/lights-moscow.ts", "src/data/lights-saint-petersburg.ts"	]
+	]
 }

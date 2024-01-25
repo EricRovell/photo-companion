@@ -1,22 +1,8 @@
-import { scheduleBridgesSPb as schedule, type BridgeName, type BridgeShedule } from "@shared/schedule";
-import { incrementDateByDay } from "@lib/helpers";
-import { countDays } from "@lib/helpers";
-import type { BridgeState } from "@shared/types";
-
-export const BRIDGE_NAME_SET = new Set<BridgeName>([
-	"alexander-nevsky",
-	"annunciation",
-	"exchange",
-	"bolsheokhtinsky",
-	"volodarsky",
-	"palace",
-	"liteyny",
-	"trinity",
-	"tuchkov",
-	"sampsonievsky",
-	"grenadersky",
-	"kantemirovsky"
-]);
+import { schedule } from "./schedule";
+import { countDays, incrementDateByDay } from "@shared/utils";
+import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
+import { getTimestampFromTime } from "./utils";
+import type { BridgeState, BridgeName, BridgeSheduleEntry } from "./types";
 
 export function isBridgeException(name: BridgeName): boolean {
 	return schedule.exception.includes(name);
@@ -58,19 +44,8 @@ export function isNavigationTime(date: Date): boolean {
 	return now >= start.getTime() && now <= end.getTime();
 }
 
-export function getTimestampFromTime(date: Date, hours: number, minutes: number): number {
-	return new Date(
-		date.getFullYear(),
-		date.getMonth(),
-		date.getDate(),
-		hours,
-		minutes,
-		0,
-		0
-	).getTime();
-}
-
-export function getBridgeStateByDate(name: BridgeName, date: Date, ignoreNavigationSchedule = false): BridgeState | null {
+export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule?: true): BridgeState;
+export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule = false): BridgeState | null {
 	if (!ignoreNavigationSchedule && !isNavigationTime(date)) {
 		return null;
 	}
@@ -154,10 +129,10 @@ export function getBridgeStateByDate(name: BridgeName, date: Date, ignoreNavigat
 export function getNextBridgeEvent(date = new Date()): BridgeState {
 	let nextEventState: BridgeState;
 
-	for (const name of BRIDGE_NAME_SET) {
-		const state = getBridgeStateByDate(name, date, true);
+	for (const name of SUPPORTED_BRIDGES_NAME_SET) {
+		const state = getBridgeState(name, date, true);
 
-		if (!nextEventState! || state!.timestamp < nextEventState.timestamp) {
+		if (!nextEventState! || state.timestamp < nextEventState.timestamp) {
 			nextEventState = state!;
 		}
 	}
@@ -165,6 +140,6 @@ export function getNextBridgeEvent(date = new Date()): BridgeState {
 	return nextEventState!;
 }
 
-export function getBridgeSchedule(name: BridgeName): BridgeShedule {
+export function getBridgeScheduleEntry(name: BridgeName): BridgeSheduleEntry {
 	return schedule["bridges"][name];
 }

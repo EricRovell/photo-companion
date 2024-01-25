@@ -1,6 +1,7 @@
 import { Bulb } from "@lib/components";
 import { dict } from "@lib/dict";
-import type { LightsEvent, EventComponent } from "@lib/types";
+import type { EventComponent } from "@lib/types";
+import type { LightsEvent } from "@shared/types";
 
 export function lightsEventComponent(event: LightsEvent): EventComponent<{ glow: boolean }> {
 	return {
@@ -8,7 +9,7 @@ export function lightsEventComponent(event: LightsEvent): EventComponent<{ glow:
 		props: {
 			glow: event.name === "lights:start"
 		},
-		message: dict["saint-petersburg"],
+		message: dict[event.data.city],
 		title: dict[event.name],
 		type: "lights"
 	};

@@ -19,7 +19,7 @@
 
 	$: sections = [
 		{ label: "timeline", href: routeTimeline, icon: iconTimeline, root: true },
-		{ label: "lights", href: routeLights, icon: iconLights, hidden: $settingsStore["lights-city"] === "off" },
+		{ label: "lights", href: routeLights, icon: iconLights, hidden: !$settingsStore["lights-city"] },
 		{ label: "sun", href: routeSun, icon: iconSun },
 		{ label: "moon", href: routeMoon, icon: iconMoon },
 		{ label: "bridges", href: routeBridges, icon: iconBridge }

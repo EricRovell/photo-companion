@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Datetime, TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
 	import { getTimeline } from "@services/events";
-	import { incrementDateByDay } from "@lib/helpers";
+	import { incrementDateByDay } from "@shared/utils";
 
 	interface Timeline {
 		date: Date;

@@ -53,12 +53,18 @@ importers:
 
   src/apps/photo-companion:
     dependencies:
-      '@shared/schedule':
-        specifier: workspace:*
-        version: link:../../shared/schedule
       '@shared/types':
         specifier: workspace:*
         version: link:../../shared/types
+      '@shared/utils':
+        specifier: workspace:*
+        version: link:../../shared/utils
+      bridge-schedule:
+        specifier: workspace:*
+        version: link:../../packages/bridge-schedule
+      lights-schedule:
+        specifier: workspace:*
+        version: link:../../packages/lights-schedule
       moon-sun-calc:
         specifier: workspace:*
         version: link:../../packages/moon-sun-calc
@@ -94,6 +100,24 @@ importers:
         specifier: ^5.0.11
         version: 5.0.11(@types/node@20.11.0)
 
+  src/packages/bridge-schedule:
+    devDependencies:
+      '@shared/types':
+        specifier: workspace:*
+        version: link:../../shared/types
+      '@shared/utils':
+        specifier: workspace:*
+        version: link:../../shared/utils
+
+  src/packages/lights-schedule:
+    devDependencies:
+      '@shared/types':
+        specifier: workspace:*
+        version: link:../../shared/types
+      '@shared/utils':
+        specifier: workspace:*
+        version: link:../../shared/utils
+
   src/packages/moon-sun-calc:
     dependencies:
       esbuild:
@@ -104,9 +128,9 @@ importers:
         specifier: workspace:*
         version: link:../../shared/types
 
-  src/shared/schedule: {}
-
   src/shared/types: {}
+
+  src/shared/utils: {}
 
 packages:
 

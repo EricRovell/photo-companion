@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { calcEventDuration } from "@lib/helpers";
+import { calcDuration } from "../src/date";
 
 describe("Calculate the event duration for a given day", () => {
 	const testFn = (...a: number[]) => (...b: number[]) => (c: number) => {
 		const start = a.length ? new Date(2023, 10, 24, ...a) : null;
 		const end = b.length ? new Date(2023, 10, 24, ...b) : null;
-		expect(calcEventDuration(start, end)).toBe(c);
+		expect(calcDuration(start, end)).toBe(c);
 	};
 
 	describe("Some event time is not specified", () => {

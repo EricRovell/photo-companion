@@ -7,10 +7,8 @@
 	"license": "MIT",
 	"homepage": "https://github.com/EricRovell/photo-companion#readme",
 	"scripts": {
-		"build:app": "pnpm --filter ./src/apps/photo-companion run build",
-		"build:package": "pnpm --filter moon-sun-calc run build",
-		"build": "pnpm build:package && pnpm:build:app",
-		"dev:app": "pnpm --filter photo-companion run dev",
+		"build": "pnpm --filter ./src/apps/photo-companion run build",
+		"dev": "pnpm --filter photo-companion run dev",
 		"test:unit": "vitest run",
 		"test:unit:ci": "vitest run --coverage",
 		"lint:all": "pnpm lint:code && pnpm lint:styles && pnpm lint:svelte",

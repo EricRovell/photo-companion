@@ -1,7 +1,7 @@
-import type { NavigationSchedule } from "../types";
+import type { NavigationSchedule } from "./types";
 
 export const schedule: NavigationSchedule = {
-	"year": 2023,
+	"year": 2024,
 	"navigation": [ 4, 10, 11, 30 ],
 	"exception": [
 		"sampsonievsky",

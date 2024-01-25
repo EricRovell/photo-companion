@@ -1,0 +1,21 @@
+{
+	"name": "bridge-schedule",
+	"version": "0.1.0",
+	"description": "Saint-Petersburg regular bridge schedule data provider.",
+	"keywords": [
+		"bridge",
+		"saint-petersburg",
+		"schedule"
+	],
+	"main": "./src/index.ts",
+	"scripts": {},
+	"type": "module",
+	"devDependencies": {
+		"@shared/types": "workspace:*",
+		"@shared/utils": "workspace:*"
+	},
+	"files": [
+		"CHANGELOG.md",
+		"dist"
+	]
+}

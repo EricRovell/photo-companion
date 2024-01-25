@@ -44,6 +44,12 @@
 	],
 	"rules": {
 		"no-self-assign": "off",
+		"no-console": [ "error", {
+			"allow": [
+				"warn",
+				"error"
+			]
+		}],
 		"svelte/no-at-html-tags": "off",
 		"@typescript-eslint/no-unsafe-assignment": "off",
 		"@typescript-eslint/no-unsafe-call": "off",
@@ -65,6 +71,8 @@
 		"indent": [ "error", "tab", { "SwitchCase": 1 } ],
 		"linebreak-style": 0,
 		"quotes": [ "error","double" ],
-		"semi": [ "error", "always" ]
+		"semi": [ "error", "always" ],
+		"no-var": "error",
+		"curly": "error"
 	}
 }

@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-workflow:
-    uses: ./.github/workflows/build-apps.yaml
+    uses: ./.github/workflows/build.yaml
 
   deploy-to-vercel:
     needs: build-workflow

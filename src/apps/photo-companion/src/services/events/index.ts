@@ -1,8 +1,9 @@
-import { getLightsEvents } from "../lights";
+import { provider as lightsProvider } from "../lights";
 import { getSunEvents } from "../sun";
 import { getMoonEvents } from "../moon";
 import { isValidDate } from "@lib/helpers";
-import type { TimelineEvent, MoonEvent, LightsEvent, SunEvent } from "@lib/types";
+import type { MoonEvent, SunEvent } from "@lib/types";
+import type { LightsEvent, TimelineEvent } from "@shared/types";
 
 interface Options {
 	predicate: (event: TimelineEvent) => boolean;
@@ -31,7 +32,7 @@ export function getTimeline(date = new Date(), lat: number, lon: number, options
 	} = options;
 
 	let events: TimelineEvent[] = [
-		...getLightsEvents(date),
+		...(lightsProvider?.getEventsByDate(date) ?? []),
 		...getSunEvents(date, lat, lon),
 		...getMoonEvents(date, lat, lon)
 	];

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getNextBridgeEvent } from "@services/bridges";
+	import { getNextBridgeEvent } from "bridge-schedule";
 	import { Timer } from "@lib/components";
 	import { dict } from "@lib/dict";
 	import styles from "./bridges.module.css";
