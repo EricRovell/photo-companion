@@ -1,21 +1,29 @@
 {
-	"name": "bridge-schedule",
-	"version": "0.1.0",
+	"author": "Eric Rovell",
 	"description": "Saint-Petersburg regular bridge schedule data provider.",
+	"devDependencies": {
+		"@shared/types": "workspace:*",
+		"@shared/utils": "workspace:*"
+	},
+	"exports": {
+		".": {
+			"import": {
+				"default": "./src/index.ts"
+			}
+		}
+	},
 	"keywords": [
 		"bridge",
 		"saint-petersburg",
 		"schedule"
 	],
-	"main": "./src/index.ts",
-	"scripts": {},
-	"type": "module",
-	"devDependencies": {
-		"@shared/types": "workspace:*",
-		"@shared/utils": "workspace:*"
+	"name": "bridge-schedule",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
+		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
+		"bundle:types": "node ./scripts/bundle-dts.js"
 	},
-	"files": [
-		"CHANGELOG.md",
-		"dist"
-	]
+	"type": "module"
 }

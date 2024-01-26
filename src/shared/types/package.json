@@ -1,14 +1,23 @@
 {
-	"name": "@shared/types",
-	"private": true,
+	"author": "Eric Rovell",
 	"description": "Project common types",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+	"exports": {
+		".": {
+			"import": {
+				"default": "./index.ts"
+			}
+		}
 	},
 	"keywords": [
 		"types"
 	],
-	"author": "Eric Rovell",
-	"license": "MIT"
+	"name": "@shared/types",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
+		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
+		"bundle:types": "node ./scripts/bundle-dts.js"
+	},
+	"type": "module"
 }

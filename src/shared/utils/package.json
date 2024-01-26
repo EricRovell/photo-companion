@@ -1,12 +1,18 @@
 {
-	"name": "@shared/utils",
-	"type": "module",
-	"private": true,
+	"author": "Eric Rovell",
 	"description": "Project data",
-	"main": "./src/index.ts",
+	"exports": {
+		".": {
+			"import": {
+				"default": "./src/index.ts"
+			}
+		}
+	},
+	"name": "@shared/utils",
+	"license": "MIT",
+	"private": true,
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "Eric Rovell",
-	"license": "MIT"
+	"type": "module"
 }
