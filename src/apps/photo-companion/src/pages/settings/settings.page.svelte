@@ -37,11 +37,11 @@
 
 		switch (name) {
 			case "latitude": {
-				settings.lat = Number(value);
+				settings.latitude = Number(value);
 				break;
 			}
 			case "longitude": {
-				settings.lon = Number(value);
+				settings.longitude = Number(value);
 				break;
 			}
 			case "lights-city": {
@@ -65,7 +65,7 @@
 				name="latitude"
 				step="{0.000001}"
 				inputmode="numeric"
-				value="{settings.lat}"
+				value="{settings.latitude}"
 			>
 				{dict["latitude"]}
 			</InputNumber>
@@ -75,14 +75,14 @@
 				name="longitude"
 				step="{0.000001}"
 				inputmode="numeric"
-				value="{settings.lon}"
+				value="{settings.longitude}"
 			>
 				{dict["longitude"]}
 			</InputNumber>
 			<GeolocationButton
-				handleLocation={(lat, lon) => {
-					settings.lat = lat;
-					settings.lon = lon;
+				handleLocation={(latitude, longitude) => {
+					settings.latitude = latitude;
+					settings.longitude = longitude;
 				}}
 			/>
 		</Fieldset>

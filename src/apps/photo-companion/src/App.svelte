@@ -5,10 +5,10 @@
 
 	prefs.scroll = true;
 
-	const { lat, lon } = settingsStore.init();
+	const { latitude, longitude } = settingsStore.init();
 
-	$query.lat = lat;
-	$query.lon = lon;
+	$query.lat = latitude;
+	$query.lon = longitude;
 </script>
 
 <svelte:window on:click="{click}" />

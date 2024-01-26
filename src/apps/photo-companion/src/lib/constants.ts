@@ -18,7 +18,7 @@ export const lightsCityList: LightsCity[] = [
 export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 
 export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
-	"lat": LAT,
+	"latitude": LAT,
 	"lights-city": "saint-petersburg",
-	"lon": LON
+	"longitude": LON
 });

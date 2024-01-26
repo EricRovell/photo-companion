@@ -66,7 +66,7 @@ export interface EventComponent<Props> {
 }
 
 export interface SettingsStore {
-	"lat": number;
+	"latitude": number;
 	"lights-city"?: Nullable<LightsCity>;
-	"lon": number;
+	"longitude": number;
 }
