@@ -13,6 +13,7 @@ export { default as InputNumber } from "./input-number/input-number.svelte";
 export { default as InputText } from "./input-text/input-text.svelte";
 export { default as InputDatetime } from "./input-date/input-datetime.svelte";
 export { default as InputRadio } from "./input-radio/input-radio.svelte";
+export { default as InputSelect } from "./input-select/input-select.svelte";
 export { default as Link } from "./link/Link.svelte";
 export { default as Moon } from "./moon/moon.svelte";
 export { default as Sun } from "./sun/sun.svelte";
@@ -20,3 +21,4 @@ export { TimelineGroup, Timeline } from "./timeline";
 export { default as Timer } from "./timer/timer.svelte";
 
 export type { Option } from "./input-radio/input-radio.svelte";
+export type { InputSelectOption } from "./input-select/input-select.svelte";

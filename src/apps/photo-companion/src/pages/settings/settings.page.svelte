@@ -1,16 +1,9 @@
 <script lang="ts">
-	import {
-		Button,
-		Form,
-		Fieldset,
-		InputNumber,
-		InputRadio,
-		type Option
-	} from "@lib/components";
+	import { Button, Form, Fieldset, InputNumber, InputRadio, InputSelect } from "@lib/components";
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/settings-store";
 	import { dict } from "@lib/dict";
-	import { lightsCityList } from "@lib/constants";
+	import { LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS } from "./settings.const";
 
 	import styles from "./settings.module.css";
 	import type { LightsCity } from "@shared/types";
@@ -25,11 +18,6 @@
 		settingsStore.reset();
 		settings = settingsStore.get();
 	};
-
-	const LIGHTS_CITY_OPTIONS: Option[] = [
-		{ label: dict["off"], value: "" },
-		...lightsCityList.map(item => ({ label: dict[item], value: item }))
-	];
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;
@@ -50,6 +38,11 @@
 				} else {
 					settings["lights-city"] = null;
 				}
+
+				break;
+			}
+			case "starting-page": {
+				settings["starting-page"] = value;
 			}
 		}
 	};
@@ -58,6 +51,21 @@
 <div class="{styles.page}">
 	<h2>{dict["settings"]}</h2>
 	<Form on:submit="{handlePersist}" on:change={handleChange}>
+		<Fieldset legend="{dict["preferences"]}">
+			<InputSelect
+				name="starting-page"
+				options="{STARTING_PAGE_OPTIONS.map(item => {
+					if (!settings["lights-city"] && item.value === "/lights") {
+						return { ...item, disabled: true };
+					}
+
+					return item;
+				})}"
+				value="{settings["starting-page"]}"
+			>
+				{dict["starting-page"]}
+			</InputSelect>
+		</Fieldset>
 		<Fieldset legend="{dict["geoposition"]}">
 			<InputNumber
 				min={-90}

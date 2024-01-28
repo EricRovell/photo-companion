@@ -1,14 +1,19 @@
 <script lang="ts">
-	import { click, query, prefs }from "svelte-pathfinder";
+	import { click, query, path, prefs }from "svelte-pathfinder";
 	import { App, ServiceWorker } from "@lib/layout";
 	import { settingsStore } from "@lib/settings-store";
 
 	prefs.scroll = true;
 
-	const { latitude, longitude } = settingsStore.init();
+	const store = settingsStore.init();
 
-	$query.lat = latitude;
-	$query.lon = longitude;
+	// TODO use redirect
+	if (!$path[0]) {
+		$path[0] = store["starting-page"];
+	}
+
+	$query.lat = store.latitude;
+	$query.lon = store.longitude;
 </script>
 
 <svelte:window on:click="{click}" />

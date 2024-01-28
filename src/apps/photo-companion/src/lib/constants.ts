@@ -20,5 +20,6 @@ export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
 	"latitude": LAT,
 	"lights-city": "saint-petersburg",
-	"longitude": LON
+	"longitude": LON,
+	"starting-page": "/timeline"
 });

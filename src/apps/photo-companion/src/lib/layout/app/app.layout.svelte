@@ -5,6 +5,7 @@
 	import { version } from "@lib/constants";
 	import { iconGithub, iconQuestion, iconSettings } from "@lib/icons";
 	import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
+	import { settingsStore } from "@lib/settings-store";
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
 	import styles from "./app.layout.module.css";
@@ -12,7 +13,7 @@
 
 <header class="{styles.header}">
 	<div class="{styles.content}">
-		<Link href="/{$query}">
+		<Link href="{$settingsStore["starting-page"]}{$query}">
 			<h1>{title}</h1>
 		</Link>
 		<nav>

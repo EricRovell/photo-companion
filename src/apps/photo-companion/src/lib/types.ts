@@ -69,4 +69,5 @@ export interface SettingsStore {
 	"latitude": number;
 	"lights-city"?: Nullable<LightsCity>;
 	"longitude": number;
+	"starting-page": string;
 }

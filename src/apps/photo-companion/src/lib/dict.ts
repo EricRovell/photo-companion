@@ -5,6 +5,8 @@ export const dict = {
 	"moon": "Луна",
 	"about": "Справка",
 	"settings": "Настройки",
+	"preferences": "Предпочтения",
+	"starting-page": "Стартовая страница",
 	"latitude": "Широта",
 	"longitude": "Долгота",
 	"geoposition": "Геолокация",
