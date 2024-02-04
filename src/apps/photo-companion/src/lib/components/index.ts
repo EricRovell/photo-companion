@@ -2,6 +2,7 @@ export { default as Bulb } from "./bulb/bulb.svelte";
 export { default as Button } from "./button/button.svelte";
 export { default as CardBridge } from "./card-bridge/card-bridge.svelte";
 export { default as Datetime } from "./datetime/datetime.svelte";
+export { default as Details } from "./details/details.svelte";
 export { default as Event } from "./event/event.svelte";
 export { default as EventEmpty } from "./event/event.empty.svelte";
 export { default as Form } from "./form/form.svelte";
