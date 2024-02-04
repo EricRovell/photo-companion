@@ -9,7 +9,7 @@ export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunE
 	switch (event.name) {
 		case "sunrise:start":
 		case "sunset:end":
-			message= `${event.data.azimuth}°, ${dict[`${event.name}:info`]}`;
+			message= `${event.data.azimuth}°, ${dict[`${event.name}:title`]}`;
 			break;
 		case "blue-hour:dawn:start":
 		case "blue-hour:dawn:end":
@@ -18,7 +18,7 @@ export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunE
 		case "blue-hour:dusk:end":
 			break;
 		default:
-			message = dict[`${event.name}:info`];
+			message = dict[`${event.name}:title`];
 	}
 
 	return {
