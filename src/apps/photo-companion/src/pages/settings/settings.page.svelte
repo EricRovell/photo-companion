@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { Button, Form, Fieldset, InputNumber, InputRadio, InputSelect } from "@lib/components";
+	import { Button, Form, Fieldset, InputNumber, InputCheckboxGroup, InputRadio, InputSelect } from "@lib/components";
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/settings-store";
 	import { dict } from "@lib/dict";
 	import { LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS } from "./settings.const";
+	import { SUN_EVENT_NAMES, MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES } from "@lib/constants";
+	import type { LightsCity } from "@shared/types";
 
 	import styles from "./settings.module.css";
-	import type { LightsCity } from "@shared/types";
 
 	let settings = settingsStore.get();
 
@@ -16,7 +17,7 @@
 
 	const handleReset = () => {
 		settingsStore.reset();
-		settings = settingsStore.get();
+		settings = { ...settingsStore.get() };
 	};
 
 	const handleChange = (event: Event) => {
@@ -37,6 +38,7 @@
 					settings["lights-city"] = value as LightsCity;
 				} else {
 					settings["lights-city"] = null;
+					settings["events-lights"] = null;
 				}
 
 				break;
@@ -94,11 +96,35 @@
 				}}
 			/>
 		</Fieldset>
-		<Fieldset legend="Городское освещение">
+		<Fieldset legend="{dict["city-lights"]}">
 			<InputRadio
 				name="lights-city"
 				options={LIGHTS_CITY_OPTIONS}
 				value="{settings["lights-city"] ?? ""}"
+			/>
+		</Fieldset>
+		<Fieldset legend="{dict["event-blacklist"]}">
+			<InputCheckboxGroup
+				bind:value="{settings["events-lights"]}"
+				disabled="{!settings["lights-city"]}"
+				name="timeline-events-map"
+				groupLabel="{dict["lights"]}"
+				groupValue="lights"
+				options="{LIGHTS_EVENT_NAMES}"
+			/>
+			<InputCheckboxGroup
+				bind:value="{settings["events-sun"]}"
+				name="timeline-events-map"
+				groupLabel="{dict["sun"]}"
+				groupValue="sun"
+				options="{SUN_EVENT_NAMES}"
+			/>
+			<InputCheckboxGroup
+				bind:value="{settings["events-moon"]}"
+				name="timeline-events-map"
+				groupLabel="{dict["moon"]}"
+				groupValue="moon"
+				options="{MOON_EVENT_NAMES}"
 			/>
 		</Fieldset>
 		<Fieldset className="{styles.submit}">

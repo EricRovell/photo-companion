@@ -115,7 +115,9 @@ export const dict = {
 	"navigation-closed": "Навигация закрыта",
 	"till-navigation": "До начала навигации",
 	"closest-event": "Ближайшее событие",
-	"off": "Отключить"
+	"off": "Отключить",
+	"city-lights": "Городское освещение",
+	"event-blacklist": "Чёрный список событий"
 };
 
 export const template = {

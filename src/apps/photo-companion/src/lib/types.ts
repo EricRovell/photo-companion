@@ -1,5 +1,11 @@
-import type { LightsCity, SunEventName } from "@shared/types";
+import type { LightsCity, SunEventName, MoonEventName, LightsEventName } from "@shared/types";
 import type { ComponentType } from "svelte";
+
+export type EventGroupName =
+	// TODO: add bridge events | "bridges"
+	| "lights"
+	| "moon"
+	| "sun";
 
 export type MoonPhaseName =
 	| "new-moon"
@@ -10,14 +16,6 @@ export type MoonPhaseName =
 	| "waning-gibbous"
 	| "third-quarter"
 	| "waning-crescent";
-
-export type MoonEventName =
-	| "moonrise"
-	| "moonset";
-
-export type LightsEventName =
-	| "lights:start"
-	| "lights:end";
 
 export interface ScheduleDataItem {
 	lights: boolean;
@@ -65,7 +63,20 @@ export interface EventComponent<Props> {
 	type: "lights" | "moon" | "sun";
 }
 
+/**
+ * Events:
+ * 
+ * `key` is an event group name.
+ * 
+ *  `value` is:
+ *  1. Empty array — all events are allowed for this group;
+ *  2. `null` — all events are forbidden for this group;
+ *  3. Non-empty array — the forbidden events are listed.
+ */
 export interface SettingsStore {
+	"events-lights": LightsEventName[] | null;
+	"events-moon": LightsEventName[] | null;
+	"events-sun": LightsEventName[] | null;
 	"latitude": number;
 	"lights-city"?: Nullable<LightsCity>;
 	"longitude": number;
