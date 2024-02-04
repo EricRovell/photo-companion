@@ -10,6 +10,7 @@ export { default as Gauge } from "./gauge/gauge.svelte";
 export { default as GaugeTime } from "./gauge/gauge-time.svelte";
 export { default as Icon } from "./icon/icon.svelte";
 export { default as InputNumber } from "./input-number/input-number.svelte";
+export { default as InputCheckbox } from "./input-checkbox/input-checkbox.svelte";
 export { default as InputText } from "./input-text/input-text.svelte";
 export { default as InputDatetime } from "./input-date/input-datetime.svelte";
 export { default as InputRadio } from "./input-radio/input-radio.svelte";
