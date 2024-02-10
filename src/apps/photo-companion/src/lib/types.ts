@@ -75,8 +75,8 @@ export interface EventComponent<Props> {
  */
 export interface SettingsStore {
 	"events-lights": LightsEventName[] | null;
-	"events-moon": LightsEventName[] | null;
-	"events-sun": LightsEventName[] | null;
+	"events-moon": MoonEventName[] | null;
+	"events-sun": SunEventName[] | null;
 	"latitude": number;
 	"lights-city"?: Nullable<LightsCity>;
 	"longitude": number;

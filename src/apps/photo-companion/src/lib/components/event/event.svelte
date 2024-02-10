@@ -5,7 +5,7 @@
 	import { lightsEventComponent } from "./event.lights";
 	import { sunEventComponent } from "./event.sun";
 	import { moonEventComponent } from "./event.moon";
-	import { isLightsEvent, isMoonEvent } from "@services/events";
+	import { isLightsEvent, isMoonEvent } from "@lib/helpers/validators";
 	import { createQueryDate } from "@lib/helpers";
 	import type { TimelineEvent } from "@shared/types";
 	import styles from "./event.module.css";

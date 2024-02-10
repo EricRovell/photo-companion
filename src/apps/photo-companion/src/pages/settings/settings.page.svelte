@@ -53,7 +53,7 @@
 <div class="{styles.page}">
 	<h2>{dict["settings"]}</h2>
 	<Form on:submit="{handlePersist}" on:change={handleChange}>
-		<Fieldset legend="{dict["preferences"]}">
+		<Fieldset legend="{dict["preferences"]}" id="starting-page">
 			<InputSelect
 				name="starting-page"
 				options="{STARTING_PAGE_OPTIONS.map(item => {
@@ -68,7 +68,7 @@
 				{dict["starting-page"]}
 			</InputSelect>
 		</Fieldset>
-		<Fieldset legend="{dict["geoposition"]}">
+		<Fieldset legend="{dict["geoposition"]}" id="geoposition">
 			<InputNumber
 				min={-90}
 				max={90}
@@ -96,14 +96,14 @@
 				}}
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict["city-lights"]}">
+		<Fieldset legend="{dict["city-lights"]}" id="city-lights">
 			<InputRadio
 				name="lights-city"
 				options={LIGHTS_CITY_OPTIONS}
 				value="{settings["lights-city"] ?? ""}"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict["event-blacklist"]}">
+		<Fieldset legend="{dict["event-blacklist"]}" id="event-blacklist">
 			<InputCheckboxGroup
 				bind:value="{settings["events-lights"]}"
 				disabled="{!settings["lights-city"]}"

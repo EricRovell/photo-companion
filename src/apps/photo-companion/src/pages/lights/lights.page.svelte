@@ -1,29 +1,24 @@
 <script lang="ts">
 	import { Bulb, Event, GaugeTime, Timeline, Timer } from "@lib/components";
 	import { provider } from "@services/lights";
-	import { getTimeline } from "@services/events";
-	import { LAT, LON } from "@lib/constants";
+	import { initTimelineProvider } from "@services/events";
 	import { dict, template } from "@lib/dict";
+	import { settingsStore as store } from "@lib/settings-store";
 	import { secondsToHoursAndMinutes } from "@shared/utils";
-	import type { EventName } from "@lib/types";
 	import styles from "./lights.module.css";
+	import { SUN_EVENT_NAMES } from "@lib/constants";
 
 	export let date: Date;
 
-	const timelineEvents: Set<EventName> = new Set([
-		"lights:start",
-		"lights:end",
-		"sunrise:start",
-		"sunset:end"
-	]);
-
-	const timelineEventsSecondary: Set<EventName> = new Set([
-		"sunrise:start",
-		"sunset:end"
-	]);
+	const timelineProvider = initTimelineProvider({
+		lightsEvents: [],
+		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "sunrise:start" && item !== "sunset:end"),
+		secondaryEvents: new Set([ "sunrise:start", "sunset:end" ])
+	});
 
 	let schedule = provider?.getScheduleByDate(date);
 	let state = provider?.getStateByDate();
+	let events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 
 	const handleAlarm = () => {
 		state = provider?.getStateByDate();
@@ -53,12 +48,11 @@
 		</section>
 		<section data-label="timeline">
 			<Timeline>
-				{#each getTimeline(date, LAT, LON, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
-					{@const secondary = timelineEventsSecondary.has(event.name)}
+				{#each events as event (`${event.timestamp}/${event.name}`)}
 					<Event
-						page="{secondary ? "lights" : undefined}"
+						page="{event.secondary ? "lights" : undefined}"
 						{event}
-						{secondary}
+						secondary={event.secondary}
 					/>
 				{/each}
 			</Timeline>

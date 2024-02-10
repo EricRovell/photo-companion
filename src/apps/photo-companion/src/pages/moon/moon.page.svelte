@@ -2,22 +2,27 @@
 	import { query } from "svelte-pathfinder";
 	import { GaugeTime, Moon, Datetime, Timeline, Event, Link } from "@lib/components";
 	import { getMoonData } from "@services/moon";
-	import { getTimeline } from "@services/events";
+	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";
+	import { settingsStore as store } from "@lib/settings-store";
 	import styles from "./moon.module.css";
 	import { createQueryDate, round } from "@lib/helpers";
+	import { SUN_EVENT_NAMES } from "@lib/constants";
 
 	export let date: Date;
-	export let lat: number;
-	export let lon: number;
+
+	const timelineProvider = initTimelineProvider({
+		moonEvents: [],
+		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "sunrise:start" && item !== "sunset:end"),
+		secondaryEvents: new Set([ "sunrise:start", "sunset:end" ])
+	});
 
 	const moonSize = 48;
-	const timelineEvents = new Set([ "sunrise:start", "sunset:end", "moonrise", "moonset" ]);
-	const timelineEventsSecondary = new Set([ "sunrise:start", "sunset:end" ]);
 
-	let state = getMoonData(date, lat, lon);
+	let state = getMoonData(date, $store.latitude, $store.longitude);
+	let events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 
-	$: state = getMoonData(date, lat, lon);
+	//$: state = getMoonData(date, $store.latitude, $store.longitude);
 </script>
 
 <div class="{styles.page}">
@@ -50,12 +55,11 @@
 	</section>
 	<section data-label="timeline">
 		<Timeline>
-			{#each getTimeline(date, lat, lon, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
-				{@const secondary = timelineEventsSecondary.has(event.name)}
+			{#each events as event (`${event.timestamp}/${event.name}`)}
 				<Event
-					page="{secondary ? "moon" : undefined}"
+					page="{event.secondary ? "moon" : undefined}"
 					{event}
-					{secondary}
+					secondary={event.secondary}
 				/>
 			{/each}
 		</Timeline>

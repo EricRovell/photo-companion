@@ -122,9 +122,10 @@ export interface ScheduleDataItem {
 }
 
 export interface Event<Name extends string, Data = Partial<Record<string, never>>> {
-	name: Name;
-	timestamp: number;
 	data: Data;
+	name: Name;
+	secondary?: boolean;
+	timestamp: number;
 }
 
 export type LightsEvent = Event<LightsEventName, { city: LightsCity }>;
