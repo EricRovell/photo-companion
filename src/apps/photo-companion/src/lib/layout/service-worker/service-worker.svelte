@@ -58,15 +58,15 @@
 <dialog bind:this="{dialog}" class="{styles.dialog}">
 	<aside>
 		<header>
-			<h2>{dict["update"]}</h2>
+			<h2>{dict.TITLE.UPDATE}</h2>
 			<Button on:click="{handleClose}" title="Close">
 				<Icon path="{iconClose}" />
 			</Button>
 		</header>
 		<div>
-			<p>{dict["update-message"]}</p>
+			<p>{dict.MESSAGE.UPDATE}</p>
 			<Button on:click="{handleReload}">
-				{dict["reload"]}
+				{dict.LABEL.RELOAD}
 			</Button>
 		</div>
 	</aside>

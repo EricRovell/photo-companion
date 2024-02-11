@@ -7,10 +7,10 @@ export function lightsEventComponent(event: LightsEvent): EventComponent<{ glow:
 	return {
 		component: Bulb,
 		props: {
-			glow: event.name === "lights:start"
+			glow: event.name === "LIGHTS_START"
 		},
-		message: dict[event.data.city],
-		title: dict[event.name],
+		message: dict.CITIES[event.data.city],
+		title: dict.LIGHTS_EVENTS[event.name],
 		type: "lights"
 	};
 }

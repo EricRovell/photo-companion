@@ -14,11 +14,11 @@
 >
 	<header>
 		{navigation
-			? dict["navigation-opened"]
-			: dict["navigation-closed"]
+			? dict.TITLE.NAVIGATION_OPENED
+			: dict.TITLE.NAVIGATION_CLOSED
 		}
 	</header>
-	<p>{dict["till-navigation"]}</p>
+	<p>{dict.MESSAGE.NAVIGATION_IN}</p>
 	<p><output>{days}</output> {template["days"](days)}</p>
 	<Icon path="{iconAnchor}" />
 </article>

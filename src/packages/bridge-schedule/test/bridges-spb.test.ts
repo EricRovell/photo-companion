@@ -100,19 +100,19 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 	describe("Bridge state with navigation time", () => {
 		it("Detects the navigation time", () => {
 			// bridge name is not relevant here
-			expect(getBridgeState("palace", beforeNavigation)).toBeNull();
-			expect(getBridgeState("palace", startingNavigation)).not.toBeNull();
-			expect(getBridgeState("palace", duringNavigation)).not.toBeNull();
-			expect(getBridgeState("palace", endingNavigation)).not.toBeNull();
-			expect(getBridgeState("palace", afterNavigation)).toBeNull();
+			expect(getBridgeState("PALACE", beforeNavigation)).toBeNull();
+			expect(getBridgeState("PALACE", startingNavigation)).not.toBeNull();
+			expect(getBridgeState("PALACE", duringNavigation)).not.toBeNull();
+			expect(getBridgeState("PALACE", endingNavigation)).not.toBeNull();
+			expect(getBridgeState("PALACE", afterNavigation)).toBeNull();
 		});
 		it("Ignores the navigation schedule when specified", () => {
 			// bridge name is not relevant here
-			expect(getBridgeState("palace", beforeNavigation, true)).not.toBeNull();
-			expect(getBridgeState("palace", startingNavigation, true)).not.toBeNull();
-			expect(getBridgeState("palace", duringNavigation, true)).not.toBeNull();
-			expect(getBridgeState("palace", endingNavigation, true)).not.toBeNull();
-			expect(getBridgeState("palace", afterNavigation, true)).not.toBeNull();
+			expect(getBridgeState("PALACE", beforeNavigation, true)).not.toBeNull();
+			expect(getBridgeState("PALACE", startingNavigation, true)).not.toBeNull();
+			expect(getBridgeState("PALACE", duringNavigation, true)).not.toBeNull();
+			expect(getBridgeState("PALACE", endingNavigation, true)).not.toBeNull();
+			expect(getBridgeState("PALACE", afterNavigation, true)).not.toBeNull();
 		});
 	});
 	describe("Bridge schedule state", () => {

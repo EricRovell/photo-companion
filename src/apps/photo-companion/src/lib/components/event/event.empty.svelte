@@ -13,6 +13,6 @@
 		</svg>
 	</div>
 	<article>
-		<p>{dict["no-events"]}</p>
+		<p>{dict.MESSAGE.NO_EVENTS}</p>
 	</article>
 </li>

@@ -1,16 +1,16 @@
 export type BridgeName =
-	| "alexander-nevsky"
-	| "annunciation"
-	| "exchange"
-	| "bolsheokhtinsky"
-	| "volodarsky"
-	| "palace"
-	| "liteyny"
-	| "trinity"
-	| "tuchkov"
-	| "sampsonievsky"
-	| "grenadersky"
-	| "kantemirovsky";
+	| "ALEXANDER_NEVSKY"
+	| "ANNUNCIATION"
+	| "EXCHANGE"
+	| "BOLSHEOKHTINSKY"
+	| "VOLODARSKY"
+	| "PALACE"
+	| "LITEYNY"
+	| "TRINITY"
+	| "TUCHKOV"
+	| "SAMPSONIEVSKY"
+	| "GRENADERSKY"
+	| "KANTEMIROVSKY";
 
 export type BridgeSheduleEntry = Array<[
 	hoursOpen: number,

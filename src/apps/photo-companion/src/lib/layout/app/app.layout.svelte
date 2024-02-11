@@ -9,6 +9,7 @@
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
 	import styles from "./app.layout.module.css";
+	import { dict } from "@lib/dict";
 </script>
 
 <header class="{styles.header}">
@@ -17,10 +18,18 @@
 			<h1>{title}</h1>
 		</Link>
 		<nav>
-			<Link className="{styles.icon}" href="{routeSettings}{$query}" title="Settings">
+			<Link
+				className="{styles.icon}"
+				href="{routeSettings}{$query}"
+				title="{dict.TITLE.SETTINGS}"
+			>
 				<Icon path="{iconSettings}" viewBox="0 0 256 256" />
 			</Link>
-			<Link className="{styles.icon}" href="{routeAbout}{$query}" title="FAQ">
+			<Link
+				className="{styles.icon}"
+				href="{routeAbout}{$query}"
+				title="{dict.TITLE.ABOUT}"
+			>
 				<Icon path="{iconQuestion}" viewBox="0 0 256 256" />
 			</Link>
 		</nav>

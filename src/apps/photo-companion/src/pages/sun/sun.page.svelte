@@ -12,8 +12,8 @@
 		sunEvents: []
 	});
 
-	let state: ReturnType<typeof getSunData> = getSunData(date, $store.latitude, $store.longitude);
-	let events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
+	$: state = getSunData(date, $store.latitude, $store.longitude);
+	$: events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 
 	const sunSize = 30;
 </script>
@@ -21,7 +21,7 @@
 <div class="{styles.page}">
 	<section data-label="sun" class="card">
 		<header>
-			<h2>{dict["header-sun-moontimes"]}</h2>
+			<h2>{dict.TITLE.SUN_TIMES}</h2>
 		</header>
 		<GaugeTime
 			timeFrom="{state.sunrise}"
@@ -35,7 +35,7 @@
 			/>
 		</GaugeTime>
 		<footer>
-			<p>{dict["duration-daylight"]}</p>
+			<p>{dict.LABEL.DURATION_DAYLIGHT}</p>
 			<output>
 				{template["hours-and-minutes"](state.dayDuration)}
 			</output>

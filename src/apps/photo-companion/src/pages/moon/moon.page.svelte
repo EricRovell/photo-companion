@@ -5,30 +5,28 @@
 	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";
 	import { settingsStore as store } from "@lib/settings-store";
-	import styles from "./moon.module.css";
 	import { createQueryDate, round } from "@lib/helpers";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
+	import styles from "./moon.module.css";
 
 	export let date: Date;
 
-	const timelineProvider = initTimelineProvider({
-		moonEvents: [],
-		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "sunrise:start" && item !== "sunset:end"),
-		secondaryEvents: new Set([ "sunrise:start", "sunset:end" ])
-	});
-
 	const moonSize = 48;
 
-	let state = getMoonData(date, $store.latitude, $store.longitude);
-	let events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
+	const timelineProvider = initTimelineProvider({
+		moonEvents: [],
+		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "SUNRISE_START" && item !== "SUNSET_END"),
+		secondaryEvents: new Set([ "SUNRISE_START", "SUNSET_END" ])
+	});
 
-	//$: state = getMoonData(date, $store.latitude, $store.longitude);
+	$: state = getMoonData(date, $store.latitude, $store.longitude);
+	$: events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 </script>
 
 <div class="{styles.page}">
 	<section data-label="moon" class="card {styles.root}">
 		<header>
-			<h2>{dict["header-moon-moontimes"]}</h2>
+			<h2>{dict.TITLE.MOON_TIMES}</h2>
 		</header>
 		<GaugeTime
 			timeFrom="{state.moonrise}"
@@ -49,7 +47,7 @@
 			</foreignObject>
 		</GaugeTime>
 		<footer>
-			<p>{dict[state.name]}</p>
+			<p>{dict.MOON_PHASE[state.name]}</p>
 			<output>{round(state.fraction * 100, 2)}%</output>
 		</footer>
 	</section>
@@ -65,7 +63,7 @@
 		</Timeline>
 	</section>
 	<section data-label="phases-calendar" class="card {styles.phases}">
-		<header>{dict["header-moon-phase-calendar"]}</header>
+		<header>{dict.TITLE.MOON_PHASE_CALENDAR}</header>
 		<div>
 			{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 				<Link

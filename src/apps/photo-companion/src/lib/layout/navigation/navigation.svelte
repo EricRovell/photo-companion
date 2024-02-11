@@ -8,7 +8,7 @@
 	import styles from "./navigation.module.css";
 
 	interface Section {
-		label: "timeline" | "lights" | "sun" | "moon" | "bridges";
+		label: "TIMELINE" | "LIGHTS" | "SUN" | "MOON" | "BRIDGES";
 		hidden?: boolean;
 		href: string;
 		icon: string;
@@ -18,11 +18,11 @@
 	let sections: Section[];
 
 	$: sections = [
-		{ label: "timeline", href: routeTimeline, icon: iconTimeline, root: true },
-		{ label: "lights", href: routeLights, icon: iconLights, hidden: !$settingsStore["lights-city"] },
-		{ label: "sun", href: routeSun, icon: iconSun },
-		{ label: "moon", href: routeMoon, icon: iconMoon },
-		{ label: "bridges", href: routeBridges, icon: iconBridge }
+		{ label: "TIMELINE", href: routeTimeline, icon: iconTimeline, root: true },
+		{ label: "LIGHTS", href: routeLights, icon: iconLights, hidden: !$settingsStore["lights-city"] },
+		{ label: "SUN", href: routeSun, icon: iconSun },
+		{ label: "MOON", href: routeMoon, icon: iconMoon },
+		{ label: "BRIDGES", href: routeBridges, icon: iconBridge }
 	];
 </script>
 
@@ -37,7 +37,7 @@
 						href="{href}{$query}"
 					>
 						<Icon path="{icon}" viewBox="0 0 256 256" />
-						<span>{dict[label]}</span>
+						<span>{dict.TITLE[label]}</span>
 					</Link>
 				</li>
 			{/if}

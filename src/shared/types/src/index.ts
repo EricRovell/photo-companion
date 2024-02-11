@@ -1,76 +1,76 @@
 export type BridgeName =
-	| "alexander-nevsky"
-	| "annunciation"
-	| "exchange"
-	| "bolsheokhtinsky"
-	| "volodarsky"
-	| "palace"
-	| "liteyny"
-	| "trinity"
-	| "tuchkov"
-	| "sampsonievsky"
-	| "grenadersky"
-	| "kantemirovsky";
+	| "ALEXANDER_NEVSKY"
+	| "ANNUNCIATION"
+	| "EXCHANGE"
+	| "BOLSHEOKHTINSKY"
+	| "VOLODARSKY"
+	| "PALACE"
+	| "LITEYNY"
+	| "TRINITY"
+	| "TUCHKOV"
+	| "SAMPSONIEVSKY"
+	| "GRENADERSKY"
+	| "KANTEMIROVSKY";
 
 export type MoonPhaseName =
-	| "new-moon"
-	| "waxing-crescent"
-	| "first-quarter"
-	| "waxing-gibbous"
-	| "full-moon"
-	| "waning-gibbous"
-	| "third-quarter"
-	| "waning-crescent";
+	| "NEW_MOON"
+	| "WAXING_CRESCENT"
+	| "FIRST_QUARTER"
+	| "WAXING_GIBBOUS"
+	| "FULL_MOON"
+	| "WANING_GIBBOUS"
+	| "THIRD_QUARTER"
+	| "WANING_CRESCENT";
 
 export type SunEventName =
 	// Sun is in the highest position)
-	| "solar-noon"
+	| "SOLAR_NOON"
 	// The Darkest moment of the night, sun is in the lowest position
-	| "nadir"
+	| "NADIR"
 	// Soft light, best time for photography
-	| "golden-hour:dawn:start"
+	| "GOLDEN_HOUR_START_DAWN"
 	// Soft light, best time for photography
-	| "golden-hour:dawn:end"
+	| "GOLDEN_HOUR_END_DAWN"
 	// The sun-time for evening golden hour starts
-	| "golden-hour:dusk:start"
+	| "GOLDEN_HOUR_START_DUSK"
 	// The sun-time for evening golden hour starts
-	| "golden-hour:dusk:end"
+	| "GOLDEN_HOUR_END_DUSK"
 	// Top edge of the sun appears on the horizon)
-	| "sunrise:start"
+	| "SUNRISE_START"
 	// Bottom edge of the sun touches the horizon)
-	| "sunrise:end"
+	| "SUNRISE_END"
 	// Bottom edge of the sun touches the horizon)
-	| "sunset:start"
+	| "SUNSET_START"
 	// Sun disappears below the horizon, evening civil twilight starts
-	| "sunset:end"
+	| "SUNSET_END"
 	// Time for special photography photos starts
-	| "blue-hour:dawn:start"
+	| "BLUE_HOUR_START_DAWN"
 	// Time for special photography photos ends
-	| "blue-hour:dawn:end"
+	| "BLUE_HOUR_END_DAWN"
 	// Time for special photography photos starts
-	| "blue-hour:dusk:start"
+	| "BLUE_HOUR_START_DUSK"
 	// Time for special photography photos ends
-	| "blue-hour:dusk:end"
+	| "BLUE_HOUR_END_DUSK"
 	// Morning nautical twilight ends, morning civil twilight starts
-	| "civil:dawn"
+	| "CIVIL_DAWN"
 	// Evening nautical twilight starts
-	| "civil:dusk"
+	| "CIVIL_DUSK"
 	// Morning nautical twilight starts
-	| "nautical:dawn"
+	| "NAUTICAL_DAWN"
 	// Evening astronomical twilight starts
-	| "nautical:dusk"
+	| "NAUTICAL_DUSK"
 	// The sun-time for night ends (morning astronomical twilight starts)
-	| "astronomical:dawn"
+	| "ASTRONOMICAL_DAWN"
 	// The sun-time for night starts (dark enough for astronomical observations)
-	| "astronomical:dusk";
+	| "ASTRONOMICAL_DUSK";
 
 export type MoonEventName =
-	| "moonrise"
-	| "moonset";
+	| "MOONRISE"
+	| "MOONSET";
 
 export type LightsEventName =
-	| "lights:start"
-	| "lights:end";
+	| "LIGHTS_START"
+	| "LIGHTS_END";
 
 export type SunColor =
 	| "astronomical"
@@ -101,8 +101,8 @@ export interface BridgeState {
 export interface LightsSchedule {
 	// duration of the lights turned on in seconds
 	duration: number;
-	"lights:start": number;
-	"lights:end": number;
+	"LIGHTS_START": number;
+	"LIGHTS_END": number;
 }
 
 export interface IlluminationState {
@@ -112,8 +112,8 @@ export interface IlluminationState {
 }
 
 export type LightsCity =
-	| "saint-petersburg"
-	| "moscow";
+	| "SAINT_PETERSBURG"
+	| "MOSCOW";
 
 export interface ScheduleDataItem {
 	lights: boolean;

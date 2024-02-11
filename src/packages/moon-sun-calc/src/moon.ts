@@ -153,7 +153,7 @@ export function getMoonIllumination(dateValue: Date | number): MoonIllumination 
 		next : {
 			value: next,
 			date: (new Date(next)).toISOString(),
-			type: (next === nextNewMoon) ? "new-moon" : ((next === nextFirstQuarter) ? "first-quarter" : ((next === nextFullMoon) ? "full-moon" : "third-quarter")),
+			type: (next === nextNewMoon) ? "NEW_MOON" : ((next === nextFirstQuarter) ? "FIRST_QUARTER" : ((next === nextFullMoon) ? "FULL_MOON" : "THIRD_QUARTER")),
 			newMoon: {
 				value: nextNewMoon,
 				date: (new Date(nextNewMoon)).toISOString()

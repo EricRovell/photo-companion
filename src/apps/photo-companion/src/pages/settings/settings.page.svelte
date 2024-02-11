@@ -51,9 +51,9 @@
 </script>
 
 <div class="{styles.page}">
-	<h2>{dict["settings"]}</h2>
+	<h2>{dict.TITLE.SETTINGS}</h2>
 	<Form on:submit="{handlePersist}" on:change={handleChange}>
-		<Fieldset legend="{dict["preferences"]}" id="starting-page">
+		<Fieldset legend="{dict.LABEL.PREFERENCES}" id="starting-page">
 			<InputSelect
 				name="starting-page"
 				options="{STARTING_PAGE_OPTIONS.map(item => {
@@ -65,10 +65,10 @@
 				})}"
 				value="{settings["starting-page"]}"
 			>
-				{dict["starting-page"]}
+				{dict.LABEL.STARTING_PAGE}
 			</InputSelect>
 		</Fieldset>
-		<Fieldset legend="{dict["geoposition"]}" id="geoposition">
+		<Fieldset legend="{dict.LABEL.GEOPOSITION}" id="geoposition">
 			<InputNumber
 				min={-90}
 				max={90}
@@ -77,7 +77,7 @@
 				inputmode="numeric"
 				value="{settings.latitude}"
 			>
-				{dict["latitude"]}
+				{dict.LABEL.LATITUDE}
 			</InputNumber>
 			<InputNumber
 				min={-180}
@@ -87,7 +87,7 @@
 				inputmode="numeric"
 				value="{settings.longitude}"
 			>
-				{dict["longitude"]}
+				{dict.LABEL.LONGITUDE}
 			</InputNumber>
 			<GeolocationButton
 				handleLocation={(latitude, longitude) => {
@@ -96,35 +96,44 @@
 				}}
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict["city-lights"]}" id="city-lights">
+		<Fieldset legend="{dict.LABEL.LIGHTS_CITY}" id="city-lights">
 			<InputRadio
 				name="lights-city"
 				options={LIGHTS_CITY_OPTIONS}
 				value="{settings["lights-city"] ?? ""}"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict["event-blacklist"]}" id="event-blacklist">
+		<Fieldset legend="{dict.LABEL.EVENT_BLACKLIST}" id="event-blacklist">
 			<InputCheckboxGroup
 				bind:value="{settings["events-lights"]}"
 				disabled="{!settings["lights-city"]}"
 				name="timeline-events-map"
-				groupLabel="{dict["lights"]}"
+				groupLabel="{dict.LABEL.LIGHTS_CITY}"
 				groupValue="lights"
-				options="{LIGHTS_EVENT_NAMES}"
+				options="{LIGHTS_EVENT_NAMES.map(value => ({
+					label: dict.LIGHTS_EVENTS[value],
+					value
+				}))}"
 			/>
 			<InputCheckboxGroup
 				bind:value="{settings["events-sun"]}"
 				name="timeline-events-map"
-				groupLabel="{dict["sun"]}"
+				groupLabel="{dict.TITLE.SUN}"
 				groupValue="sun"
-				options="{SUN_EVENT_NAMES}"
+				options="{SUN_EVENT_NAMES.map(value => ({
+					label: dict.SUN_TIMES[value],
+					value
+				}))}"
 			/>
 			<InputCheckboxGroup
 				bind:value="{settings["events-moon"]}"
 				name="timeline-events-map"
-				groupLabel="{dict["moon"]}"
+				groupLabel="{dict.TITLE.MOON}"
 				groupValue="moon"
-				options="{MOON_EVENT_NAMES}"
+				options="{MOON_EVENT_NAMES.map(value => ({
+					label: dict.MOON_TIMES[value],
+					value
+				}))}"
 			/>
 		</Fieldset>
 		<Fieldset className="{styles.submit}">
@@ -133,14 +142,14 @@
 				type="submit"
 				color="success"
 			>
-				{dict["save"]}
+				{dict.LABEL.SAVE}
 			</Button>
 			<Button
 				appearance="outline"
 				on:click="{handleReset}"
 				type="button"
 			>
-				{dict["reset"]}
+				{dict.LABEL.RESET}
 			</Button>
 		</Fieldset>
 	</Form>

@@ -7,13 +7,13 @@
 	export let handleLocation: (lat: number, lon: number) => void;
 
 	let disabled = false;
-	let message = dict["get-geo-device"];
+	let message = dict.LABEL.ASK_DEVICE_GEOPOSITION;
 	let status: Nullable<"success" | "danger"> = undefined;
 	let timer: Optional<number> = undefined;
 
 	const handleResetState = () => {
 		timer = window.setTimeout(() => {
-			message = dict["get-geo-device"];
+			message = dict.LABEL.ASK_DEVICE_GEOPOSITION;
 			status = undefined;
 			disabled = false;
 		}, 2500);
@@ -28,12 +28,12 @@
 			if (position) {
 				handleLocation(position.lat, position.lon);
 				status = "success";
-				message = dict["get-geo-device-success"];
+				message = dict.MESSAGE.DATA_UPDATE_SUCCESS;
 			}
 		} catch (error) {
 			console.warn(`Could not get location: ${error}`);
 			status = "danger";
-			message = dict["get-geo-device-danger"];
+			message = dict.MESSAGE.DATA_UPDATE_ERROR;
 		} finally {
 			handleResetState();
 		}

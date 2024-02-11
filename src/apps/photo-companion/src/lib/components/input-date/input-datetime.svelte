@@ -40,7 +40,7 @@
 		className="{styles["button-increment"]}"
 		data-step="-1"
 		on:click="{handleClick}"
-		title="{dict["next-day"]}"
+		title="{dict.LABEL.NEXT_DAY}"
 	>
 		<Icon
 			viewBox="0 0 256 256"
@@ -51,7 +51,7 @@
 		<label class="{styles.label}">
 			<slot />
 			<input
-				aria-label="{dict["date-and-time"]}"
+				aria-label="{dict.LABEL.DATETIME}"
 				class="{styles.input}"
 				{max}
 				{min}
@@ -74,7 +74,7 @@
 		className="{styles["button-increment"]}"
 		data-step="1"
 		on:click="{handleClick}"
-		title="{dict["prev-day"]}"
+		title="{dict.LABEL.PREVIOUS_DAY}"
 	>
 		<Icon
 			viewBox="0 0 256 256"

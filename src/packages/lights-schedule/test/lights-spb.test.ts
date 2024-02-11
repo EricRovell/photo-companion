@@ -3,7 +3,7 @@ import { initLightsProvider } from "../src";
 import { schedule as data } from "../src/schedule/lights-saint-petersburg";
 import { getFullYearDaysList } from "./utils";
 
-const { getScheduleByDate, getStateByDate } = initLightsProvider("saint-petersburg");
+const { getScheduleByDate, getStateByDate } = initLightsProvider("SAINT_PETERSBURG");
 
 describe("Illumination schedule, Moscow, Russia", () => {
 	describe("Data validation", () => {
@@ -47,8 +47,8 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				const minutesOff = data.schedule[index + 3];
 
 				const output = getScheduleByDate(date);
-				const start = new Date(output["lights:start"]);
-				const end = new Date(output["lights:end"]);
+				const start = new Date(output.LIGHTS_START);
+				const end = new Date(output.LIGHTS_END);
 
 				expect(start.getHours()).toBe(hoursOn);
 				expect(start.getMinutes()).toBe(minutesOn);
@@ -61,7 +61,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 		it("The time is before the lights end today", () => {
 			const input = new Date(data.year, 0, 5, 7, 30);
 			const output = {
-				event: "lights:end",
+				event: "LIGHTS_END",
 				lights: true,
 				timestamp: new Date(data.year, 0, 5, 9, 50).getTime()
 			};
@@ -71,7 +71,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 		it("The time is before the lights start today", () => {
 			const input = new Date(data.year, 0, 5, 15, 0);
 			const output = {
-				event: "lights:start",
+				event: "LIGHTS_START",
 				lights: false,
 				timestamp: new Date(data.year, 0, 5, 16, 15).getTime()
 			};
@@ -81,7 +81,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 		it("The time is during the lights today, they will turn off the next day", () => {
 			const input = new Date(data.year, 0, 5, 18, 0);
 			const output = {
-				event: "lights:end",
+				event: "LIGHTS_END",
 				lights: true,
 				timestamp: new Date(data.year, 0, 6, 9, 45).getTime()
 			};

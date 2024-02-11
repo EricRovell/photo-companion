@@ -1,12 +1,3 @@
 {
-	"extends": "../../../tsconfig.base.json",
-	"compilerOptions": {
-		"rootDir": "./src",
-		"outFile": "dist/index.d.ts",
-		"isolatedModules": false,
-		"module": "ESNext"
-	},
-	"include": [
-		"./src/*.ts"
-	]
+	"extends": "../../../tsconfig.base.json"
 }

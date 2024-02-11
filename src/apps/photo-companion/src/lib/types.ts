@@ -7,16 +7,6 @@ export type EventGroupName =
 	| "moon"
 	| "sun";
 
-export type MoonPhaseName =
-	| "new-moon"
-	| "waxing-crescent"
-	| "first-quarter"
-	| "waxing-gibbous"
-	| "full-moon"
-	| "waning-gibbous"
-	| "third-quarter"
-	| "waning-crescent";
-
 export interface ScheduleDataItem {
 	lights: boolean;
 	event: LightsEventName;

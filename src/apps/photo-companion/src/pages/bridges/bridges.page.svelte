@@ -11,7 +11,7 @@
 <div class="{styles.page}">
 	<div>
 		<h2 id="bridge-schedule">
-			{dict["bridge-schedule-spb"]}
+			{dict.TITLE.BRIDGES_SCHEDULE_SPB}
 		</h2>
 		<ul>
 			{#each SUPPORTED_BRIDGES_NAME_SET as name}

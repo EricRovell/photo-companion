@@ -5,42 +5,42 @@
 	import { dict, template } from "@lib/dict";
 	import { settingsStore as store } from "@lib/settings-store";
 	import { secondsToHoursAndMinutes } from "@shared/utils";
-	import styles from "./lights.module.css";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
+	import styles from "./lights.module.css";
 
 	export let date: Date;
 
 	const timelineProvider = initTimelineProvider({
 		lightsEvents: [],
-		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "sunrise:start" && item !== "sunset:end"),
-		secondaryEvents: new Set([ "sunrise:start", "sunset:end" ])
+		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "SUNRISE_START" && item !== "SUNSET_END"),
+		secondaryEvents: new Set([ "SUNRISE_START", "SUNSET_END" ])
 	});
 
 	let schedule = provider?.getScheduleByDate(date);
 	let state = provider?.getStateByDate();
-	let events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 
 	const handleAlarm = () => {
 		state = provider?.getStateByDate();
 	};
 
 	$: schedule = provider?.getScheduleByDate(date);
+	$: events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 </script>
 
 {#if schedule && state}
 	<div class="{styles.page}">
 		<section data-label="lights-schedule" class="card">
 			<header>
-				<h2>{dict["header-lights-by-date"]}</h2>
+				<h2>{dict.TITLE.LIGHTS_DATA_BY_DATE}</h2>
 			</header>
 			<GaugeTime
-				timeFrom="{new Date(schedule["lights:start"])}"
-				timeTo="{new Date(schedule["lights:end"])}"
+				timeFrom="{new Date(schedule.LIGHTS_START)}"
+				timeTo="{new Date(schedule.LIGHTS_END)}"
 			>
 				<Bulb x="-10" y="-10" width="20" height="20" glow />
 			</GaugeTime>
 			<footer>
-				<p>{dict["duration-lights"]}</p>
+				<p>{dict.LABEL.DURATION_LIGHTS}</p>
 				<output>
 					{template["hours-and-minutes"](secondsToHoursAndMinutes(schedule.duration))}
 				</output>
@@ -63,10 +63,10 @@
 			class="card"
 		>
 			<header>
-				<h2>{dict["header-lights-timer"]}</h2>
+				<h2>{dict.TITLE.LIGHTS_COUNTDOWN}</h2>
 			</header>
 			{#if !state}
-				<p>{dict["something-wrong"]}</p>
+				<p>{dict.MESSAGE.SOMETHING_WRONG}</p>
 			{:else}
 				<Bulb 
 					glow="{state.lights}"

@@ -2,7 +2,7 @@ import type { CityLightsSchedule } from "../types";
 
 export const schedule: CityLightsSchedule = {
 	"year": 2024,
-	"city": "saint-petersburg",
+	"city": "SAINT_PETERSBURG",
 	"schedule": [
 		16,15,9,50,
 		16,25,9,45,

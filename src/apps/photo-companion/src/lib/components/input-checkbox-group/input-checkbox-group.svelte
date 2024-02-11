@@ -1,14 +1,12 @@
 <script lang="ts">
 	import InputCheckbox from "../input-checkbox/input-checkbox.svelte";
-	import { dict } from "@lib/dict";
-	import type { EventName } from "@shared/types";
 	import styles from "./input-checkbox-group.module.css";
 
 	export let disabled: boolean | undefined = undefined;
 	export let groupLabel: string;
 	export let groupValue: string;
 	export let name: string | undefined = undefined;
-	export let options: EventName[] = [];
+	export let options: { label: string, value: string }[] = [];
 	export let value: string[] | null = [];
 
 	let rootCheckboxRef: HTMLInputElement | undefined = undefined;
@@ -27,7 +25,7 @@
 		}
 
 		if (!target.checked && !value) {
-			value = [ ...options ];
+			value = options.map(option => option.value);
 		}
 
 		if (target.checked) {
@@ -66,17 +64,17 @@
 			/>
 		</summary>
 		<ul>
-			{#each options as eventName}
+			{#each options as option}
 				<li>
 					<InputCheckbox
-						checked="{!value || value?.includes(eventName)}"
+						checked="{!value || value?.includes(option.value)}"
 						data-group="{groupValue}"
 						{disabled}
-						label="{dict[eventName]}"
+						label="{option.label}"
 						{name}
 						mode="cross"
 						type="checkbox"
-						value="{eventName}"
+						value="{option.value}"
 					/>
 				</li>
 			{/each}

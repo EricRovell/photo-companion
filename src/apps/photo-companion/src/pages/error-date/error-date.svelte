@@ -11,14 +11,14 @@
 </script>
 
 <aside class="card {styles["error"]}">
-	<header>{dict["error"]}</header>
-	<p>{dict["date-error-desc"]}:</p>
+	<header>{dict.TITLE.ERROR}</header>
+	<p>{dict.MESSAGE.WRONG_DATE}:</p>
 	<ul>
-		<li>{dict["date-error-check-url"]} <strong>YYYY-MM-DD-hh-mm;</strong></li>
-		<li>{dict["date-error-check-input"]};</li>
+		<li>{dict.MESSAGE.WRONG_DATE_URL} <strong>YYYY-MM-DD-hh-mm;</strong></li>
+		<li>{dict.MESSAGE.CHECK_DATE_INPUT};</li>
 	</ul>
-	<p>{dict["date-error-set-current-desc"]}:</p>
+	<p>{dict.MESSAGE.SET_CURRENT_DATE_ADVICE}:</p>
 	<Button on:click="{handleClick}">
-		{dict["date-error-set-current"]}
+		{dict.MESSAGE.SET_CURRENT_DATETIME}
 	</Button>
 </aside>

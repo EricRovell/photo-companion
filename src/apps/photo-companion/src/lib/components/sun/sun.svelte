@@ -10,60 +10,60 @@
 	let center = size / 2;
 
 	switch (event) {
-		case "nadir":
+		case "NADIR":
 			color = "hsl(240deg 0% 0%)";
 			break;
-		case "astronomical:dawn":
+		case "ASTRONOMICAL_DAWN":
 			color = "#494582";
 			break;
-		case "nautical:dawn":
+		case "NAUTICAL_DAWN":
 			color = "#5756A6";
 			break;
-		case "blue-hour:dawn:start":
+		case "BLUE_HOUR_START_DAWN":
 			color = "#6167C9";
 			break;
-		case "golden-hour:dawn:start":
+		case "GOLDEN_HOUR_START_DAWN":
 			color = "#7A82E4";
 			break;
-		case "civil:dawn":
+		case "CIVIL_DAWN":
 			color = "#9A9EEC";
 			break;
-		case "blue-hour:dawn:end":
+		case "BLUE_HOUR_END_DAWN":
 			color = "#B5B8F2";
 			break;
-		case "sunrise:start":
-		case "sunrise:end":
+		case "SUNRISE_START":
+		case "SUNRISE_END":
 			color = "#9C4438";
 			break;
-		case "golden-hour:dawn:end":
+		case "GOLDEN_HOUR_END_DAWN":
 			color = "#EC8F12";
 			break;
-		case "solar-noon":
+		case "SOLAR_NOON":
 			color = "gold";
 			break;
-		case "golden-hour:dusk:start":
+		case "GOLDEN_HOUR_START_DUSK":
 			color = "#EC8F12";
 			break;
-		case "sunset:start":
-		case "sunset:end":
+		case "SUNSET_START":
+		case "SUNSET_END":
 			color = "#9C4438";
 			break;
-		case "golden-hour:dusk:end":
+		case "GOLDEN_HOUR_END_DUSK":
 			color = "#9A9EEC";
 			break;
-		case "blue-hour:dusk:start":
+		case "BLUE_HOUR_START_DUSK":
 			color = "#7A82E4";
 			break;
-		case "civil:dusk":
+		case "CIVIL_DUSK":
 			color = "#6167C9";
 			break;
-		case "blue-hour:dusk:end":
+		case "BLUE_HOUR_END_DUSK":
 			color = "#5756A6";
 			break;
-		case "nautical:dusk":
+		case "NAUTICAL_DUSK":
 			color = "#494582";
 			break;
-		case "astronomical:dusk":
+		case "ASTRONOMICAL_DUSK":
 			color = "#38325D";
 			break;
 	}

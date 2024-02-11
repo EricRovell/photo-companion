@@ -11,8 +11,8 @@ export const title = "Photo Companion";
 export { version } from "../../package.json";
 
 export const lightsCityList: LightsCity[] = [
-	"moscow",
-	"saint-petersburg"
+	"MOSCOW",
+	"SAINT_PETERSBURG"
 ];
 
 export const EVENT_GROUP_NAMES: EventGroupName[] = [
@@ -26,36 +26,36 @@ export function isEventGroupName(input: string): input is EventGroupName {
 }
 
 export const MOON_EVENT_NAMES: MoonEventName[] = [
-	"moonrise",
-	"moonset"
+	"MOONRISE",
+	"MOONSET"
 ];
 
 export const LIGHTS_EVENT_NAMES: LightsEventName[] = [
-	"lights:start",
-	"lights:end"
+	"LIGHTS_START",
+	"LIGHTS_END"
 ];
 
 export const SUN_EVENT_NAMES: SunEventName[] = [
-	"nadir",
-	"astronomical:dawn",
-	"nautical:dawn",
-	"blue-hour:dawn:start",
-	"civil:dawn",
-	"blue-hour:dawn:end",
-	"golden-hour:dawn:start",
-	"sunrise:start",
-	"sunrise:end",
-	"golden-hour:dawn:end",
-	"solar-noon",
-	"golden-hour:dusk:start",
-	"sunset:start",
-	"sunset:end",
-	"golden-hour:dusk:end",
-	"blue-hour:dusk:start",
-	"civil:dusk",
-	"blue-hour:dusk:end",
-	"nautical:dusk",
-	"astronomical:dusk"
+	"NADIR",
+	"ASTRONOMICAL_DAWN",
+	"NAUTICAL_DAWN",
+	"BLUE_HOUR_START_DAWN",
+	"CIVIL_DAWN",
+	"BLUE_HOUR_END_DAWN",
+	"GOLDEN_HOUR_START_DAWN",
+	"SUNRISE_START",
+	"SUNRISE_END",
+	"GOLDEN_HOUR_END_DAWN",
+	"SOLAR_NOON",
+	"GOLDEN_HOUR_START_DUSK",
+	"SUNSET_START",
+	"SUNSET_END",
+	"GOLDEN_HOUR_END_DUSK",
+	"BLUE_HOUR_START_DUSK",
+	"CIVIL_DUSK",
+	"BLUE_HOUR_END_DUSK",
+	"NAUTICAL_DUSK",
+	"ASTRONOMICAL_DUSK"
 ];
 
 export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
@@ -63,7 +63,7 @@ export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
 	"events-moon": [],
 	"events-sun": [],
 	"latitude": LAT,
-	"lights-city": "saint-petersburg",
+	"lights-city": "SAINT_PETERSBURG",
 	"longitude": LON,
 	"starting-page": "/timeline"
 });

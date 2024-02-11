@@ -6,8 +6,8 @@ import type { SunEvent } from "@lib/types";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
-	const sunrise: Date = suntimes["sunrise:start"].value;
-	const sunset: Date = suntimes["sunset:end"].value;
+	const sunrise: Date = suntimes.SUNRISE_START.value;
+	const sunset: Date = suntimes.SUNSET_END.value;
 	const dayDuration = secondsToHoursAndMinutes(calcDuration(sunrise, sunset));
 
 	return {
@@ -19,15 +19,15 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
 	const data = getSunTimes(date, lat, lon);
-	// the API returns the "nadir" for the next date
-	const nadir = getSunTimes(incrementDateByDay(date, -1), lat, lon).nadir;
-	const positionNadir = getSunPosition(data["nadir"].ts, lat, lon);
-	const positionNoon = getSunPosition(data["solar-noon"].ts, lat, lon);
+	// the API returns the "NADIR" for the next date
+	const nadir = getSunTimes(incrementDateByDay(date, -1), lat, lon).NADIR;
+	const positionNadir = getSunPosition(data.NADIR.ts, lat, lon);
+	const positionNoon = getSunPosition(data.SOLAR_NOON.ts, lat, lon);
 
 	const sunEvents: SunEvent[] = [];
 	const missedEventsSet = new Set<string>([
-		"solar-noon",
-		"nadir"
+		"SOLAR_NOON",
+		"NADIR"
 	]);
 
 	for (const [ key, value ] of Object.entries(data)) {
@@ -48,7 +48,7 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 
 	sunEvents.push(
 		{
-			name: "nadir",
+			name: "NADIR",
 			timestamp: nadir.ts,
 			data: {
 				azimuth: round(positionNadir.azimuthDegrees),
@@ -56,8 +56,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 			}
 		},
 		{
-			name: "solar-noon",
-			timestamp: data["solar-noon"].ts,
+			name: "SOLAR_NOON",
+			timestamp: data.SOLAR_NOON.ts,
 			data: {
 				azimuth: round(positionNoon.azimuthDegrees),
 				elevation: round(positionNoon.altitudeDegrees, 1)

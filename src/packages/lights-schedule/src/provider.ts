@@ -26,8 +26,8 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 		if (!isValidDate(input)) {
 			return {
 				duration: 0,
-				"lights:start": NaN,
-				"lights:end": NaN
+				"LIGHTS_START": NaN,
+				"LIGHTS_END": NaN
 			};
 		}
 	
@@ -41,8 +41,8 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 
 		return {
 			duration: calcDuration(start, end),
-			"lights:start": start.getTime(),
-			"lights:end": end.getTime()
+			LIGHTS_START: start.getTime(),
+			LIGHTS_END: end.getTime()
 		};
 	}
 
@@ -59,19 +59,19 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 		const schedule = getScheduleByDate(input);
 		const timestamp = input.getTime();
 
-		if (timestamp < schedule["lights:end"]) {
+		if (timestamp < schedule["LIGHTS_END"]) {
 			return {
 				lights: true,
-				event: "lights:end",
-				timestamp: schedule["lights:end"]
+				event: "LIGHTS_END",
+				timestamp: schedule["LIGHTS_END"]
 			};
 		}
 
-		if (timestamp >= schedule["lights:end"] && timestamp <= schedule["lights:start"]) {
+		if (timestamp >= schedule["LIGHTS_END"] && timestamp <= schedule["LIGHTS_START"]) {
 			return {
 				lights: false,
-				event: "lights:start",
-				timestamp: schedule["lights:start"]
+				event: "LIGHTS_START",
+				timestamp: schedule["LIGHTS_START"]
 			};
 		}
 
@@ -80,8 +80,8 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 
 		return {
 			lights: true,
-			event: "lights:end",
-			timestamp: scheduleNext["lights:end"]
+			event: "LIGHTS_END",
+			timestamp: scheduleNext["LIGHTS_END"]
 		};
 	}
 
@@ -90,15 +90,15 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 
 		return [
 			{
-				name: "lights:start",
-				timestamp: data["lights:start"],
+				name: "LIGHTS_START",
+				timestamp: data["LIGHTS_START"],
 				data: {
 					city
 				}
 			},
 			{
-				name: "lights:end",
-				timestamp: data["lights:end"],
+				name: "LIGHTS_END",
+				timestamp: data["LIGHTS_END"],
 				data: {
 					city
 				}

@@ -4,7 +4,7 @@
 	"exports": {
 		".": {
 			"import": {
-				"default": "./index.ts"
+				"default": "./src/index.ts"
 			}
 		}
 	},
@@ -14,10 +14,5 @@
 	"name": "@shared/types",
 	"license": "MIT",
 	"private": true,
-	"scripts": {
-		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
-		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
-		"bundle:types": "node ./scripts/bundle-dts.js"
-	},
 	"type": "module"
 }

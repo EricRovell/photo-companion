@@ -4,29 +4,29 @@ import { dict } from "@lib/dict";
 import type { InputSelectOption, Option } from "@lib/components";
 
 export const LIGHTS_CITY_OPTIONS: Option[] = [
-	{ label: dict["off"], value: "" },
-	...lightsCityList.map(item => ({ label: dict[item], value: item }))
+	{ label: dict.LABEL.OFF, value: "" },
+	...lightsCityList.map(item => ({ label: dict.CITIES[item], value: item }))
 ];
 
 export const STARTING_PAGE_OPTIONS: InputSelectOption[] = [
 	{
-		label: dict["timeline"],
+		label: dict.TITLE.TIMELINE,
 		value: routeTimeline
 	},
 	{
-		label: dict["sun"],
+		label: dict.TITLE.SUN,
 		value: routeSun
 	},
 	{
-		label: dict["moon"],
+		label: dict.TITLE.MOON,
 		value: routeMoon
 	},
 	{
-		label: dict["bridges"],
+		label: dict.TITLE.BRIDGES,
 		value: routeBridges
 	},
 	{
-		label: dict["lights"],
+		label: dict.TITLE.LIGHTS,
 		value: routeLights
 	}
 ];
