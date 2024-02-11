@@ -36,7 +36,7 @@ export function getNavigationState(date: Date): { navigation: boolean, days: num
 	};
 }
 
-export function isNavigationTime(date: Date): boolean {
+export function isNavigationTime(date: Date = new Date()): boolean {
 	const now = date.getTime();
 	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0);
 	const end = new Date(date.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999);
