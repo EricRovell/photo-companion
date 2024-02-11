@@ -18,10 +18,12 @@ export const dict = {
 		MOSCOW: "г. Москва"
 	},
 	LABEL: {
+		ALWAYS: "Всегда",
 		ASK_DEVICE_GEOPOSITION: "Запросить данные с устройства",
 		BRIDGE: "мост",
 		BRIDGE_OPENED: "Разведён",
 		BRIDGE_CLOSED: "Сведён",
+		BRIDGES_SPB: "Разводные мосты г.Санкт-Петербург",
 		DATETIME: "Дата и время",
 		DURATION_DAYLIGHT: "Длительность солнечного дня",
 		DURATION_LIGHTS: "Длительность освещения",
@@ -30,6 +32,7 @@ export const dict = {
 		LATITUDE: "Широта",
 		LIGHTS_CITY: "Городское освещение",
 		LONGITUDE: "Долгота",
+		NAVIGATION_ONLY: "Во время навигации",
 		NEXT_DAY: "Следующий день",
 		OFF: "Отключить",
 		PREFERENCES: "Предпочтения",

@@ -64,6 +64,7 @@ export interface EventComponent<Props> {
  *  3. Non-empty array — the forbidden events are listed.
  */
 export interface SettingsStore {
+	"bridges-spb": "navigation" | "always" | null;
 	"events-lights": LightsEventName[] | null;
 	"events-moon": MoonEventName[] | null;
 	"events-sun": SunEventName[] | null;

@@ -3,7 +3,7 @@
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/settings-store";
 	import { dict } from "@lib/dict";
-	import { LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS } from "./settings.const";
+	import { BRIDGES_SPB_OPTIONS, LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS } from "./settings.const";
 	import { SUN_EVENT_NAMES, MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES } from "@lib/constants";
 	import type { LightsCity } from "@shared/types";
 
@@ -39,6 +39,16 @@
 				} else {
 					settings["lights-city"] = null;
 					settings["events-lights"] = null;
+				}
+
+				break;
+			}
+			case "bridges-spb": {
+				if (value) {
+					settings["bridges-spb"] = value as ("navigation" | "always");
+				} else {
+					settings["bridges-spb"] = null;
+					//settings["events-bridges-spb"] = null;
 				}
 
 				break;
@@ -101,6 +111,13 @@
 				name="lights-city"
 				options={LIGHTS_CITY_OPTIONS}
 				value="{settings["lights-city"] ?? ""}"
+			/>
+		</Fieldset>
+		<Fieldset legend="{dict.LABEL.BRIDGES_SPB}" id="city-lights">
+			<InputRadio
+				name="bridges-spb"
+				options={BRIDGES_SPB_OPTIONS}
+				value="{settings["bridges-spb"] ?? ""}"
 			/>
 		</Fieldset>
 		<Fieldset legend="{dict.LABEL.EVENT_BLACKLIST}" id="event-blacklist">

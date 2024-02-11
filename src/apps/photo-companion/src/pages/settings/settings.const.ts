@@ -3,6 +3,21 @@ import { lightsCityList } from "@lib/constants";
 import { dict } from "@lib/dict";
 import type { InputSelectOption, Option } from "@lib/components";
 
+export const BRIDGES_SPB_OPTIONS: Option[] = [
+	{
+		label: dict.LABEL.OFF,
+		value: ""
+	},
+	{
+		label: dict.LABEL.NAVIGATION_ONLY,
+		value: "navigation"
+	},
+	{
+		label: dict.LABEL.ALWAYS,
+		value: "always"
+	}
+];
+
 export const LIGHTS_CITY_OPTIONS: Option[] = [
 	{ label: dict.LABEL.OFF, value: "" },
 	...lightsCityList.map(item => ({ label: dict.CITIES[item], value: item }))

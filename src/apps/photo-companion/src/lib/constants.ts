@@ -59,6 +59,7 @@ export const SUN_EVENT_NAMES: SunEventName[] = [
 ];
 
 export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
+	"bridges-spb": "navigation",
 	"events-lights": [],
 	"events-moon": [],
 	"events-sun": [],
