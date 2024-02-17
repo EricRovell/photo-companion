@@ -2,7 +2,7 @@ import { getSunTimes, getSunPosition } from "moon-sun-calc";
 import { round, secondsToHoursAndMinutes } from "@lib/helpers";
 import { calcDuration, incrementDateByDay } from "@shared/utils";
 import type { SunEventName } from "@shared/types";
-import type { SunEvent } from "@lib/types";
+import type { SunEvent } from "@shared/types";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
@@ -36,32 +36,35 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 		}
 
 		sunEvents.push({
-			name: key as SunEventName,
-			timestamp: value.ts,
 			data: {
 				azimuth: round(getSunPosition(value.ts, lat, lon).azimuthDegrees),
 				// TODO: manage elevation for solar noon and nadir
 				elevation: value.elevation!
-			}
+			},
+			name: key as SunEventName,
+			timestamp: value.ts,
+			type: "SUN"
 		});
 	}
 
 	sunEvents.push(
 		{
-			name: "NADIR",
-			timestamp: nadir.ts,
 			data: {
 				azimuth: round(positionNadir.azimuthDegrees),
 				elevation: round(positionNadir.altitudeDegrees, 1)
-			}
+			},
+			name: "NADIR",
+			timestamp: nadir.ts,
+			type: "SUN"
 		},
 		{
-			name: "SOLAR_NOON",
-			timestamp: data.SOLAR_NOON.ts,
 			data: {
 				azimuth: round(positionNoon.azimuthDegrees),
 				elevation: round(positionNoon.altitudeDegrees, 1)
-			}
+			},
+			name: "SOLAR_NOON",
+			timestamp: data.SOLAR_NOON.ts,
+			type: "SUN"
 		}
 	);
 

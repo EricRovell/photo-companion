@@ -20,6 +20,7 @@
 
 	const hasNoEvents = () => {
 		return [
+			$store["events-bridges-spb"],
 			$store["events-lights"],
 			$store["events-moon"],
 			$store["events-sun"]
@@ -27,6 +28,7 @@
 	};
 
 	const timelineProvider = initTimelineProvider({
+		bridgeEvents: $store["events-bridges-spb"],
 		lightsEvents: $store["events-lights"],
 		moonEvents: $store["events-moon"],
 		sunEvents: $store["events-sun"],

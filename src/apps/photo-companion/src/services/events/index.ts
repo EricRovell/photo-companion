@@ -3,15 +3,18 @@ import { getSunEvents } from "../sun";
 import { getMoonEvents } from "../moon";
 import { isValidDate } from "@lib/helpers";
 import type {
+	BridgeEventName,
 	EventName,
 	LightsEventName,
 	MoonEventName,
 	SunEventName,
 	TimelineEvent
 } from "@shared/types";
+import { getBridgeEvents } from "bridge-schedule";
 
 interface Options {
 	comparator: (a: TimelineEvent, b: TimelineEvent) => number;
+	bridgeEvents: BridgeEventName[] | null;
 	lightsEvents: LightsEventName[] | null;
 	moonEvents: MoonEventName[] | null;
 	predicate: (event: TimelineEvent) => boolean;
@@ -22,7 +25,7 @@ interface Options {
 type EventProviderByDate = [
 	"DATE",
 	Nullable<(date: Date) => TimelineEvent[]>,
-	"lights"
+	"lights" | "bridge"
 ];
 
 type EventProviderByLocation = [
@@ -34,6 +37,7 @@ type EventProviderByLocation = [
 const EVENT_PROVIDERS: Array<EventProviderByDate | EventProviderByLocation> = [
 	[ "LOCATION", getMoonEvents, "moon" ],
 	[ "LOCATION", getSunEvents, "sun" ],
+	[ "DATE", getBridgeEvents, "bridge" ],
 	[ "DATE", lightsProvider?.getEventsByDate, "lights" ]
 ];
 

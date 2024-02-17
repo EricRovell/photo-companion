@@ -3,7 +3,7 @@
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/settings-store";
 	import { dict } from "@lib/dict";
-	import { BRIDGES_SPB_OPTIONS, LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS } from "./settings.const";
+	import { BRIDGES_SPB_OPTIONS, LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS, BRIDGES_EVENTS_OPTIONS } from "./settings.const";
 	import { SUN_EVENT_NAMES, MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES } from "@lib/constants";
 	import type { LightsCity } from "@shared/types";
 
@@ -48,7 +48,7 @@
 					settings["bridges-spb"] = value as ("navigation" | "always");
 				} else {
 					settings["bridges-spb"] = null;
-					//settings["events-bridges-spb"] = null;
+					settings["events-bridges-spb"] = null;
 				}
 
 				break;
@@ -121,6 +121,14 @@
 			/>
 		</Fieldset>
 		<Fieldset legend="{dict.LABEL.EVENT_BLACKLIST}" id="event-blacklist">
+			<InputCheckboxGroup
+				bind:value="{settings["events-bridges-spb"]}"
+				disabled="{!settings["bridges-spb"]}"
+				name="timeline-events-map"
+				groupLabel="{dict.LABEL.BRIDGES_SPB}"
+				groupValue="bridges"
+				options="{BRIDGES_EVENTS_OPTIONS}"
+			/>
 			<InputCheckboxGroup
 				bind:value="{settings["events-lights"]}"
 				disabled="{!settings["lights-city"]}"

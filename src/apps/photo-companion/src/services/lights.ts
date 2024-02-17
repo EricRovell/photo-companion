@@ -1,4 +1,4 @@
-import { SETTINGS_DEFAULT } from "@lib/constants";
+import { SETTINGS_DEFAULT } from "@lib/settings-store";
 import { settingsStore } from "@lib/settings-store";
 import { initLightsProvider } from "lights-schedule";
 

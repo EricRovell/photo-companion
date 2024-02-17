@@ -1,5 +1,6 @@
 import { routeBridges, routeLights, routeMoon, routeSun, routeTimeline } from "@lib/routes";
 import { lightsCityList } from "@lib/constants";
+import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import { dict } from "@lib/dict";
 import type { InputSelectOption, Option } from "@lib/components";
 
@@ -45,3 +46,16 @@ export const STARTING_PAGE_OPTIONS: InputSelectOption[] = [
 		value: routeLights
 	}
 ];
+
+export const BRIDGES_EVENTS_OPTIONS: Option[] = Array
+	.from(SUPPORTED_BRIDGES_NAME_SET)
+	.flatMap(item => [
+		{
+			label: dict.BRIDGE_SPB_EVENTS[`${item}_OPEN`],
+			value: `${item}_OPEN`
+		},
+		{
+			label: dict.BRIDGE_SPB_EVENTS[`${item}_CLOSE`],
+			value: `${item}_CLOSE`
+		}
+	]);

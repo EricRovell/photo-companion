@@ -1,11 +1,7 @@
 import type { LightsCity, LightsEventName, MoonEventName, SunEventName } from "@shared/types";
-import type { EventGroupName, SettingsStore } from "./types";
+import type { EventGroupName } from "./types";
 
 export const LIGHTS_SCHEDULE_DATE = 2024;
-
-// Saint-Petersburg, Russia
-export const LAT = 59.844404;
-export const LON = 30.3131;
 
 export const title = "Photo Companion";
 export { version } from "../../package.json";
@@ -16,6 +12,7 @@ export const lightsCityList: LightsCity[] = [
 ];
 
 export const EVENT_GROUP_NAMES: EventGroupName[] = [
+	"bridges-spb",
 	"lights",
 	"moon",
 	"sun"
@@ -58,13 +55,4 @@ export const SUN_EVENT_NAMES: SunEventName[] = [
 	"ASTRONOMICAL_DUSK"
 ];
 
-export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
-	"bridges-spb": "navigation",
-	"events-lights": [],
-	"events-moon": [],
-	"events-sun": [],
-	"latitude": LAT,
-	"lights-city": "SAINT_PETERSBURG",
-	"longitude": LON,
-	"starting-page": "/timeline"
-});
+

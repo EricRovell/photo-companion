@@ -1,6 +1,7 @@
 import { Moon } from "@lib/components";
 import { dict } from "@lib/dict";
-import type { MoonEvent, EventComponent } from "@lib/types";
+import type { EventComponent } from "@lib/types";
+import type { MoonEvent } from "@shared/types";
 
 export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: number, rotation: number }> {
 	return {

@@ -4,7 +4,8 @@ export {
 	getNavigationState,
 	getNextBridgeEvent,
 	isBridgeException,
-	isNavigationTime
+	isNavigationTime,
+	getBridgeEvents
 } from "./provider";
 
 export { SUPPORTED_BRIDGES_NAME_SET } from "./const";

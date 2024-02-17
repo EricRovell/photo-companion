@@ -1,7 +1,8 @@
 import { schedule } from "./schedule";
 import { countDays, incrementDateByDay } from "@shared/utils";
 import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
-import { getTimestampFromTime } from "./utils";
+import { getEdgeTime, getTimestampFromTime } from "./utils";
+import type { BridgeEvent } from "@shared/types";
 import type { BridgeState, BridgeName, BridgeSheduleEntry } from "./types";
 
 export function isBridgeException(name: BridgeName): boolean {
@@ -142,4 +143,54 @@ export function getNextBridgeEvent(date = new Date()): BridgeState {
 
 export function getBridgeScheduleEntry(name: BridgeName): BridgeSheduleEntry {
 	return schedule["bridges"][name];
+}
+
+const EDGE_SCHEDULE_TIME = getEdgeTime(schedule);
+
+// TODO navigation-only
+export function getBridgeEvents(date = new Date()): BridgeEvent[] {
+	const events: BridgeEvent[] = [];
+	const time = date.getHours() * 60 + date.getMinutes();
+
+	if (time > EDGE_SCHEDULE_TIME) {
+		return [];
+	}
+
+	for (const name of SUPPORTED_BRIDGES_NAME_SET) {
+		for (const [ hs, ms, he, me ] of schedule.bridges[name]) {
+			if (time <= hs * 60 + ms) {
+				const eventDate = new Date(date);
+				eventDate.setHours(hs);
+				eventDate.setMinutes(ms);
+
+				events.push({
+					data: {
+						bridgeName: name,
+						open: true
+					},
+					name: `${name}_OPEN`,
+					timestamp: eventDate.getTime(),
+					type: "BRIDGE"
+				});
+			}
+
+			if (time <= he * 60 + me) {
+				const eventDate = new Date(date);
+				eventDate.setHours(he);
+				eventDate.setMinutes(me);
+
+				events.push({
+					data: {
+						bridgeName: name,
+						open: false
+					},
+					name: `${name}_CLOSE`,
+					timestamp: eventDate.getTime(),
+					type: "BRIDGE"
+				});
+			}
+		}
+	}
+
+	return events;
 }

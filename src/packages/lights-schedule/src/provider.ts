@@ -90,18 +90,20 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 
 		return [
 			{
+				data: {
+					city
+				},
 				name: "LIGHTS_START",
 				timestamp: data["LIGHTS_START"],
-				data: {
-					city
-				}
+				type: "LIGHTS"
 			},
 			{
-				name: "LIGHTS_END",
-				timestamp: data["LIGHTS_END"],
 				data: {
 					city
-				}
+				},
+				name: "LIGHTS_END",
+				timestamp: data["LIGHTS_END"],
+				type: "LIGHTS"
 			}
 		];
 	}

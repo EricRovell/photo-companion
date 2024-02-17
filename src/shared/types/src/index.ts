@@ -12,6 +12,8 @@ export type BridgeName =
 	| "GRENADERSKY"
 	| "KANTEMIROVSKY";
 
+export type BridgeEventName = `${BridgeName}_${"OPEN" | "CLOSE"}`;
+
 export type MoonPhaseName =
 	| "NEW_MOON"
 	| "WAXING_CRESCENT"
@@ -88,6 +90,7 @@ export interface ScheduleDataItem {
 }
 
 export type EventName =
+	| BridgeEventName
 	| LightsEventName
 	| SunEventName
 	| MoonEventName;
@@ -121,26 +124,41 @@ export interface ScheduleDataItem {
 	timestamp: number
 }
 
-export interface Event<Name extends string, Data = Partial<Record<string, never>>> {
+export interface Event<
+	Type extends string,
+	Name extends string,
+	Data = Partial<Record<string, never>>
+> {
 	data: Data;
 	name: Name;
 	secondary?: boolean;
 	timestamp: number;
+	type: Type;
 }
 
-export type LightsEvent = Event<LightsEventName, { city: LightsCity }>;
+export type BridgeEvent = Event<"BRIDGE", BridgeEventName, {
+	bridgeName: BridgeName;
+	open: boolean;
+}>;
 
-export type MoonEvent = Event<MoonEventName, {
+export type LightsEvent = Event<"LIGHTS", LightsEventName, {
+	city: LightsCity
+}>;
+
+export type MoonEvent = Event<"MOON", MoonEventName, {
 	phase: number,
 	waxing: boolean,
 	fraction: number;
 	zenithAngle: number;
 }>;
 
-export type SunEvent = Event<SunEventName, {
+export type SunEvent = Event<"SUN", SunEventName, {
 	azimuth: number,
 	elevation: number;
 }>;
 
-export type TimelineEvent = LightsEvent | MoonEvent | SunEvent;
-
+export type TimelineEvent =
+	BridgeEvent |
+	LightsEvent |
+	MoonEvent |
+	SunEvent;
