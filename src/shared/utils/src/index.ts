@@ -1,6 +1,7 @@
 export {
 	calcDuration,
 	countDays,
+	dateFrom,
 	incrementDateByDay,
 	isLeapYear,
 	isValidDate,

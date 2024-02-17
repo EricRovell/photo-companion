@@ -1,3 +1,5 @@
+import { isInteger } from "./validators";
+
 /**
  * Calculates the duration between two dates in seconds.
  */
@@ -103,4 +105,31 @@ export function secondsToHoursAndMinutes(seconds: number): [ hours: number, minu
 	seconds -= minutes * 60;
 
 	return [ hours, minutes ];
+}
+
+interface DateFromOptions {
+	year?: number;
+	month?: number;
+	date?: number;
+	hours?: number;
+	minutes?: number;
+	seconds?: number;
+}
+
+/**
+ * Returns a date with defined parameters.
+ * Note: `month` is 1-indexed.
+ */
+export function dateFrom(input = new Date(), options: DateFromOptions = {}) {
+	const output = new Date(input);
+	const { year, month, date, hours, minutes, seconds } = options;
+
+	isInteger(year) && output.setFullYear(year);
+	isInteger(month) && output.setMonth(month);
+	isInteger(date) && output.setDate(date);
+	isInteger(hours) && output.setHours(hours);
+	isInteger(minutes) && output.setMinutes(minutes + 1);
+	isInteger(seconds) && output.setSeconds(seconds);
+
+	return output;
 }
