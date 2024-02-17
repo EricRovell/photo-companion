@@ -54,5 +54,3 @@ export const SUN_EVENT_NAMES: SunEventName[] = [
 	"NAUTICAL_DUSK",
 	"ASTRONOMICAL_DUSK"
 ];
-
-

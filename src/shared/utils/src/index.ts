@@ -4,6 +4,10 @@ export {
 	dateFrom,
 	incrementDateByDay,
 	isLeapYear,
-	isValidDate,
 	secondsToHoursAndMinutes
 } from "./date";
+
+export {
+	isInteger,
+	isValidDate
+} from "./validators";
