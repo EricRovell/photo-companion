@@ -145,9 +145,13 @@ export function getBridgeScheduleEntry(name: BridgeName): BridgeSheduleEntry {
 	return schedule["bridges"][name];
 }
 
-// TODO navigation-only
 export function getBridgeEvents(date = new Date()): BridgeEvent[] {
 	const events: BridgeEvent[] = [];
+
+	// Note: Bridge events only available during navigation phase
+	if (!isNavigationTime(date)) {
+		return events;
+	}
 
 	for (const name of SUPPORTED_BRIDGES_NAME_SET) {
 		for (const [ hs, ms, he, me ] of schedule.bridges[name]) {

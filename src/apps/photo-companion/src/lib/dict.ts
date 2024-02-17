@@ -48,7 +48,7 @@ export const dict = {
 		ASK_DEVICE_GEOPOSITION: "Запросить данные с устройства",
 		BRIDGE: "мост",
 		BRIDGE_OPENED: "Разведён",
-		BRIDGE_OPENING: "Разведение моста",
+		BRIDGE_OPENING: "Развод моста",
 		BRIDGE_CLOSED: "Сведён",
 		BRIDGE_CLOSING: "Сведение моста",
 		BRIDGES_SPB: "Разводные мосты г.Санкт-Петербург",
