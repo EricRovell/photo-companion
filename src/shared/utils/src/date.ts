@@ -125,11 +125,12 @@ export function dateFrom(input = new Date(), options: DateFromOptions = {}) {
 	const { year, month, date, hours, minutes, seconds } = options;
 
 	isInteger(year) && output.setFullYear(year);
-	isInteger(month) && output.setMonth(month);
+	isInteger(month) && output.setMonth(month + 1);
 	isInteger(date) && output.setDate(date);
 	isInteger(hours) && output.setHours(hours);
-	isInteger(minutes) && output.setMinutes(minutes + 1);
+	isInteger(minutes) && output.setMinutes(minutes);
 	isInteger(seconds) && output.setSeconds(seconds);
+	output.setMilliseconds(0);
 
 	return output;
 }
