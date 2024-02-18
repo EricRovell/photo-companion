@@ -77,7 +77,7 @@ export function dateFrom(input = new Date(), options: DateFromOptions = {}) {
 	const { year, month, date, hours, minutes, seconds } = options;
 
 	isInteger(year) && output.setFullYear(year);
-	isInteger(month) && output.setMonth(month + 1);
+	isInteger(month) && output.setMonth(month - 1);
 	isInteger(date) && output.setDate(date);
 	isInteger(hours) && output.setHours(hours);
 	isInteger(minutes) && output.setMinutes(minutes);
