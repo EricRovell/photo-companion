@@ -14,7 +14,7 @@
 
 <header class="{styles.header}">
 	<div class="{styles.content}">
-		<Link href="{$settingsStore["starting-page"]}{$query}">
+		<Link href="{$settingsStore.starting_page}{$query}">
 			<h1>{title}</h1>
 		</Link>
 		<nav>

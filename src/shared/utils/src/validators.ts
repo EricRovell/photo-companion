@@ -17,3 +17,11 @@ export function isValidDate(date: Date | number | string | undefined): boolean {
 
 	return false;
 }
+
+export function isNullable(value: unknown): boolean {
+	return value === null || typeof value === "undefined";
+}
+
+export function isNonNullable(value: unknown): boolean {
+	return !isNullable(value);
+}

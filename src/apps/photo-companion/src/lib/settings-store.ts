@@ -18,32 +18,34 @@ import type {
  *  3. Non-empty array — the forbidden events are listed.
  */
 export interface SettingsStore {
-	"bridges-spb": "navigation" | "always" | null;
-	"events-bridges-spb": BridgeEventName[] | null;
-	"events-lights": LightsEventName[] | null;
-	"events-moon": MoonEventName[] | null;
-	"events-sun": SunEventName[] | null;
-	"latitude": number;
-	"lights-city"?: Nullable<LightsCity>;
-	"longitude": number;
-	"starting-page": string;
+	bridges_spb: "navigation" | "always" | null;
+	events_bridges_spb: BridgeEventName[] | null;
+	events_lights: LightsEventName[] | null;
+	events_moon: MoonEventName[] | null;
+	events_sun: SunEventName[] | null;
+	latitude: number;
+	lights_city: Nullable<LightsCity>;
+	longitude: number;
+	starting_page: string;
 }
 
 export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
-	"bridges-spb": "navigation",
-	"events-bridges-spb": [],
-	"events-lights": [],
-	"events-moon": [],
-	"events-sun": [],
-	"latitude": 59.844404,
-	"lights-city": "SAINT_PETERSBURG",
-	"longitude": 30.3131,
-	"starting-page": "/timeline"
+	bridges_spb: "navigation",
+	events_bridges_spb: [],
+	events_lights: [],
+	events_moon: [],
+	events_sun: [],
+	latitude: 59.844404,
+	lights_city: "SAINT_PETERSBURG",
+	longitude: 30.3131,
+	starting_page: "/timeline"
 });
 
 const SETTINGS_LOCAL_STORAGE_KEY = "settings";
+const SETTINGS_LOCAL_STORAGE_VERSION = 1;
 
 export const settingsStore = persistable<SettingsStore>(
 	SETTINGS_LOCAL_STORAGE_KEY,
+	SETTINGS_LOCAL_STORAGE_VERSION,
 	SETTINGS_DEFAULT
 );

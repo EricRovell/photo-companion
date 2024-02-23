@@ -10,5 +10,7 @@ export {
 export {
 	isInteger,
 	isNonNegativeInteger,
+	isNonNullable,
+	isNullable,
 	isValidDate
 } from "./validators";

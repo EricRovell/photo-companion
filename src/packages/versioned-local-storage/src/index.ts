@@ -1,5 +1,7 @@
 import { get, getVersion, set, remove, clear } from "./utils";
-import { isNonNegativeInteger } from "@shared/utils";
+import { isNonNegativeInteger, isNonNullable } from "@shared/utils";
+
+const EMPTY_VERSION = 0;
 
 export class Storage<T> {
 	name: string;
@@ -8,14 +10,13 @@ export class Storage<T> {
 	constructor(name: string, version?: number) {
 		this.name = name;
 
-		if (version) {
+		if (isNonNullable(version)) {
 			if (!isNonNegativeInteger(version)) {
 				throw new Error(`version should be a non-negative integer: ${version} was provided`);
 			}
 
 			this.version = version;
-
-			const previousVersion = getVersion(name, 0);
+			const previousVersion = getVersion(name, EMPTY_VERSION);
 
 			if (isNaN(previousVersion)) {
 				throw new Error(`The previous version for ${name} is broken: ${previousVersion}`);

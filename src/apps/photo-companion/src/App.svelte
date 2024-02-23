@@ -9,11 +9,11 @@
 
 	// TODO use redirect
 	if (!$path[0]) {
-		$path[0] = store["starting-page"];
+		$path[0] = store.starting_page;
 	}
 
-	$query.lat = store.latitude;
-	$query.lon = store.longitude;
+	$query.latitude = store.latitude;
+	$query.longitude = store.longitude;
 </script>
 
 <svelte:window on:click="{click}" />

@@ -72,6 +72,9 @@ importers:
       moon-sun-calc:
         specifier: workspace:*
         version: link:../../packages/moon-sun-calc
+      versioned-local-storage:
+        specifier: workspace:*
+        version: link:../../packages/versioned-local-storage
     devDependencies:
       '@rollup/plugin-replace':
         specifier: ^5.0.5

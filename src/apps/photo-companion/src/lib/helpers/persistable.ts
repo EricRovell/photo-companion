@@ -1,45 +1,33 @@
-import { get as getStoreValue, writable } from "svelte/store";
+import { writable } from "svelte/store";
+import { Storage } from "versioned-local-storage";
 
 /**
- * Local storage based persistable store.
+ * Versioned Local Storage based persistable store.
  */
-export function persistable<T>(key: string, defaultValue: T = {} as T) {
+export function persistable<T>(name: string, version: number, defaultValue: T) {
 	const store = writable<T>();
 	const { set, subscribe } = store;
+	let storage: Storage<T>;
 
-	function get() {
-		return {
-			...getStoreValue(store)
-		};
-	}
-
-	function getItem(key: keyof T) {
-		return get()[key];
-	}
-
-	function init() {
-		const stored = window.localStorage.getItem(key);
-
-		const value: T = stored
-			? { ...defaultValue, ...JSON.parse(stored) }
-			: { ...defaultValue };
-
+	function init(): T {
+		storage = new Storage<T>(name, version);
+		const value = storage.read() ?? defaultValue;
 		set(value);
+
 		return value;
 	}
 
-	function persist(value?: T) {
-		const current = value ?? get();
-		window.localStorage.setItem(key, JSON.stringify(current));
+	function persist(value: T) {
+		storage.write(value);
 	}
 
-	function purge() {
-		window.localStorage.removeItem(key);
+	function read(): T | null {
+		return storage.read();
 	}
 
 	function reset() {
 		set(defaultValue);
-		persist();
+		persist(defaultValue);
 	}
 
 	store.subscribe(value => {
@@ -49,11 +37,9 @@ export function persistable<T>(key: string, defaultValue: T = {} as T) {
 	});
 
 	return {
-		get,
-		getItem,
 		init,
 		persist,
-		purge,
+		read,
 		reset,
 		set,
 		subscribe

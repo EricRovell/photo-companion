@@ -1,15 +1,21 @@
 <script lang="ts">
 	import { Button, Form, Fieldset, InputNumber, InputCheckboxGroup, InputRadio, InputSelect } from "@lib/components";
+	import { query } from "svelte-pathfinder";
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/settings-store";
 	import { dict } from "@lib/dict";
-	import { BRIDGES_SPB_OPTIONS, LIGHTS_CITY_OPTIONS, STARTING_PAGE_OPTIONS, BRIDGES_EVENTS_OPTIONS } from "./settings.const";
+	import {
+		BRIDGES_SPB_OPTIONS,
+		LIGHTS_CITY_OPTIONS,
+		GET_STARTING_PAGE_OPTIONS,
+		BRIDGES_EVENTS_OPTIONS
+	} from "./settings.const";
 	import { SUN_EVENT_NAMES, MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES } from "@lib/constants";
 	import type { LightsCity } from "@shared/types";
 
 	import styles from "./settings.module.css";
 
-	let settings = settingsStore.get();
+	let settings = settingsStore.read()!;
 
 	const handlePersist = () => {
 		settingsStore.set(settings);
@@ -17,7 +23,7 @@
 
 	const handleReset = () => {
 		settingsStore.reset();
-		settings = { ...settingsStore.get() };
+		settings = settingsStore.read()!;
 	};
 
 	const handleChange = (event: Event) => {
@@ -26,38 +32,45 @@
 
 		switch (name) {
 			case "latitude": {
-				settings.latitude = Number(value);
+				const latitude = Number(value);
+				settings.latitude = latitude;
 				break;
 			}
 			case "longitude": {
-				settings.longitude = Number(value);
+				const longitude = Number(value);
+				settings.longitude = longitude;
 				break;
 			}
 			case "lights-city": {
 				if (value) {
-					settings["lights-city"] = value as LightsCity;
+					settings.lights_city = value as LightsCity;
 				} else {
-					settings["lights-city"] = null;
-					settings["events-lights"] = null;
+					settings.lights_city = null;
+					settings.events_lights = null;
 				}
 
 				break;
 			}
 			case "bridges-spb": {
 				if (value) {
-					settings["bridges-spb"] = value as ("navigation" | "always");
+					settings.bridges_spb = value as ("navigation" | "always");
 				} else {
-					settings["bridges-spb"] = null;
-					settings["events-bridges-spb"] = null;
+					settings.bridges_spb = null;
+					settings.events_bridges_spb = null;
 				}
 
 				break;
 			}
 			case "starting-page": {
-				settings["starting-page"] = value;
+				settings.starting_page = value;
 			}
 		}
 	};
+
+	settingsStore.subscribe(({ latitude, longitude }) => {
+		$query.latitude = latitude;
+		$query.longitude = longitude;
+	});
 </script>
 
 <div class="{styles.page}">
@@ -66,14 +79,8 @@
 		<Fieldset legend="{dict.LABEL.PREFERENCES}" id="starting-page">
 			<InputSelect
 				name="starting-page"
-				options="{STARTING_PAGE_OPTIONS.map(item => {
-					if (!settings["lights-city"] && item.value === "/lights") {
-						return { ...item, disabled: true };
-					}
-
-					return item;
-				})}"
-				value="{settings["starting-page"]}"
+				options="{GET_STARTING_PAGE_OPTIONS(settings)}"
+				value="{settings.starting_page}"
 			>
 				{dict.LABEL.STARTING_PAGE}
 			</InputSelect>
@@ -110,28 +117,28 @@
 			<InputRadio
 				name="lights-city"
 				options={LIGHTS_CITY_OPTIONS}
-				value="{settings["lights-city"] ?? ""}"
+				value="{settings.lights_city ?? ""}"
 			/>
 		</Fieldset>
 		<Fieldset legend="{dict.LABEL.BRIDGES_SPB}" id="city-lights">
 			<InputRadio
 				name="bridges-spb"
 				options={BRIDGES_SPB_OPTIONS}
-				value="{settings["bridges-spb"] ?? ""}"
+				value="{settings.bridges_spb ?? ""}"
 			/>
 		</Fieldset>
 		<Fieldset legend="{dict.LABEL.EVENT_BLACKLIST}" id="event-blacklist">
 			<InputCheckboxGroup
-				bind:value="{settings["events-bridges-spb"]}"
-				disabled="{!settings["bridges-spb"]}"
+				bind:value="{settings.events_bridges_spb}"
+				disabled="{!settings.bridges_spb}"
 				name="timeline-events-map"
 				groupLabel="{dict.LABEL.BRIDGES_SPB}"
 				groupValue="bridges"
 				options="{BRIDGES_EVENTS_OPTIONS}"
 			/>
 			<InputCheckboxGroup
-				bind:value="{settings["events-lights"]}"
-				disabled="{!settings["lights-city"]}"
+				bind:value="{settings.events_lights}"
+				disabled="{!settings.lights_city}"
 				name="timeline-events-map"
 				groupLabel="{dict.LABEL.LIGHTS_CITY}"
 				groupValue="lights"
@@ -141,7 +148,7 @@
 				}))}"
 			/>
 			<InputCheckboxGroup
-				bind:value="{settings["events-sun"]}"
+				bind:value="{settings.events_sun}"
 				name="timeline-events-map"
 				groupLabel="{dict.TITLE.SUN}"
 				groupValue="sun"
@@ -151,7 +158,7 @@
 				}))}"
 			/>
 			<InputCheckboxGroup
-				bind:value="{settings["events-moon"]}"
+				bind:value="{settings.events_moon}"
 				name="timeline-events-map"
 				groupLabel="{dict.TITLE.MOON}"
 				groupValue="moon"

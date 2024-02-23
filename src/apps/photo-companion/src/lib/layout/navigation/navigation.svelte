@@ -19,11 +19,11 @@
 	let sections: Section[];
 
 	const isLightsTabHidden = () => {
-		return !$store["lights-city"];
+		return !$store.lights_city;
 	};
 
 	const isBridgesTabHidden = () => {
-		switch ($store["bridges-spb"]) {
+		switch ($store.bridges_spb) {
 			case "navigation": {
 				return !isNavigationTime();
 			}

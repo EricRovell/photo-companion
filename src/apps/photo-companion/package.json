@@ -37,6 +37,7 @@
 		"@shared/utils": "workspace:*",
 		"bridge-schedule": "workspace:*",
 		"moon-sun-calc": "workspace:*",
-		"lights-schedule": "workspace:*"
+		"lights-schedule": "workspace:*",
+		"versioned-local-storage": "workspace:*"
 	}
 }

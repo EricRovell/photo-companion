@@ -20,18 +20,18 @@
 
 	const hasNoEvents = () => {
 		return [
-			$store["events-bridges-spb"],
-			$store["events-lights"],
-			$store["events-moon"],
-			$store["events-sun"]
+			$store.events_bridges_spb,
+			$store.events_lights,
+			$store.events_moon,
+			$store.events_sun
 		].every(check => !check);
 	};
 
 	const timelineProvider = initTimelineProvider({
-		bridgeEvents: $store["events-bridges-spb"],
-		lightsEvents: $store["events-lights"],
-		moonEvents: $store["events-moon"],
-		sunEvents: $store["events-sun"],
+		bridgeEvents: $store.events_bridges_spb,
+		lightsEvents: $store.events_lights,
+		moonEvents: $store.events_moon,
+		sunEvents: $store.events_sun,
 		predicate: event => event.timestamp >= date.getTime()
 	});
 
