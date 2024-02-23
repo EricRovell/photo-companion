@@ -28,6 +28,7 @@ jobs:
       - name: install Vercel CLI
         run: |
           npm i pnpm -g
+          pnpm setup
           pnpm i --global vercel
 
       - name: Pull Vercel Environment Information
