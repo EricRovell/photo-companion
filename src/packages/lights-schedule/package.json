@@ -1,0 +1,27 @@
+{
+	"author": "Eric Rovell",
+	"description": "City illumination schedule data provider.",
+	"devDependencies": {
+		"@shared/types": "workspace:*",
+		"@shared/utils": "workspace:*"
+	},
+	"exports": {
+		".": {
+			"import": {
+				"default": "./src/index.ts"
+			}
+		}
+	},
+	"keywords": [
+		"lights"
+	],
+	"name": "lights-schedule",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
+		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
+		"bundle:types": "node ./scripts/bundle-dts.js"
+	},
+	"type": "module"
+}

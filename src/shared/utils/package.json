@@ -1,0 +1,15 @@
+{
+	"author": "Eric Rovell",
+	"description": "Project data",
+	"exports": {
+		".": {
+			"import": {
+				"default": "./src/index.ts"
+			}
+		}
+	},
+	"name": "@shared/utils",
+	"license": "MIT",
+	"private": true,
+	"type": "module"
+}

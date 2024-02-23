@@ -1,0 +1,68 @@
+.label {
+	--checkbox-background: var(--color-surface-5);
+	--checkbox-border-color: var(--color-surface-3);
+	--checkbox-cross-color: var(--color-danger);
+	--checkbox-check-color: hsl(120deg 90% 30%);
+	--checkbox-size: 1.5em;
+
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+
+	span {
+		margin-inline-start: var(--space-2);
+	}
+}
+
+.box {
+	width: var(--checkbox-size);
+	height: var(--checkbox-size);
+	background: var(--checkbox-background);
+	border: 1px solid var(--checkbox-border-color);
+	border-radius: 15%;
+	fill: currentcolor;
+	transition: background-color 0.125s linear;
+
+	& path {
+		opacity: 0;
+		transition: opacity 0.125s linear;
+	}
+}
+
+.input {
+	appearance: none;
+
+	&:indeterminate ~ .box path[data-indeterminate] {
+		opacity: 1;
+	}
+
+	&:disabled {
+		opacity: 0.75;
+		cursor: not-allowed;
+	}
+}
+
+.input[data-mode="cross"] {
+	&:is(:checked, :indeterminate) ~ .box {
+		background-color: var(--checkbox-cross-color);
+	}
+
+	&:checked ~ .box path[data-mark] {
+		opacity: 1;
+	}
+
+	&:checked ~ span {
+		text-decoration: line-through;
+	}
+}
+
+.input[data-mode="check"] {
+	&:is(:checked, :indeterminate) ~ .box {
+		background-color: var(--checkbox-check-color);
+	}
+
+	&:checked ~ .box path[data-mark] {
+		opacity: 1;
+	}
+}

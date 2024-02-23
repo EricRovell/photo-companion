@@ -3,11 +3,12 @@
 	import Datetime from "../datetime/datetime.svelte";
 	import Link from "../link/Link.svelte";
 	import { lightsEventComponent } from "./event.lights";
+	import { bridgeEventComponent } from "./event.bridge";
 	import { sunEventComponent } from "./event.sun";
 	import { moonEventComponent } from "./event.moon";
-	import { isLightsEvent, isMoonEvent } from "@services/events";
+	import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "@lib/helpers/validators";
 	import { createQueryDate } from "@lib/helpers";
-	import type { TimelineEvent } from "@lib/types";
+	import type { TimelineEvent } from "@shared/types";
 	import styles from "./event.module.css";
 
 	// when need event reference for another page, usually secondary
@@ -19,6 +20,10 @@
 	let dateQuery = createQueryDate(new Date(event.timestamp));
 
 	const eventComponent = (event: TimelineEvent) => {
+		if (isBridgeEvent(event)) {
+			return bridgeEventComponent(event);
+		}
+
 		if (isLightsEvent(event)) {
 			return lightsEventComponent(event);
 		}
@@ -27,7 +32,11 @@
 			return moonEventComponent(event);
 		}
 
-		return sunEventComponent(event);
+		if (isSunEvent(event)) {
+			return sunEventComponent(event);
+		}
+
+		throw new Error(`Unknown event is provided: ${JSON.stringify(event)}`);
 	};
 
 	let { component, props, message, title, type } = eventComponent(event);
@@ -62,7 +71,7 @@
 	<div class="{styles.icon}" data-event-icon>
 		<Link
 			className="{styles.link}"
-			href="/{page ?? type}?{new URLSearchParams({ ...$query, date: dateQuery }).toString()}"
+			href="/{page ?? type ?? ""}?{new URLSearchParams({ ...$query, date: dateQuery }).toString()}"
 			title="{linkTitle}"
 		>
 			<svelte:component

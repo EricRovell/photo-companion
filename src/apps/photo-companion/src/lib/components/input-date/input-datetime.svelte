@@ -3,7 +3,8 @@
 	import Button from "../button/button.svelte";
 	import Icon from "../icon/icon.svelte";
 	import { iconTimeline, iconChevronLeft, iconChevronRight } from "@lib/icons";
-	import { getDateTimeString, incrementDateByDay } from "@lib/helpers";
+	import { getDateTimeString } from "@lib/helpers";
+	import { incrementDateByDay } from "@shared/utils";
 	import { dict } from "@lib/dict";
 	import styles from "./input-datetime.module.css";
 
@@ -39,7 +40,7 @@
 		className="{styles["button-increment"]}"
 		data-step="-1"
 		on:click="{handleClick}"
-		title="{dict["next-day"]}"
+		title="{dict.LABEL.NEXT_DAY}"
 	>
 		<Icon
 			viewBox="0 0 256 256"
@@ -50,7 +51,7 @@
 		<label class="{styles.label}">
 			<slot />
 			<input
-				aria-label="{dict["date-and-time"]}"
+				aria-label="{dict.LABEL.DATETIME}"
 				class="{styles.input}"
 				{max}
 				{min}
@@ -73,7 +74,7 @@
 		className="{styles["button-increment"]}"
 		data-step="1"
 		on:click="{handleClick}"
-		title="{dict["prev-day"]}"
+		title="{dict.LABEL.PREVIOUS_DAY}"
 	>
 		<Icon
 			viewBox="0 0 256 256"

@@ -20,48 +20,48 @@ export const EARTH_OBLIQUITY = RAD * 23.4397;
 export const sunTimes: SunTimeEvent[] = [
 	{
 		angle: 6,
-		riseName: "golden-hour:dawn:end",
-		setName: "golden-hour:dusk:start"
+		riseName: "GOLDEN_HOUR_END_DAWN",
+		setName: "GOLDEN_HOUR_START_DUSK"
 	}, // GOLDEN_HOUR_2
 	{
 		angle: -0.3,
-		riseName: "sunrise:end",
-		setName: "sunset:start"
+		riseName: "SUNRISE_END",
+		setName: "SUNSET_START"
 	}, // SUNRISE_END
 	{
 		angle: -0.833,
-		riseName: "sunrise:start",
-		setName: "sunset:end"
+		riseName: "SUNRISE_START",
+		setName: "SUNSET_END"
 	}, // SUNRISE
 	{
 		angle: -1,
-		riseName: "golden-hour:dawn:start",
-		setName: "golden-hour:dusk:end"
+		riseName: "GOLDEN_HOUR_START_DAWN",
+		setName: "GOLDEN_HOUR_END_DUSK"
 	}, // GOLDEN_HOUR_1
 	{
 		angle: -4,
-		riseName: "blue-hour:dawn:end",
-		setName: "blue-hour:dusk:start"
+		riseName: "BLUE_HOUR_END_DAWN",
+		setName: "BLUE_HOUR_START_DUSK"
 	}, // BLUE_HOUR
 	{
 		angle: -6,
-		riseName: "civil:dawn",
-		setName: "civil:dusk"
+		riseName: "CIVIL_DAWN",
+		setName: "CIVIL_DUSK"
 	}, // DAWN
 	{
 		angle: -8,
-		riseName: "blue-hour:dawn:start",
-		setName: "blue-hour:dusk:end"
+		riseName: "BLUE_HOUR_START_DAWN",
+		setName: "BLUE_HOUR_END_DUSK"
 	}, // BLUE_HOUR
 	{
 		angle: -12,
-		riseName: "nautical:dawn",
-		setName: "nautical:dusk"
+		riseName: "NAUTICAL_DAWN",
+		setName: "NAUTICAL_DUSK"
 	}, // NAUTIC_DAWN
 	{
 		angle: -18,
-		riseName: "astronomical:dawn",
-		setName: "astronomical:dusk"
+		riseName: "ASTRONOMICAL_DAWN",
+		setName: "ASTRONOMICAL_DUSK"
 	} // ASTRO_DAWN
 ];
 
@@ -69,55 +69,55 @@ export const MOON_CYCLE_LIST: MoonPhase[] = [
 	{
 		from: 0,
 		to: 0.033863193308711,
-		id: "new-moon",
+		id: "NEW_MOON",
 		weight: 1
 	},
 	{
 		from: 0.033863193308711,
 		to: 0.216136806691289,
-		id: "waning-crescent",
+		id: "WANING_CRESCENT",
 		weight: 6.3825
 	},
 	{
 		from: 0.216136806691289,
 		to: 0.283863193308711,
-		id: "first-quarter",
+		id: "FIRST_QUARTER",
 		weight: 1
 	},
 	{
 		from: 0.283863193308711,
 		to: 0.466136806691289,
-		id: "waning-gibbous",
+		id: "WANING_GIBBOUS",
 		weight: 6.3825
 	},
 	{
 		from: 0.466136806691289,
 		to: 0.533863193308711,
-		id: "full-moon",
+		id: "FULL_MOON",
 		weight: 1
 	},
 	{
 		from: 0.533863193308711,
 		to: 0.716136806691289,
-		id: "waning-gibbous",
+		id: "WANING_GIBBOUS",
 		weight: 6.3825
 	},
 	{
 		from: 0.716136806691289,
 		to: 0.783863193308711,
-		id: "first-quarter",
+		id: "FIRST_QUARTER",
 		weight: 1
 	},
 	{
 		from: 0.783863193308711,
 		to: 0.966136806691289,
-		id: "waning-crescent",
+		id: "WANING_CRESCENT",
 		weight: 6.3825
 	},
 	{
 		from: 0.966136806691289,
 		to: 1,
-		id: "new-moon",
+		id: "NEW_MOON",
 		weight: 1
 	}
 ];

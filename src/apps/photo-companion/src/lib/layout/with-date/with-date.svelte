@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
-	import ErrorDate from "@lib/../pages/error-date/error-date.svelte";
+	import ErrorDate from "../../../pages/error-date/error-date.svelte";
 	import { InputDatetime } from "@lib/components";
 	import { isValidDate, parseQueryDate, createQueryDate } from "@lib/helpers";
 	import { onMount, type ComponentType } from "svelte";
@@ -37,8 +37,6 @@
 {:else}
 	<svelte:component
 		{date}
-		lat="{Number($query.lat)}"
-		lon="{Number($query.lon)}"
 		this="{page}"
 	/>
 {/if}

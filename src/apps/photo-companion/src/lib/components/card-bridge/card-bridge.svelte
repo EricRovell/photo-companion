@@ -2,36 +2,37 @@
 	import ScheduleSparkline from "./card-bridge-sparkline.svelte";
 	import Timer from "../timer/timer.svelte";
 	import Icon from "../icon/icon.svelte";
-	import { getBridgeStateByDate, getBridgeSchedule } from "@services/bridges";
+	import { getBridgeState, getBridgeScheduleEntry } from "bridge-schedule";
 	import { iconWarning } from "@lib/icons";
-	import { dict, template } from "@lib/dict";
-	import type { BridgeShedule } from "@shared/schedule";
+	import { dict } from "@lib/dict";
 	import type { BridgeName } from "@shared/types";
 	import styles from "./card-bridge.module.css";
 
 	export let name: BridgeName;
 	export let exception = false;
 	
-	let schedule: BridgeShedule = getBridgeSchedule(name);
-	let state = getBridgeStateByDate(name, new Date(), true);
+	let schedule = getBridgeScheduleEntry(name);
+	let state = getBridgeState(name, new Date(), true);
 </script>
 
 {#if state}
 	<article class="{styles.card}">
 		<header>
 			<h2>
-				{dict[name]} {dict["bridge"]}
+				{dict.BRIDGE_NAME_SPB[name]} {dict.LABEL.BRIDGE}
 				{#if exception}
 				<Icon
 					path="{iconWarning}"
-					title="{dict["bridge-exception"]}"
+					title="{dict.MESSAGE.BRIDGE_EXCEPTION}"
 				/>
 		{/if}
 			</h2>
 			<output>
-				{state.open
-					? dict["bridge-opened"]
-					: dict["bridge-closed"]}
+				{
+					state.open
+						? dict.LABEL.BRIDGE_OPENED
+						: dict.LABEL.BRIDGE_CLOSED
+				}
 			</output>
 		</header>
 		<div>
@@ -41,11 +42,16 @@
 			{schedule}
 		/>
 		<footer>
-			<p>{template["bridge-next-event"](state.open)}</p>
+			<p>{
+				state.open
+					? dict.MESSAGE.BRIDGE_WILL_CLOSE_WITHIN
+					: dict.MESSAGE.BRIDGE_WILL_OPEN_WITHIN
+				}
+			</p>
 			<Timer
 				timestamp={state.timestamp}
 				on:alarm="{() => {
-					state = getBridgeStateByDate(name, new Date(), true);
+					state = getBridgeState(name, new Date(), true);
 				}}"
 			/>
 		</footer>

@@ -1,6 +1,7 @@
 import { getMoonIllumination, getMoonTimes, getMoonData as calcMoonData } from "moon-sun-calc";
 import { isValidDate, round } from "@lib/helpers";
-import type { MoonEvent, MoonPhaseName } from "@lib/types";
+import type { MoonEvent } from "@shared/types";
+import type { MoonPhaseName } from "@shared/types";
 
 export interface MoonData {
 	moonrise: Date | null;
@@ -87,14 +88,15 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 		const rise = getMoonData(data.moonrise, lat, lon);
 
 		events.push({
-			name: "moonrise",
-			timestamp: data.moonrise.getTime(),
 			data: {
 				fraction: round(rise.fraction * 100, 1),
 				phase: rise.phaseValue,
 				waxing: rise.waxing,
 				zenithAngle: rise.zenithAngle
-			}
+			},
+			name: "MOONRISE",
+			timestamp: data.moonrise.getTime(),
+			type: "MOON"
 		});
 	}
 
@@ -102,14 +104,15 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 		const set = getMoonData(data.moonset, lat, lon);
 
 		events.push({
-			name: "moonset",
-			timestamp: data.moonset.getTime(),
 			data: {
 				fraction: round(set.fraction * 100, 1),
 				phase: set.phaseValue,
 				waxing: set.waxing,
 				zenithAngle: set.zenithAngle
-			}
+			},
+			name: "MOONSET",
+			timestamp: data.moonset.getTime(),
+			type: "MOON"
 		});
 	}
 

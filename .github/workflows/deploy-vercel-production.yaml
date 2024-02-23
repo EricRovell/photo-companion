@@ -6,13 +6,15 @@ env:
 
 on:
   push:
+    branches:
+      - main
     tags:
       - '*'
   workflow_dispatch:
 
 jobs:
   build-workflow:
-    uses: ./.github/workflows/build-apps.yaml
+    uses: ./.github/workflows/build.yaml
 
   deploy-to-vercel:
     needs: build-workflow
@@ -20,11 +22,12 @@ jobs:
     steps:
 
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: install Vercel CLI
         run: |
           npm i pnpm -g
+          SHELL="$(which bash)" pnpm setup
           pnpm i --global vercel
 
       - name: Pull Vercel Environment Information

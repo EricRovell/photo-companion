@@ -1,98 +1,84 @@
 <script lang="ts">
 	import { Bulb, Event, GaugeTime, Timeline, Timer } from "@lib/components";
-	import { getLightsScheduleByDate, getLightsStateByDate } from "@services/lights";
-	import { getTimeline } from "@services/events";
-	import { round } from "@lib/helpers";
-	import { LAT, LON } from "@lib/constants";
+	import { provider } from "@services/lights";
+	import { initTimelineProvider } from "@services/events";
 	import { dict, template } from "@lib/dict";
-	import type { EventName } from "@lib/types";
+	import { settingsStore as store } from "@lib/settings-store";
+	import { secondsToHoursAndMinutes } from "@shared/utils";
+	import { SUN_EVENT_NAMES } from "@lib/constants";
 	import styles from "./lights.module.css";
 
 	export let date: Date;
-	export let lat: number;
-	export let lon: number;
 
-	const timelineEvents: Set<EventName> = new Set([
-		"lights:start",
-		"lights:end",
-		"sunrise:start",
-		"sunset:end"
-	]);
+	const timelineProvider = initTimelineProvider({
+		lightsEvents: [],
+		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "SUNRISE_START" && item !== "SUNSET_END"),
+		secondaryEvents: new Set([ "SUNRISE_START", "SUNSET_END" ])
+	});
 
-	const timelineEventsSecondary: Set<EventName> = new Set([
-		"sunrise:start",
-		"sunset:end"
-	]);
-
-	let schedule = getLightsScheduleByDate(date);
-	let state = getLightsStateByDate();
+	let schedule = provider?.getScheduleByDate(date);
+	let state = provider?.getStateByDate();
 
 	const handleAlarm = () => {
-		state = getLightsStateByDate();
+		state = provider?.getStateByDate();
 	};
 
-	$: schedule = getLightsScheduleByDate(date);
+	$: schedule = provider?.getScheduleByDate(date);
+	$: events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 </script>
 
-<div class="{styles.page}">
-	{#if round(lat) !== 60 && round(lon) !== 30}
-		<section data-label="geolocation-warning" class="card {styles.warning}">
+{#if schedule && state}
+	<div class="{styles.page}">
+		<section data-label="lights-schedule" class="card">
 			<header>
-				<h2>{dict["warning"]}</h2>
+				<h2>{dict.TITLE.LIGHTS_DATA_BY_DATE}</h2>
 			</header>
-			<p>{dict["location-off"]} {dict["saint-petersburg"]}</p>
+			<GaugeTime
+				timeFrom="{new Date(schedule.LIGHTS_START)}"
+				timeTo="{new Date(schedule.LIGHTS_END)}"
+			>
+				<Bulb x="-10" y="-10" width="20" height="20" glow />
+			</GaugeTime>
+			<footer>
+				<p>{dict.LABEL.DURATION_LIGHTS}</p>
+				<output>
+					{template["hours-and-minutes"](secondsToHoursAndMinutes(schedule.duration))}
+				</output>
+			</footer>
 		</section>
-	{/if}
-	<section data-label="lights-schedule" class="card">
-		<header>
-			<h2>{dict["header-lights-by-date"]}</h2>
-		</header>
-		<GaugeTime
-			timeFrom="{new Date(schedule["lights:start"])}"
-			timeTo="{new Date(schedule["lights:end"])}"
+		<section data-label="timeline">
+			<Timeline>
+				{#each events as event (`${event.timestamp}/${event.name}`)}
+					<Event
+						page="{event.secondary ? "lights" : undefined}"
+						{event}
+						secondary={event.secondary}
+					/>
+				{/each}
+			</Timeline>
+		</section>
+		<section
+			data-active="{state.lights ? "" : undefined}"
+			data-label="lights-event-timer"
+			class="card"
 		>
-			<Bulb x="-10" y="-10" width="20" height="20" glow />
-		</GaugeTime>
-		<footer>
-			<p>{dict["duration-lights"]}</p>
-			<output>
-				{template["hours-and-minutes"](schedule.duration)}
-			</output>
-		</footer>
-	</section>
-	<section data-label="timeline">
-		<Timeline>
-			{#each getTimeline(date, LAT, LON, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
-				{@const secondary = timelineEventsSecondary.has(event.name)}
-				<Event
-					page="{secondary ? "lights" : undefined}"
-					{event}
-					{secondary}
+			<header>
+				<h2>{dict.TITLE.LIGHTS_COUNTDOWN}</h2>
+			</header>
+			{#if !state}
+				<p>{dict.MESSAGE.SOMETHING_WRONG}</p>
+			{:else}
+				<Bulb 
+					glow="{state.lights}"
 				/>
-			{/each}
-		</Timeline>
-	</section>
-	<section
-		data-active="{state.lights ? "" : undefined}"
-		data-label="lights-event-timer"
-		class="card"
-	>
-		<header>
-			<h2>{dict["header-lights-timer"]}</h2>
-		</header>
-		{#if !state}
-			<p>{dict["something-wrong"]}</p>
-		{:else}
-			<Bulb 
-				glow="{state.lights}"
-			/>
-			<p class="{styles.note}">
-				{@html template["lights-event"](state.lights)}
-			</p>
-			<Timer
-				timestamp="{state.timestamp}"
-				on:alarm={handleAlarm}
-			/>
-		{/if}
-	</section>
-</div>
+				<p class="{styles.note}">
+					{@html template["lights-event"](state.lights)}
+				</p>
+				<Timer
+					timestamp="{state.timestamp}"
+					on:alarm={handleAlarm}
+				/>
+			{/if}
+		</section>
+	</div>
+{/if}

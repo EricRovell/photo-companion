@@ -12,9 +12,7 @@
 		"twilight",
 		"moon"
 	],
-	"types": "dist/index.d.ts",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
+	"main": "./src/index.ts",
 	"scripts": {
 		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
 		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
@@ -26,13 +24,6 @@
 	},
 	"devDependencies": {
 		"@shared/types": "workspace:*"
-	},
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
-		},
-		"./package.json": "./package.json"
 	},
 	"files": [
 		"CHANGELOG.md",

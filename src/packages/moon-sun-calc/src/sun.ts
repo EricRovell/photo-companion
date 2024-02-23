@@ -89,19 +89,19 @@ export function getSunTimes(dateValue: Date | number, lat: number, lng: number, 
 	const nadirVal = fromJulianDay(Jnoon + 0.5);
 
 	const result: Partial<Record<SunEventName, SunTime>> = {
-		"solar-noon": {
+		SOLAR_NOON: {
 			value: new Date(noonVal),
 			ts: noonVal,
-			name: "solar-noon",
+			name: "SOLAR_NOON",
 			// elevation: 90,
 			julian: Jnoon,
 			valid: !isNaN(Jnoon),
 			pos: sunTimes.length
 		},
-		"nadir": {
+		NADIR: {
 			value: new Date(nadirVal),
 			ts: nadirVal,
-			name: "nadir",
+			name: "NADIR",
 			// elevation: 270,
 			julian: Jnoon + 0.5,
 			valid: !isNaN(Jnoon),
@@ -170,9 +170,9 @@ export function getSunTime(
 	dateValue: Date | number,
 	lat: number, lng: number,
 	elevationAngle: number,
-	height: number,
-	degree: number,
-	inUTC: boolean
+	height = 0,
+	degree?: boolean,
+	inUTC?: boolean
 ): { set: SunTime, rise: SunTime } {
 	if (isNaN(lat)) {
 		throw new Error("latitude missing");
@@ -200,7 +200,7 @@ export function getSunTime(
 
 	const lw = RAD * -lng;
 	const phi = RAD * lat;
-	const dh = observerAngle(height || 0);
+	const dh = observerAngle(height);
 	const d = toDays(t.valueOf());
 	const n = julianCycle(d, lw);
 	const ds = approxTransit(0, lw, n);

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from "@lib/components";
-	import { getNavigationState } from "@services/bridges";
+	import { getNavigationState } from "bridge-schedule";
 	import { iconAnchor } from "@lib/icons";
 	import { dict, template } from "@lib/dict";
 	import styles from "./bridges.module.css";
@@ -14,11 +14,11 @@
 >
 	<header>
 		{navigation
-			? dict["navigation-opened"]
-			: dict["navigation-closed"]
+			? dict.TITLE.NAVIGATION_OPENED
+			: dict.TITLE.NAVIGATION_CLOSED
 		}
 	</header>
-	<p>{dict["till-navigation"]}</p>
+	<p>{dict.MESSAGE.NAVIGATION_IN}</p>
 	<p><output>{days}</output> {template["days"](days)}</p>
 	<Icon path="{iconAnchor}" />
 </article>

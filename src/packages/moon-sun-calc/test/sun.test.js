@@ -79,8 +79,8 @@ describe("Sun", () => {
 	it("getSunTime returns the correct time for the given date and location", () => {
 		const times = getSunTime(DATE, LAT, LNG, 0);
 
-		const sunriseStartTime = TIMES_NORTH_HEMISPHERE.find(({ event }) => event === "sunrise:start");
-		const sunsetEndTime = TIMES_NORTH_HEMISPHERE.find(({ event }) => event === "sunset:end");
+		const sunriseStartTime = TIMES_NORTH_HEMISPHERE.find(({ event }) => event === "SUNRISE_START");
+		const sunsetEndTime = TIMES_NORTH_HEMISPHERE.find(({ event }) => event === "SUNSET_END");
 
 		expect(new Date(times.rise.value).toUTCString()).toBe(new Date(sunriseStartTime.dateString).toUTCString());
 		expect(new Date(times.set.value).toUTCString()).toBe(new Date(sunsetEndTime.dateString).toUTCString());

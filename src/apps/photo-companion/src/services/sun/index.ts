@@ -1,13 +1,14 @@
 import { getSunTimes, getSunPosition } from "moon-sun-calc";
-import { calcEventDuration, incrementDateByDay, round, secondsToHoursAndMinutes } from "@lib/helpers";
+import { round, secondsToHoursAndMinutes } from "@lib/helpers";
+import { calcDuration, incrementDateByDay } from "@shared/utils";
 import type { SunEventName } from "@shared/types";
-import type { SunEvent } from "@lib/types";
+import type { SunEvent } from "@shared/types";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
-	const sunrise: Date = suntimes["sunrise:start"].value;
-	const sunset: Date = suntimes["sunset:end"].value;
-	const dayDuration = secondsToHoursAndMinutes(calcEventDuration(sunrise, sunset));
+	const sunrise: Date = suntimes.SUNRISE_START.value;
+	const sunset: Date = suntimes.SUNSET_END.value;
+	const dayDuration = secondsToHoursAndMinutes(calcDuration(sunrise, sunset));
 
 	return {
 		dayDuration,
@@ -18,15 +19,15 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
 	const data = getSunTimes(date, lat, lon);
-	// the API returns the "nadir" for the next date
-	const nadir = getSunTimes(incrementDateByDay(date, -1), lat, lon).nadir;
-	const positionNadir = getSunPosition(data["nadir"].ts, lat, lon);
-	const positionNoon = getSunPosition(data["solar-noon"].ts, lat, lon);
+	// the API returns the "NADIR" for the next date
+	const nadir = getSunTimes(incrementDateByDay(date, -1), lat, lon).NADIR;
+	const positionNadir = getSunPosition(data.NADIR.ts, lat, lon);
+	const positionNoon = getSunPosition(data.SOLAR_NOON.ts, lat, lon);
 
 	const sunEvents: SunEvent[] = [];
 	const missedEventsSet = new Set<string>([
-		"solar-noon",
-		"nadir"
+		"SOLAR_NOON",
+		"NADIR"
 	]);
 
 	for (const [ key, value ] of Object.entries(data)) {
@@ -35,32 +36,35 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 		}
 
 		sunEvents.push({
-			name: key as SunEventName,
-			timestamp: value.ts,
 			data: {
 				azimuth: round(getSunPosition(value.ts, lat, lon).azimuthDegrees),
 				// TODO: manage elevation for solar noon and nadir
 				elevation: value.elevation!
-			}
+			},
+			name: key as SunEventName,
+			timestamp: value.ts,
+			type: "SUN"
 		});
 	}
 
 	sunEvents.push(
 		{
-			name: "nadir",
-			timestamp: nadir.ts,
 			data: {
 				azimuth: round(positionNadir.azimuthDegrees),
 				elevation: round(positionNadir.altitudeDegrees, 1)
-			}
+			},
+			name: "NADIR",
+			timestamp: nadir.ts,
+			type: "SUN"
 		},
 		{
-			name: "solar-noon",
-			timestamp: data["solar-noon"].ts,
 			data: {
 				azimuth: round(positionNoon.azimuthDegrees),
 				elevation: round(positionNoon.altitudeDegrees, 1)
-			}
+			},
+			name: "SOLAR_NOON",
+			timestamp: data.SOLAR_NOON.ts,
+			type: "SUN"
 		}
 	);
 

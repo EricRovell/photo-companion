@@ -1,24 +1,24 @@
 import { Sun } from "@lib/components";
 import { dict } from "@lib/dict";
-import type { SunEventName } from "@shared/types";
-import type { SunEvent, EventComponent } from "@lib/types";
+import type { EventComponent } from "@lib/types";
+import type { SunEventName, SunEvent } from "@shared/types";
 
 export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunEventName, elevation: number }> {
 	let message: string | undefined = undefined;
 
 	switch (event.name) {
-		case "sunrise:start":
-		case "sunset:end":
-			message= `${event.data.azimuth}°, ${dict[`${event.name}:info`]}`;
+		case "SUNRISE_START":
+		case "SUNSET_END":
+			message= `${event.data.azimuth}°, ${dict.SUN_TIMES[`${event.name}_TITLE`]}`;
 			break;
-		case "blue-hour:dawn:start":
-		case "blue-hour:dawn:end":
-		case "solar-noon":
-		case "golden-hour:dusk:end":
-		case "blue-hour:dusk:end":
+		case "BLUE_HOUR_START_DAWN":
+		case "BLUE_HOUR_END_DAWN":
+		case "SOLAR_NOON":
+		case "GOLDEN_HOUR_END_DUSK":
+		case "BLUE_HOUR_END_DUSK":
 			break;
 		default:
-			message = dict[`${event.name}:info`];
+			message = dict.SUN_TIMES[`${event.name}_TITLE`];
 	}
 
 	return {
@@ -28,7 +28,7 @@ export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunE
 			elevation: event.data.elevation
 		},
 		message,
-		title: dict[event.name],
+		title: dict.SUN_TIMES[event.name],
 		type: "sun"
 	};
 }

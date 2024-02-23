@@ -23,7 +23,8 @@
 		"src/**/*.ts",
 		"src/**/*.js",
 		"src/**/*.svelte",
-		"test/*.js"
+		"test/*.js",
+		"../../../global.d.ts"
 	],
 	"exclude": [
 		"src/service-worker.js"

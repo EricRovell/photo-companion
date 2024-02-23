@@ -1,33 +1,19 @@
 <script lang="ts">
-	import { click, query, prefs }from "svelte-pathfinder";
+	import { click, query, path, prefs }from "svelte-pathfinder";
 	import { App, ServiceWorker } from "@lib/layout";
-	import { getUserLocation } from "@lib/helpers";
-	import { LAT, LON } from "@lib/constants";
+	import { settingsStore } from "@lib/settings-store";
 
 	prefs.scroll = true;
 
-	const initLocation = async () => {
-		if ($query.lat && $query.lon) {
-			return;
-		}
+	const store = settingsStore.init();
 
-		try {
-			$query.lat = LAT;
-			$query.lon = LON;
+	// TODO use redirect
+	if (!$path[0]) {
+		$path[0] = store.starting_page;
+	}
 
-			const position = await getUserLocation();
-
-			console.log(position);
-
-			if (position) {
-				$query.lat = position.lat;
-				$query.lon = position.lon;
-			}
-		} catch {
-			$query.lat = LAT;
-			$query.lon = LON;
-		}
-	};
+	$query.latitude = store.latitude;
+	$query.longitude = store.longitude;
 </script>
 
 <svelte:window on:click="{click}" />
@@ -36,8 +22,4 @@
 	<ServiceWorker />
 {/if}
 
-{#await initLocation()}
-	<p>Loading...</p>
-{:then}
-	<App />
-{/await}
+<App />

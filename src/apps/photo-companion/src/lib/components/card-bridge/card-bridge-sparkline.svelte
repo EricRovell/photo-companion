@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { renderDatetime, getDate, round } from "@lib/helpers";
 	import { createWavyPath } from "@lib/helpers/svg";
-	import type { BridgeShedule } from "@shared/schedule";
+	import type { BridgeSheduleEntry } from "bridge-schedule";
 	import styles from "./card-bridge.module.css";
 
-	export let schedule: BridgeShedule;
+	export let schedule: BridgeSheduleEntry;
 	export let start = 1;
 	export let end = 6;
 	export let angle = Math.PI / 4;
@@ -16,7 +16,7 @@
 	let dy = round(length * Math.sin(angle));
 	let viewBox = `${start * 60} -${dy} ${(end - start) * 60} ${dy + stroke + fontSize * 2}`;
 
-	const buildBridgeSparklinePath = (schedule: BridgeShedule): string => {
+	const buildBridgeSparklinePath = (schedule: BridgeSheduleEntry): string => {
 		let x = start * 60;
 		let y = 0;
 

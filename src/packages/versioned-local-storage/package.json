@@ -1,0 +1,24 @@
+{
+	"author": "Eric Rovell",
+	"description": "Persistable local storage",
+	"devDependencies": {
+		"@shared/utils": "workspace:*"
+	},
+	"exports": {
+		".": {
+			"import": {
+				"default": "./src/index.ts"
+			}
+		}
+	},
+	"keywords": [
+		"local-storage"
+	],
+	"name": "versioned-local-storage",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"lint:types": "tsc --noEmit"
+	},
+	"type": "module"
+}

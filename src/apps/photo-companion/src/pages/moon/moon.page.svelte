@@ -2,28 +2,31 @@
 	import { query } from "svelte-pathfinder";
 	import { GaugeTime, Moon, Datetime, Timeline, Event, Link } from "@lib/components";
 	import { getMoonData } from "@services/moon";
-	import { getTimeline } from "@services/events";
+	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";
-	import styles from "./moon.module.css";
+	import { settingsStore as store } from "@lib/settings-store";
 	import { createQueryDate, round } from "@lib/helpers";
+	import { SUN_EVENT_NAMES } from "@lib/constants";
+	import styles from "./moon.module.css";
 
 	export let date: Date;
-	export let lat: number;
-	export let lon: number;
 
 	const moonSize = 48;
-	const timelineEvents = new Set([ "sunrise:start", "sunset:end", "moonrise", "moonset" ]);
-	const timelineEventsSecondary = new Set([ "sunrise:start", "sunset:end" ]);
 
-	let state = getMoonData(date, lat, lon);
+	const timelineProvider = initTimelineProvider({
+		moonEvents: [],
+		sunEvents: SUN_EVENT_NAMES.filter(item => item !== "SUNRISE_START" && item !== "SUNSET_END"),
+		secondaryEvents: new Set([ "SUNRISE_START", "SUNSET_END" ])
+	});
 
-	$: state = getMoonData(date, lat, lon);
+	$: state = getMoonData(date, $store.latitude, $store.longitude);
+	$: events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
 </script>
 
 <div class="{styles.page}">
 	<section data-label="moon" class="card {styles.root}">
 		<header>
-			<h2>{dict["header-moon-moontimes"]}</h2>
+			<h2>{dict.TITLE.MOON_TIMES}</h2>
 		</header>
 		<GaugeTime
 			timeFrom="{state.moonrise}"
@@ -44,24 +47,23 @@
 			</foreignObject>
 		</GaugeTime>
 		<footer>
-			<p>{dict[state.name]}</p>
+			<p>{dict.MOON_PHASE[state.name]}</p>
 			<output>{round(state.fraction * 100, 2)}%</output>
 		</footer>
 	</section>
 	<section data-label="timeline">
 		<Timeline>
-			{#each getTimeline(date, lat, lon, { predicate: event => timelineEvents.has(event.name) }) as event (`${event.timestamp}/${event.name}`)}
-				{@const secondary = timelineEventsSecondary.has(event.name)}
+			{#each events as event (`${event.timestamp}/${event.name}`)}
 				<Event
-					page="{secondary ? "moon" : undefined}"
+					page="{event.secondary ? "moon" : undefined}"
 					{event}
-					{secondary}
+					secondary={event.secondary}
 				/>
 			{/each}
 		</Timeline>
 	</section>
 	<section data-label="phases-calendar" class="card {styles.phases}">
-		<header>{dict["header-moon-phase-calendar"]}</header>
+		<header>{dict.TITLE.MOON_PHASE_CALENDAR}</header>
 		<div>
 			{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
 				<Link

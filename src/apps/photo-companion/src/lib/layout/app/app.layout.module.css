@@ -18,15 +18,22 @@
 
 .content {
 	justify-self: center;
-	display: flex;
-	align-items: center;
 	width: var(--max-width);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	& nav {
+		display: flex;
+		flex-flow: nowrap;
+		gap: var(--space-2);
+	}
 }
 
-.faq {
-	--icon-size: 1.5rem;
+.icon {
+	--icon-size: 1.2rem;
 
-	padding: var(--space-1);
+	padding: var(--space-2);
 	background-color: var(--color-surface-2);
 
 	&:hover {
