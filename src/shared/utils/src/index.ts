@@ -9,5 +9,6 @@ export {
 
 export {
 	isInteger,
+	isNonNegativeInteger,
 	isValidDate
 } from "./validators";

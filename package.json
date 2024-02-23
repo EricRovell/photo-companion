@@ -41,5 +41,8 @@
 		"src/apps/*",
 		"src/packages/*",
 		"src/shared/*"
-	]
+	],
+	"dependencies": {
+		"happy-dom": "^13.3.8"
+	}
 }

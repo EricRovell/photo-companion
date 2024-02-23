@@ -2,6 +2,10 @@ export function isInteger(value: unknown): value is number {
 	return !Number.isNaN(value) && Number.isInteger(value);
 }
 
+export function isNonNegativeInteger(value: unknown): value is number {
+	return isInteger(value) && value >= 0;
+}
+
 export function isValidDate(date: Date | number | string | undefined): boolean {
 	if (date instanceof Date) {
 		return !isNaN(date.getTime());
