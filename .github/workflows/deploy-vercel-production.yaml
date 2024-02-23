@@ -5,7 +5,6 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
-  pull_request:
   push:
     branches:
       - main
@@ -28,16 +27,8 @@ jobs:
       - name: install Vercel CLI
         run: |
           npm i pnpm -g
+          SHELL="$(which bash)" pnpm setup
           pnpm i --global vercel
-
-      - uses: pnpm/action-setup@v3
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
-
-      - name: Install Vercel CLI
-        run: pnpm add --global vercel@latest
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
