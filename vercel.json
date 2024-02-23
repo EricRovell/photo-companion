@@ -1,7 +1,7 @@
 {
-	"buildCommand": "pnpm build",
+	"buildCommand": "npm i pnpm -g && pnpm build",
 	"cleanUrls": true,
-	"devCommand": "pnpm build:package && pnpm dev:app",
+	"devCommand": "pnpm build && pnpm dev",
 	"framework": "svelte",
 	"headers": [
 		{
