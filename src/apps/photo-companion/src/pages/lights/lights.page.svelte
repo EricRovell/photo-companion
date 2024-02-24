@@ -6,6 +6,7 @@
 	import { settingsStore as store } from "@lib/settings-store";
 	import { secondsToHoursAndMinutes } from "@shared/utils";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
+	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./lights.module.css";
 
 	export let date: Date;
@@ -36,6 +37,7 @@
 			<GaugeTime
 				timeFrom="{new Date(schedule.LIGHTS_START)}"
 				timeTo="{new Date(schedule.LIGHTS_END)}"
+				pointerAngle="{getAngleFromTime(date)}"
 			>
 				<Bulb x="-10" y="-10" width="20" height="20" glow />
 			</GaugeTime>

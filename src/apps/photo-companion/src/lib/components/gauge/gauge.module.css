@@ -33,3 +33,16 @@
 	stroke-width: var(--gauge-mark-prime-width, 0.25);
 	stroke: var(--gauge-markprime-color, hsl(0deg 5% 50%));
 }
+
+.pointer {
+	fill: var(--gauge-background, hsl(0deg 50% 100% / 50%));
+	transform-origin: 0 0;
+	transform: rotate(var(--gauge-pointer-angle));
+	transition:
+		transform 0.5s ease-in-out,
+		fill 0.5s linear;
+
+	&[data-active] {
+		fill: var(--gauge-color, hsl(195deg 41% 58%));
+	}
+}

@@ -4,6 +4,7 @@
 	import { dict, template } from "@lib/dict";
 	import { initTimelineProvider } from "@services/events";
 	import { settingsStore as store } from "@lib/settings-store";
+	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./sun.module.css";
 
 	export let date: Date;
@@ -26,6 +27,7 @@
 		<GaugeTime
 			timeFrom="{state.sunrise}"
 			timeTo="{state.sunset}"
+			pointerAngle="{getAngleFromTime(date)}"
 		>
 			<Sun
 				x="-{sunSize / 2}"
