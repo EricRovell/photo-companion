@@ -7,6 +7,7 @@
 	import { settingsStore as store } from "@lib/settings-store";
 	import { createQueryDate, round } from "@lib/helpers";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
+	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./moon.module.css";
 
 	export let date: Date;
@@ -31,6 +32,7 @@
 		<GaugeTime
 			timeFrom="{state.moonrise}"
 			timeTo="{state.moonset}"
+			pointerAngle="{getAngleFromTime(date)}"
 		>
 			<foreignObject
 				xmlns="http://www.w3.org/2000/svg"

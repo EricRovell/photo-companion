@@ -14,6 +14,7 @@
 <script lang="ts">
 	export let timeFrom: Date | null = null;
 	export let timeTo: Date | null = null;
+	export let pointerAngle: number | undefined = undefined;
 
 	let {
 		angleStart,
@@ -47,6 +48,7 @@
 	angleEnd="{$angles.end}"
 	{labelStart}
 	{labelEnd}
+	{pointerAngle}
 	{...$$restProps}
 >
 	<slot />
