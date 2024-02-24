@@ -40,6 +40,13 @@
 	};
 </script>
 
+<!--
+	Note: The checkbox state is reversed visually for the user.
+
+	This checkbox group behaves like a disallow list under the hood,
+	knowing which events are NOT allowed makes code easier,
+	as for allow list we should not all possible events ahead.
+-->
 <fieldset
 	class="{styles["checkbox-group"]}"
 	on:change="{handleChange}"
@@ -59,7 +66,8 @@
 				label="{groupLabel}"
 				type="checkbox"
 				{name}
-				mode="cross"
+				symbolUnchecked="CHECK"
+				symbolChecked="{null}"
 				value={groupValue}
 			/>
 		</summary>
@@ -72,7 +80,8 @@
 						{disabled}
 						label="{option.label}"
 						{name}
-						mode="cross"
+						symbolUnchecked="CHECK"
+						symbolChecked="{null}"
 						type="checkbox"
 						value="{option.value}"
 					/>
