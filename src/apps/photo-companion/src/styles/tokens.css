@@ -57,6 +57,12 @@
 	--segment-color-off: hsl(180deg 40% 25% / 50%);
 	--radio-input-checked: hsl(212deg 80% 65%);
 	--radio-input-hover: hsl(212deg 85% 55%);
+	--checkbox-symbol-color: white;
+	--checkbox-unchecked-bg: var(--color-surface-5);
+	--checkbox-border-color: var(--color-surface-3);
+	--checkbox-checked-bg: hsl(120deg 90% 30%);
+	--checkbox-indeterminate-bg: hsl(71deg 75% 40%);
+	--checkbox-size: 1.5em;
 
 	color-scheme: dark;
 	color: var(--color-text);

@@ -1,4 +1,8 @@
 .checkbox-group {
+	/* Note: the reason is written in component */
+	--checkbox-unchecked-bg: hsl(120deg 90% 30%);
+	--checkbox-checked-bg: var(--color-surface-5);
+
 	border: none;
 	overflow: hidden;
 

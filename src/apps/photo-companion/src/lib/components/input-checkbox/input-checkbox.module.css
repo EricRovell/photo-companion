@@ -1,10 +1,4 @@
 .label {
-	--checkbox-background: var(--color-surface-5);
-	--checkbox-border-color: var(--color-surface-3);
-	--checkbox-cross-color: var(--color-danger);
-	--checkbox-check-color: hsl(120deg 90% 30%);
-	--checkbox-size: 1.5em;
-
 	display: flex;
 	align-items: center;
 	cursor: pointer;
@@ -26,6 +20,7 @@
 
 	& path {
 		opacity: 0;
+		fill: var(--checkbox-symbol-color);
 		transition: opacity 0.125s linear;
 	}
 }
@@ -33,36 +28,32 @@
 .input {
 	appearance: none;
 
-	&:indeterminate ~ .box path[data-indeterminate] {
-		opacity: 1;
-	}
-
 	&:disabled {
 		opacity: 0.75;
 		cursor: not-allowed;
 	}
-}
 
-.input[data-mode="cross"] {
-	&:is(:checked, :indeterminate) ~ .box {
-		background-color: var(--checkbox-cross-color);
+	&:checked ~ .box {
+		background-color: var(--checkbox-checked-bg);
+
+		& path[data-checked] {
+			opacity: 1;
+		}
 	}
 
-	&:checked ~ .box path[data-mark] {
-		opacity: 1;
+	&:not(:is(:checked, :indeterminate)) ~ .box {
+		background-color: var(--checkbox-unchecked-bg);
+
+		& path[data-unchecked] {
+			opacity: 1;
+		}
 	}
 
-	&:checked ~ span {
-		text-decoration: line-through;
-	}
-}
+	&:indeterminate ~ .box {
+		background-color: var(--checkbox-indeterminate-bg);
 
-.input[data-mode="check"] {
-	&:is(:checked, :indeterminate) ~ .box {
-		background-color: var(--checkbox-check-color);
-	}
-
-	&:checked ~ .box path[data-mark] {
-		opacity: 1;
+		& path[data-indeterminate] {
+			opacity: 1;
+		}
 	}
 }

@@ -21,4 +21,9 @@
 	&:user-invalid {
 		border-color: var(--color-danger);
 	}
+
+	&::-webkit-inner-spin-button {
+		appearance: none;
+		margin: 0;
+	}
 }

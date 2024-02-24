@@ -90,7 +90,7 @@
 				min={-90}
 				max={90}
 				name="latitude"
-				step="{0.000001}"
+				step="{0.000000000001}"
 				inputmode="numeric"
 				value="{settings.latitude}"
 			>
@@ -100,7 +100,7 @@
 				min={-180}
 				max={180}
 				name="longitude"
-				step="{0.000001}"
+				step="{0.000000000001}"
 				inputmode="numeric"
 				value="{settings.longitude}"
 			>
@@ -127,7 +127,7 @@
 				value="{settings.bridges_spb ?? ""}"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict.LABEL.EVENT_BLACKLIST}" id="event-blacklist">
+		<Fieldset legend="{dict.LABEL.EVENT_ALLOW_LIST}" id="event-blacklist">
 			<InputCheckboxGroup
 				bind:value="{settings.events_bridges_spb}"
 				disabled="{!settings.bridges_spb}"

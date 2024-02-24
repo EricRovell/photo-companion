@@ -31,7 +31,7 @@
 				message = dict.MESSAGE.DATA_UPDATE_SUCCESS;
 			}
 		} catch (error) {
-			console.warn(`Could not get location: ${error}`);
+			console.warn(`Could not get location: ${JSON.stringify(error)}`);
 			status = "danger";
 			message = dict.MESSAGE.DATA_UPDATE_ERROR;
 		} finally {

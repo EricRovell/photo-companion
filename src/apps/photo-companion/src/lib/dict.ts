@@ -55,7 +55,7 @@ export const dict = {
 		DATETIME: "Дата и время",
 		DURATION_DAYLIGHT: "Длительность солнечного дня",
 		DURATION_LIGHTS: "Длительность освещения",
-		EVENT_BLACKLIST: "Чёрный список событий",
+		EVENT_ALLOW_LIST: "Фильтры событий",
 		GEOPOSITION: "Геолокация",
 		LATITUDE: "Широта",
 		LIGHTS_CITY: "Городское освещение",
