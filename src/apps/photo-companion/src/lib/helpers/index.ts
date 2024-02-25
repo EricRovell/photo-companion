@@ -1,3 +1,5 @@
+import { isNullable } from "@shared/utils";
+
 /**
  * Round the number up to the desired precision.
  */
@@ -23,9 +25,9 @@ export function formatTime(timestamp: number) {
 /**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.
  */
-export function getAngleFromTime(date = new Date()): number {
-	if (!isValidDate(date)) {
-		return 0;
+export function getAngleFromTime(date: Date | null = new Date(), fallback: number = 0): number {
+	if (isNullable(date) || !isValidDate(date)) {
+		return fallback;
 	}
 
 	const hours = date.getHours();
@@ -166,13 +168,24 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
 }
 
 export function renderDatetime(
-	date: Date | number = new Date,
+	date: Date | number | null = new Date,
 	options: Intl.DateTimeFormatOptions = {},
 	locales: string | string[] = "ru-RU"
 ) {
+	if (isNullable(date)) {
+		return "";
+	}
+
 	if (typeof date === "number") {
 		date = new Date(date);
 	}
 
 	return Intl.DateTimeFormat(locales, options).format(date);
+}
+
+/**
+ * Sets the boolean attribute depending on state.
+ */
+export function setAttribute(state: boolean) {
+	return state ? "" : undefined;
 }

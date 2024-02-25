@@ -3,11 +3,9 @@
 	import Gauge from "./gauge.svelte";
 	import { getAngleFromTime, renderDatetime } from "../../helpers";
 
-	const getState = (timeFrom: Date | null, timeTo: Date | null) => ({
-		angleStart: timeFrom ? getAngleFromTime(timeFrom) : 0,
-		angleEnd:  timeTo ? getAngleFromTime(timeTo) : 360,
-		labelStart: timeFrom ? renderDatetime(timeFrom, { timeStyle: "short" }) : "",
-		labelEnd: timeTo ? renderDatetime(timeTo, { timeStyle: "short" }) : ""
+	const getAngleState = (timeFrom: Date | null, timeTo: Date | null) => ({
+		start: getAngleFromTime(timeFrom),
+		end: getAngleFromTime(timeTo, 360)
 	});
 </script>
 
@@ -16,28 +14,13 @@
 	export let timeTo: Date | null = null;
 	export let pointerAngle: number | undefined = undefined;
 
-	let {
-		angleStart,
-		angleEnd,
-		labelStart,
-		labelEnd
-	} = getState(timeFrom, timeTo);
+	let { start, end } = getAngleState(timeFrom, timeTo);
 
-	const angles = tweened({
-		start: angleStart,
-		end: angleEnd
-	}, { duration: 500 });
+	const angles = tweened({ start, end }, { duration: 500 });
 
 	const updateState = (timeFrom: Date | null, timeTo: Date | null) => {
-		const state = getState(timeFrom, timeTo);
-
-		void angles.set({
-			start: state.angleStart,
-			end: state.angleEnd
-		});
-
-		labelStart = state.labelStart;
-		labelEnd = state.labelEnd;
+		const { start, end } = getAngleState(timeFrom, timeTo);
+		void angles.set({ start, end });
 	};
 
 	$: updateState(timeFrom, timeTo);
@@ -46,8 +29,8 @@
 <Gauge
 	angleStart="{$angles.start}"
 	angleEnd="{$angles.end}"
-	{labelStart}
-	{labelEnd}
+	labelStart="{renderDatetime(timeFrom, { timeStyle: "short" })}"
+	labelEnd="{renderDatetime(timeTo, { timeStyle: "short" })}"
 	{pointerAngle}
 	{...$$restProps}
 >
