@@ -18,7 +18,7 @@ export function isValidDate(date: Date | number | string | undefined): boolean {
 	return false;
 }
 
-export function isNullable(value: unknown): boolean {
+export function isNullable(value: unknown): value is null | undefined {
 	return value === null || typeof value === "undefined";
 }
 

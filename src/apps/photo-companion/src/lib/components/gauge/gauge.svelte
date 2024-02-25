@@ -1,7 +1,10 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-	import { describeArc, polarToCartesian, createMarksCoords } from "./gauge.helpers";
+	import Label from "./gauge-label.svelte";
+	import CurrentPointer from "./gauge-current-pointer.svelte";
+	import Pointer from "./gauge-pointer.svelte";
+	import { checkIsPointerActive, describeArc, createMarksCoords } from "./gauge.helpers";
 	import { isNonNegativeInteger } from "@shared/utils";
 	import styles from "./gauge.module.css";
 
@@ -15,14 +18,6 @@
 	export let pointerGap = 8;
 	export let pointerSize = 1;
 	export let pointerAngle: number | undefined = undefined;
-
-	const checkIsPointerActive = (angle: number, angleStart: number, angleEnd: number) => {
-		if (angleEnd >= angleStart) {
-			return angle >= angleStart && angle <= angleEnd;
-		}
-
-		return (angle >= angleStart && angle <= 360) || (angle >= 0 && angle <= angleEnd);
-	};
 </script>
 
 <svg viewBox="-50 -50 100 100" class="{styles.gauge}">
@@ -52,38 +47,33 @@
 			y1="{-radius + width / 2}"
 			x2="{0}" y2="{-radius - width / 2}"
 			stroke="var(--color-surface-1)"
-			stroke-width="0.5px"
+			stroke-width="0.75px"
+			opacity="0.5"
 		/>
 	{/if}
 	<slot />
+	<CurrentPointer
+		angle="{pointerAngle}"
+		cx="{0}"
+		cy="{-radius - pointerGap}"
+	/>
 	{#if isNonNegativeInteger(pointerAngle)}
-		<circle
-			cx="0"
+		<Pointer
+			angle="{pointerAngle}"
+			cx="{0}"
 			cy="-{radius + pointerGap}"
-			r="{pointerSize}"
-			class="{styles.pointer}"
-			data-active="{checkIsPointerActive(pointerAngle, angleStart, angleEnd) ? "" : undefined}"
-			style="--gauge-pointer-angle: {pointerAngle}deg;"
+			radius="{pointerSize}"
+			active="{checkIsPointerActive(pointerAngle, angleStart, angleEnd)}"
 		/>
 	{/if}
-	<text
-		class="{styles.label}"
-		x="{polarToCartesian(0, 0, radius + labelGap, angleStart).x}"
-		y="{polarToCartesian(0, 0, radius + labelGap, angleStart).y}"
-		transform={angleStart > 180 ? `rotate(${angleStart - 270})` : `rotate(${angleStart - 90})`}
-		transform-origin="center"
-		dominant-baseline="central"
-	>
-		{labelStart}
-	</text>
-	<text
-		class="{styles.label}"
-		x="{polarToCartesian(0, 0, radius + labelGap, angleEnd).x}"
-		y="{polarToCartesian(0, 0, radius + labelGap, angleEnd).y}"
-		transform={angleEnd > 180 ? `rotate(${angleEnd - 270})` : `rotate(${angleEnd - 90})`}
-		transform-origin="center center"
-		dominant-baseline="central"
-	>
-		{labelEnd}
-	</text>
+	<Label
+		angle="{angleStart}"
+		label="{labelStart}"
+		radius="{radius + labelGap}"
+	/>
+	<Label
+		angle="{angleEnd}"
+		label="{labelEnd}"
+		radius="{radius + labelGap}"
+	/>
 </svg>

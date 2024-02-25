@@ -41,8 +41,14 @@
 	transition:
 		transform 0.5s ease-in-out,
 		fill 0.5s linear;
-
+	
 	&[data-active] {
 		fill: var(--gauge-color, hsl(195deg 41% 58%));
 	}
+}
+
+.current-pointer {
+	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
+	stroke-width: 0.25;
+	fill: var(--color-surface-0);
 }

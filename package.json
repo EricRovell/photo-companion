@@ -22,28 +22,26 @@
 		"web-application"
 	],
 	"devDependencies": {
-		"@stylistic/stylelint-plugin": "^2.0.0",
-		"@types/node": "^20.11.0",
-		"@typescript-eslint/eslint-plugin": "^6.11.0",
-		"@typescript-eslint/parser": "^6.11.0",
-		"@vitest/coverage-v8": "^1.1.3",
-		"eslint": "^8.54.0",
+		"@stylistic/stylelint-plugin": "^2.1.0",
+		"@types/node": "^20.11.20",
+		"@typescript-eslint/eslint-plugin": "^7.0.2",
+		"@typescript-eslint/parser": "^7.0.2",
+		"@vitest/coverage-v8": "^1.3.1",
+		"eslint": "^8.57.0",
 		"eslint-plugin-svelte": "^2.35.0",
-		"postcss-nesting": "^12.0.1",
-		"stylelint": "^16.1.0",
+		"happy-dom": "^13.5.0",
+		"postcss-nesting": "^12.0.3",
+		"stylelint": "^16.2.1",
 		"stylelint-config-standard": "^36.0.0",
-		"svelte-check": "^3.6.0",
+		"svelte-check": "^3.6.4",
 		"tslib": "^2.6.2",
-		"typescript": "^5.2.2",
-		"vitest": "^1.1.3"
+		"typescript": "^5.3.3",
+		"vitest": "^1.3.1"
 	},
 	"workspaces": [
 		"src/apps/*",
 		"src/packages/*",
 		"src/shared/*"
 	],
-	"dependencies": {
-		"happy-dom": "^13.3.8"
-	},
-	"packageManager": "pnpm@8.13.1"
+	"packageManager": "pnpm@8.15.4"
 }
