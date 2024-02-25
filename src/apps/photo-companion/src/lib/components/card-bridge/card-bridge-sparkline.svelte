@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { renderDatetime, getDate, round } from "@lib/helpers";
+	import { renderDatetime, getDate } from "@lib/helpers";
+	import { round } from "@shared/utils";
 	import { createWavyPath } from "@lib/helpers/svg";
 	import type { BridgeSheduleEntry } from "bridge-schedule";
 	import styles from "./card-bridge.module.css";

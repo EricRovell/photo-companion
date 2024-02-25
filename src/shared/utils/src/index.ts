@@ -8,6 +8,10 @@ export {
 } from "./date";
 
 export {
+	round
+} from "./math";
+
+export {
 	isInteger,
 	isNonNegativeInteger,
 	isNonNullable,

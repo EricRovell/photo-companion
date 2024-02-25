@@ -1,3 +1,5 @@
+import { round } from "@shared/utils";
+
 /**
  * Breaks a 2-digit number into 2 digits.
  */
@@ -13,7 +15,7 @@ const toDigits = (number: number): number[] => {
  * Calculates the number of seconds left until the given timestamp value.
  */
 export const calcSecondsLeft = (timestamp: number) => {
-	return Math.round((timestamp - new Date().getTime()) / 1000);
+	return round((timestamp - new Date().getTime()) / 1000);
 };
 
 /**

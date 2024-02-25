@@ -127,10 +127,10 @@ export interface SunTimeEvent {
 }
 
 export interface MoonTimes {
-	// a Date object if the moon is rising on the given Date, otherwise NaN
-	rise: Date | typeof NaN;
-	// a Date object if the moon is setting on the given Date, otherwise NaN
-	set: Date | typeof NaN;
+	// a Date object if the moon is rising on the given Date
+	rise: Date | null;
+	// a Date object if the moon is setting on the given Date
+	set: Date | null;
 	// is true if the moon never rises/sets and is always _above_ the horizon during the day
 	alwaysUp: boolean;
 	//  is true if the moon is always _below_ the horizon

@@ -1,11 +1,4 @@
-import { isNullable } from "@shared/utils";
-
-/**
- * Round the number up to the desired precision.
- */
-export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {
-	return Math.round(number * base) / base + 0;
-}
+import { isNullable, isValidDate } from "@shared/utils";
 
 /**
  * Formats time from `Date` object as "HH:MM".
@@ -33,18 +26,6 @@ export function getAngleFromTime(date: Date | null = new Date(), fallback: numbe
 	const hours = date.getHours();
 	const minutes = date.getMinutes();
 	return Math.round(360 * (hours * 60 + minutes) / (24 * 60));
-}
-
-export function isValidDate(date: Date | number | string | undefined): boolean {
-	if (date instanceof Date) {
-		return !isNaN(date.getTime());
-	}
-
-	if (typeof date === "number" || typeof date === "string") {
-		return isValidDate(new Date(date));
-	}
-
-	return false;
 }
 
 export function getDateTimeString(date = new Date()): string {

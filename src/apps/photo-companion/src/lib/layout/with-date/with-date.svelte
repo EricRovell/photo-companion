@@ -2,7 +2,8 @@
 	import { query } from "svelte-pathfinder";
 	import ErrorDate from "../../../pages/error-date/error-date.svelte";
 	import { InputDatetime } from "@lib/components";
-	import { isValidDate, parseQueryDate, createQueryDate } from "@lib/helpers";
+	import { parseQueryDate, createQueryDate } from "@lib/helpers";
+	import { isValidDate } from "@shared/utils";
 	import { onMount, type ComponentType } from "svelte";
 	import styles from "./with-date.module.css";
 

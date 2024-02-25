@@ -220,7 +220,7 @@ export function getMoonTimes(dateValue: Date | number, lat: number, lng: number,
 	let dx;
 
 	// go in 2-hour chunks, each time seeing if a 3-point quadratic curve crosses zero (which means rise or set)
-	for (let i = 1; i <= 26; i += 2) {
+	for (let i = 1; i <= 24; i += 2) {
 		const h1 = getMoonPosition(hoursLater(dateValue, i), lat, lng).altitude - hc;
 		const h2 = getMoonPosition(hoursLater(dateValue, i + 1), lat, lng).altitude - hc;
 
@@ -269,17 +269,13 @@ export function getMoonTimes(dateValue: Date | number, lat: number, lng: number,
 
 	const result: Partial<MoonTimes> = {};
 
-	if (rise) {
-		result.rise = new Date(hoursLater(dateValue, rise));
-	} else {
-		result.rise = NaN;
-	}
+	result.rise = rise
+		? new Date(hoursLater(dateValue, rise))
+		: null;
 
-	if (set) {
-		result.set = new Date(hoursLater(dateValue, set));
-	} else {
-		result.set = NaN;
-	}
+	result.set = set
+		? new Date(hoursLater(dateValue, set))
+		: null;
 
 	if (!rise && !set) {
 		if (ye > 0) {
@@ -299,63 +295,4 @@ export function getMoonTimes(dateValue: Date | number, lat: number, lng: number,
 	}
 
 	return result as MoonTimes;
-}
-
-/**
-* Calculates the new moon transit date.
- */
-export function calcMoonTransit(rise: number, set: number): Date {
-	if (rise > set) {
-		return new Date(set + (rise - set) / 2);
-	}
-
-	return new Date(rise + (set - rise) / 2);
-}
-
-/**
-* Calculates the moon transit date.
-*/
-export function moonTransit(rise: Date | number, set: Date | number, lat: number, lng: number): { main: Date | null, invert: Date | null } {
-	/** @type {Date|null} */ let main = null;
-	/** @type {Date|null} */ let invert = null;
-	const riseDate = new Date(rise);
-	const setDate = new Date(set);
-	const riseValue = riseDate.getTime();
-	const setValue = setDate.getTime();
-	const day = setDate.getDate();
-	let tempTransitBefore;
-	let tempTransitAfter;
-
-	if (rise && set) {
-		if (rise < set) {
-			main = calcMoonTransit(riseValue, setValue);
-		} else {
-			invert = calcMoonTransit(riseValue, setValue);
-		}
-	}
-
-	if (rise) {
-		tempTransitAfter = calcMoonTransit(riseValue, getMoonTimes(new Date(riseDate).setDate(day + 1), lat, lng).set.valueOf());
-
-		if (tempTransitAfter.getDate() === day) {
-			if (main) {
-				invert = tempTransitAfter;
-			} else {
-				main = tempTransitAfter;
-			}
-		}
-	}
-
-	if (set) {
-		tempTransitBefore = calcMoonTransit(setValue, getMoonTimes(new Date(setDate).setDate(day - 1), lat, lng).rise.valueOf());
-
-		if (tempTransitBefore.getDate() === day) {
-			main = tempTransitBefore;
-		}
-	}
-
-	return {
-		main,
-		invert
-	};
 }

@@ -1,7 +1,7 @@
 import { provider as lightsProvider } from "../lights";
 import { getSunEvents } from "../sun";
 import { getMoonEvents } from "../moon";
-import { isValidDate } from "@lib/helpers";
+import { isValidDate } from "@shared/utils";
 import type {
 	BridgeEventName,
 	EventName,

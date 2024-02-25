@@ -1,6 +1,6 @@
 import { getSunTimes, getSunPosition } from "moon-sun-calc";
-import { round, secondsToHoursAndMinutes } from "@lib/helpers";
-import { calcDuration, incrementDateByDay } from "@shared/utils";
+import { secondsToHoursAndMinutes } from "@lib/helpers";
+import { calcDuration, incrementDateByDay, round } from "@shared/utils";
 import type { SunEventName } from "@shared/types";
 import type { SunEvent } from "@shared/types";
 

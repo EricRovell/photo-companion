@@ -1,3 +1,5 @@
+import { round } from "@shared/utils";
+
 /**
  * Creates a "wavy" path following the given path with a specified amplitude
  * and stepLength values.
@@ -7,7 +9,7 @@ export function createWavyPath(path: string, stepLength: number, amplitude: numb
 	referencePath.setAttribute("d", path);
 
 	const pathLength = referencePath.getTotalLength();
-	const stepCount = Math.round(pathLength / stepLength);
+	const stepCount = round(pathLength / stepLength);
 
 	let pos = referencePath.getPointAtLength(0);
 	const resultPath = [ `M ${pos.x},${pos.y}` ];

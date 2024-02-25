@@ -1,7 +1,6 @@
 import { getMoonIllumination, getMoonTimes, getMoonData as calcMoonData } from "moon-sun-calc";
-import { isValidDate, round } from "@lib/helpers";
-import type { MoonEvent } from "@shared/types";
-import type { MoonPhaseName } from "@shared/types";
+import { isNullable, isValidDate, round } from "@shared/utils";
+import type { MoonEvent, MoonPhaseName } from "@shared/types";
 
 export interface MoonData {
 	moonrise: Date | null;
@@ -52,24 +51,14 @@ export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
 	];
 };
 
-/**
- * SunCalc sometimes return the moonrise/moonset for different days.
- * So, we have to validate the output ourselves.
- */
-const isSameDay = (a: Date, b: Date) => {
-	return a.getDate() === b.getDate();
-};
-
 export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
 	const moonTimes = getMoonTimes(date, lat, lon);
 	const illumination = getMoonIllumination(date);
 	const data = calcMoonData(date, lat, lon);
 
 	return {
-		// @ts-expect-error TODO update types
-		moonrise: isSameDay(date, moonTimes.rise) ? moonTimes.rise : null,
-		// @ts-expect-error TODO update types
-		moonset: isSameDay(date, moonTimes.set) ? moonTimes.set : null,
+		moonrise: moonTimes.rise,
+		moonset: moonTimes.set,
 		fraction: round(illumination.fraction, 3),
 		waxing: illumination.angle < 0,
 		phaseValue: round(illumination.phaseValue, 4),
@@ -84,7 +73,7 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 	const events: MoonEvent[] = [];
 	const data = getMoonData(date, lat, lon);
 
-	if (data.moonrise) {
+	if (!isNullable(data.moonrise)) {
 		const rise = getMoonData(data.moonrise, lat, lon);
 
 		events.push({
@@ -100,7 +89,7 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 		});
 	}
 
-	if (data.moonset) {
+	if (!isNullable(data.moonset)) {
 		const set = getMoonData(data.moonset, lat, lon);
 
 		events.push({

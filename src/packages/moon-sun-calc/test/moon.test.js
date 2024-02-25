@@ -28,7 +28,9 @@ describe("Moon", () => {
 	it("getMoonTimes returns moon rise and set times", () => {
 		const times = getMoonTimes(new Date("2013-03-04UTC"), LAT, LNG, true);
 
-		expect(times.rise.toUTCString()).toBe("Mon, 04 Mar 2013 23:54:29 GMT");
-		expect(times.set.toUTCString()).toBe("Mon, 04 Mar 2013 07:47:58 GMT");
+		expect(times.rise).not.toBeNull();
+		expect(times.set).not.toBeNull();
+		expect(times.rise?.toUTCString()).toBe("Mon, 04 Mar 2013 23:54:29 GMT");
+		expect(times.set?.toUTCString()).toBe("Mon, 04 Mar 2013 07:47:58 GMT");
 	});
 });
