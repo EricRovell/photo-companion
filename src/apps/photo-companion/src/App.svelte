@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { click, query, path, prefs }from "svelte-pathfinder";
 	import { App, ServiceWorker } from "@lib/layout";
-	import { settingsStore } from "@lib/settings-store";
+	import { settingsStore } from "@lib/stores";
 
 	prefs.scroll = true;
 
