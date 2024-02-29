@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Button, Form, Fieldset, InputNumber, InputCheckboxGroup, InputRadio, InputSelect } from "@lib/components";
+	import { Button, Form, Fieldset, InputNumber, InputRadio, InputSelect } from "ui";
+	import { InputCheckboxGroup } from "@lib/components";
 	import { query } from "svelte-pathfinder";
 	import GeolocationButton from "./geolocation-button.svelte";
 	import { settingsStore } from "@lib/stores";

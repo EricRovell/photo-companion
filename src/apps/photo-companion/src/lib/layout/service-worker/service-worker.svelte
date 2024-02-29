@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { Button, Icon } from "@lib/components";
+	import { Button, Icon } from "ui";
+	import { iconClose } from "ui/icons";
 	import { preventPageScroll } from "@lib/helpers";
 	import { dict } from "@lib/dict";
 	import styles from "./service-worker.module.css";
-	import { iconClose } from "@lib/icons";
 
 	let newWorker: ServiceWorker | null = null;
 	let refreshing = false;

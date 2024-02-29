@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from "svelte";
-	import { Button } from "@lib/components";
+	import { Button } from "ui";
 	import { getUserLocation } from "@lib/helpers";
 	import { dict } from "@lib/dict";
 

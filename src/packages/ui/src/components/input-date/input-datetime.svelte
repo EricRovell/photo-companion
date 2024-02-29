@@ -1,30 +1,36 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
+	import { incrementDateByDay } from "@shared/utils";
+	import { getDatetimeString } from "./input-datetime.helpers";
+	import { iconTimeline, iconChevronLeft, iconChevronRight } from "../../icons";
 	import Button from "../button/button.svelte";
 	import Icon from "../icon/icon.svelte";
-	import { iconTimeline, iconChevronLeft, iconChevronRight } from "@lib/icons";
-	import { getDateTimeString } from "@lib/helpers";
-	import { incrementDateByDay } from "@shared/utils";
-	import { dict } from "@lib/dict";
 	import styles from "./input-datetime.module.css";
 
+	interface Dict {
+		DATETIME: string;
+		NEXT_DAY: string;
+		PREVIOUS_DAY: string;
+	}
+
 	export let className = "";
+	export let dict: Dict;
 	export let max: string | undefined = undefined;
 	export let min: string | undefined = undefined;
 	export let title: string | undefined = undefined;
-	export let value = getDateTimeString();
+	export let value = getDatetimeString();
 
 	const dispatch = createEventDispatcher();
 
 	const handleReset = () => {
-		value = getDateTimeString();
+		value = getDatetimeString();
 		dispatch("datechange", { value });
 	};
 
 	const handleClick = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const step = Number(target.dataset.step);
-		value = getDateTimeString(incrementDateByDay(value, step));
+		value = getDatetimeString(incrementDateByDay(value, step));
 		dispatch("datechange", { value });
 	};
 
@@ -40,7 +46,7 @@
 		className="{styles["button-increment"]}"
 		data-step="-1"
 		on:click="{handleClick}"
-		title="{dict.LABEL.NEXT_DAY}"
+		title="{dict.NEXT_DAY}"
 	>
 		<Icon
 			viewBox="0 0 256 256"
@@ -51,7 +57,7 @@
 		<label class="{styles.label}">
 			<slot />
 			<input
-				aria-label="{dict.LABEL.DATETIME}"
+				aria-label="{dict.DATETIME}"
 				class="{styles.input}"
 				{max}
 				{min}
@@ -74,7 +80,7 @@
 		className="{styles["button-increment"]}"
 		data-step="1"
 		on:click="{handleClick}"
-		title="{dict.LABEL.PREVIOUS_DAY}"
+		title="{dict.PREVIOUS_DAY}"
 	>
 		<Icon
 			viewBox="0 0 256 256"

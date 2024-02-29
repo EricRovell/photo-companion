@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { query }from "svelte-pathfinder";
+	import { Link, Icon } from "ui";
+	import { iconGithub, iconQuestion, iconSettings } from "ui/icons";
 	import Pages from "../../../pages/pages.svelte";
-	import { Link, Icon } from "@lib/components";
 	import { version } from "@lib/constants";
-	import { iconGithub, iconQuestion, iconSettings } from "@lib/icons";
 	import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
 	import { settingsStore } from "@lib/stores";
 	import { Navigation } from "@lib/layout";

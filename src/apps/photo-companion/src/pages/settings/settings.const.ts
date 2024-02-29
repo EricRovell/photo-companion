@@ -1,8 +1,8 @@
+import type { InputSelectOption, Option } from "ui";
 import { routeBridges, routeLights, routeMoon, routeSun, routeTimeline } from "@lib/routes";
 import { lightsCityList } from "@lib/constants";
 import { SUPPORTED_BRIDGES_NAME_SET, isNavigationTime } from "bridge-schedule";
 import { dict } from "@lib/dict";
-import type { InputSelectOption, Option } from "@lib/components";
 import type { SettingsStore } from "@lib/stores/settings";
 import { isNullable } from "@shared/utils";
 

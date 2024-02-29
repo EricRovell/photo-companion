@@ -1,0 +1,34 @@
+{
+	"author": "Eric Rovell",
+	"description": "Core UI components",
+	"devDependencies": {
+		"svelte-check": "^3.6.4"
+	},
+	"exports": {
+		".": {
+			"svelte": "./src/index.ts",
+			"import": "./src/index.ts",
+			"default": "./src/index.ts"
+		},
+		"./icons": {
+			"import": "./src/icons/index.ts"
+		}
+	},
+	"keywords": [
+		"components",
+		"core",
+		"ui"
+	],
+	"name": "ui",
+	"license": "MIT",
+	"dependencies": {
+		"@shared/utils": "workspace:*",
+		"svelte": "^4.2.5"
+	},
+	"private": true,
+	"scripts": {
+		"lint:types": "tsc --noEmit",
+		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json"
+	},
+	"type": "module"
+}

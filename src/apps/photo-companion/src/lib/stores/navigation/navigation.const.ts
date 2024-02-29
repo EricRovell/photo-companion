@@ -1,5 +1,5 @@
+import { iconTimeline, iconLights, iconSun, iconMoon, iconBridge } from "ui/icons";
 import { routeBridges, routeLights, routeMoon, routeSun, routeTimeline } from "@lib/routes";
-import { iconTimeline, iconLights, iconSun, iconMoon, iconBridge } from "@lib/icons";
 import type { NavigationRoute, NavigationTabName } from "./navigation.types";
 
 export const NAVIGATION_TAB_ITEMS: Record<NavigationTabName, NavigationRoute> = {

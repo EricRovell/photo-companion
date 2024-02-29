@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
-	import { GaugeTime, Moon, Datetime, Timeline, Event, Link } from "@lib/components";
+	import { Datetime, Link } from "ui";
+	import { GaugeTime, Moon, Timeline, Event } from "@lib/components";
 	import { getMoonData } from "@services/moon";
 	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";

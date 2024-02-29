@@ -1,5 +1,5 @@
 <script context="module">
-	import { Link as a } from "@lib/components";
+	import { Link as a } from "ui";
 	export { a };
 </script>
 

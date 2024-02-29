@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import { isNavigationTime } from "bridge-schedule";
 import { isNullable } from "@shared/utils";
-import { settingsStore, type SettingsStore } from "@lib/stores";
+import { settingsStore, type SettingsStore } from "@lib/stores/settings";
 import { NAVIGATION_TAB_ITEMS, DEFAULT_ORDER } from "./navigation.const";
 import type { NavigationRoute, NavigationTabName } from "./navigation.types";
 
@@ -26,7 +26,7 @@ function getNavigationEntries(entries: NavigationTabName[] = DEFAULT_ORDER): Nav
 function createNavigationStore() {
 	const { subscribe, set } = writable(getNavigationEntries());
 
-	settingsStore.subscribe((value) => {
+	settingsStore?.subscribe((value) => {
 		if (isNullable(value)) {
 			return;
 		}

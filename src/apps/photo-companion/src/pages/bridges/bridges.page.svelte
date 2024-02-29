@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { Button, Icon } from "ui";
+	import { iconChevronDown } from "ui/icons";
 	import {SUPPORTED_BRIDGES_NAME_SET, isBridgeException } from "bridge-schedule";
-	import { CardBridge, Icon, Button } from "@lib/components";
+	import { CardBridge } from "@lib/components";
 	import NextBridgeEvent from "./next-bridge-event.svelte";
 	import NavigationEvent from "./navigation-event.svelte";
-	import { iconChevronDown } from "@lib/icons";
 	import { dict } from "@lib/dict";
 	import styles from "./bridges.module.css";
 </script>

@@ -38,6 +38,7 @@
 		"bridge-schedule": "workspace:*",
 		"moon-sun-calc": "workspace:*",
 		"lights-schedule": "workspace:*",
-		"versioned-local-storage": "workspace:*"
+		"versioned-local-storage": "workspace:*",
+		"ui": "workspace:*"
 	}
 }

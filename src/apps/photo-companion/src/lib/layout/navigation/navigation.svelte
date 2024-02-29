@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { pattern, query } from "svelte-pathfinder";
-	import { Icon, Link } from "@lib/components";
+	import { Icon, Link } from "ui";
 	import { dict } from "@lib/dict";
 	import { navigationStore } from "@lib/stores";
 	import styles from "./navigation.module.css";

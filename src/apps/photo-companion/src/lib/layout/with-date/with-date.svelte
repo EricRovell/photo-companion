@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
-	import ErrorDate from "../../../pages/error-date/error-date.svelte";
-	import { InputDatetime } from "@lib/components";
-	import { parseQueryDate, createQueryDate } from "@lib/helpers";
+	import { InputDatetime } from "ui";
 	import { isValidDate } from "@shared/utils";
+	import ErrorDate from "../../../pages/error-date/error-date.svelte";
+	import { parseQueryDate, createQueryDate } from "@lib/helpers";
 	import { onMount, type ComponentType } from "svelte";
 	import styles from "./with-date.module.css";
+	import { dict } from "@lib/dict";
 
 	export let page: ComponentType;
 
@@ -44,6 +45,11 @@
 
 <InputDatetime
 	className="{styles["date-input"]}"
+	dict="{{
+		DATETIME: dict.LABEL.DATETIME,
+		NEXT_DAY: dict.LABEL.NEXT_DAY,
+		PREVIOUS_DAY: dict.LABEL.PREVIOUS_DAY
+	}}"
 	on:datechange="{handleChange}"
 	{value}
 />
