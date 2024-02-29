@@ -11,7 +11,7 @@
 	import { Datetime, TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
 	import { initTimelineProvider } from "@services/events";
 	import { incrementDateByDay } from "@shared/utils";
-	import { settingsStore as store } from "@lib/settings-store";
+	import { settingsStore as store } from "@lib/stores";
 	import { Link, Icon } from "@lib/components";
 	import { iconWarning } from "@lib/icons";
 	import styles from "./timeline.module.css";

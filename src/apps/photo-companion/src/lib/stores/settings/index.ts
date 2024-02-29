@@ -1,4 +1,4 @@
-import { persistable } from "./helpers/persistable";
+import { persistable } from "../../helpers/persistable";
 import type {
 	BridgeEventName,
 	LightsCity,

@@ -2,7 +2,7 @@
 	import { Button, Form, Fieldset, InputNumber, InputCheckboxGroup, InputRadio, InputSelect } from "@lib/components";
 	import { query } from "svelte-pathfinder";
 	import GeolocationButton from "./geolocation-button.svelte";
-	import { settingsStore } from "@lib/settings-store";
+	import { settingsStore } from "@lib/stores";
 	import { dict } from "@lib/dict";
 	import {
 		BRIDGES_SPB_OPTIONS,

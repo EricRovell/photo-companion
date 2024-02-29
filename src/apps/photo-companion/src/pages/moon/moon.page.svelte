@@ -4,7 +4,7 @@
 	import { getMoonData } from "@services/moon";
 	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";
-	import { settingsStore as store } from "@lib/settings-store";
+	import { settingsStore as store } from "@lib/stores";
 	import { createQueryDate } from "@lib/helpers";
 	import { round } from "@shared/utils";
 	import { SUN_EVENT_NAMES } from "@lib/constants";

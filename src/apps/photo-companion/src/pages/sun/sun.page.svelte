@@ -3,7 +3,7 @@
 	import { getSunData } from "@services/sun";
 	import { dict, template } from "@lib/dict";
 	import { initTimelineProvider } from "@services/events";
-	import { settingsStore as store } from "@lib/settings-store";
+	import { settingsStore as store } from "@lib/stores";
 	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./sun.module.css";
 
