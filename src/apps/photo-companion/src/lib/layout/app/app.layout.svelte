@@ -2,14 +2,15 @@
 	import { query }from "svelte-pathfinder";
 	import { Link, Icon } from "ui";
 	import { iconGithub, iconQuestion, iconSettings } from "ui/icons";
-	import Pages from "../../../pages/pages.svelte";
+
+	import Router from "../../../router/router.svelte";
 	import { version } from "@lib/constants";
 	import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
 	import { settingsStore } from "@lib/stores";
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
-	import styles from "./app.layout.module.css";
 	import { dict } from "@lib/dict";
+	import styles from "./app.layout.module.css";
 </script>
 
 <header class="{styles.header}">
@@ -37,7 +38,7 @@
 </header>
 <Navigation />
 <main>
-	<Pages />
+	<Router />
 </main>
 <footer class="{styles.footer}">
 	<div class="{styles.content}">
