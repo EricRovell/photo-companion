@@ -4,11 +4,9 @@
 	import { isValidDate } from "@shared/utils";
 	import ErrorDate from "../../../pages/error-date/error-date.svelte";
 	import { parseQueryDate, createQueryDate } from "@lib/helpers";
-	import { onMount, type ComponentType } from "svelte";
+	import { onMount } from "svelte";
 	import styles from "./with-date.module.css";
 	import { dict } from "@lib/dict";
-
-	export let page: ComponentType;
 
 	let value = parseQueryDate($query.date as string);
 	let date = new Date(value);
@@ -37,10 +35,7 @@
 {#if !isValidDate(date)}
 	<ErrorDate />
 {:else}
-	<svelte:component
-		{date}
-		this="{page}"
-	/>
+	<slot {date} />
 {/if}
 
 <InputDatetime

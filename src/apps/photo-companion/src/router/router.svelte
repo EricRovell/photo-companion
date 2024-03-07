@@ -1,20 +1,13 @@
 <script lang="ts">
-	import { path } from "svelte-pathfinder";
-	import { WithDateURL, Article } from "@lib/layout";
+	import type { ComponentType } from "svelte";
 
-	import { ROUTES_MAP, ROUTES_LAYOUT_MAP } from "./pages";
-
-	$: route = `/${$path[0]}`;
+	export let root: ComponentType | undefined = undefined;
 </script>
 
-{#if ROUTES_LAYOUT_MAP.WITH_DATE_URL.has(route)}
-	<WithDateURL page="{ROUTES_MAP[route]}" />
-{:else if ROUTES_LAYOUT_MAP.ARTICLE.has(route)}
-	<Article>
-		<svelte:component this={ROUTES_MAP[route]} />
-	</Article>
-{:else if ROUTES_LAYOUT_MAP.NONE.has(route)}
-	<svelte:component this={ROUTES_MAP[route]} />
+{#if root}
+	<svelte:component this="{root}">
+		<slot />
+	</svelte:component>
 {:else}
-	<p>404</p>
+	<slot />
 {/if}
