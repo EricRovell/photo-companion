@@ -6,7 +6,7 @@
 
 	const handleSwipe = (e: CustomEvent<SwipeEvent>) => {
 		const direction = e.detail.direction;
-		const step = direction === "right" ? 1 : -1;
+		const step = direction === "right" ? -1 : 1;
 		const activeIndex = $navigationStore.findIndex(i => i.current);
 		const itemCount = $navigationStore.length;
 
@@ -30,7 +30,7 @@
 </script>
 
 <div
-	use:swipable={{ threshold: 150, timeout: 500 }}
+	use:swipable={{ threshold: 100, timeout: 500 }}
 	on:swipe-left={handleSwipe}
 	on:swipe-right={handleSwipe}
 	style="display: contents;"
