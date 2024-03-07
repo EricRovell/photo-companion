@@ -1,5 +1,5 @@
 <script lang="ts">
-	import InputCheckbox from "../input-checkbox/input-checkbox.svelte";
+	import { InputCheckbox } from "ui";
 	import styles from "./input-checkbox-group.module.css";
 
 	export let disabled: boolean | undefined = undefined;

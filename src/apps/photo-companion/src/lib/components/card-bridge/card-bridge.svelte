@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { Icon } from "ui";
+	import { iconWarning } from "ui/icons";
 	import ScheduleSparkline from "./card-bridge-sparkline.svelte";
 	import Timer from "../timer/timer.svelte";
-	import Icon from "../icon/icon.svelte";
 	import { getBridgeState, getBridgeScheduleEntry } from "bridge-schedule";
-	import { iconWarning } from "@lib/icons";
 	import { dict } from "@lib/dict";
 	import type { BridgeName } from "@shared/types";
 	import styles from "./card-bridge.module.css";

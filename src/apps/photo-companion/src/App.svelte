@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { click, query, path, prefs }from "svelte-pathfinder";
-	import { App, ServiceWorker } from "@lib/layout";
-	import { settingsStore } from "@lib/settings-store";
+
+	import Routes from "./router/routes.svelte";
+	import { ServiceWorker } from "@lib/layout";
+	import { settingsStore } from "@lib/stores";
 
 	prefs.scroll = true;
 
@@ -9,7 +11,7 @@
 
 	// TODO use redirect
 	if (!$path[0]) {
-		$path[0] = store.starting_page;
+		$path[0] = store.starting_page.slice(1);
 	}
 
 	$query.latitude = store.latitude;
@@ -22,4 +24,4 @@
 	<ServiceWorker />
 {/if}
 
-<App />
+<Routes />

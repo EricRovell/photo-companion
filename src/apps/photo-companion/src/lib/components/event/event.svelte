@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
-	import Datetime from "../datetime/datetime.svelte";
-	import Link from "../link/Link.svelte";
+	import { Datetime, Link } from "ui";
 	import { lightsEventComponent } from "./event.lights";
 	import { bridgeEventComponent } from "./event.bridge";
 	import { sunEventComponent } from "./event.sun";

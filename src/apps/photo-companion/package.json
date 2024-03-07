@@ -2,7 +2,7 @@
 	"name": "photo-companion",
 	"description": "Minimalistic photography toolkit progressive web application.",
 	"private": true,
-	"version": "2.13.0",
+	"version": "2.14.0",
 	"type": "module",
 	"author": "Eric Rovell",
 	"license": "MIT",
@@ -38,6 +38,7 @@
 		"bridge-schedule": "workspace:*",
 		"moon-sun-calc": "workspace:*",
 		"lights-schedule": "workspace:*",
-		"versioned-local-storage": "workspace:*"
+		"versioned-local-storage": "workspace:*",
+		"ui": "workspace:*"
 	}
 }

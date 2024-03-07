@@ -3,7 +3,7 @@
 	import { provider } from "@services/lights";
 	import { initTimelineProvider } from "@services/events";
 	import { dict, template } from "@lib/dict";
-	import { settingsStore as store } from "@lib/settings-store";
+	import { settingsStore as store } from "@lib/stores";
 	import { secondsToHoursAndMinutes } from "@shared/utils";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
 	import { getAngleFromTime } from "@lib/helpers";

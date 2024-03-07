@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { query }from "svelte-pathfinder";
-	import Pages from "../../../pages/pages.svelte";
-	import { Link, Icon } from "@lib/components";
+	import { Link, Icon } from "ui";
+	import { iconGithub, iconQuestion, iconSettings } from "ui/icons";
+
 	import { version } from "@lib/constants";
-	import { iconGithub, iconQuestion, iconSettings } from "@lib/icons";
 	import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
-	import { settingsStore } from "@lib/settings-store";
+	import { settingsStore } from "@lib/stores";
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
-	import styles from "./app.layout.module.css";
 	import { dict } from "@lib/dict";
+	import styles from "./app.layout.module.css";
 </script>
 
 <header class="{styles.header}">
@@ -37,7 +37,7 @@
 </header>
 <Navigation />
 <main>
-	<Pages />
+	<slot />
 </main>
 <footer class="{styles.footer}">
 	<div class="{styles.content}">

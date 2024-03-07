@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
-	import { Button } from "@lib/components";
+	import { Button } from "ui";
 	import { createQueryDate } from "@lib/helpers";
 	import { dict } from "@lib/dict";
 	import styles from "./error-date.module.css";

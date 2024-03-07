@@ -8,12 +8,13 @@
 </script>
 
 <script lang="ts">
-	import { Datetime, TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
-	import { initTimelineProvider } from "@services/events";
+	import { Datetime, Link, Icon } from "ui";
+	import { iconWarning } from "ui/icons";
 	import { incrementDateByDay } from "@shared/utils";
-	import { settingsStore as store } from "@lib/settings-store";
-	import { Link, Icon } from "@lib/components";
-	import { iconWarning } from "@lib/icons";
+
+	import { TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
+	import { initTimelineProvider } from "@services/events";
+	import { settingsStore as store } from "@lib/stores";
 	import styles from "./timeline.module.css";
 
 	export let date: Date;
