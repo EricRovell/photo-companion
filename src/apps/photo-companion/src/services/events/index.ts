@@ -1,45 +1,8 @@
-import { provider as lightsProvider } from "../lights";
-import { getSunEvents } from "../sun";
-import { getMoonEvents } from "../moon";
 import { isValidDate } from "@shared/utils";
-import type {
-	BridgeEventName,
-	EventName,
-	LightsEventName,
-	MoonEventName,
-	SunEventName,
-	TimelineEvent
-} from "@shared/types";
-import { getBridgeEvents } from "bridge-schedule";
+import type { EventName, TimelineEvent } from "@shared/types";
 
-interface Options {
-	comparator: (a: TimelineEvent, b: TimelineEvent) => number;
-	bridgeEvents: BridgeEventName[] | null;
-	lightsEvents: LightsEventName[] | null;
-	moonEvents: MoonEventName[] | null;
-	predicate: (event: TimelineEvent) => boolean;
-	sunEvents: SunEventName[] | null;
-	secondaryEvents?: Set<EventName>;
-}
-
-type EventProviderByDate = [
-	"DATE",
-	Nullable<(date: Date) => TimelineEvent[]>,
-	"lights" | "bridge"
-];
-
-type EventProviderByLocation = [
-	"LOCATION",
-	(date: Date, latitude: number, longitude: number) => TimelineEvent[],
-	"sun" | "moon"
-];
-
-const EVENT_PROVIDERS: Array<EventProviderByDate | EventProviderByLocation> = [
-	[ "LOCATION", getMoonEvents, "moon" ],
-	[ "LOCATION", getSunEvents, "sun" ],
-	[ "DATE", getBridgeEvents, "bridge" ],
-	[ "DATE", lightsProvider?.getEventsByDate, "lights" ]
-];
+import { EVENT_PROVIDERS } from "./consts";
+import type { Options } from "./types";
 
 export function initTimelineProvider(options: Partial<Options>) {
 	const eventProviders: typeof EVENT_PROVIDERS = [];

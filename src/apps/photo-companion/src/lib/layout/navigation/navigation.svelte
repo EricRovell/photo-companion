@@ -14,7 +14,6 @@
 					current="{current ? "page": undefined}"
 					className="{styles.link}"
 					href="{href}{$query}"
-					scrollIntoView
 				>
 					<Icon path="{icon}" viewBox="0 0 256 256" />
 					<span>{dict.TITLE[label]}</span>
