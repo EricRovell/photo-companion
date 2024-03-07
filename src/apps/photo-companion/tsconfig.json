@@ -15,7 +15,7 @@
 		},
 		"lib": [
 			"WebWorker",
-			"ESNext"
+			"ES2023"
 		]
 	},
 	"include": [

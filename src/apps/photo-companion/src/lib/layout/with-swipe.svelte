@@ -2,6 +2,7 @@
 	import { path } from "svelte-pathfinder";
 
 	import { swipable, type SwipeEvent } from "@lib/actions/swipable";
+	import { pageTransition } from "@lib/helpers/view-transition";
 	import { navigationStore } from "@lib/stores";
 
 	const handleSwipe = (e: CustomEvent<SwipeEvent>) => {
@@ -31,8 +32,8 @@
 
 <div
 	use:swipable={{ threshold: 100, timeout: 500 }}
-	on:swipe-left={handleSwipe}
-	on:swipe-right={handleSwipe}
+	on:swipe-left={(e) => pageTransition(() => handleSwipe(e))}
+	on:swipe-right={(e) => pageTransition(() => handleSwipe(e))}
 	style="display: contents;"
 >
 	<slot />

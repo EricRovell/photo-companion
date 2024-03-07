@@ -10,14 +10,22 @@
 	export let targetBlank = false;
 	export let nofollow = false;
 	export let title: string | undefined = undefined;
+	export let scrollIntoView = false;
+
+	let ref: HTMLAnchorElement | null = null;
 
 	// if no `href` is provided -> link will be disabled
 	$: external = href.indexOf("://") !== -1;
 	$: target = (targetBlank || external) ? "_blank" : undefined;
 	$: rel = `${external ? "noopener noreferrer" : ""}` + `${nofollow ? "nofollow" : ""}`;
+
+	$: if (current === "page" && scrollIntoView) {
+		ref?.scrollIntoView();
+	}
 </script>
 
 <a
+	bind:this="{ref}"
 	class="{styles.link} {className}"
 	class:block
 	aria-current="{current}"
