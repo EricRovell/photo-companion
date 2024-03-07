@@ -1,16 +1,27 @@
-import { writable } from "svelte/store";
+import { path } from "svelte-pathfinder";
+import { writable, get } from "svelte/store";
 import { isNullable } from "@shared/utils";
+
 import { settingsStore } from "@lib/stores/settings";
 import { NAVIGATION_TAB_ITEMS, DEFAULT_ORDER } from "./navigation.const";
 import { isBridgesTabHidden } from "./navigation.helpers";
 import type { NavigationRoute, NavigationTabName } from "./navigation.types";
 
 function getNavigationEntries(entries: NavigationTabName[] = DEFAULT_ORDER): NavigationRoute[] {
-	return entries.map(name => NAVIGATION_TAB_ITEMS[name]);
+	const currentPath = `/${get(path)[0]}`;
+
+	return entries.map(name => {
+		const data = NAVIGATION_TAB_ITEMS[name];
+
+		return {
+			...data,
+			current: data.href === currentPath
+		};
+	});
 }
 
 function createNavigationStore() {
-	const { subscribe, set } = writable(getNavigationEntries());
+	const { subscribe, set, update } = writable(getNavigationEntries());
 
 	settingsStore?.subscribe((value) => {
 		if (isNullable(value)) {
@@ -32,6 +43,14 @@ function createNavigationStore() {
 		});
 
 		set(updated);
+	});
+
+	path.subscribe(value => {
+		const currentPath = `/${value[0]}`;
+		return update(values => values.map(item => {
+			item.current = item.href === currentPath;
+			return item;
+		}));
 	});
 
 	return {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Router from "./router.svelte";
 	import Route from "./route.svelte";
-	import { App } from "@lib/layout";
+	import { App, WithSwipe } from "@lib/layout";
 	import { WithDateURL, Article } from "@lib/layout";
 
 	import { default as PageAbout } from "../pages/about/about.page.mdx";
@@ -15,13 +15,18 @@
 </script>
 
 <Router root="{App}">
-	<Route path="{[ "timeline", "lights", "sun", "moon" ]}">
-		<WithDateURL let:date>
-			<Route path="timeline" component="{PageTimeline}" props={{ date }} />
-			<Route path="lights" component="{PageLights}" props={{ date }} />
-			<Route path="sun" component="{PageSun}" props={{ date }} />
-			<Route path="moon" component="{PageMoon}" props={{ date }} />
-		</WithDateURL>
+	<Route path="{[ "timeline", "lights", "sun", "moon", "bridges" ]}">
+		<WithSwipe>
+			<Route path="{[ "timeline", "lights", "sun", "moon" ]}">
+				<WithDateURL let:date>
+					<Route path="timeline" component="{PageTimeline}" props={{ date }} />
+					<Route path="lights" component="{PageLights}" props={{ date }} />
+					<Route path="sun" component="{PageSun}" props={{ date }} />
+					<Route path="moon" component="{PageMoon}" props={{ date }} />
+				</WithDateURL>
+			</Route>
+			<Route path="bridges" component="{PageBridges}" />
+		</WithSwipe>
 	</Route>
 	<Route path="{[ "about", "changelog" ]}">
 		<Article>
@@ -30,5 +35,4 @@
 		</Article>
 	</Route>
 	<Route path="settings" component="{PageSettings}" />
-	<Route path="bridges" component="{PageBridges}" />
 </Router>

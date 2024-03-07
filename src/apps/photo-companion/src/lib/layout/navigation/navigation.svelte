@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pattern, query } from "svelte-pathfinder";
+	import { query } from "svelte-pathfinder";
 	import { Icon, Link } from "ui";
 	import { dict } from "@lib/dict";
 	import { navigationStore } from "@lib/stores";
@@ -8,10 +8,10 @@
 
 <nav class="{styles.navigation}">
 	<ul>
-		{#each $navigationStore as { label, href, icon }}
+		{#each $navigationStore as { label, href, icon, current }}
 			<li>
 				<Link
-					current="{($pattern(href) || ($pattern("/"))) ? "page" : undefined}"
+					current="{current ? "page": undefined}"
 					className="{styles.link}"
 					href="{href}{$query}"
 				>
