@@ -3,9 +3,11 @@
 	height: var(--gauge-size, min(100%, 50vh));
 
 	& text {
-		font-size: 4px;
-		font-family: monospace;
-		font-weight: 600;
+		font-size: 3.5px;
+		font-variant-numeric: tabular-nums;
+		font-family: inherit;
+		font-weight: 400;
+		letter-spacing: 0.1em;
 		fill: var(--gauge-text-color, hsl(0deg 50% 100%));
 		transform-box: fill-box;
 		text-anchor: middle;

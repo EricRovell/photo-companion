@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { query }from "svelte-pathfinder";
+	import { query } from "svelte-pathfinder";
 	import { Link, Icon } from "ui";
 	import { iconGithub, iconQuestion, iconSettings } from "ui/icons";
 

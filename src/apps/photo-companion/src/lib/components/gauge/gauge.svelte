@@ -14,7 +14,7 @@
 	export let width = 10;
 	export let labelStart: string | undefined = "";
 	export let labelEnd: string | undefined = "";
-	export let labelGap = 18;
+	export let labelGap = 17;
 	export let pointerGap = 8;
 	export let pointerSize = 1;
 	export let pointerAngle: number | undefined = undefined;

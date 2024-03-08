@@ -4,6 +4,7 @@
 	import { swipable, type SwipeEvent } from "@lib/actions/swipable";
 	import { pageTransition } from "@lib/helpers/view-transition";
 	import { navigationStore } from "@lib/stores";
+	import styles from "./with-swipe.module.css";
 
 	const handleSwipe = (e: CustomEvent<SwipeEvent>) => {
 		const direction = e.detail.direction;
@@ -28,13 +29,17 @@
 			$path[0] = $navigationStore[nextIndex].href.slice(1);
 		}
 	};
+
+	const handlePageTransition = (e: CustomEvent<SwipeEvent>) => {
+		return pageTransition(() => handleSwipe(e));
+	};
 </script>
 
 <div
-	use:swipable={{ threshold: 100, timeout: 500 }}
-	on:swipe-left={(e) => pageTransition(() => handleSwipe(e))}
-	on:swipe-right={(e) => pageTransition(() => handleSwipe(e))}
-	style="display: contents;"
+	class="{styles.wrapper}"
+	use:swipable={{ threshold: 75, timeout: 500 }}
+	on:swipe-left={handlePageTransition}
+	on:swipe-right={handlePageTransition}
 >
 	<slot />
 </div>
