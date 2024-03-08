@@ -146,6 +146,7 @@ export type LightsEvent = Event<"LIGHTS", LightsEventName, {
 }>;
 
 export type MoonEvent = Event<"MOON", MoonEventName, {
+	azimuth: number;
 	phase: number,
 	waxing: boolean,
 	fraction: number;

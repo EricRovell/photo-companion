@@ -1,15 +1,22 @@
+import type { SunEventName, SunEvent } from "@shared/types";
+import { template } from "@shared/utils";
+
 import { Sun } from "@lib/components";
 import { dict } from "@lib/dict";
 import type { EventComponent } from "@lib/types";
-import type { SunEventName, SunEvent } from "@shared/types";
 
 export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunEventName, elevation: number }> {
 	let message: string | undefined = undefined;
 
 	switch (event.name) {
 		case "SUNRISE_START":
+		case "SUNRISE_END":
+		case "SUNSET_START":
 		case "SUNSET_END":
-			message= `${event.data.azimuth}°, ${dict.SUN_TIMES[`${event.name}_TITLE`]}`;
+			message = template("{event}, {azimuth}°", {
+				event: dict.SUN_TIMES[`${event.name}_TITLE`],
+				azimuth: event.data.azimuth
+			});
 			break;
 		case "BLUE_HOUR_START_DAWN":
 		case "BLUE_HOUR_END_DAWN":

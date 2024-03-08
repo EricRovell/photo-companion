@@ -18,3 +18,5 @@ export {
 	isNullable,
 	isValidDate
 } from "./validators";
+
+export { template } from "./common/template";
