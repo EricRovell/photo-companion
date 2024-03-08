@@ -1,4 +1,4 @@
-import { getMoonIllumination, getMoonTimes, getMoonData as calcMoonData } from "moon-sun-calc";
+import { getMoonIllumination, getMoonTimes, getMoonData as calcMoonData, getMoonPosition } from "moon-sun-calc";
 import { isNullable, isValidDate, round } from "@shared/utils";
 import type { MoonEvent, MoonPhaseName } from "@shared/types";
 
@@ -72,12 +72,14 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number): MoonEvent[] => {
 	const events: MoonEvent[] = [];
 	const data = getMoonData(date, lat, lon);
+	const position = getMoonPosition(date, lat, lon);
 
 	if (!isNullable(data.moonrise)) {
 		const rise = getMoonData(data.moonrise, lat, lon);
 
 		events.push({
 			data: {
+				azimuth: round(position.azimuthDegrees, 1),
 				fraction: round(rise.fraction * 100, 1),
 				phase: rise.phaseValue,
 				waxing: rise.waxing,
@@ -94,6 +96,7 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 
 		events.push({
 			data: {
+				azimuth: round(position.azimuthDegrees, 1),
 				fraction: round(set.fraction * 100, 1),
 				phase: set.phaseValue,
 				waxing: set.waxing,
