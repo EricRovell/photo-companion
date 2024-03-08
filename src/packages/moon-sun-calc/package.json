@@ -20,7 +20,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"esbuild": "^0.19.11"
+		"esbuild": "^0.19.11",
+		"@shared/utils": "workspace:*"
 	},
 	"devDependencies": {
 		"@shared/types": "workspace:*"
