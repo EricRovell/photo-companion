@@ -16,7 +16,9 @@ export {
 	isNonNegativeInteger,
 	isNonNullable,
 	isNullable,
-	isValidDate
+	isValidDate,
+	isLatitude,
+	isLongitude
 } from "./validators";
 
 export { template } from "./common/template";

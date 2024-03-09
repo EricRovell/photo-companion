@@ -1,4 +1,4 @@
-import { getMoonIllumination, getMoonTimes, getMoonData as calcMoonData, getMoonPosition } from "moon-sun-calc";
+import { getMoonIllumination, getMoonTimes, getMoonPosition } from "moon-sun-calc";
 import { isNullable, isValidDate, round } from "@shared/utils";
 import type { MoonEvent, MoonPhaseName } from "@shared/types";
 
@@ -54,7 +54,9 @@ export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
 export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
 	const moonTimes = getMoonTimes(date, lat, lon);
 	const illumination = getMoonIllumination(date);
-	const data = calcMoonData(date, lat, lon);
+	const position = getMoonPosition(date, lat, lon);
+	
+	const zenithAngle = illumination.angle - position.parallacticAngle;
 
 	return {
 		moonrise: moonTimes.rise,
@@ -64,7 +66,7 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 		phaseValue: round(illumination.phaseValue, 4),
 		angle: illumination.angle,
 		phases: getMoonPhases(date),
-		zenithAngle: -data.zenithAngle / 4,
+		zenithAngle: -zenithAngle / 4,
 		name: illumination.phase.id
 	};
 };

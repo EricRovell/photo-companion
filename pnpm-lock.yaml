@@ -129,6 +129,9 @@ importers:
 
   src/packages/moon-sun-calc:
     dependencies:
+      '@shared/utils':
+        specifier: workspace:*
+        version: link:../../shared/utils
       esbuild:
         specifier: ^0.19.11
         version: 0.19.11
