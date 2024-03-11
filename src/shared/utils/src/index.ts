@@ -4,11 +4,13 @@ export {
 	dateFrom,
 	incrementDateByDay,
 	isLeapYear,
+	isSameDay,
 	secondsToHoursAndMinutes
 } from "./date";
 
 export {
-	round
+	round,
+	scale
 } from "./math";
 
 export {
