@@ -2,12 +2,12 @@
 	--timeline-icon-size: 4.5rem;
 	--timeline-icon-secondary-size: 2.75rem;
 	--timeline-wire-width: 3px;
-	--timeline-gap: var(--space-8);
-	--timeline-edge-wire-length-start: var(--space-8);
-	--timeline-edge-wire-length-end: var(--space-8);
+	--timeline-gap: var(--space-6);
+	--timeline-edge-wire-length-start: var(--space-6);
+	--timeline-edge-wire-length-end: var(--space-6);
 
 	display: grid;
-	gap: var(--space-8);
+	gap: var(--space-6);
 	width: var(--content-width);
 }
 
@@ -44,6 +44,17 @@
 			font-variant-numeric: tabular-nums;
 		}
 	}
+}
+
+.elevation-graph-sun {
+	--elevation-graph-pointer-size: 5;
+	--elevation-graph-stroke-width: 1.5px;
+	--elevation-graph-stroke-opacity: 0.35;
+}
+
+.elevation-graph-moon {
+	--elevation-graph-accent: lightblue;
+	--elevation-graph-pointer-size: 7;
 }
 
 .phases {

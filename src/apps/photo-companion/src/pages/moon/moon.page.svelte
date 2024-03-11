@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
 	import { Datetime, Link } from "ui";
-	import { GaugeTime, Moon, Timeline, Event } from "@lib/components";
+	import { getMoonPosition, getSunPosition } from "moon-sun-calc";
+
+	import { GaugeTime, Moon, Timeline, Event, ElevationGraph } from "@lib/components";
 	import { getMoonData } from "@services/moon";
 	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";
@@ -54,6 +56,28 @@
 			<p>{dict.MOON_PHASE[state.name]}</p>
 			<output>{round(state.fraction * 100, 2)}%</output>
 		</footer>
+	</section>
+	<section data-label="altitude" class="card">
+		<header>
+			<h2>{dict.TITLE.ELEVATION_MOON}</h2>
+		</header>
+		<ElevationGraph
+			{date}
+			entries="{[
+				{
+					className: styles["elevation-graph-sun"],
+					id: "sun",
+					getAltitude: getSunPosition
+				},
+				{
+					className: styles["elevation-graph-moon"],
+					id: "moon",
+					getAltitude: getMoonPosition
+				}
+			]}" 
+		>
+			{dict.TITLE.ELEVATION_SUN}
+		</ElevationGraph>
 	</section>
 	<section data-label="timeline">
 		<Timeline>
