@@ -72,7 +72,7 @@ interface DateFromOptions {
  * Returns a date with defined parameters.
  * Note: `month` is 1-indexed.
  */
-export function dateFrom(input = new Date(), options: DateFromOptions = {}) {
+export function dateFrom(input: Date | number = new Date(), options: DateFromOptions = {}) {
 	const output = new Date(input);
 	const { year, month, date, hours, minutes, seconds } = options;
 
@@ -113,4 +113,15 @@ export function secondsToHoursAndMinutes(seconds: number): [ hours: number, minu
 	seconds -= minutes * 60;
 
 	return [ hours, minutes ];
+}
+
+/**
+ * Checks if two given date instances points to the same date.
+ */
+export function isSameDay(a: Date, b: Date) {
+	return (
+		a.getFullYear() === b.getFullYear() &&
+		a.getMonth() === b.getMonth() &&
+		a.getDate() === b.getDate()
+	);
 }

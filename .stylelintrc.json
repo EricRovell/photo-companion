@@ -15,7 +15,8 @@
 		}],
 		"property-no-unknown": [ true, {
 			"ignoreProperties": [
-				"composes"
+				"composes",
+				"r"
 			]
 		}],
 		"@stylistic/indentation": "tab",

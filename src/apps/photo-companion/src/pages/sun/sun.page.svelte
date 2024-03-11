@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Event, GaugeTime, Sun, Timeline } from "@lib/components";
+	import { getSunPosition } from "moon-sun-calc";
+
+	import { Event, GaugeTime, Sun, Timeline, ElevationGraph } from "@lib/components";
 	import { getSunData } from "@services/sun";
 	import { dict, template } from "@lib/dict";
 	import { initTimelineProvider } from "@services/events";
@@ -42,6 +44,22 @@
 				{template["hours-and-minutes"](state.dayDuration)}
 			</output>
 		</footer>
+	</section>
+	<section data-label="altitude" class="card">
+		<header>
+			<h2>{dict.TITLE.ELEVATION_SUN}</h2>
+		</header>
+		<ElevationGraph
+			{date}
+			entries="{[
+				{
+					getAltitude: getSunPosition,
+					id: "sun"
+				}
+			]}" 
+		>
+			{dict.TITLE.ELEVATION_SUN}
+		</ElevationGraph>
 	</section>
 	<section data-label="timeline">
 		<Timeline>

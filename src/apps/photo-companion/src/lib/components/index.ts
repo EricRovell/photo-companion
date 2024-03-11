@@ -1,5 +1,6 @@
 export { default as Bulb } from "./bulb/bulb.svelte";
 export { default as CardBridge } from "./card-bridge/card-bridge.svelte";
+export { ElevationGraph} from "./elevation-graph";
 export { default as Event } from "./event/event.svelte";
 export { default as EventEmpty } from "./event/event.empty.svelte";
 export { default as Gauge } from "./gauge/gauge.svelte";

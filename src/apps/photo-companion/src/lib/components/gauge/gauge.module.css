@@ -1,6 +1,6 @@
 .gauge {
-	width: var(--gauge-size, min(100%, 50vh));
-	height: var(--gauge-size, min(100%, 50vh));
+	width: var(--gauge-size, min(100%, 45vh));
+	height: var(--gauge-size, min(100%, 45vh));
 
 	& text {
 		font-size: 3.5px;

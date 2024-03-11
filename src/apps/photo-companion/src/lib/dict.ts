@@ -149,6 +149,8 @@ export const dict = {
 		BRIDGES: "Разводные мосты",
 		BRIDGES_SCHEDULE_SPB: "Расписание разведения мостов г. Санкт-Петербург",
 		ERROR: "Произошла ошибка",
+		ELEVATION_SUN: "Высота Солнца",
+		ELEVATION_MOON: "Высота Луны",
 		MOON: "Луна",
 		MOON_TIMES: "Времена восхода и захода Луны",
 		MOON_PHASE_CALENDAR: "Календарь Лунных фаз",
