@@ -6,5 +6,10 @@
 		"./src/apps/*",
 		"./src/packages/*",
 		"./src/shared/*"
+	],
+	"css.lint.validProperties": [
+		"cx",
+		"cy",
+		"r"
 	]
 }
