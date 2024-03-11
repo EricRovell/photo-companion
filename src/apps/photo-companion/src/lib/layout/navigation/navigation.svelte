@@ -4,6 +4,7 @@
 
 	import { dict } from "@lib/dict";
 	import { navigationStore } from "@lib/stores";
+	import { scrollToTop } from "@lib/helpers";
 	import styles from "./navigation.module.css";
 </script>
 
@@ -15,6 +16,7 @@
 					current="{current ? "page": undefined}"
 					className="{styles.link}"
 					href="{href}{$query}"
+					on:click="{scrollToTop}"
 				>
 					<Icon path="{icon}" viewBox="0 0 256 256" />
 					<span>{dict.TITLE[label]}</span>

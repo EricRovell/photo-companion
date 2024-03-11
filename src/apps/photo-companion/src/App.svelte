@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { click, query, path, prefs }from "svelte-pathfinder";
+	import { click, query, path }from "svelte-pathfinder";
 
 	import Routes from "./router/routes.svelte";
 	import { ServiceWorker } from "@lib/layout";
 	import { settingsStore } from "@lib/stores";
-
-	prefs.scroll = true;
 
 	const store = settingsStore.init();
 

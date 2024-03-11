@@ -8,6 +8,8 @@
 </script>
 
 <script lang="ts">
+	import { onMount } from "svelte";
+	import { prefs } from "svelte-pathfinder";
 	import { Datetime, Link, Icon } from "ui";
 	import { iconWarning } from "ui/icons";
 	import { incrementDateByDay } from "@shared/utils";
@@ -52,6 +54,14 @@
 			}
 		];
 	}
+
+	onMount(() => {
+		prefs.scroll = true;
+
+		return () => {
+			prefs.scroll = false;
+		};
+	});
 </script>
 
 <div class="{styles.page}">

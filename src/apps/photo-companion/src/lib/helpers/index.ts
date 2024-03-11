@@ -170,3 +170,14 @@ export function renderDatetime(
 export function setAttribute(state: boolean) {
 	return state ? "" : undefined;
 }
+
+export function scrollToTop() {
+	if (isNullable(globalThis.window)) {
+		return;
+	}
+
+	window.scrollTo({
+		behavior: "smooth",
+		top: 0
+	});
+}

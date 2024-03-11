@@ -9,6 +9,7 @@
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
 	import { dict } from "@lib/dict";
+	import { scrollToTop } from "@lib/helpers";
 	import styles from "./app.layout.module.css";
 </script>
 
@@ -21,6 +22,7 @@
 			<Link
 				className="{styles.icon}"
 				href="{routeSettings}{$query}"
+				on:click={scrollToTop}
 				title="{dict.TITLE.SETTINGS}"
 			>
 				<Icon path="{iconSettings}" viewBox="0 0 256 256" />
@@ -28,6 +30,7 @@
 			<Link
 				className="{styles.icon}"
 				href="{routeAbout}{$query}"
+				on:click={scrollToTop}
 				title="{dict.TITLE.ABOUT}"
 			>
 				<Icon path="{iconQuestion}" viewBox="0 0 256 256" />
