@@ -1,7 +1,11 @@
 import { isInteger } from "./validators";
 
 /**
- * Calculates the duration between two dates in seconds.
+ * Calculates the duration between two dates in seconds:
+ * 
+ * 1. Both dates are provided, returns the difference;
+ * 2. `from` is not specified - the starting point is the beginning of the same day as the `to` date;
+ * 3. `to` is not specified - the ending point is the beginning of the next day after the `from` date;
  */
 export function calcDuration(from: Date | null = null, to: Date | null = null): number {
 	if (!from && !to) {
@@ -70,7 +74,7 @@ interface DateFromOptions {
 
 /**
  * Returns a date with defined parameters.
- * Note: `month` is 1-indexed.
+ * Note: `month` is 1-indexed and the ms is set to 0 by default.
  */
 export function dateFrom(input: Date | number = new Date(), options: DateFromOptions = {}) {
 	const output = new Date(input);
