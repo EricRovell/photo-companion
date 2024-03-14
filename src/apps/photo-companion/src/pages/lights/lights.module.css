@@ -5,7 +5,6 @@
 	--timeline-wire-width: 3px;
 	--timeline-gap: var(--space-8);
 	--timeline-edge-wire-length-start: var(--space-8);
-	--timeline-edge-wire-length-end: var(--space-8);
 
 	display: grid;
 	grid-auto-rows: min-content;

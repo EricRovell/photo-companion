@@ -3,23 +3,24 @@
 	border: 3px solid var(--card-border-color, var(--color-surface-3));
 	font-size: var(--font-size-2);
 
-	dl {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+	@media screen and (width <= 420px) {
+		font-size: var(--font-size-1);
 	}
+}
 
-	dt,
-	dd {
+.entry {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: var(--space-2) var(--space-4);
+	width: 100%;
+
+	&:not(:last-child) {
 		border-bottom: 1px solid var(--card-border-color, var(--color-surface-3));
-		padding: var(--space-2) var(--space-4);
 	}
+}
 
-	dt {
-		text-align: left;
-	}
-
-	dd {
-		text-align: right;
-		font-variant-numeric: tabular-nums;
-	}
+.value {
+	font-variant-numeric: tabular-nums;
 }

@@ -6,9 +6,11 @@
 
 <article class="{styles.card}">
 	<dl>
-		{#each Object.entries(data) as [ key, value ]}
-			<dt>{key}</dt>
-			<dd>{value}</dd>
+		{#each Object.entries(data) as [ property, value ]}
+			<div class="{styles.entry}">
+				<dt>{property}</dt>
+				<dd class="{styles.value}">{value}</dd>
+			</div>
 		{/each}
 	</dl>
 </article>
