@@ -79,6 +79,14 @@
 		margin-bottom: var(--space-7);
 		padding-bottom: var(--space-3);
 		border-block-end: 3px solid var(--color-surface-3);
+
+		h1 {
+			font-size: var(--font-size-3);
+		}
+	}
+
+	.icon {
+		--icon-size: 1rem;
 	}
 
 	.header,

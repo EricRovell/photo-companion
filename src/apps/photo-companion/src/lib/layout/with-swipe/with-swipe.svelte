@@ -5,6 +5,7 @@
 	import { pageTransition } from "@lib/helpers/view-transition";
 	import { navigationStore } from "@lib/stores";
 	import styles from "./with-swipe.module.css";
+	import { scrollToTop } from "@lib/helpers";
 
 	const handleSwipe = (e: CustomEvent<SwipeEvent>) => {
 		const direction = e.detail.direction;
@@ -31,7 +32,10 @@
 	};
 
 	const handlePageTransition = (e: CustomEvent<SwipeEvent>) => {
-		return pageTransition(() => handleSwipe(e));
+		return pageTransition(() => {
+			scrollToTop();
+			handleSwipe(e);
+		});
 	};
 </script>
 

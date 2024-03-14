@@ -162,7 +162,7 @@ export const dict = {
 	},
 	TITLE: {
 		ABOUT: "Справка",
-		BRIDGES: "Разводные мосты",
+		BRIDGES: "Мосты",
 		BRIDGES_SCHEDULE_SPB: "Расписание разведения мостов г. Санкт-Петербург",
 		ERROR: "Произошла ошибка",
 		ELEVATION_SUN: "Высота Солнца",

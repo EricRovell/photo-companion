@@ -16,7 +16,7 @@ export const EVENT_PROVIDERS: Array<EventProviderByDate | EventProviderByLocatio
 ];
 
 store.subscribe(value => {
-	if (isNullable(value)) {
+	if (isNullable(value?.lights_city)) {
 		return;
 	}
 
