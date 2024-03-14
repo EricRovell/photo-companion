@@ -48,6 +48,7 @@
 	--font-fallback: system-ui, "Segoe UI", roboto, "Helvetica Neue", arial;
 	--header-menu-height: calc(4 * var(--space-3) + 2 * var(--space-2) + var(--font-size-2));
 	--focus-ring-color: hsl(240deg 45% 60%);
+	--transition-bg: background-color 0.125s linear;
 
 	/* component tokens */
 	--timeline-wire-width: 3px;

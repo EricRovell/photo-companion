@@ -16,7 +16,7 @@
 	border: 1px solid var(--checkbox-border-color);
 	border-radius: 15%;
 	fill: currentcolor;
-	transition: background-color 0.125s linear;
+	transition: var(--transition-bg);
 
 	& path {
 		opacity: 0;
