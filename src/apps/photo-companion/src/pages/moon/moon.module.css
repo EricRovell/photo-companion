@@ -27,23 +27,6 @@
 		display: grid;
 		justify-content: center;
 	}
-
-	& > footer {
-		justify-content: space-between;
-		align-items: center;
-
-		p {
-			font-size: var(--font-size-2);
-			font-variant-numeric: tabular-nums;
-		}
-
-		output {
-			font-size: var(--font-size-2);
-			text-align: justify;
-			font-variation-settings: "wght" 300;
-			font-variant-numeric: tabular-nums;
-		}
-	}
 }
 
 .elevation-graph-sun {

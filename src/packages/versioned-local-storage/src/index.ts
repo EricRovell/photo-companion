@@ -1,5 +1,6 @@
+import { isNonNegativeInteger, isNonNullable } from "utils/validators";
+
 import { get, getVersion, set, remove, clear } from "./utils";
-import { isNonNegativeInteger, isNonNullable } from "@shared/utils";
 
 const EMPTY_VERSION = 0;
 

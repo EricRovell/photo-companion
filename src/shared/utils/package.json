@@ -6,9 +6,29 @@
 			"import": {
 				"default": "./src/index.ts"
 			}
+		},
+		"./date": {
+			"import": {
+				"default": "./src/date.ts"
+			}
+		},
+		"./formatters": {
+			"import": {
+				"default": "./src/formatters.ts"
+			}
+		},
+		"./math": {
+			"import": {
+				"default": "./src/math.ts"
+			}
+		},
+		"./validators": {
+			"import": {
+				"default": "./src/validators.ts"
+			}
 		}
 	},
-	"name": "@shared/utils",
+	"name": "utils",
 	"license": "MIT",
 	"private": true,
 	"type": "module"

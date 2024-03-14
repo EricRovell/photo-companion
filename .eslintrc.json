@@ -25,7 +25,8 @@
 	"globals": {
 		"__dirname": true,
 		"Nullable": true,
-		"Optional": true
+		"Optional": true,
+		"DateLike": true
 	},
 	"overrides": [
 		{

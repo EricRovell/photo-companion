@@ -12,7 +12,7 @@
 	import { prefs } from "svelte-pathfinder";
 	import { Datetime, Link, Icon } from "ui";
 	import { iconWarning } from "ui/icons";
-	import { incrementDateByDay } from "@shared/utils";
+	import { incrementDateByDay } from "utils/date";
 
 	import { TimelineGroup, Timeline, Event, EventEmpty } from "@lib/components";
 	import { initTimelineProvider } from "@services/events";

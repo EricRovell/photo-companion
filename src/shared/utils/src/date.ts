@@ -11,20 +11,20 @@ export function calcDuration(from: Date | null = null, to: Date | null = null): 
 	if (!from && to) {
 		from = dateFrom(to, { hours: 0, minutes: 0, seconds: 0 });
 
-		return (to.getTime() - from.getTime()) / 1000;
+		return to.getTime() - from.getTime();
 	}
 
 	if (from && !to) {
 		to = dateFrom(from, { hours: 24, minutes: 0, seconds: 0 });
 
-		return (to.getTime() - from.getTime()) / 1000;
+		return to.getTime() - from.getTime();
 	}
 
 	const startTime = (from!).getTime();
 	const endTime = (to!).getTime();
 
 	if (endTime >= startTime) {
-		return (endTime - startTime) / 1000;
+		return endTime - startTime;
 	}
 
 	const midStartTime = dateFrom(from as Date, {
@@ -39,7 +39,7 @@ export function calcDuration(from: Date | null = null, to: Date | null = null): 
 		seconds: 0
 	}).getTime();
 
-	return ((midEndTime - startTime) + (endTime - midStartTime)) / 1000;
+	return (midEndTime - startTime) + (endTime - midStartTime);
 }
 
 /**
@@ -87,7 +87,6 @@ export function dateFrom(input: Date | number = new Date(), options: DateFromOpt
 	return output;
 }
 
-
 /**
  * Increments the given date by number of days.
  */
@@ -101,18 +100,6 @@ export function incrementDateByDay(date: Date | string, dayCount: number): Date 
 
 export function isLeapYear(year: number): boolean {
 	return new Date(year, 1, 29).getDate() === 29;
-}
-
-/**
- * Convert the number of seconds to HH:MM:SS format.
- */
-export function secondsToHoursAndMinutes(seconds: number): [ hours: number, minutes: number ] {
-	const hours = Math.floor(seconds / 3600);
-	seconds -= hours * 3600;
-	const minutes = Math.floor(seconds / 60);
-	seconds -= minutes * 60;
-
-	return [ hours, minutes ];
 }
 
 /**

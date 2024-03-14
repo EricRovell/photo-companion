@@ -1,11 +1,16 @@
 import { getMoonIllumination, getMoonTimes, getMoonPosition } from "moon-sun-calc";
-import { isNullable, isValidDate, round } from "@shared/utils";
+import { calcDuration } from "utils/date";
+import { round } from "utils/math";
+import { isNullable, isValidDate } from "utils/validators";
+import { formatDegrees, formatKilometers, formatPercent, formatTime } from "utils/formatters";
 import type { MoonEvent, MoonPhaseName } from "@shared/types";
 
 export interface MoonData {
+	duration: string;
+	rotation: number;
 	moonrise: Date | null;
 	moonset: Date | null;
-	fraction: number;
+	fraction: string;
 	waxing: boolean;
 	phaseValue: number;
 	angle: number;
@@ -13,7 +18,11 @@ export interface MoonData {
 		phase: 0 | 0.25 | 0.5 | 0.75;
 		timestamp: number;
 	}[]
-	zenithAngle: number;
+	zenith: string;
+	azimuth: string;
+	altitude: string;
+	distance: string;
+	parallacticAngle: string;
 	name: MoonPhaseName;
 }
 
@@ -52,40 +61,43 @@ export const getMoonPhases = (date: Date = new Date()): MoonData["phases"] => {
 };
 
 export const getMoonData = (date: Date = new Date(), lat: number, lon: number): MoonData => {
-	const moonTimes = getMoonTimes(date, lat, lon);
+	const times = getMoonTimes(date, lat, lon);
 	const illumination = getMoonIllumination(date);
 	const position = getMoonPosition(date, lat, lon);
-	
-	const zenithAngle = illumination.angle - position.parallacticAngle;
 
 	return {
-		moonrise: moonTimes.rise,
-		moonset: moonTimes.set,
-		fraction: round(illumination.fraction, 3),
+		duration: formatTime(calcDuration(times.rise, times.set)),
+		moonrise: times.rise,
+		moonset: times.set,
+		fraction: formatPercent(round(illumination.fraction * 100, 2)),
 		waxing: illumination.angle < 0,
 		phaseValue: round(illumination.phaseValue, 4),
 		angle: illumination.angle,
 		phases: getMoonPhases(date),
-		zenithAngle: -zenithAngle / 4,
-		name: illumination.phase.id
+		rotation: -(illumination.angle - position.parallacticAngle) / 4,
+		name: illumination.phase.id,
+		zenith: formatDegrees(round(illumination.angleDegrees - position.parallacticAngleDegrees, 2)),
+		azimuth: formatDegrees(round(position.azimuthDegrees, 2)),
+		altitude: formatDegrees(round(position.altitudeDegrees, 2)),
+		distance: formatKilometers(round(position.distance, 2)),
+		parallacticAngle: formatDegrees(round(position.parallacticAngleDegrees, 2))
 	};
 };
 
 export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number): MoonEvent[] => {
 	const events: MoonEvent[] = [];
 	const data = getMoonData(date, lat, lon);
-	const position = getMoonPosition(date, lat, lon);
 
 	if (!isNullable(data.moonrise)) {
 		const rise = getMoonData(data.moonrise, lat, lon);
 
 		events.push({
 			data: {
-				azimuth: round(position.azimuthDegrees, 1),
-				fraction: round(rise.fraction * 100, 1),
+				azimuth: data.azimuth,
+				fraction: data.fraction,
 				phase: rise.phaseValue,
 				waxing: rise.waxing,
-				zenithAngle: rise.zenithAngle
+				rotation: data.rotation
 			},
 			name: "MOONRISE",
 			timestamp: data.moonrise.getTime(),
@@ -98,11 +110,11 @@ export const getMoonEvents = (date: Date = new Date(), lat: number, lon: number)
 
 		events.push({
 			data: {
-				azimuth: round(position.azimuthDegrees, 1),
-				fraction: round(set.fraction * 100, 1),
+				azimuth: data.azimuth,
+				fraction: data.fraction,
 				phase: set.phaseValue,
 				waxing: set.waxing,
-				zenithAngle: set.zenithAngle
+				rotation: data.rotation
 			},
 			name: "MOONSET",
 			timestamp: data.moonset.getTime(),

@@ -1,5 +1,5 @@
 import { schedule } from "./schedule";
-import { countDays } from "@shared/utils";
+import { countDays } from "utils/date";
 
 export function isNavigationTime(date: Date = new Date()): boolean {
 	const now = date.getTime();

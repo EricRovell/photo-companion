@@ -1,7 +1,9 @@
-import { calcDuration, incrementDateByDay, isValidDate } from "@shared/utils";
+import type { IlluminationState, LightsSchedule, LightsCity, LightsEvent } from "@shared/types";
+import { calcDuration, incrementDateByDay } from "utils/date";
+import { isValidDate } from "utils/validators";
+
 import { data } from "./schedule";
 import { SUPPORTED_CITY_SET } from "./const";
-import type { IlluminationState, LightsSchedule, LightsCity, LightsEvent } from "@shared/types";
 import type { LightsProvider } from "./types";
 
 export function isSupportedCity(city: Nullable<string>): city is LightsCity {
@@ -12,9 +14,9 @@ export function isSupportedCity(city: Nullable<string>): city is LightsCity {
 	return SUPPORTED_CITY_SET.has(city);
 }
 
-export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvider | null {
+export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvider {
 	if (!isSupportedCity(cityName)) {
-		return null;
+		throw new Error(`Unsupported city provided: ${cityName}`);
 	}
 
 	const { year, city, schedule, getter } = data[cityName];

@@ -1,12 +1,15 @@
 <script lang="ts">
-	import { Bulb, Event, GaugeTime, Timeline, Timer } from "@lib/components";
+	import { onMount } from "svelte";
+	import { formatTime } from "utils/formatters";
+
+	import { CardInfo, Bulb, Event, GaugeTime, Timeline } from "@lib/components";
 	import { provider } from "@services/lights";
 	import { initTimelineProvider } from "@services/events";
-	import { dict, template } from "@lib/dict";
+	import { dict } from "@lib/dict";
 	import { settingsStore as store } from "@lib/stores";
-	import { secondsToHoursAndMinutes } from "@shared/utils";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
 	import { getAngleFromTime } from "@lib/helpers";
+	import { createTimer } from "@lib/components/timer";
 	import styles from "./lights.module.css";
 
 	export let date: Date;
@@ -17,15 +20,29 @@
 		secondaryEvents: new Set([ "SUNRISE_START", "SUNSET_END" ])
 	});
 
-	let schedule = provider?.getScheduleByDate(date);
-	let state = provider?.getStateByDate();
+	let schedule = provider.getScheduleByDate(date);
+	let state = provider.getStateByDate();
+	let timer = createTimer(state?.timestamp ?? 0, {
+		callback: handleAlarm
+	});
 
-	const handleAlarm = () => {
-		state = provider?.getStateByDate();
-	};
+	function handleAlarm() {
+		state = provider.getStateByDate();
+		timer.set(state.timestamp);
+	}
+
+	$: timerMessage = state?.lights
+		? dict.LABEL.TILL_TURNED_OFF
+		: dict.LABEL.TILL_TURNED_ON;
 
 	$: schedule = provider?.getScheduleByDate(date);
 	$: events = timelineProvider.getEvents(date, $store.latitude, $store.longitude);
+
+	onMount(() => {
+		timer.start();
+
+		return () => timer.stop();
+	});
 </script>
 
 {#if schedule && state}
@@ -41,13 +58,15 @@
 			>
 				<Bulb x="-10" y="-10" width="20" height="20" glow />
 			</GaugeTime>
-			<footer>
-				<p>{dict.LABEL.DURATION_LIGHTS}</p>
-				<output>
-					{template["hours-and-minutes"](secondsToHoursAndMinutes(schedule.duration))}
-				</output>
-			</footer>
 		</section>
+		<CardInfo
+			data="{{
+				[dict.LABEL.CITY]: dict.CITIES[provider?.city ?? "SAINT_PETERSBURG"],
+				[dict.LABEL.LIGHTS_CITY]: state.lights ? dict.LABEL.TURNED_ON : dict.LABEL.TURNED_OFF,
+				[dict.LABEL.DURATION_LIGHTS]: formatTime(schedule.duration),
+				[timerMessage]: formatTime($timer)
+			}}"
+		/>
 		<section data-label="timeline">
 			<Timeline>
 				{#each events as event (`${event.timestamp}/${event.name}`)}
@@ -58,29 +77,6 @@
 					/>
 				{/each}
 			</Timeline>
-		</section>
-		<section
-			data-active="{state.lights ? "" : undefined}"
-			data-label="lights-event-timer"
-			class="card"
-		>
-			<header>
-				<h2>{dict.TITLE.LIGHTS_COUNTDOWN}</h2>
-			</header>
-			{#if !state}
-				<p>{dict.MESSAGE.SOMETHING_WRONG}</p>
-			{:else}
-				<Bulb 
-					glow="{state.lights}"
-				/>
-				<p class="{styles.note}">
-					{@html template["lights-event"](state.lights)}
-				</p>
-				<Timer
-					timestamp="{state.timestamp}"
-					on:alarm={handleAlarm}
-				/>
-			{/if}
 		</section>
 	</div>
 {/if}

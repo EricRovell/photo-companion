@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { template } from "../src";
+import { template } from "../src/formatters";
 
 describe("Project's core utilities", () => {
 	describe("template", () => {

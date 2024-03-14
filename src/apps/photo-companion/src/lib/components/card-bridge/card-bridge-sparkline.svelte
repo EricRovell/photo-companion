@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { round } from "utils/math";
+
 	import { renderDatetime, getDate } from "@lib/helpers";
-	import { round } from "@shared/utils";
 	import { createWavyPath } from "@lib/helpers/svg";
 	import type { BridgeSheduleEntry } from "bridge-schedule";
 	import styles from "./card-bridge.module.css";

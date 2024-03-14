@@ -1,4 +1,4 @@
-import { isLeapYear } from "@shared/utils";
+import { isLeapYear } from "utils/date";
 
 export function getFullYearDaysList (year = new Date().getFullYear()) {
 	const dates: Date[] = [];

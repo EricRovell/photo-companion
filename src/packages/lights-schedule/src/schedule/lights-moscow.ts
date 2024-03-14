@@ -1,4 +1,5 @@
-import { isLeapYear } from "@shared/utils";
+import { isLeapYear } from "utils/date";
+
 import type { CityLightsSchedule } from "../types";
 
 export const schedule: CityLightsSchedule = {

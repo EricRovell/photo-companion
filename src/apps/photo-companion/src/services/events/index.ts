@@ -1,5 +1,5 @@
-import { isValidDate } from "@shared/utils";
 import type { EventName, TimelineEvent } from "@shared/types";
+import { isValidDate } from "utils/validators";
 
 import { EVENT_PROVIDERS } from "./consts";
 import type { Options } from "./types";

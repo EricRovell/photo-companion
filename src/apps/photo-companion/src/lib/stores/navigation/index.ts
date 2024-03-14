@@ -1,6 +1,6 @@
 import { path } from "svelte-pathfinder";
 import { writable, get } from "svelte/store";
-import { isNullable } from "@shared/utils";
+import { isNullable } from "utils/validators";
 
 import { settingsStore } from "@lib/stores/settings";
 import { NAVIGATION_TAB_ITEMS, DEFAULT_ORDER } from "./navigation.const";

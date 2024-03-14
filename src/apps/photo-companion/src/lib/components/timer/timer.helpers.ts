@@ -1,4 +1,4 @@
-import { round } from "@shared/utils";
+import { round } from "utils/math";
 
 /**
  * Breaks a 2-digit number into 2 digits.
@@ -14,14 +14,19 @@ const toDigits = (number: number): number[] => {
 /**
  * Calculates the number of seconds left until the given timestamp value.
  */
-export const calcSecondsLeft = (timestamp: number) => {
-	return round((timestamp - new Date().getTime()) / 1000);
+export const calcTimeLeft = (dateInput: DateLike) => {
+	if (dateInput instanceof Date) {
+		dateInput = dateInput.getTime();
+	}
+
+	return dateInput - new Date().getTime();
 };
 
 /**
- * Convert the number of seconds to HH:MM:SS format.
+ * Transform the timestamp into time parts.
  */
-export const formatTime = (seconds: number) => {
+export const getTime = (timestamp: number) => {
+	let seconds = round(timestamp / 1000);
 	const hours = Math.floor(seconds / 3600);
 	seconds -= hours * 3600;
 	const minutes = Math.floor(seconds / 60);

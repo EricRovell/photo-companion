@@ -2,7 +2,8 @@
 
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { isNonNegativeInteger } from "@shared/utils";
+	import { isNonNegativeInteger } from "utils/validators";
+
 	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./gauge.module.css";
 

@@ -1,4 +1,4 @@
-import { isLatitude, isLongitude } from "@shared/utils";
+import { isLatitude, isLongitude } from "utils/validators";
 
 import { RAD } from "../consts";
 import { SUN_TIMES } from "./consts";

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { incrementDateByDay } from "@shared/utils";
+	import { incrementDateByDay } from "utils/date";
+
 	import { getDatetimeString } from "./input-datetime.helpers";
 	import { iconTimeline, iconChevronLeft, iconChevronRight } from "../../icons";
 	import Button from "../button/button.svelte";

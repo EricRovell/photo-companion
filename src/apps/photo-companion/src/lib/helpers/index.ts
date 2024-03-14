@@ -1,4 +1,4 @@
-import { isNullable, isValidDate } from "@shared/utils";
+import { isNullable, isValidDate } from "utils/validators";
 
 /**
  * Formats time from `Date` object as "HH:MM".
@@ -60,18 +60,6 @@ export function preventPageScroll(condition: boolean) {
 		behavior: "auto"
 	});
 }
-
-/**
- * Convert the number of seconds to HH:MM:SS format.
- */
-export const secondsToHoursAndMinutes = (seconds: number): [ hours: number, minutes: number ] => {
-	const hours = Math.floor(seconds / 3600);
-	seconds -= hours * 3600;
-	const minutes = Math.floor(seconds / 60);
-	seconds -= minutes * 60;
-
-	return [ hours, minutes ];
-};
 
 export function isValidLocation(lat: number, lon: number): boolean {
 	return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;

@@ -1,4 +1,4 @@
-.timer {
+.timer-digits {
 	display: grid;
 	grid-template: var(--timer-size) / 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr;
 	gap: calc(var(--timer-size) / 4);

@@ -1,6 +1,7 @@
+import { dateFrom, incrementDateByDay } from "utils/date";
+
 import { schedule } from "./schedule";
 import { isNavigationTime } from "./navigation";
-import { dateFrom, incrementDateByDay } from "@shared/utils";
 import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
 import type { BridgeState, BridgeName, BridgeSheduleEntry } from "./types";
 

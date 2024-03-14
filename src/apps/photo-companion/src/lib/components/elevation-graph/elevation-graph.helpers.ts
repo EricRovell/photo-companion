@@ -1,4 +1,6 @@
-import { dateFrom, round, scale } from "@shared/utils";
+import { dateFrom } from "utils/date";
+import { round, scale } from "utils/math";
+
 import {
 	ALTITUDE_MAX,
 	ALTITUDE_MIN,
