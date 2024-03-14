@@ -1,3 +1,4 @@
+import { padWithZero } from "utils";
 import { round } from "utils/math";
 
 /**
@@ -9,17 +10,6 @@ const toDigits = (number: number): number[] => {
 	}
 
 	return [ Math.floor((number / 10) % 10), number % 10 ];
-};
-
-/**
- * Calculates the number of seconds left until the given timestamp value.
- */
-export const calcTimeLeft = (dateInput: DateLike) => {
-	if (dateInput instanceof Date) {
-		dateInput = dateInput.getTime();
-	}
-
-	return dateInput - new Date().getTime();
 };
 
 /**
@@ -39,12 +29,6 @@ export const getTime = (timestamp: number) => {
 	};
 };
 
-const formatDigit = (input: number) => {
-	return input < 10
-		? `0${input}`
-		: input;
-};
-
 /**
  * Creates a `datetime` attribute string from timestamp.
  */
@@ -56,5 +40,5 @@ export const getDateTimeString = (timestamp: number) => {
 	const hours = d.getHours();
 	const minutes = d.getMinutes();
 	
-	return `${year}-${formatDigit(month)}-${formatDigit(date)}T${formatDigit(hours)}:${formatDigit(minutes)}:00.000`;
+	return `${year}-${padWithZero(month)}-${padWithZero(date)}T${padWithZero(hours)}:${padWithZero(minutes)}:00.000`;
 };

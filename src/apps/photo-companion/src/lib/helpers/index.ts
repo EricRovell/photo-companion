@@ -1,21 +1,6 @@
 import { isNullable, isValidDate } from "utils/validators";
 
 /**
- * Formats time from `Date` object as "HH:MM".
- */
-export function formatTime(timestamp: number) {
-	if (!isValidDate(timestamp)) {
-		return "";
-	}
-
-	return Intl.DateTimeFormat("ru-RU", {
-		hour12: false,
-		hour: "numeric",
-		minute: "numeric"
-	}).format(timestamp);
-}
-
-/**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.
  */
 export function getAngleFromTime(date: Date | null = new Date(), fallback: number = 0): number {
@@ -59,10 +44,6 @@ export function preventPageScroll(condition: boolean) {
 		top: -1 * scrollY,
 		behavior: "auto"
 	});
-}
-
-export function isValidLocation(lat: number, lon: number): boolean {
-	return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
 }
 
 export function parseQueryDate(input: string): string {

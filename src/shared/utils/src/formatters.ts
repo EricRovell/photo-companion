@@ -1,6 +1,4 @@
-import { padWithZero } from ".";
-import { round } from "./math";
-import { isNullable } from "./validators";
+import { isNullable, isValidDate } from "./validators";
 
 export function formatDegrees(input: number, locale = "ru"): string {
 	return Intl.NumberFormat(locale, {
@@ -24,16 +22,19 @@ export function formatPercent(input: number, locale = "ru"): string {
 }
 
 /**
- * Formats a time into HH:MM:SS format.
+ * Formats a date into HH:MM:SS time string format.
  */
-export function formatTime(timestamp: number): string {
-	let seconds = round(timestamp / 1000);
-	const hours = Math.floor(seconds / 3600);
-	seconds -= hours * 3600;
-	const minutes = Math.floor(seconds / 60);
-	seconds -= minutes * 60;
+export function formatTime(input: Date | number) {
+	if (!isValidDate(input)) {
+		return "";
+	}
 
-	return `${padWithZero(hours)}:${padWithZero(minutes)}:${padWithZero(seconds)}`;
+	return Intl.DateTimeFormat("ru-RU", {
+		hour12: false,
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit"
+	}).format(input);
 }
 
 /**
