@@ -10,10 +10,10 @@
 </script>
 
 <View>
-	{#each entries as { getAltitude, className, id }}
+	{#each entries as { getAltitude, className, id, pointerSize }}
 		<g class="{className}" data-id="{id}">
 			<Graph {date} {getAltitude} />
-			<Pointer {date} {getAltitude} />
+			<Pointer {date} {getAltitude} {pointerSize} />
 		</g>
 	{/each}
 	<XTick />

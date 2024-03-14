@@ -61,13 +61,15 @@
 			entries="{[
 				{
 					className: styles["elevation-graph-sun"],
+					getAltitude: getSunPosition,
 					id: "sun",
-					getAltitude: getSunPosition
+					pointerSize: 5
 				},
 				{
 					className: styles["elevation-graph-moon"],
+					getAltitude: getMoonPosition,
 					id: "moon",
-					getAltitude: getMoonPosition
+					pointerSize: 7
 				}
 			]}"
 		/>

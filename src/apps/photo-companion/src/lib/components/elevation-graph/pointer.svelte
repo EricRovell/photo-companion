@@ -9,6 +9,7 @@
 
 	export let date: Date;
 	export let getAltitude: AltitudeGetter;
+	export let pointerSize = 6;
 
 	const getPosition = createObjectCoordsGetter(getAltitude);
 
@@ -20,4 +21,5 @@
 	data-above="{setAttribute(position.y >= 0)}"
 	cx="{position.x}"
 	cy="{position.y}"
+	r="{pointerSize}"
 />

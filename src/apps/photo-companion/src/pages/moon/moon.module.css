@@ -30,14 +30,12 @@
 }
 
 .elevation-graph-sun {
-	--elevation-graph-pointer-size: 5;
 	--elevation-graph-stroke-width: 1.5px;
 	--elevation-graph-stroke-opacity: 0.35;
 }
 
 .elevation-graph-moon {
 	--elevation-graph-accent: lightblue;
-	--elevation-graph-pointer-size: 7;
 }
 
 .phases {
