@@ -17,6 +17,7 @@
 	--content-width: min(100%, 60ch);
 	--max-width: min(100%, 1440px);
 	--font-scale: 1rem;
+	--font-size-0: calc(0.5 * var(--font-scale));
 	--font-size-1: calc(0.6 * var(--font-scale));
 	--font-size-2: calc(0.75 * var(--font-scale));
 	--font-size-3: calc(0.9 * var(--font-scale));

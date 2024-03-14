@@ -38,6 +38,25 @@
 				height="{sunSize}"
 			/>
 		</GaugeTime>
+		<footer class="{styles["gauge-footer"]}">
+			<ol>
+				<li>
+					<span>{state.goldenHourDawn}</span>
+					<span>{dict.SUN_TIMES.GOLDEN_HOUR}</span>
+					<span>{state.goldenHourDusk}</span>
+				</li>
+				<li>
+					<span>{state.blueHourDawn}</span>
+					<span>{dict.SUN_TIMES.BLUE_HOUR}</span>
+					<span>{state.blueHourDusk}</span>
+				</li>
+				<li>
+					<span>... — {state.nightEnd}</span>
+					<span>{dict.SUN_TIMES.NIGHT}</span>
+					<span>{state.nightStart} — ...</span>
+				</li>
+			</ol>
+		</footer>
 	</section>
 	<section data-label="altitude" class="card">
 		<header>

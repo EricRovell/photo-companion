@@ -23,6 +23,9 @@ export function formatPercent(input: number, locale = "ru"): string {
 	}).format(input);
 }
 
+/**
+ * Formats a time into HH:MM:SS format.
+ */
 export function formatTime(timestamp: number): string {
 	let seconds = round(timestamp / 1000);
 	const hours = Math.floor(seconds / 3600);
@@ -31,6 +34,17 @@ export function formatTime(timestamp: number): string {
 	seconds -= minutes * 60;
 
 	return `${padWithZero(hours)}:${padWithZero(minutes)}:${padWithZero(seconds)}`;
+}
+
+/**
+ * Formats a time into HH:MM format.
+ */
+export function formatTimeShort(date: Date, locale = "ru"): string {
+	return Intl.DateTimeFormat(locale, {
+		hour12: false,
+		hour: "2-digit",
+		minute: "2-digit"
+	}).format(date);
 }
 
 /**

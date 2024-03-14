@@ -126,11 +126,13 @@ export const dict = {
 		ASTRONOMICAL_DAWN_TITLE: "Ночь подходит к концу",
 		NAUTICAL_DAWN: "Навигационные сумерки",
 		NAUTICAL_DAWN_TITLE: "Астрономические сумерки подходят к концу",
+		BLUE_HOUR: "Синий час",
 		BLUE_HOUR_START_DAWN: "Утренний синий час",
 		CIVIL_DAWN: "Гражданские сумерки",
 		CIVIL_DAWN_TITLE: "Навигационные сумерки подходят к концу",
 		BLUE_HOUR_END_DAWN: "Утренний синий час",
 		BLUE_HOUR_END_DAWN_TITLE: "Утренний синий час подходит к концу",
+		GOLDEN_HOUR: "Золотой час",
 		GOLDEN_HOUR_START_DAWN: "Утренний золотой час",
 		GOLDEN_HOUR_START_DAWN_TITLE: "Гражданские сумерки подходят к концу",
 		SUNRISE_START: "Рассвет Солнца",
@@ -155,7 +157,8 @@ export const dict = {
 		NAUTICAL_DUSK: "Астрономические сумерки",
 		NAUTICAL_DUSK_TITLE: "Навигационные сумерки подходят к концу",
 		ASTRONOMICAL_DUSK: "Начало ночи",
-		ASTRONOMICAL_DUSK_TITLE: "Астрономические сумерки подходят к концу"
+		ASTRONOMICAL_DUSK_TITLE: "Астрономические сумерки подходят к концу",
+		NIGHT: "Ночь"
 	},
 	TITLE: {
 		ABOUT: "Справка",

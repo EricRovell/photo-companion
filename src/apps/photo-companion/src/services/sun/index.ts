@@ -1,5 +1,5 @@
 import { getSunTimes, getSunPosition } from "moon-sun-calc";
-import { formatDegrees, formatTime } from "utils/formatters";
+import { formatDegrees, formatTime, formatTimeShort } from "utils/formatters";
 import { calcDuration, incrementDateByDay } from "utils/date";
 import { round } from "utils/math";
 import type { SunEventName } from "@shared/types";
@@ -21,7 +21,29 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 			declination: formatDegrees(round(position.declinationDegrees, 2))
 		},
 		sunrise,
-		sunset
+		sunset,
+		goldenHourDawn: [
+			formatTimeShort(suntimes.GOLDEN_HOUR_START_DAWN.value),
+			"—",
+			formatTimeShort(suntimes.GOLDEN_HOUR_END_DAWN.value)
+		].join(" "),
+		goldenHourDusk: [
+			formatTimeShort(suntimes.GOLDEN_HOUR_START_DUSK.value),
+			"—",
+			formatTimeShort(suntimes.GOLDEN_HOUR_END_DUSK.value)
+		].join(" "),
+		blueHourDawn: [
+			formatTimeShort(suntimes.BLUE_HOUR_START_DAWN.value),
+			"—",
+			formatTimeShort(suntimes.BLUE_HOUR_END_DAWN.value)
+		].join(" "),
+		blueHourDusk: [
+			formatTimeShort(suntimes.BLUE_HOUR_START_DUSK.value),
+			"—",
+			formatTimeShort(suntimes.BLUE_HOUR_END_DUSK.value)
+		].join(" "),
+		nightStart: formatTimeShort(suntimes.ASTRONOMICAL_DUSK.value),
+		nightEnd: formatTimeShort(suntimes.ASTRONOMICAL_DAWN.value)
 	};
 };
 
