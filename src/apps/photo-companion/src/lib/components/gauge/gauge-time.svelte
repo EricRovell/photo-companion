@@ -1,7 +1,9 @@
 <script lang="ts" context="module">
 	import { tweened } from "svelte/motion";
+	import { formatTimeShort } from "utils/formatters";
+
 	import Gauge from "./gauge.svelte";
-	import { getAngleFromTime, renderDatetime } from "../../helpers";
+	import { getAngleFromTime } from "../../helpers";
 
 	const getAngleState = (timeFrom: Date | null, timeTo: Date | null) => ({
 		start: getAngleFromTime(timeFrom),
@@ -29,8 +31,8 @@
 <Gauge
 	angleStart="{$angles.start}"
 	angleEnd="{$angles.end}"
-	labelStart="{renderDatetime(timeFrom, { timeStyle: "short" })}"
-	labelEnd="{renderDatetime(timeTo, { timeStyle: "short" })}"
+	labelStart="{formatTimeShort(timeFrom)}"
+	labelEnd="{formatTimeShort(timeTo)}"
 	{pointerAngle}
 	{...$$restProps}
 >

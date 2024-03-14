@@ -117,22 +117,6 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
 	return now;
 }
 
-export function renderDatetime(
-	date: Date | number | null = new Date,
-	options: Intl.DateTimeFormatOptions = {},
-	locales: string | string[] = "ru-RU"
-) {
-	if (isNullable(date)) {
-		return "";
-	}
-
-	if (typeof date === "number") {
-		date = new Date(date);
-	}
-
-	return Intl.DateTimeFormat(locales, options).format(date);
-}
-
 /**
  * Sets the boolean attribute depending on state.
  */

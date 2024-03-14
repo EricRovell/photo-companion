@@ -24,12 +24,12 @@ export function formatPercent(input: number, locale = "ru"): string {
 /**
  * Formats a date into HH:MM:SS time string format.
  */
-export function formatTime(input: Date | number) {
+export function formatTime(input: Date | number | null, locale = "ru") {
 	if (!isValidDate(input)) {
 		return "";
 	}
 
-	return Intl.DateTimeFormat("ru-RU", {
+	return Intl.DateTimeFormat(locale, {
 		hour12: false,
 		hour: "2-digit",
 		minute: "2-digit",
@@ -40,12 +40,16 @@ export function formatTime(input: Date | number) {
 /**
  * Formats a time into HH:MM format.
  */
-export function formatTimeShort(date: Date, locale = "ru"): string {
+export function formatTimeShort(input: Date | number | null, locale = "ru"): string {
+	if (!isValidDate(input)) {
+		return "";
+	}
+
 	return Intl.DateTimeFormat(locale, {
 		hour12: false,
 		hour: "2-digit",
 		minute: "2-digit"
-	}).format(date);
+	}).format(input);
 }
 
 /**

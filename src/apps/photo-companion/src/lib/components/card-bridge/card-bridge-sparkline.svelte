@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { round } from "utils/math";
+	import { formatTimeShort } from "utils/formatters";
 
-	import { renderDatetime, getDate } from "@lib/helpers";
+	import { getDate } from "@lib/helpers";
 	import { createWavyPath } from "@lib/helpers/svg";
 	import type { BridgeSheduleEntry } from "bridge-schedule";
 	import styles from "./card-bridge.module.css";
+
 
 	export let schedule: BridgeSheduleEntry;
 	export let start = 1;
@@ -75,9 +77,9 @@
 			font-size="{fontSize}"
 			fill="white"
 		>
-			{renderDatetime(dateStart, { timeStyle: "short" })}
+			{formatTimeShort(dateStart)}
 			<title>
-				{renderDatetime(dateStart, { timeStyle: "long" })}
+				{formatTimeShort(dateStart)}
 			</title>
 		</text>
 		<text
@@ -86,9 +88,9 @@
 			font-size="{fontSize}"
 			fill="white"
 		>
-			{renderDatetime(dateEnd, { timeStyle: "short" })}
+			{formatTimeShort(dateEnd)}
 			<title>
-				{renderDatetime(dateEnd, { timeStyle: "long" })}
+				{formatTimeShort(dateEnd)}
 			</title>
 		</text>
 	{/each}
