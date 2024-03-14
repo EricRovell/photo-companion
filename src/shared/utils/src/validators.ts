@@ -1,5 +1,10 @@
 export function isInteger(value: unknown): value is number {
-	return !Number.isNaN(value) && Number.isInteger(value);
+	return (
+		typeof value === "number" &&
+		Number.isInteger(value) &&
+		value <= Number.MAX_SAFE_INTEGER &&
+		value >= Number.MIN_SAFE_INTEGER
+	);
 }
 
 export function isLatitude(value: number): boolean {
@@ -22,13 +27,13 @@ export function isNonNullable(value: unknown): boolean {
 	return !isNullable(value);
 }
 
-export function isValidDate(date: Date | number | string | undefined): boolean {
-	if (date instanceof Date) {
-		return !isNaN(date.getTime());
+export function isValidDate(value: Date | number | string | undefined | null): value is Date | number {
+	if (value instanceof Date) {
+		return !isNaN(value.getTime());
 	}
 
-	if (typeof date === "number" || typeof date === "string") {
-		return isValidDate(new Date(date));
+	if (typeof value === "number" || typeof value === "string") {
+		return isValidDate(new Date(value));
 	}
 
 	return false;

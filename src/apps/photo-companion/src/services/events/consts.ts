@@ -1,12 +1,12 @@
+import { getBridgeEvents } from "bridge-schedule";
 import { initLightsProvider } from "lights-schedule";
+import { isNullable } from "utils/validators";
 
 import { settingsStore as store } from "@lib/stores";
 import { provider as lightsProvider } from "../lights";
 import { getSunEvents } from "../sun";
 import { getMoonEvents } from "../moon";
-import { getBridgeEvents } from "bridge-schedule";
 import type { EventProviderByDate, EventProviderByLocation } from "./types";
-import { isNullable } from "@shared/utils";
 
 export const EVENT_PROVIDERS: Array<EventProviderByDate | EventProviderByLocation> = [
 	[ "LOCATION", getMoonEvents, "moon" ],

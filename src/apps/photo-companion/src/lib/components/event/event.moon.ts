@@ -1,14 +1,14 @@
 import type { MoonEvent } from "@shared/types";
-import { template } from "@shared/utils";
+import { template } from "utils/formatters";
 
 import { Moon } from "@lib/components";
 import { dict } from "@lib/dict";
 import type { EventComponent } from "@lib/types";
 
 export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: number, rotation: number }> {
-	const { azimuth, phase, zenithAngle, waxing, fraction } = event.data;
+	const { azimuth, phase, rotation, waxing, fraction } = event.data;
 
-	const message = template("{type} {fraction}%, {azimuth}°", {
+	const message = template("{type} {fraction}, {azimuth}", {
 		type: waxing ? dict.LABEL.WAXING : dict.LABEL.WANING,
 		fraction,
 		azimuth
@@ -18,7 +18,7 @@ export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: nu
 		component: Moon,
 		props: {
 			phase,
-			rotation: zenithAngle
+			rotation
 		},
 		message: message,
 		title: dict.MOON_TIMES[event.name],

@@ -1,19 +1,4 @@
-import { isNullable, isValidDate } from "@shared/utils";
-
-/**
- * Formats time from `Date` object as "HH:MM".
- */
-export function formatTime(timestamp: number) {
-	if (!isValidDate(timestamp)) {
-		return "";
-	}
-
-	return Intl.DateTimeFormat("ru-RU", {
-		hour12: false,
-		hour: "numeric",
-		minute: "numeric"
-	}).format(timestamp);
-}
+import { isNullable, isValidDate } from "utils/validators";
 
 /**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.
@@ -59,22 +44,6 @@ export function preventPageScroll(condition: boolean) {
 		top: -1 * scrollY,
 		behavior: "auto"
 	});
-}
-
-/**
- * Convert the number of seconds to HH:MM:SS format.
- */
-export const secondsToHoursAndMinutes = (seconds: number): [ hours: number, minutes: number ] => {
-	const hours = Math.floor(seconds / 3600);
-	seconds -= hours * 3600;
-	const minutes = Math.floor(seconds / 60);
-	seconds -= minutes * 60;
-
-	return [ hours, minutes ];
-};
-
-export function isValidLocation(lat: number, lon: number): boolean {
-	return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
 }
 
 export function parseQueryDate(input: string): string {
@@ -146,22 +115,6 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
 	(typeof milliseconds === "number") && now.setMilliseconds(milliseconds);
 
 	return now;
-}
-
-export function renderDatetime(
-	date: Date | number | null = new Date,
-	options: Intl.DateTimeFormatOptions = {},
-	locales: string | string[] = "ru-RU"
-) {
-	if (isNullable(date)) {
-		return "";
-	}
-
-	if (typeof date === "number") {
-		date = new Date(date);
-	}
-
-	return Intl.DateTimeFormat(locales, options).format(date);
 }
 
 /**

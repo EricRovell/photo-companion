@@ -19,20 +19,22 @@ export interface SunTime {
 }
 
 export interface SunPosition {
-	// The azimuth above the horizon of the sun in radians
-	azimuth: number;
 	// The altitude of the sun in radians
 	altitude: number;
-	// The zenith of the sun in radians
-	zenith: number;
-	// The azimuth of the sun in decimal degree
-	azimuthDegrees: number;
 	// The altitude of the sun in decimal degree
 	altitudeDegrees: number;
+	// The azimuth above the horizon of the sun in radians
+	azimuth: number;
+	// The azimuth of the sun in decimal degree
+	azimuthDegrees: number;
+	// The declination of the sun in radians
+	declination: number;
+	// The declination of the sun in degrees
+	declinationDegrees: number;
+	// The zenith of the sun in radians
+	zenith: number;
 	// The zenith of the sun in decimal degree
 	zenithDegrees: number;
-	// The declination of the sun
-	declination: number;
 }
 
 export interface MoonPosition {
@@ -106,6 +108,7 @@ export interface MoonIllumination {
 	phaseValue: number;
 	// The midpoint angle in radians of the illuminated limb of the moon reckoned eastward from the north point of the disk;
 	angle: number;
+	angleDegrees: number;
 	next: MoonIlluminationDates;
 }
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getNextBridgeEvent } from "bridge-schedule";
-	import { Timer } from "@lib/components";
+	import { TimerDigits } from "@lib/components";
 	import { dict } from "@lib/dict";
 	import styles from "./bridges.module.css";
 
@@ -12,7 +12,7 @@
 		<h2>{dict.TITLE.THE_CLOSEST_EVENT}</h2>
 	</header>
 	<p>{!state.open ? "Развод" : "Сводка"} моста <span>{dict.BRIDGE_NAME_SPB[state.name]}</span></p>
-	<Timer
+	<TimerDigits
 		timestamp={state.timestamp}
 		on:alarm="{() => {
 			state = getNextBridgeEvent(new Date());

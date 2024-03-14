@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getSunPosition } from "moon-sun-calc";
 
-	import { Event, GaugeTime, Sun, Timeline, ElevationGraph } from "@lib/components";
+	import { CardInfo, Event, GaugeTime, Sun, Timeline, ElevationGraph } from "@lib/components";
 	import { getSunData } from "@services/sun";
-	import { dict, template } from "@lib/dict";
+	import { dict } from "@lib/dict";
 	import { initTimelineProvider } from "@services/events";
 	import { settingsStore as store } from "@lib/stores";
 	import { getAngleFromTime } from "@lib/helpers";
@@ -38,11 +38,24 @@
 				height="{sunSize}"
 			/>
 		</GaugeTime>
-		<footer>
-			<p>{dict.LABEL.DURATION_DAYLIGHT}</p>
-			<output>
-				{template["hours-and-minutes"](state.dayDuration)}
-			</output>
+		<footer class="{styles["gauge-footer"]}">
+			<ol>
+				<li>
+					<span>{state.goldenHourDawn}</span>
+					<span>{dict.SUN_TIMES.GOLDEN_HOUR}</span>
+					<span>{state.goldenHourDusk}</span>
+				</li>
+				<li>
+					<span>{state.blueHourDawn}</span>
+					<span>{dict.SUN_TIMES.BLUE_HOUR}</span>
+					<span>{state.blueHourDusk}</span>
+				</li>
+				<li>
+					<span>... — {state.nightEnd}</span>
+					<span>{dict.SUN_TIMES.NIGHT}</span>
+					<span>{state.nightStart} — ...</span>
+				</li>
+			</ol>
 		</footer>
 	</section>
 	<section data-label="altitude" class="card">
@@ -56,11 +69,16 @@
 					getAltitude: getSunPosition,
 					id: "sun"
 				}
-			]}" 
-		>
-			{dict.TITLE.ELEVATION_SUN}
-		</ElevationGraph>
+			]}"
+		/>
 	</section>
+	<CardInfo data="{{
+		[dict.LABEL.DURATION_DAYLIGHT]: state.dayDuration,
+		[dict.LABEL.ALTITUDE]: state.position.altitude,
+		[dict.LABEL.AZIMUTH]: state.position.azimuth,
+		[dict.LABEL.DECLINATION]: state.position.declination,
+		[dict.LABEL.ZENITH]: state.position.zenith
+	}}" />
 	<section data-label="timeline">
 		<Timeline>
 			{#each events as event (`${event.timestamp}/${event.name}`)}

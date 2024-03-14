@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
 	import { InputDatetime } from "ui";
-	import { isValidDate } from "@shared/utils";
+	import { isValidDate } from "utils/validators";
+
 	import ErrorDate from "../../../pages/error-date/error-date.svelte";
 	import { parseQueryDate, createQueryDate } from "@lib/helpers";
 	import { onMount } from "svelte";

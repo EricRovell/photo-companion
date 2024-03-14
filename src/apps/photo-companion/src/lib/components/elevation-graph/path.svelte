@@ -1,7 +1,7 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-	import { isSameDay } from "@shared/utils";
+	import { isSameDay } from "utils/date";
 
 	import { settingsStore as store } from "@lib/stores";
 	import { createPathBuilder } from "./elevation-graph.helpers";

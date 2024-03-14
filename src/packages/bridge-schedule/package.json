@@ -3,7 +3,7 @@
 	"description": "Saint-Petersburg regular bridge schedule data provider.",
 	"devDependencies": {
 		"@shared/types": "workspace:*",
-		"@shared/utils": "workspace:*"
+		"utils": "workspace:*"
 	},
 	"exports": {
 		".": {

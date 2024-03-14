@@ -146,16 +146,16 @@ export type LightsEvent = Event<"LIGHTS", LightsEventName, {
 }>;
 
 export type MoonEvent = Event<"MOON", MoonEventName, {
-	azimuth: number;
+	azimuth: string;
 	phase: number,
 	waxing: boolean,
-	fraction: number;
-	zenithAngle: number;
+	fraction: string;
+	rotation: number;
 }>;
 
 export type SunEvent = Event<"SUN", SunEventName, {
-	azimuth: number,
-	elevation: number;
+	azimuth: string,
+	elevation: string;
 }>;
 
 export type TimelineEvent =

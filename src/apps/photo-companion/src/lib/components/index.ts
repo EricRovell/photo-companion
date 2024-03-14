@@ -1,5 +1,6 @@
 export { default as Bulb } from "./bulb/bulb.svelte";
 export { default as CardBridge } from "./card-bridge/card-bridge.svelte";
+export { CardInfo } from "./card-info";
 export { ElevationGraph} from "./elevation-graph";
 export { default as Event } from "./event/event.svelte";
 export { default as EventEmpty } from "./event/event.empty.svelte";
@@ -9,4 +10,4 @@ export { default as InputCheckboxGroup } from "./input-checkbox-group/input-chec
 export { default as Moon } from "./moon/moon.svelte";
 export { default as Sun } from "./sun/sun.svelte";
 export { TimelineGroup, Timeline } from "./timeline";
-export { default as Timer } from "./timer/timer.svelte";
+export { TimerDigits } from "./timer";

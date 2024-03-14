@@ -3,13 +3,12 @@
 	import { Datetime, Link } from "ui";
 	import { getMoonPosition, getSunPosition } from "moon-sun-calc";
 
-	import { GaugeTime, Moon, Timeline, Event, ElevationGraph } from "@lib/components";
+	import { CardInfo, GaugeTime, Moon, Timeline, Event, ElevationGraph } from "@lib/components";
 	import { getMoonData } from "@services/moon";
 	import { initTimelineProvider } from "@services/events";
 	import { dict } from "@lib/dict";
 	import { settingsStore as store } from "@lib/stores";
 	import { createQueryDate } from "@lib/helpers";
-	import { round } from "@shared/utils";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
 	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./moon.module.css";
@@ -47,15 +46,11 @@
 			>
 				<Moon
 					phase="{state.phaseValue}"
-					rotation="{state.zenithAngle}"
+					rotation="{state.rotation}"
 					size="{moonSize}"
 				/>
 			</foreignObject>
 		</GaugeTime>
-		<footer>
-			<p>{dict.MOON_PHASE[state.name]}</p>
-			<output>{round(state.fraction * 100, 2)}%</output>
-		</footer>
 	</section>
 	<section data-label="altitude" class="card">
 		<header>
@@ -66,19 +61,29 @@
 			entries="{[
 				{
 					className: styles["elevation-graph-sun"],
+					getAltitude: getSunPosition,
 					id: "sun",
-					getAltitude: getSunPosition
+					pointerSize: 5
 				},
 				{
 					className: styles["elevation-graph-moon"],
+					getAltitude: getMoonPosition,
 					id: "moon",
-					getAltitude: getMoonPosition
+					pointerSize: 7
 				}
-			]}" 
-		>
-			{dict.TITLE.ELEVATION_SUN}
-		</ElevationGraph>
+			]}"
+		/>
 	</section>
+	<CardInfo data="{{
+		[dict.LABEL.MOON_PHASE]: dict.MOON_PHASE[state.name],
+		[dict.LABEL.MOON_ILLUMINATION]: state.fraction,
+		[dict.LABEL.DURATION_MOONLIGHT]: state.duration,
+		[dict.LABEL.ZENITH]: state.zenith,
+		[dict.LABEL.ALTITUDE]: state.altitude,
+		[dict.LABEL.AZIMUTH]: state.azimuth,
+		[dict.LABEL.DISTANCE]: state.distance,
+		[dict.LABEL.PARALLACTIC_ANGLE]: state.parallacticAngle
+	}}" />
 	<section data-label="timeline">
 		<Timeline>
 			{#each events as event (`${event.timestamp}/${event.name}`)}

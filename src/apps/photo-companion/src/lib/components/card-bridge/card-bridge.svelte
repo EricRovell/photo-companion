@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { getBridgeState, getBridgeScheduleEntry } from "bridge-schedule";
 	import { Icon } from "ui";
 	import { iconWarning } from "ui/icons";
-	import ScheduleSparkline from "./card-bridge-sparkline.svelte";
-	import Timer from "../timer/timer.svelte";
-	import { getBridgeState, getBridgeScheduleEntry } from "bridge-schedule";
-	import { dict } from "@lib/dict";
 	import type { BridgeName } from "@shared/types";
+
+	import ScheduleSparkline from "./card-bridge-sparkline.svelte";
+	import { TimerDigits } from "@lib/components";
+	import { dict } from "@lib/dict";
 	import styles from "./card-bridge.module.css";
 
 	export let name: BridgeName;
@@ -48,7 +49,7 @@
 					: dict.MESSAGE.BRIDGE_WILL_OPEN_WITHIN
 				}
 			</p>
-			<Timer
+			<TimerDigits
 				timestamp={state.timestamp}
 				on:alarm="{() => {
 					state = getBridgeState(name, new Date(), true);

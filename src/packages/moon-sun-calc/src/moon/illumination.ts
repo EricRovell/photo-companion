@@ -4,6 +4,7 @@ import { MOON_CYCLE_LIST, FIRST_NEW_MOON_2000, LUNAR_DAYS_MS } from "./consts";
 import { calcMoonCoordinates } from "./coordinates";
 import { toDays } from "../utils";
 import type { MoonIllumination, MoonPhase } from "../types";
+import { DEGREES } from "../consts";
 
 /**
  * Calculations for illumination parameters of the moon,
@@ -74,6 +75,7 @@ export function getMoonIllumination(dateValue: Date | number): MoonIllumination 
 		phase,
 		phaseValue,
 		angle,
+		angleDegrees: angle * DEGREES,
 		next : {
 			value: next,
 			date: (new Date(next)).toISOString(),

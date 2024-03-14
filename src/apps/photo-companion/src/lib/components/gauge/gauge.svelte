@@ -1,11 +1,12 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+	import { isNonNegativeInteger } from "utils/validators";
+
 	import Label from "./gauge-label.svelte";
 	import CurrentPointer from "./gauge-current-pointer.svelte";
 	import Pointer from "./gauge-pointer.svelte";
 	import { checkIsPointerActive, describeArc, createMarksCoords } from "./gauge.helpers";
-	import { isNonNegativeInteger } from "@shared/utils";
 	import styles from "./gauge.module.css";
 
 	export let angleStart = 0;

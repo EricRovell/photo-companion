@@ -31,7 +31,6 @@
 
 .pointer {
 	fill: var(--elevation-graph-accent, gold);
-	r: var(--elevation-graph-pointer-size, 6);
 	transition:
 		cx 0.125s ease-in-out,
 		cy 0.125s ease-in-out,

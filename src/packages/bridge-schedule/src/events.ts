@@ -1,8 +1,9 @@
+import type { BridgeEvent } from "@shared/types";
+import { dateFrom } from "utils/date";
+
 import { schedule } from "./schedule";
 import { SUPPORTED_BRIDGES_NAME_SET } from ".";
 import { isNavigationTime } from "./navigation";
-import { dateFrom } from "@shared/utils";
-import type { BridgeEvent } from "@shared/types";
 
 export function getBridgeEvents(date = new Date()): BridgeEvent[] {
 	const events: BridgeEvent[] = [];

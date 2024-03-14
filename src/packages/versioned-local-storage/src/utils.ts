@@ -1,4 +1,4 @@
-import { isNonNegativeInteger } from "@shared/utils";
+import { isNonNegativeInteger } from "utils/validators";
 
 const LOCAL_STORAGE_ERROR = "localStorage is not accessible";
 

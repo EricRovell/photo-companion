@@ -1,4 +1,4 @@
-import { round } from "@shared/utils";
+import { round } from "utils/math";
 
 /**
  * Creates a "wavy" path following the given path with a specified amplitude

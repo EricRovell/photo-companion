@@ -44,7 +44,9 @@ export const dict = {
 		MOSCOW: "г. Москва"
 	},
 	LABEL: {
+		ALTITUDE: "Высота",
 		ALWAYS: "Всегда",
+		AZIMUTH: "Азимут",
 		ASK_DEVICE_GEOPOSITION: "Запросить данные с устройства",
 		BRIDGE: "мост",
 		BRIDGE_OPENED: "Разведён",
@@ -52,25 +54,37 @@ export const dict = {
 		BRIDGE_CLOSED: "Сведён",
 		BRIDGE_CLOSING: "Сведение моста",
 		BRIDGES_SPB: "Разводные мосты г.Санкт-Петербург",
+		CITY: "Город",
 		DATETIME: "Дата и время",
+		DECLINATION: "Склонение",
+		DISTANCE: "Расстояние",
 		DURATION_DAYLIGHT: "Длительность солнечного дня",
 		DURATION_LIGHTS: "Длительность освещения",
+		DURATION_MOONLIGHT: "Длительность лунного дня",
 		EVENT_ALLOW_LIST: "Фильтры событий",
 		GEOPOSITION: "Геолокация",
 		LATITUDE: "Широта",
 		LIGHTS_CITY: "Городское освещение",
 		LONGITUDE: "Долгота",
+		MOON_PHASE: "Фаза",
+		MOON_ILLUMINATION: "Освещённость",
 		NAVIGATION_ONLY: "Во время навигации",
 		NEXT_DAY: "Следующий день",
 		OFF: "Отключить",
+		PARALLACTIC_ANGLE: "Параллактический угол",
 		PREFERENCES: "Предпочтения",
 		PREVIOUS_DAY: "Предыдущий день",
 		RELOAD: "Перезапустить",
 		RESET: "Сбросить",
 		SAVE: "Сохранить",
 		STARTING_PAGE: "Стартовая страница",
+		TILL_TURNED_ON: "До включения",
+		TILL_TURNED_OFF: "До отключения",
+		TURNED_ON: "Включено",
+		TURNED_OFF: "Отключено",
 		WANING: "Убывающая",
-		WAXING: "Растущая"
+		WAXING: "Растущая",
+		ZENITH: "Зенит"
 	},
 	LIGHTS_EVENTS: {
 		LIGHTS_START: "Включение городского освещения",
@@ -87,7 +101,6 @@ export const dict = {
 		NO_EVENTS: "Никаких событий на сегодня",
 		SET_CURRENT_DATETIME: "Установить текущие время и дату",
 		SET_CURRENT_DATE_ADVICE: "Либо установите текущее значение даты и времени с помощью кнопки ниже",
-		SOMETHING_WRONG: "Что-то пошло не так...",
 		UPDATE: "Обновление готово к установке. Для установки, пожалуйста, перезагрузите приложение или страницу.",
 		WRONG_DATE: "Выбрана неверная дата. Для решения проблемы",
 		WRONG_DATE_URL: "Проверьте адресную строку, дата должна соответствовать формату"
@@ -113,11 +126,13 @@ export const dict = {
 		ASTRONOMICAL_DAWN_TITLE: "Ночь подходит к концу",
 		NAUTICAL_DAWN: "Навигационные сумерки",
 		NAUTICAL_DAWN_TITLE: "Астрономические сумерки подходят к концу",
+		BLUE_HOUR: "Синий час",
 		BLUE_HOUR_START_DAWN: "Утренний синий час",
 		CIVIL_DAWN: "Гражданские сумерки",
 		CIVIL_DAWN_TITLE: "Навигационные сумерки подходят к концу",
 		BLUE_HOUR_END_DAWN: "Утренний синий час",
 		BLUE_HOUR_END_DAWN_TITLE: "Утренний синий час подходит к концу",
+		GOLDEN_HOUR: "Золотой час",
 		GOLDEN_HOUR_START_DAWN: "Утренний золотой час",
 		GOLDEN_HOUR_START_DAWN_TITLE: "Гражданские сумерки подходят к концу",
 		SUNRISE_START: "Рассвет Солнца",
@@ -142,7 +157,8 @@ export const dict = {
 		NAUTICAL_DUSK: "Астрономические сумерки",
 		NAUTICAL_DUSK_TITLE: "Навигационные сумерки подходят к концу",
 		ASTRONOMICAL_DUSK: "Начало ночи",
-		ASTRONOMICAL_DUSK_TITLE: "Астрономические сумерки подходят к концу"
+		ASTRONOMICAL_DUSK_TITLE: "Астрономические сумерки подходят к концу",
+		NIGHT: "Ночь"
 	},
 	TITLE: {
 		ABOUT: "Справка",
@@ -155,7 +171,6 @@ export const dict = {
 		MOON_TIMES: "Времена восхода и захода Луны",
 		MOON_PHASE_CALENDAR: "Календарь Лунных фаз",
 		LIGHTS: "Освещение",
-		LIGHTS_COUNTDOWN: "Отсчёт переключения подсветки",
 		LIGHTS_DATA_BY_DATE: "Данные об освещении по датам",
 		NAVIGATION_OPENED: "Навигация открыта",
 		NAVIGATION_CLOSED: "Навигация закрыта",
@@ -169,21 +184,6 @@ export const dict = {
 };
 
 export const template = {
-	"lights-event": (state: boolean) => `Городское освещение будет <strong>${state ? "выключено" : "включено"}</strong> через`,
-	"hours-and-minutes": (arg: [ hours: number, minutes: number ]) => {
-		const map = {
-			"zero": [ "часов", "минут" ],
-			"one": [ "час", "минута" ],
-			"two": [ "часа", "минуты" ],
-			"few": [ "часа", "минуты" ],
-			"other": [ "часов", "минут" ],
-			"many": [ "часов", "минут" ]
-		};
-
-		const rules = new Intl.PluralRules("ru-RU");
-
-		return `${arg[0]} ${map[rules.select(arg[0])][0]} ${arg[1]} ${map[rules.select(arg[1])][1]}`;
-	},
 	"days": (days: number) => {
 		const plurals = {
 			"zero": "дней",

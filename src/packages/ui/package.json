@@ -22,7 +22,7 @@
 	"name": "ui",
 	"license": "MIT",
 	"dependencies": {
-		"@shared/utils": "workspace:*",
+		"utils": "workspace:*",
 		"svelte": "^4.2.5"
 	},
 	"private": true,

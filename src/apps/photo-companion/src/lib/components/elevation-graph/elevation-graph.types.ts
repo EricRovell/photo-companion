@@ -9,6 +9,8 @@ export interface GraphEntry {
 	className?: string;
 	id: string;
 	getAltitude: AltitudeGetter;
+	// Note: the reason is that Safari does not support "r" attribute via CSS
+	pointerSize?: number;
 }
 
 export interface Tick {

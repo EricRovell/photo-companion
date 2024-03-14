@@ -59,9 +59,6 @@ importers:
       '@shared/types':
         specifier: workspace:*
         version: link:../../shared/types
-      '@shared/utils':
-        specifier: workspace:*
-        version: link:../../shared/utils
       bridge-schedule:
         specifier: workspace:*
         version: link:../../packages/bridge-schedule
@@ -74,6 +71,9 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
+      utils:
+        specifier: workspace:*
+        version: link:../../shared/utils
       versioned-local-storage:
         specifier: workspace:*
         version: link:../../packages/versioned-local-storage
@@ -114,7 +114,7 @@ importers:
       '@shared/types':
         specifier: workspace:*
         version: link:../../shared/types
-      '@shared/utils':
+      utils:
         specifier: workspace:*
         version: link:../../shared/utils
 
@@ -123,18 +123,18 @@ importers:
       '@shared/types':
         specifier: workspace:*
         version: link:../../shared/types
-      '@shared/utils':
+      utils:
         specifier: workspace:*
         version: link:../../shared/utils
 
   src/packages/moon-sun-calc:
     dependencies:
-      '@shared/utils':
-        specifier: workspace:*
-        version: link:../../shared/utils
       esbuild:
         specifier: ^0.19.11
         version: 0.19.11
+      utils:
+        specifier: workspace:*
+        version: link:../../shared/utils
     devDependencies:
       '@shared/types':
         specifier: workspace:*
@@ -142,12 +142,12 @@ importers:
 
   src/packages/ui:
     dependencies:
-      '@shared/utils':
-        specifier: workspace:*
-        version: link:../../shared/utils
       svelte:
         specifier: ^4.2.5
         version: 4.2.8
+      utils:
+        specifier: workspace:*
+        version: link:../../shared/utils
     devDependencies:
       svelte-check:
         specifier: ^3.6.4
@@ -155,7 +155,7 @@ importers:
 
   src/packages/versioned-local-storage:
     devDependencies:
-      '@shared/utils':
+      utils:
         specifier: workspace:*
         version: link:../../shared/utils
 

@@ -1,4 +1,4 @@
-import { isLatitude, isLongitude } from "@shared/utils";
+import { isLatitude, isLongitude } from "utils/validators";
 
 import { RAD, DAY_MS } from "../consts";
 import { calcSunCoordinates } from "./coordinates";
@@ -8,7 +8,7 @@ import { siderealTime, toDays, azimuthCalc } from "../utils";
  * Calculates time for a given azimuth angle for a given date and geoposition.
 */
 export function getSunTimeByAzimuth(
-	dateValue: Date | number,
+	dateValue: DateLike,
 	latitude: number,
 	longitude: number,
 	nazimuth: number,

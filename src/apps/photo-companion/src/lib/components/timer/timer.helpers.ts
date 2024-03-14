@@ -1,4 +1,5 @@
-import { round } from "@shared/utils";
+import { padWithZero } from "utils";
+import { round } from "utils/math";
 
 /**
  * Breaks a 2-digit number into 2 digits.
@@ -12,16 +13,10 @@ const toDigits = (number: number): number[] => {
 };
 
 /**
- * Calculates the number of seconds left until the given timestamp value.
+ * Transform the timestamp into time parts.
  */
-export const calcSecondsLeft = (timestamp: number) => {
-	return round((timestamp - new Date().getTime()) / 1000);
-};
-
-/**
- * Convert the number of seconds to HH:MM:SS format.
- */
-export const formatTime = (seconds: number) => {
+export const getTime = (timestamp: number) => {
+	let seconds = round(timestamp / 1000);
 	const hours = Math.floor(seconds / 3600);
 	seconds -= hours * 3600;
 	const minutes = Math.floor(seconds / 60);
@@ -32,12 +27,6 @@ export const formatTime = (seconds: number) => {
 		minutes: toDigits(minutes),
 		seconds: toDigits(seconds)
 	};
-};
-
-const formatDigit = (input: number) => {
-	return input < 10
-		? `0${input}`
-		: input;
 };
 
 /**
@@ -51,5 +40,5 @@ export const getDateTimeString = (timestamp: number) => {
 	const hours = d.getHours();
 	const minutes = d.getMinutes();
 	
-	return `${year}-${formatDigit(month)}-${formatDigit(date)}T${formatDigit(hours)}:${formatDigit(minutes)}:00.000`;
+	return `${year}-${padWithZero(month)}-${padWithZero(date)}T${padWithZero(hours)}:${padWithZero(minutes)}:00.000`;
 };

@@ -2,7 +2,7 @@
 	"author": "Eric Rovell",
 	"description": "Persistable local storage",
 	"devDependencies": {
-		"@shared/utils": "workspace:*"
+		"utils": "workspace:*"
 	},
 	"exports": {
 		".": {

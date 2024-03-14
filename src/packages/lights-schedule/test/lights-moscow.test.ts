@@ -1,8 +1,9 @@
+import { isLeapYear } from "utils/date";
+
 import { describe, expect, it } from "vitest";
 import { initLightsProvider } from "../src";
 import { schedule as data } from "../src/schedule/lights-moscow";
 import { getFullYearDaysList } from "./utils";
-import { isLeapYear } from "@shared/utils";
 
 const { getScheduleByDate, getStateByDate } = initLightsProvider("MOSCOW");
 
