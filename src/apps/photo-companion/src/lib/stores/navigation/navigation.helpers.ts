@@ -1,16 +1,10 @@
-import { isNavigationTime } from "bridge-schedule";
-import { type SettingsStore } from "@lib/stores/settings";
+import { NAVIGATION_TAB_DATA } from "./navigation.const";
+import type { NavigationTabName } from "@lib/types";
 
-export function isBridgesTabHidden(value: SettingsStore["bridges_spb"]) {
-	switch (value) {
-		case "navigation": {
-			return !isNavigationTime();
-		}
-		case "always": {
-			return false;
-		}
-		default: {
-			return true;
-		}
-	}
+export function getTabData(tab: NavigationTabName) {
+	return NAVIGATION_TAB_DATA[tab];
+}
+
+export function getTabUrl(tab: NavigationTabName) {
+	return getTabData(tab).href;
 }
