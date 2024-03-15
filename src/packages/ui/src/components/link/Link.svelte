@@ -3,7 +3,7 @@
 
 	export let block = false;
 	export let className = "";
-	export let current: "page" | undefined = undefined;
+	export let current: "page" | "step" | "location" | "date" | "time" | undefined = undefined;
 	export let download: undefined | string = undefined;
 	export let href: string;
 	export let label: string | undefined = undefined;
