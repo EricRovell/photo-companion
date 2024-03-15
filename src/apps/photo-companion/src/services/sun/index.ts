@@ -15,10 +15,10 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	return {
 		dayDuration,
 		position: {
-			azimuth: formatDegrees(round(position.azimuthDegrees, 2)),
-			altitude: formatDegrees(round(position.altitudeDegrees, 2)),
-			zenith: formatDegrees(round(position.zenithDegrees, 2)),
-			declination: formatDegrees(round(position.declinationDegrees, 2))
+			azimuth: formatDegrees(round(position.azimuthDegrees, 1)),
+			altitude: formatDegrees(round(position.altitudeDegrees, 1)),
+			zenith: formatDegrees(round(position.zenithDegrees, 1)),
+			declination: formatDegrees(round(position.declinationDegrees, 1))
 		},
 		sunrise,
 		sunset,
@@ -67,7 +67,7 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 
 		sunEvents.push({
 			data: {
-				azimuth: formatDegrees(round(getSunPosition(value.ts, lat, lon).azimuthDegrees)),
+				azimuth: formatDegrees(round(getSunPosition(value.ts, lat, lon).azimuthDegrees, 1)),
 				// TODO: manage elevation for solar noon and nadir
 				elevation: formatDegrees(round(value.elevation!, 2))
 			},
@@ -80,8 +80,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	sunEvents.push(
 		{
 			data: {
-				azimuth: formatDegrees(round(positionNadir.azimuthDegrees, 2)),
-				elevation: formatDegrees(round(positionNadir.altitudeDegrees, 2))
+				azimuth: formatDegrees(round(positionNadir.azimuthDegrees, 1)),
+				elevation: formatDegrees(round(positionNadir.altitudeDegrees, 1))
 			},
 			name: "NADIR",
 			timestamp: nadir.ts,
@@ -89,8 +89,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 		},
 		{
 			data: {
-				azimuth: formatDegrees(round(positionNoon.azimuthDegrees, 2)),
-				elevation: formatDegrees(round(positionNoon.altitudeDegrees, 2))
+				azimuth: formatDegrees(round(positionNoon.azimuthDegrees, 1)),
+				elevation: formatDegrees(round(positionNoon.altitudeDegrees, 1))
 			},
 			name: "SOLAR_NOON",
 			timestamp: data.SOLAR_NOON.ts,

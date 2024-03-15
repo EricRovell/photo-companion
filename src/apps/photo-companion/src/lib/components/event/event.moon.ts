@@ -8,7 +8,7 @@ import type { EventComponent } from "@lib/types";
 export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: number, rotation: number }> {
 	const { azimuth, phase, rotation, waxing, fraction } = event.data;
 
-	const message = template("{type} {fraction}, {azimuth}", {
+	const message = template("{type} {fraction} / {azimuth}", {
 		type: waxing ? dict.LABEL.WAXING : dict.LABEL.WANING,
 		fraction,
 		azimuth
