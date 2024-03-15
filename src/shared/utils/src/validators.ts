@@ -23,7 +23,7 @@ export function isNullable(value: unknown): value is null | undefined {
 	return value === null || typeof value === "undefined";
 }
 
-export function isNonNullable(value: unknown): boolean {
+export function isNonNullable<T = unknown>(value: T): value is T {
 	return !isNullable(value);
 }
 
