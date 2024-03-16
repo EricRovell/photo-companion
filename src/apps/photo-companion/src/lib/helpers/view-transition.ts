@@ -13,7 +13,7 @@ function clearCallbacks() {
 	}
 }
 
-export function pageTransition<Callback extends () => void>(callback: Callback, shouldTransition = true) {
+export function pageTransition<Callback extends () => void>(callback: Callback, classNames: string[] = [], shouldTransition = true) {
 	// allows for easily toggling off the transition for certain state changes
 	if (!shouldTransition) {
 		callback();
@@ -29,6 +29,7 @@ export function pageTransition<Callback extends () => void>(callback: Callback, 
 	inProgress = true;
 
 	const t = transitionHelper({
+		classNames,
 		updateDOM: async () => {
 			clearCallbacks();
 			await tick();

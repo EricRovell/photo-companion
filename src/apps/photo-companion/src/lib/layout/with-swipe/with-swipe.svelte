@@ -32,10 +32,14 @@
 	};
 
 	const handlePageTransition = (e: CustomEvent<SwipeEvent>) => {
+		const classNames = e.detail.direction === "right"
+			? [ "back-transition" ]
+			: [];
+
 		return pageTransition(() => {
 			scrollToTop();
 			handleSwipe(e);
-		});
+		}, classNames);
 	};
 </script>
 
