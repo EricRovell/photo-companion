@@ -10,6 +10,18 @@
 	}
 }
 
+@keyframes slide-from-bottom {
+	from {
+		transform: translateY(30px);
+	}
+}
+
+@keyframes slide-to-bottom {
+	to {
+		transform: translateY(30px);
+	}
+}
+
 @keyframes slide-from-right {
 	from {
 		transform: translateX(30px);
@@ -52,6 +64,19 @@
 
 :global(.back-transition)::view-transition-new(root) {
 	animation-name: fade-in, slide-from-left;
+}
+
+
+/* Entry transition */
+::view-transition-new(input-datetime):only-child {
+	animation: 300ms cubic-bezier(0, 0, 0.2, 1) both fade-in,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-bottom;
+}
+
+/* Exit transition */
+::view-transition-old(input-datetime):only-child {
+	animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-bottom;
 }
 
 .wrapper {

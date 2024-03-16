@@ -4,6 +4,7 @@
 	width: fit-content;
 	box-shadow: 0 0 5px rgb(24 24 24);
 	border-radius: 8px;
+	view-transition-name: input-datetime;
 }
 
 .input-wrapper {

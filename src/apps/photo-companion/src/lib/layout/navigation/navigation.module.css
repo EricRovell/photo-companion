@@ -13,6 +13,7 @@
 	width: 100%;
 	height: min-content;
 	padding-inline: var(--space-2);
+	view-transition-name: navigation;
 }
 
 .nav-items {

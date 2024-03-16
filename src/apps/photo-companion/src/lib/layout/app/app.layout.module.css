@@ -4,6 +4,7 @@
 	background-color: var(--color-surface-0);
 	width: 100%;
 	padding-top: var(--space-3);
+	view-transition-name: header;
 
 	h1 {
 		font-size: var(--font-size-5);
