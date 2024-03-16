@@ -3,8 +3,8 @@ import { writable } from "svelte/store";
 import { isNullable } from "utils/validators";
 
 import { settingsStore } from "@lib/stores/settings";
-import type { NavigationTabName } from "./navigation.types";
 import { NAVIGATION_TABS } from "./navigation.const";
+import type { NavigationTabName } from "@lib/types";
 
 function createNavigationStore() {
 	const { subscribe, set, update } = writable<NavigationTabName[]>(NAVIGATION_TABS);

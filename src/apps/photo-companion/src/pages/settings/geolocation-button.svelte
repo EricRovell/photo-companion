@@ -49,7 +49,6 @@
 	color="{status}"
 	{disabled}
 	on:click="{handleGetGeolocation}"
-	type="button"
 >
 	{message}
 </Button>

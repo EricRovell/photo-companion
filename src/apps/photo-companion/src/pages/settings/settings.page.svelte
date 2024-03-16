@@ -163,7 +163,6 @@
 			<Button
 				appearance="outline"
 				on:click="{handleReset}"
-				type="button"
 			>
 				{dict.LABEL.RESET}
 			</Button>
