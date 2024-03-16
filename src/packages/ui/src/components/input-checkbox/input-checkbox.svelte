@@ -28,6 +28,7 @@
 		{disabled}
 		indeterminate="{!checked && indeterminate}"
 		checked="{!indeterminate && checked}"
+		on:change
 		type="checkbox"
 		{name}
 		{value}
@@ -44,7 +45,9 @@
 			<path data-indeterminate d="{PATH[symbolIndeterminate]}" />
 		{/if}
 	</svg>
-	<span>
-		{label}
-	</span>
+		{#if label}
+			<span>
+				{label}
+			</span>
+		{/if}
 </label>

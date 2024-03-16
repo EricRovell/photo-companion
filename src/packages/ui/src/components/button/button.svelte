@@ -5,6 +5,7 @@
 	export let disabled = false;
 	export let appearance: "ghost" | "fill" | "outline" = "fill";
 	export let color: Nullable<"success" | "danger"> = undefined;
+	export let type: HTMLButtonElement["type"] = "button";
 </script>
 
 <button
@@ -13,6 +14,7 @@
 	data-color="{color}"
 	{disabled}
 	on:click
+	{type}
 	{...$$restProps}
 >
 	<slot />

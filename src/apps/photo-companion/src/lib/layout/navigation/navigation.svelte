@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { query } from "svelte-pathfinder";
+	import { path, query } from "svelte-pathfinder";
 	import { Icon, Link } from "ui";
 
 	import { dict } from "@lib/dict";
-	import { navigationStore } from "@lib/stores";
+	import { navigationStore, getTabData } from "@lib/stores/navigation";
 	import { scrollToTop } from "@lib/helpers";
 	import styles from "./navigation.module.css";
 </script>
@@ -13,10 +13,11 @@
 	style="--navigation-items-count: {$navigationStore.length}"
 >
 	<ul class="{styles["nav-items"]}">
-		{#each $navigationStore as { label, href, icon, current }}
+		{#each $navigationStore as tab}
+			{@const { label, href, icon } = getTabData(tab)}
 			<li>
 				<Link
-					current="{current ? "page": undefined}"
+					current="{href.includes($path[0]) ? "page" : undefined}"
 					className="{styles.link}"
 					href="{href}{$query}"
 					on:click="{scrollToTop}"

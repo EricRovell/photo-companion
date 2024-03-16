@@ -6,7 +6,6 @@ export type NavigationTabName =
 	| "BRIDGES";
 
 export interface NavigationRoute {
-	current?: boolean;
 	href: string;
 	disabled?: boolean;
 	icon: string;

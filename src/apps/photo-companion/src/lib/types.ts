@@ -13,3 +13,10 @@ export interface EventComponent<Props> {
 	title: string;
 	type?: "bridge" | "lights" | "moon" | "sun";
 }
+
+export type NavigationTabName =
+	| "TIMELINE"
+	| "LIGHTS"
+	| "SUN"
+	| "MOON"
+	| "BRIDGES";

@@ -1,6 +1,7 @@
 export {
 	Button,
 	Datetime,
+	Details,
 	Form,
 	Fieldset,
 	Icon,

@@ -5,7 +5,7 @@
 	user-select: none;
 
 	span {
-		margin-inline-start: var(--space-2);
+		margin-inline-start: var(--space-3);
 	}
 }
 
@@ -28,8 +28,8 @@
 .input {
 	appearance: none;
 
-	&:disabled {
-		opacity: 0.75;
+	&:disabled ~ .box {
+		opacity: 0.5;
 		cursor: not-allowed;
 	}
 

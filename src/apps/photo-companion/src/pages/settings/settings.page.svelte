@@ -1,18 +1,15 @@
 <script lang="ts">
-	import { Button, Form, Fieldset, InputNumber, InputRadio, InputSelect } from "ui";
-	import { InputCheckboxGroup } from "@lib/components";
 	import { query } from "svelte-pathfinder";
+	import { Button, Form, Fieldset, InputNumber, InputRadio, InputCheckbox } from "ui";
+	import type { LightsCity } from "@shared/types";
+
+	import { InputCheckboxGroup } from "@lib/components";
 	import GeolocationButton from "./geolocation-button.svelte";
+	import TabsSelect from "./tabs-select.svelte";
 	import { settingsStore } from "@lib/stores";
 	import { dict } from "@lib/dict";
-	import {
-		BRIDGES_SPB_OPTIONS,
-		LIGHTS_CITY_OPTIONS,
-		GET_STARTING_PAGE_OPTIONS,
-		BRIDGES_EVENTS_OPTIONS
-	} from "./settings.const";
+	import { LIGHTS_CITY_OPTIONS, BRIDGES_EVENTS_OPTIONS } from "./settings.const";
 	import { SUN_EVENT_NAMES, MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES } from "@lib/constants";
-	import type { LightsCity } from "@shared/types";
 
 	import styles from "./settings.module.css";
 
@@ -43,27 +40,12 @@
 				break;
 			}
 			case "lights-city": {
-				if (value) {
-					settings.lights_city = value as LightsCity;
-				} else {
-					settings.lights_city = null;
-					settings.events_lights = null;
-				}
-
+				settings.lights_city = value as LightsCity;
 				break;
 			}
-			case "bridges-spb": {
-				if (value) {
-					settings.bridges_spb = value as ("navigation" | "always");
-				} else {
-					settings.bridges_spb = null;
-					settings.events_bridges_spb = null;
-				}
-
+			case "bridges-spb-navigation": {
+				settings.bridges_spb_navigation = target.checked;
 				break;
-			}
-			case "starting-page": {
-				settings.starting_page = value;
 			}
 		}
 	};
@@ -77,15 +59,6 @@
 <div class="{styles.page}">
 	<h2>{dict.TITLE.SETTINGS}</h2>
 	<Form on:submit="{handlePersist}" on:change={handleChange}>
-		<Fieldset legend="{dict.LABEL.PREFERENCES}" id="starting-page">
-			<InputSelect
-				name="starting-page"
-				options="{GET_STARTING_PAGE_OPTIONS(settings)}"
-				value="{settings.starting_page}"
-			>
-				{dict.LABEL.STARTING_PAGE}
-			</InputSelect>
-		</Fieldset>
 		<Fieldset legend="{dict.LABEL.GEOPOSITION}" id="geoposition">
 			<InputNumber
 				min={-90}
@@ -114,6 +87,25 @@
 				}}
 			/>
 		</Fieldset>
+		<Fieldset legend="{dict.LABEL.TABS}" id="starting-page">
+			<aside>
+				{dict.MESSAGE.TAB_LIMITS}
+			</aside>
+			<TabsSelect
+				bind:value="{settings.tabs}"
+			/>
+		</Fieldset>
+		<Fieldset legend="{dict.LABEL.BRIDGES_SPB}" id="city-lights">
+			<aside>
+				{dict.MESSAGE.NAVIGATION_MODE}
+			</aside>
+			<InputCheckbox
+				bind:checked="{settings.bridges_spb_navigation}"
+				disabled="{!settings.tabs.includes("BRIDGES")}"
+				label="{dict.LABEL.NAVIGATION_ONLY}"
+				name="bridges-spb-navigation"
+			/>
+		</Fieldset>
 		<Fieldset legend="{dict.LABEL.LIGHTS_CITY}" id="city-lights">
 			<InputRadio
 				name="lights-city"
@@ -121,17 +113,9 @@
 				value="{settings.lights_city ?? ""}"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict.LABEL.BRIDGES_SPB}" id="city-lights">
-			<InputRadio
-				name="bridges-spb"
-				options={BRIDGES_SPB_OPTIONS}
-				value="{settings.bridges_spb ?? ""}"
-			/>
-		</Fieldset>
 		<Fieldset legend="{dict.LABEL.EVENT_ALLOW_LIST}" id="event-blacklist">
 			<InputCheckboxGroup
 				bind:value="{settings.events_bridges_spb}"
-				disabled="{!settings.bridges_spb}"
 				name="timeline-events-map"
 				groupLabel="{dict.LABEL.BRIDGES_SPB}"
 				groupValue="bridges"
@@ -139,7 +123,6 @@
 			/>
 			<InputCheckboxGroup
 				bind:value="{settings.events_lights}"
-				disabled="{!settings.lights_city}"
 				name="timeline-events-map"
 				groupLabel="{dict.LABEL.LIGHTS_CITY}"
 				groupValue="lights"
@@ -180,7 +163,6 @@
 			<Button
 				appearance="outline"
 				on:click="{handleReset}"
-				type="button"
 			>
 				{dict.LABEL.RESET}
 			</Button>

@@ -1,3 +1,4 @@
+import type { NavigationTabName } from "@lib/types";
 import { persistable } from "../../helpers/persistable";
 import type {
 	BridgeEventName,
@@ -18,19 +19,19 @@ import type {
  *  3. Non-empty array — the forbidden events are listed.
  */
 export interface SettingsStore {
-	bridges_spb: "navigation" | "always" | null;
+	bridges_spb_navigation: boolean;
 	events_bridges_spb: BridgeEventName[] | null;
 	events_lights: LightsEventName[] | null;
 	events_moon: MoonEventName[] | null;
 	events_sun: SunEventName[] | null;
 	latitude: number;
-	lights_city: Nullable<LightsCity>;
+	lights_city: LightsCity;
 	longitude: number;
-	starting_page: string;
+	tabs: NavigationTabName[];
 }
 
 export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
-	bridges_spb: "navigation",
+	bridges_spb_navigation: true,
 	events_bridges_spb: [],
 	events_lights: [],
 	events_moon: [],
@@ -38,11 +39,11 @@ export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
 	latitude: 59.844404,
 	lights_city: "SAINT_PETERSBURG",
 	longitude: 30.3131,
-	starting_page: "/timeline"
+	tabs: [ "TIMELINE", "LIGHTS", "SUN", "MOON" ] as NavigationTabName[]
 });
 
 const SETTINGS_LOCAL_STORAGE_KEY = "settings";
-const SETTINGS_LOCAL_STORAGE_VERSION = 1;
+const SETTINGS_LOCAL_STORAGE_VERSION = 2;
 
 export const settingsStore = persistable<SettingsStore>(
 	SETTINGS_LOCAL_STORAGE_KEY,

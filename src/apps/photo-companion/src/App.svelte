@@ -3,13 +3,14 @@
 
 	import Routes from "./router/routes.svelte";
 	import { ServiceWorker } from "@lib/layout";
-	import { settingsStore } from "@lib/stores";
+	import { settingsStore, navigationStore } from "@lib/stores";
+	import { getTabUrl } from "@lib/stores/navigation";
 
 	const store = settingsStore.init();
 
 	// TODO use redirect
 	if (!$path[0]) {
-		$path[0] = store.starting_page.slice(1);
+		$path[0] = getTabUrl($navigationStore[0]).slice(1);
 	}
 
 	$query.latitude = store.latitude;

@@ -5,7 +5,7 @@
 
 	import { version } from "@lib/constants";
 	import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
-	import { settingsStore } from "@lib/stores";
+	import { navigationStore, getTabUrl } from "@lib/stores/navigation";
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
 	import { dict } from "@lib/dict";
@@ -15,7 +15,7 @@
 
 <header class="{styles.header}">
 	<div class="{styles.content}">
-		<Link href="{$settingsStore.starting_page}{$query}">
+		<Link href="{getTabUrl($navigationStore[0])}{$query}">
 			<h1>{title}</h1>
 		</Link>
 		<nav>
