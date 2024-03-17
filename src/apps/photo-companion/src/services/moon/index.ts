@@ -2,7 +2,7 @@ import { getMoonIllumination, getMoonTimes, getMoonPosition } from "moon-sun-cal
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 import { isNullable, isValidDate } from "utils/validators";
-import { formatDegrees, formatKilometers, formatPercent, formatTime } from "utils/formatters";
+import { formatDegrees, formatDuration, formatKilometers, formatPercent } from "utils/formatters";
 import type { MoonEvent, MoonPhaseName } from "@shared/types";
 
 export interface MoonData {
@@ -66,7 +66,7 @@ export const getMoonData = (date: Date = new Date(), lat: number, lon: number): 
 	const position = getMoonPosition(date, lat, lon);
 
 	return {
-		duration: formatTime(calcDuration(times.rise, times.set)),
+		duration: formatDuration(calcDuration(times.rise, times.set)),
 		moonrise: times.rise,
 		moonset: times.set,
 		fraction: formatPercent(round(illumination.fraction * 100, 1)),

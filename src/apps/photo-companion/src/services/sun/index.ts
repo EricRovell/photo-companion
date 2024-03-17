@@ -1,5 +1,5 @@
 import { getSunTimes, getSunPosition } from "moon-sun-calc";
-import { formatDegrees, formatTime, formatTimeShort } from "utils/formatters";
+import { formatDegrees, formatDuration, formatTimeShort } from "utils/formatters";
 import { calcDuration, incrementDateByDay } from "utils/date";
 import { round } from "utils/math";
 import type { SunEventName } from "@shared/types";
@@ -10,7 +10,7 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const position = getSunPosition(date, lat, lon);
 	const sunrise: Date = suntimes.SUNRISE_START.value;
 	const sunset: Date = suntimes.SUNSET_END.value;
-	const dayDuration = formatTime(calcDuration(sunrise, sunset));
+	const dayDuration = formatDuration(calcDuration(sunrise, sunset));
 
 	return {
 		dayDuration,
