@@ -5,6 +5,8 @@ export const FIRST_NEW_MOON_2000 = 947178840000;
 
 // The duration in days of a lunar cycle is 29.53058770576
 export const LUNAR_DAYS_MS = 2551442778;
+export const LUNAR_DAYS_MS_HALF = 2551442778 / 2;
+export const LUNAR_DAYS_MS_QUARTER = 2551442778 / 4;
 
 export const MOON_CYCLE_LIST: MoonPhase[] = [
 	{

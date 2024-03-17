@@ -98,11 +98,11 @@
 	<section data-label="phases-calendar" class="card {styles.phases}">
 		<header>{dict.TITLE.MOON_PHASE_CALENDAR}</header>
 		<div>
-			{#each state.phases as { phase, timestamp } (`${phase}/${timestamp}`)}
+			{#each state.phases as { phaseValue, timestamp } (timestamp)}
 				<Link
 					href="/moon?{new URLSearchParams({ ...$query, date: createQueryDate(new Date(timestamp)) })}"
 				>
-					<Moon phase="{phase}" size={75} />
+					<Moon phase="{phaseValue}" size={75} />
 					<Datetime date="{new Date(timestamp)}" />
 				</Link>
 			{/each}
