@@ -1,15 +1,15 @@
 import { isLatitude, isLongitude } from "utils/validators";
 
 import { calcMoonCoordinates } from "./coordinates";
-import { RAD, DEGREES } from "../consts";
+import { RAD } from "../consts";
 import { astroRefraction } from "./utils";
-import { siderealTime, altitudeCalc, toDays, azimuthCalc } from "../utils";
+import { siderealTime, altitudeCalc, toDays, azimuthCalc, toDegrees } from "../utils";
 import type { MoonPosition } from "../types";
 
 /**
  * Calculates moon position for a given date and latitude/longitude.
  */
-export function getMoonPosition(dateValue: Date | number, latitude: number, longitude: number): MoonPosition {
+export function getMoonPosition(dateValue: Date | number, latitude: number, longitude: number, degrees = false): MoonPosition {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
 	}
@@ -37,12 +37,9 @@ export function getMoonPosition(dateValue: Date | number, latitude: number, long
 	const azimuth = azimuthCalc(H, phi, coords.dec);
 
 	return {
-		azimuth,
-		altitude,
-		azimuthDegrees: DEGREES * azimuth,
-		altitudeDegrees: DEGREES * altitude,
+		azimuth: toDegrees(azimuth, degrees),
+		altitude: toDegrees(altitude, degrees),
 		distance: coords.dist,
-		parallacticAngle: pa,
-		parallacticAngleDegrees: DEGREES * pa
+		parallacticAngle: toDegrees(pa, degrees)
 	};
 }

@@ -30,11 +30,12 @@ describe("Sun", () => {
 		}
 		*/
 		const position = getSunPosition(DATE, LAT, LNG);
+		const positionDegrees = getSunPosition(DATE, LAT, LNG, true);
 
 		expect(position.azimuth).toBeCloseTo(0.6412750628729547, 10);
 		expect(position.altitude).toBeCloseTo(-0.7000406838781611, 10);
-		expect(position.azimuthDegrees).toBeCloseTo(36.742354609606814, 10);
-		expect(position.altitudeDegrees).toBeCloseTo(-40.10937667367048, 10);
+		expect(positionDegrees.azimuth).toBeCloseTo(36.742354609606814, 10);
+		expect(positionDegrees.altitude).toBeCloseTo(-40.10937667367048, 10);
 	});
 	it("getPosition returns azimuth and altitude for the given time and location (southern hemisphere)", () => {
 		/*
@@ -49,11 +50,12 @@ describe("Sun", () => {
 		}
 		*/
 		const position = getSunPosition(DATE, LAT_SOUTHERN_HEMISPHERE, LNG_SOUTHERN_HEMISPHERE);
+		const positionDegrees = getSunPosition(DATE, LAT_SOUTHERN_HEMISPHERE, LNG_SOUTHERN_HEMISPHERE, true);
 
 		expect(position.azimuth).toBeCloseTo(0.9416994558253937, 2);
 		expect(position.altitude).toBeCloseTo(0.8642295669265889, 2);
-		expect(position.azimuthDegrees).toBeCloseTo(54.13110438856136, 1);
-		expect(position.altitudeDegrees).toBeCloseTo(49.30800671531246, 1);
+		expect(positionDegrees.azimuth).toBeCloseTo(54.13110438856136, 1);
+		expect(positionDegrees.altitude).toBeCloseTo(49.30800671531246, 1);
 	});
 	it("getTimes returns sun phases for the given date and location", () => {
 		const times = getSunTimes(DATE, LAT, LNG);

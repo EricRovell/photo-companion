@@ -19,39 +19,17 @@ export interface SunTime {
 }
 
 export interface SunPosition {
-	// The altitude of the sun in radians
 	altitude: number;
-	// The altitude of the sun in decimal degree
-	altitudeDegrees: number;
-	// The azimuth above the horizon of the sun in radians
 	azimuth: number;
-	// The azimuth of the sun in decimal degree
-	azimuthDegrees: number;
-	// The declination of the sun in radians
 	declination: number;
-	// The declination of the sun in degrees
-	declinationDegrees: number;
-	// The zenith of the sun in radians
 	zenith: number;
-	// The zenith of the sun in decimal degree
-	zenithDegrees: number;
 }
 
 export interface MoonPosition {
-	// The moon azimuth in radians
 	azimuth: number;
-	// The moon altitude above the horizon in radians
 	altitude: number;
-	// The moon azimuth in degree
-	azimuthDegrees: number;
-	// The moon altitude above the horizon in degree
-	altitudeDegrees: number;
-	// The distance of the moon to the earth in kilometers
 	distance: number;
-	// The parallactic angle of the moon
 	parallacticAngle: number;
-	// The parallactic angle of the moon in degree
-	parallacticAngleDegrees: number;
 }
 
 export interface DateObject {

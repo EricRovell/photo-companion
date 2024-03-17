@@ -7,7 +7,7 @@ import type { SunEvent } from "@shared/types";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
-	const position = getSunPosition(date, lat, lon);
+	const position = getSunPosition(date, lat, lon, true);
 	const sunrise: Date = suntimes.SUNRISE_START.value;
 	const sunset: Date = suntimes.SUNSET_END.value;
 	const dayDuration = formatDuration(calcDuration(sunrise, sunset));
@@ -15,10 +15,10 @@ export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	return {
 		dayDuration,
 		position: {
-			azimuth: formatDegrees(round(position.azimuthDegrees, 1)),
-			altitude: formatDegrees(round(position.altitudeDegrees, 1)),
-			zenith: formatDegrees(round(position.zenithDegrees, 1)),
-			declination: formatDegrees(round(position.declinationDegrees, 1))
+			azimuth: formatDegrees(round(position.azimuth, 1)),
+			altitude: formatDegrees(round(position.altitude, 1)),
+			zenith: formatDegrees(round(position.zenith, 1)),
+			declination: formatDegrees(round(position.declination, 1))
 		},
 		sunrise,
 		sunset,
@@ -51,8 +51,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	const data = getSunTimes(date, lat, lon);
 	// the API returns the "NADIR" for the next date
 	const nadir = getSunTimes(incrementDateByDay(date, -1), lat, lon).NADIR;
-	const positionNadir = getSunPosition(data.NADIR.ts, lat, lon);
-	const positionNoon = getSunPosition(data.SOLAR_NOON.ts, lat, lon);
+	const positionNadir = getSunPosition(data.NADIR.ts, lat, lon, true);
+	const positionNoon = getSunPosition(data.SOLAR_NOON.ts, lat, lon, true);
 
 	const sunEvents: SunEvent[] = [];
 	const missedEventsSet = new Set<string>([
@@ -67,7 +67,7 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 
 		sunEvents.push({
 			data: {
-				azimuth: formatDegrees(round(getSunPosition(value.ts, lat, lon).azimuthDegrees, 1)),
+				azimuth: formatDegrees(round(getSunPosition(value.ts, lat, lon).azimuth, 1)),
 				// TODO: manage elevation for solar noon and nadir
 				elevation: formatDegrees(round(value.elevation!, 2))
 			},
@@ -80,8 +80,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	sunEvents.push(
 		{
 			data: {
-				azimuth: formatDegrees(round(positionNadir.azimuthDegrees, 1)),
-				elevation: formatDegrees(round(positionNadir.altitudeDegrees, 1))
+				azimuth: formatDegrees(round(positionNadir.azimuth, 1)),
+				elevation: formatDegrees(round(positionNadir.altitude, 1))
 			},
 			name: "NADIR",
 			timestamp: nadir.ts,
@@ -89,8 +89,8 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 		},
 		{
 			data: {
-				azimuth: formatDegrees(round(positionNoon.azimuthDegrees, 1)),
-				elevation: formatDegrees(round(positionNoon.altitudeDegrees, 1))
+				azimuth: formatDegrees(round(positionNoon.azimuth, 1)),
+				elevation: formatDegrees(round(positionNoon.altitude, 1))
 			},
 			name: "SOLAR_NOON",
 			timestamp: data.SOLAR_NOON.ts,
