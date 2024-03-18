@@ -2,19 +2,11 @@ import type { MoonPhaseName, SunEventName } from "@shared/types";
 export type { SunEventName } from "@shared/types";
 
 export interface SunTime {
-	// The Name of the time
-	name: string;
-	// Date object with the calculated sun-time
-	value: Date;
-	// The time as timestamp
-	ts: number;
-	// The position of the sun on the time
-	pos: number;
-	// Angle of the sun on the time (except for solarNoon / nadir)
-	elevation?: number;
-	// The time as Julian calendar
+	elevation?: number; // exception: SOLAR_NOON & NADIR
 	julian: number;
-	// indicates if the time is valid or not
+	index: number;
+	name: string;
+	timestamp: number;
 	valid: boolean;
 }
 

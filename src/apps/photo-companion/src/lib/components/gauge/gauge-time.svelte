@@ -5,22 +5,22 @@
 	import Gauge from "./gauge.svelte";
 	import { getAngleFromTime } from "../../helpers";
 
-	const getAngleState = (timeFrom: Date | null, timeTo: Date | null) => ({
+	const getAngleState = (timeFrom: Nullish<DateLike>, timeTo: Nullish<DateLike>) => ({
 		start: getAngleFromTime(timeFrom),
 		end: getAngleFromTime(timeTo, 360)
 	});
 </script>
 
 <script lang="ts">
-	export let timeFrom: Date | null = null;
-	export let timeTo: Date | null = null;
+	export let timeFrom: Nullish<DateLike> = null;
+	export let timeTo: Nullish<DateLike> = null;
 	export let pointerAngle: number | undefined = undefined;
 
 	let { start, end } = getAngleState(timeFrom, timeTo);
 
 	const angles = tweened({ start, end }, { duration: 500 });
 
-	const updateState = (timeFrom: Date | null, timeTo: Date | null) => {
+	const updateState = (timeFrom: Nullish<DateLike>, timeTo: Nullish<DateLike>) => {
 		const { start, end } = getAngleState(timeFrom, timeTo);
 		void angles.set({ start, end });
 	};

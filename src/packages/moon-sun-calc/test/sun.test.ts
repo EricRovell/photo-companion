@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { getSunPosition,getSunTime,getSunTimes } from "../src";
 import {
 	DATE,
 	HEIGHT,
@@ -10,11 +11,19 @@ import {
 	TIMES_NORTH_HEMISPHERE,
 	TIMES_SOUTH_HEMISPHERE
 } from "./fixtures";
-import {
-	getSunPosition,
-	getSunTime,
-	getSunTimes
-} from "../src";
+
+expect.extend({
+	toHaveDifference(received: number, expected: number, precision: number) {
+		const difference =  Math.abs(received - expected);
+		const pass = difference < precision;
+
+		return {
+			pass,
+			message: () =>
+				`expected ${received} to be close to ${expected} with precision ${precision}, differenece is ${difference}`
+		};
+	}
+});
 
 describe("Sun", () => {
 	it("getPosition returns azimuth and altitude for the given time and location", () => {
@@ -58,24 +67,24 @@ describe("Sun", () => {
 		expect(positionDegrees.altitude).toBeCloseTo(49.30800671531246, 1);
 	});
 	it("getTimes returns sun phases for the given date and location", () => {
-		const times = getSunTimes(DATE, LAT, LNG);
+		const times = getSunTimes(DATE, LAT, LNG, { UTC: true });
 
-		for (const { event, dateString } of TIMES_NORTH_HEMISPHERE) {
-			expect(new Date(dateString).toUTCString()).toBe(times[event].value.toUTCString());
+		for (const { event, timestamp } of TIMES_NORTH_HEMISPHERE) {
+			expect(timestamp).toHaveDifference(times[event].timestamp, 1000);
 		}
 	});
 	it("getTimes returns sun phases for the given date and location in Southern hemosphere", () => {
 		const times = getSunTimes(DATE, LAT_SOUTHERN_HEMISPHERE, LNG_SOUTHERN_HEMISPHERE);
 
-		for (const { event, dateString } of TIMES_SOUTH_HEMISPHERE) {
-			expect(new Date(dateString).toUTCString()).toBe(times[event].value.toUTCString());
+		for (const { event, timestamp } of TIMES_SOUTH_HEMISPHERE) {
+			expect(timestamp).toHaveDifference(times[event].timestamp, 1000);
 		}
 	});
 	it("getTimes adjusts sun phases when additionally given the observer height", () => {
-		const times = getSunTimes(DATE, LAT, LNG, HEIGHT);
+		const times = getSunTimes(DATE, LAT, LNG, { height: HEIGHT, UTC: true });
 
-		for (const { event, dateString } of HEIGHT_TIMES) {
-			expect(new Date(dateString).toUTCString()).toBe(times[event].value.toUTCString());
+		for (const { event, timestamp } of HEIGHT_TIMES) {
+			expect(timestamp).toHaveDifference(times[event].timestamp, 1000);
 		}
 	});
 	it("getSunTime returns the correct time for the given date and location", () => {
@@ -84,13 +93,21 @@ describe("Sun", () => {
 		const sunriseStartTime = TIMES_NORTH_HEMISPHERE.find(({ event }) => event === "SUNRISE_START");
 		const sunsetEndTime = TIMES_NORTH_HEMISPHERE.find(({ event }) => event === "SUNSET_END");
 
-		expect(new Date(times.rise.value).toUTCString()).toBe(new Date(sunriseStartTime.dateString).toUTCString());
-		expect(new Date(times.set.value).toUTCString()).toBe(new Date(sunsetEndTime.dateString).toUTCString());
+		expect(sunriseStartTime).not.toBeNull();
+		expect(sunsetEndTime).not.toBeNull();
+
+		if (sunriseStartTime) {
+			expect(times.rise.timestamp).toHaveDifference(sunriseStartTime.timestamp, 1000);
+		}
+
+		if (sunsetEndTime) {
+			expect(times.set.timestamp).toHaveDifference(sunsetEndTime.timestamp, 1000);
+		}
 	});
 	it("getSunTime adjusts sun phases when additionally given the observer\"s elevation", () => {
-		const times = getSunTime(DATE, LAT, LNG, 0, HEIGHT);
+		const times = getSunTime(DATE, LAT, LNG, 0, { height: HEIGHT });
 
-		expect(new Date(HEIGHT_TIMES[2].dateString).toUTCString()).toBe(new Date(times.rise.value).toUTCString());
-		expect(new Date(HEIGHT_TIMES[3].dateString).toUTCString()).toBe(new Date(times.set.value).toUTCString());
+		expect(HEIGHT_TIMES[2].timestamp).toHaveDifference(times.rise.timestamp, 1000);
+		expect(HEIGHT_TIMES[3].timestamp).toHaveDifference(times.set.timestamp, 1000);
 	});
 });

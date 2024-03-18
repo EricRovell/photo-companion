@@ -12,7 +12,7 @@ export function getSunTimeByAzimuth(
 	latitude: number,
 	longitude: number,
 	nazimuth: number,
-	degree: number
+	degree = false
 ): Date {
 	if (isNaN(nazimuth)) {
 		throw new Error("Azimuth is missing");

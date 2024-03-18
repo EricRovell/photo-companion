@@ -25,6 +25,7 @@
 	"globals": {
 		"__dirname": true,
 		"Nullable": true,
+		"Nullish": true,
 		"Optional": true,
 		"DateLike": true
 	},

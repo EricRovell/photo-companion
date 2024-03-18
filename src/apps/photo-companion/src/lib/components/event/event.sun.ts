@@ -5,7 +5,7 @@ import { Sun } from "@lib/components";
 import { dict } from "@lib/dict";
 import type { EventComponent } from "@lib/types";
 
-export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunEventName, elevation: string }> {
+export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunEventName }> {
 	let message: string | undefined = undefined;
 
 	switch (event.name) {
@@ -31,8 +31,7 @@ export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunE
 	return {
 		component: Sun,
 		props: {
-			event: event.name,
-			elevation: event.data.elevation
+			event: event.name
 		},
 		message,
 		title: dict.SUN_TIMES[event.name],

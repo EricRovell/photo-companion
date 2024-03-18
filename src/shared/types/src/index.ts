@@ -154,8 +154,7 @@ export type MoonEvent = Event<"MOON", MoonEventName, {
 }>;
 
 export type SunEvent = Event<"SUN", SunEventName, {
-	azimuth: string,
-	elevation: string;
+	azimuth: string
 }>;
 
 export type TimelineEvent =

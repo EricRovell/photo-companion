@@ -1,4 +1,4 @@
-import { isInteger } from "./validators";
+import { isInteger, isNullable } from "./validators";
 
 /**
  * Calculates the duration between two dates in seconds:
@@ -7,25 +7,25 @@ import { isInteger } from "./validators";
  * 2. `from` is not specified - the starting point is the beginning of the same day as the `to` date;
  * 3. `to` is not specified - the ending point is the beginning of the next day after the `from` date;
  */
-export function calcDuration(from: Date | null = null, to: Date | null = null): number {
-	if (!from && !to) {
+export function calcDuration(from: Date | number | null = null, to: Date | number | null = null): number {
+	if (isNullable(from) && isNullable(to)) {
 		throw new Error("Both dates should be provided");
 	}
 
-	if (!from && to) {
+	if (isNullable(from) && to) {
 		from = dateFrom(to, { hours: 0, minutes: 0, seconds: 0 });
 
-		return to.getTime() - from.getTime();
+		return new Date(to).getTime() - from.getTime();
 	}
 
-	if (from && !to) {
+	if (from && isNullable(to)) {
 		to = dateFrom(from, { hours: 24, minutes: 0, seconds: 0 });
 
-		return to.getTime() - from.getTime();
+		return to.getTime() - new Date(from).getTime();
 	}
 
-	const startTime = (from!).getTime();
-	const endTime = (to!).getTime();
+	const startTime = new Date(from!).getTime();
+	const endTime = new Date(to!).getTime();
 
 	if (endTime >= startTime) {
 		return endTime - startTime;
@@ -94,7 +94,7 @@ export function dateFrom(input: Date | number = new Date(), options: DateFromOpt
 /**
  * Increments the given date by number of days.
  */
-export function incrementDateByDay(date: Date | string, dayCount: number): Date {
+export function incrementDateByDay(date: Date | number | string, dayCount: number): Date {
 	const currentDate = new Date(date);
 	const nextDate = new Date(currentDate.getTime());
 	nextDate.setDate(nextDate.getDate() + dayCount);
@@ -109,10 +109,21 @@ export function isLeapYear(year: number): boolean {
 /**
  * Checks if two given date instances points to the same date.
  */
-export function isSameDay(a: Date, b: Date) {
+export function isSameDay(a: Date | number, b: Date | number, UTC = false) {
+	a = new Date(a);
+	b = new Date(b);
+
+	if (UTC) {
+		return (
+			a.getUTCDate() === b.getUTCDate() &&
+			a.getUTCMonth() === b.getUTCMonth() &&
+			a.getUTCFullYear() === b.getUTCFullYear()
+		);
+	}
+
 	return (
-		a.getFullYear() === b.getFullYear() &&
+		a.getDate() === b.getDate() &&
 		a.getMonth() === b.getMonth() &&
-		a.getDate() === b.getDate()
+		a.getFullYear() === b.getFullYear()
 	);
 }
