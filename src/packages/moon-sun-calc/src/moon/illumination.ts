@@ -3,7 +3,7 @@ import { calcSunCoordinates } from "../sun/coordinates";
 import { MOON_CYCLE_LIST } from "./consts";
 import { calcMoonCoordinates } from "./coordinates";
 import { toDays, toDegrees } from "../utils";
-import type { MoonIllumination, MoonPhase } from "../types";
+import type { MoonIllumination, MoonPhase } from "./types";
 
 /**
  * Calculations for illumination parameters of the moon,

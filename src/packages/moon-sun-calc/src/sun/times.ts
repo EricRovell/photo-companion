@@ -5,7 +5,7 @@ import { RAD } from "../consts";
 import { SUN_TIMES } from "./consts";
 import { declination, toDays, eclipticLongitude } from "../utils";
 import { approxTransit, getSetJ, fromJulianDay, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
-import type { SunTime, SunEventName } from "../types";
+import type { SunTime, SunEventName } from "./types";
 
 interface Options {
 	height?: number;

@@ -3,7 +3,7 @@ import { isLatitude, isLongitude } from "utils/validators";
 import { RAD } from "../consts";
 import { declination, toDays, eclipticLongitude } from "../utils";
 import { approxTransit, getSetJ, fromJulianDay, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
-import type { SunTime } from "../types";
+import type { SunTime } from "./types";
 
 interface Options {
 	height?: number;

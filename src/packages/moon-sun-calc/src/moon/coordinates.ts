@@ -1,6 +1,6 @@
 import { RAD } from "../consts";
 import { declination, rightAscension } from "../utils";
-import type { MoonCoordinates } from "../types";
+import type { MoonCoordinates } from "./types";
 
 /**
  * Calculates the geocentric ecliptic coordinates of the moon from the number of days.

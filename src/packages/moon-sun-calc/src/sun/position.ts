@@ -3,7 +3,7 @@ import { isLatitude, isLongitude } from "utils/validators";
 import { RAD } from "../consts";
 import { siderealTime, toDays, azimuthCalc, altitudeCalc, toDegrees } from "../utils";
 import { calcSunCoordinates } from "./coordinates";
-import type { SunPosition } from "../types";
+import type { SunPosition } from "./types";
 
 /**
  * Calculates the Sun position for a given date and geoposition coordinates.

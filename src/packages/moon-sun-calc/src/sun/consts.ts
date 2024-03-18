@@ -1,4 +1,4 @@
-import type { SunTimeEvent } from "../types";
+import type { SunTimeEvent } from "./types";
 
 export const SUN_TIMES: SunTimeEvent[] = [
 	{

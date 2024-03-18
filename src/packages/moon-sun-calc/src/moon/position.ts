@@ -4,7 +4,7 @@ import { calcMoonCoordinates } from "./coordinates";
 import { RAD } from "../consts";
 import { astroRefraction } from "./utils";
 import { siderealTime, altitudeCalc, toDays, azimuthCalc, toDegrees } from "../utils";
-import type { MoonPosition } from "../types";
+import type { MoonPosition } from "./types";
 
 /**
  * Calculates moon position for a given date and latitude/longitude.

@@ -1,4 +1,4 @@
-import type { MoonPhase } from "../types";
+import type { MoonPhase } from "./types";
 
 // first newMoon in the year 2000 2000-01-06 18:14
 export const FIRST_NEW_MOON_2000 = 947178840000;
