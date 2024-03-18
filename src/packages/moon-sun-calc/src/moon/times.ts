@@ -3,7 +3,7 @@ import { isLatitude, isLongitude } from "utils/validators";
 import { getMoonPosition } from "./position";
 import { RAD } from "../consts";
 import { hoursLater } from "./utils";
-import type { MoonTimes } from "../types";
+import type { MoonTimes } from "./types";
 
 /**
 * Calculations for moon rise/set times are based on http://www.stargazing.net/kepler/moonrise.html article

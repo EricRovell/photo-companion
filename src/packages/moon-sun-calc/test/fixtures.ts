@@ -1,11 +1,17 @@
+/**
+ * Note:
+ * 
+ * The fixtures are in UTC, so the UTC options should be used.
+ */
+
 import { SunEventName } from "@shared/types";
 
 interface SolarFixture {
 	event: SunEventName;
-	dateString: string;
+	timestamp: number;
 }
 
-export const DATE = new Date(Date.UTC(2013, 2, 5, 0, 0, 0 ,0 ));
+export const DATE = new Date(Date.UTC(2013, 2, 5, 0, 0, 0, 0));
 export const LAT = 50.5; // 50° 30"
 export const LNG = 30.5; // 30° 30"
 export const HEIGHT = 2000;
@@ -17,160 +23,160 @@ export const LNG_SOUTHERN_HEMISPHERE = 151; // 151° - southern hemisphere
 export const TIMES_NORTH_HEMISPHERE: SolarFixture[] = [
 	{
 		event: "SOLAR_NOON",
-		dateString: "2013-03-05T10:10:57Z"
+		timestamp: Date.UTC(2013, 2, 5, 10, 10, 57)
 	},
 	{
 		event: "NADIR",
-		dateString: "2013-03-05T22:10:57Z"
+		timestamp: Date.UTC(2013, 2, 5, 22, 10, 57)
 	},
 	{
 		event: "SUNRISE_START",
-		dateString: "2013-03-05T04:34:56Z"
+		timestamp: Date.UTC(2013, 2, 5, 4, 34, 56)
 	},
 	{
 		event: "SUNSET_END",
-		dateString: "2013-03-05T15:46:57Z"
+		timestamp: Date.UTC(2013, 2, 5, 15, 46, 57)
 	},
 	{
 		event: "SUNRISE_END",
-		dateString: "2013-03-05T04:38:19Z"
+		timestamp: Date.UTC(2013, 2, 5, 4, 38, 19)
 	},
 	{
 		event: "SUNSET_START",
-		dateString: "2013-03-05T15:43:34Z"
+		timestamp: Date.UTC(2013, 2, 5, 15, 43, 34)
 	},
 	{
 		event: "CIVIL_DAWN",
-		dateString: "2013-03-05T04:02:17Z"
+		timestamp: Date.UTC(2013, 2, 5, 4, 2, 17)
 	},
 	{
 		event: "CIVIL_DUSK",
-		dateString: "2013-03-05T16:19:36Z"
+		timestamp: Date.UTC(2013, 2, 5, 16, 19, 36)
 	},
 	{
 		event: "NAUTICAL_DAWN",
-		dateString: "2013-03-05T03:24:31Z"
+		timestamp: Date.UTC(2013, 2, 5, 3, 24, 31)
 	},
 	{
 		event: "NAUTICAL_DUSK",
-		dateString: "2013-03-05T16:57:22Z"
+		timestamp: Date.UTC(2013, 2, 5, 16, 57, 22)
 	},
 	{
 		event: "ASTRONOMICAL_DAWN",
-		dateString: "2013-03-05T02:46:17Z"
+		timestamp: Date.UTC(2013, 2, 5, 2, 46, 17)
 	},
 	{
 		event: "ASTRONOMICAL_DUSK",
-		dateString: "2013-03-05T17:35:36Z"
+		timestamp: Date.UTC(2013, 2, 5, 17, 35, 36)
 	},
 	{
 		event: "GOLDEN_HOUR_END_DAWN",
-		dateString: "2013-03-05T05:19:01Z"
+		timestamp: Date.UTC(2013, 2, 5, 5, 19, 1)
 	},
 	{
 		event: "GOLDEN_HOUR_START_DUSK",
-		dateString: "2013-03-05T15:02:52Z"
+		timestamp: Date.UTC(2013, 2, 5, 15, 2, 52)
 	}
 ];
 
 export const TIMES_SOUTH_HEMISPHERE: SolarFixture[] = [
 	{
 		event: "SOLAR_NOON",
-		dateString: "2013-03-05T02:09:01.832Z"
+		timestamp: Date.UTC(2013, 2, 5, 2, 9, 1, 832)
 	},
 	{
 		event: "NADIR",
-		dateString: "2013-03-05T14:09:01.832Z"
+		timestamp: Date.UTC(2013, 2, 5, 14, 9, 1, 832)
 	},
 	{
 		event: "GOLDEN_HOUR_START_DUSK",
-		dateString: "2013-03-05T07:56:33.416Z"
+		timestamp: Date.UTC(2013, 2, 5, 7, 56,33, 416)
 	},
 	{
 		event: "GOLDEN_HOUR_END_DAWN",
-		dateString: "2013-03-04T20:21:30.248Z"
+		timestamp: Date.UTC(2013, 2, 4, 20, 21, 30, 248)
 	},
 	{
 		event: "SUNSET_START",
-		dateString: "2013-03-05T08:27:05.997Z"
+		timestamp: Date.UTC(2013, 2, 5, 8, 27, 5, 997)
 	},
 	{
 		event: "SUNRISE_END",
-		dateString: "2013-03-04T19:50:57.667Z"
+		timestamp: Date.UTC(2013, 2, 4, 19, 50, 57, 667)
 	},
 	{
 		event: "SUNSET_END",
-		dateString: "2013-03-05T08:29:41.731Z"
+		timestamp: Date.UTC(2013, 2, 5, 8, 29, 41, 731)
 	},
 	{
 		event: "SUNRISE_START",
-		dateString: "2013-03-04T19:48:21.933Z"
+		timestamp: Date.UTC(2013, 2, 4, 19, 48, 21, 933)
 	},
 	{
 		event: "GOLDEN_HOUR_END_DUSK",
-		dateString: "2013-03-05T08:30:30.554Z"
+		timestamp: Date.UTC(2013, 2, 5, 8, 30, 30, 554)
 	},
 	{
 		event: "GOLDEN_HOUR_START_DAWN",
-		dateString: "2013-03-04T19:47:33.110Z"
+		timestamp: Date.UTC(2013, 2, 4, 19, 47, 33, 110)
 	},
 	{
 		event: "BLUE_HOUR_START_DUSK",
-		dateString: "2013-03-05T08:45:10.179Z"
+		timestamp: Date.UTC(2013, 2, 5, 8, 45, 10, 179)
 	},
 	{
 		event: "BLUE_HOUR_END_DAWN",
-		dateString: "2013-03-04T19:32:53.485Z"
+		timestamp: Date.UTC(2013, 2, 4, 19, 32, 53, 485)
 	},
 	{
 		event: "CIVIL_DUSK",
-		dateString: "2013-03-05T08:54:59.722Z"
+		timestamp: Date.UTC(2013, 2, 5, 8, 54, 59, 722)
 	},
 	{
 		event: "CIVIL_DAWN",
-		dateString: "2013-03-04T19:23:03.942Z"
+		timestamp: Date.UTC(2013, 2, 4, 19, 23, 3, 942)
 	},
 	{
 		event: "BLUE_HOUR_END_DUSK",
-		dateString: "2013-03-05T09:04:52.263Z"
+		timestamp: Date.UTC(2013, 2, 5, 9, 4, 52, 263)
 	},
 	{
 		event: "BLUE_HOUR_START_DAWN",
-		dateString: "2013-03-04T19:13:11.401Z"
+		timestamp: Date.UTC(2013, 2, 4, 19, 13, 11, 401)
 	},
 	{
 		event: "NAUTICAL_DUSK",
-		dateString: "2013-03-05T09:24:48.289Z"
+		timestamp: Date.UTC(2013, 2, 5, 9, 24, 48, 289)
 	},
 	{
 		event: "NAUTICAL_DAWN",
-		dateString: "2013-03-04T18:53:15.375Z"
+		timestamp: Date.UTC(2013, 2, 4, 18, 53, 15, 375)
 	},
 	{
 		event: "ASTRONOMICAL_DUSK",
-		dateString: "2013-03-05T09:55:18.657Z"
+		timestamp: Date.UTC(2013, 2, 5, 9, 55, 18, 657)
 	},
 	{
 		event: "ASTRONOMICAL_DAWN",
-		dateString: "2013-03-04T18:22:45.007Z"
+		timestamp: Date.UTC(2013, 2, 4, 18, 22, 45, 7)
 	}
 ];
 
 export const HEIGHT_TIMES: SolarFixture[] = [
 	{
 		event: "SOLAR_NOON",
-		dateString: "2013-03-05T10:10:57Z"
+		timestamp: Date.UTC(2013, 2, 5, 10, 10, 57)
 	},
 	{
 		event: "NADIR",
-		dateString: "2013-03-05T22:10:57Z"
+		timestamp: Date.UTC(2013, 2, 5, 22, 10, 57)
 	},
 	{
 		event: "SUNRISE_START",
-		dateString: "2013-03-05T04:25:07Z"
+		timestamp: Date.UTC(2013, 2, 5, 4, 25, 7)
 	},
 	{
 		event: "SUNSET_END",
-		dateString: "2013-03-05T15:56:46Z"
+		timestamp: Date.UTC(2013, 2, 5, 15, 56, 46)
 	}
 ];

@@ -42,7 +42,7 @@
 	& > div {
 		display: grid;
 		grid-auto-flow: column;
-		grid-template: 1fr / repeat(5, 1fr);
+		grid-template: 1fr / repeat(4, 1fr);
 		justify-items: center;
 		padding-block: var(--space-4);
 	}
@@ -67,9 +67,7 @@
 		}
 
 		svg {
-			width: 85%;
-			height: 85%;
-			aspect-ratio: 1 / 1;
+			aspect-ratio: 1;
 			transition: filter 0.125s ease-in-out;
 		}
 	}

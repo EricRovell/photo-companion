@@ -1,4 +1,4 @@
-import { DAY_MS, J1970, J2000, RAD, EARTH_OBLIQUITY } from "./consts";
+import { DAY_MS, DEGREES, EARTH_OBLIQUITY, J1970, J2000, RAD } from "./consts";
 
 /**
 * Calculates the altitude.
@@ -53,4 +53,11 @@ export function siderealTime(d: number, lw: number): number {
  */
 export function toDays(timestamp: number): number {
 	return ((timestamp / DAY_MS) + J1970) - J2000;
+}
+
+/**
+ * Converts the radians to degrees if specified.
+ */
+export function toDegrees(value: number, degrees = false) {
+	return degrees ? value * DEGREES : value;
 }

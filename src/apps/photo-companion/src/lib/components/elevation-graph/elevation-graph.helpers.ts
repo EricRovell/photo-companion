@@ -32,7 +32,7 @@ export const createPathBuilder = (getAltitude: AltitudeGetter) => (date: Date | 
 	const coords = [];
 
 	for (let i = 0; i <= STEP_COUNT; i++) {
-		const altitude = getAltitude(timestamp, latitude, longitude).altitudeDegrees;
+		const { altitude } = getAltitude(timestamp, latitude, longitude, true);
 		const y = round(altitude, 2);
 
 		const x = scale(timestamp, timestampStart, timestampEnd, 0, X_RANGE);
@@ -55,7 +55,7 @@ export const createObjectCoordsGetter = (getAltitude: AltitudeGetter) => (date: 
 		date = new Date(date);
 	}
 	
-	const altitude = getAltitude(date, latitude, longitude).altitudeDegrees;
+	const { altitude } = getAltitude(date, latitude, longitude, true);
 
 	const timeStart = getDayStart(date);
 	const timeEnd = timeStart + DAY_MS;

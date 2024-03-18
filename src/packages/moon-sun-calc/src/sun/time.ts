@@ -3,7 +3,12 @@ import { isLatitude, isLongitude } from "utils/validators";
 import { RAD } from "../consts";
 import { declination, toDays, eclipticLongitude } from "../utils";
 import { approxTransit, getSetJ, fromJulianDay, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
-import type { SunTime } from "../types";
+import type { SunTime } from "./types";
+
+interface Options {
+	height?: number;
+	degrees?: boolean;
+}
 
 /**
  * Calculates the time at which the sun will have a given elevation angle
@@ -12,14 +17,7 @@ import type { SunTime } from "../types";
  * `height` is the observer height (in meters) relative to the horizon,
  * `degree` defines if the elevationAngle is in degree not in radians.
  */
-export function getSunTime(
-	dateValue: Date | number,
-	latitude: number,
-	longitude: number,
-	elevationAngle: number,
-	height = 0,
-	degree = false,
-	inUTC = false
+export function getSunTime(date: Date | number, latitude: number, longitude: number, elevationAngle: number, options: Options = {}
 ): { set: SunTime, rise: SunTime } {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
@@ -33,17 +31,15 @@ export function getSunTime(
 		throw new Error(`Invalid elevation angle is provided: ${elevationAngle}`);
 	}
 
-	if (degree) {
+	const { height = 0, degrees = false } = options;
+
+	if (degrees) {
 		elevationAngle = elevationAngle * RAD;
 	}
 
-	const t = new Date(dateValue);
+	const t = new Date(date);
 
-	if (inUTC) {
-		t.setUTCHours(12, 0, 0, 0);
-	} else {
-		t.setHours(12, 0, 0, 0);
-	}
+	t.setHours(12, 0, 0, 0);
 
 	const lw = RAD * -longitude;
 	const phi = RAD * latitude;
@@ -65,22 +61,20 @@ export function getSunTime(
 
 	return {
 		set: {
-			name: "set",
-			value: new Date(v1),
-			ts: v1,
 			elevation: elevationAngle,
 			julian: Jset,
-			valid: !isNaN(Jset),
-			pos: 0
+			index: 0,
+			name: "set",
+			timestamp: v1,
+			valid: !isNaN(Jset)
 		},
 		rise: {
-			name: "rise",
-			value: new Date(v2),
-			ts: v2,
 			elevation: elevationAngle, // (180 + (elevationAngle * -1)),
 			julian: Jrise,
-			valid: !isNaN(Jrise),
-			pos: 1
+			index: 1,
+			name: "rise",
+			timestamp: v2,
+			valid: !isNaN(Jrise)
 		}
 	};
 }

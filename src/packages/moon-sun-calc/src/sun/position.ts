@@ -1,14 +1,14 @@
 import { isLatitude, isLongitude } from "utils/validators";
 
-import { RAD, DEGREES } from "../consts";
-import { siderealTime, toDays, azimuthCalc, altitudeCalc } from "../utils";
+import { RAD } from "../consts";
+import { siderealTime, toDays, azimuthCalc, altitudeCalc, toDegrees } from "../utils";
 import { calcSunCoordinates } from "./coordinates";
-import type { SunPosition } from "../types";
+import type { SunPosition } from "./types";
 
 /**
  * Calculates the Sun position for a given date and geoposition coordinates.
 */
-export function getSunPosition(date: DateLike, latitude: number, longitude: number): SunPosition {
+export function getSunPosition(date: DateLike, latitude: number, longitude: number, degrees = false): SunPosition {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
 	}
@@ -25,18 +25,14 @@ export function getSunPosition(date: DateLike, latitude: number, longitude: numb
 	const phi = RAD * latitude;
 	const d = toDays(date);
 	const c = calcSunCoordinates(d);
-	const H = siderealTime(d, lw) - c.ra;
-	const azimuth = azimuthCalc(H, phi, c.dec);
-	const altitude = altitudeCalc(H, phi, c.dec);
+	const H = siderealTime(d, lw) - c.rightAscension;
+	const azimuth = azimuthCalc(H, phi, c.declination);
+	const altitude = altitudeCalc(H, phi, c.declination);
 
 	return {
-		altitude,
-		altitudeDegrees: DEGREES * altitude,
-		azimuth,
-		azimuthDegrees: DEGREES * azimuth,
-		declination: c.dec,
-		declinationDegrees: c.dec * DEGREES,
-		zenith: (90 * Math.PI/180) - altitude,
-		zenithDegrees: 90 - (DEGREES * altitude)
+		altitude: toDegrees(altitude, degrees),
+		azimuth: toDegrees(azimuth, degrees),
+		declination: toDegrees(c.declination, degrees),
+		zenith: toDegrees(Math.PI / 2, degrees) - toDegrees(altitude, degrees)
 	};
 }

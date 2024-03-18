@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { formatTime } from "utils/formatters";
+	import { formatDuration } from "utils/formatters";
 
 	import { CardInfo, Bulb, Event, GaugeTime, Timeline } from "@lib/components";
 	import { provider } from "@services/lights";
@@ -63,8 +63,8 @@
 			data="{{
 				[dict.LABEL.CITY]: dict.CITIES[provider?.city ?? "SAINT_PETERSBURG"],
 				[dict.LABEL.LIGHTS_CITY]: state.lights ? dict.LABEL.TURNED_ON : dict.LABEL.TURNED_OFF,
-				[dict.LABEL.DURATION_LIGHTS]: formatTime(schedule.duration),
-				[timerMessage]: formatTime($timer)
+				[dict.LABEL.DURATION_LIGHTS]: formatDuration(schedule.duration),
+				[timerMessage]: formatDuration($timer)
 			}}"
 		/>
 		<section data-label="timeline">

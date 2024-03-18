@@ -12,7 +12,7 @@ export function getSunTimeByAzimuth(
 	latitude: number,
 	longitude: number,
 	nazimuth: number,
-	degree: number
+	degree = false
 ): Date {
 	if (isNaN(nazimuth)) {
 		throw new Error("Azimuth is missing");
@@ -42,8 +42,8 @@ export function getSunTimeByAzimuth(
 		// let nazi = this.getPosition(dateVal, lat, lng).azimuth;
 		const d = toDays(dateVal);
 		const c = calcSunCoordinates(d);
-		const H = siderealTime(d, lw) - c.ra;
-		const nazim = azimuthCalc(H, phi, c.dec);
+		const H = siderealTime(d, lw) - c.rightAscension;
+		const nazim = azimuthCalc(H, phi, c.declination);
 
 		addval /= 2;
 

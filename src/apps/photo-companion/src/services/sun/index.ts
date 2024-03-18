@@ -1,102 +1,68 @@
 import { getSunTimes, getSunPosition } from "moon-sun-calc";
-import { formatDegrees, formatTime, formatTimeShort } from "utils/formatters";
-import { calcDuration, incrementDateByDay } from "utils/date";
+import { formatDegrees, formatDuration, formatTimeShort } from "utils/formatters";
+import { objectEntries } from "utils";
+import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 import type { SunEventName } from "@shared/types";
 import type { SunEvent } from "@shared/types";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
-	const position = getSunPosition(date, lat, lon);
-	const sunrise: Date = suntimes.SUNRISE_START.value;
-	const sunset: Date = suntimes.SUNSET_END.value;
-	const dayDuration = formatTime(calcDuration(sunrise, sunset));
+	const position = getSunPosition(date, lat, lon, true);
+	const sunrise = suntimes.SUNRISE_START.timestamp;
+	const sunset = suntimes.SUNSET_END.timestamp;
+	const dayDuration = formatDuration(calcDuration(sunrise, sunset));
 
 	return {
 		dayDuration,
 		position: {
-			azimuth: formatDegrees(round(position.azimuthDegrees, 1)),
-			altitude: formatDegrees(round(position.altitudeDegrees, 1)),
-			zenith: formatDegrees(round(position.zenithDegrees, 1)),
-			declination: formatDegrees(round(position.declinationDegrees, 1))
+			azimuth: formatDegrees(round(position.azimuth, 1)),
+			altitude: formatDegrees(round(position.altitude, 1)),
+			zenith: formatDegrees(round(position.zenith, 1)),
+			declination: formatDegrees(round(position.declination, 1))
 		},
 		sunrise,
 		sunset,
 		goldenHourDawn: [
-			formatTimeShort(suntimes.GOLDEN_HOUR_START_DAWN.value),
+			formatTimeShort(suntimes.GOLDEN_HOUR_START_DAWN.timestamp),
 			"—",
-			formatTimeShort(suntimes.GOLDEN_HOUR_END_DAWN.value)
+			formatTimeShort(suntimes.GOLDEN_HOUR_END_DAWN.timestamp)
 		].join(" "),
 		goldenHourDusk: [
-			formatTimeShort(suntimes.GOLDEN_HOUR_START_DUSK.value),
+			formatTimeShort(suntimes.GOLDEN_HOUR_START_DUSK.timestamp),
 			"—",
-			formatTimeShort(suntimes.GOLDEN_HOUR_END_DUSK.value)
+			formatTimeShort(suntimes.GOLDEN_HOUR_END_DUSK.timestamp)
 		].join(" "),
 		blueHourDawn: [
-			formatTimeShort(suntimes.BLUE_HOUR_START_DAWN.value),
+			formatTimeShort(suntimes.BLUE_HOUR_START_DAWN.timestamp),
 			"—",
-			formatTimeShort(suntimes.BLUE_HOUR_END_DAWN.value)
+			formatTimeShort(suntimes.BLUE_HOUR_END_DAWN.timestamp)
 		].join(" "),
 		blueHourDusk: [
-			formatTimeShort(suntimes.BLUE_HOUR_START_DUSK.value),
+			formatTimeShort(suntimes.BLUE_HOUR_START_DUSK.timestamp),
 			"—",
-			formatTimeShort(suntimes.BLUE_HOUR_END_DUSK.value)
+			formatTimeShort(suntimes.BLUE_HOUR_END_DUSK.timestamp)
 		].join(" "),
-		nightStart: formatTimeShort(suntimes.ASTRONOMICAL_DUSK.value),
-		nightEnd: formatTimeShort(suntimes.ASTRONOMICAL_DAWN.value)
+		nightStart: formatTimeShort(suntimes.ASTRONOMICAL_DUSK.timestamp),
+		nightEnd: formatTimeShort(suntimes.ASTRONOMICAL_DAWN.timestamp)
 	};
 };
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
 	const data = getSunTimes(date, lat, lon);
-	// the API returns the "NADIR" for the next date
-	const nadir = getSunTimes(incrementDateByDay(date, -1), lat, lon).NADIR;
-	const positionNadir = getSunPosition(data.NADIR.ts, lat, lon);
-	const positionNoon = getSunPosition(data.SOLAR_NOON.ts, lat, lon);
 
 	const sunEvents: SunEvent[] = [];
-	const missedEventsSet = new Set<string>([
-		"SOLAR_NOON",
-		"NADIR"
-	]);
 
-	for (const [ key, value ] of Object.entries(data)) {
-		if (missedEventsSet.has(key)) {
-			continue;
-		}
-
+	for (const [ key, value ] of objectEntries(data)) {
 		sunEvents.push({
 			data: {
-				azimuth: formatDegrees(round(getSunPosition(value.ts, lat, lon).azimuthDegrees, 1)),
-				// TODO: manage elevation for solar noon and nadir
-				elevation: formatDegrees(round(value.elevation!, 2))
+				azimuth: formatDegrees(round(getSunPosition(value.timestamp, lat, lon).azimuth, 1))
 			},
 			name: key as SunEventName,
-			timestamp: value.ts,
+			timestamp: value.timestamp,
 			type: "SUN"
 		});
 	}
-
-	sunEvents.push(
-		{
-			data: {
-				azimuth: formatDegrees(round(positionNadir.azimuthDegrees, 1)),
-				elevation: formatDegrees(round(positionNadir.altitudeDegrees, 1))
-			},
-			name: "NADIR",
-			timestamp: nadir.ts,
-			type: "SUN"
-		},
-		{
-			data: {
-				azimuth: formatDegrees(round(positionNoon.azimuthDegrees, 1)),
-				elevation: formatDegrees(round(positionNoon.altitudeDegrees, 1))
-			},
-			name: "SOLAR_NOON",
-			timestamp: data.SOLAR_NOON.ts,
-			type: "SUN"
-		}
-	);
 
 	return sunEvents;
 };

@@ -1,14 +1,6 @@
 import { describe, expect, it } from "vitest";
-import {
-	DATE,
-	LAT,
-	LNG
-} from "./fixtures";
-import {
-	getMoonIllumination,
-	getMoonPosition,
-	getMoonTimes
-} from "../src";
+import { DATE, LAT, LNG } from "./fixtures";
+import { getMoonIllumination, getMoonPosition, getMoonTimes } from "../src";
 
 describe("Moon", () => {
 	it("getMoonPosition returns moon position data given time and location", () => {

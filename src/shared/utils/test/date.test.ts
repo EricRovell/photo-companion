@@ -23,6 +23,7 @@ describe("date utilities", () => {
 			});
 			it("Start event happened later than end", () => {
 				testFn(20, 0)(4, 0)(8 * 3600 * 1000);
+				testFn(5, 26)(8, 33)(187 * 60 * 1000);
 			});
 		});
 	});

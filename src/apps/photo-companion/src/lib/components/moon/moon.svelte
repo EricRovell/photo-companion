@@ -31,7 +31,7 @@
 	viewBox="0 0 {size} {size}"
 	style="
 		--moon-disk-angle: {getNormalizedAngleRad($phaseTweened)}rad;
-		transform: rotate({rotation}rad);
+		transform: rotate({rotation}deg);
 	"
 >
 	<circle

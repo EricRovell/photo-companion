@@ -19,7 +19,8 @@
 		"./*.js",
 		"./*.ts",
 		"**/*.d.ts",
-		"../../../global.d.ts"
+		"../../../global.d.ts",
+		"../../../vitest.d.ts"
 	],
 	"exclude": [
 		"node_modules/"

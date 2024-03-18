@@ -1,8 +1,8 @@
 /**
  * Function that calculates the altitude for a given astro-object.
  */
-export type AltitudeGetter = (date: Date | number, latitude: number, longitude: number) => {
-	altitudeDegrees: number;
+export type AltitudeGetter = ( date: Date | number, latitude: number, longitude: number, degrees: boolean) => {
+	altitude: number;
 };
 
 export interface GraphEntry {

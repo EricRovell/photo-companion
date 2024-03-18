@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
 	formatDegrees,
+	formatDuration,
 	formatKilometers,
 	formatPercent,
 	formatTime,
@@ -23,6 +24,12 @@ describe("Project's core utilities", () => {
 			expect(formatDegrees(123, LOCALE_RU)).toBe("123°");
 			expect(formatDegrees(0.5, LOCALE_EN)).toBe("0.5 deg");
 			expect(formatDegrees(0.5, LOCALE_RU)).toBe("0,5°");
+		});
+	});
+	describe("formatDuration", () => {
+		it("formats the timestamp as HH:MM:SS", () => {
+			expect(formatDuration(3 * 3600 * 1000, LOCALE_EN)).toBe("03:00:00");
+			expect(formatDuration(3 * 3600 * 1000, LOCALE_RU)).toBe("03:00:00");
 		});
 	});
 	describe("formatKilometers", () => {
