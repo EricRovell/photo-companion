@@ -58,8 +58,10 @@ export interface MoonTimes {
 }
 
 export interface SunCoordinates {
-	// The declination of the sun
-	dec: number;
-	// The right ascension of the sun
-	ra: number;
+	declination: number;
+	rightAscension: number;
+}
+
+export interface MoonCoordinates extends SunCoordinates {
+	distance: number;
 }

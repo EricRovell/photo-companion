@@ -25,14 +25,14 @@ export function getSunPosition(date: DateLike, latitude: number, longitude: numb
 	const phi = RAD * latitude;
 	const d = toDays(date);
 	const c = calcSunCoordinates(d);
-	const H = siderealTime(d, lw) - c.ra;
-	const azimuth = azimuthCalc(H, phi, c.dec);
-	const altitude = altitudeCalc(H, phi, c.dec);
+	const H = siderealTime(d, lw) - c.rightAscension;
+	const azimuth = azimuthCalc(H, phi, c.declination);
+	const altitude = altitudeCalc(H, phi, c.declination);
 
 	return {
 		altitude: toDegrees(altitude, degrees),
 		azimuth: toDegrees(azimuth, degrees),
-		declination: toDegrees(c.dec, degrees),
+		declination: toDegrees(c.declination, degrees),
 		zenith: toDegrees(Math.PI / 2, degrees) - toDegrees(altitude, degrees)
 	};
 }

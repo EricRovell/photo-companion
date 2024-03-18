@@ -10,7 +10,7 @@ export function calcSunCoordinates(julianDays: number): SunCoordinates {
 	const L = eclipticLongitude(M);
 
 	return {
-		dec: declination(L, 0),
-		ra: rightAscension(L, 0)
+		declination: declination(L, 0),
+		rightAscension: rightAscension(L, 0)
 	};
 }

@@ -26,20 +26,20 @@ export function getMoonPosition(dateValue: Date | number, latitude: number, long
 	const phi = RAD * latitude;
 	const days = toDays(dateValue);
 	const coords = calcMoonCoordinates(days);
-	const H = siderealTime(days, lw) - coords.ra;
-	let altitude = altitudeCalc(H, phi, coords.dec);
+	const H = siderealTime(days, lw) - coords.rightAscension;
+	let altitude = altitudeCalc(H, phi, coords.declination);
 
 	// altitude correction for refraction
 	altitude += astroRefraction(altitude);
 
 	// formula 14.1 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
-	const pa = Math.atan2(Math.sin(H), Math.tan(phi) * Math.cos(coords.dec) - Math.sin(coords.dec) * Math.cos(H));
-	const azimuth = azimuthCalc(H, phi, coords.dec);
+	const pa = Math.atan2(Math.sin(H), Math.tan(phi) * Math.cos(coords.declination) - Math.sin(coords.declination) * Math.cos(H));
+	const azimuth = azimuthCalc(H, phi, coords.declination);
 
 	return {
 		azimuth: toDegrees(azimuth, degrees),
 		altitude: toDegrees(altitude, degrees),
-		distance: coords.dist,
+		distance: coords.distance,
 		parallacticAngle: toDegrees(pa, degrees)
 	};
 }

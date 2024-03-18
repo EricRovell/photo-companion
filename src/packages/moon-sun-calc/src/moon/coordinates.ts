@@ -1,10 +1,11 @@
 import { RAD } from "../consts";
 import { declination, rightAscension } from "../utils";
+import type { MoonCoordinates } from "../types";
 
 /**
  * Calculates the geocentric ecliptic coordinates of the moon from the number of days.
  */
-export function calcMoonCoordinates(days: number) {
+export function calcMoonCoordinates(days: number): MoonCoordinates {
 	const eclipticLongitude = RAD * (218.316 + 13.176396 * days);
 	const meanAnomaly = RAD * (134.963 + 13.064993 * days);
 	const meanDistance = RAD * (93.272 + 13.229350 * days);
@@ -13,8 +14,8 @@ export function calcMoonCoordinates(days: number) {
 	const distanceToTheMoonInKm = 385001 - 20905 * Math.cos(meanAnomaly);
 
 	return {
-		ra: rightAscension(longitude, latitude),
-		dec: declination(longitude, latitude),
-		dist: distanceToTheMoonInKm
+		rightAscension: rightAscension(longitude, latitude),
+		declination: declination(longitude, latitude),
+		distance: distanceToTheMoonInKm
 	};
 }

@@ -22,19 +22,19 @@ export function getMoonIllumination(dateValue: Date | number, degrees = false): 
 	const moonCoords = calcMoonCoordinates(days);
 
 	const phi = Math.acos(
-		Math.sin(sunCoords.dec) * Math.sin(moonCoords.dec) +
-		Math.cos(sunCoords.dec) * Math.cos(moonCoords.dec) * Math.cos(sunCoords.ra - moonCoords.ra)
+		Math.sin(sunCoords.declination) * Math.sin(moonCoords.declination) +
+		Math.cos(sunCoords.declination) * Math.cos(moonCoords.declination) * Math.cos(sunCoords.rightAscension - moonCoords.rightAscension)
 	);
 
 	const inc = Math.atan2(
 		sunDistance * Math.sin(phi),
-		moonCoords.dist - sunDistance * Math.cos(phi)
+		moonCoords.distance - sunDistance * Math.cos(phi)
 	);
 
 	const angle = Math.atan2(
-		Math.cos(sunCoords.dec) * Math.sin(sunCoords.ra - moonCoords.ra),
-		Math.sin(sunCoords.dec) * Math.cos(moonCoords.dec) -
-		Math.cos(sunCoords.dec) * Math.sin(moonCoords.dec) * Math.cos(sunCoords.ra - moonCoords.ra)
+		Math.cos(sunCoords.declination) * Math.sin(sunCoords.rightAscension - moonCoords.rightAscension),
+		Math.sin(sunCoords.declination) * Math.cos(moonCoords.declination) -
+		Math.cos(sunCoords.declination) * Math.sin(moonCoords.declination) * Math.cos(sunCoords.rightAscension - moonCoords.rightAscension)
 	);
 
 	const phaseValue = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Math.PI;
