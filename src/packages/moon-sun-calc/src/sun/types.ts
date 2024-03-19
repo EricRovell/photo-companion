@@ -18,7 +18,10 @@ export interface SunTimeEvent {
 }
 
 export interface SunTime {
-	elevation?: number; // exception: SOLAR_NOON & NADIR
+	/**
+	 * Note: exception for `SOLAR_NOON` & `NADIR`
+	 */
+	elevation?: number;
 	julian: number;
 	index: number;
 	name: string;

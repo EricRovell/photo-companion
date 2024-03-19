@@ -11,7 +11,7 @@
 	import styles from "./event.module.css";
 
 	// when need event reference for another page, usually secondary
-	export let page: string | undefined = undefined;
+	export let page: Undefinable<string> = undefined;
 	export let event: TimelineEvent;
 	export let secondary = false;
 

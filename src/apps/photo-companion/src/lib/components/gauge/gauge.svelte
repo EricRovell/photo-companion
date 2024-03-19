@@ -13,12 +13,12 @@
 	export let angleEnd = 240;
 	export let radius = 25;
 	export let width = 10;
-	export let labelStart: string | undefined = "";
-	export let labelEnd: string | undefined = "";
+	export let labelStart: Undefinable<string> = "";
+	export let labelEnd: Undefinable<string> = "";
 	export let labelGap = 17;
 	export let pointerGap = 8;
 	export let pointerSize = 1;
-	export let pointerAngle: number | undefined = undefined;
+	export let pointerAngle: Undefinable<number> = undefined;
 </script>
 
 <svg viewBox="-50 -50 100 100" class="{styles.gauge}">

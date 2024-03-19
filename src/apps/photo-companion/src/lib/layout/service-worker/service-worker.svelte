@@ -6,7 +6,7 @@
 	import { dict } from "@lib/dict";
 	import styles from "./service-worker.module.css";
 
-	let newWorker: ServiceWorker | null = null;
+	let newWorker: Nullish<ServiceWorker> = null;
 	let refreshing = false;
 	let dialog: HTMLDialogElement;
 

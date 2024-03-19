@@ -14,7 +14,7 @@
 <script lang="ts">
 	export let timeFrom: Nullish<DateLike> = null;
 	export let timeTo: Nullish<DateLike> = null;
-	export let pointerAngle: number | undefined = undefined;
+	export let pointerAngle: Undefinable<number> = undefined;
 
 	let { start, end } = getAngleState(timeFrom, timeTo);
 

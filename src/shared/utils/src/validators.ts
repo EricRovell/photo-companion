@@ -27,7 +27,7 @@ export function isNonNullable<T = unknown>(value: T): value is T {
 	return !isNullable(value);
 }
 
-export function isValidDate(value: Date | number | string | undefined | null): value is Date | number {
+export function isValidDate(value: Nullable<DateLike | string>): value is DateLike {
 	if (value instanceof Date) {
 		return !isNaN(value.getTime());
 	}

@@ -5,7 +5,7 @@
 	import styles from "./gauge.module.css";
 
 	export let angle = 0;
-	export let label: string | undefined = undefined;
+	export let label: Undefinable<string> = undefined;
 	export let radius: number;
 </script>
 

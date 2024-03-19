@@ -31,10 +31,13 @@ export interface MoonPosition {
 }
 
 export interface MoonTimes {
-	rise: Date | null;
-	set: Date | null;
+	rise: Nullish<Date>;
+	set: Nullish<Date>;
 	alwaysUp: boolean;
 	alwaysDown: boolean;
-	// Date of the highest position, only avalílable if set and rise is not NaN
+	/**
+	 * Date of the highest position.
+	 * Avalílable if `set` and `rise` is not `null`.
+	 */
 	highest?: Date;
 }

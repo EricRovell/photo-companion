@@ -6,7 +6,7 @@ import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
 import type { BridgeState, BridgeName, BridgeSheduleEntry } from "./types";
 
 export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule?: true): BridgeState;
-export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule = false): BridgeState | null {
+export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule = false): Nullish<BridgeState> {
 	if (!ignoreNavigationSchedule && !isNavigationTime(date)) {
 		return null;
 	}

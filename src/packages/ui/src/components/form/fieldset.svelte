@@ -2,7 +2,7 @@
 	import styles from "./form.module.css";
 
 	export let className = "";
-	export let legend: string | undefined = undefined;
+	export let legend: Undefinable<string> = undefined;
 </script>
 
 <fieldset class="{styles.fieldset} {className}" {...$$restProps}>

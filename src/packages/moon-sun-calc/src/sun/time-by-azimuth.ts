@@ -5,16 +5,17 @@ import { calcSunCoordinates } from "./coordinates";
 import { siderealTime, toDays, azimuthCalc } from "../utils";
 
 /**
- * Calculates time for a given azimuth angle for a given date and geoposition.
+ * Calculates a sun time for a given azimuth angle for a given date and geoposition.
+ * The `azimuth` input value is in radians by default.
 */
 export function getSunTimeByAzimuth(
 	dateValue: DateLike,
 	latitude: number,
 	longitude: number,
-	nazimuth: number,
+	azimuth: number,
 	degree = false
 ): Date {
-	if (isNaN(nazimuth)) {
+	if (isNaN(azimuth)) {
 		throw new Error("Azimuth is missing");
 	}
 
@@ -27,7 +28,7 @@ export function getSunTimeByAzimuth(
 	}
 
 	if (degree) {
-		nazimuth = nazimuth * RAD;
+		azimuth = azimuth * RAD;
 	}
 
 	const date = new Date(dateValue);
@@ -47,7 +48,7 @@ export function getSunTimeByAzimuth(
 
 		addval /= 2;
 
-		if (nazim < nazimuth) {
+		if (nazim < azimuth) {
 			dateVal += addval;
 		} else {
 			dateVal -= addval;

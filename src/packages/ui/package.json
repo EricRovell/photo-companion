@@ -27,7 +27,6 @@
 	},
 	"private": true,
 	"scripts": {
-		"lint:types": "tsc --noEmit",
 		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json"
 	},
 	"type": "module"

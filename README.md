@@ -59,12 +59,13 @@ There are 3 linter commands:
 - `pnpm lint:code` — uses `eslint`;
 - `pnpm lint:styles` — uses `stylelint` to lint styles;
 - `pnpm lint:svelte` — uses `svelte-check` to lint `.svelte` files;
+- `pnpm lint:types` — uses `tsc` to lint types;
 
 All checks can be run concurrently using `pnpm lint:all` command.
 
 ### Writing tests
 
-All tests are localed in `*/test` directories of specific workspace.
+All tests are localed in `*/test` directories inside a workspace.
 
 ### Running tests
 

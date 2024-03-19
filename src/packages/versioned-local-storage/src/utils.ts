@@ -2,7 +2,7 @@ import { isNonNegativeInteger } from "utils/validators";
 
 const LOCAL_STORAGE_ERROR = "localStorage is not accessible";
 
-export function get(key: string): string | null {
+export function get(key: string): Nullish<string> {
 	let value = null;
 
 	try {

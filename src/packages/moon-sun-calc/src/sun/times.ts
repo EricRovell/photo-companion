@@ -19,7 +19,7 @@ interface Options {
  * 
  * The idea is to get events for current day.
  */
-function getNadirTimestamp(date: Date | number, longitude: number, UTC = false) {
+function getNadirTimestamp(date: DateLike, longitude: number, UTC = false) {
 	const t = new Date(date);
 
 	if (UTC) {
@@ -41,9 +41,9 @@ function getNadirTimestamp(date: Date | number, longitude: number, UTC = false) 
 }
 
 /**
- * Calculates sun times for a given date and latitude/longitude.
+ * Calculates the sun times for a given date and geoposition.
  */
-export function getSunTimes(date: Date | number, latitude: number, longitude: number, options: Options = {}): Record<SunEventName, SunTime> {
+export function getSunTimes(date: DateLike, latitude: number, longitude: number, options: Options = {}): Record<SunEventName, SunTime> {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
 	}

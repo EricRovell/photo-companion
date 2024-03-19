@@ -21,7 +21,7 @@ export function persistable<T>(name: string, version: number, defaultValue: T) {
 		storage.write(value);
 	}
 
-	function read(): T | null {
+	function read(): Nullish<T> {
 		return storage.read();
 	}
 

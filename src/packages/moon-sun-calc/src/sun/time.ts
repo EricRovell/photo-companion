@@ -10,15 +10,25 @@ interface Options {
 	degrees?: boolean;
 }
 
+interface SunTimeByElevation {
+	set: SunTime;
+	rise: SunTime;
+}
+
 /**
  * Calculates the time at which the sun will have a given elevation angle
  * when rising and when setting for a given date and geoposition.
  * 
- * `height` is the observer height (in meters) relative to the horizon,
- * `degree` defines if the elevationAngle is in degree not in radians.
+ * The observer `height` (in meters) relative to the horizon can be specified via options.
+ * The elevation angle input is in radians by default.
  */
-export function getSunTime(date: Date | number, latitude: number, longitude: number, elevationAngle: number, options: Options = {}
-): { set: SunTime, rise: SunTime } {
+export function getSunTime(
+	date: DateLike,
+	latitude: number,
+	longitude: number,
+	elevationAngle: number,
+	options: Options = {}
+): SunTimeByElevation {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
 	}

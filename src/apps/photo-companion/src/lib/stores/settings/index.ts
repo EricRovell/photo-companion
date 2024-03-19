@@ -20,10 +20,10 @@ import type {
  */
 export interface SettingsStore {
 	bridges_spb_navigation: boolean;
-	events_bridges_spb: BridgeEventName[] | null;
-	events_lights: LightsEventName[] | null;
-	events_moon: MoonEventName[] | null;
-	events_sun: SunEventName[] | null;
+	events_bridges_spb: Nullish<BridgeEventName[]>;
+	events_lights: Nullish<LightsEventName[]>;
+	events_moon: Nullish<MoonEventName[]>;
+	events_sun: Nullish<SunEventName[]>;
 	latitude: number;
 	lights_city: LightsCity;
 	longitude: number;

@@ -7,13 +7,13 @@
 	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./gauge.module.css";
 
-	export let angle: number | undefined;
+	export let angle: Undefinable<number>;
 	export let cx: number;
 	export let cy: number;
 	export let r = 1;
 
 	let currentTimeAngle = getAngleFromTime(new Date());
-	let timer: number | undefined = undefined;
+	let timer: Undefinable<number> = undefined;
 
 	// Preventing from rendering both pointers when they are too close
 	const getOpacity = (currentTimeAngle: number, angle?: number) => {

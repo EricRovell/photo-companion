@@ -13,7 +13,10 @@ function addLunarDays(value: number, thresholdValue: number) {
 		: value;
 }
 
-export function getMoonPhases(date: Date | number): MoonPhase[] {
+/**
+ * Calculates the nearest moon phases from the given date.
+ */
+export function getMoonPhases(date: DateLike): MoonPhase[] {
 	const timestamp = new Date(date).getTime();
 	const diffBase = timestamp - FIRST_NEW_MOON_2000;
 

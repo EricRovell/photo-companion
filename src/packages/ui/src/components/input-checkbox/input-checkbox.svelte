@@ -1,18 +1,18 @@
 <script lang="ts">
-	type SymbolType = "CHECK" | "CROSS" | "MINUS" | null;
+	type SymbolType = Nullish<"CHECK" | "CROSS" | "MINUS">;
 
 	import styles from "./input-checkbox.module.css";
 
-	export let checked: boolean | undefined = undefined;
-	export let disabled: boolean | undefined = undefined;
-	export let indeterminate: boolean | undefined | null = undefined;
-	export let label: string | undefined = undefined;
-	export let name: string | undefined = undefined;
-	export let ref: HTMLInputElement | undefined = undefined;
+	export let checked: Undefinable<boolean> = undefined;
+	export let disabled: Undefinable<boolean> = undefined;
+	export let indeterminate: Nullable<boolean> = undefined;
+	export let label: Undefinable<string> = undefined;
+	export let name: Undefinable<string> = undefined;
+	export let ref: Undefinable<HTMLInputElement> = undefined;
 	export let symbolChecked: SymbolType = "CHECK";
 	export let symbolUnchecked: SymbolType = null;
 	export let symbolIndeterminate: SymbolType = "MINUS";
-	export let value: string | undefined = undefined;
+	export let value: Undefinable<string> = undefined;
 
 	const PATH = {
 		CHECK : "M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z",

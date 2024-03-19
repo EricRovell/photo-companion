@@ -3,15 +3,15 @@
 
 	export let block = false;
 	export let className = "";
-	export let current: "page" | "step" | "location" | "date" | "time" | undefined = undefined;
+	export let current: Undefinable<"page" | "step" | "location" | "date" | "time"> = undefined;
 	export let download: undefined | string = undefined;
 	export let href: string;
-	export let label: string | undefined = undefined;
+	export let label: Undefinable<string> = undefined;
 	export let targetBlank = false;
 	export let nofollow = false;
-	export let title: string | undefined = undefined;
+	export let title: Undefinable<string> = undefined;
 
-	let ref: HTMLAnchorElement | null = null;
+	let ref: Nullish<HTMLAnchorElement> = null;
 
 	// if no `href` is provided -> link will be disabled
 	$: external = href.indexOf("://") !== -1;

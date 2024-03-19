@@ -24,10 +24,11 @@
 	},
 	"globals": {
 		"__dirname": true,
+		"DateLike": true,
 		"Nullable": true,
 		"Nullish": true,
 		"Optional": true,
-		"DateLike": true
+		"Undefinable": true
 	},
 	"overrides": [
 		{

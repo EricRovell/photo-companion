@@ -3,7 +3,7 @@ import { isNullable, isValidDate } from "utils/validators";
 /**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.
  */
-export function getAngleFromTime(date: Date | number | null = new Date(), fallback: number = 0): number {
+export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback: number = 0): number {
 	if (isNullable(date) || !isValidDate(date)) {
 		return fallback;
 	}
@@ -74,7 +74,7 @@ export function createQueryDate(d: Date = new Date()): string {
 		.join("-");
 }
 
-export async function getUserLocation(): Promise<{ lat: number, lon: number } | null> {
+export async function getUserLocation(): Promise<Nullish<{ lat: number, lon: number }>> {
 	if (!navigator.geolocation) {
 		return null;
 	}

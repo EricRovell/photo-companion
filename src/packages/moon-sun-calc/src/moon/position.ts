@@ -7,9 +7,10 @@ import { siderealTime, altitudeCalc, toDays, azimuthCalc, toDegrees } from "../u
 import type { MoonPosition } from "./types";
 
 /**
- * Calculates moon position for a given date and latitude/longitude.
+ * Calculates moon position for a given date and geoposition.
+ * The output angle values are in radians by default.
  */
-export function getMoonPosition(dateValue: Date | number, latitude: number, longitude: number, degrees = false): MoonPosition {
+export function getMoonPosition(dateValue: DateLike, latitude: number, longitude: number, degrees = false): MoonPosition {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
 	}

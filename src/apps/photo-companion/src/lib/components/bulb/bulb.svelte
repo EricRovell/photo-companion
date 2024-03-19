@@ -2,7 +2,7 @@
 	import styles from "./bulb.module.css";
 
 	export let glow = false;
-	export let title: string | undefined = undefined;
+	export let title: Undefinable<string> = undefined;
 </script>
 
 <svg

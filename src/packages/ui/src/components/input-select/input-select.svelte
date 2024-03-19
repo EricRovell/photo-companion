@@ -13,7 +13,7 @@
 	export let disabled = false;
 	export let name: string;
 	export let options: InputSelectOption[];
-	export let value: string | undefined = undefined;
+	export let value: Undefinable<string> = undefined;
 
 	if (!value) {
 		value = options.find(item => Boolean(item.selected))?.value;

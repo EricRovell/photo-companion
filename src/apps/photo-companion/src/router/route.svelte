@@ -2,7 +2,7 @@
 	import type { ComponentType } from "svelte";
 	import { path as pathStore } from "svelte-pathfinder";
 
-	export let component: ComponentType | undefined = undefined;
+	export let component: Undefinable<ComponentType> = undefined;
 	export let props: Record<string, unknown> = {};
 	export let path: string | string[];
 

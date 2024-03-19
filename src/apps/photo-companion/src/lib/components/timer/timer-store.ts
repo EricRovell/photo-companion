@@ -9,7 +9,7 @@ export function createTimer(timestamp: number, options: Options = {}) {
 	const time = timestamp - Date.now();
 	const { set, subscribe, update } = writable<number>(time);
 
-	let intervalId: number | undefined = undefined;
+	let intervalId: Undefinable<number> = undefined;
 
 	function start() {
 		clearInterval(intervalId);

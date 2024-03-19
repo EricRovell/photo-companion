@@ -6,7 +6,7 @@ import { dict } from "@lib/dict";
 import type { EventComponent } from "@lib/types";
 
 export function sunEventComponent(event: SunEvent): EventComponent<{ event: SunEventName }> {
-	let message: string | undefined = undefined;
+	let message: Undefinable<string> = undefined;
 
 	switch (event.name) {
 		case "SUNRISE_START":

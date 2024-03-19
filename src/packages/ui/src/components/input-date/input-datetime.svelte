@@ -16,9 +16,9 @@
 
 	export let className = "";
 	export let dict: Dict;
-	export let max: string | undefined = undefined;
-	export let min: string | undefined = undefined;
-	export let title: string | undefined = undefined;
+	export let max: Undefinable<string> = undefined;
+	export let min: Undefinable<string> = undefined;
+	export let title: Undefinable<string> = undefined;
 	export let value = getDatetimeString();
 
 	const dispatch = createEventDispatcher();

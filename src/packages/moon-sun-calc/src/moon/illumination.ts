@@ -6,11 +6,13 @@ import { toDays, toDegrees } from "../utils";
 import type { MoonIllumination, MoonPhase } from "./types";
 
 /**
- * Calculations for illumination parameters of the moon,
+ * Calculates the illumination paramteters of the Moon.
+ * The output angle values are in radians by default.
+ *
  * based on http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro formulas and
  * Chapter 48 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
  */
-export function getMoonIllumination(dateValue: Date | number, degrees = false): MoonIllumination {
+export function getMoonIllumination(dateValue: DateLike, degrees = false): MoonIllumination {
 	if (dateValue instanceof Date) {
 		dateValue = dateValue.valueOf();
 	}

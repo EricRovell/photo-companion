@@ -44,10 +44,10 @@ export class Storage<T> {
 		return `${this.name}:${this.version}`;
 	}
 
-	read(): T | null {
+	read(): Nullish<T> {
 		const key = this.key;
 		const storedValue = get(key);
-		let value: T| null = null;
+		let value: Nullish<T> = null;
 
 		if (storedValue) {
 			try {

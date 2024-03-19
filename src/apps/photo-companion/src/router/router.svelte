@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ComponentType } from "svelte";
 
-	export let root: ComponentType | undefined = undefined;
+	export let root: Undefinable<ComponentType> = undefined;
 </script>
 
 {#if root}

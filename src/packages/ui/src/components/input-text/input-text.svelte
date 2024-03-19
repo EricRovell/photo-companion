@@ -2,15 +2,15 @@
 	import styles from "./input-text.module.css";
 
 	export let className = "";
-	export let inputmode: "numeric" | "text" | undefined = undefined;
-	export let maxlength: number | undefined = undefined;
-	export let minlength: number | undefined = undefined;
-	export let name: string | undefined = undefined;
-	export let pattern: string | undefined = undefined;
-	export let placeholder: string | undefined = undefined;
+	export let inputmode: Undefinable<"numeric" | "text"> = undefined;
+	export let maxlength: Undefinable<number> = undefined;
+	export let minlength: Undefinable<number> = undefined;
+	export let name: Undefinable<string> = undefined;
+	export let pattern: Undefinable<string> = undefined;
+	export let placeholder: Undefinable<string> = undefined;
 	export let readonly = false;
 	export let required = false;
-	export let size: number | undefined = undefined;
+	export let size: Undefinable<number> = undefined;
 	export let spellcheck = false;
 	export let value = "";
 </script>

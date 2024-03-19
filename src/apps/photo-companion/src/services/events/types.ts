@@ -9,11 +9,11 @@ import type {
 
 export interface Options {
 	comparator: (a: TimelineEvent, b: TimelineEvent) => number;
-	bridgeEvents: BridgeEventName[] | null;
-	lightsEvents: LightsEventName[] | null;
-	moonEvents: MoonEventName[] | null;
+	bridgeEvents: Nullish<BridgeEventName[]>;
+	lightsEvents: Nullish<LightsEventName[]>;
+	moonEvents: Nullish<MoonEventName[]>;
 	predicate: (event: TimelineEvent) => boolean;
-	sunEvents: SunEventName[] | null;
+	sunEvents: Nullish<SunEventName[]>;
 	secondaryEvents?: Set<EventName>;
 }
 

@@ -14,7 +14,7 @@ import {
 } from "./elevation-graph.consts";
 import type { AltitudeGetter, Tick } from "./elevation-graph.types";
 
-function getDayStart(date: Date | number) {
+function getDayStart(date: DateLike) {
 	return dateFrom(date, {
 		hours: 0,
 		minutes: 0,
@@ -22,7 +22,7 @@ function getDayStart(date: Date | number) {
 	}).getTime();
 }
 
-export const createPathBuilder = (getAltitude: AltitudeGetter) => (date: Date | number, latitude: number, longitude: number) => {
+export const createPathBuilder = (getAltitude: AltitudeGetter) => (date: DateLike, latitude: number, longitude: number) => {
 	let timestamp = getDayStart(date);
 
 	const timestampStart = timestamp;
@@ -50,7 +50,7 @@ export const createPathBuilder = (getAltitude: AltitudeGetter) => (date: Date | 
 	return `M ${coords.join(" ")}`;
 };
 
-export const createObjectCoordsGetter = (getAltitude: AltitudeGetter) => (date: Date | number, latitude: number, longitude: number) => {
+export const createObjectCoordsGetter = (getAltitude: AltitudeGetter) => (date: DateLike, latitude: number, longitude: number) => {
 	if (typeof date === "number") {
 		date = new Date(date);
 	}

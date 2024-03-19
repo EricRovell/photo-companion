@@ -31,5 +31,8 @@
 	"name": "utils",
 	"license": "MIT",
 	"private": true,
+	"scripts": {
+		"lint:types": "tsc --noEmit"
+	},
 	"type": "module"
 }

@@ -6,9 +6,12 @@ import { hoursLater } from "./utils";
 import type { MoonTimes } from "./types";
 
 /**
-* Calculations for moon rise/set times are based on http://www.stargazing.net/kepler/moonrise.html article
-*/
-export function getMoonTimes(dateValue: Date | number, latitude: number, longitude: number, inUTC = false): MoonTimes {
+ * Calculates the moon rise and set times for a given date and geoposition.
+ * Local time is used by default.
+ * 
+ * Calculations are based on http://www.stargazing.net/kepler/moonrise.html article.
+ */
+export function getMoonTimes(dateValue: DateLike, latitude: number, longitude: number, inUTC = false): MoonTimes {
 	if (!isLatitude(latitude)) {
 		throw new Error(`Invalid latitude value: ${latitude}`);
 	}

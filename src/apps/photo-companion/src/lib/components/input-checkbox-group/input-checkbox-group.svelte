@@ -2,14 +2,14 @@
 	import { InputCheckbox } from "ui";
 	import styles from "./input-checkbox-group.module.css";
 
-	export let disabled: boolean | undefined = undefined;
+	export let disabled: Undefinable<boolean> = undefined;
 	export let groupLabel: string;
 	export let groupValue: string;
-	export let name: string | undefined = undefined;
+	export let name: Undefinable<string> = undefined;
 	export let options: { label: string, value: string }[] = [];
-	export let value: string[] | null = [];
+	export let value: Nullish<string[]> = [];
 
-	let rootCheckboxRef: HTMLInputElement | undefined = undefined;
+	let rootCheckboxRef: Undefinable<HTMLInputElement> = undefined;
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;

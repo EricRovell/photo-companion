@@ -2,9 +2,9 @@
 	import styles from "./icon.module.css";
 
 	export let className = "";
-	export let title: string | undefined = undefined;
+	export let title: Undefinable<string> = undefined;
 	export let viewBox = "0 0 256 256";
-	export let path: string | undefined = undefined;
+	export let path: Undefinable<string> = undefined;
 </script>
 
 <svelte:options namespace="svg" />

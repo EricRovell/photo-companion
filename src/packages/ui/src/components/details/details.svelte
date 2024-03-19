@@ -3,7 +3,7 @@
 
 	export let className = "";
 	export let open = false;
-	export let title: string | undefined = undefined;
+	export let title: Undefinable<string> = undefined;
 </script>
 
 <details bind:open class="{styles.details} {className}">

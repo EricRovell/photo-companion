@@ -8,8 +8,8 @@ import type { MoonEvent, MoonPhaseName } from "@shared/types";
 export interface MoonData {
 	duration: string;
 	rotation: number;
-	moonrise: Date | null;
-	moonset: Date | null;
+	moonrise: Nullish<Date>;
+	moonset: Nullish<Date>;
 	fraction: string;
 	waxing: boolean;
 	phaseValue: number;

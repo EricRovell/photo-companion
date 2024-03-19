@@ -40,7 +40,7 @@ export function formatPercent(input: number, locale = "ru"): string {
 /**
  * Formats a date into HH:MM:SS time string format.
  */
-export function formatTime(input: Date | number | null, locale = "ru", timeZone?: string) {
+export function formatTime(input: Nullish<DateLike>, locale = "ru", timeZone?: string) {
 	if (!isValidDate(input)) {
 		return "";
 	}
@@ -57,7 +57,7 @@ export function formatTime(input: Date | number | null, locale = "ru", timeZone?
 /**
  * Formats a time into HH:MM format.
  */
-export function formatTimeShort(input: Date | number | null, locale = "ru"): string {
+export function formatTimeShort(input: Nullish<DateLike>, locale = "ru"): string {
 	if (!isValidDate(input)) {
 		return "";
 	}

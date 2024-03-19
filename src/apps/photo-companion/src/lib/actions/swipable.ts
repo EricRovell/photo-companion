@@ -64,7 +64,8 @@ export const swipable: SwipableAction = (node, { threshold = 25, timeout = 750 }
 
 	function handleTouchend(event: TouchEvent) {
 		const dt = Date.now() - touchTime;
-		let eventType: EventName | null = null;
+		let eventType: Nullish<EventName> = null;
+
 		const changedTouches =
 			event.changedTouches ||
 			event.touches ||

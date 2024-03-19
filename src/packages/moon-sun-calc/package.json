@@ -16,7 +16,8 @@
 	"scripts": {
 		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
 		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
-		"bundle:types": "node ./scripts/bundle-dts.js"
+		"bundle:types": "node ./scripts/bundle-dts.js",
+		"lint:types": "tsc --noEmit"
 	},
 	"type": "module",
 	"dependencies": {
