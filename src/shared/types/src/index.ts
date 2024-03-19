@@ -102,10 +102,9 @@ export interface BridgeState {
 }
 
 export interface LightsSchedule {
-	// duration of the lights turned on in seconds
 	duration: number;
-	"LIGHTS_START": number;
-	"LIGHTS_END": number;
+	LIGHTS_START: number;
+	LIGHTS_END: number;
 }
 
 export interface IlluminationState {

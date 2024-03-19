@@ -1,8 +1,122 @@
-# Schedule data
+# Lights Schedule
 
-## Illumination
+City lights schedule provider.
+
+Right now these cities are supported:
+
+- Saint-Petersburg, Russia;
+- Moscow, Russia;
+
+## Schedule schema
+
+```ts
+export interface CityLightsSchedule {
+	year: number;
+	city: LightsCity;
+	schedule: number[];
+	getter: (date: Date) => number;
+}
+```
+
+The `schema` is an array of integer values where each 4 numbers represent a schedule data for a specific day as:
+
+```js
+[
+	hours_on, minutes_on, hours_off, minutes_off, // 1st Jan
+	hours_on, minutes_on, hours_off, minutes_off, // 2nd Jan
+	hours_on, minutes_on, hours_off, minutes_off, // 3rd Jan
+	...
+]
+```
+
+The `getter` is a function that returns the first index of these 4 indices for a given date.
+
+### The reasoning
+
+*Why the schedule is just an array and not 2D array?*
+
+That's to save some space. As we know that each day schedule represents a tuple of 4 entries, it does not complicates a code too much.
+
+*Why do we need a getter?*
+
+The main reason is — to save some space. The schedule data varies from city to city. In some cities the schedule changes every day, in others every several days.
+
+## API
+
+To create a provider, use a constructor function and pass a supported city as the only paramater:
+
+```ts
+import { initLightsProvider } from "lights-schedule";
+
+const provider = initLightsProvider("moscow");
+```
+
+The provider exposes the information and methods to work with schedule data:
+
+```ts
+interface LightsProvider {
+	city: LightsCity;
+	getEventsByDate: (input?: Date) => LightsEvent[];
+	getScheduleByDate: (input?: Date) => LightsSchedule;
+	getStateByDate: (input?: Date) => IlluminationState;
+	year: number;
+}
+```
+
+### `getScheduleByDate(input?: Date): LightsEvent[]`
+
+Returns the lights schedule for a given date.
+
+```ts
+import { initLightsProvider } from "lights-schedule";
+
+interface LightsSchedule {
+	duration: number;
+	LIGHTS_START: number;
+	LIGHTS_END: number;
+}
+
+const { getScheduleByDate } = initLightsProvider("moscow");
+const schedule = getScheduleByDate();
+```
+
+### `getStateByDate(input?: Date): IlluminationState`
+
+Returns the state for current moment and a time till the next event.
+
+```ts
+import { initLightsProvider } from "lights-schedule";
+
+type LightsEventName =
+	| "LIGHTS_START"
+	| "LIGHTS_END";
+
+interface IlluminationState {
+	lights: boolean;
+	event: LightsEventName;
+	timestamp: number;
+}
+
+const { getStateByDate } = initLightsProvider("moscow");
+const state = getStateByDate();
+```
+
+### `getEventsByDate(input: Date = new Date()): LightsEvent[]`
+
+Returns all the lights schedule events for a given date.
+
+```ts
+import { initLightsProvider } from "lights-schedule";
+
+const { getEventsByDate } = initLightsProvider("moscow");
+const events = getEventsByDate();
+```
+
+## Cities
 
 ### Saint-Petersburg, Russia
+
+[Schedule source](https://lensvet.spb.ru/grafik_raboty_naruzhnogo_osvescheni/)
 
 Illumination schedule for Saint-Petersburg, Russia has some repetitive structure, that will be used to *compress* the data.
 
@@ -26,3 +140,9 @@ function getSchedule(month: number, date: number, data: number[]): number[] {
 	return data.slice(index, index + 4);
 }
 ```
+
+### Moscow, Russia
+
+[Schedule source](https://domdata.ru/osveschenie-v-moskve)
+
+Moscow lights schedule is quite straightforward: schedule changes every day.
