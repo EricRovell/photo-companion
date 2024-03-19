@@ -5,8 +5,16 @@ import { isNavigationTime } from "./navigation";
 import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
 import type { BridgeState, BridgeName, BridgeSheduleEntry } from "./types";
 
+/**
+ * Returns a bridge state by a given date. The navigation period is taken into account.
+ *
+ * `ignoreNavigationSchedule` option let's the function ignore the navigation period
+ * as if the bridges were operational throughout the year.
+ * 
+ * The current date is used as fallback.
+ */
 export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule?: true): BridgeState;
-export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule = false): Nullish<BridgeState> {
+export function getBridgeState(name: BridgeName, date = new Date(), ignoreNavigationSchedule = false): Nullish<BridgeState> {
 	if (!ignoreNavigationSchedule && !isNavigationTime(date)) {
 		return null;
 	}
@@ -100,7 +108,13 @@ export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSch
 	throw new Error(`The calculations are wrong, there is one opening for ${name} bridge and no result is found at ${date}.`);
 }
 
-// TODO: refactor and move to "events" file
+/**
+ * Returns the closest bridge event from the given date.
+ * 
+ * The current date is used as fallback.
+ * 
+ * TODO: refactor and move to "events" file
+ */
 export function getNextBridgeEvent(date = new Date()): BridgeState {
 	let nextEventState: BridgeState;
 
@@ -115,6 +129,9 @@ export function getNextBridgeEvent(date = new Date()): BridgeState {
 	return nextEventState!;
 }
 
+/**
+ * Returns a schedule entry data for a specific bridge.
+ */
 export function getBridgeScheduleEntry(name: BridgeName): BridgeSheduleEntry {
 	return schedule["bridges"][name];
 }

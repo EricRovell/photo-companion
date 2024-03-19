@@ -5,10 +5,16 @@ import { schedule } from "./schedule";
 import { SUPPORTED_BRIDGES_NAME_SET } from ".";
 import { isNavigationTime } from "./navigation";
 
+/**
+ * Returns all bridge events occured at the given date.
+ * Note: Bridge events only available during navigation phase
+ *
+ * The current date used as fallback.
+ */
 export function getBridgeEvents(date = new Date()): BridgeEvent[] {
 	const events: BridgeEvent[] = [];
 
-	// Note: Bridge events only available during navigation phase
+	// 
 	if (!isNavigationTime(date)) {
 		return events;
 	}
