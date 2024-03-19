@@ -1,5 +1,8 @@
 import { isNullable, isValidDate } from "./validators";
 
+/**
+ * Formats a value as a degree unit.
+ */
 export function formatDegrees(input: number, locale = "ru"): string {
 	return Intl.NumberFormat(locale, {
 		style: "unit",
@@ -8,12 +11,12 @@ export function formatDegrees(input: number, locale = "ru"): string {
 }
 
 /**
- * Formats a time in ms into a countdown in format HH:MM:SS.
+ * Formats a number of ms into a countdown in format HH:MM:SS.
  * 
  * Note: `formatTime` is not a good option, as it uses local timezone,
  * hence wrong results.
  */
-export function formatDuration(input: number, locale = "ru") {
+export function formatDuration(input: number, locale = "ru"): string {
 	return Intl.DateTimeFormat(locale, {
 		hour12: false,
 		hour: "2-digit",
@@ -23,6 +26,9 @@ export function formatDuration(input: number, locale = "ru") {
 	}).format(input);
 }
 
+/**
+ * Formats a numeric value into kilometers unit.
+ */
 export function formatKilometers(input: number, locale = "ru"): string {
 	return Intl.NumberFormat(locale, {
 		style: "unit",
@@ -30,6 +36,9 @@ export function formatKilometers(input: number, locale = "ru"): string {
 	}).format(input);
 }
 
+/**
+ * Formats a numeric value into % unit.
+ */
 export function formatPercent(input: number, locale = "ru"): string {
 	return Intl.NumberFormat(locale, {
 		style: "unit",
@@ -40,7 +49,7 @@ export function formatPercent(input: number, locale = "ru"): string {
 /**
  * Formats a date into HH:MM:SS time string format.
  */
-export function formatTime(input: Nullish<DateLike>, locale = "ru", timeZone?: string) {
+export function formatTime(input: Nullish<DateLike>, locale = "ru"): string {
 	if (!isValidDate(input)) {
 		return "";
 	}
@@ -49,8 +58,7 @@ export function formatTime(input: Nullish<DateLike>, locale = "ru", timeZone?: s
 		hour12: false,
 		hour: "2-digit",
 		minute: "2-digit",
-		second: "2-digit",
-		timeZone
+		second: "2-digit"
 	}).format(input);
 }
 
@@ -79,7 +87,7 @@ export function formatTimeShort(input: Nullish<DateLike>, locale = "ru"): string
  * 
  * template("Hello, {name}!", {}) -> "Hello, name!"
  */
-export function template(input: string, dict: Record<string, string | number>, regex = /{(.*?)}/g) {
+export function template(input: string, dict: Record<string, string | number>, regex = /{(.*?)}/g): string {
 	const replacer = (match: string, capture: string) => {
 		const trimmedCapture = capture.trim();
 		const replaceValue = dict[trimmedCapture];

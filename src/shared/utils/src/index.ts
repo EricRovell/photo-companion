@@ -1,7 +1,6 @@
-export function padWithZero(number: number) {
-	return number < 10 ? `0${number}` : number;
+export function padWithZero(number: number): string {
+	return number < 10 ? `0${number}` : number.toString();
 }
-
 
 type Entries<T> = {
 	[K in keyof T]: [K, T[K]];

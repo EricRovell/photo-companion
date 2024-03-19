@@ -8,7 +8,7 @@ export function round(number: number, digits = 0, base = Math.pow(10, digits)): 
 /**
  * Scales the value from a given [ inLow, inHigh ] range to [ outLow, outHight ].
  */
-export function scale(value: number, inLow: number, inHigh: number, outLow: number, outHigh: number) {
+export function scale(value: number, inLow: number, inHigh: number, outLow: number, outHigh: number): number {
 	if ([ value, inLow, inHigh, outLow, outHigh ].some(isNaN)) {
 		return NaN;
 	}

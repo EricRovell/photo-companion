@@ -73,10 +73,11 @@ interface DateFromOptions {
 }
 
 /**
- * Returns a date with defined parameters.
+ * Returns a new date from a given date with predefined parameters.
+ *
  * Note: `month` is 1-indexed and the ms is set to 0 by default.
  */
-export function dateFrom(input: DateLike = new Date(), options: DateFromOptions = {}) {
+export function dateFrom(input: DateLike = new Date(), options: DateFromOptions = {}): Date {
 	const output = new Date(input);
 	const { year, month, date, hours, minutes, seconds } = options;
 
@@ -102,6 +103,9 @@ export function incrementDateByDay(date: DateLike | string, dayCount: number): D
 	return nextDate;
 }
 
+/**
+ * Checks the given year for a leap year.
+ */
 export function isLeapYear(year: number): boolean {
 	return new Date(year, 1, 29).getDate() === 29;
 }
