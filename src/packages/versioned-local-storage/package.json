@@ -1,6 +1,6 @@
 {
 	"author": "Eric Rovell",
-	"description": "Persistable local storage",
+	"description": "Versioned Local Storage",
 	"devDependencies": {
 		"utils": "workspace:*"
 	},
