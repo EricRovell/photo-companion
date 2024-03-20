@@ -2,7 +2,7 @@
 
 Minimalistic photography toolkit progressive web application.
 
-[Try it out](https://photo-companion.vercel.app)
+[Try it out][photo-companion]
 
 ## Packages
 
@@ -12,24 +12,24 @@ All packages are broken into 3 categories.
 
 ### `src/apps/*`
 
-This directory contains web-applications packages. Right now it contains the only `photo-companion` package itself.
+This directory contains web-applications packages. Right now it contains the only [`photo-companion`][app-photo-companion] package itself.
 
 ### `src/packages/*`
 
 This directory contains independent packages used to build web-applications.
 
-- `bridge-schedule` — Saint-Petersburg bridges schedule provider;
-- `lights-schedule` — city lights schedule provider;
-- `moon-sun-calc` — the Sun and the Moon calculations;
+- [`bridge-schedule`][package-bridge-schedule] — Saint-Petersburg bridges schedule provider;
+- [`lights-schedule`][package-lights-schedule] — city lights schedule provider;
+- [`moon-sun-calc`][package-moon-sun-calc] — the Sun and the Moon calculations;
 - `ui` — core UI components and helpers;
-- `versioned-local-storage` — browser local storrage with versioning;
+- [`versioned-local-storage`][package-versioned-local-storage] — browser local storage with versioning;
 
 ### `src/shared/*`
 
 This directory contains core packages used within monorepo.
 
 - `types` — common project types;
-- `utils` — common project utility functions;
+- [`utils`][package-utils] — common project utility functions;
 
 
 ## Developing
@@ -71,3 +71,11 @@ All tests are localed in `*/test` directories inside a workspace.
 
 1. To run test, run `pnpm test:unit`;
 2. To run a particular test suite, use `pnpm test:unit <suite-name>`, for example `pnpm test:unit moon`;
+
+[photo-companion]: https://photo-companion.vercel.app
+[app-photo-companion]: https://github.com/EricRovell/photo-companion/tree/main/src/apps/photo-companion
+[package-bridge-schedule]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/bridge-schedule
+[package-lights-schedule]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/lights-schedule
+[package-moon-sun-calc]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/moon-sun-calc
+[package-versioned-local-storage]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/versioned-local-storage
+[package-utils]: https://github.com/EricRovell/photo-companion/tree/main/src/shared/utils
