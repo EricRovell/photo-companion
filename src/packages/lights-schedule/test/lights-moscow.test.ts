@@ -36,7 +36,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 			}
 		});
 	});
-	describe("Shedule retrievement", () => {
+	describe("schedule retrievement", () => {
 		it("Retrieves the right schedule for each date", () => {
 			const fullYearDateList = getFullYearDaysList(data.year);
 

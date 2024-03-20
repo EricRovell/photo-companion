@@ -37,7 +37,7 @@ export interface MoonTimes {
 	alwaysDown: boolean;
 	/**
 	 * Date of the highest position.
-	 * Avalílable if `set` and `rise` is not `null`.
+	 * Available if `set` and `rise` is not `null`.
 	 */
 	highest?: Date;
 }

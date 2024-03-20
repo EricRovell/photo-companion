@@ -6,7 +6,7 @@ import { SUPPORTED_BRIDGES_NAME_SET } from ".";
 import { isNavigationTime } from "./navigation";
 
 /**
- * Returns all bridge events occured at the given date.
+ * Returns all bridge events occurred at the given date.
  * Note: Bridge events only available during navigation phase
  *
  * The current date used as fallback.

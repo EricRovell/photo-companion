@@ -43,7 +43,7 @@ The main reason is — to save some space. The schedule data varies from city to
 
 ## API
 
-To create a provider, use a constructor function and pass a supported city as the only paramater:
+To create a provider, use a constructor function and pass a supported city as the only parameter:
 
 ```ts
 import { initLightsProvider } from "lights-schedule";
@@ -116,7 +116,7 @@ const events = getEventsByDate();
 
 ### Saint-Petersburg, Russia
 
-[Schedule source](https://lensvet.spb.ru/grafik_raboty_naruzhnogo_osvescheni/)
+[Schedule source][lights-schedule-source-spb]
 
 Illumination schedule for Saint-Petersburg, Russia has some repetitive structure, that will be used to *compress* the data.
 
@@ -143,6 +143,9 @@ function getSchedule(month: number, date: number, data: number[]): number[] {
 
 ### Moscow, Russia
 
-[Schedule source](https://domdata.ru/osveschenie-v-moskve)
+[Schedule source][lights-schedule-source-moscow]
 
 Moscow lights schedule is quite straightforward: schedule changes every day.
+
+[lights-schedule-source-spb]: https://lensvet.spb.ru/grafik_raboty_naruzhnogo_osvescheni/
+[lights-schedule-source-moscow]: https://domdata.ru/osveschenie-v-moskve

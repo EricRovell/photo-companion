@@ -25,7 +25,7 @@ Same as `Object.entries()` but with type inference
 
 Calculates the duration in ms between two dates in seconds.
 
-Used to get the duration of specific event occured within one day:
+Used to get the duration of specific event occurred within one day:
 
 1. Both dates are provided, returns the difference;
 2. `from` is not specified - the starting point is the beginning of the same day as the `to` date;

@@ -140,7 +140,7 @@ type MoonPhaseName =
 		<code>getMoonIllumination(dateValue: DateLike, degrees = false): MoonIllumination</code>
 	</summary>
 
-Calculates the illumination paramteters of the Moon. The output angle values are in radians by default.
+Calculates the illumination parameters of the Moon. The output angle values are in radians by default.
 
 ```ts
 interface MoonIllumination {
@@ -188,7 +188,7 @@ export interface MoonTimes {
 	alwaysDown: boolean;
 	/**
 	 * Date of the highest position.
-	 * Avalílable if `set` and `rise` is not `null`.
+	 * Available if `set` and `rise` is not `null`.
 	 */
 	highest?: Date;
 }

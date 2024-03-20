@@ -4,10 +4,10 @@ Saint Petersburg, Russia drawbridges schedule provider.
 
 ## Schema
 
-The bridges shedule data schema:
+The bridges schedule data schema:
 
 ```ts
-export type BridgeShedule = Array<[
+export type BridgeSchedule = Array<[
 	hoursOpen: number,
 	minutesOpen: number,
 	hoursClose: number,
@@ -25,7 +25,7 @@ export interface NavigationSchedule {
 		dateEnd: number
 	],
 	exception: Array<BridgeName>;
-	shedule: Record<BridgeName, BridgeShedule>;
+	schedule: Record<BridgeName, BridgeSchedule>;
 }
 ```
 
@@ -117,7 +117,7 @@ const event = getNextBridgeEvent();
 
 ### `function getBridgeEvents(date?): BridgeEvent[]`
 
-Returns all bridge events occured at the given date. The current date used as fallback.
+Returns all bridge events occurred at the given date. The current date used as fallback.
 
 Note: Bridge events **only** available during navigation.
 
