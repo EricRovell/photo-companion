@@ -1,4 +1,4 @@
-import type { SunEventName, SunEvent } from "@shared/types";
+import type { SunEventName, SunEvent } from "types";
 import { template } from "utils/formatters";
 
 import { Sun } from "@lib/components";

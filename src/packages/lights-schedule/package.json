@@ -2,7 +2,7 @@
 	"author": "Eric Rovell",
 	"description": "City illumination schedule data provider.",
 	"devDependencies": {
-		"@shared/types": "workspace:*",
+		"types": "workspace:*",
 		"utils": "workspace:*"
 	},
 	"exports": {

@@ -2,7 +2,7 @@
 	"author": "Eric Rovell",
 	"description": "Saint-Petersburg regular bridge schedule data provider.",
 	"devDependencies": {
-		"@shared/types": "workspace:*",
+		"types": "workspace:*",
 		"utils": "workspace:*"
 	},
 	"exports": {

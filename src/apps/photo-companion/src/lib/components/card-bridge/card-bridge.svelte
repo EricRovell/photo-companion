@@ -2,7 +2,7 @@
 	import { getBridgeState, getBridgeScheduleEntry } from "bridge-schedule";
 	import { Icon } from "ui";
 	import { iconWarning } from "ui/icons";
-	import type { BridgeName } from "@shared/types";
+	import type { BridgeName } from "types";
 
 	import ScheduleSparkline from "./card-bridge-sparkline.svelte";
 	import { TimerDigits } from "@lib/components";

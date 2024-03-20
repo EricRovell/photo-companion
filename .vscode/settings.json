@@ -4,8 +4,8 @@
 	},
 	"eslint.workingDirectories": [
 		"./src/apps/*",
-		"./src/packages/*",
-		"./src/shared/*"
+		"./src/core/*",
+		"./src/packages/*"
 	],
 	"css.lint.validProperties": [
 		"cx",

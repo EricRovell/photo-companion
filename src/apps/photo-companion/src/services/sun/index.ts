@@ -3,8 +3,8 @@ import { formatDegrees, formatDuration, formatTimeShort } from "utils/formatters
 import { objectEntries } from "utils";
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
-import type { SunEventName } from "@shared/types";
-import type { SunEvent } from "@shared/types";
+import type { SunEventName } from "types";
+import type { SunEvent } from "types";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);

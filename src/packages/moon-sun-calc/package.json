@@ -25,7 +25,7 @@
 		"utils": "workspace:*"
 	},
 	"devDependencies": {
-		"@shared/types": "workspace:*"
+		"types": "workspace:*"
 	},
 	"files": [
 		"CHANGELOG.md",

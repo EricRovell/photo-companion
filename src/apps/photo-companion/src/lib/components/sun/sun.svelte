@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SunEventName } from "@shared/types";
+	import type { SunEventName } from "types";
 	import styles from "./sun.module.css";
 
 	export let color: string = "gold";

@@ -1,5 +1,5 @@
 import type { Coordinates } from "../types";
-import type { MoonPhaseName } from "@shared/types";
+import type { MoonPhaseName } from "types";
 
 export interface MoonCoordinates extends Coordinates {
 	distance: number;

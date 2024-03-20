@@ -1,4 +1,4 @@
-import type { IlluminationState, LightsSchedule, LightsCity, LightsEvent } from "@shared/types";
+import type { IlluminationState, LightsSchedule, LightsCity, LightsEvent } from "types";
 import { calcDuration, incrementDateByDay } from "utils/date";
 import { isValidDate } from "utils/validators";
 

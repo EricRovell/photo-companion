@@ -11,7 +11,7 @@
 	"keywords": [
 		"types"
 	],
-	"name": "@shared/types",
+	"name": "types",
 	"license": "MIT",
 	"private": true,
 	"type": "module"

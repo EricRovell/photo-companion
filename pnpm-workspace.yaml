@@ -1,4 +1,4 @@
 packages:
   - "src/apps/*"
+  - "src/core/*"
   - "src/packages/*"
-  - "src/shared/*"

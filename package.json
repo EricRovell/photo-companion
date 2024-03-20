@@ -42,8 +42,8 @@
 	},
 	"workspaces": [
 		"src/apps/*",
-		"src/packages/*",
-		"src/shared/*"
+		"src/core/*",
+		"src/packages/*"
 	],
 	"packageManager": "pnpm@8.15.4"
 }

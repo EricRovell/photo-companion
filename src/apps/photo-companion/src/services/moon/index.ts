@@ -3,7 +3,7 @@ import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 import { isNullable } from "utils/validators";
 import { formatDegrees, formatDuration, formatKilometers, formatPercent } from "utils/formatters";
-import type { MoonEvent, MoonPhaseName } from "@shared/types";
+import type { MoonEvent, MoonPhaseName } from "types";
 
 export interface MoonData {
 	duration: string;

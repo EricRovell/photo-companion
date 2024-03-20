@@ -1,4 +1,4 @@
-import type { MoonEvent } from "@shared/types";
+import type { MoonEvent } from "types";
 import { template } from "utils/formatters";
 
 import { Moon } from "@lib/components";

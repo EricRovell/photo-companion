@@ -1,4 +1,4 @@
-import type { EventName, TimelineEvent } from "@shared/types";
+import type { EventName, TimelineEvent } from "types";
 import { isValidDate } from "utils/validators";
 
 import { EVENT_PROVIDERS } from "./consts";

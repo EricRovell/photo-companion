@@ -3,7 +3,7 @@ import type {
 	LightsCity,
 	LightsSchedule,
 	LightsEvent
-} from "@shared/types";
+} from "types";
 
 export interface CityLightsSchedule {
 	year: number;

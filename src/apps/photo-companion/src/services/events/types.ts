@@ -5,7 +5,7 @@ import type {
 	MoonEventName,
 	SunEventName,
 	TimelineEvent
-} from "@shared/types";
+} from "types";
 
 export interface Options {
 	comparator: (a: TimelineEvent, b: TimelineEvent) => number;

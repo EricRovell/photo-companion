@@ -6,7 +6,7 @@ import type {
 	LightsEventName,
 	MoonEventName,
 	SunEventName
-} from "@shared/types";
+} from "types";
 
 /**
  * Events:

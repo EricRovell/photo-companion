@@ -7,7 +7,7 @@
 	import { moonEventComponent } from "./event.moon";
 	import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "@lib/helpers/validators";
 	import { createQueryDate } from "@lib/helpers";
-	import type { TimelineEvent } from "@shared/types";
+	import type { TimelineEvent } from "types";
 	import styles from "./event.module.css";
 
 	// when need event reference for another page, usually secondary

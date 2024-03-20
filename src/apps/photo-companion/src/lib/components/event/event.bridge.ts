@@ -1,6 +1,6 @@
 import Bridge from "../bridge/bridge.svelte";
 import { dict } from "@lib/dict";
-import type { BridgeEvent } from "@shared/types";
+import type { BridgeEvent } from "types";
 import type { EventComponent } from "@lib/types";
 
 export function bridgeEventComponent(event: BridgeEvent): EventComponent<{ open: boolean }> {

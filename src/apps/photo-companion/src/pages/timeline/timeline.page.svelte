@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import type { TimelineEvent } from "@shared/types";
+	import type { TimelineEvent } from "types";
 
 	interface TimelineEntry {
 		date: Date;

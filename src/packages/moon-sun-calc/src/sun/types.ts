@@ -1,5 +1,5 @@
-import type { SunEventName } from "@shared/types";
-export type { SunEventName } from "@shared/types";
+import type { SunEventName } from "types";
+export type { SunEventName } from "types";
 import type { Coordinates } from "../types";
 
 export type SunCoordinates = Coordinates;

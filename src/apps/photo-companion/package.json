@@ -33,12 +33,12 @@
 		"vite": "^5.0.11"
 	},
 	"dependencies": {
-		"@shared/types": "workspace:*",
-		"utils": "workspace:*",
 		"bridge-schedule": "workspace:*",
-		"moon-sun-calc": "workspace:*",
 		"lights-schedule": "workspace:*",
-		"versioned-local-storage": "workspace:*",
-		"ui": "workspace:*"
+		"moon-sun-calc": "workspace:*",
+		"types": "workspace:*",
+		"ui": "workspace:*",
+		"utils": "workspace:*",
+		"versioned-local-storage": "workspace:*"
 	}
 }

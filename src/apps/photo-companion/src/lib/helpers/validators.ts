@@ -4,7 +4,7 @@ import type {
 	MoonEvent,
 	SunEvent,
 	TimelineEvent
-} from "@shared/types";
+} from "types";
 
 export function isBridgeEvent(event: TimelineEvent): event is BridgeEvent {
 	return event.type === "BRIDGE";

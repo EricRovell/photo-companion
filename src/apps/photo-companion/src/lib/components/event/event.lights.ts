@@ -1,7 +1,7 @@
 import { Bulb } from "@lib/components";
 import { dict } from "@lib/dict";
 import type { EventComponent } from "@lib/types";
-import type { LightsEvent } from "@shared/types";
+import type { LightsEvent } from "types";
 
 export function lightsEventComponent(event: LightsEvent): EventComponent<{ glow: boolean }> {
 	return {

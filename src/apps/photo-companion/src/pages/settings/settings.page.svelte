@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
 	import { Button, Form, Fieldset, InputNumber, InputRadio, InputCheckbox } from "ui";
-	import type { LightsCity } from "@shared/types";
+	import type { LightsCity } from "types";
 
 	import { InputCheckboxGroup } from "@lib/components";
 	import GeolocationButton from "./geolocation-button.svelte";

@@ -1,4 +1,4 @@
-import type { LightsCity, LightsEventName, MoonEventName, SunEventName } from "@shared/types";
+import type { LightsCity, LightsEventName, MoonEventName, SunEventName } from "types";
 import type { EventGroupName } from "./types";
 
 export const LIGHTS_SCHEDULE_DATE = 2024;

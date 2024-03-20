@@ -56,9 +56,6 @@ importers:
 
   src/apps/photo-companion:
     dependencies:
-      '@shared/types':
-        specifier: workspace:*
-        version: link:../../shared/types
       bridge-schedule:
         specifier: workspace:*
         version: link:../../packages/bridge-schedule
@@ -68,12 +65,15 @@ importers:
       moon-sun-calc:
         specifier: workspace:*
         version: link:../../packages/moon-sun-calc
+      types:
+        specifier: workspace:*
+        version: link:../../core/types
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
       utils:
         specifier: workspace:*
-        version: link:../../shared/utils
+        version: link:../../core/utils
       versioned-local-storage:
         specifier: workspace:*
         version: link:../../packages/versioned-local-storage
@@ -109,23 +109,27 @@ importers:
         specifier: ^5.0.11
         version: 5.0.11(@types/node@20.11.20)
 
+  src/core/types: {}
+
+  src/core/utils: {}
+
   src/packages/bridge-schedule:
     devDependencies:
-      '@shared/types':
+      types:
         specifier: workspace:*
-        version: link:../../shared/types
+        version: link:../../core/types
       utils:
         specifier: workspace:*
-        version: link:../../shared/utils
+        version: link:../../core/utils
 
   src/packages/lights-schedule:
     devDependencies:
-      '@shared/types':
+      types:
         specifier: workspace:*
-        version: link:../../shared/types
+        version: link:../../core/types
       utils:
         specifier: workspace:*
-        version: link:../../shared/utils
+        version: link:../../core/utils
 
   src/packages/moon-sun-calc:
     dependencies:
@@ -134,11 +138,11 @@ importers:
         version: 0.19.11
       utils:
         specifier: workspace:*
-        version: link:../../shared/utils
+        version: link:../../core/utils
     devDependencies:
-      '@shared/types':
+      types:
         specifier: workspace:*
-        version: link:../../shared/types
+        version: link:../../core/types
 
   src/packages/ui:
     dependencies:
@@ -147,7 +151,7 @@ importers:
         version: 4.2.8
       utils:
         specifier: workspace:*
-        version: link:../../shared/utils
+        version: link:../../core/utils
     devDependencies:
       svelte-check:
         specifier: ^3.6.4
@@ -157,11 +161,7 @@ importers:
     devDependencies:
       utils:
         specifier: workspace:*
-        version: link:../../shared/utils
-
-  src/shared/types: {}
-
-  src/shared/utils: {}
+        version: link:../../core/utils
 
 packages:
 

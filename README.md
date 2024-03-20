@@ -24,7 +24,7 @@ This directory contains independent packages used to build web-applications.
 - `ui` — core UI components and helpers;
 - [`versioned-local-storage`][package-versioned-local-storage] — browser local storage with versioning;
 
-### `src/shared/*`
+### `src/core/*`
 
 This directory contains core packages used within monorepo.
 
@@ -78,4 +78,4 @@ All tests are localed in `*/test` directories inside a workspace.
 [package-lights-schedule]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/lights-schedule
 [package-moon-sun-calc]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/moon-sun-calc
 [package-versioned-local-storage]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/versioned-local-storage
-[package-utils]: https://github.com/EricRovell/photo-companion/tree/main/src/shared/utils
+[package-utils]: https://github.com/EricRovell/photo-companion/tree/main/src/core/utils

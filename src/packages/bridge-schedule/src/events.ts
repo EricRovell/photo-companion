@@ -1,4 +1,4 @@
-import type { BridgeEvent } from "@shared/types";
+import type { BridgeEvent } from "types";
 import { dateFrom } from "utils/date";
 
 import { schedule } from "./schedule";
