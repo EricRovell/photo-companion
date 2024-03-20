@@ -1,6 +1,7 @@
 {
 	"recommendations": [
 		"svelte.svelte-vscode",
-		"editorconfig.editorconfig"
+		"editorconfig.editorconfig",
+		"streetsidesoftware.code-spell-checker"
 	]
 }
