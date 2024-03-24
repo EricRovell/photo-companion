@@ -89,7 +89,7 @@ interface BridgeState {
 const state = getBridgeState("ALEXANDER_NEVSKY");
 ```
 
-### `getBridgeScheduleEntry(name: BridgeName): BridgeSheduleEntry`
+### `getBridgeScheduleEntry(name: BridgeName): BridgeScheduleEntry`
 
 Returns a schedule entry data for a specific bridge.
 

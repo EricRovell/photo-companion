@@ -2,7 +2,7 @@
 	import { path, query } from "svelte-pathfinder";
 	import { Icon, Link } from "ui";
 
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import { navigationStore, getTabData } from "@lib/stores/navigation";
 	import { scrollToTop } from "@lib/helpers";
 	import styles from "./navigation.module.css";
@@ -27,7 +27,7 @@
 						path="{icon}"
 						viewBox="0 0 256 256"
 					/>
-					<span>{dict.TITLE[label]}</span>
+					<span>{$t.TITLE[label]}</span>
 				</Link>
 			</li>
 		{/each}

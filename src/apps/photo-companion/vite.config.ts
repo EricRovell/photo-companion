@@ -41,7 +41,8 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@lib": resolve(__dirname, "./src/lib"),
-			"@services": resolve(__dirname, "./src/services")
+			"@services": resolve(__dirname, "./src/services"),
+			"@stores": resolve(__dirname, "./src/lib/stores")
 		}
 	},
 	plugins: [

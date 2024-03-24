@@ -7,11 +7,12 @@
 	import GeolocationButton from "./geolocation-button.svelte";
 	import TabsSelect from "./tabs-select.svelte";
 	import { settingsStore } from "@lib/stores";
-	import { dict } from "@lib/dict";
-	import { LIGHTS_CITY_OPTIONS, BRIDGES_EVENTS_OPTIONS } from "./settings.const";
+	import { t } from "@stores/lang";
+	import { LIGHTS_CITY_OPTIONS, BRIDGES_EVENTS_OPTIONS, LANGUAGE_OPTIONS } from "./settings.const";
 	import { SUN_EVENT_NAMES, MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES } from "@lib/constants";
 
 	import styles from "./settings.module.css";
+	import type { UserLang } from "@lib/types";
 
 	let settings = settingsStore.read()!;
 
@@ -29,6 +30,10 @@
 		const { name, value } = target;
 
 		switch (name) {
+			case "language": {
+				settings.language = value as UserLang;
+				break;
+			}
 			case "latitude": {
 				const latitude = Number(value);
 				settings.latitude = latitude;
@@ -57,9 +62,16 @@
 </script>
 
 <div class="{styles.page}">
-	<h2>{dict.TITLE.SETTINGS}</h2>
+	<h2>{$t.TITLE.SETTINGS}</h2>
 	<Form on:submit="{handlePersist}" on:change={handleChange}>
-		<Fieldset legend="{dict.LABEL.GEOPOSITION}" id="geoposition">
+		<Fieldset legend="{$t.LABEL.LIGHTS_CITY}" id="lang">
+			<InputRadio
+				name="language"
+				options={LANGUAGE_OPTIONS}
+				value="{settings.language}"
+			/>
+		</Fieldset>
+		<Fieldset legend="{$t.LABEL.GEOLOCATION}" id="geoposition">
 			<InputNumber
 				min={-90}
 				max={90}
@@ -68,7 +80,7 @@
 				inputmode="numeric"
 				value="{settings.latitude}"
 			>
-				{dict.LABEL.LATITUDE}
+				{$t.LABEL.LATITUDE}
 			</InputNumber>
 			<InputNumber
 				min={-180}
@@ -78,7 +90,7 @@
 				inputmode="numeric"
 				value="{settings.longitude}"
 			>
-				{dict.LABEL.LONGITUDE}
+				{$t.LABEL.LONGITUDE}
 			</InputNumber>
 			<GeolocationButton
 				handleLocation={(latitude, longitude) => {
@@ -87,67 +99,67 @@
 				}}
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict.LABEL.TABS}" id="starting-page">
+		<Fieldset legend="{$t.LABEL.TABS}" id="starting-page">
 			<aside>
-				{dict.MESSAGE.TAB_LIMITS}
+				{$t.MESSAGE.TAB_LIMITS}
 			</aside>
 			<TabsSelect
 				bind:value="{settings.tabs}"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict.LABEL.BRIDGES_SPB}" id="city-lights">
+		<Fieldset legend="{$t.LABEL.BRIDGES_SPB}" id="city-lights">
 			<aside>
-				{dict.MESSAGE.NAVIGATION_MODE}
+				{$t.MESSAGE.NAVIGATION_MODE}
 			</aside>
 			<InputCheckbox
 				bind:checked="{settings.bridges_spb_navigation}"
 				disabled="{!settings.tabs.includes("BRIDGES")}"
-				label="{dict.LABEL.NAVIGATION_ONLY}"
+				label="{$t.LABEL.NAVIGATION_ONLY}"
 				name="bridges-spb-navigation"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict.LABEL.LIGHTS_CITY}" id="city-lights">
+		<Fieldset legend="{$t.LABEL.LIGHTS_CITY}" id="city-lights">
 			<InputRadio
 				name="lights-city"
-				options={LIGHTS_CITY_OPTIONS}
+				options={LIGHTS_CITY_OPTIONS($t)}
 				value="{settings.lights_city ?? ""}"
 			/>
 		</Fieldset>
-		<Fieldset legend="{dict.LABEL.EVENT_ALLOW_LIST}" id="event-blacklist">
+		<Fieldset legend="{$t.LABEL.EVENT_ALLOW_LIST}" id="event-blacklist">
 			<InputCheckboxGroup
 				bind:value="{settings.events_bridges_spb}"
 				name="timeline-events-map"
-				groupLabel="{dict.LABEL.BRIDGES_SPB}"
+				groupLabel="{$t.LABEL.BRIDGES_SPB}"
 				groupValue="bridges"
-				options="{BRIDGES_EVENTS_OPTIONS}"
+				options="{BRIDGES_EVENTS_OPTIONS($t)}"
 			/>
 			<InputCheckboxGroup
 				bind:value="{settings.events_lights}"
 				name="timeline-events-map"
-				groupLabel="{dict.LABEL.LIGHTS_CITY}"
+				groupLabel="{$t.LABEL.LIGHTS_CITY}"
 				groupValue="lights"
 				options="{LIGHTS_EVENT_NAMES.map(value => ({
-					label: dict.LIGHTS_EVENTS[value],
+					label: $t.LIGHTS_EVENTS[value],
 					value
 				}))}"
 			/>
 			<InputCheckboxGroup
 				bind:value="{settings.events_sun}"
 				name="timeline-events-map"
-				groupLabel="{dict.TITLE.SUN}"
+				groupLabel="{$t.TITLE.SUN}"
 				groupValue="sun"
 				options="{SUN_EVENT_NAMES.map(value => ({
-					label: dict.SUN_TIMES[value],
+					label: $t.SUN_TIMES[value],
 					value
 				}))}"
 			/>
 			<InputCheckboxGroup
 				bind:value="{settings.events_moon}"
 				name="timeline-events-map"
-				groupLabel="{dict.TITLE.MOON}"
+				groupLabel="{$t.TITLE.MOON}"
 				groupValue="moon"
 				options="{MOON_EVENT_NAMES.map(value => ({
-					label: dict.MOON_TIMES[value],
+					label: $t.MOON_TIMES[value],
 					value
 				}))}"
 			/>
@@ -158,13 +170,13 @@
 				type="submit"
 				color="success"
 			>
-				{dict.LABEL.SAVE}
+				{$t.LABEL.SAVE}
 			</Button>
 			<Button
 				appearance="outline"
 				on:click="{handleReset}"
 			>
-				{dict.LABEL.RESET}
+				{$t.LABEL.RESET}
 			</Button>
 		</Fieldset>
 	</Form>

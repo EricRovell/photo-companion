@@ -1,5 +1,6 @@
-import type { NavigationTabName } from "@lib/types";
-import { persistable } from "../../helpers/persistable";
+import type { UserLang, NavigationTabName } from "@lib/types";
+import { detectUserLanguage } from "@lib/helpers";
+import { persistable } from "@lib/helpers/persistable";
 import type {
 	BridgeEventName,
 	LightsCity,
@@ -24,6 +25,7 @@ export interface SettingsStore {
 	events_lights: Nullish<LightsEventName[]>;
 	events_moon: Nullish<MoonEventName[]>;
 	events_sun: Nullish<SunEventName[]>;
+	language: UserLang;
 	latitude: number;
 	lights_city: LightsCity;
 	longitude: number;
@@ -36,6 +38,7 @@ export const SETTINGS_DEFAULT: SettingsStore = Object.freeze({
 	events_lights: [],
 	events_moon: [],
 	events_sun: [],
+	language: detectUserLanguage(),
 	latitude: 59.844404,
 	lights_city: "SAINT_PETERSBURG",
 	longitude: 30.3131,

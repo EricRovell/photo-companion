@@ -18,6 +18,7 @@
 	import { initTimelineProvider } from "@services/events";
 	import { settingsStore as store } from "@lib/stores";
 	import styles from "./timeline.module.css";
+	import { formatDate } from "@lib/stores/lang/formatters";
 
 	export let date: Date;
 
@@ -78,14 +79,7 @@
 			{#each timeline as { date, items } (date.getTime())}
 				<Timeline>
 					<svelte:fragment slot="date">
-						<Datetime
-							{date}
-							options={{
-								year: "numeric",
-								month: "long",
-								day: "numeric" 
-							}}
-						/>
+						<Datetime value="{formatDate(date)}" />
 					</svelte:fragment>
 					{#each items as event (`${event.timestamp}/${event.name}`)}
 						<Event {event} />

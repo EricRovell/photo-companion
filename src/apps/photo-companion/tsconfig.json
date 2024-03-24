@@ -11,6 +11,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@lib/*": [ "./src/lib/*" ],
+			"@stores/*": [ "src/lib/stores/*" ],
 			"@services/*": [ "./src/services/*" ],
 		},
 		"lib": [

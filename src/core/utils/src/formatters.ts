@@ -1,14 +1,70 @@
 import { isNullable, isValidDate } from "./validators";
 
+export const getNumberFormatter = (options?: Intl.NumberFormatOptions) => (locale = "en") => {
+	const formatter = new Intl.NumberFormat(locale, options);
+
+	return (value: number) => formatter.format(value);
+};
+
+export const getDateTimeFormatter = (options?: Intl.DateTimeFormatOptions) => (locale = "en") => {
+	const formatter = new Intl.DateTimeFormat(locale, options);
+
+	return (value: Nullish<DateLike>) => {
+		return isValidDate(value)
+			? formatter.format(value)
+			: "";
+	};
+};
+
+// formatters
+
+/**
+ * Formats a numeric value into days unit.
+ */
+export const dayFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "day",
+	unitDisplay: "long"
+});
+
+/**
+ * Formats date-time.
+ */
+export const dateFormatter = getDateTimeFormatter({
+	dateStyle: "long"
+});
+
+/**
+ * Formats date-time.
+ */
+export const dateTimeFormatter = getDateTimeFormatter({
+	dateStyle: "long",
+	timeStyle: "long"
+});
+
 /**
  * Formats a value as a degree unit.
  */
-export function formatDegrees(input: number, locale = "ru"): string {
-	return Intl.NumberFormat(locale, {
-		style: "unit",
-		unit: "degree"
-	}).format(input);
-}
+export const degreesFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "degree"
+});
+
+/**
+ * Formats a numeric value into kilometers unit.
+ */
+export const kilometersFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "kilometer"
+});
+
+/**
+ * Formats a numeric value into % unit.
+ */
+export const percentFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "percent"
+});
 
 /**
  * Formats a number of ms into a countdown in format HH:MM:SS.
@@ -16,66 +72,32 @@ export function formatDegrees(input: number, locale = "ru"): string {
  * Note: `formatTime` is not a good option, as it uses local timezone,
  * hence wrong results.
  */
-export function formatDuration(input: number, locale = "ru"): string {
-	return Intl.DateTimeFormat(locale, {
-		hour12: false,
-		hour: "2-digit",
-		minute: "2-digit",
-		second: "2-digit",
-		timeZone: "UTC"
-	}).format(input);
-}
-
-/**
- * Formats a numeric value into kilometers unit.
- */
-export function formatKilometers(input: number, locale = "ru"): string {
-	return Intl.NumberFormat(locale, {
-		style: "unit",
-		unit: "kilometer"
-	}).format(input);
-}
-
-/**
- * Formats a numeric value into % unit.
- */
-export function formatPercent(input: number, locale = "ru"): string {
-	return Intl.NumberFormat(locale, {
-		style: "unit",
-		unit: "percent"
-	}).format(input);
-}
+export const timeDurationFormatter = getDateTimeFormatter({
+	hour12: false,
+	hour: "2-digit",
+	minute: "2-digit",
+	second: "2-digit",
+	timeZone: "UTC"
+});
 
 /**
  * Formats a date into HH:MM:SS time string format.
  */
-export function formatTime(input: Nullish<DateLike>, locale = "ru"): string {
-	if (!isValidDate(input)) {
-		return "";
-	}
-
-	return Intl.DateTimeFormat(locale, {
-		hour12: false,
-		hour: "2-digit",
-		minute: "2-digit",
-		second: "2-digit"
-	}).format(input);
-}
+export const timeFormatter = getDateTimeFormatter({
+	hour12: false,
+	hour: "2-digit",
+	minute: "2-digit",
+	second: "2-digit"
+});
 
 /**
  * Formats a time into HH:MM format.
  */
-export function formatTimeShort(input: Nullish<DateLike>, locale = "ru"): string {
-	if (!isValidDate(input)) {
-		return "";
-	}
-
-	return Intl.DateTimeFormat(locale, {
-		hour12: false,
-		hour: "2-digit",
-		minute: "2-digit"
-	}).format(input);
-}
+export const timeShortFormatter = getDateTimeFormatter({
+	hour12: false,
+	hour: "2-digit",
+	minute: "2-digit"
+});
 
 /**
  * Replaces the entries within the string in curly braces (can be specified via regex parameter)

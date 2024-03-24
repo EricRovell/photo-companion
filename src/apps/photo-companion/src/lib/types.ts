@@ -20,3 +20,5 @@ export type NavigationTabName =
 	| "SUN"
 	| "MOON"
 	| "BRIDGES";
+
+export type UserLang = "en" | "ru";

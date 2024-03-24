@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher, afterUpdate } from "svelte";
 
+	import { formatDatetime } from "@stores/lang";
 	import Digit from "../seven-segment-display/seven-segment-digit.svelte";
 	import Colon from "../seven-segment-display/segment-colon.svelte";
 	import { createTimer } from "./timer-store";
@@ -10,17 +11,13 @@
 	export let timestamp: number;
 
 	const dispatch = createEventDispatcher();
-	const titleFormat = new Intl.DateTimeFormat("ru-RU", {
-		dateStyle: "long",
-		timeStyle: "long"
-	});
 
 	const timer = createTimer(timestamp, {
 		callback: () => dispatch("alarm")
 	});
 
 	$: time = getTime($timer);
-	$: title = titleFormat.format(new Date(timestamp));
+	$: title = formatDatetime(new Date(timestamp));
 
 	onMount(() => {
 		timer.start();

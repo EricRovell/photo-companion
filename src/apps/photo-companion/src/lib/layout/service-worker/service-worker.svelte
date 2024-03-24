@@ -3,7 +3,7 @@
 	import { Button, Icon } from "ui";
 	import { iconClose } from "ui/icons";
 	import { preventPageScroll } from "@lib/helpers";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import styles from "./service-worker.module.css";
 
 	let newWorker: Nullish<ServiceWorker> = null;
@@ -58,15 +58,15 @@
 <dialog bind:this="{dialog}" class="{styles.dialog}">
 	<aside>
 		<header>
-			<h2>{dict.TITLE.UPDATE}</h2>
+			<h2>{$t.TITLE.UPDATE}</h2>
 			<Button on:click="{handleClose}" title="Close">
 				<Icon path="{iconClose}" />
 			</Button>
 		</header>
 		<div>
-			<p>{dict.MESSAGE.UPDATE}</p>
+			<p>{$t.MESSAGE.UPDATE}</p>
 			<Button on:click="{handleReload}">
-				{dict.LABEL.RELOAD}
+				{$t.LABEL.RELOAD}
 			</Button>
 		</div>
 	</aside>

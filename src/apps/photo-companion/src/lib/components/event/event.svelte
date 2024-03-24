@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
 	import { Datetime, Link } from "ui";
+
+	import { formatTimeShort, t } from "@stores/lang";
+	import { formatDatetime } from "@stores/lang";
 	import { lightsEventComponent } from "./event.lights";
 	import { bridgeEventComponent } from "./event.bridge";
 	import { sunEventComponent } from "./event.sun";
@@ -20,29 +23,26 @@
 
 	const eventComponent = (event: TimelineEvent) => {
 		if (isBridgeEvent(event)) {
-			return bridgeEventComponent(event);
+			return bridgeEventComponent(event, $t);
 		}
 
 		if (isLightsEvent(event)) {
-			return lightsEventComponent(event);
+			return lightsEventComponent(event, $t);
 		}
 
 		if (isMoonEvent(event)) {
-			return moonEventComponent(event);
+			return moonEventComponent(event, $t);
 		}
 
 		if (isSunEvent(event)) {
-			return sunEventComponent(event);
+			return sunEventComponent(event, $t);
 		}
 
 		throw new Error(`Unknown event is provided: ${JSON.stringify(event)}`);
 	};
 
 	let { component, props, message, title, type } = eventComponent(event);
-	let linkTitle = `${title}: ${new Intl.DateTimeFormat("ru-RU", {
-		dateStyle: "full",
-		timeStyle: "full"
-	}).format(new Date(event.timestamp))}`;
+	let linkTitle = `${title}: ${formatDatetime(new Date(event.timestamp))}`;
 
 	$: {
 		if ($query.date) {
@@ -60,12 +60,7 @@
 	data-event-name="{event.name}"
 >
 	<Datetime
-		date="{new Date(event.timestamp)}"
-		options={{
-			hour12: false,
-			hour: "2-digit",
-			minute: "2-digit"
-		}}
+		value="{formatTimeShort(event.timestamp)}"
 	/>
 	<div class="{styles.icon}" data-event-icon>
 		<Link
