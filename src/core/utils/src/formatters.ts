@@ -55,6 +55,14 @@ export const percentFormatter = getNumberFormatter({
 });
 
 /**
+ * Formats a numeric value into day unit.
+ */
+export const dayFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "day"
+});
+
+/**
  * Formats a date into HH:MM:SS time string format.
  */
 export const timeFormatter = getDateTimeFormatter({
@@ -79,6 +87,13 @@ export const timeShortFormatter = getDateTimeFormatter({
 export const dateTimeFormatter = getDateTimeFormatter({
 	dateStyle: "long",
 	timeStyle: "long"
+});
+
+/**
+ * Formats date-time.
+ */
+export const dateFormatter = getDateTimeFormatter({
+	dateStyle: "long"
 });
 
 /**

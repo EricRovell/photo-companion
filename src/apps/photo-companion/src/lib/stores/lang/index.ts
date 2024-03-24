@@ -5,5 +5,9 @@ export {
 	formatTimeShort,
 	formatPercent,
 	formatKilometers,
-	formatDatetime
+	formatDatetime,
+	formatDays
 } from "./formatters";
+
+export { lang, t } from "./lang-store";
+export type { Translation } from "./types";

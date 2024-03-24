@@ -5,14 +5,14 @@
 	import { CardBridge } from "@lib/components";
 	import NextBridgeEvent from "./next-bridge-event.svelte";
 	import NavigationEvent from "./navigation-event.svelte";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import styles from "./bridges.module.css";
 </script>
 
 <div class="{styles.page}">
 	<div>
 		<h2 id="bridge-schedule">
-			{dict.TITLE.BRIDGES_SCHEDULE_SPB}
+			{$t.TITLE.BRIDGES_SCHEDULE_SPB}
 		</h2>
 		<ul>
 			{#each SUPPORTED_BRIDGES_NAME_SET as name}

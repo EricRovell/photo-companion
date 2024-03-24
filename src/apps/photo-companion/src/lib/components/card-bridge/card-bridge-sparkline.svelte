@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { round } from "utils/math";
 
-	import { formatTimeShort } from "@stores/locale";
+	import { formatTimeShort } from "@stores/lang";
 	import { getDate } from "@lib/helpers";
 	import { createWavyPath } from "@lib/helpers/svg";
-	import type { BridgeSheduleEntry } from "bridge-schedule";
+	import type { BridgeScheduleEntry } from "bridge-schedule";
 	import styles from "./card-bridge.module.css";
 
-	export let schedule: BridgeSheduleEntry;
+	export let schedule: BridgeScheduleEntry;
 	export let start = 1;
 	export let end = 6;
 	export let angle = Math.PI / 4;

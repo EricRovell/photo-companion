@@ -45,6 +45,7 @@
 		grid-template: 1fr / repeat(4, 1fr);
 		justify-items: center;
 		padding-block: var(--space-4);
+		margin-block-end: var(--space-4);
 	}
 
 	& > div > p {
@@ -61,13 +62,15 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		width: 100%;
 
 		&:hover svg {
 			filter: drop-shadow(0 0 1em lightblue);
 		}
 
 		svg {
-			aspect-ratio: 1;
+			max-width: 75px;
+			max-height: 75px;
 			transition: filter 0.125s ease-in-out;
 		}
 	}

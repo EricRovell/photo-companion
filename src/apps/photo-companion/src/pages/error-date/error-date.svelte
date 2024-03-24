@@ -2,7 +2,7 @@
 	import { query } from "svelte-pathfinder";
 	import { Button } from "ui";
 	import { createQueryDate } from "@lib/helpers";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import styles from "./error-date.module.css";
 
 	const handleClick = () => {
@@ -11,14 +11,14 @@
 </script>
 
 <aside class="card {styles["error"]}">
-	<header>{dict.TITLE.ERROR}</header>
-	<p>{dict.MESSAGE.WRONG_DATE}:</p>
+	<header>{$t.TITLE.ERROR}</header>
+	<p>{$t.MESSAGE.WRONG_DATE}:</p>
 	<ul>
-		<li>{dict.MESSAGE.WRONG_DATE_URL} <strong>YYYY-MM-DD-hh-mm;</strong></li>
-		<li>{dict.MESSAGE.CHECK_DATE_INPUT};</li>
+		<li>{$t.MESSAGE.WRONG_DATE_URL} <strong>YYYY-MM-DD-hh-mm;</strong></li>
+		<li>{$t.MESSAGE.CHECK_DATE_INPUT};</li>
 	</ul>
-	<p>{dict.MESSAGE.SET_CURRENT_DATE_ADVICE}:</p>
+	<p>{$t.MESSAGE.SET_CURRENT_DATE_ADVICE}:</p>
 	<Button on:click="{handleClick}">
-		{dict.MESSAGE.SET_CURRENT_DATETIME}
+		{$t.MESSAGE.SET_CURRENT_DATETIME}
 	</Button>
 </aside>

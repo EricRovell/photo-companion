@@ -1,4 +1,6 @@
-export const dict = {
+import type { Translation } from "./types";
+
+export const t: Translation = {
 	BRIDGE_NAME_SPB: {
 		ALEXANDER_NEVSKY: "Александра Невского",
 		ANNUNCIATION: "Благовещенский",
@@ -47,7 +49,7 @@ export const dict = {
 		ALTITUDE: "Высота",
 		ALWAYS: "Всегда",
 		AZIMUTH: "Азимут",
-		ASK_DEVICE_GEOPOSITION: "Запросить данные с устройства",
+		ASK_DEVICE_GEOLOCATION: "Запросить данные с устройства",
 		BRIDGE: "мост",
 		BRIDGE_OPENED: "Разведён",
 		BRIDGE_OPENING: "Развод моста",
@@ -62,7 +64,8 @@ export const dict = {
 		DURATION_LIGHTS: "Длительность освещения",
 		DURATION_MOONLIGHT: "Длительность лунного дня",
 		EVENT_ALLOW_LIST: "Фильтры событий",
-		GEOPOSITION: "Геолокация",
+		GEOLOCATION: "Геолокация",
+		LANGUAGE: "Язык",
 		LATITUDE: "Широта",
 		LIGHTS_CITY: "Городское освещение",
 		LONGITUDE: "Долгота",
@@ -152,7 +155,7 @@ export const dict = {
 		BLUE_HOUR_START_DUSK: "Вечерний синий час",
 		BLUE_HOUR_START_DUSK_TITLE: "Золотой час подходит к концу",
 		BLUE_HOUR_END_DUSK: "Вечерний синий час подходит к концу",
-		CIVIL_DUSK: "Навигационные сумерки",
+		CIVIL_DUSK: "Гражданские сумерки",
 		CIVIL_DUSK_TITLE: "Гражданские сумерки подходят к концу",
 		NAUTICAL_DUSK: "Астрономические сумерки",
 		NAUTICAL_DUSK_TITLE: "Навигационные сумерки подходят к концу",
@@ -180,20 +183,5 @@ export const dict = {
 		TIMELINE: "События",
 		THE_CLOSEST_EVENT: "Ближайшее событие",
 		UPDATE: "Обновление"
-	}
-};
-
-export const template = {
-	"days": (days: number) => {
-		const plurals = {
-			"zero": "дней",
-			"one": "день",
-			"two": "дня",
-			"few": "дня",
-			"other": "дни",
-			"many": "дней"
-		};
-
-		return plurals[new Intl.PluralRules("ru-RU").select(days)];
 	}
 };

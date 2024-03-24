@@ -2,7 +2,7 @@
 	import { Button, Icon, InputCheckbox } from "ui"; 
 	import { iconArrowDown, iconArrowUp } from "ui/icons";
 
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import { NAVIGATION_TABS } from "@lib/stores/navigation";
 	import type { NavigationTabName } from "@lib/types";
 	import styles from "./tabs-select.module.css";
@@ -64,7 +64,7 @@
 					{checked}
 					disabled="{(checked && value.length <= 2) || (!checked && value.length >= 5)}"
 					on:change="{handleSelect}"
-					label="{dict.TITLE[tab]}"
+					label="{$t.TITLE[tab]}"
 				/>
 				<Button
 					appearance="ghost"

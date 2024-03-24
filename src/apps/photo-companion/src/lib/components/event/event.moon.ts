@@ -2,14 +2,14 @@ import type { MoonEvent } from "types";
 import { template } from "utils/formatters";
 
 import { Moon } from "@lib/components";
-import { dict } from "@lib/dict";
 import type { EventComponent } from "@lib/types";
+import type { Translation } from "@stores/lang";
 
-export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: number, rotation: number }> {
+export function moonEventComponent(event: MoonEvent, t: Translation): EventComponent<{ phase: number, rotation: number }> {
 	const { azimuth, phase, rotation, waxing, fraction } = event.data;
 
 	const message = template("{type} {fraction} / {azimuth}", {
-		type: waxing ? dict.LABEL.WAXING : dict.LABEL.WANING,
+		type: waxing ? t.LABEL.WAXING : t.LABEL.WANING,
 		fraction,
 		azimuth
 	});
@@ -21,7 +21,7 @@ export function moonEventComponent(event: MoonEvent): EventComponent<{ phase: nu
 			rotation
 		},
 		message: message,
-		title: dict.MOON_TIMES[event.name],
+		title: t.MOON_TIMES[event.name],
 		type: "moon"
 	};
 }

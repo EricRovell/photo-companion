@@ -6,12 +6,13 @@
 	import { CardInfo, GaugeTime, Moon, Timeline, Event, ElevationGraph } from "@lib/components";
 	import { getMoonData } from "@services/moon";
 	import { initTimelineProvider } from "@services/events";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import { settingsStore as store } from "@lib/stores";
 	import { createQueryDate } from "@lib/helpers";
 	import { SUN_EVENT_NAMES } from "@lib/constants";
 	import { getAngleFromTime } from "@lib/helpers";
 	import styles from "./moon.module.css";
+	import { formatDate } from "@lib/stores/lang/formatters";
 
 	export let date: Date;
 
@@ -30,7 +31,7 @@
 <div class="{styles.page}">
 	<section data-label="moon" class="card {styles.root}">
 		<header>
-			<h2>{dict.TITLE.MOON_TIMES}</h2>
+			<h2>{$t.TITLE.MOON_TIMES}</h2>
 		</header>
 		<GaugeTime
 			timeFrom="{state.moonrise}"
@@ -54,7 +55,7 @@
 	</section>
 	<section data-label="altitude" class="card">
 		<header>
-			<h2>{dict.TITLE.ELEVATION_MOON}</h2>
+			<h2>{$t.TITLE.ELEVATION_MOON}</h2>
 		</header>
 		<ElevationGraph
 			{date}
@@ -75,14 +76,14 @@
 		/>
 	</section>
 	<CardInfo data="{{
-		[dict.LABEL.MOON_PHASE]: dict.MOON_PHASE[state.name],
-		[dict.LABEL.MOON_ILLUMINATION]: state.fraction,
-		[dict.LABEL.DURATION_MOONLIGHT]: state.duration,
-		[dict.LABEL.ZENITH]: state.zenith,
-		[dict.LABEL.ALTITUDE]: state.altitude,
-		[dict.LABEL.AZIMUTH]: state.azimuth,
-		[dict.LABEL.DISTANCE]: state.distance,
-		[dict.LABEL.PARALLACTIC_ANGLE]: state.parallacticAngle
+		[$t.LABEL.MOON_PHASE]: $t.MOON_PHASE[state.name],
+		[$t.LABEL.MOON_ILLUMINATION]: state.fraction,
+		[$t.LABEL.DURATION_MOONLIGHT]: state.duration,
+		[$t.LABEL.ZENITH]: state.zenith,
+		[$t.LABEL.ALTITUDE]: state.altitude,
+		[$t.LABEL.AZIMUTH]: state.azimuth,
+		[$t.LABEL.DISTANCE]: state.distance,
+		[$t.LABEL.PARALLACTIC_ANGLE]: state.parallacticAngle
 	}}" />
 	<section data-label="timeline">
 		<Timeline>
@@ -96,14 +97,14 @@
 		</Timeline>
 	</section>
 	<section data-label="phases-calendar" class="card {styles.phases}">
-		<header>{dict.TITLE.MOON_PHASE_CALENDAR}</header>
+		<header>{$t.TITLE.MOON_PHASE_CALENDAR}</header>
 		<div>
 			{#each state.phases as { phaseValue, timestamp } (timestamp)}
 				<Link
 					href="/moon?{new URLSearchParams({ ...$query, date: createQueryDate(new Date(timestamp)) })}"
 				>
 					<Moon phase="{phaseValue}" size={75} />
-					<Datetime date="{new Date(timestamp)}" />
+					<Datetime value="{formatDate(timestamp)}" />
 				</Link>
 			{/each}
 		</div>

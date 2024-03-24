@@ -12,7 +12,7 @@ export type BridgeName =
 	| "GRENADERSKY"
 	| "KANTEMIROVSKY";
 
-export type BridgeSheduleEntry = Array<[
+export type BridgeScheduleEntry = Array<[
 	hoursOpen: number,
 	minutesOpen: number,
 	hoursClose: number,
@@ -30,7 +30,7 @@ export interface NavigationSchedule {
 		dateEnd: number
 	],
 	exception: Array<BridgeName>;
-	bridges: Record<BridgeName, BridgeSheduleEntry>;
+	bridges: Record<BridgeName, BridgeScheduleEntry>;
 }
 
 export interface BridgeState {

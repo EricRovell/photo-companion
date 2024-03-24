@@ -2,18 +2,18 @@
 	import { onDestroy } from "svelte";
 	import { Button } from "ui";
 	import { getUserLocation } from "@lib/helpers";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 
 	export let handleLocation: (lat: number, lon: number) => void;
 
 	let disabled = false;
-	let message = dict.LABEL.ASK_DEVICE_GEOPOSITION;
+	let message = $t.LABEL.ASK_DEVICE_GEOLOCATION;
 	let status: Nullable<"success" | "danger"> = undefined;
 	let timer: Optional<number> = undefined;
 
 	const handleResetState = () => {
 		timer = window.setTimeout(() => {
-			message = dict.LABEL.ASK_DEVICE_GEOPOSITION;
+			message = $t.LABEL.ASK_DEVICE_GEOLOCATION;
 			status = undefined;
 			disabled = false;
 		}, 2500);
@@ -28,12 +28,12 @@
 			if (position) {
 				handleLocation(position.lat, position.lon);
 				status = "success";
-				message = dict.MESSAGE.DATA_UPDATE_SUCCESS;
+				message = $t.MESSAGE.DATA_UPDATE_SUCCESS;
 			}
 		} catch (error) {
 			console.warn(`Could not get location: ${JSON.stringify(error)}`);
 			status = "danger";
-			message = dict.MESSAGE.DATA_UPDATE_ERROR;
+			message = $t.MESSAGE.DATA_UPDATE_ERROR;
 		} finally {
 			handleResetState();
 		}

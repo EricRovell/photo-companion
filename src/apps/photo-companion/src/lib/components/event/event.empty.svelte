@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import styles from "./event.module.css";
 </script>
 
@@ -13,6 +13,6 @@
 		</svg>
 	</div>
 	<article>
-		<p>{dict.MESSAGE.NO_EVENTS}</p>
+		<p>{$t.MESSAGE.NO_EVENTS}</p>
 	</article>
 </li>

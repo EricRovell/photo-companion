@@ -3,7 +3,7 @@ import { dateFrom, incrementDateByDay } from "utils/date";
 import { schedule } from "./schedule";
 import { isNavigationTime } from "./navigation";
 import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
-import type { BridgeState, BridgeName, BridgeSheduleEntry } from "./types";
+import type { BridgeState, BridgeName, BridgeScheduleEntry } from "./types";
 
 /**
  * Returns a bridge state by a given date. The navigation period is taken into account.
@@ -132,6 +132,6 @@ export function getNextBridgeEvent(date = new Date()): BridgeState {
 /**
  * Returns a schedule entry data for a specific bridge.
  */
-export function getBridgeScheduleEntry(name: BridgeName): BridgeSheduleEntry {
+export function getBridgeScheduleEntry(name: BridgeName): BridgeScheduleEntry {
 	return schedule["bridges"][name];
 }

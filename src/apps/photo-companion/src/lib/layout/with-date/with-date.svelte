@@ -7,7 +7,7 @@
 	import { parseQueryDate, createQueryDate } from "@lib/helpers";
 	import { onMount } from "svelte";
 	import styles from "./with-date.module.css";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 
 	let value = parseQueryDate($query.date as string);
 	let date = new Date(value);
@@ -42,9 +42,9 @@
 <InputDatetime
 	className="{styles["date-input"]}"
 	dict="{{
-		DATETIME: dict.LABEL.DATETIME,
-		NEXT_DAY: dict.LABEL.NEXT_DAY,
-		PREVIOUS_DAY: dict.LABEL.PREVIOUS_DAY
+		DATETIME: $t.LABEL.DATETIME,
+		NEXT_DAY: $t.LABEL.NEXT_DAY,
+		PREVIOUS_DAY: $t.LABEL.PREVIOUS_DAY
 	}}"
 	on:datechange="{handleChange}"
 	{value}

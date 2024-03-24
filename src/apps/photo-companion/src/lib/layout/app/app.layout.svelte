@@ -8,7 +8,7 @@
 	import { navigationStore, getTabUrl } from "@lib/stores/navigation";
 	import { Navigation } from "@lib/layout";
 	import { title } from "@lib/constants";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import { scrollToTop } from "@lib/helpers";
 	import styles from "./app.layout.module.css";
 </script>
@@ -23,7 +23,7 @@
 				className="{styles.icon}"
 				href="{routeSettings}{$query}"
 				on:click={scrollToTop}
-				title="{dict.TITLE.SETTINGS}"
+				title="{$t.TITLE.SETTINGS}"
 			>
 				<Icon path="{iconSettings}" viewBox="0 0 256 256" />
 			</Link>
@@ -31,7 +31,7 @@
 				className="{styles.icon}"
 				href="{routeAbout}{$query}"
 				on:click={scrollToTop}
-				title="{dict.TITLE.ABOUT}"
+				title="{$t.TITLE.ABOUT}"
 			>
 				<Icon path="{iconQuestion}" viewBox="0 0 256 256" />
 			</Link>

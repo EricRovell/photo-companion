@@ -6,7 +6,7 @@
 
 	import ScheduleSparkline from "./card-bridge-sparkline.svelte";
 	import { TimerDigits } from "@lib/components";
-	import { dict } from "@lib/dict";
+	import { t } from "@stores/lang";
 	import styles from "./card-bridge.module.css";
 
 	export let name: BridgeName;
@@ -20,19 +20,19 @@
 	<article class="{styles.card}">
 		<header>
 			<h2>
-				{dict.BRIDGE_NAME_SPB[name]} {dict.LABEL.BRIDGE}
+				{$t.BRIDGE_NAME_SPB[name]} {$t.LABEL.BRIDGE}
 				{#if exception}
 				<Icon
 					path="{iconWarning}"
-					title="{dict.MESSAGE.BRIDGE_EXCEPTION}"
+					title="{$t.MESSAGE.BRIDGE_EXCEPTION}"
 				/>
 		{/if}
 			</h2>
 			<output>
 				{
 					state.open
-						? dict.LABEL.BRIDGE_OPENED
-						: dict.LABEL.BRIDGE_CLOSED
+						? $t.LABEL.BRIDGE_OPENED
+						: $t.LABEL.BRIDGE_CLOSED
 				}
 			</output>
 		</header>
@@ -45,8 +45,8 @@
 		<footer>
 			<p>{
 				state.open
-					? dict.MESSAGE.BRIDGE_WILL_CLOSE_WITHIN
-					: dict.MESSAGE.BRIDGE_WILL_OPEN_WITHIN
+					? $t.MESSAGE.BRIDGE_WILL_CLOSE_WITHIN
+					: $t.MESSAGE.BRIDGE_WILL_OPEN_WITHIN
 				}
 			</p>
 			<TimerDigits

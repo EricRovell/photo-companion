@@ -11,9 +11,14 @@ export function persistable<T>(name: string, version: number, defaultValue: T) {
 
 	function init(): T {
 		storage = new Storage<T>(name, version);
-		const value = storage.read() ?? defaultValue;
-		set(value);
+		const stored = storage.read() ?? defaultValue;
 
+		const value = {
+			...defaultValue,
+			...stored
+		};
+
+		set(value);
 		return value;
 	}
 

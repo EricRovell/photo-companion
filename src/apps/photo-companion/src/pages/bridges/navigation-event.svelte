@@ -2,7 +2,8 @@
 	import { Icon } from "ui";
 	import { iconAnchor } from "ui/icons";
 	import { getNavigationState } from "bridge-schedule";
-	import { dict, template } from "@lib/dict";
+
+	import { formatDays, t } from "@stores/lang";
 	import styles from "./bridges.module.css";
 
 	const { navigation, days } = getNavigationState(new Date());
@@ -14,11 +15,11 @@
 >
 	<header>
 		{navigation
-			? dict.TITLE.NAVIGATION_OPENED
-			: dict.TITLE.NAVIGATION_CLOSED
+			? $t.TITLE.NAVIGATION_OPENED
+			: $t.TITLE.NAVIGATION_CLOSED
 		}
 	</header>
-	<p>{dict.MESSAGE.NAVIGATION_IN}</p>
-	<p><output>{days}</output> {template["days"](days)}</p>
+	<p>{$t.MESSAGE.NAVIGATION_IN}</p>
+	<p><output>{formatDays(days)}</output></p>
 	<Icon path="{iconAnchor}" />
 </article>
