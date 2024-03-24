@@ -35,6 +35,14 @@ export const dateFormatter = getDateTimeFormatter({
 });
 
 /**
+ * Formats date-time.
+ */
+export const dateTimeFormatter = getDateTimeFormatter({
+	dateStyle: "long",
+	timeStyle: "long"
+});
+
+/**
  * Formats a value as a degree unit.
  */
 export const degreesFormatter = getNumberFormatter({
@@ -89,14 +97,6 @@ export const timeShortFormatter = getDateTimeFormatter({
 	hour12: false,
 	hour: "2-digit",
 	minute: "2-digit"
-});
-
-/**
- * Formats date-time.
- */
-export const dateTimeFormatter = getDateTimeFormatter({
-	dateStyle: "long",
-	timeStyle: "long"
 });
 
 /**
