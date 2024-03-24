@@ -5,7 +5,7 @@ import { round } from "utils/math";
 import type { SunEventName } from "types";
 import type { SunEvent } from "types";
 
-import { formatDegrees, formatTimeDuration, formatTimeShort } from "@locale";
+import { formatDegrees, formatTimeDuration, formatTimeShort } from "@stores/locale";
 
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);

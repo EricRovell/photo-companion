@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { round } from "utils/math";
 
-	import { formatTimeShort } from "@locale";
+	import { formatTimeShort } from "@stores/locale";
 	import { getDate } from "@lib/helpers";
 	import { createWavyPath } from "@lib/helpers/svg";
 	import type { BridgeSheduleEntry } from "bridge-schedule";

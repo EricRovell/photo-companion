@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher, afterUpdate } from "svelte";
 
-	import { formatDatetime } from "@lib/locale";
+	import { formatDatetime } from "@stores/locale";
 	import Digit from "../seven-segment-display/seven-segment-digit.svelte";
 	import Colon from "../seven-segment-display/segment-colon.svelte";
 	import { createTimer } from "./timer-store";

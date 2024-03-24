@@ -2,7 +2,7 @@
 	import { query } from "svelte-pathfinder";
 	import { Datetime, Link } from "ui";
 
-	import { formatDatetime } from "@lib/locale";
+	import { formatDatetime } from "@stores/locale";
 	import { lightsEventComponent } from "./event.lights";
 	import { bridgeEventComponent } from "./event.bridge";
 	import { sunEventComponent } from "./event.sun";

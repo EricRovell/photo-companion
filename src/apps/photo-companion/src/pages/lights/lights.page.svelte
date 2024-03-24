@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	
-	import { formatTimeDuration } from "@locale";
+	import { formatTimeDuration } from "@stores/locale";
 	import { CardInfo, Bulb, Event, GaugeTime, Timeline } from "@lib/components";
 	import { provider } from "@services/lights";
 	import { initTimelineProvider } from "@services/events";

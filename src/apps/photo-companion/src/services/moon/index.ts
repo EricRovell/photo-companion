@@ -4,7 +4,7 @@ import { round } from "utils/math";
 import { isNullable } from "utils/validators";
 import type { MoonEvent, MoonPhaseName } from "types";
 
-import { formatDegrees, formatTimeDuration, formatKilometers, formatPercent } from "@locale";
+import { formatDegrees, formatTimeDuration, formatKilometers, formatPercent } from "@stores/locale";
 
 export interface MoonData {
 	duration: string;
