@@ -19,7 +19,7 @@
 	let dy = round(length * Math.sin(angle));
 	let viewBox = `${start * 60} -${dy} ${(end - start) * 60} ${dy + stroke + fontSize * 2}`;
 
-	const buildBridgeSparklinePath = (schedule: BridgeSheduleEntry): string => {
+	const buildBridgeSparklinePath = (schedule: BridgeScheduleEntry): string => {
 		let x = start * 60;
 		let y = 0;
 
