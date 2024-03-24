@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { query } from "svelte-pathfinder";
 	import { Datetime, Link } from "ui";
+
+	import { formatDatetime } from "@lib/locale";
 	import { lightsEventComponent } from "./event.lights";
 	import { bridgeEventComponent } from "./event.bridge";
 	import { sunEventComponent } from "./event.sun";
@@ -39,10 +41,7 @@
 	};
 
 	let { component, props, message, title, type } = eventComponent(event);
-	let linkTitle = `${title}: ${new Intl.DateTimeFormat("ru-RU", {
-		dateStyle: "full",
-		timeStyle: "full"
-	}).format(new Date(event.timestamp))}`;
+	let linkTitle = `${title}: ${formatDatetime(new Date(event.timestamp))}`;
 
 	$: {
 		if ($query.date) {

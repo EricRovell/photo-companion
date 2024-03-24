@@ -11,6 +11,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@lib/*": [ "./src/lib/*" ],
+			"@locale": [ "./src/lib/locale/index.ts" ],
 			"@services/*": [ "./src/services/*" ],
 		},
 		"lib": [

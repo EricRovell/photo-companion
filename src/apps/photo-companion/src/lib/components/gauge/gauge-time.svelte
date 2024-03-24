@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { tweened } from "svelte/motion";
-	import { formatTimeShort } from "utils/formatters";
-
+	
+	import { formatTimeShort } from "@locale";
 	import Gauge from "./gauge.svelte";
 	import { getAngleFromTime } from "../../helpers";
 
