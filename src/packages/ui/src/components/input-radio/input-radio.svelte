@@ -7,8 +7,11 @@
 
 <script lang="ts">
 	import type { ChangeEventHandler } from "svelte/elements";
+	import { classnames } from "utils";
+
 	import styles from "./input-radio.module.css";
 
+	export let className: Undefinable<string> = undefined;
 	export let disabled = false;
 	export let name: string;
 	export let options: Option[] = [];
@@ -21,7 +24,7 @@
 </script>
 
 {#each options as option}
-	<label class="{styles.label}">
+	<label class="{classnames(styles.label, className)}">
 		<input
 			class="{styles.radio}"
 			checked="{value === option.value}"

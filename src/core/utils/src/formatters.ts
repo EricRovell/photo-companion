@@ -73,7 +73,7 @@ export const percentFormatter = getNumberFormatter({
  * hence wrong results.
  */
 export const timeDurationFormatter = getDateTimeFormatter({
-	hour12: false,
+	hourCycle: "h23",
 	hour: "2-digit",
 	minute: "2-digit",
 	second: "2-digit",
@@ -84,7 +84,7 @@ export const timeDurationFormatter = getDateTimeFormatter({
  * Formats a date into HH:MM:SS time string format.
  */
 export const timeFormatter = getDateTimeFormatter({
-	hour12: false,
+	hourCycle: "h23",
 	hour: "2-digit",
 	minute: "2-digit",
 	second: "2-digit"
@@ -94,7 +94,7 @@ export const timeFormatter = getDateTimeFormatter({
  * Formats a time into HH:MM format.
  */
 export const timeShortFormatter = getDateTimeFormatter({
-	hour12: false,
+	hourCycle: "h23",
 	hour: "2-digit",
 	minute: "2-digit"
 });

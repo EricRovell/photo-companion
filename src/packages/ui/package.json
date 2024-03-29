@@ -10,6 +10,9 @@
 			"import": "./src/index.ts",
 			"default": "./src/index.ts"
 		},
+		"./actions": {
+			"import": "./src/actions/index.ts"
+		},
 		"./icons": {
 			"import": "./src/icons/index.ts"
 		}

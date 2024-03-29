@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { classnames } from "utils";
+
 	import styles from "./input-number.module.css";
 
-	export let className = "";
+	export let className: Undefinable<string> = undefined;
 	export let id: Undefinable<string> = undefined;
 	export let list: Undefinable<string> = undefined;
 	export let max: Undefinable<number> = undefined;
@@ -14,7 +16,7 @@
 	export let value: Undefinable<number> = undefined;
 </script>
 
-<label class="{styles.label} {className}">
+<label class="{classnames(styles.label, className)}">
 	<slot />
 	<input
 		bind:value

@@ -15,6 +15,10 @@ export function isLongitude(value: number): boolean {
 	return value >= -180 && value <= 180;
 }
 
+export function isNonEmptyString(value: unknown): value is string {
+	return typeof value === "string" && value.length > 0;
+}
+
 export function isNonNegativeInteger(value: unknown): value is number {
 	return isInteger(value) && value >= 0;
 }

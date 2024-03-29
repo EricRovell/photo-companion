@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { path } from "svelte-pathfinder";
+	import { swipable, type SwipeEvent } from "ui/actions";
 
-	import { swipable, type SwipeEvent } from "@lib/actions/swipable";
 	import { pageTransition } from "@lib/helpers/view-transition";
 	import { navigationStore, getTabUrl } from "@lib/stores/navigation";
 	import styles from "./with-swipe.module.css";

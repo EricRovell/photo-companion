@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { classnames } from "utils";
+
 	import styles from "./icon.module.css";
 
-	export let className = "";
+	export let className: Undefinable<string> = undefined;
 	export let title: Undefinable<string> = undefined;
 	export let viewBox = "0 0 256 256";
 	export let path: Undefinable<string> = undefined;
@@ -11,7 +13,7 @@
 
 <svg
 	aria-labelledby={title}
-	class="{styles.icon} {className}"
+	class="{classnames(styles.icon, className)}"
 	role="presentation"
 	{viewBox}
 	{...$$restProps}

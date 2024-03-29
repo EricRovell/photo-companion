@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
+	import { classnames } from "utils";
 	import { incrementDateByDay } from "utils/date";
 
 	import { getDatetimeString } from "./input-datetime.helpers";
@@ -14,7 +15,7 @@
 		PREVIOUS_DAY: string;
 	}
 
-	export let className = "";
+	export let className: Undefinable<string> = undefined;
 	export let dict: Dict;
 	export let max: Undefinable<string> = undefined;
 	export let min: Undefinable<string> = undefined;
@@ -42,7 +43,7 @@
 	};
 </script>
 
-<form on:submit|preventDefault class="{styles.form} {className}">
+<form on:submit|preventDefault class="{classnames(styles.form, className)}">
 	<Button
 		className="{styles["button-increment"]}"
 		data-step="-1"

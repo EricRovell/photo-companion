@@ -64,7 +64,7 @@
 <div class="{styles.page}">
 	<h2>{$t.TITLE.SETTINGS}</h2>
 	<Form on:submit="{handlePersist}" on:change={handleChange}>
-		<Fieldset legend="{$t.LABEL.LIGHTS_CITY}" id="lang">
+		<Fieldset legend="{$t.LABEL.LANGUAGE}" id="lang">
 			<InputRadio
 				name="language"
 				options={LANGUAGE_OPTIONS}

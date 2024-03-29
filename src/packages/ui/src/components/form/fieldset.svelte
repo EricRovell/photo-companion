@@ -1,11 +1,12 @@
 <script lang="ts">
-	import styles from "./form.module.css";
+	import { classnames } from "utils";
+import styles from "./form.module.css";
 
-	export let className = "";
+	export let className: Undefinable<string> = undefined;
 	export let legend: Undefinable<string> = undefined;
 </script>
 
-<fieldset class="{styles.fieldset} {className}" {...$$restProps}>
+<fieldset class="{classnames(styles.fieldset, className)}" {...$$restProps}>
 	{#if legend}
 		<legend>
 			{legend}

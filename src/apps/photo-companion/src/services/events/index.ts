@@ -28,7 +28,7 @@ export function initTimelineProvider(options: Partial<Options>) {
 		}
 	}
 
-	function getEvents(date = new Date(), latidude: number, longitude: number) {
+	function getEvents(date = new Date(), latitude: number, longitude: number) {
 		if (!isValidDate(date)) {
 			return [];
 		}
@@ -47,7 +47,7 @@ export function initTimelineProvider(options: Partial<Options>) {
 
 			const events = (providerType === "DATE")
 				? provider(date)
-				: provider(date, latidude, longitude);
+				: provider(date, latitude, longitude);
 
 			for (const event of events) {
 				if (eventFilterSet.has(event.name)) {

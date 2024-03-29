@@ -8,8 +8,11 @@
 </script>
 
 <script lang="ts">
+	import { classnames } from "utils";
+
 	import styles from "./input-select.module.css";
 
+	export let className: Undefinable<string> = undefined;
 	export let disabled = false;
 	export let name: string;
 	export let options: InputSelectOption[];
@@ -20,7 +23,7 @@
 	}
 </script>
 
-<label class="{styles.wrapper}">
+<label class="{classnames(styles.wrapper, className)}">
 	<slot />
 	<select
 		bind:value
