@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { classnames } from "utils";
+
 	import styles from "./link.module.css";
 
 	export let block = false;
-	export let className = "";
+	export let className: string | undefined = undefined;
 	export let current: Undefinable<"page" | "step" | "location" | "date" | "time"> = undefined;
 	export let download: undefined | string = undefined;
 	export let href: string;
@@ -21,7 +23,7 @@
 
 <a
 	bind:this="{ref}"
-	class="{styles.link} {className}"
+	class="{classnames(styles.link, className)}"
 	class:block
 	aria-current="{current}"
 	aria-label="{label}"

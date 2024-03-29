@@ -3,6 +3,7 @@ import {
 	isInteger,
 	isLatitude,
 	isLongitude,
+	isNonEmptyString,
 	isNonNegativeInteger,
 	isNullable,
 	isNonNullable,
@@ -84,6 +85,18 @@ describe("validators utilities", () => {
 		it("does not pass unsafe integer values as an integer", () => {
 			expect(isNonNegativeInteger(Number.MAX_SAFE_INTEGER + 1)).toBe(false);
 			expect(isNonNegativeInteger(Number.MIN_SAFE_INTEGER - 1)).toBe(false);
+		});
+	});
+	describe("isNonEmptyString", () => {
+		it("Passes on a valid not empty string", () => {
+			expect(isNonEmptyString("123")).toBe(true);
+			expect(isNonEmptyString("Hello world!")).toBe(true);
+		});
+		it("Does not pass on a valid not empty string", () => {
+			expect(isNonEmptyString(null)).toBe(false);
+			expect(isNonEmptyString(false)).toBe(false);
+			expect(isNonEmptyString(NaN)).toBe(false);
+			expect(isNonEmptyString("")).toBe(false);
 		});
 	});
 	describe("isNullable", () => {

@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { classnames } from "utils";
+	
+	import styles from "./input-checkbox.module.css";
+	
 	type SymbolType = Nullish<"CHECK" | "CROSS" | "MINUS">;
 
-	import styles from "./input-checkbox.module.css";
-
 	export let checked: Undefinable<boolean> = undefined;
+	export let className: string | undefined = undefined;
 	export let disabled: Undefinable<boolean> = undefined;
 	export let indeterminate: Nullable<boolean> = undefined;
 	export let label: Undefinable<string> = undefined;
@@ -21,7 +24,7 @@
 	};
 </script>
 
-<label class="{styles.label}">
+<label class="{classnames(styles.label, className)}">
 	<input
 		bind:this="{ref}"
 		class="{styles.input}"

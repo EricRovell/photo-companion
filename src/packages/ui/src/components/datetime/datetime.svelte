@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { classnames } from "utils";
+
 	import styles from "./datetime.module.css";
 
+	export let className: string | undefined = undefined;
 	export let value: string;
 </script>
 
-<time class="{styles.datetime}">
+<time class="{classnames(styles.datetime, className)}">
 	{value}
 </time>
