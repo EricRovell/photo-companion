@@ -12,7 +12,7 @@
 
 	import styles from "./input-select.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let disabled = false;
 	export let name: string;
 	export let options: InputSelectOption[];

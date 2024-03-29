@@ -4,7 +4,7 @@
 	import styles from "./link.module.css";
 
 	export let block = false;
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let current: Undefinable<"page" | "step" | "location" | "date" | "time"> = undefined;
 	export let download: undefined | string = undefined;
 	export let href: string;

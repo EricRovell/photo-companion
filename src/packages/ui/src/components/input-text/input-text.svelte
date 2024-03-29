@@ -3,7 +3,7 @@
 
 	import styles from "./input-text.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let inputmode: Undefinable<"numeric" | "text"> = undefined;
 	export let maxlength: Undefinable<number> = undefined;
 	export let minlength: Undefinable<number> = undefined;

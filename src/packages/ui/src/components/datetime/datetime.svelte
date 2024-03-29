@@ -3,7 +3,7 @@
 
 	import styles from "./datetime.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let value: string;
 </script>
 

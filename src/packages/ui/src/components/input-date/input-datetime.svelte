@@ -15,7 +15,7 @@
 		PREVIOUS_DAY: string;
 	}
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let dict: Dict;
 	export let max: Undefinable<string> = undefined;
 	export let min: Undefinable<string> = undefined;

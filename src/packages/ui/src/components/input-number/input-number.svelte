@@ -3,7 +3,7 @@
 
 	import styles from "./input-number.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let id: Undefinable<string> = undefined;
 	export let list: Undefinable<string> = undefined;
 	export let max: Undefinable<number> = undefined;

@@ -3,7 +3,7 @@
 
 	import styles from "./form.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 </script>
 
 <form

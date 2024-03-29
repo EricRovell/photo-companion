@@ -3,7 +3,7 @@
 
 	import styles from "./details.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let open = false;
 	export let title: Undefinable<string> = undefined;
 </script>

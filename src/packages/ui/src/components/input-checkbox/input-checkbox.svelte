@@ -6,7 +6,7 @@
 	type SymbolType = Nullish<"CHECK" | "CROSS" | "MINUS">;
 
 	export let checked: Undefinable<boolean> = undefined;
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let disabled: Undefinable<boolean> = undefined;
 	export let indeterminate: Nullable<boolean> = undefined;
 	export let label: Undefinable<string> = undefined;

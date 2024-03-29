@@ -3,7 +3,7 @@
 
 	import styles from "./button.module.css";
 
-	export let className: string | undefined = undefined;
+	export let className: Undefinable<string> = undefined;
 	export let disabled = false;
 	export let appearance: "ghost" | "fill" | "outline" = "fill";
 	export let color: Nullable<"success" | "danger"> = undefined;
