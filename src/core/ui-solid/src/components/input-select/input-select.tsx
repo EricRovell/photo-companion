@@ -2,7 +2,7 @@ import { splitProps, For } from "solid-js";
 import { classnames } from "utils";
 
 import type { InputSelectProps } from "./input-select.types";
-import styles from "./icon.module.css";
+import styles from "./input-select.module.css";
 
 export function InputSelect(allProps: InputSelectProps) {
 	const [ props, rest ] = splitProps(allProps, [ "class", "children", "options" ]);

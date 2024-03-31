@@ -2,7 +2,7 @@ import { Show, splitProps, mergeProps, createEffect  } from "solid-js";
 import { classnames } from "utils";
 
 import type { CheckboxIconProps, InputCheckboxProps } from "./input-checkbox.types";
-import styles from "./icon.module.css";
+import styles from "./input-checkbox.module.css";
 
 const DEFAULT_PROPS: InputCheckboxProps = {
 	symbolChecked: "CHECK",

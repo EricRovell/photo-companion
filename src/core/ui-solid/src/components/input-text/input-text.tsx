@@ -2,7 +2,7 @@ import { splitProps  } from "solid-js";
 import { classnames } from "utils";
 
 import type { InputTextProps } from "./input-text.types";
-import styles from "./icon.module.css";
+import styles from "./input-text.module.css";
 
 export function InputText(allProps: InputTextProps) {
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);

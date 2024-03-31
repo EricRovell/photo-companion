@@ -2,7 +2,7 @@ import { splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { TimeProps } from "./time.types";
-import styles from "./datetime.module.css";
+import styles from "./time.module.css";
 
 export function Time(allProps: TimeProps) {
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
