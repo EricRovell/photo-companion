@@ -8,6 +8,9 @@
 		},
 		"./icons": {
 			"import": "./src/icons/index.ts"
+		},
+		"./styles/*.css": {
+			"import": "./src/styles/*.css"
 		}
 	},
 	"keywords": [
