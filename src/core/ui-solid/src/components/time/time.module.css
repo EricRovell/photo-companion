@@ -1,0 +1,7 @@
+.time {
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: var(--time-font-size, inherit);
+	color: var(--time-color, inherit);
+}

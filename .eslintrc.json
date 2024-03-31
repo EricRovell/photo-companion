@@ -15,7 +15,8 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module",
 		"extraFileExtensions": [
-			".svelte"
+			".svelte",
+			"tsx"
 		],
 		"project": [
 			"./tsconfig.base.json",
