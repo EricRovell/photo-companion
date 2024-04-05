@@ -8,7 +8,8 @@
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"plugin:svelte/recommended"
+		"plugin:svelte/recommended",
+		"plugin:solid/typescript"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -28,7 +29,6 @@
 		"DateLike": true,
 		"Nullable": true,
 		"Nullish": true,
-		"Optional": true,
 		"Undefinable": true
 	},
 	"overrides": [
@@ -44,7 +44,8 @@
 		"svelte3/typescript": true
 	},
 	"plugins": [
-		"@typescript-eslint"
+		"@typescript-eslint",
+		"solid"
 	],
 	"rules": {
 		"no-self-assign": "off",
