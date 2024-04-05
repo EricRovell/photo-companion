@@ -23,6 +23,7 @@ export function Link(allProps: LinkProps) {
 	return (
 		<a
 			class={classnames(styles.link, props.class)}
+			href={props.href}
 			target={target()}
 			rel={rel()}
 			{...rest}

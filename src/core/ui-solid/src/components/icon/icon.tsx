@@ -15,7 +15,7 @@ export function Icon(allProps: IconProps) {
 	return (
 		<svg
 			aria-labelledby={props.title}
-			class={classnames(styles.button, props.class)}
+			class={classnames(styles.icon, props.class)}
 			role="presentation"
 			{...rest}
 		>

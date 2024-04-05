@@ -9,10 +9,5 @@ interface Dict {
 
 export interface InputDatetimeProps extends JSX.InputHTMLAttributes<HTMLInputElement> {
 	dict: Dict;
-}
-
-export interface IncrementDateButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
-	iconPath: string;
-	step: 1 | -1;
-	title: string;
+	onDatetimeChange?: (value: string) => void;
 }

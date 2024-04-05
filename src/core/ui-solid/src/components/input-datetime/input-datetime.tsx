@@ -1,76 +1,65 @@
 import { classnames } from "utils";
 import { incrementDateByDay } from "utils/date";
-import { createSignal, splitProps } from "solid-js";
+import { splitProps } from "solid-js";
 
 import { getDatetimeString } from "./input-datetime.helpers";
 import { iconTimeline, iconChevronLeft, iconChevronRight } from "../../icons";
 import { Button } from "../button/button";
 import { Icon } from "../icon/icon";
-import type { InputDatetimeProps, IncrementDateButtonProps } from "./input-datetime.types";
+import type { InputDatetimeProps } from "./input-datetime.types";
 import styles from "./input-datetime.module.css";
-
-function IncrementDayButton(allProps: IncrementDateButtonProps) {
-	const [ props, rest ] = splitProps(allProps, [ "iconPath", "step" ]);
-
-	return (
-		<Button
-			class={styles["button-increment"]}
-			data-step={props.step}
-			{...rest}
-		>
-			<Icon
-				viewBox="0 0 256 256"
-				path={props.iconPath}
-			/>
-		</Button>
-	);
-}
 
 export function InputDatetime(allProps: InputDatetimeProps) {
 	const [ props, rest ] = splitProps(allProps, [
 		"class",
 		"children",
 		"dict",
-		"onChange"
+		"onChange",
+		"onDatetimeChange"
 	]);
 
-	const [ value, setValue ] = createSignal<string>(getDatetimeString());
+	let inputRef: Undefinable<HTMLInputElement>;
 
 	const handleReset = () => {
-		setValue(getDatetimeString());
+		props.onDatetimeChange?.(getDatetimeString());
 	};
 
-	const handleClick = (event: Event) => {
+	const handleIncrement = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const step = Number(target.dataset.step);
-		const nextValue = getDatetimeString(incrementDateByDay(value(), step));
-		setValue(nextValue);
+		const value = inputRef!.value;
+
+		const nextValue = getDatetimeString(incrementDateByDay(value, step));
+		props.onDatetimeChange?.(nextValue);
 	};
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
-		setValue(target.value);
-		//props.onChange?.(value());
+		props.onDatetimeChange?.(target.value);
 	};
 
 	return (
-		<form
-			class={classnames(styles.form, props.class)}
-			onSubmit={(event: SubmitEvent) => event.preventDefault()}
-		>
-			<IncrementDayButton
-				iconPath={iconChevronLeft}
-				onClick={handleClick}
-				step={-1}
+		<form class={classnames(styles.form, props.class)}>
+			<Button
+				class={styles["button-increment"]}
+				data-step={-1}
+				onClick={handleIncrement}
+				type="button"
 				title={props.dict.PREVIOUS_DAY}
-			/>
-			<div>
-				<label>
+			>
+				<Icon
+					viewBox="0 0 256 256"
+					path={iconChevronLeft}
+				/>
+			</Button>
+			<div class={styles["input-wrapper"]}>
+				<label class={styles.label}>
 					{props.children}
 					<input
 						aria-label={props.dict.DATETIME}
 						class={styles.input}
 						onChange={handleChange}
+						ref={inputRef}
 						type="datetime-local"
 						{...rest}
 					/>
@@ -79,16 +68,23 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 					class={styles.button}
 					onClick={handleReset}
 					title={props.dict.NOW}
+					type="button"
 				>
 					<Icon path={iconTimeline} />
 				</Button>
 			</div>
-			<IncrementDayButton
-				iconPath={iconChevronRight}
-				onClick={handleClick}
-				step={1}
+			<Button
+				class={styles["button-increment"]}
+				data-step={1}
+				onClick={handleIncrement}
+				type="button"
 				title={props.dict.NEXT_DAY}
-			/>
+			>
+				<Icon
+					viewBox="0 0 256 256"
+					path={iconChevronRight}
+				/>
+			</Button>
 		</form>
 	);
 }

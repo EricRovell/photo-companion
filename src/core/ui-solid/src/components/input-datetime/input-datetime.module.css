@@ -32,8 +32,8 @@
 }
 
 .label {
-	justify-self: center;
 	display: grid;
+	justify-self: center;
 	align-items: center;
 	width: fit-content;
 	text-align: center;
