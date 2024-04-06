@@ -1,0 +1,37 @@
+.moon {
+	--moon-illumination-color: lightblue;
+	--moon-shadow-color: rgb(51 56 77);
+
+	transition: transform 0.35s linear;
+}
+
+.shadow {
+	fill: var(--moon-shadow-color);
+}
+
+.diff {
+	fill: var(--moon-illumination-color);
+	transform: rotateY(var(--moon-disk-angle));
+	transform-origin: 50% 50%;
+
+	&.dark {
+		fill: var(--moon-shadow-color);
+	}
+}
+
+.semicircle {
+	opacity: 0;
+	fill: var(--moon-illumination-color);
+
+	&[data-left] {
+		clip-path: inset(0 50% 0 0);
+	}
+
+	&[data-right] {
+		clip-path: inset(0 0 0 50%);
+	}
+
+	&.visible {
+		opacity: 1;
+	}
+}

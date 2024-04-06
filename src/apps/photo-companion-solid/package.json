@@ -1,18 +1,28 @@
 {
 	"name": "photo-companion-solid",
+	"description": "Minimalistic photography toolkit progressive web application.",
 	"private": true,
-	"version": "0.0.0",
+	"version": "2.21.1",
 	"type": "module",
+	"author": "Eric Rovell",
+	"license": "MIT",
+	"homepage": "https://github.com/EricRovell/photo-companion#readme",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview"
 	},
+	"keywords": [
+		"photography",
+		"scheduler",
+		"web-application"
+	],
 	"dependencies": {
-		"solid-js": "^1.8.16",
+		"@solidjs/router": "^0.13.1",
 		"bridge-schedule": "workspace:*",
 		"lights-schedule": "workspace:*",
 		"moon-sun-calc": "workspace:*",
+		"solid-js": "^1.8.16",
 		"types": "workspace:*",
 		"ui-solid": "workspace:*",
 		"utils": "workspace:*",

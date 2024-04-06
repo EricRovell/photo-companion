@@ -1,26 +1,39 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+	"compilerOptions": {
+		"target": "ES2021",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"lib": [
+			"ES2020",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"skipLibCheck": true,
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"baseUrl": "./",
+		"paths": {
+			"@lib/*": [ "./src/lib/*" ],
+			"@signals": [ "src/lib/signals/index.ts" ],
+			"@signals/*": [ "src/lib/signals/*" ],
+			"@stores": [ "src/lib/stores/index.ts" ],
+			"@stores/*": [ "src/lib/stores/*" ],
+		}
+	},
+	"include": [
+		"src",
+		"../../../global.d.ts"
+	],
+	"references": [
+		{ "path": "./tsconfig.node.json" }
+	]
 }
