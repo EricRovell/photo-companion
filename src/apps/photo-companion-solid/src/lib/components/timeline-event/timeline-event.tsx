@@ -54,7 +54,7 @@ export function TimelineEvent(props: EventProps) {
 		<li
 			class={styles.event}
 			//aria-current={props.current ? "date" : undefined}
-			aria-secondary={props.secondary ? "" : undefined}
+			data-secondary={props.secondary ? "" : undefined}
 			data-event-name={props.event.name}
 		>
 			<Time>
