@@ -24,9 +24,9 @@ export function PageLights() {
 				schedule={schedule()}
 			/>
 			<LightsInfo
-				provider={provider()}
+				city={provider().city}
 				schedule={schedule()}
-				state={state()}
+				lights={state().lights}
 			/>
 			<LightsTimeline />
 		</div>

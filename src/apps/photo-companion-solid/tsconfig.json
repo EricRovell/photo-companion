@@ -23,8 +23,6 @@
 		"baseUrl": "./",
 		"paths": {
 			"@lib/*": [ "./src/lib/*" ],
-			"@signals": [ "src/lib/signals/index.ts" ],
-			"@signals/*": [ "src/lib/signals/*" ],
 			"@stores": [ "src/lib/stores/index.ts" ],
 			"@stores/*": [ "src/lib/stores/*" ],
 		}

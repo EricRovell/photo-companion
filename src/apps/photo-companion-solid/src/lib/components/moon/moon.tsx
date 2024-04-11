@@ -1,6 +1,6 @@
 import { mergeProps } from "solid-js";
+import { createTweened } from "ui-solid/primitives";
 
-import { createTween } from "@signals";
 import { DEFAULT_PROPS } from "./moon.const";
 import { getNormalizedAngleRad, getNormalizedPhase } from "./moon.helpers";
 import type { CircleCommonProps, CircleProps, MoonProps } from "./moon.types";
@@ -15,7 +15,7 @@ export function createCircle(commonProps: CircleCommonProps) {
 
 export function Moon(allProps: MoonProps) {
 	const props = mergeProps(DEFAULT_PROPS, allProps);
-	const phase = createTween(() => props.phase);
+	const phase = createTweened(() => props.phase);
 
 	const viewBox = () => `0 0 ${props.size} ${props.size}`;
 	const center = () => props.size / 2;

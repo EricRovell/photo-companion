@@ -1,13 +1,13 @@
+import { type ParentProps, Show, mergeProps } from "solid-js";
+import { createTweened } from "ui-solid/primitives";
+import { isNonNegativeInteger } from "utils/validators";
+
 import { Label } from "./gauge-label";
+import { Pointer } from "./gauge-pointer";
 import { CurrentPointer } from "./gauge-pointer-current";
 import { Marks, MarksWrapper } from "./gauge-marks";
 import { checkIsPointerActive, describeArc } from "./gauge.helpers";
-
 import styles from "./gauge.module.css";
-import { type ParentProps, Show, mergeProps } from "solid-js";
-import { Pointer } from "./gauge-pointer";
-import { isNonNegativeInteger } from "utils/validators";
-import { createTween } from "@lib/signals";
 
 interface GaugeProps {
 	angleStart?: number;
@@ -38,8 +38,8 @@ const DEFAULT_PROPS = {
 export function Gauge(allProps: ParentProps<GaugeProps>) {
 	const props = mergeProps(DEFAULT_PROPS, allProps);
 
-	const angleStart = createTween(() => props.angleStart);
-	const angleEnd = createTween(() => props.angleEnd);
+	const angleStart = createTweened(() => props.angleStart);
+	const angleEnd = createTweened(() => props.angleEnd);
 
 	return (
 		<svg

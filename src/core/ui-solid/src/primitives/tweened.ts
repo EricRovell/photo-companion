@@ -5,14 +5,14 @@
 import { createSignal, createEffect, onCleanup, on } from "solid-js";
 import { isServer } from "solid-js/web";
 
-export interface TweenProps {
+export interface TweenedProps {
 	duration?: number;
 	ease?: (t: number) => number;
 }
 
-type CreateTween = (target: () => number, options?: TweenProps) => () => number
+type CreateTweened = (target: () => number, options?: TweenProps) => () => number
 
-const LINEAR: TweenProps["ease"] = t => t;
+const LINEAR: TweenedProps["ease"] = t => t;
 
 const DEFAULT_OPTIONS = {
 	ease: LINEAR,
@@ -23,7 +23,7 @@ const DEFAULT_OPTIONS = {
  * Creates a tween signal.
  * 
  */
-export const createTween: CreateTween = (target, options = DEFAULT_OPTIONS) => {
+export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) => {
 	if (isServer) {
 		return target;
 	}

@@ -3,6 +3,8 @@ type Nullish<T> = T | null;
 type DateLike = Date | number;
 type Undefinable<T> = T | undefined;
 
+type VoidFunction = () => void;
+
 /**
  * Returns optional keys of an object.
  */

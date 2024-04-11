@@ -9,7 +9,6 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@lib": resolve(__dirname, "./src/lib"),
-			"@signals": resolve(__dirname, "./src/lib/signals"),
 			"@stores": resolve(__dirname, "./src/lib/stores")
 		}
 	}
