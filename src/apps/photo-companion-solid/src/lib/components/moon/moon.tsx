@@ -37,7 +37,8 @@ export function Moon(allProps: MoonProps) {
 			viewBox={viewBox()}
 			style={{
 				"--moon-disk-angle": `${getNormalizedAngleRad(phase())}rad`,
-				"--moon-rotation": `${props.rotation}deg`
+				"--moon-rotation": `${props.rotation}deg`,
+				"transform": `rotate(${props.rotation}deg)`
 			}}
 		>
 			<Circle class={styles.shadow} />

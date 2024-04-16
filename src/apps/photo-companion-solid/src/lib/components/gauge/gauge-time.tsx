@@ -6,8 +6,8 @@ import { getAngleFromTime } from "@lib/helpers";
 
 interface Props {
 	date: Date;
-	timeStart?: Date;
-	timeEnd?: Date;
+	timeStart: Nullish<Date>;
+	timeEnd: Nullish<Date>;
 	pointerAngle?: number;
 }
 

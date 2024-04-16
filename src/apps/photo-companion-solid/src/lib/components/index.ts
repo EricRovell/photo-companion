@@ -1,8 +1,14 @@
 export { Bulb } from "./bulb/bulb";
+//export { default as CardBridge } from "./card-bridge/card-bridge.svelte";
 export { CardInfo, CardEntry } from "./card-info";
+export { ElevationGraph} from "./elevation-graph";
+//export { default as Event } from "./event/event.svelte";
 export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";
+//export { default as EventEmpty } from "./event/event.empty.svelte";
 export { Gauge } from "./gauge/gauge";
 export { GaugeTime } from "./gauge/gauge-time";
+//export { default as GaugeTime } from "./gauge/gauge-time.svelte";
+//export { default as InputCheckboxGroup } from "./input-checkbox-group/input-checkbox-group.svelte";
 export { Moon } from "./moon/moon";
 export { Sun } from "./sun/sun";
 export { TimelineGroup, Timeline } from "./timeline/timeline";
