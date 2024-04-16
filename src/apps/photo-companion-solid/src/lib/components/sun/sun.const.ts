@@ -2,7 +2,7 @@ import type { SunEventName } from "types";
 
 export const DEFAULT_PROPS = {
 	fallbackColor: "gold",
-	event: "",
+	event: "SOLAR_NOON" as SunEventName,
 	size: 100
 };
 

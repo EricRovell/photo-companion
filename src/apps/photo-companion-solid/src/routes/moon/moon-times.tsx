@@ -2,7 +2,6 @@ import { classnames } from "utils";
 
 import { t } from "@lib/stores/lang";
 import { GaugeTime, Moon } from "@lib/components";
-import { getAngleFromTime } from "@lib/helpers";
 import styles from "./moon.module.css";
 import type { MoonData } from "../../services/moon";
 
@@ -22,7 +21,6 @@ export const MoonTimes = (props: MoonTimesProps) => (
 			date={props.date}
 			timeStart={props.state.moonrise}
 			timeEnd={props.state.moonset}
-			pointerAngle={getAngleFromTime(props.date)}
 		>
 			<foreignObject
 				x={-MOON_SIZE / 2}

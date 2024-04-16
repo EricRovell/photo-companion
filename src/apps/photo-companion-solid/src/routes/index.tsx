@@ -4,11 +4,15 @@ import { Root } from "@lib/layout/root/root";
 import { PageTimeline } from "./timeline/timeline.page";
 import { PageLights } from "./lights/lights.page";
 import { WithDate } from "@lib/layout/with-date/with-date";
+import { PageMoon } from "./moon/moon.page";
+import { PageSun } from "./sun/sun.page";
 
 const WITH_DATE_ROUTES = [
 	"/",
 	"timeline",
-	"lights"
+	"lights",
+	"moon",
+	"sun"
 ];
 
 export function Routes() {
@@ -18,6 +22,8 @@ export function Routes() {
 			<Route path={WITH_DATE_ROUTES} component={WithDate}>
 				<Route path={[ "/", "timeline" ]} component={PageTimeline} />
 				<Route path={[ "lights" ]} component={PageLights} />
+				<Route path={[ "moon" ]} component={PageMoon} />
+				<Route path={[ "sun" ]} component={PageSun} />
 			</Route>
 		</Router>
 	);

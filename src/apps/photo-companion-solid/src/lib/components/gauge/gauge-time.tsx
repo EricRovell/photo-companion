@@ -6,9 +6,8 @@ import { getAngleFromTime } from "@lib/helpers";
 
 interface Props {
 	date: Date;
-	timeStart: Nullish<Date>;
-	timeEnd: Nullish<Date>;
-	pointerAngle?: number;
+	timeStart: Nullish<DateLike>;
+	timeEnd: Nullish<DateLike>;
 }
 
 export function GaugeTime(props: ParentProps<Props>) {

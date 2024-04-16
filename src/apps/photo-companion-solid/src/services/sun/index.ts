@@ -7,6 +7,8 @@ import type { SunEvent } from "types";
 
 import { formatDegrees, formatTimeDuration, formatTimeShort } from "@stores/lang";
 
+export type SunData = ReturnType<typeof getSunData>;
+
 export const getSunData = (date: Date = new Date, lat: number, lon: number) => {
 	const suntimes = getSunTimes(date, lat, lon);
 	const position = getSunPosition(date, lat, lon, true);

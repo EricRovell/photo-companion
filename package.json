@@ -10,6 +10,7 @@
 		"build": "pnpm --filter ./src/apps/photo-companion run build",
 		"clean": "pnpm -r exec rm -rf node_modules",
 		"dev": "pnpm --filter photo-companion run dev",
+		"dev:solid": "pnpm --filter photo-companion-solid run dev",
 		"test:unit": "vitest run",
 		"test:unit:ci": "vitest run --coverage",
 		"lint:all": "pnpm lint:code && pnpm lint:types && pnpm lint:styles && pnpm lint:svelte",
