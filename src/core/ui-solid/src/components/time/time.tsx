@@ -8,7 +8,7 @@ export function Time(allProps: TimeProps) {
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
 
 	return (
-		<time class={classnames(styles.datetime, props.class)} {...rest}>
+		<time class={classnames(styles.time, props.class)} {...rest}>
 			{props.children}
 		</time>
 	);

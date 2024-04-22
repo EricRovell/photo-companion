@@ -4,4 +4,5 @@
 	align-items: center;
 	font-size: var(--time-font-size, inherit);
 	color: var(--time-color, inherit);
+	font-variant-numeric: tabular-nums;
 }

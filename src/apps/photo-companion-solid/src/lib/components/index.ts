@@ -1,5 +1,6 @@
 export { Bulb } from "./bulb/bulb";
 //export { default as CardBridge } from "./card-bridge/card-bridge.svelte";
+export { Countdown } from "./countdown";
 export { CardInfo, CardEntry } from "./card-info";
 export { ElevationGraph} from "./elevation-graph";
 //export { default as Event } from "./event/event.svelte";
