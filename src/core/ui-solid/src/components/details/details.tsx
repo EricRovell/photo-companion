@@ -1,7 +1,7 @@
 import { splitProps, mergeProps  } from "solid-js";
 import { classnames } from "utils";
 
-import { DetailsProps } from "./details.types";
+import type { DetailsProps } from "./details.types";
 import styles from "./details.module.css";
 
 const DEFAULT_PROPS: Partial<DetailsProps> = {

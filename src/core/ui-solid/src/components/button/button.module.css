@@ -1,4 +1,5 @@
 .button {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -9,6 +10,7 @@
 	color: inherit;
 	cursor: pointer;
 	background-color: var(--color-surface-3);
+	transition: background-color 0.25s linear;
 
 	&:hover {
 		background-color: var(--color-surface-4);
@@ -79,5 +81,34 @@
 
 	&:active {
 		background-color: hsl(0deg 90% 45%);
+	}
+}
+
+.button[data-loading] {
+	color: transparent;
+	pointer-events: none;
+
+	&::after {
+		--button-loader-size: 1em;
+	
+		content: '';
+		position: absolute;
+		top: calc(50% - var(--button-loader-size) / 2);
+		right: calc(50% - var(--button-loader-size) / 2);
+		width: var(--button-loader-size);
+		height: var(--button-loader-size);
+		border-radius: 50%;
+		box-shadow: 1px 0px 0px 0px grey inset;
+		animation: .7s button-loader linear infinite;
+		background: transparent;
+	}
+}
+
+@keyframes button-loader {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
 	}
 }

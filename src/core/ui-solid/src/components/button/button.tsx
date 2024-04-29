@@ -1,11 +1,13 @@
-import { mergeProps, splitProps } from "solid-js";
+import { Show, mergeProps, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { ButtonProps } from "./button.types";
 import styles from "./button.module.css";
 
 const DEFAULT_PROPS: ButtonProps = {
-	appearance: "fill"
+	appearance: "fill",
+	loading: false,
+	type: "button"
 };
 
 export function Button(allProps: ButtonProps) {
@@ -14,6 +16,7 @@ export function Button(allProps: ButtonProps) {
 		"appearance",
 		"children",
 		"class",
+		"loading",
 		"variant"
 	]);
 
@@ -22,6 +25,7 @@ export function Button(allProps: ButtonProps) {
 			class={classnames(styles.button, props.class)}
 			data-appearance={props.appearance}
 			data-variant={props.variant}
+			data-loading={props.loading ? "" : undefined}
 			{...rest}
 		>
 			{props.children}

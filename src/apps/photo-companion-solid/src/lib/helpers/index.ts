@@ -122,7 +122,7 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
 /**
  * Sets the boolean attribute depending on state.
  */
-export function setAttribute(state: boolean) {
+export function setAttribute(state?: boolean) {
 	return state ? "" : undefined;
 }
 

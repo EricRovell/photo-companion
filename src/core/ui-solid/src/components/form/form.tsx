@@ -8,7 +8,7 @@ export function Form(allProps: FormProps) {
 	const [ props, rest ] = splitProps(allProps, [ "children", "class" ]);
 
 	return (
-		<form class={classnames(styles.button, props.class)} {...rest}>
+		<form class={classnames(styles.form, props.class)} {...rest}>
 			{props.children}
 		</form>
 	);
@@ -22,7 +22,7 @@ export function Fieldset(allProps: FieldsetProps) {
 	]);
 
 	return (
-		<fieldset class={classnames(styles.button, props.class)} {...rest}>
+		<fieldset class={classnames(styles.fieldset, props.class)} {...rest}>
 			<Show when={props.legend}>
 				<legend>
 					{props.legend}

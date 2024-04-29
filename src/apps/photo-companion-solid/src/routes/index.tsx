@@ -7,6 +7,7 @@ import { WithDate } from "@lib/layout/with-date/with-date";
 import { PageMoon } from "./moon/moon.page";
 import { PageSun } from "./sun/sun.page";
 import { PageBridges } from "./bridges/bridges.page";
+import { PageSettings } from "./settings/settings.page";
 
 const WITH_DATE_ROUTES = [
 	"/",
@@ -27,6 +28,7 @@ export function Routes() {
 				<Route path={"/sun"} component={PageSun} />
 			</Route>
 			<Route path={"/bridges"} component={PageBridges} />
+			<Route path={"/settings"} component={PageSettings} />
 		</Router>
 	);
 }

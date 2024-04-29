@@ -16,7 +16,6 @@ export function InputRadio(allProps: InputRadioProps) {
 		<Index each={props.options}>
 			{item => (
 				<label class={classnames(styles.label, props.class)}>
-					{props.children}
 					<input
 						class={styles.radio}
 						checked={props.value === item().value}
@@ -25,6 +24,8 @@ export function InputRadio(allProps: InputRadioProps) {
 						value={item().value}
 						{...rest}
 					/>
+					<span />
+					{item().label}
 				</label>
 			)}
 		</Index>

@@ -17,7 +17,7 @@ const PATH = {
 
 function CheckboxIcon(props: CheckboxIconProps) {
 	return (
-		<svg class="{styles.box}" viewBox="0 0 256 256">
+		<svg class={styles.box} viewBox="0 0 256 256">
 			<Show when={props.symbolChecked}>
 				{item => <path data-checked d={PATH[item()]} />}
 			</Show>
