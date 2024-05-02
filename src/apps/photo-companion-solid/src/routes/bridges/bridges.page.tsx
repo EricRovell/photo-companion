@@ -3,7 +3,7 @@ import { For } from "solid-js";
 import { Button, Icon } from "ui-solid";
 import { iconChevronDown } from "ui-solid/icons";
 
-import { CardBridge } from "@lib/components/card-bridge/card-bridge";
+import { CardBridge } from "@lib/components";
 import { t } from "@lib/stores/lang";
 import { BridgeNextEvent } from "./bridges-next-event";
 import { BridgesNavigationEvent } from "./bridges-navigation-event";

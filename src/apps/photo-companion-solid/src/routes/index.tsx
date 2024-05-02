@@ -8,6 +8,7 @@ import { PageMoon } from "./moon/moon.page";
 import { PageSun } from "./sun/sun.page";
 import { PageBridges } from "./bridges/bridges.page";
 import { PageSettings } from "./settings/settings.page";
+import { PageAbout } from "./about/about.page";
 
 const WITH_DATE_ROUTES = [
 	"/",
@@ -17,18 +18,16 @@ const WITH_DATE_ROUTES = [
 	"sun"
 ];
 
-export function Routes() {
-
-	return (
-		<Router root={Root}>
-			<Route path={WITH_DATE_ROUTES} component={WithDate}>
-				<Route path={[ "/", "timeline" ]} component={PageTimeline} />
-				<Route path={"/lights"} component={PageLights} />
-				<Route path={"/moon"} component={PageMoon} />
-				<Route path={"/sun"} component={PageSun} />
-			</Route>
-			<Route path={"/bridges"} component={PageBridges} />
-			<Route path={"/settings"} component={PageSettings} />
-		</Router>
-	);
-}
+export const Routes = () => (
+	<Router root={Root}>
+		<Route path={WITH_DATE_ROUTES} component={WithDate}>
+			<Route path={[ "/", "timeline" ]} component={PageTimeline} />
+			<Route path={"/lights"} component={PageLights} />
+			<Route path={"/moon"} component={PageMoon} />
+			<Route path={"/sun"} component={PageSun} />
+		</Route>
+		<Route path={"/bridges"} component={PageBridges} />
+		<Route path={"/settings"} component={PageSettings} />
+		<Route path={"/about"} component={PageAbout} />
+	</Router>
+);
