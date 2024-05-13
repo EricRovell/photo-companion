@@ -58,38 +58,3 @@
 		}
 	}
 }
-
-.next-event-info {
-	display: grid;
-	justify-items: center;
-	gap: var(--space-2);
-	padding-block-end: var(--space-4);
-
-	time {
-		--timer-size: 1.5rem;
-
-		border: none;
-	}
-
-	span {
-		font-variation-settings: "wght" 600;
-	}
-}
-
-.navigation-info {
-	--icon-size: 2rem;
-
-	display: grid;
-	justify-items: center;
-	gap: var(--space-2);
-	padding-block-end: var(--space-4);
-
-	&[data-closed] {
-		--card-border-color: var(--color-danger);
-	}
-
-	p:last-of-type {
-		font-size: var(--font-size-5);
-		font-variation-settings: "wght" 600;
-	}
-}

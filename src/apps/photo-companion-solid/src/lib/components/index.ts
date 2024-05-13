@@ -1,5 +1,4 @@
 export { Bulb } from "./bulb/bulb";
-export { CardBridge } from "./card-bridge/card-bridge";
 export { Countdown } from "./countdown";
 export { CardInfo, CardEntry } from "./card-info";
 export { ElevationGraph} from "./elevation-graph";

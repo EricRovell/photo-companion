@@ -3,10 +3,8 @@ import { For } from "solid-js";
 import { Button, Icon } from "ui-solid";
 import { iconChevronDown } from "ui-solid/icons";
 
-import { CardBridge } from "@lib/components";
+import { CardBridge, NavigationEvent, NextBridgeEvent } from "./components";
 import { t } from "@lib/stores/lang";
-import { BridgeNextEvent } from "./bridges-next-event";
-import { BridgesNavigationEvent } from "./bridges-navigation-event";
 import styles from "./bridges.module.css";
 
 const BridgeList = () => (
@@ -34,8 +32,8 @@ export function PageBridges() {
 				<BridgeList />
 			</div>
 			<aside>
-				<BridgesNavigationEvent />
-				<BridgeNextEvent />
+				<NavigationEvent />
+				<NextBridgeEvent />
 				<Button
 					appearance="ghost"
 					onClick={() => {

@@ -4,9 +4,9 @@ import { iconAnchor } from "ui-solid/icons";
 import { classnames } from "utils";
 
 import { formatDays, t } from "@stores/lang";
-import styles from "./bridges.module.css";
+import styles from "./navigation-event.module.css";
 
-export function BridgesNavigationEvent() {
+export function NavigationEvent() {
 	const { navigation, days} = getNavigationState(new Date());
 
 	return (

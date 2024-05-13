@@ -3,8 +3,8 @@ import { Show, createMemo, createSignal } from "solid-js";
 import { Icon } from "ui-solid";
 import { iconWarning } from "ui-solid/icons";
 
+import { Countdown } from "@lib/components";
 import { t } from "@lib/stores/lang";
-import { Countdown } from "../countdown";
 import type { BridgeName } from "types";
 import { BridgeSparkline } from "./card-bridge-sparkline";
 import styles from "./card-bridge.module.css";
