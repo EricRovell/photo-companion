@@ -1,16 +1,29 @@
+import replace from "@rollup/plugin-replace";
+import { compileServiceWorker, getCommitHash } from "./plugins/compile-service-worker";
 import { defineConfig } from "vite";
+import { resolve } from "node:path";
 import solid from "vite-plugin-solid";
 import solidMarkedPlugin from "vite-plugin-solid-marked";
-import { resolve } from "node:path";
+import pluginPostCssNesting from "postcss-nesting";
 
 export default defineConfig({
-	plugins: [
-		solid({
-			extensions: [
-				".md"
+	css: {
+		postcss: {
+			plugins: [
+				pluginPostCssNesting
 			]
+		}
+	},
+	plugins: [
+		replace({
+			preventAssignment: false,
+			values: {
+				"__COMMIT_HASH__": () => getCommitHash(true)
+			}
 		}),
-		solidMarkedPlugin({})
+		solid({ extensions: [ ".md" ] }),
+		solidMarkedPlugin({}),
+		compileServiceWorker
 	],
 	resolve: {
 		alias: {
