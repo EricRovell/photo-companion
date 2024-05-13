@@ -110,7 +110,7 @@ export const timeShortFormatter = getDateTimeFormatter({
  * template("Hello, {name}!", {}) -> "Hello, name!"
  */
 export function template(input: string, dict: Record<string, string | number>, regex = /{(.*?)}/g): string {
-	const replacer = (match: string, capture: string) => {
+	const replacer = (_match: string, capture: string) => {
 		const trimmedCapture = capture.trim();
 		const replaceValue = dict[trimmedCapture];
 		

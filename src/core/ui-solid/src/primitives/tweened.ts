@@ -10,7 +10,7 @@ export interface TweenedProps {
 	ease?: (t: number) => number;
 }
 
-type CreateTweened = (target: () => number, options?: TweenProps) => () => number
+type CreateTweened = (target: () => number, options?: TweenedProps) => () => number
 
 const LINEAR: TweenedProps["ease"] = t => t;
 

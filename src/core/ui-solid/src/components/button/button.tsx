@@ -1,4 +1,4 @@
-import { Show, mergeProps, splitProps } from "solid-js";
+import { mergeProps, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { ButtonProps } from "./button.types";

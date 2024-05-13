@@ -1,7 +1,5 @@
 import { t } from "@stores/lang";
 import { Bulb, GaugeTime } from "@lib/components";
-
-import { getAngleFromTime } from "@lib/helpers";
 import type { LightsSchedule } from "types";
 
 interface Props {
@@ -19,7 +17,6 @@ export const LightGauge = (props: Props) => (
 			date={props.date}
 			timeStart={new Date(props.schedule.LIGHTS_START)}
 			timeEnd={new Date(props.schedule.LIGHTS_END)}
-			pointerAngle={getAngleFromTime(props.date)}
 		>
 			<Bulb
 				x="-10"
