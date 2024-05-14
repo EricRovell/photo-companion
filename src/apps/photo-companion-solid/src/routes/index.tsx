@@ -9,25 +9,26 @@ import { PageSun } from "./sun/sun.page";
 import { PageBridges } from "./bridges/bridges.page";
 import { PageSettings } from "./settings/settings.page";
 import { PageAbout } from "./about/about.page";
+import { ROUTE } from "@lib/routes";
 
 const WITH_DATE_ROUTES = [
-	"/",
-	"timeline",
-	"lights",
-	"moon",
-	"sun"
+	ROUTE.ROOT,
+	ROUTE.TIMELINE,
+	ROUTE.LIGHTS,
+	ROUTE.MOON,
+	ROUTE.SUN
 ];
 
 export const Routes = () => (
 	<Router root={Root}>
 		<Route path={WITH_DATE_ROUTES} component={WithDate}>
-			<Route path={[ "/", "timeline" ]} component={PageTimeline} />
-			<Route path={"/lights"} component={PageLights} />
-			<Route path={"/moon"} component={PageMoon} />
-			<Route path={"/sun"} component={PageSun} />
+			<Route path={[ ROUTE.ROOT, ROUTE.TIMELINE ]} component={PageTimeline} />
+			<Route path={ROUTE.LIGHTS} component={PageLights} />
+			<Route path={ROUTE.MOON} component={PageMoon} />
+			<Route path={ROUTE.SUN} component={PageSun} />
 		</Route>
-		<Route path={"/bridges"} component={PageBridges} />
-		<Route path={"/settings"} component={PageSettings} />
-		<Route path={"/about"} component={PageAbout} />
+		<Route path={ROUTE.BRIDGES} component={PageBridges} />
+		<Route path={ROUTE.SETTINGS} component={PageSettings} />
+		<Route path={ROUTE.ABOUT} component={PageAbout} />
 	</Router>
 );

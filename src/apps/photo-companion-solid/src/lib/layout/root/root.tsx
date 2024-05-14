@@ -5,7 +5,7 @@ import { iconGithub, iconQuestion, iconSettings } from "ui-solid/icons";
 
 import { title, version } from "@lib/constants";
 import { Navigation } from "@lib/components/navigation/navigation";
-import { routeAbout, routeChangelog, routeSettings, urlGithub } from "@lib/routes";
+import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/routes";
 import { t } from "@lib/stores/lang";
 import { scrollToTop } from "@lib/helpers";
 import { settings } from "@stores/settings";
@@ -20,7 +20,7 @@ const Header = () => (
 			<nav>
 				<Link
 					class={styles.icon}
-					href={routeSettings}
+					href={ROUTE_SETTINGS}
 					onClick={scrollToTop}
 					title={t().TITLE.SETTINGS}
 				>
@@ -28,7 +28,7 @@ const Header = () => (
 				</Link>
 				<Link
 					class={styles.icon}
-					href={routeAbout}
+					href={ROUTE_ABOUT}
 					onClick={scrollToTop}
 					title={t().TITLE.ABOUT}
 				>
@@ -43,10 +43,10 @@ const Footer = () => (
 	<footer class={styles.footer}>
 		<div class={styles.content}>
 			<p>
-				{title}, <Link href={routeChangelog}>v.{version}</Link> 
+				{title}, <Link href={ROUTE_CHANGELOG}>v.{version}</Link> 
 				<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">#__COMMIT_HASH__</Link>
 			</p>
-			<Link href={urlGithub}>
+			<Link href={URL_GITHUB_REPO}>
 				<Icon path={iconGithub} viewBox="0 0 36 36" />
 				<span>Github</span>
 			</Link>
