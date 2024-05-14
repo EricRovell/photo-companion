@@ -46,7 +46,7 @@
 	transition: var(--transition-bg);
 
 	&:active {
-		background-color: var(--color-surface-2);
+		background-color: var(--color-surface-4);
 	}
 
 	&:focus-visible {
@@ -83,6 +83,10 @@
 		&:hover {
 			background-color: var(--color-surface-3);
 			color: inherit;
+		}
+
+		&:hover:active {
+			background-color: var(--color-surface-2);
 		}
 	}
 }

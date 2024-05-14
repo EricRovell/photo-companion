@@ -1,18 +1,20 @@
+import { For } from "solid-js";
 import { Icon, Link } from "ui-solid";
 
-import { navigation, getTabData } from "@lib/stores/navigation";
+import { navigation, getTabData, type NavigationRoute } from "@lib/stores/navigation";
 import { scrollToTop } from "@lib/helpers";
-import { NavigationRoute } from "@lib/stores/navigation/navigation.types";
 import { t } from "@stores/lang";
-import { For } from "solid-js";
 
 import styles from "./navigation.module.css";
+import { useMatch } from "@solidjs/router";
 
 function NavigationItem(props: NavigationRoute) {
+	const match = useMatch(() => props.href);
 
 	return (
 		<li>
 			<Link
+				aria-current={match() ? "page" : undefined}
 				class={styles.link}
 				href={props.href}
 				onClick={scrollToTop}
@@ -28,20 +30,17 @@ function NavigationItem(props: NavigationRoute) {
 	);
 }
 
-export function Navigation() {
-
-	return (
-		<nav
-			class={styles.navigation}
-			style={{
-				"--navigation-items-count": navigation().length
-			}}
-		>
-			<ul class={styles["nav-items"]}>
-				<For each={navigation()}>
-					{item => <NavigationItem {...getTabData(item)} />}
-				</For>
-			</ul>
-		</nav>
-	);
-}
+export const Navigation = () => (
+	<nav
+		class={styles.navigation}
+		style={{
+			"--navigation-items-count": navigation().length
+		}}
+	>
+		<ul class={styles["nav-items"]}>
+			<For each={navigation()}>
+				{item => <NavigationItem {...getTabData(item)} />}
+			</For>
+		</ul>
+	</nav>
+);
