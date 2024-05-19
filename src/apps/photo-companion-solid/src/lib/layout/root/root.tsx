@@ -1,5 +1,5 @@
 import { type ParentProps, onMount } from "solid-js";
-import { useSearchParams } from "@solidjs/router";
+import { useMatch, useSearchParams } from "@solidjs/router";
 import { Link, Icon } from "ui-solid";
 import { iconGithub, iconQuestion, iconSettings } from "ui-solid/icons";
 
@@ -11,30 +11,44 @@ import { scrollToTop } from "@lib/helpers";
 import { settings } from "@stores/settings";
 import styles from "./root.module.css";
 
+/**
+ * TODO: links should have some visual indicator.
+ */
+function SecondaryNavigation() {
+	const matchSettings = useMatch(() => ROUTE_SETTINGS);
+	const matchAbout = useMatch(() => ROUTE_ABOUT);
+
+	return (
+		<nav>
+			<Link
+				aria-current={matchSettings() ? "page" : undefined}
+				class={styles.icon}
+				href={ROUTE_SETTINGS}
+				onClick={scrollToTop}
+				title={t().TITLE.SETTINGS}
+			>
+				<Icon path={iconSettings} viewBox="0 0 256 256" />
+			</Link>
+			<Link
+				aria-current={matchAbout() ? "page" : undefined}
+				class={styles.icon}
+				href={ROUTE_ABOUT}
+				onClick={scrollToTop}
+				title={t().TITLE.ABOUT}
+			>
+				<Icon path={iconQuestion} viewBox="0 0 256 256" />
+			</Link>
+		</nav>
+	);
+}
+
 const Header = () => (
 	<header class={styles.header}>
 		<div class={styles.content}>
 			<Link href="{getTabUrl($navigationStore[0])}{$query}">
 				<h1>{title}</h1>
 			</Link>
-			<nav>
-				<Link
-					class={styles.icon}
-					href={ROUTE_SETTINGS}
-					onClick={scrollToTop}
-					title={t().TITLE.SETTINGS}
-				>
-					<Icon path={iconSettings} viewBox="0 0 256 256" />
-				</Link>
-				<Link
-					class={styles.icon}
-					href={ROUTE_ABOUT}
-					onClick={scrollToTop}
-					title={t().TITLE.ABOUT}
-				>
-					<Icon path={iconQuestion} viewBox="0 0 256 256" />
-				</Link>
-			</nav>
+			<SecondaryNavigation />
 		</div>
 	</header>
 );
