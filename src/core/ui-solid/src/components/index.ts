@@ -9,6 +9,7 @@ export { InputRadio } from "./input-radio/input-radio";
 export { InputSelect } from "./input-select/input-select";
 export { InputText } from "./input-text/input-text";
 export { Link } from "./link/link";
+export { Modal } from "./modal/modal";
 export { Time } from "./time/time";
 
 export type { InputRadioOption } from "./input-radio/input-radio.types";

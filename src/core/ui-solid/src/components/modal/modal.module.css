@@ -1,0 +1,75 @@
+.dialog {
+	display: grid;
+	border: none;
+	background-color: transparent;
+	transition: opacity 0.35s ease-in-out;
+
+	&::backdrop {
+		background-color: rgb(0 0 0 / 50%);
+		backdrop-filter: blur(2px);
+		overscroll-behavior-y: contain;
+	}
+
+	&:not([open]) {
+		pointer-events: none;
+		opacity: 0;
+	}
+}
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.modal {
+	display: grid;
+	border-radius: var(--radius);
+	background-color: var(--color-surface-1);
+	border: 3px solid var(--color-surface-2);
+	width: min(85vw, 450px);
+	overscroll-behavior-y: contain;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	width: 100%;
+	text-align: center;
+	border-bottom: 3px solid var(--color-surface-2);
+	padding: var(--space-2) var(--space-4);
+
+	& > button {
+		width: fit-content;
+		aspect-ratio: 1;
+		padding: var(--space-2);
+	}
+
+	& > h2 {
+		font-size: var(--font-size-5);
+		font-weight: 500;
+	}
+}
+
+.body {
+	display: grid;
+	justify-items: center;
+	gap: var(--space-4);
+	padding: var(--space-4);
+	width: 100%;
+	max-height: 80vh;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+
+	/* TODO: move into update modal styles */
+	p {
+		text-align: center;
+		font-size: var(--font-size-4);
+	}
+}
