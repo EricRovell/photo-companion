@@ -2,7 +2,6 @@ import { For } from "solid-js";
 import { Icon, Link } from "ui-solid";
 
 import { navigation, getTabData, type NavigationRoute } from "@lib/stores/navigation";
-import { scrollToTop } from "@lib/helpers";
 import { t } from "@stores/lang";
 
 import styles from "./navigation.module.css";
@@ -17,7 +16,6 @@ function NavigationItem(props: NavigationRoute) {
 				aria-current={match() ? "page" : undefined}
 				class={styles.link}
 				href={props.href}
-				onClick={scrollToTop}
 			>
 				<Icon
 					class={styles.icon}
@@ -33,9 +31,7 @@ function NavigationItem(props: NavigationRoute) {
 export const Navigation = () => (
 	<nav
 		class={styles.navigation}
-		style={{
-			"--navigation-items-count": navigation().length
-		}}
+		style={{ "--navigation-items-count": navigation().length }}
 	>
 		<ul class={styles["nav-items"]}>
 			<For each={navigation()}>
