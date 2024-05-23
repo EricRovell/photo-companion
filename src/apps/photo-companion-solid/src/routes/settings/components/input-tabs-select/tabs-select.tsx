@@ -1,6 +1,5 @@
 import { For, createEffect, createSignal, mergeProps } from "solid-js";
-import { Button, Icon, InputCheckbox } from "ui-solid"; 
-import { iconArrowDown, iconArrowUp } from "ui-solid/icons";
+import { Button, IconArrowDown, IconArrowUp, InputCheckbox } from "ui-solid"; 
 
 import { useTranslation } from "@lib/context";
 import { NAVIGATION_TABS } from "@lib/components/navigation/navigation.const";
@@ -49,7 +48,7 @@ export function TabSelect(props: TabSelectProps) {
 				onClick={props.onMove}
 				type="button"
 			>
-				<Icon path={iconArrowDown} />
+				<IconArrowDown />
 			</Button>
 			<Button
 				appearance="ghost"
@@ -58,7 +57,7 @@ export function TabSelect(props: TabSelectProps) {
 				onClick={props.onMove}
 				type="button"
 			>
-				<Icon path={iconArrowUp} />
+				<IconArrowUp />
 			</Button>
 		</li>
 	);

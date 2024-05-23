@@ -3,9 +3,8 @@ import { incrementDateByDay } from "utils/date";
 import { splitProps } from "solid-js";
 
 import { getDatetimeString } from "./input-datetime.helpers";
-import { iconTimeline, iconChevronLeft, iconChevronRight } from "../../icons";
 import { Button } from "../button/button";
-import { Icon } from "../icon/icon";
+import { IconTimeline, IconChevronLeft, IconChevronRight } from "../icon";
 import type { InputDatetimeProps } from "./input-datetime.types";
 import styles from "./input-datetime.module.css";
 
@@ -47,10 +46,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				type="button"
 				title={props.dict.PREVIOUS_DAY}
 			>
-				<Icon
-					viewBox="0 0 256 256"
-					path={iconChevronLeft}
-				/>
+				<IconChevronLeft />
 			</Button>
 			<div class={styles["input-wrapper"]}>
 				<label class={styles.label}>
@@ -70,7 +66,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 					title={props.dict.NOW}
 					type="button"
 				>
-					<Icon path={iconTimeline} />
+					<IconTimeline />
 				</Button>
 			</div>
 			<Button
@@ -80,9 +76,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				type="button"
 				title={props.dict.NEXT_DAY}
 			>
-				<Icon
-					viewBox="0 0 256 256"
-					path={iconChevronRight}
+				<IconChevronRight
 				/>
 			</Button>
 		</form>

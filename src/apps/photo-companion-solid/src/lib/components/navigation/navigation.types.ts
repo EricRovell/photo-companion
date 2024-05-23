@@ -1,3 +1,6 @@
+import type { IconProps } from "ui-solid";
+import type { Component } from "solid-js";
+
 export type NavigationTabName =
 	| "TIMELINE"
 	| "LIGHTS"
@@ -8,6 +11,6 @@ export type NavigationTabName =
 export interface NavigationRoute {
 	href: string;
 	disabled?: boolean;
-	icon: string;
+	Icon: Component<IconProps>;
 	label: NavigationTabName;
 }

@@ -1,6 +1,5 @@
 export {
 	Button,
-	Datetime,
 	Details,
 	Form,
 	Fieldset,
@@ -12,6 +11,6 @@ export {
 	InputRadio,
 	InputSelect,
 	Link,
-	type Option,
+	Time,
 	type InputSelectOption
 } from "./components";

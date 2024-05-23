@@ -1,6 +1,5 @@
 import { For, Show } from "solid-js";
-import { Time, Icon } from "ui-solid";
-import { iconWarning } from "ui-solid/icons";
+import { Time, IconWarning } from "ui-solid";
 import { incrementDateByDay } from "utils/date";
 
 import { useTranslation } from "@lib/context";
@@ -17,7 +16,7 @@ function NoEvents() {
 	return (
 		<article class={styles.warning}>
 			<h2>{t().MESSAGE.EVENTS_ARE_DISABLED}</h2>
-			<Icon path={iconWarning} />
+			<IconWarning />
 		</article>
 	);
 }

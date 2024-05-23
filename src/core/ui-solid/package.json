@@ -6,9 +6,6 @@
 			"import": "./src/components/index.ts",
 			"default": "./src/components/index.ts"
 		},
-		"./icons": {
-			"import": "./src/icons/index.ts"
-		},
 		"./primitives": {
 			"import": "./src/primitives/index.ts"
 		},

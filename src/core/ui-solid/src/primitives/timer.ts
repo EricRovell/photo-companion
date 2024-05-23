@@ -24,7 +24,7 @@ type TimeoutSource = number | Accessor<number | false>;
  * @param timer The timer to create: {@link setTimeout} or {@link setInterval}.
  * @returns Function to manually clear the interval.
  */
-export function makeTimer(fn: VoidFunction, delay: number, timer: Timer): VoidFunction {
+export function makeTimer(fn: VoidFn, delay: number, timer: Timer): VoidFn {
 	if (isServer) {
 		return () => void 0;
 	}
@@ -46,7 +46,7 @@ export function makeTimer(fn: VoidFunction, delay: number, timer: Timer): VoidFu
  * the time between executions of {@link fn} in ms, or false to disable the timer.
  * @param timer The timer to create: {@link setTimeout} or {@link setInterval}.
  */
-export function createTimer(fn: VoidFunction, delay: TimeoutSource, timer: Timer): void {
+export function createTimer(fn: VoidFn, delay: TimeoutSource, timer: Timer): void {
 	if (isServer) {
 		return void 0;
 	}
@@ -132,7 +132,7 @@ export function createTimer(fn: VoidFunction, delay: TimeoutSource, timer: Timer
  * @param timeout Number or Function returning a number representing the time
  * between executions of {@link handler} in ms, or false to disable looping.
  */
-export function createTimeoutLoop(fn: VoidFunction, timeout: TimeoutSource): void {
+export function createTimeoutLoop(fn: VoidFn, timeout: TimeoutSource): void {
 	if (isServer) {
 		return void 0;
 	}

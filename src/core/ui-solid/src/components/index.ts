@@ -1,5 +1,6 @@
 export { Button } from "./button/button";
 export { Details } from "./details/details";
+export { Disclose } from "./disclose/disclose";
 export { Fieldset, Form } from "./form/form";
 export { Icon } from "./icon/icon";
 export { InputCheckbox } from "./input-checkbox/input-checkbox";
@@ -12,5 +13,25 @@ export { Link } from "./link/link";
 export { Modal } from "./modal/modal";
 export { Time } from "./time/time";
 
+export {
+	IconAnchor,
+	IconArrowDown,
+	IconArrowUp,
+	IconBridge,
+	IconChevronDown,
+	IconChevronLeft,
+	IconChevronRight,
+	IconClose,
+	IconGithub,
+	IconLights,
+	IconMoon,
+	IconQuestion,
+	IconSettings,
+	IconSun,
+	IconTimeline,
+	IconWarning
+} from "./icon";
+
 export type { InputRadioOption } from "./input-radio/input-radio.types";
 export type { InputSelectOption } from "./input-select/input-select.types";
+export type { IconProps } from "./icon/icon.types";

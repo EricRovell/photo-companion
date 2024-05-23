@@ -1,6 +1,5 @@
 import { getNavigationState } from "bridge-schedule";
-import { Icon } from "ui-solid";
-import { iconAnchor } from "ui-solid/icons";
+import { IconAnchor } from "ui-solid";
 import { classnames } from "utils";
 
 import { useTranslation } from "@lib/context";
@@ -29,7 +28,7 @@ export function NavigationEvent() {
 					{formatters().formatDays(days)}
 				</output>
 			</p>
-			<Icon path={iconAnchor} />
+			<IconAnchor />
 		</article>
 	);
 }

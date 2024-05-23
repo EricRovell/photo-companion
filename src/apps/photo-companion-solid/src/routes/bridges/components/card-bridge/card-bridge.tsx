@@ -1,8 +1,7 @@
 import { getBridgeScheduleEntry, getBridgeState } from "bridge-schedule";
 import { Show, createMemo, createSignal } from "solid-js";
 import type { BridgeName } from "types";
-import { Icon } from "ui-solid";
-import { iconWarning } from "ui-solid/icons";
+import { IconWarning } from "ui-solid";
 
 import { useTranslation } from "@lib/context";
 import { Countdown } from "@lib/components";
@@ -27,10 +26,7 @@ export function CardBridge(props: Props) {
 				<h2>
 					{t().BRIDGE_NAME_SPB[props.name]} {t().LABEL.BRIDGE}
 					<Show when={props.exception}>
-						<Icon
-							path={iconWarning}
-							title={t().MESSAGE.BRIDGE_EXCEPTION}
-						/>
+						<IconWarning title={t().MESSAGE.BRIDGE_EXCEPTION} />
 					</Show>
 				</h2>
 				<output>

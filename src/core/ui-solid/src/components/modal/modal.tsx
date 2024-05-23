@@ -2,8 +2,7 @@ import { createEffect, mergeProps, splitProps, type JSX } from "solid-js";
 import { classnames, preventPageScroll } from "utils";
 
 import { Button } from "../button/button";
-import { Icon } from "../icon/icon";
-import { iconClose } from "../../icons";
+import { IconClose } from "../icon";
 
 import styles from "./modal.module.css";
 
@@ -75,7 +74,7 @@ export function Modal(allProps: Props) {
 					<header class={styles.header}>
 						<h2>{props.title}</h2>
 						<Button onClick={handleClose}>
-							<Icon path={iconClose} />
+							<IconClose />
 						</Button>
 					</header>
 					<div class={styles.body}>

@@ -1,7 +1,6 @@
 import { SUPPORTED_BRIDGES_NAME_SET, isBridgeException } from "bridge-schedule";
 import { For } from "solid-js";
-import { Button, Icon } from "ui-solid";
-import { iconChevronDown } from "ui-solid/icons";
+import { Button, IconChevronDown } from "ui-solid";
 
 import { useTranslation } from "@lib/context";
 import { CardBridge, NavigationEvent, NextBridgeEvent } from "./components";
@@ -46,7 +45,7 @@ export function PageBridges() {
 							});
 					}}
 				>
-					<Icon path={iconChevronDown} />
+					<IconChevronDown />
 				</Button>
 			</aside>
 		</div>

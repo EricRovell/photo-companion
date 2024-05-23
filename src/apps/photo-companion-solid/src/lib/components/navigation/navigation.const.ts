@@ -1,4 +1,10 @@
-import { iconTimeline, iconLights, iconSun, iconMoon, iconBridge } from "ui-solid/icons";
+import {
+	IconTimeline,
+	IconLights,
+	IconSun,
+	IconMoon,
+	IconBridge
+} from "ui-solid";
 
 import { ROUTE } from "@lib/consts";
 import type { NavigationRoute, NavigationTabName } from "./navigation.types";
@@ -14,27 +20,27 @@ export const NAVIGATION_TABS: NavigationTabName[] = [
 export const NAVIGATION_TAB_DATA: Record<NavigationTabName, NavigationRoute> = {
 	TIMELINE: {
 		href: ROUTE.TIMELINE,
-		icon: iconTimeline,
+		Icon: IconTimeline,
 		label: "TIMELINE"
 	},
 	LIGHTS: {
 		href: ROUTE.LIGHTS,
-		icon: iconLights,
+		Icon: IconLights,
 		label: "LIGHTS"
 	},
 	SUN: {
 		href: ROUTE.SUN,
-		icon: iconSun,
+		Icon: IconSun,
 		label: "SUN"
 	},
 	MOON: {
 		href: ROUTE.MOON,
-		icon: iconMoon,
+		Icon: IconMoon,
 		label: "MOON"
 	},
 	BRIDGES: {
 		href: ROUTE.BRIDGES,
-		icon: iconBridge,
+		Icon: IconBridge,
 		label: "BRIDGES"
 	}
 };

@@ -98,7 +98,7 @@
 		width: var(--button-loader-size);
 		height: var(--button-loader-size);
 		border-radius: 50%;
-		box-shadow: 1px 0px 0px 0px grey inset;
+		box-shadow: 1px 0 0 0 grey inset;
 		animation: .7s button-loader linear infinite;
 		background: transparent;
 	}
@@ -108,6 +108,7 @@
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(359deg);
 	}

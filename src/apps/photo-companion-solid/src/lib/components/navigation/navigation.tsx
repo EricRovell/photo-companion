@@ -7,6 +7,7 @@ import type { NavigationRoute } from "./navigation.types";
 
 import styles from "./navigation.module.css";
 import { useMatch } from "@solidjs/router";
+import { Dynamic } from "solid-js/web";
 
 function NavigationItem(props: NavigationRoute) {
 	const match = useMatch(() => props.href);
@@ -19,11 +20,7 @@ function NavigationItem(props: NavigationRoute) {
 				class={styles.link}
 				href={props.href}
 			>
-				<Icon
-					class={styles.icon}
-					path={props.icon}
-					viewBox="0 0 256 256"
-				/>
+				<Dynamic component={props.Icon} class={styles.icon} />
 				<span>{t().TITLE[props.label]}</span>
 			</Link>
 		</li>

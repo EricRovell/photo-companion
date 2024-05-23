@@ -1,7 +1,6 @@
 import { type ParentProps, onMount } from "solid-js";
 import { useMatch, useSearchParams } from "@solidjs/router";
-import { Link, Icon } from "ui-solid";
-import { iconGithub, iconQuestion, iconSettings } from "ui-solid/icons";
+import { Link, IconGithub, IconQuestion, IconSettings } from "ui-solid";
 
 import { title, version } from "@lib/constants";
 import { Navigation } from "@lib/components/navigation/navigation";
@@ -29,7 +28,7 @@ function SecondaryNavigation() {
 				onClick={scrollToTop}
 				title={t().TITLE.SETTINGS}
 			>
-				<Icon path={iconSettings} viewBox="0 0 256 256" />
+				<IconSettings />
 			</Link>
 			<Link
 				aria-current={matchAbout() ? "page" : undefined}
@@ -38,7 +37,7 @@ function SecondaryNavigation() {
 				onClick={scrollToTop}
 				title={t().TITLE.ABOUT}
 			>
-				<Icon path={iconQuestion} viewBox="0 0 256 256" />
+				<IconQuestion />
 			</Link>
 		</nav>
 	);
@@ -63,7 +62,7 @@ const Footer = () => (
 				<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">#__COMMIT_HASH__</Link>
 			</p>
 			<Link href={URL_GITHUB_REPO}>
-				<Icon path={iconGithub} viewBox="0 0 36 36" />
+				<IconGithub />
 				<span>Github</span>
 			</Link>
 		</div>
