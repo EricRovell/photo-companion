@@ -1,12 +1,12 @@
 import { onMount } from "solid-js";
 import { Button, Modal } from "ui-solid";
-import { createBoolean } from "ui-solid/primitives";
+import { createToggle } from "ui-solid/primitives";
 
 import { useTranslation } from "@lib/context";
 
 export function UpdateService() {
 	const { t } = useTranslation();
-	const [ getShowModal, openModal, closeModal ] = createBoolean();
+	const [ getShowModal, toggle ] = createToggle();
 
 	let refreshing = false;
 	let newWorker: Nullable<ServiceWorker> = null;
@@ -33,7 +33,7 @@ export function UpdateService() {
 					newWorker = registration.installing;
 					newWorker?.addEventListener("statechange", () => {
 						if (newWorker?.state === "installed" && navigator.serviceWorker.controller) {
-							openModal();
+							toggle(true);
 						}
 					});
 				});
@@ -51,7 +51,7 @@ export function UpdateService() {
 		<Modal
 			title={t().TITLE.UPDATE}
 			open={getShowModal()}
-			onClose={closeModal}
+			onClose={() => toggle(false)}
 		>
 			<p>{t().MESSAGE.UPDATE}</p>
 			<Button onClick={handleReload}>
