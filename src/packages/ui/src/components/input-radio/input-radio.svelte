@@ -15,7 +15,7 @@
 	export let disabled = false;
 	export let name: string;
 	export let options: Option[] = [];
-	export let value: Optional<string>;
+	export let value: Undefinable<string>;
 
 	const handleChange: ChangeEventHandler<HTMLElement> = (event) => {
 		const target = event.target as HTMLInputElement;

@@ -6,7 +6,7 @@
  * Taking from <reference types="mdsvex/globals" />
  */
 declare module "*.mdx" {
-	import type { SvelteComponent } from "svelte";
+	import { SvelteComponent } from "svelte";
 
 	export default class Comp extends SvelteComponent {
 		$$prop_def: object;

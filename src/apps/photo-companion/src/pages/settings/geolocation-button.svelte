@@ -9,7 +9,7 @@
 	let disabled = false;
 	let message = $t.LABEL.ASK_DEVICE_GEOLOCATION;
 	let status: Nullable<"success" | "danger"> = undefined;
-	let timer: Optional<number> = undefined;
+	let timer: Undefinable<number> = undefined;
 
 	const handleResetState = () => {
 		timer = window.setTimeout(() => {
