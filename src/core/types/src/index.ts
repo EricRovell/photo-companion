@@ -123,8 +123,14 @@ export interface ScheduleDataItem {
 	timestamp: number
 }
 
+export type EventGroupName =
+	| "BRIDGE"
+	| "LIGHTS"
+	| "MOON"
+	| "SUN";
+
 export interface Event<
-	Type extends string,
+	Type extends EventGroupName,
 	Name extends string,
 	Data = Partial<Record<string, never>>
 > {
@@ -161,3 +167,5 @@ export type TimelineEvent =
 	LightsEvent |
 	MoonEvent |
 	SunEvent;
+
+export type Locale = "en" | "ru";

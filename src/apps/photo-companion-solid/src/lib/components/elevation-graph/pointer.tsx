@@ -18,11 +18,11 @@ const DEFAULT_PROPS = {
 
 export function GraphPointer(allProps: Props) {
 	const props = mergeProps(DEFAULT_PROPS, allProps);
-	const { latitude, longitude } = useLocation();
+	const { getLatitude, getLongitude } = useLocation();
 
 	const getPosition = () => createObjectCoordsGetter(props.getAltitude);
 	const position = createMemo(() => {
-		return getPosition()(props.date, latitude(), longitude());
+		return getPosition()(props.date, getLatitude(), getLongitude());
 	});
 
 	return (

@@ -1,11 +1,11 @@
+import { For, createEffect, createSignal, mergeProps } from "solid-js";
 import { Button, Icon, InputCheckbox } from "ui-solid"; 
 import { iconArrowDown, iconArrowUp } from "ui-solid/icons";
 
-import { t } from "@stores/lang";
-import { NAVIGATION_TABS } from "@lib/stores/navigation";
+import { useTranslation } from "@lib/context";
+import { NAVIGATION_TABS } from "@lib/components/navigation/navigation.const";
 import type { NavigationTabName } from "@lib/types";
 import styles from "./tabs-select.module.css";
-import { For, createEffect, createSignal, mergeProps } from "solid-js";
 
 type ChangeHandler = (name: string, value: NavigationTabName[]) => void;
 
@@ -24,6 +24,7 @@ interface TabSelectProps {
 }
 
 export function TabSelect(props: TabSelectProps) {
+	const { t } = useTranslation();
 	const checked = () => props.value.includes(props.tab);
 	const itemDisabled = () => (checked() && props.value.length <= 2) || (!checked() && props.value.length >= 5);
 	const disabledDown = () => props.index >= props.value.length - 1;

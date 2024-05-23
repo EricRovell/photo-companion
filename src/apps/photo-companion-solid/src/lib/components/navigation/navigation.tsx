@@ -1,14 +1,16 @@
 import { For } from "solid-js";
 import { Icon, Link } from "ui-solid";
 
-import { navigation, getTabData, type NavigationRoute } from "@lib/stores/navigation";
-import { t } from "@stores/lang";
+import { useTranslation } from "@lib/context";
+import { getTabData, useNavigationTabs } from "./navigation.helpers";
+import type { NavigationRoute } from "./navigation.types";
 
 import styles from "./navigation.module.css";
 import { useMatch } from "@solidjs/router";
 
 function NavigationItem(props: NavigationRoute) {
 	const match = useMatch(() => props.href);
+	const { t } = useTranslation();
 
 	return (
 		<li>
@@ -31,10 +33,10 @@ function NavigationItem(props: NavigationRoute) {
 export const Navigation = () => (
 	<nav
 		class={styles.navigation}
-		style={{ "--navigation-items-count": navigation().length }}
+		style={{ "--navigation-items-count": useNavigationTabs().length }}
 	>
 		<ul class={styles["nav-items"]}>
-			<For each={navigation()}>
+			<For each={useNavigationTabs()}>
 				{item => <NavigationItem {...getTabData(item)} />}
 			</For>
 		</ul>

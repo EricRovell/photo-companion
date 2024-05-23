@@ -1,24 +1,46 @@
 import { For, createMemo } from "solid-js";
+import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "@lib/components";
-import { initTimelineProvider } from "../../services/events";
-import { SUN_EVENT_NAMES } from "@lib/constants";
+import { useLocation, useTimelineProvider } from "@lib/hooks";
+import { getSunEvents } from "../../services/sun";
+import { getMoonEvents } from "../../services/moon";
 
 interface MoonTimelineProps {
 	date: Date;
-	latitude: number;
-	longitude: number;
 }
 
-const timelineProvider = initTimelineProvider({
-	moonEvents: [],
-	sunEvents: SUN_EVENT_NAMES.filter(item => item !== "SUNRISE_START" && item !== "SUNSET_END"),
-	secondaryEvents: new Set([ "SUNRISE_START", "SUNSET_END" ])
-});
+const TIMELINE_EVENT_SET = new Set<EventName>([
+	"SUNRISE_START",
+	"SUNRISE_END",
+	"MOONRISE",
+	"MOONSET"
+]);
+
+const SECONDARY_EVENT_SET = new Set<EventName>([
+	"SUNRISE_START",
+	"SUNRISE_END"
+]);
 
 export function MoonTimeline(props: MoonTimelineProps) {
+	const { getLatitude, getLongitude } = useLocation();
+
+	const { getTimeline } = useTimelineProvider({
+		providers: [
+			{
+				provider: getSunEvents,
+				type: "LOCATION"
+			},
+			{
+				provider: getMoonEvents,
+				type: "LOCATION"
+			}
+		],
+		predicate: event => TIMELINE_EVENT_SET.has(event.name)
+	});
+
 	const events = createMemo(() => {
-		return timelineProvider.getEvents(props.date, props.latitude, props.longitude);
+		return getTimeline(props.date, getLatitude(), getLongitude());
 	});
 
 	return (
@@ -28,7 +50,7 @@ export function MoonTimeline(props: MoonTimelineProps) {
 					{event => (
 						<TimelineEvent
 							event={event}
-							secondary={event.secondary}
+							secondary={SECONDARY_EVENT_SET.has(event.name)}
 						/>
 					)}
 				</For>

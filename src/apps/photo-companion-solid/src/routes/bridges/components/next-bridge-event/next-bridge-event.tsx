@@ -2,11 +2,13 @@ import { getNextBridgeEvent } from "bridge-schedule";
 import { createMemo, createSignal } from "solid-js";
 import { classnames } from "utils";
 
+import { useTranslation } from "@lib/context";
 import { Countdown } from "@lib/components";
-import { t } from "@stores/lang";
+
 import styles from "./next-bridge-event.module.css";
 
 export function NextBridgeEvent() {
+	const { t } = useTranslation();
 	const [ getDate, setDate ] = createSignal<number>(Date.now());
 	const state = createMemo(() => getNextBridgeEvent(new Date(getDate())));
 

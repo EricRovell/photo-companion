@@ -1,15 +1,16 @@
 import { createStore, unwrap } from "solid-js/store";
 import { Button, Fieldset, Form, InputCheckbox, InputRadio } from "ui-solid";
 
-import { t } from "@lib/stores/lang";
-import { LANGUAGE_OPTIONS } from "./settings.const";
-import styles from "./settings.module.css";
-import { resetSettings, setSettings, settings } from "@lib/stores/settings";
-import { SETTINGS_DEFAULT } from "@lib/stores/settings/settings.const";
+import { useSettings, SETTINGS_DEFAULT, useTranslation } from "@lib/context";
 import { InputGeolocation, InputEventFilters, InputTabsSelect } from "./components";
+import { LANGUAGE_OPTIONS } from "./settings.const";
+
+import styles from "./settings.module.css";
 
 export function PageSettings() {
-	const [ store, setStore ] = createStore(settings());
+	const { t } = useTranslation();
+	const { getSettings, setSettings, resetSettings } = useSettings();
+	const [ store, setStore ] = createStore(getSettings());
 
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;

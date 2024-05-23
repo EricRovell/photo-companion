@@ -22,9 +22,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"baseUrl": "./",
 		"paths": {
-			"@lib/*": [ "./src/lib/*" ],
-			"@stores": [ "src/lib/stores/index.ts" ],
-			"@stores/*": [ "src/lib/stores/*" ],
+			"@lib/*": [ "./src/lib/*" ]
 		}
 	},
 	"include": [

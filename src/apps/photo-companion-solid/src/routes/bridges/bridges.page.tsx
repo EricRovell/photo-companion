@@ -3,8 +3,9 @@ import { For } from "solid-js";
 import { Button, Icon } from "ui-solid";
 import { iconChevronDown } from "ui-solid/icons";
 
+import { useTranslation } from "@lib/context";
 import { CardBridge, NavigationEvent, NextBridgeEvent } from "./components";
-import { t } from "@lib/stores/lang";
+
 import styles from "./bridges.module.css";
 
 const BridgeList = () => (
@@ -23,6 +24,8 @@ const BridgeList = () => (
 );
 
 export function PageBridges() {
+	const { t } = useTranslation();
+
 	return (
 		<div class={styles.page}>
 			<div>

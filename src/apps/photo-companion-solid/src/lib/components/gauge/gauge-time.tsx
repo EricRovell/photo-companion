@@ -1,8 +1,8 @@
 import type { ParentProps } from "solid-js";
 
-import { formatTimeShort } from "@stores/lang";
 import { Gauge } from "./gauge";
 import { getAngleFromTime } from "@lib/helpers";
+import { useTranslation } from "@lib/context";
 
 interface Props {
 	date: Date;
@@ -11,13 +11,14 @@ interface Props {
 }
 
 export function GaugeTime(props: ParentProps<Props>) {
+	const { formatters } = useTranslation();
 
 	return (
 		<Gauge
 			angleStart={getAngleFromTime(props.timeStart)}
 			angleEnd={getAngleFromTime(props.timeEnd)}
-			labelStart={formatTimeShort(props.timeStart)}
-			labelEnd={formatTimeShort(props.timeEnd)}
+			labelStart={formatters().formatTimeShort(props.timeStart)}
+			labelEnd={formatters().formatTimeShort(props.timeEnd)}
 			pointerAngle={getAngleFromTime(props.date)}
 		>
 			{props.children}

@@ -1,6 +1,5 @@
 import { round } from "utils/math";
 
-import { formatTimeShort } from "@stores/lang";
 import { getDate } from "@lib/helpers";
 import { createWavyPath } from "@lib/helpers/svg";
 import styles from "./card-bridge.module.css";
@@ -9,6 +8,7 @@ import { mergeProps, For } from "solid-js";
 import type { BridgeSparklineProps, ScheduleEntry, SparklineProps, TimeProps, WaterPathProps } from "./card-bridge.types";
 import { DEFAULT_PROPS_SPARKLINE } from "./card-bridge.const";
 import { buildBridgeSparklinePath } from "./card-bridge.utils";
+import { useTranslation } from "@lib/context";
 
 const Sparkline = (props: SparklineProps) => (
 	<path
@@ -18,19 +18,23 @@ const Sparkline = (props: SparklineProps) => (
 	/>
 );
 
-const Time = (props: TimeProps) => (
-	<text
-		x={props.x}
-		y={props.y}
-		font-size={props.fontSize.toString()}
-		fill="white"
-	>
-		{formatTimeShort(props.date)}
-		<title>
-			{formatTimeShort(props.date)}
-		</title>
-	</text>
-);
+function Time(props: TimeProps) {
+	const { formatters } = useTranslation();
+
+	return (
+		<text
+			x={props.x}
+			y={props.y}
+			font-size={props.fontSize.toString()}
+			fill="white"
+		>
+			{formatters().formatTimeShort(props.date)}
+			<title>
+				{formatters().formatTimeShort(props.date)}
+			</title>
+		</text>
+	);
+}
 
 const WaterPath = (props: WaterPathProps) => (
 	<path

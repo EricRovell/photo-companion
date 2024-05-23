@@ -3,10 +3,12 @@ import { Icon } from "ui-solid";
 import { iconAnchor } from "ui-solid/icons";
 import { classnames } from "utils";
 
-import { formatDays, t } from "@stores/lang";
+import { useTranslation } from "@lib/context";
+
 import styles from "./navigation-event.module.css";
 
 export function NavigationEvent() {
+	const { t, formatters } = useTranslation();
 	const { navigation, days} = getNavigationState(new Date());
 
 	return (
@@ -24,7 +26,7 @@ export function NavigationEvent() {
 			<p>{t().MESSAGE.NAVIGATION_IN}</p>
 			<p>
 				<output>
-					{formatDays(days)}
+					{formatters().formatDays(days)}
 				</output>
 			</p>
 			<Icon path={iconAnchor} />

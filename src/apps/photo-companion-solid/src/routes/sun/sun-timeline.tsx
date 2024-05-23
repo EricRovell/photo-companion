@@ -1,22 +1,25 @@
-import { For, createMemo } from "solid-js";
+import { For } from "solid-js";
 
 import { Timeline, TimelineEvent } from "@lib/components";
-import { initTimelineProvider } from "../../services/events";
+import { useLocation, useTimelineProvider } from "@lib/hooks";
+import { getSunEvents } from "../../services/sun";
 
 interface SunTimelineProps {
 	date: Date;
-	latitude: number;
-	longitude: number;
 }
 
-const timelineProvider = initTimelineProvider({
-	sunEvents: []
-});
-
 export function SunTimeline(props: SunTimelineProps) {
-	const events = createMemo(() => {
-		return timelineProvider.getEvents(props.date, props.latitude, props.longitude);
+	const { getLatitude, getLongitude } = useLocation();
+	const { getTimeline } = useTimelineProvider({
+		providers: [
+			{
+				provider: getSunEvents,
+				type: "LOCATION"
+			}
+		]
 	});
+
+	const events = () => getTimeline(props.date, getLatitude(), getLongitude());
 
 	return (
 		<section data-label="timeline">

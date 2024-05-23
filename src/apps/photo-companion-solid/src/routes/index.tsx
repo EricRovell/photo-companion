@@ -9,7 +9,7 @@ import { PageSun } from "./sun/sun.page";
 import { PageBridges } from "./bridges/bridges.page";
 import { PageSettings } from "./settings/settings.page";
 import { PageAbout } from "./about/about.page";
-import { ROUTE } from "@lib/routes";
+import { ROUTE } from "@lib/consts";
 
 const WITH_DATE_ROUTES = [
 	ROUTE.ROOT,

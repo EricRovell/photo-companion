@@ -1,9 +1,11 @@
-import { t } from "@lib/stores/lang";
 import { onMount } from "solid-js";
 import { Button, Modal } from "ui-solid";
 import { createBoolean } from "ui-solid/primitives";
 
+import { useTranslation } from "@lib/context";
+
 export function UpdateService() {
+	const { t } = useTranslation();
 	const [ getShowModal, openModal, closeModal ] = createBoolean();
 
 	let refreshing = false;

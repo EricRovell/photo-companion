@@ -16,12 +16,11 @@ const MEMO_OPTIONS = {
 };
 
 export function GraphPath(props: Props) {
-	const { latitude, longitude } = useLocation();
-
+	const { getLatitude, getLongitude } = useLocation();
 	const buildPath = () => createPathBuilder(props.getAltitude);
 
 	const path = createMemo(() => {
-		return buildPath()(props.date, latitude(), longitude());
+		return buildPath()(props.date, getLatitude(), getLongitude());
 	}, MEMO_OPTIONS);
 
 	return (

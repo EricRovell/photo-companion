@@ -1,8 +1,8 @@
 import { createSignal, onCleanup } from "solid-js";
 import { Button } from "ui-solid";
 
-import { t } from "@lib/stores/lang";
 import { getUserLocation } from "@lib/helpers";
+import { useTranslation } from "@lib/context";
 
 type Status = Nullish<"success" | "danger" | "loading">;
 
@@ -11,6 +11,7 @@ interface GeolocationButtonProps {
 }
 
 export function GeolocationButton(props: GeolocationButtonProps) {
+	const { t } = useTranslation();
 	const MESSAGE = {
 		loading: () => "loading",
 		success: () => t().MESSAGE.DATA_UPDATE_SUCCESS,

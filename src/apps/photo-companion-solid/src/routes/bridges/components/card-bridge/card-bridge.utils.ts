@@ -1,4 +1,4 @@
-import { BridgeScheduleEntry } from "bridge-schedule";
+import type { BridgeScheduleEntry } from "bridge-schedule";
 
 interface Params {
 	schedule: BridgeScheduleEntry;

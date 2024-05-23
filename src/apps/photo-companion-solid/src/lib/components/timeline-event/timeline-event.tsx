@@ -1,11 +1,10 @@
+import { Show } from "solid-js";
+import { Dynamic } from "solid-js/web";
 import { Time, Link } from "ui-solid";
+import type { TimelineEvent } from "types";
+//import { createQueryDate } from "@lib/helpers";
 
-import { formatTimeShort, formatDatetime, type Translation, t } from "@lib/stores/lang";
-import { lightsEventComponent } from "./timeline-event-lights";
-import { bridgeEventComponent } from "./timeline-event-bridge";
-import { sunEventComponent } from "./timeline-event-sun";
-import { moonEventComponent } from "./timeline-event-moon";
-
+import { useTranslation } from "@lib/context";
 import {
 	isBridgeEvent,
 	isLightsEvent,
@@ -13,14 +12,17 @@ import {
 	isSunEvent
 } from "@lib/helpers/validators";
 
-//import { createQueryDate } from "@lib/helpers";
-import type { TimelineEvent } from "types";
-import styles from "./event.module.css";
-import type { Accessor } from "solid-js";
-import { Dynamic } from "solid-js/web";
-import { Show } from "solid-js";
+import { lightsEventComponent } from "./timeline-event-lights";
+import { bridgeEventComponent } from "./timeline-event-bridge";
+import { sunEventComponent } from "./timeline-event-sun";
+import { moonEventComponent } from "./timeline-event-moon";
 
-const eventComponent = (event: TimelineEvent, t: Accessor<Translation>) => {
+import styles from "./event.module.css";
+
+
+const eventComponent = (event: TimelineEvent) => {
+	const { t } = useTranslation();
+
 	if (isBridgeEvent(event)) {
 		return bridgeEventComponent(event, t());
 	}
@@ -47,8 +49,9 @@ interface EventProps {
 }
 
 export function TimelineEvent(props: EventProps) {
-	const data = () => eventComponent(props.event, t);
-	const linkTitle = () => `${data().title}: ${formatDatetime(new Date(props.event.timestamp))}`;
+	const { formatters } = useTranslation();
+	const data = () => eventComponent(props.event);
+	const linkTitle = () => `${data().title}: ${formatters().formatDatetime(new Date(props.event.timestamp))}`;
 
 	return (
 		<li
@@ -58,7 +61,7 @@ export function TimelineEvent(props: EventProps) {
 			data-event-name={props.event.name}
 		>
 			<Time>
-				{formatTimeShort(props.event.timestamp)}
+				{formatters().formatTimeShort(props.event.timestamp)}
 			</Time>
 			<div class={styles.icon} data-event-icon>
 				<Link

@@ -2,9 +2,10 @@ import { For } from "solid-js";
 //import { useSearchParams } from "@solidjs/router";
 import { Link, Time } from "ui-solid";
 
-import { formatDate, t } from "@lib/stores/lang";
+import { useTranslation } from "@lib/context";
 import { Moon } from "@lib/components";
-import type { MoonData } from "../../services/moon";
+import type { MoonData } from "./use-moon-data";
+
 import styles from "./moon.module.css";
 
 interface MoonPhasesProps {
@@ -14,6 +15,7 @@ interface MoonPhasesProps {
 const MOON_SIZE = 75;
 
 export function MoonPhases(props: MoonPhasesProps) {
+	const { t, formatters } = useTranslation();
 	//const [ searchParams ] = useSearchParams();
 
 	return (
@@ -28,7 +30,7 @@ export function MoonPhases(props: MoonPhasesProps) {
 							<Moon phase={phase.phaseValue} size={MOON_SIZE}
 							/>
 							<Time>
-								{formatDate(phase.timestamp)}
+								{formatters().formatDate(phase.timestamp)}
 							</Time>
 						</Link>
 					)}

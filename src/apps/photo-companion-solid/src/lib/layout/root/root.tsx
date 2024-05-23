@@ -5,16 +5,18 @@ import { iconGithub, iconQuestion, iconSettings } from "ui-solid/icons";
 
 import { title, version } from "@lib/constants";
 import { Navigation } from "@lib/components/navigation/navigation";
-import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/routes";
-import { t } from "@lib/stores/lang";
+import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/consts";
+import { useTranslation } from "@lib/context";
 import { scrollToTop } from "@lib/helpers";
-import { settings } from "@stores/settings";
+import { useLocation } from "@lib/hooks";
+
 import styles from "./root.module.css";
 
 /**
  * TODO: links should have some visual indicator.
  */
 function SecondaryNavigation() {
+	const { t } = useTranslation();
 	const matchSettings = useMatch(() => ROUTE_SETTINGS);
 	const matchAbout = useMatch(() => ROUTE_ABOUT);
 
@@ -70,13 +72,12 @@ const Footer = () => (
 
 export const Root = (props: ParentProps) => {
 	const setQuery = useSearchParams()[1];
+	const { getLatitude, getLongitude } = useLocation();
 
 	onMount(() => {
-		const { latitude, longitude } = settings();
-
 		setQuery({
-			latitude,
-			longitude
+			latitude: getLatitude(),
+			longitude: getLongitude()
 		});
 	});
 

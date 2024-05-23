@@ -1,12 +1,13 @@
 import { getBridgeScheduleEntry, getBridgeState } from "bridge-schedule";
 import { Show, createMemo, createSignal } from "solid-js";
+import type { BridgeName } from "types";
 import { Icon } from "ui-solid";
 import { iconWarning } from "ui-solid/icons";
 
+import { useTranslation } from "@lib/context";
 import { Countdown } from "@lib/components";
-import { t } from "@lib/stores/lang";
-import type { BridgeName } from "types";
 import { BridgeSparkline } from "./card-bridge-sparkline";
+
 import styles from "./card-bridge.module.css";
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export function CardBridge(props: Props) {
+	const { t } = useTranslation();
 	const schedule = () => getBridgeScheduleEntry(props.name);
 	const [ getDate, setDate ] = createSignal(new Date());
 	const state = createMemo(() => getBridgeState(props.name, getDate(), true));
