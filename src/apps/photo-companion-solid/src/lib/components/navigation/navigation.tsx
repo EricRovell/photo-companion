@@ -1,5 +1,4 @@
 import { For } from "solid-js";
-import { Icon, Link } from "ui-solid";
 
 import { useTranslation } from "@lib/context";
 import { getTabData, useNavigationTabs } from "./navigation.helpers";
@@ -8,6 +7,7 @@ import type { NavigationRoute } from "./navigation.types";
 import styles from "./navigation.module.css";
 import { useMatch } from "@solidjs/router";
 import { Dynamic } from "solid-js/web";
+import { LinkQuery } from "../link-query";
 
 function NavigationItem(props: NavigationRoute) {
 	const match = useMatch(() => props.href);
@@ -15,14 +15,14 @@ function NavigationItem(props: NavigationRoute) {
 
 	return (
 		<li>
-			<Link
+			<LinkQuery
 				aria-current={match() ? "page" : undefined}
 				class={styles.link}
 				href={props.href}
 			>
 				<Dynamic component={props.Icon} class={styles.icon} />
 				<span>{t().TITLE[props.label]}</span>
-			</Link>
+			</LinkQuery>
 		</li>
 	);
 }

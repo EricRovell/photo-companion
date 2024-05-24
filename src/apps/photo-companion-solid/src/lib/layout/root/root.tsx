@@ -2,10 +2,10 @@ import { type ParentProps, onMount } from "solid-js";
 import { useMatch, useSearchParams } from "@solidjs/router";
 import { Link, IconGithub, IconQuestion, IconSettings } from "ui-solid";
 
+import { LinkQuery, Navigation } from "@lib/components";
 import { title, version } from "@lib/constants";
-import { Navigation } from "@lib/components/navigation/navigation";
 import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/consts";
-import { useTranslation } from "@lib/context";
+import { useSettings, useTranslation } from "@lib/context";
 import { scrollToTop } from "@lib/helpers";
 import { useLocation } from "@lib/hooks";
 
@@ -21,7 +21,7 @@ function SecondaryNavigation() {
 
 	return (
 		<nav>
-			<Link
+			<LinkQuery
 				aria-current={matchSettings() ? "page" : undefined}
 				class={styles.icon}
 				href={ROUTE_SETTINGS}
@@ -29,8 +29,8 @@ function SecondaryNavigation() {
 				title={t().TITLE.SETTINGS}
 			>
 				<IconSettings />
-			</Link>
-			<Link
+			</LinkQuery>
+			<LinkQuery
 				aria-current={matchAbout() ? "page" : undefined}
 				class={styles.icon}
 				href={ROUTE_ABOUT}
@@ -38,21 +38,26 @@ function SecondaryNavigation() {
 				title={t().TITLE.ABOUT}
 			>
 				<IconQuestion />
-			</Link>
+			</LinkQuery>
 		</nav>
 	);
 }
 
-const Header = () => (
-	<header class={styles.header}>
-		<div class={styles.content}>
-			<Link href="{getTabUrl($navigationStore[0])}{$query}">
-				<h1>{title}</h1>
-			</Link>
-			<SecondaryNavigation />
-		</div>
-	</header>
-);
+function Header() {
+	const { getSettings } = useSettings();
+	const mainTab = getSettings().tabs[0];
+
+	return (
+		<header class={styles.header}>
+			<div class={styles.content}>
+				<LinkQuery href={`/${mainTab.toLowerCase()}`}>
+					<h1>{title}</h1>
+				</LinkQuery>
+				<SecondaryNavigation />
+			</div>
+		</header>
+	);
+};
 
 const Footer = () => (
 	<footer class={styles.footer}>
