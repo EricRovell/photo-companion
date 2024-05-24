@@ -5,6 +5,8 @@ const PATH = "m125.82,170.72c2.54.4,4.75,2.29,6.78,5.77,1.28,2.2,4.12,2.95,6.33,
 
 export const Bridge = () => (
 	<div class={styles.root}>
-		<Icon viewBox="0 0 256 256" path={PATH} />
+		<Icon>
+			<path d={PATH} />
+		</Icon>
 	</div>
 );
