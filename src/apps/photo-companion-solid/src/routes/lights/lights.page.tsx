@@ -11,8 +11,8 @@ export function PageLights() {
 	const { getDatetime } = useDatetime();
 	const { getLightsProvider } = useLightsProvider();
 
-	const schedule = createMemo(() => getLightsProvider().getScheduleByDate(date()));
-	const state = createMemo(() => getLightsProvider().getStateByDate(date()));
+	const schedule = createMemo(() => getLightsProvider().getScheduleByDate(getDatetime()));
+	const state = createMemo(() => getLightsProvider().getStateByDate(getDatetime()));
 
 	return (
 		<div class={styles.page}>
