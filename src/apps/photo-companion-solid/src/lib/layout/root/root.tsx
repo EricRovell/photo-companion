@@ -1,6 +1,7 @@
-import { type ParentProps, onMount } from "solid-js";
+import { type ParentProps, createEffect } from "solid-js";
 import { useMatch, useSearchParams } from "@solidjs/router";
 import { Link, IconGithub, IconQuestion, IconSettings } from "ui-solid";
+import { isNullable } from "utils/validators";
 
 import { LinkQuery, Navigation } from "@lib/components";
 import { title, version } from "@lib/constants";
@@ -57,7 +58,7 @@ function Header() {
 			</div>
 		</header>
 	);
-};
+}
 
 const Footer = () => (
 	<footer class={styles.footer}>
@@ -75,14 +76,16 @@ const Footer = () => (
 );
 
 export const Root = (props: ParentProps) => {
-	const setQuery = useSearchParams()[1];
+	const [ searchParams, setSearchParams ] = useSearchParams();
 	const { getLatitude, getLongitude } = useLocation();
 
-	onMount(() => {
-		setQuery({
-			latitude: getLatitude(),
-			longitude: getLongitude()
-		});
+	createEffect(() => {
+		if (isNullable(searchParams.latitude) || isNullable(searchParams.longitude)) {
+			setSearchParams({
+				latitude: getLatitude(),
+				longitude: getLongitude()
+			});
+		}
 	});
 
 	return (

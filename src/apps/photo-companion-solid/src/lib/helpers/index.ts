@@ -14,7 +14,10 @@ export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback:
 	return Math.round(360 * (hours * 60 + minutes) / (24 * 60));
 }
 
-export function getDateTimeString(date: DateLike | string = new Date()): string {
+/**
+ * Returns a part of ISO string (removes all data after minutes) for an datetime input.
+ */
+export function getDateTimeString(date: DateLike = new Date()): string {
 	if (!(date instanceof Date)) {
 		date = new Date(date);
 	}
@@ -51,20 +54,23 @@ export function preventPageScroll(condition: boolean) {
 	});
 }
 
-export function parseQueryDate(input: string): string {
-	if (!input) {
-		return getDateTimeString();
+/**
+ * Parses a query `datetime` string in format YYYY-MM-DD-hh-mm
+ * into a Date object.
+ */
+export function parseQueryDate(input: string): Date {
+	if (isNullable(input)) {
+		return new Date();
 	}
 
 	const [ yy, mm, dd, h, m ] = input.split("-").map(Number);
+	const output = new Date(yy, mm - 1, dd, h, m);
 
-	const date = new Date(yy, mm - 1, dd, h, m);
-
-	if (!isValidDate(date)) {
-		return "invalid";
+	if (!isValidDate(output)) {
+		console.warn(`Invalid date input: ${input}`);
 	}
 
-	return getDateTimeString(date);
+	return output;
 }
 
 export function createQueryDate(d: DateLike = new Date()): string {
@@ -79,8 +85,18 @@ export function createQueryDate(d: DateLike = new Date()): string {
 		d.getHours(),
 		d.getMinutes()
 	]
-		.map(value => value < 10 ? `0${value}` : value.toString())
+		.map(value => value.toString().padStart(2, "0"))
 		.join("-");
+}
+
+const REPLACE_REGEX = /T|:/g;
+const DELIMITER = "-";
+
+/**
+ * Parses the datetime sting in format YYYY-MM-DDThh:mm into YYYY-MM-DD-hh-mm.
+ */
+export function parseDateTimeString(input: string): string {
+	return input.replace(REPLACE_REGEX, DELIMITER);
 }
 
 export async function getUserLocation(): Promise<Nullish<GeolocationCoordinates>> {

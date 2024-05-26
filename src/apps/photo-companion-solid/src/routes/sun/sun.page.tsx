@@ -8,15 +8,15 @@ import styles from "./sun.module.css";
 import { useSunData } from "./use-sun-data";
 
 export function PageSun() {
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { getSunData } = useSunData();
 
 	return (
 		<div class={styles.page}>
-			<SunTimes date={date()} state={getSunData()} />
-			<SunAltitude date={date()} />
+			<SunTimes date={getDatetime()} state={getSunData()} />
+			<SunAltitude date={getDatetime()} />
 			<SunData state={getSunData()} />
-			<SunTimeline date={date()} />
+			<SunTimeline date={getDatetime()} />
 		</div>
 	);
 }

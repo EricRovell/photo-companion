@@ -9,15 +9,15 @@ import styles from "./moon.module.css";
 import { useMoonData } from "./use-moon-data";
 
 export function PageMoon() {
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { getMoonData } = useMoonData();
 
 	return (
 		<div class={styles.page}>
-			<MoonTimes date={date()} state={getMoonData()} />
-			<MoonAltitude date={date()} />
+			<MoonTimes date={getDatetime()} state={getMoonData()} />
+			<MoonAltitude date={getDatetime()} />
 			<MoonData state={getMoonData()} />
-			<MoonTimeline date={date()} />
+			<MoonTimeline date={getDatetime()} />
 			<MoonPhases state={getMoonData()} />
 		</div>
 	);

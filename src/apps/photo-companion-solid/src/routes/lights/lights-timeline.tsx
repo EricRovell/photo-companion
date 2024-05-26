@@ -19,7 +19,7 @@ const SECONDARY_EVENT_SET = new Set<EventName>([
 ]);
 
 export function LightsTimeline() {
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { getLatitude, getLongitude } = useLocation();
 	const { getLightsProvider } = useLightsProvider();
 	const { getTimeline } = useTimelineProvider({
@@ -36,7 +36,7 @@ export function LightsTimeline() {
 		predicate: event => TIMELINE_EVENT_SET.has(event.name)
 	});
 
-	const events = () => getTimeline(date(), getLatitude(), getLongitude());
+	const events = () => getTimeline(getDatetime(), getLatitude(), getLongitude());
 
 	return (
 		<section data-label="timeline">

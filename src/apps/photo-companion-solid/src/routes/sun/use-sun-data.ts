@@ -30,14 +30,14 @@ interface Output {
 
 export function useSunData(): Output {
 	const { getLatitude, getLongitude } = useLocation();
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { formatters } = useTranslation();
 
 	const data = createMemo(() => {
-		const suntimes = getSunTimes(date(), getLatitude(), getLongitude());
+		const suntimes = getSunTimes(getDatetime(), getLatitude(), getLongitude());
 
 		return {
-			position: getSunPosition(date(), getLatitude(), getLongitude(), true),
+			position: getSunPosition(getDatetime(), getLatitude(), getLongitude(), true),
 			suntimes,
 			sunrise: suntimes.SUNRISE_START.timestamp,
 			sunset: suntimes.SUNSET_END.timestamp

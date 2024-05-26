@@ -8,7 +8,7 @@ import { LightGauge } from "./lights-gauge";
 import styles from "./lights.module.css";
 
 export function PageLights() {
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { getLightsProvider } = useLightsProvider();
 
 	const schedule = createMemo(() => getLightsProvider().getScheduleByDate(date()));
@@ -17,7 +17,7 @@ export function PageLights() {
 	return (
 		<div class={styles.page}>
 			<LightGauge
-				date={date()}
+				date={getDatetime()}
 				lights={state().lights}
 				schedule={schedule()}
 			/>

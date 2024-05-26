@@ -49,18 +49,18 @@ function Events(props: EventsProps) {
 }
 
 export function PageTimeline() {
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { getLatitude, getLongitude } = useLocation();
 	const { getTimeline } = useTimelineEvents();
 	const disabled = useDisabledTimeline();
 
 	const timeline = () => {
-		const tomorrow = incrementDateByDay(date(), 1);
+		const tomorrow = incrementDateByDay(getDatetime(), 1);
 
 		return [
 			{
-				date: date(),
-				items: getTimeline(date(), getLatitude(), getLongitude())
+				date: getDatetime(),
+				items: getTimeline(getDatetime(), getLatitude(), getLongitude())
 			},
 			{
 				date: tomorrow,

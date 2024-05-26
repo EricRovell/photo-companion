@@ -11,7 +11,7 @@ export function useTimelineEvents() {
 	const { getSettings } = useSettings();
 	const { getLightsProvider } = useLightsProvider();
 	const timelineFilterSet = useTimelineFilters();
-	const { date } = useDatetime();
+	const { getTimestamp } = useDatetime();
 
 	const provider = useTimelineProvider({
 		providers: [
@@ -36,7 +36,7 @@ export function useTimelineEvents() {
 				type: "LOCATION"
 			}
 		],
-		predicate: event => !timelineFilterSet.has(event.name) && event.timestamp >= date().getTime()
+		predicate: event => !timelineFilterSet.has(event.name) && event.timestamp >= getTimestamp()
 	});
 
 	return provider;

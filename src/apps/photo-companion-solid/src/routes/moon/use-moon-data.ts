@@ -31,14 +31,14 @@ interface Output {
 
 export function useMoonData(): Output {
 	const { getLatitude, getLongitude } = useLocation();
-	const { date } = useDatetime();
+	const { getDatetime } = useDatetime();
 	const { formatters } = useTranslation();
 
 	const data = createMemo(() => ({
-		times: getMoonTimes(date(), getLatitude(), getLongitude()),
-		illumination: getMoonIllumination(date(), true),
-		position: getMoonPosition(date(), getLatitude(), getLongitude(), true),
-		phases: getMoonPhases(date())
+		times: getMoonTimes(getDatetime(), getLatitude(), getLongitude()),
+		illumination: getMoonIllumination(getDatetime(), true),
+		position: getMoonPosition(getDatetime(), getLatitude(), getLongitude(), true),
+		phases: getMoonPhases(getDatetime())
 	}));
 
 	const getMoonData = () => {

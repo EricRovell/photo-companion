@@ -1,19 +1,41 @@
-import { parseQueryDate } from "@lib/helpers";
 import { useSearchParams } from "@solidjs/router";
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createMemo } from "solid-js";
+import { isNonEmptyString, isNullable } from "utils/validators";
+
+import { createQueryDate, parseQueryDate } from "@lib/helpers";
 
 export function useDatetime() {
-	const [ query ] = useSearchParams();
-	// @ts-expect-error TODO: update types
-	const initialValue = new Date(parseQueryDate(query.date));
-	const [ date, setDate ] = createSignal<Date>(initialValue);
+	const [ searchParams, setSearchParams ] = useSearchParams<{ datetime: string }>();
+
+	const getDatetimeQuery = createMemo(() => {
+		if (isNullable(searchParams.datetime)) {
+			return createQueryDate();
+		}
+
+		return searchParams.datetime;
+	});
+
+	const getDatetime = () => parseQueryDate(getDatetimeQuery());
+	const getTimestamp = () => getDatetime().getTime();
+
+	const setDatetimeQuery = (input?: DateLike | string): void => {
+		const datetime = isNonEmptyString(input)
+			? input
+			: createQueryDate(input);
+
+		setSearchParams({ datetime });
+	};
 
 	createEffect(() => {
-		// @ts-expect-error TODO: update types
-		setDate(new Date(parseQueryDate(query.date)));
+		if (isNullable(searchParams.datetime)) {
+			setDatetimeQuery();
+		}
 	});
 
 	return {
-		date
+		getDatetime,
+		getDatetimeQuery,
+		getTimestamp,
+		setDatetimeQuery
 	};
 }

@@ -1,45 +1,32 @@
-import { useSearchParams } from "@solidjs/router";
-import { createSignal, onMount, type ParentProps } from "solid-js";
+import type { ParentProps } from "solid-js";
 import { InputDatetime } from "ui-solid";
-import { isNullable } from "utils/validators";
 
 import { useTranslation } from "@lib/context";
-import { parseQueryDate, createQueryDate, getDateTimeString } from "@lib/helpers";
+import { getDateTimeString, parseDateTimeString } from "@lib/helpers";
 
 import styles from "./with-date.module.css";
+import { useDatetime } from "@lib/hooks";
 
 export function WithDate(props: ParentProps) {
-	const [ query, setQuery ] = useSearchParams();
-	const [ value, setValue ] = createSignal<string>(getDateTimeString());
+	const { getDatetime, setDatetimeQuery } = useDatetime();
 	const { t } = useTranslation();
 
-	const dict = () => ({
-		DATETIME: t().LABEL.DATETIME,
-		NEXT_DAY: t().LABEL.NEXT_DAY,
-		PREVIOUS_DAY: t().LABEL.PREVIOUS_DAY,
-		NOW: t().LABEL.NOW
-	});
-
-	const setDateQuery = (input?: Date): void => {
-		setQuery({
-			date: createQueryDate(input)
-		});
-	};
+	const value = () => getDateTimeString(getDatetime());
 
 	const handleDatetimeChange = (input: string) => {
-		setValue(input);
-		setDateQuery(new Date(value()));
+		setDatetimeQuery(parseDateTimeString(input));
 	};
 
-	onMount(() => {
-		if (isNullable(query.date)) {
-			setDateQuery();
-			setValue(getDateTimeString());
-		} else {
-			const parsed = parseQueryDate(query.date);
-			setValue(getDateTimeString(parsed));
-		}
-	});
+	const dict = () => {
+		const tr = t();
+
+		return {
+			DATETIME: tr.LABEL.DATETIME,
+			NEXT_DAY: tr.LABEL.NEXT_DAY,
+			PREVIOUS_DAY: tr.LABEL.PREVIOUS_DAY,
+			NOW: tr.LABEL.NOW
+		};
+	};
 
 	return (
 		<>
