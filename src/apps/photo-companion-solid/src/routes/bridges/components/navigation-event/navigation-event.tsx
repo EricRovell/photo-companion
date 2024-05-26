@@ -3,6 +3,7 @@ import { IconAnchor } from "ui-solid";
 import { classnames } from "utils";
 
 import { useTranslation } from "@lib/context";
+import { setAttribute } from "@lib/helpers";
 
 import styles from "./navigation-event.module.css";
 
@@ -13,7 +14,7 @@ export function NavigationEvent() {
 	return (
 		<article
 			class={classnames("card", styles["navigation-info"])}
-			data-closed={navigation ? undefined : ""}
+			data-closed={setAttribute(navigation)}
 		>
 			<header>
 				{

@@ -5,7 +5,7 @@ import { Time } from "ui-solid";
 import type { TimelineEvent } from "types";
 
 import { useTranslation } from "@lib/context";
-import { createQueryDate } from "@lib/helpers";
+import { createQueryDate, setAttribute } from "@lib/helpers";
 import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "@lib/helpers/validators";
 import { LinkQuery } from "../link-query";
 
@@ -56,7 +56,7 @@ export function TimelineEvent(props: TimelineEventProps) {
 		<li
 			class={styles.event}
 			aria-current={match() ? "date" : undefined}
-			data-secondary={props.secondary ? "" : undefined}
+			data-secondary={setAttribute(props.secondary)}
 			data-event-name={props.event.name}
 		>
 			<Time>
