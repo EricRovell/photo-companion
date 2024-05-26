@@ -131,12 +131,11 @@ export type EventGroupName =
 
 export interface Event<
 	Type extends EventGroupName,
-	Name extends string,
+	Name extends EventName,
 	Data = Partial<Record<string, never>>
 > {
 	data: Data;
 	name: Name;
-	secondary?: boolean;
 	timestamp: number;
 	type: Type;
 }

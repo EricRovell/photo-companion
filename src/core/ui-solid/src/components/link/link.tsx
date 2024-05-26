@@ -3,6 +3,7 @@ import { splitProps } from "solid-js";
 
 import type { LinkProps } from "./link.types";
 import styles from "./link.module.css";
+import { isNonEmptyString } from "utils/validators";
 
 export function Link(allProps: LinkProps) {
 	const [ props, rest ] = splitProps(allProps, [
@@ -10,8 +11,21 @@ export function Link(allProps: LinkProps) {
 		"children",
 		"href",
 		"nofollow",
-		"targetBlank"
+		"targetBlank",
+		"query"
 	]);
+
+	const href = () => {
+		if (!props.query) {
+			return props.href;
+		}
+
+		if (isNonEmptyString(props.query)) {
+			return `${props.href}${props.query}`;
+		}
+
+		return `${props.href}?${props.query.toString()}`;
+	};
 
 	const external = () => props.href?.indexOf("://") !== -1;
 	const target = () => (props.targetBlank || external()) ? "_blank" : undefined;
@@ -23,7 +37,8 @@ export function Link(allProps: LinkProps) {
 	return (
 		<a
 			class={classnames(styles.link, props.class)}
-			href={props.href}
+			data-external={external() ? "" : undefined}
+			href={href()}
 			target={target()}
 			rel={rel()}
 			{...rest}

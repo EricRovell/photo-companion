@@ -1,18 +1,31 @@
 import { useLocation } from "@solidjs/router";
-import { splitProps } from "solid-js";
+import { createMemo, splitProps } from "solid-js";
 import { Link, type LinkProps } from "ui-solid";
 
 /**
  * Wrapper over the `<Link />` that sync the query params.
  */
 export function LinkQuery(allProps: LinkProps) {
-	const [ props, rest ] = splitProps(allProps, [ "children", "href" ]);
+	const [ props, rest ] = splitProps(allProps, [ "children", "query" ]);
 	const location = useLocation();
+	const search = createMemo(() => location.search);
 
-	const href = () => `${props.href}${location.search}`;
+	const query = () => {
+		if (!props.query) {
+			return search();
+		}
+
+		const searchParams = new URLSearchParams(search());
+
+		for (const [ key, value ] of props.query) {
+			searchParams.set(key, value);
+		}
+
+		return searchParams;
+	};
 
 	return (
-		<Link href={href()} {...rest}>
+		<Link query={query()} {...rest}>
 			{props.children}
 		</Link>
 	);

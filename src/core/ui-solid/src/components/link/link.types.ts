@@ -4,4 +4,5 @@ export interface LinkProps extends JSX.AnchorHTMLAttributes<HTMLAnchorElement> {
 	block?: boolean;
 	targetBlank?: boolean;
 	nofollow?: boolean;
+	query?: URLSearchParams | string;
 }

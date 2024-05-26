@@ -35,3 +35,4 @@ export {
 export type { InputRadioOption } from "./input-radio/input-radio.types";
 export type { InputSelectOption } from "./input-select/input-select.types";
 export type { IconProps } from "./icon/icon.types";
+export type { LinkProps } from "./link/link.types";

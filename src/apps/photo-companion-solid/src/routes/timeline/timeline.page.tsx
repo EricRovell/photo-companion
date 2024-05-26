@@ -1,6 +1,7 @@
 import { For, Show } from "solid-js";
 import { Time, IconWarning } from "ui-solid";
 import { incrementDateByDay } from "utils/date";
+import type { EventGroupName } from "types";
 
 import { useTranslation } from "@lib/context";
 import { TimelineGroup, Timeline, TimelineEvent, TimelineEventEmpty } from "@lib/components";
@@ -9,6 +10,14 @@ import { useDisabledTimeline, useTimelineEvents } from "./hooks";
 import type { EventsProps } from "./timeline.types";
 
 import styles from "./timeline.module.css";
+
+const createEventLink = (type: EventGroupName) => {
+	if (type === "BRIDGE") {
+		return "/bridges";
+	}
+
+	return `/${type.toLowerCase()}`;
+};
 
 function NoEvents() {
 	const { t } = useTranslation();
@@ -23,14 +32,14 @@ function NoEvents() {
 
 function Events(props: EventsProps) {
 	const { formatters } = useTranslation();
-	
+
 	return (
 		<TimelineGroup>
 			<For each={props.timeline}>
 				{({ date, items }) => (
 					<Timeline date={<Time>{formatters().formatDate(date)}</Time>}>
 						<For each={items} fallback={<TimelineEventEmpty />}>
-							{event => <TimelineEvent event={event} />}
+							{event => <TimelineEvent href={createEventLink(event.type)} event={event} />}
 						</For>
 					</Timeline>
 				)}
