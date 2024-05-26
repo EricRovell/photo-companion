@@ -67,7 +67,11 @@ export function parseQueryDate(input: string): string {
 	return getDateTimeString(date);
 }
 
-export function createQueryDate(d: Date = new Date()): string {
+export function createQueryDate(d: DateLike = new Date()): string {
+	if (typeof d === "number") {
+		d = new Date(d);
+	}
+
 	return [
 		d.getFullYear(),
 		d.getMonth() + 1,

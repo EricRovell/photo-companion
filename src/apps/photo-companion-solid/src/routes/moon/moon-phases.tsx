@@ -1,12 +1,12 @@
 import { For } from "solid-js";
-//import { useSearchParams } from "@solidjs/router";
-import { Link, Time } from "ui-solid";
+import { Time } from "ui-solid";
 
 import { useTranslation } from "@lib/context";
-import { Moon } from "@lib/components";
+import { LinkQuery, Moon } from "@lib/components";
 import type { MoonData } from "./use-moon-data";
 
 import styles from "./moon.module.css";
+import { createQueryDate } from "@lib/helpers";
 
 interface MoonPhasesProps {
 	state: MoonData;
@@ -16,7 +16,6 @@ const MOON_SIZE = 75;
 
 export function MoonPhases(props: MoonPhasesProps) {
 	const { t, formatters } = useTranslation();
-	//const [ searchParams ] = useSearchParams();
 
 	return (
 		<section data-label="phases-calendar" class={`card ${styles.phases}`}>
@@ -26,13 +25,13 @@ export function MoonPhases(props: MoonPhasesProps) {
 			<div>
 				<For each={props.state.phases}>
 					{phase => (
-						<Link href={"/moon"}>
+						<LinkQuery href={"/moon"} query={new URLSearchParams({ date: createQueryDate(phase.timestamp) })}>
 							<Moon phase={phase.phaseValue} size={MOON_SIZE}
 							/>
 							<Time>
 								{formatters().formatDate(phase.timestamp)}
 							</Time>
-						</Link>
+						</LinkQuery>
 					)}
 				</For>
 			</div>
