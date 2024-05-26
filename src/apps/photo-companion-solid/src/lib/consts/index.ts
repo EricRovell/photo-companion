@@ -12,3 +12,8 @@ export {
 	URL_GITHUB_REPO,
 	URL_COMMIT_HASH
 } from "./routes";
+
+export {
+	TITLE,
+	VERSION
+} from "./common";

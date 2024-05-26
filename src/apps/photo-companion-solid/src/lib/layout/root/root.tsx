@@ -4,7 +4,7 @@ import { Link, IconGithub, IconQuestion, IconSettings } from "ui-solid";
 import { isNullable } from "utils/validators";
 
 import { LinkQuery, Navigation } from "@lib/components";
-import { title, version } from "@lib/constants";
+import { TITLE, VERSION } from "@lib/consts";
 import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/consts";
 import { useSettings, useTranslation } from "@lib/context";
 import { useLocation } from "@lib/hooks";
@@ -49,7 +49,7 @@ function Header() {
 		<header class={styles.header}>
 			<div class={styles.content}>
 				<LinkQuery href={`/${mainTab.toLowerCase()}`}>
-					<h1>{title}</h1>
+					<h1>{TITLE}</h1>
 				</LinkQuery>
 				<SecondaryNavigation />
 			</div>
@@ -61,7 +61,7 @@ const Footer = () => (
 	<footer class={styles.footer}>
 		<div class={styles.content}>
 			<p>
-				{title}, <Link href={ROUTE_CHANGELOG}>v.{version}</Link> 
+				{TITLE}, <Link href={ROUTE_CHANGELOG}>v.{VERSION}</Link> 
 				<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">#__COMMIT_HASH__</Link>
 			</p>
 			<Link href={URL_GITHUB_REPO}>

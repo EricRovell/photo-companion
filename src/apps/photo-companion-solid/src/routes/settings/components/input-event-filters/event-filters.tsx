@@ -1,7 +1,7 @@
 import type { Store } from "solid-js/store";
 
-import { LIGHTS_EVENT_NAMES, SUN_EVENT_NAMES, MOON_EVENT_NAMES } from "@lib/constants";
 import { useTranslation, type SettingsStore } from "@lib/context";
+import { MOON_EVENT_NAMES, LIGHTS_EVENT_NAMES, SUN_EVENT_NAMES } from "./input-event-filters.consts";
 import { InputCheckboxGroup, type ChangeHandler } from "./input-checkbox-group";
 import { BRIDGES_EVENTS_OPTIONS } from "../../settings.const";
 

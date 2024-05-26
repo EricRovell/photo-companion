@@ -1,8 +1,13 @@
 import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import type { InputSelectOption } from "ui-solid";
+import type { LightsCity } from "types";
 
-import { lightsCityList } from "@lib/constants";
-import type { Translation } from "@stores/lang";
+import type { Translation } from "@lib/context";
+
+export const lightsCityList: LightsCity[] = [
+	"MOSCOW",
+	"SAINT_PETERSBURG"
+];
 
 export const LIGHTS_CITY_OPTIONS = (t: Translation): InputSelectOption[] => {
 	return lightsCityList
