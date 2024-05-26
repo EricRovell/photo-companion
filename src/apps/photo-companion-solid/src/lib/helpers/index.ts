@@ -27,34 +27,6 @@ export function getDateTimeString(date: DateLike = new Date()): string {
 }
 
 /**
- * Prevents the page scroll depending on condition.
- */
-export function preventPageScroll(condition: boolean) {
-	if (!globalThis.window) {
-		return;
-	}
-
-	if (condition) {
-		// prevent page scroll, mostly for safari hack
-		document.body.style.cssText = `
-			top: -${window.scrollY}px;
-			position: fixed;
-			overflow-y: scroll;
-			overscroll-behavior: none;
-		`;
-
-		return;
-	}
-
-	const scrollY: number = parseInt(document.body.style.top || "0");
-	document.body.style.cssText = "";
-	window.scrollTo({
-		top: -1 * scrollY,
-		behavior: "auto"
-	});
-}
-
-/**
  * Parses a query `datetime` string in format YYYY-MM-DD-hh-mm
  * into a Date object.
  */
@@ -144,17 +116,6 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
  */
 export function setAttribute(state?: boolean) {
 	return state ? "" : undefined;
-}
-
-export function scrollToTop() {
-	if (isNullable(globalThis.window)) {
-		return;
-	}
-
-	window.scrollTo({
-		behavior: "smooth",
-		top: 0
-	});
 }
 
 /**

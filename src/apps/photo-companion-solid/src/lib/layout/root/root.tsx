@@ -7,7 +7,6 @@ import { LinkQuery, Navigation } from "@lib/components";
 import { title, version } from "@lib/constants";
 import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/consts";
 import { useSettings, useTranslation } from "@lib/context";
-import { scrollToTop } from "@lib/helpers";
 import { useLocation } from "@lib/hooks";
 
 import styles from "./root.module.css";
@@ -26,7 +25,6 @@ function SecondaryNavigation() {
 				aria-current={matchSettings() ? "page" : undefined}
 				class={styles.icon}
 				href={ROUTE_SETTINGS}
-				onClick={scrollToTop}
 				title={t().TITLE.SETTINGS}
 			>
 				<IconSettings />
@@ -35,7 +33,6 @@ function SecondaryNavigation() {
 				aria-current={matchAbout() ? "page" : undefined}
 				class={styles.icon}
 				href={ROUTE_ABOUT}
-				onClick={scrollToTop}
 				title={t().TITLE.ABOUT}
 			>
 				<IconQuestion />
