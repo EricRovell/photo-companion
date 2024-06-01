@@ -1,8 +1,9 @@
-import { SUPPORTED_BRIDGES_NAME_SET, isBridgeException } from "bridge-schedule";
+import { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import { For } from "solid-js";
 import { Button, IconChevronDown } from "ui-solid";
 
 import { useTranslation } from "@lib/context";
+
 import { CardBridge, NavigationEvent, NextBridgeEvent } from "./components";
 
 import styles from "./bridges.module.css";

@@ -13,7 +13,7 @@ export interface HeadingProps extends ParentProps {
 export interface ListProps extends ParentProps {
 	ordered?: boolean | null | undefined;
 	spread?: boolean | null | undefined;
-	start?: number | null | undefined;
+	start?: null | number | undefined;
 }
 
 export interface ListItemProps extends ParentProps {
@@ -22,19 +22,19 @@ export interface ListItemProps extends ParentProps {
 }
 
 export interface LinkProps extends ParentProps {
+	title?: null | string | undefined;
 	url: string;
-	title?: string | null | undefined;
 }
 
 export interface DefinitionProps {
 	identifier: string;
-	label?: string | null | undefined;
+	label?: null | string | undefined;
+	title?: null | string | undefined;
 	url: string;
-	title?: string | null | undefined;
 }
 
 export interface LinkReferenceProps extends ParentProps {
 	identifier: string;
-	label?: string | null | undefined;
-	referenceType: "shortcut" | "collapsed" | "full";
+	label?: null | string | undefined;
+	referenceType: "collapsed" | "full" | "shortcut";
 }

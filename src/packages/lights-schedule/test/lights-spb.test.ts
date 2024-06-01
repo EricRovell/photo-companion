@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { initLightsProvider } from "../src";
 import { schedule as data } from "../src/schedule/lights-saint-petersburg";
 import { getFullYearDaysList } from "./utils";

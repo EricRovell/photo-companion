@@ -6,6 +6,9 @@
 
 :root {
 	scroll-behavior: smooth;
+
+	--font-main: var(--font-fallback);
+	--font-fallback: system-ui, "Segoe UI", roboto, "Helvetica Neue", arial;
 }
 
 /* variation fonts */

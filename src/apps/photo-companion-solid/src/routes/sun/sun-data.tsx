@@ -1,6 +1,7 @@
-import { useTranslation } from "@lib/context";
 import { CardEntry, CardInfo } from "@lib/components";
-import type { SunData as SunDataType } from "../../services/sun";
+import { useTranslation } from "@lib/context";
+
+import type { SunData as SunDataType } from "./use-sun-data";
 
 interface SunDataProps {
 	state: SunDataType;

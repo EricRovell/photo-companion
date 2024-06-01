@@ -2,6 +2,7 @@ import { splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { InputNumberProps } from "./input-number.types";
+
 import styles from "./input-number.module.css";
 
 export function InputNumber(allProps: InputNumberProps) {

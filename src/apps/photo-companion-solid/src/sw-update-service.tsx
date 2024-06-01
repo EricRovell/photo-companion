@@ -49,9 +49,9 @@ export function UpdateService() {
 
 	return (
 		<Modal
-			title={t().TITLE.UPDATE}
-			open={getShowModal()}
 			onClose={() => toggle(false)}
+			open={getShowModal()}
+			title={t().TITLE.UPDATE}
 		>
 			<p>{t().MESSAGE.UPDATE}</p>
 			<Button onClick={handleReload}>

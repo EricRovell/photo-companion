@@ -1,6 +1,6 @@
 export { Bulb } from "./bulb/bulb";
+export { CardEntry, CardInfo } from "./card-info";
 export { Countdown } from "./countdown";
-export { CardInfo, CardEntry } from "./card-info";
 export { ElevationGraph} from "./elevation-graph";
 export { Gauge } from "./gauge/gauge";
 export { GaugeTime } from "./gauge/gauge-time";
@@ -8,6 +8,6 @@ export { LinkQuery } from "./link-query";
 export { Markdown } from "./markdown";
 export { Moon } from "./moon/moon";
 export { Navigation } from "./navigation/navigation";
-export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";
-export { TimelineGroup, Timeline } from "./timeline/timeline";
 export { Sun } from "./sun/sun";
+export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";
+export { Timeline, TimelineGroup } from "./timeline/timeline";

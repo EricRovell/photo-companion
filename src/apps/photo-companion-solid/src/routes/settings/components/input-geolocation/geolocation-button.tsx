@@ -1,10 +1,11 @@
 import { createSignal, onCleanup } from "solid-js";
 import { Button } from "ui-solid";
+import { isNullable } from "utils/validators";
 
-import { getUserLocation } from "@lib/helpers";
 import { useTranslation } from "@lib/context";
+import { getUserLocation } from "@lib/helpers";
 
-type Status = Nullish<"success" | "danger" | "loading">;
+type Status = Nullish<"danger" | "loading" | "success">;
 
 interface GeolocationButtonProps {
 	handleLocation: (latitude: number, longitude: number) => void;
@@ -13,9 +14,9 @@ interface GeolocationButtonProps {
 export function GeolocationButton(props: GeolocationButtonProps) {
 	const { t } = useTranslation();
 	const MESSAGE = {
+		danger: () => t().MESSAGE.DATA_UPDATE_ERROR,
 		loading: () => "loading",
-		success: () => t().MESSAGE.DATA_UPDATE_SUCCESS,
-		danger: () => t().MESSAGE.DATA_UPDATE_ERROR
+		success: () => t().MESSAGE.DATA_UPDATE_SUCCESS
 	};
 
 	const [ getState, setState ] = createSignal<Status>(null);
@@ -44,7 +45,7 @@ export function GeolocationButton(props: GeolocationButtonProps) {
 			setState("loading");
 			const position = await getUserLocation();
 
-			if (position) {
+			if (!isNullable(position)) {
 				props.handleLocation(position.latitude, position.longitude);
 				setState("success");
 			}
@@ -59,9 +60,9 @@ export function GeolocationButton(props: GeolocationButtonProps) {
 	return (
 		<Button
 			appearance="outline"
-			variant={variant()}
 			loading={getState() === "loading"}
 			onClick={() => void handleGetGeolocation()}
+			variant={variant()}
 		>
 			{message()}
 		</Button>

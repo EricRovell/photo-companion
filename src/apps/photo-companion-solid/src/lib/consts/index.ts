@@ -1,4 +1,9 @@
 export {
+	TITLE,
+	VERSION
+} from "./common";
+
+export {
 	ROUTE,
 	ROUTE_ABOUT,
 	ROUTE_BRIDGES,
@@ -9,11 +14,6 @@ export {
 	ROUTE_SETTINGS,
 	ROUTE_SUN,
 	ROUTE_TIMELINE,
-	URL_GITHUB_REPO,
-	URL_COMMIT_HASH
+	URL_COMMIT_HASH,
+	URL_GITHUB_REPO
 } from "./routes";
-
-export {
-	TITLE,
-	VERSION
-} from "./common";

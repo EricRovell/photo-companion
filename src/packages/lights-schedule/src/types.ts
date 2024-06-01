@@ -1,15 +1,15 @@
 import type {
 	IlluminationState,
 	LightsCity,
-	LightsSchedule,
-	LightsEvent
+	LightsEvent,
+	LightsSchedule
 } from "types";
 
 export interface CityLightsSchedule {
-	year: number;
 	city: LightsCity;
-	schedule: number[];
 	getter: (date: Date) => number;
+	schedule: number[];
+	year: number;
 }
 
 export interface LightsProvider {

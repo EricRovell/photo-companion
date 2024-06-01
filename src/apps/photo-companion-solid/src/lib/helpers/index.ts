@@ -1,10 +1,11 @@
-import type { UserLang } from "@lib/types";
 import { isNullable, isValidDate } from "utils/validators";
+
+import type { UserLang } from "@lib/types";
 
 /**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.
  */
-export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback: number = 0): number {
+export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback = 0): number {
 	if (isNullable(date) || !isValidDate(date)) {
 		return fallback;
 	}
@@ -71,33 +72,29 @@ export function parseDateTimeString(input: string): string {
 	return input.replace(REPLACE_REGEX, DELIMITER);
 }
 
-export async function getUserLocation(): Promise<Nullish<GeolocationCoordinates>> {
-	if (!navigator.geolocation) {
-		return null;
-	}
-
-	const position: GeolocationPosition = await new Promise<GeolocationPosition>((resolve, reject) => {
-		return navigator.geolocation.getCurrentPosition(resolve, reject);
+export function getUserLocation(): Promise<GeolocationCoordinates> {
+	return new Promise((resolve, reject) => {
+		if ("geolocation" in navigator) {
+			navigator.geolocation.getCurrentPosition(position => {
+				resolve(position.coords);
+			}, reject);
+		} else {
+			reject(new Error("Geolocation not supported"));
+		}
 	});
-
-	if (position) {
-		return position.coords;
-	}
-
-	return null;
 }
 
 interface DateParams {
-	year: number,
-	month: number
 	date: number
 	hours: number
-	minutes: number
-	seconds: number
 	milliseconds: number
+	minutes: number
+	month: number
+	seconds: number
+	year: number,
 }
 
-export function getDate({ year, month, date, hours, minutes, seconds, milliseconds }: Partial<DateParams>) {
+export function getDate({ date, hours, milliseconds, minutes, month, seconds, year }: Partial<DateParams>) {
 	const now = new Date();
 
 	(typeof year === "number") && now.setFullYear(year);
@@ -114,7 +111,7 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
 /**
  * Sets the boolean attribute depending on state.
  */
-export function setAttribute(state?: boolean, value: string = "") {
+export function setAttribute(state?: boolean, value = "") {
 	return state ? value : undefined;
 }
 

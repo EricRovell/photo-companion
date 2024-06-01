@@ -1,11 +1,12 @@
-import type { ParentProps } from "solid-js";
 import { InputDatetime } from "ui-solid";
+
+import type { ParentProps } from "solid-js";
 
 import { useTranslation } from "@lib/context";
 import { getDateTimeString, parseDateTimeString } from "@lib/helpers";
+import { useDatetime } from "@lib/hooks";
 
 import styles from "./with-date.module.css";
-import { useDatetime } from "@lib/hooks";
 
 export function WithDate(props: ParentProps) {
 	const { getDatetime, setDatetimeQuery } = useDatetime();
@@ -23,8 +24,8 @@ export function WithDate(props: ParentProps) {
 		return {
 			DATETIME: tr.LABEL.DATETIME,
 			NEXT_DAY: tr.LABEL.NEXT_DAY,
-			PREVIOUS_DAY: tr.LABEL.PREVIOUS_DAY,
-			NOW: tr.LABEL.NOW
+			NOW: tr.LABEL.NOW,
+			PREVIOUS_DAY: tr.LABEL.PREVIOUS_DAY
 		};
 	};
 

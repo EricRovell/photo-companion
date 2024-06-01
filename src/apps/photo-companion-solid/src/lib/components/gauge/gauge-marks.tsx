@@ -1,6 +1,7 @@
 import { Index, type ParentProps } from "solid-js";
 
 import { createMarksCoords } from "./gauge.helpers";
+
 import styles from "./gauge.module.css";
 
 interface MarksProps {

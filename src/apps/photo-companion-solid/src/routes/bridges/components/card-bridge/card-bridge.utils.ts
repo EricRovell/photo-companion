@@ -1,15 +1,15 @@
 import type { BridgeScheduleEntry } from "bridge-schedule";
 
 interface Params {
-	schedule: BridgeScheduleEntry;
-	start: number;
-	end: number;
 	dx: number;
 	dy: number;
+	end: number;
+	schedule: BridgeScheduleEntry;
+	start: number;
 }
 
 export function buildBridgeSparklinePath(params: Params): string {
-	const { schedule, start, end, dx, dy } = params;
+	const { dx, dy, end, schedule, start } = params;
 
 	let x = start * 60;
 	let y = 0;

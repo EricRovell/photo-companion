@@ -2,16 +2,16 @@ export {
 	Button,
 	Datetime,
 	Details,
-	Form,
 	Fieldset,
+	Form,
 	Icon,
 	InputCheckbox,
-	InputNumber,
-	InputText,
 	InputDatetime,
+	InputNumber,
 	InputRadio,
 	InputSelect,
+	type InputSelectOption,
+	InputText,
 	Link,
-	type Option,
-	type InputSelectOption
+	type Option
 } from "./components";

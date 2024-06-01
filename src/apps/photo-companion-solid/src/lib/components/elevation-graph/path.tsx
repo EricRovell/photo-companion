@@ -1,10 +1,13 @@
+import { createMemo } from "solid-js";
 import { isSameDay } from "utils/date";
 
 import { useLocation } from "@lib/hooks";
+
 import { createPathBuilder } from "./elevation-graph.helpers";
+
 import type { AltitudeGetter } from "./elevation-graph.types";
+
 import styles from "./elevation-graph.module.css";
-import { createMemo } from "solid-js";
 
 interface Props {
 	date: Date;

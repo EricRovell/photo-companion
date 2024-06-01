@@ -1,18 +1,19 @@
-import { Show } from "solid-js";
 import { useMatch } from "@solidjs/router";
+import { Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { Time } from "ui-solid";
+
 import type { TimelineEvent } from "types";
 
 import { useTranslation } from "@lib/context";
 import { createQueryDate, setAttribute } from "@lib/helpers";
 import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "@lib/helpers/validators";
-import { LinkQuery } from "../link-query";
 
-import { lightsEventComponent } from "./timeline-event-lights";
+import { LinkQuery } from "../link-query";
 import { bridgeEventComponent } from "./timeline-event-bridge";
-import { sunEventComponent } from "./timeline-event-sun";
+import { lightsEventComponent } from "./timeline-event-lights";
 import { moonEventComponent } from "./timeline-event-moon";
+import { sunEventComponent } from "./timeline-event-sun";
 
 import styles from "./event.module.css";
 
@@ -39,8 +40,8 @@ const eventComponent = (event: TimelineEvent) => {
 };
 
 interface TimelineEventProps {
-	href: string;
 	event: TimelineEvent;
+	href?: string;
 	secondary?: boolean;
 }
 
@@ -54,10 +55,10 @@ export function TimelineEvent(props: TimelineEventProps) {
 
 	return (
 		<li
-			class={styles.event}
 			aria-current={match() ? "date" : undefined}
-			data-secondary={setAttribute(props.secondary)}
+			class={styles.event}
 			data-event-name={props.event.name}
+			data-secondary={setAttribute(props.secondary)}
 		>
 			<Time>
 				{formatters().formatTimeShort(props.event.timestamp)}
@@ -66,10 +67,10 @@ export function TimelineEvent(props: TimelineEventProps) {
 				<LinkQuery
 					class={styles.link}
 					href={props.href ?? HREF_FALLBACK}
-					title={linkTitle()}
 					query={new URLSearchParams({
-						date: createQueryDate(props.event.timestamp)
+						datetime: createQueryDate(props.event.timestamp)
 					})}
+					title={linkTitle()}
 				>
 					<Dynamic component={data().component} {...data().props} />
 				</LinkQuery>

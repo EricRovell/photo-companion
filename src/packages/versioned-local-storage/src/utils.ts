@@ -1,4 +1,4 @@
-import { isNonNegativeInteger } from "utils/validators";
+import { isNonNegativeInteger, isNullable } from "utils/validators";
 
 const LOCAL_STORAGE_ERROR = "localStorage is not accessible";
 
@@ -41,7 +41,7 @@ export function clear(): void {
 export function getVersion(name: string, defaultVersion?: number): number {
 	const storedVersion = get(name);
 
-	if (storedVersion) {
+	if (!isNullable(storedVersion)) {
 		return parseInt(storedVersion, 10);
 	}
 

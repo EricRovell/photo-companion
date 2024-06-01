@@ -1,9 +1,11 @@
-import type { SunEventName, SunEvent } from "types";
 import { template } from "utils/formatters";
 
+import type { SunEvent, SunEventName } from "types";
+
 import { Sun } from "../sun/sun";
+
+import type { Translation } from "@lib/context";
 import type { EventComponent } from "@lib/types";
-import type { Translation } from "@stores/lang";
 
 export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {
 	let message: Undefinable<string> = undefined;
@@ -14,8 +16,8 @@ export function sunEventComponent(event: SunEvent, t: Translation): EventCompone
 		case "SUNSET_START":
 		case "SUNSET_END":
 			message = template("{event}, {azimuth}", {
-				event: t.SUN_TIMES[`${event.name}_TITLE`],
-				azimuth: event.data.azimuth
+				azimuth: event.data.azimuth,
+				event: t.SUN_TIMES[`${event.name}_TITLE`]
 			});
 			break;
 		case "BLUE_HOUR_START_DAWN":
@@ -30,10 +32,10 @@ export function sunEventComponent(event: SunEvent, t: Translation): EventCompone
 
 	return {
 		component: Sun,
+		message,
 		props: {
 			event: event.name
 		},
-		message,
 		title: t.SUN_TIMES[event.name],
 		type: "sun"
 	};

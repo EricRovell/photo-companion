@@ -1,15 +1,16 @@
-import { createSignal, onCleanup, onMount, type JSX } from "solid-js";
+import { createSignal, type JSX, onCleanup, onMount } from "solid-js";
 import { classnames } from "utils";
 import { isNonNegativeInteger } from "utils/validators";
 
 import { getAngleFromTime } from "@lib/helpers";
+
 import styles from "./gauge.module.css";
 
 interface Props extends JSX.SvgSVGAttributes<SVGCircleElement> {
+	angle: number;
 	cx: number;
 	cy: number;
 	r: number;
-	angle: number;
 }
 
 // Preventing from rendering both pointers when they are too close
@@ -48,10 +49,10 @@ export function CurrentPointer(props: Props) {
 		<path
 			class={classnames(styles.pointer, styles["current-pointer"])}
 			d={path()}
+			opacity={getOpacity(currentTimeAngle(), props.angle)}
 			style={{
 				"--gauge-pointer-angle": `${currentTimeAngle()}deg`
 			}}
-			opacity={getOpacity(currentTimeAngle(), props.angle)}
 		/>
 	);
 }

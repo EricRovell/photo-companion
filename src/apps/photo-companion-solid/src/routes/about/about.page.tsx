@@ -1,7 +1,8 @@
 import { Show } from "solid-js";
 
-import { useTranslation } from "@lib/context";
 import { Markdown } from "@lib/components/markdown";
+import { useTranslation } from "@lib/context";
+
 import PageAboutEn from "./about.en.md";
 import PageAboutRu from "./about.ru.md";
 
@@ -10,7 +11,7 @@ export function PageAbout() {
 
 	return (
 		<Markdown>
-			<Show when={lang() === "en"} fallback={<PageAboutRu />}>
+			<Show fallback={<PageAboutRu />} when={lang() === "en"}>
 				<PageAboutEn />
 			</Show>
 		</Markdown>

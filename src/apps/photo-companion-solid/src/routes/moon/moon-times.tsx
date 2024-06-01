@@ -1,7 +1,8 @@
 import { classnames } from "utils";
 
-import { useTranslation } from "@lib/context";
 import { GaugeTime, Moon } from "@lib/components";
+import { useTranslation } from "@lib/context";
+
 import type { MoonData } from "./use-moon-data";
 
 import styles from "./moon.module.css";
@@ -17,20 +18,20 @@ export function MoonTimes(props: MoonTimesProps) {
 	const { t } = useTranslation();
 
 	return (
-		<section data-label="moon" class={classnames("card", styles.root)}>
+		<section class={classnames("card", styles.root)} data-label="moon">
 			<header>
 				<h2>{t().TITLE.MOON_TIMES}</h2>
 			</header>
 			<GaugeTime
 				date={props.date}
-				timeStart={props.state.moonrise}
 				timeEnd={props.state.moonset}
+				timeStart={props.state.moonrise}
 			>
 				<foreignObject
+					height={MOON_SIZE}
+					width={MOON_SIZE}
 					x={-MOON_SIZE / 2}
 					y={-MOON_SIZE / 2}
-					width={MOON_SIZE}
-					height={MOON_SIZE}
 				>
 					<Moon
 						phase={props.state.phaseValue}

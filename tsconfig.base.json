@@ -10,20 +10,19 @@
 		"declaration": true,
 		"noEmit": true,
 		"strict": true,
+		"strictNullChecks": true,
 		"esModuleInterop": true
 	},
 	"include": [
 		"./src/**/*.ts",
 		"./src/**/*.tsx",
 		"./src/**/*.js",
-		"./src/**/*.svelte",
-		"./*.js",
-		"./*.ts",
 		"**/*.d.ts",
-		"../../../global.d.ts",
-		"../../../vitest.d.ts"
+		"./global.d.ts",
+		"./vitest.d.ts"
 	],
 	"exclude": [
-		"node_modules/"
+		"node_modules/",
+		"**/dist/"
 	]
 }

@@ -1,5 +1,6 @@
-import { useTranslation } from "@lib/context";
 import { GaugeTime, Sun } from "@lib/components";
+import { useTranslation } from "@lib/context";
+
 import type { SunData } from "./use-sun-data";
 
 interface SunTimesProps {
@@ -13,20 +14,20 @@ export function SunTimes(props: SunTimesProps) {
 	const { t } = useTranslation();
 
 	return (
-		<section data-label="sun" class={"card"}>
+		<section class={"card"} data-label="sun">
 			<header>
 				<h2>{t().TITLE.SUN_TIMES}</h2>
 			</header>
 			<GaugeTime
 				date={props.date}
-				timeStart={props.state.sunrise}
 				timeEnd={props.state.sunset}
+				timeStart={props.state.sunrise}
 			>
 				<Sun
+					height={SUN_SIZE}
+					width={SUN_SIZE}
 					x={-SUN_SIZE / 2}
 					y={-SUN_SIZE / 2}
-					width={SUN_SIZE}
-					height={SUN_SIZE}
 				/>
 			</GaugeTime>
 		</section>

@@ -2,8 +2,8 @@ import { getNextBridgeEvent } from "bridge-schedule";
 import { createMemo, createSignal } from "solid-js";
 import { classnames } from "utils";
 
-import { useTranslation } from "@lib/context";
 import { Countdown } from "@lib/components";
+import { useTranslation } from "@lib/context";
 
 import styles from "./next-bridge-event.module.css";
 
@@ -26,8 +26,8 @@ export function NextBridgeEvent() {
 				{t().BRIDGE_SPB_EVENTS[`${state().name}_${!state().open ? "OPEN" : "CLOSE"}`]}
 			</p>
 			<Countdown
-				initialTimestamp={state().timestamp}
 				callback={getNextTimestamp}
+				initialTimestamp={state().timestamp}
 			/>
 		</article>
 	);

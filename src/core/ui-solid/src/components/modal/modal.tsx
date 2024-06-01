@@ -1,4 +1,4 @@
-import { createEffect, mergeProps, splitProps, type JSX } from "solid-js";
+import { createEffect, type JSX, mergeProps, splitProps } from "solid-js";
 import { classnames, preventPageScroll } from "utils";
 
 import { Button } from "../button/button";

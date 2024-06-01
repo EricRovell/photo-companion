@@ -1,6 +1,6 @@
 import { isLeapYear } from "utils/date";
-
 import { describe, expect, it } from "vitest";
+
 import { initLightsProvider } from "../src";
 import { schedule as data } from "../src/schedule/lights-moscow";
 import { getFullYearDaysList } from "./utils";
@@ -50,8 +50,8 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				const minutesOff = data.schedule[index + 3];
 
 				const output = getScheduleByDate(date);
-				const start = new Date(output["LIGHTS_START"]);
-				const end = new Date(output["LIGHTS_END"]);
+				const start = new Date(output.LIGHTS_START);
+				const end = new Date(output.LIGHTS_END);
 
 				expect(start.getHours()).toBe(hoursOn);
 				expect(start.getMinutes()).toBe(minutesOn);

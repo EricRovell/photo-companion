@@ -1,8 +1,8 @@
 import { isLatitude, isLongitude } from "utils/validators";
 
-import { RAD, DAY_MS } from "../consts";
+import { DAY_MS, RAD } from "../consts";
+import { azimuthCalc, siderealTime, toDays } from "../utils";
 import { calcSunCoordinates } from "./coordinates";
-import { siderealTime, toDays, azimuthCalc } from "../utils";
 
 /**
  * Calculates a sun time for a given azimuth angle for a given date and geoposition.

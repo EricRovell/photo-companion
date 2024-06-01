@@ -1,13 +1,15 @@
+import { useMatch } from "@solidjs/router";
 import { For } from "solid-js";
+import { Dynamic } from "solid-js/web";
 
 import { useTranslation } from "@lib/context";
+
+import { LinkQuery } from "../link-query";
 import { getTabData, useNavigationTabs } from "./navigation.helpers";
+
 import type { NavigationRoute } from "./navigation.types";
 
 import styles from "./navigation.module.css";
-import { useMatch } from "@solidjs/router";
-import { Dynamic } from "solid-js/web";
-import { LinkQuery } from "../link-query";
 
 function NavigationItem(props: NavigationRoute) {
 	const match = useMatch(() => props.href);
@@ -20,7 +22,7 @@ function NavigationItem(props: NavigationRoute) {
 				class={styles.link}
 				href={props.href}
 			>
-				<Dynamic component={props.Icon} class={styles.icon} />
+				<Dynamic class={styles.icon} component={props.Icon} />
 				<span>{t().TITLE[props.label]}</span>
 			</LinkQuery>
 		</li>

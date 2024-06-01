@@ -1,7 +1,8 @@
-import { For, createEffect, createSignal, mergeProps } from "solid-js";
+import { createEffect, createSignal, For, mergeProps } from "solid-js";
 import { InputCheckbox, type InputSelectOption } from "ui-solid";
 
 import { setAttribute } from "@lib/helpers";
+
 import styles from "./input-checkbox-group.module.css";
 
 export type Value = Nullish<string[]>;
@@ -33,13 +34,13 @@ const CheckboxList = (props: Props) => (
 			{(option) => (
 				<li>
 					<InputCheckbox
-						checked={!props.value || props.value?.includes(option.value)}
+						checked={!props.value || props.value.includes(option.value)}
 						data-group={props.groupValue}
 						disabled={props.disabled}
 						label={option.label}
 						name={props.name}
-						symbolUnchecked="CHECK"
 						symbolChecked={null}
+						symbolUnchecked="CHECK"
 						type="checkbox"
 						value={option.value}
 					/>
@@ -58,16 +59,16 @@ function RootCheckbox(props: Props) {
 
 	return (
 		<InputCheckbox
-			indeterminate={indeterminate()}
 			checked={!props.value}
 			data-group={props.groupValue}
 			data-root
 			disabled={props.disabled}
+			indeterminate={indeterminate()}
 			label={props.groupLabel}
-			type="checkbox"
 			name={props.name}
-			symbolUnchecked="CHECK"
 			symbolChecked={null}
+			symbolUnchecked="CHECK"
+			type="checkbox"
 			value={props.groupValue}
 		/>
 	);
@@ -110,9 +111,11 @@ export function InputCheckboxGroup(allProps: Props) {
 		}
 	
 		if (target.checked) {
-			setValue(value => [ ...value!, target.value ]);
+			// @ts-expect-error: value is set above
+			setValue(value => [ ...value, target.value ]);
 		} else {
-			setValue(value => value!.filter(item => item !== target.value));
+			// @ts-expect-error: value is set above
+			setValue(value => value.filter(item => item !== target.value));
 		}
 	
 		if (Array.isArray(getValue()) && getValue()?.length === props.options.length) {

@@ -1,8 +1,9 @@
 
-import { getSunPosition, getMoonPosition } from "moon-sun-calc";
+import { getMoonPosition, getSunPosition } from "moon-sun-calc";
 
-import { useTranslation } from "@lib/context";
 import { ElevationGraph } from "@lib/components";
+import { useTranslation } from "@lib/context";
+
 import styles from "./moon.module.css";
 
 interface MoonAltitudeProps {
@@ -13,7 +14,7 @@ export function MoonAltitude(props: MoonAltitudeProps) {
 	const { t } = useTranslation();
 
 	return (
-		<section data-label="altitude" class="card">
+		<section class="card" data-label="altitude">
 			<header>
 				<h2>{t().TITLE.ELEVATION_MOON}</h2>
 			</header>

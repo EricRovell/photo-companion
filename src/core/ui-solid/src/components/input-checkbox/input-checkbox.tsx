@@ -1,7 +1,8 @@
-import { Show, splitProps, mergeProps, createEffect  } from "solid-js";
+import { createEffect, mergeProps, Show, splitProps  } from "solid-js";
 import { classnames } from "utils";
 
 import type { CheckboxIconProps, InputCheckboxProps } from "./input-checkbox.types";
+
 import styles from "./input-checkbox.module.css";
 
 const DEFAULT_PROPS: InputCheckboxProps = {
@@ -19,13 +20,13 @@ function CheckboxIcon(props: CheckboxIconProps) {
 	return (
 		<svg class={styles.box} viewBox="0 0 256 256">
 			<Show when={props.symbolChecked}>
-				{item => <path data-checked d={PATH[item()]} />}
+				{item => <path d={PATH[item()]} data-checked />}
 			</Show>
 			<Show when={props.symbolUnchecked}>
-				{item => <path data-unchecked d={PATH[item()]} />}
+				{item => <path d={PATH[item()]} data-unchecked />}
 			</Show>
 			<Show when={props.symbolIndeterminate}>
-				{item => <path data-indeterminate d={PATH[item()]} />}
+				{item => <path d={PATH[item()]} data-indeterminate />}
 			</Show>
 		</svg>
 	);
@@ -53,17 +54,15 @@ export function InputCheckbox(allProps: InputCheckboxProps) {
 	const checked = () => !props.indeterminate && props.checked;
 
 	createEffect(() => {
-		if (inputRef) {
-			inputRef.indeterminate = indeterminate();
-		}
+		inputRef.indeterminate = indeterminate();
 	});
 
 	return (
 		<label class={classnames(styles.label, props.class)}>
 			<input
-				ref={el => inputRef = el}
-				class={styles.input}
 				checked={checked()}
+				class={styles.input}
+				ref={el => inputRef = el}
 				type="checkbox"
 				{...rest}
 			/>

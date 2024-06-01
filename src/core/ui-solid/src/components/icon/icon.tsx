@@ -1,7 +1,8 @@
-import { Show, splitProps, mergeProps } from "solid-js";
+import { mergeProps, Show, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { IconProps } from "./icon.types";
+
 import styles from "./icon.module.css";
 
 const DEFAULT_PROPS: Omit<IconProps, "path"> = {
@@ -10,7 +11,7 @@ const DEFAULT_PROPS: Omit<IconProps, "path"> = {
 
 export function Icon(allProps: IconProps) {
 	const merged = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(merged, [ "children", "class", "path", "title"]);
+	const [ props, rest ] = splitProps(merged, [ "children", "class", "title"]);
 
 	return (
 		<svg

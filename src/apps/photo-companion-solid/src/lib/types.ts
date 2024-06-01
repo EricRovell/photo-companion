@@ -8,17 +8,17 @@ export type EventGroupName =
 
 export interface EventComponent<Props> {
 	component: Component<Props>;
-	props: Props;
 	message?: string;
+	props: Props;
 	title: string;
 	type?: "bridge" | "lights" | "moon" | "sun";
 }
 
 export type NavigationTabName =
-	| "TIMELINE"
+	| "BRIDGES"
 	| "LIGHTS"
-	| "SUN"
 	| "MOON"
-	| "BRIDGES";
+	| "SUN"
+	| "TIMELINE";
 
 export type UserLang = "en" | "ru";

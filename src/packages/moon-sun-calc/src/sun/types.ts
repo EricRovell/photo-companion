@@ -22,8 +22,8 @@ export interface SunTime {
 	 * Note: exception for `SOLAR_NOON` & `NADIR`
 	 */
 	elevation?: number;
-	julian: number;
 	index: number;
+	julian: number;
 	name: string;
 	timestamp: number;
 	valid: boolean;

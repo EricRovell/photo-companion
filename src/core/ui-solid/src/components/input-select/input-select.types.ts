@@ -3,8 +3,8 @@ import type { JSX } from "solid-js";
 export interface InputSelectOption {
 	disabled?: boolean,
 	label: string;
-	value: string;
 	selected?: boolean;
+	value: string;
 }
 
 export interface InputSelectProps extends JSX.InputHTMLAttributes<HTMLSelectElement> {

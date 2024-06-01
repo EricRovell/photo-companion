@@ -2,6 +2,7 @@ import { splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { TimeProps } from "./time.types";
+
 import styles from "./time.module.css";
 
 export function Time(allProps: TimeProps) {

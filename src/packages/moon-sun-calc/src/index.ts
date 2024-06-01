@@ -1,6 +1,6 @@
 export {
-	getMoonPhases,
 	getMoonIllumination,
+	getMoonPhases,
 	getMoonPosition,
 	getMoonTimes
 } from "./moon";

@@ -1,10 +1,12 @@
 import { getBridgeScheduleEntry, getBridgeState } from "bridge-schedule";
-import { Show, createMemo, createSignal } from "solid-js";
-import type { BridgeName } from "types";
+import { createMemo, createSignal, Show } from "solid-js";
 import { IconWarning } from "ui-solid";
 
-import { useTranslation } from "@lib/context";
+import type { BridgeName } from "types";
+
 import { Countdown } from "@lib/components";
+import { useTranslation } from "@lib/context";
+
 import { BridgeSparkline } from "./card-bridge-sparkline";
 
 import styles from "./card-bridge.module.css";
@@ -30,7 +32,7 @@ export function CardBridge(props: Props) {
 					</Show>
 				</h2>
 				<output>
-					<Show when={state().open} fallback={t().LABEL.BRIDGE_CLOSED}>
+					<Show fallback={t().LABEL.BRIDGE_CLOSED} when={state().open}>
 						{t().LABEL.BRIDGE_OPENED}
 					</Show>
 				</output>
@@ -38,16 +40,16 @@ export function CardBridge(props: Props) {
 			<BridgeSparkline schedule={schedule()} />
 			<footer>
 				<p>
-					<Show when={state().open} fallback={t().MESSAGE.BRIDGE_WILL_OPEN_WITHIN}>
+					<Show fallback={t().MESSAGE.BRIDGE_WILL_OPEN_WITHIN} when={state().open}>
 						{t().MESSAGE.BRIDGE_WILL_CLOSE_WITHIN}
 					</Show>
 				</p>
 				<Countdown
-					initialTimestamp={state().timestamp}
 					callback={() => {
 						setDate(new Date());
 						return state().timestamp;
 					}}
+					initialTimestamp={state().timestamp}
 				/>
 			</footer>
 		</article>

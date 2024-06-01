@@ -1,7 +1,8 @@
-import { splitProps, Index } from "solid-js";
+import { Index, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { InputRadioProps } from "./input-radio.types";
+
 import styles from "./input-radio.module.css";
 
 export function InputRadio(allProps: InputRadioProps) {
@@ -17,8 +18,8 @@ export function InputRadio(allProps: InputRadioProps) {
 			{item => (
 				<label class={classnames(styles.label, props.class)}>
 					<input
-						class={styles.radio}
 						checked={props.value === item().value}
+						class={styles.radio}
 						disabled={item().disabled}
 						type="radio"
 						value={item().value}

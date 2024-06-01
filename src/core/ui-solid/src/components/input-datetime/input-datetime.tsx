@@ -1,11 +1,14 @@
+import { splitProps } from "solid-js";
 import { classnames } from "utils";
 import { incrementDateByDay } from "utils/date";
-import { splitProps } from "solid-js";
+import { isNullable } from "utils/validators";
 
-import { getDatetimeString } from "./input-datetime.helpers";
 import { Button } from "../button/button";
-import { IconTimeline, IconChevronLeft, IconChevronRight } from "../icon";
+import { IconChevronLeft, IconChevronRight, IconTimeline } from "../icon";
+import { getDatetimeString } from "./input-datetime.helpers";
+
 import type { InputDatetimeProps } from "./input-datetime.types";
+
 import styles from "./input-datetime.module.css";
 
 export function InputDatetime(allProps: InputDatetimeProps) {
@@ -26,10 +29,12 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 	const handleIncrement = (event: Event) => {
 		const target = event.target as HTMLButtonElement;
 		const step = Number(target.dataset.step);
-		const value = inputRef!.value;
+		const value = inputRef?.value;
 
-		const nextValue = getDatetimeString(incrementDateByDay(value, step));
-		props.onDatetimeChange?.(nextValue);
+		if (!isNullable(value)) {
+			const nextValue = getDatetimeString(incrementDateByDay(value, step));
+			props.onDatetimeChange?.(nextValue);
+		}
 	};
 
 	const handleChange = (event: Event) => {
@@ -43,8 +48,8 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				class={styles["button-increment"]}
 				data-step={-1}
 				onClick={handleIncrement}
-				type="button"
 				title={props.dict.PREVIOUS_DAY}
+				type="button"
 			>
 				<IconChevronLeft />
 			</Button>
@@ -73,8 +78,8 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				class={styles["button-increment"]}
 				data-step={1}
 				onClick={handleIncrement}
-				type="button"
 				title={props.dict.NEXT_DAY}
+				type="button"
 			>
 				<IconChevronRight
 				/>

@@ -11,56 +11,56 @@ export const LUNAR_DAYS_MS_QUARTER = 2551442778 / 4;
 export const MOON_CYCLE_LIST: MoonPhase[] = [
 	{
 		from: 0,
-		to: 0.033863193308711,
 		id: "NEW_MOON",
+		to: 0.033863193308711,
 		weight: 1
 	},
 	{
 		from: 0.033863193308711,
-		to: 0.216136806691289,
 		id: "WANING_CRESCENT",
+		to: 0.216136806691289,
 		weight: 6.3825
 	},
 	{
 		from: 0.216136806691289,
-		to: 0.283863193308711,
 		id: "FIRST_QUARTER",
+		to: 0.283863193308711,
 		weight: 1
 	},
 	{
 		from: 0.283863193308711,
-		to: 0.466136806691289,
 		id: "WANING_GIBBOUS",
+		to: 0.466136806691289,
 		weight: 6.3825
 	},
 	{
 		from: 0.466136806691289,
-		to: 0.533863193308711,
 		id: "FULL_MOON",
+		to: 0.533863193308711,
 		weight: 1
 	},
 	{
 		from: 0.533863193308711,
-		to: 0.716136806691289,
 		id: "WANING_GIBBOUS",
+		to: 0.716136806691289,
 		weight: 6.3825
 	},
 	{
 		from: 0.716136806691289,
-		to: 0.783863193308711,
 		id: "FIRST_QUARTER",
+		to: 0.783863193308711,
 		weight: 1
 	},
 	{
 		from: 0.783863193308711,
-		to: 0.966136806691289,
 		id: "WANING_CRESCENT",
+		to: 0.966136806691289,
 		weight: 6.3825
 	},
 	{
 		from: 0.966136806691289,
-		to: 1,
 		id: "NEW_MOON",
+		to: 1,
 		weight: 1
 	}
 ];

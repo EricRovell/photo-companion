@@ -1,8 +1,8 @@
 import { calcSunCoordinates } from "../sun/coordinates";
-
+import { toDays, toDegrees } from "../utils";
 import { MOON_CYCLE_LIST } from "./consts";
 import { calcMoonCoordinates } from "./coordinates";
-import { toDays, toDegrees } from "../utils";
+
 import type { MoonIllumination, MoonPhase } from "./types";
 
 /**
@@ -53,9 +53,9 @@ export function getMoonIllumination(dateValue: DateLike, degrees = false): MoonI
 	}
 
 	return {
+		angle: toDegrees(angle, degrees),
 		fraction: (1 + Math.cos(inc)) / 2,
 		phase,
-		phaseValue,
-		angle: toDegrees(angle, degrees)
+		phaseValue
 	};
 }

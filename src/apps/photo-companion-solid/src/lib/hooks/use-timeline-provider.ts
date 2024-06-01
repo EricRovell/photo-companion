@@ -1,5 +1,6 @@
-import type { TimelineEvent } from "types";
 import { isLatitude, isLongitude, isValidDate } from "utils/validators";
+
+import type { TimelineEvent } from "types";
 
 type ProviderArgType = "DATE" | "LOCATION";
 
@@ -28,7 +29,7 @@ type EventProvider = EventProviderByInput<ProviderArgType>;
 interface Options {
 	comparator?: (a: TimelineEvent, b: TimelineEvent) => number;
 	predicate?: (event: TimelineEvent) => boolean;
-	providers: Array<EventProvider>;
+	providers: EventProvider[];
 }
 
 /**

@@ -1,6 +1,7 @@
 import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
-import type { InputSelectOption } from "ui-solid";
+
 import type { LightsCity } from "types";
+import type { InputSelectOption } from "ui-solid";
 
 import type { Translation } from "@lib/context";
 

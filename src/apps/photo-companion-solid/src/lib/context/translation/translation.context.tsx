@@ -1,11 +1,4 @@
-import { createContext, useContext, type ParentProps, createMemo, type Accessor } from "solid-js";
-import { isNullable } from "utils/validators";
-
-import { useSettings } from "../settings";
-import { t as translationEN } from "./translation.en";
-import { t as translationRU } from "./translation.ru";
-import type { Translation, TranslationContextType } from "./translation.types";
-
+import { type Accessor, createContext, createMemo, type ParentProps, useContext } from "solid-js";
 import {
 	dateFormatter,
 	dateTimeFormatter,
@@ -13,10 +6,17 @@ import {
 	degreesFormatter,
 	kilometersFormatter,
 	percentFormatter,
-	timeFormatter,
 	timeDurationFormatter,
+	timeFormatter,
 	timeShortFormatter
 } from "utils/formatters";
+import { isNullable } from "utils/validators";
+
+import { useSettings } from "../settings";
+import { t as translationEN } from "./translation.en";
+import { t as translationRU } from "./translation.ru";
+
+import type { Translation, TranslationContextType } from "./translation.types";
 
 const TranslationContext = createContext<TranslationContextType>();
 

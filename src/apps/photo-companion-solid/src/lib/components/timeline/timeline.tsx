@@ -1,4 +1,5 @@
 import type { TimelineGroupProps, TimelineProps } from "./timeline.types";
+
 import styles from "./timeline.module.css";
 
 export const TimelineGroup = (props: TimelineGroupProps) => (

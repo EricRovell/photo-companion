@@ -1,15 +1,16 @@
-import { Router, Route } from "@solidjs/router";
+import { Route, Router } from "@solidjs/router";
 
-import { Root } from "@lib/layout/root/root";
-import { PageTimeline } from "./timeline/timeline.page";
-import { PageLights } from "./lights/lights.page";
-import { WithDate } from "@lib/layout/with-date/with-date";
-import { PageMoon } from "./moon/moon.page";
-import { PageSun } from "./sun/sun.page";
-import { PageBridges } from "./bridges/bridges.page";
-import { PageSettings } from "./settings/settings.page";
-import { PageAbout } from "./about/about.page";
 import { ROUTE } from "@lib/consts";
+import { Root } from "@lib/layout/root/root";
+import { WithDate } from "@lib/layout/with-date/with-date";
+
+import { PageAbout } from "./about/about.page";
+import { PageBridges } from "./bridges/bridges.page";
+import { PageLights } from "./lights/lights.page";
+import { PageMoon } from "./moon/moon.page";
+import { PageSettings } from "./settings/settings.page";
+import { PageSun } from "./sun/sun.page";
+import { PageTimeline } from "./timeline/timeline.page";
 
 const WITH_DATE_ROUTES = [
 	ROUTE.ROOT,
@@ -21,14 +22,14 @@ const WITH_DATE_ROUTES = [
 
 export const Routes = () => (
 	<Router root={Root}>
-		<Route path={WITH_DATE_ROUTES} component={WithDate}>
-			<Route path={[ ROUTE.ROOT, ROUTE.TIMELINE ]} component={PageTimeline} />
-			<Route path={ROUTE.LIGHTS} component={PageLights} />
-			<Route path={ROUTE.MOON} component={PageMoon} />
-			<Route path={ROUTE.SUN} component={PageSun} />
+		<Route component={WithDate} path={WITH_DATE_ROUTES}>
+			<Route component={PageTimeline} path={[ ROUTE.ROOT, ROUTE.TIMELINE ]} />
+			<Route component={PageLights} path={ROUTE.LIGHTS} />
+			<Route component={PageMoon} path={ROUTE.MOON} />
+			<Route component={PageSun} path={ROUTE.SUN} />
 		</Route>
-		<Route path={ROUTE.BRIDGES} component={PageBridges} />
-		<Route path={ROUTE.SETTINGS} component={PageSettings} />
-		<Route path={ROUTE.ABOUT} component={PageAbout} />
+		<Route component={PageBridges} path={ROUTE.BRIDGES} />
+		<Route component={PageSettings} path={ROUTE.SETTINGS} />
+		<Route component={PageAbout} path={ROUTE.ABOUT} />
 	</Router>
 );

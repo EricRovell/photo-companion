@@ -1,15 +1,16 @@
 import { createStore, unwrap } from "solid-js/store";
 import { Button, Fieldset, Form, InputCheckbox, InputRadio } from "ui-solid";
 
-import { useSettings, SETTINGS_DEFAULT, useTranslation } from "@lib/context";
-import { InputGeolocation, InputEventFilters, InputTabsSelect } from "./components";
+import { SETTINGS_DEFAULT, useSettings, useTranslation } from "@lib/context";
+
+import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
 import { LANGUAGE_OPTIONS } from "./settings.const";
 
 import styles from "./settings.module.css";
 
 export function PageSettings() {
 	const { t } = useTranslation();
-	const { getSettings, setSettings, resetSettings } = useSettings();
+	const { getSettings, resetSettings, setSettings } = useSettings();
 	const [ store, setStore ] = createStore(getSettings());
 
 	const handleChange = (event: Event) => {
@@ -56,8 +57,8 @@ export function PageSettings() {
 				</Fieldset>
 				<Fieldset legend={t().LABEL.GEOLOCATION}>
 					<InputGeolocation
-						store={store}
 						setStore={setStore}
+						store={store}
 					/>
 				</Fieldset>
 				<Fieldset legend={t().LABEL.TABS}>
@@ -76,15 +77,15 @@ export function PageSettings() {
 					</aside>
 					<InputCheckbox
 						checked={store.bridges_spb_navigation}
-						disabled={!store.tabs.includes("BRIDGES")}
+						disabled={store.tabs.includes("BRIDGES") === false}
 						label={t().LABEL.NAVIGATION_ONLY}
 						name="bridges-spb-navigation"
 					/>
 				</Fieldset>
 				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>
 					<InputEventFilters
-						store={store}
 						onChange={(name, value) => setStore({ [name]: value })}
+						store={store}
 					/>
 				</Fieldset>
 				<Fieldset class={styles.submit}>

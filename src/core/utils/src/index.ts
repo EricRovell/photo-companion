@@ -1,4 +1,4 @@
-import { isNonEmptyString } from "./validators";
+import { isNonEmptyString, isNullable } from "./validators";
 
 export function padWithZero(number: number): string {
 	return number < 10 ? `0${number}` : number.toString();
@@ -23,7 +23,7 @@ type InputClassnamesPrimitive =
 
 type InputClassnames =
 	| InputClassnamesPrimitive
-	| Array<InputClassnamesPrimitive>
+	| InputClassnamesPrimitive[]
 	| Record<string, InputClassnamesPrimitive>;
 
 /**
@@ -65,8 +65,8 @@ export function classnames(...args: InputClassnames[]): string {
 /**
  * Prevents the page scroll depending on condition.
  */
-export function preventPageScroll(condition?: boolean) {
-	if (!globalThis.window) {
+export function preventPageScroll(condition = false) {
+	if (!isNullable(globalThis.window)) {
 		return;
 	}
 
@@ -96,7 +96,14 @@ export function preventPageScroll(condition?: boolean) {
 	element.removeAttribute("data-locked");
 
 	window.scrollTo({
-		top: offset,
-		behavior: "instant"
+		behavior: "instant",
+		top: offset
 	});
+}
+
+/**
+ * Sets the boolean attribute depending on state.
+ */
+export function setAttribute(state = false, value = "") {
+	return state ? value : undefined;
 }

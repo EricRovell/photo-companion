@@ -3,9 +3,10 @@ import { isNullable } from "utils/validators";
 
 import { useSettings } from "@lib/context";
 import { useDatetime, useLightsProvider, useTimelineProvider } from "@lib/hooks";
-import { useTimelineFilters } from "./use-timeline-filters";
+
 import { getMoonEvents } from "../../../services/moon";
 import { getSunEvents } from "../../../services/sun";
+import { useTimelineFilters } from "./use-timeline-filters";
 
 export function useTimelineEvents() {
 	const { getSettings } = useSettings();
@@ -14,6 +15,7 @@ export function useTimelineEvents() {
 	const { getTimestamp } = useDatetime();
 
 	const provider = useTimelineProvider({
+		predicate: event => !timelineFilterSet.has(event.name) && event.timestamp >= getTimestamp(),
 		providers: [
 			{
 				disabled: isNullable(getSettings().events_bridges_spb),
@@ -35,8 +37,7 @@ export function useTimelineEvents() {
 				provider: getSunEvents,
 				type: "LOCATION"
 			}
-		],
-		predicate: event => !timelineFilterSet.has(event.name) && event.timestamp >= getTimestamp()
+		]
 	});
 
 	return provider;

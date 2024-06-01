@@ -1,6 +1,7 @@
-import { getMoonIllumination, getMoonTimes, getMoonPosition } from "moon-sun-calc";
+import { getMoonIllumination, getMoonPosition, getMoonTimes } from "moon-sun-calc";
 import { round } from "utils/math";
 import { isNullable } from "utils/validators";
+
 import type { MoonEvent } from "types";
 
 import { useTranslation } from "@lib/context";
@@ -19,8 +20,8 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 				azimuth: formatters().formatDegrees(round(position.azimuth, 1)),
 				fraction: formatters().formatPercent(round(illumination.fraction * 100, 1)),
 				phase: round(illumination.phaseValue, 4),
-				waxing: illumination.angle < 0,
-				rotation: -(illumination.angle - position.parallacticAngle) / 4
+				rotation: -(illumination.angle - position.parallacticAngle) / 4,
+				waxing: illumination.angle < 0
 			},
 			name: "MOONRISE",
 			timestamp: times.rise.getTime(),
@@ -37,8 +38,8 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 				azimuth: formatters().formatDegrees(round(position.azimuth, 1)),
 				fraction: formatters().formatPercent(round(illumination.fraction * 100, 1)),
 				phase: round(illumination.phaseValue, 4),
-				waxing: illumination.angle < 0,
-				rotation: -(illumination.angle - position.parallacticAngle) / 4
+				rotation: -(illumination.angle - position.parallacticAngle) / 4,
+				waxing: illumination.angle < 0
 			},
 			name: "MOONSET",
 			timestamp: times.set.getTime(),

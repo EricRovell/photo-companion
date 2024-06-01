@@ -1,12 +1,15 @@
 import { For, Show } from "solid-js";
-import { Time, IconWarning } from "ui-solid";
+import { IconWarning, Time } from "ui-solid";
 import { incrementDateByDay } from "utils/date";
+
 import type { EventGroupName } from "types";
 
+import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "@lib/components";
 import { useTranslation } from "@lib/context";
-import { TimelineGroup, Timeline, TimelineEvent, TimelineEventEmpty } from "@lib/components";
 import { useDatetime, useLocation } from "@lib/hooks";
+
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
+
 import type { EventsProps } from "./timeline.types";
 
 import styles from "./timeline.module.css";
@@ -39,7 +42,7 @@ function Events(props: EventsProps) {
 				{({ date, items }) => (
 					<Timeline date={<Time>{formatters().formatDate(date)}</Time>}>
 						<For each={items} fallback={<TimelineEventEmpty />}>
-							{event => <TimelineEvent href={createEventLink(event.type)} event={event} />}
+							{event => <TimelineEvent event={event} href={createEventLink(event.type)} />}
 						</For>
 					</Timeline>
 				)}
@@ -71,7 +74,7 @@ export function PageTimeline() {
 
 	return (
 		<div class={styles.page}>
-			<Show when={disabled} fallback={<NoEvents />}>
+			<Show fallback={<NoEvents />} when={disabled}>
 				<Events timeline={timeline()} />
 			</Show>
 		</div>

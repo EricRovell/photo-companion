@@ -1,9 +1,11 @@
-import { For, createEffect, createSignal, mergeProps } from "solid-js";
+import { createEffect, createSignal, For, mergeProps } from "solid-js";
 import { Button, IconArrowDown, IconArrowUp, InputCheckbox } from "ui-solid"; 
 
-import { useTranslation } from "@lib/context";
 import { NAVIGATION_TABS } from "@lib/components/navigation/navigation.const";
+import { useTranslation } from "@lib/context";
+
 import type { NavigationTabName } from "@lib/types";
+
 import styles from "./tabs-select.module.css";
 
 type ChangeHandler = (name: string, value: NavigationTabName[]) => void;
@@ -15,11 +17,11 @@ interface TabsSelectProps {
 }
 
 interface TabSelectProps {
-	value: NavigationTabName[];
 	index: number;
 	onMove: (event: Event) => void;
 	onSelect: (event: Event) => void;
 	tab: NavigationTabName;
+	value: NavigationTabName[];
 }
 
 export function TabSelect(props: TabSelectProps) {
@@ -32,14 +34,14 @@ export function TabSelect(props: TabSelectProps) {
 	return (
 		<li
 			class={styles.entry}
-			data-tab={props.tab}
 			data-index={props.index}
+			data-tab={props.tab}
 		>
 			<InputCheckbox
 				checked={checked()}
 				disabled={itemDisabled()}
-				onChange={props.onSelect}
 				label={t().TITLE[props.tab]}
+				onChange={props.onSelect}
 			/>
 			<Button
 				appearance="ghost"
@@ -99,7 +101,7 @@ export function InputTabsSelect(allProps: TabsSelectProps) {
 			return valueCopy;
 		});
 
-		props.onChange?.(props.name, getTabs());
+		props.onChange(props.name, getTabs());
 	};
 
 	const handleSelect = (event: Event) => {
@@ -115,7 +117,7 @@ export function InputTabsSelect(allProps: TabsSelectProps) {
 			setInactiveTabs(value => [ ...value.filter(i => i !== tab) ]);
 		}
 
-		props.onChange?.(props.name, getTabs());
+		props.onChange(props.name, getTabs());
 	};
 
 	return (
@@ -124,9 +126,9 @@ export function InputTabsSelect(allProps: TabsSelectProps) {
 				<For each={[ ...getTabs(), ...getInactiveTabs() ]}>
 					{(tab, index) => (
 						<TabSelect
+							index={index()}
 							onMove={handleMove}
 							onSelect={handleSelect}
-							index={index()}
 							tab={tab}
 							value={getTabs()}
 						/>

@@ -1,7 +1,8 @@
-import { getSunTimes, getSunPosition } from "moon-sun-calc";
+import { getSunPosition, getSunTimes } from "moon-sun-calc";
 import { objectEntries } from "utils";
 import { round } from "utils/math";
-import type { SunEventName, SunEvent } from "types";
+
+import type { SunEvent, SunEventName } from "types";
 
 import { useTranslation } from "@lib/context";
 

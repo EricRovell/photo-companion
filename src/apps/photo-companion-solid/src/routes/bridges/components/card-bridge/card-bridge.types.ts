@@ -1,26 +1,26 @@
 import type { BridgeScheduleEntry } from "bridge-schedule";
 
 export interface SparklineProps {
-	schedule: BridgeScheduleEntry;
-	start: number;
-	end: number;
 	dx: number;
 	dy: number;
+	end: number;
+	schedule: BridgeScheduleEntry;
+	start: number;
 }
 
 export interface ScheduleEntry {
-	hoursStart: number;
-	minutesStart: number;
-	hoursEnd: number;
-	minutesEnd: number;
 	fontSize: number;
+	hoursEnd: number;
+	hoursStart: number;
+	minutesEnd: number;
+	minutesStart: number;
 }
 
 export interface TimeProps {
+	date: Date | number;
+	fontSize: number;
 	x: number;
 	y: number;
-	fontSize: number;
-	date: Date | number;
 }
 
 export interface WaterPathProps {
@@ -29,11 +29,11 @@ export interface WaterPathProps {
 }
 
 export interface BridgeSparklineProps {
+	angle?: number;
+	end?: number;
+	fontSize?: number;
+	length?: number;
 	schedule: BridgeScheduleEntry;
 	start?: number;
-	end?: number;
-	angle?: number;
-	length?: number;
 	strokeWidth?: number;
-	fontSize?: number;
 }

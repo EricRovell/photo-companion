@@ -8,8 +8,8 @@ import { setAttribute } from "@lib/helpers";
 import styles from "./navigation-event.module.css";
 
 export function NavigationEvent() {
-	const { t, formatters } = useTranslation();
-	const { navigation, days} = getNavigationState(new Date());
+	const { formatters, t } = useTranslation();
+	const { days, navigation} = getNavigationState(new Date());
 
 	return (
 		<article

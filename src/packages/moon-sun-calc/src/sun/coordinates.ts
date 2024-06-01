@@ -1,5 +1,6 @@
-import { solarMeanAnomaly } from "./utils";
 import { declination, eclipticLongitude, rightAscension } from "../utils";
+import { solarMeanAnomaly } from "./utils";
+
 import type { SunCoordinates } from "./types";
 
 /**

@@ -1,16 +1,18 @@
 import { type ParentProps, Show } from "solid-js";
-import { Link as Anchor } from "ui-solid";
 import { Dynamic } from "solid-js/web";
+import { Link as Anchor } from "ui-solid";
 
 import { useDefinition } from "./markdown.context";
+
 import type {
-	HeadingProps,
-	ListItemProps,
-	ListProps,
-	LinkProps,
 	DefinitionProps,
-	LinkReferenceProps
+	HeadingProps,
+	LinkProps,
+	LinkReferenceProps,
+	ListItemProps,
+	ListProps
 } from "./markdown.types";
+
 import styles from "./markdown.module.css";
 
 export const Definition = (props: DefinitionProps) => {
@@ -22,8 +24,8 @@ export const Definition = (props: DefinitionProps) => {
 		...state,
 		[props.identifier]: {
 			label: props.label,
-			url: props.url,
-			title: props.title
+			title: props.title,
+			url: props.url
 		}
 	}));
 
@@ -51,7 +53,7 @@ export const LinkReference = (props: LinkReferenceProps) => {
 
 	return (
 		<Show when={data()}>
-			<Link url={data().url} title={data().title}>
+			<Link title={data().title} url={data().url}>
 				{props.children}
 			</Link>
 		</Show>
@@ -60,7 +62,7 @@ export const LinkReference = (props: LinkReferenceProps) => {
 
 export const List = (props: ListProps) => (
 	<Dynamic
-		component={props.ordered ? "ol" : "ul"}
+		component={props.ordered ? "ul" : "ol"}
 		start={props.start ?? undefined}
 	>
 		{props.children}
@@ -69,8 +71,8 @@ export const List = (props: ListProps) => (
 
 export const ListItem = (props: ListItemProps) => (
 	<li>
-		<Show when={"checked" in props} fallback={props.children}>
-			<input type="checkbox" checked={props.checked ?? undefined} />
+		<Show fallback={props.children} when={"checked" in props}>
+			<input checked={props.checked ?? undefined} type="checkbox" />
 			{props.children}
 		</Show>
 	</li>

@@ -2,6 +2,7 @@ import { mergeProps, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { ButtonProps } from "./button.types";
+
 import styles from "./button.module.css";
 
 const DEFAULT_PROPS: ButtonProps = {
@@ -24,8 +25,8 @@ export function Button(allProps: ButtonProps) {
 		<button
 			class={classnames(styles.button, props.class)}
 			data-appearance={props.appearance}
-			data-variant={props.variant}
 			data-loading={props.loading ? "" : undefined}
+			data-variant={props.variant}
 			{...rest}
 		>
 			{props.children}

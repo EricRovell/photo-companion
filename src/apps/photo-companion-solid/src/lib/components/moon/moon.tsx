@@ -3,6 +3,7 @@ import { createTweened } from "ui-solid/primitives";
 
 import { DEFAULT_PROPS } from "./moon.const";
 import { getNormalizedAngleRad, getNormalizedPhase } from "./moon.helpers";
+
 import type { CircleCommonProps, CircleProps, MoonProps } from "./moon.types";
 
 import styles from "./moon.module.css";
@@ -34,12 +35,12 @@ export function Moon(allProps: MoonProps) {
 	return (
 		<svg
 			class={styles.moon}
-			viewBox={viewBox()}
 			style={{
 				"--moon-disk-angle": `${getNormalizedAngleRad(phase())}rad`,
 				"--moon-rotation": `${props.rotation}deg`,
 				"transform": `rotate(${props.rotation}deg)`
 			}}
+			viewBox={viewBox()}
 		>
 			<Circle class={styles.shadow} />
 			<Circle

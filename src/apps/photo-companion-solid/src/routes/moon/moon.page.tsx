@@ -1,12 +1,13 @@
-import { MoonTimes } from "./moon-times";
-import { MoonAltitude } from "./moon-altitude";
-import { MoonData } from "./moon-data";
-import { MoonTimeline } from "./moon-timeline";
-import { MoonPhases } from "./moon-phases";
 import { useDatetime } from "@lib/hooks";
 
-import styles from "./moon.module.css";
+import { MoonAltitude } from "./moon-altitude";
+import { MoonData } from "./moon-data";
+import { MoonPhases } from "./moon-phases";
+import { MoonTimeline } from "./moon-timeline";
+import { MoonTimes } from "./moon-times";
 import { useMoonData } from "./use-moon-data";
+
+import styles from "./moon.module.css";
 
 export function PageMoon() {
 	const { getDatetime } = useDatetime();

@@ -1,11 +1,12 @@
-import { SunTimes } from "./sun-times";
+import { useDatetime } from "@lib/hooks";
+
 import { SunAltitude } from "./sun-altitude";
 import { SunData } from "./sun-data";
 import { SunTimeline } from "./sun-timeline";
-import { useDatetime } from "@lib/hooks";
+import { SunTimes } from "./sun-times";
+import { useSunData } from "./use-sun-data";
 
 import styles from "./sun.module.css";
-import { useSunData } from "./use-sun-data";
 
 export function PageSun() {
 	const { getDatetime } = useDatetime();

@@ -12,7 +12,7 @@ export function SunAltitude(props: SunAltitudeProps) {
 	const { t } = useTranslation();
 
 	return (
-		<section data-label="altitude" class="card">
+		<section class="card" data-label="altitude">
 			<header>
 				<h2>{t().TITLE.ELEVATION_SUN}</h2>
 			</header>

@@ -1,11 +1,13 @@
-import { For, createMemo } from "solid-js";
+import { createMemo, For } from "solid-js";
+
 import type { EventName } from "types";
 
-import { useLocation, useTimelineProvider } from "@lib/hooks";
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTE } from "@lib/consts";
-import { getSunEvents } from "../../services/sun";
+import { useLocation, useTimelineProvider } from "@lib/hooks";
+
 import { getMoonEvents } from "../../services/moon";
+import { getSunEvents } from "../../services/sun";
 
 interface MoonTimelineProps {
 	date: Date;
@@ -27,6 +29,7 @@ export function MoonTimeline(props: MoonTimelineProps) {
 	const { getLatitude, getLongitude } = useLocation();
 
 	const { getTimeline } = useTimelineProvider({
+		predicate: event => TIMELINE_EVENT_SET.has(event.name),
 		providers: [
 			{
 				provider: getSunEvents,
@@ -36,8 +39,7 @@ export function MoonTimeline(props: MoonTimelineProps) {
 				provider: getMoonEvents,
 				type: "LOCATION"
 			}
-		],
-		predicate: event => TIMELINE_EVENT_SET.has(event.name)
+		]
 	});
 
 	const events = createMemo(() => {
@@ -50,8 +52,8 @@ export function MoonTimeline(props: MoonTimelineProps) {
 				<For each={events()}>
 					{event => (
 						<TimelineEvent
-							href={ROUTE.MOON}
 							event={event}
+							href={ROUTE.MOON}
 							secondary={SECONDARY_EVENT_SET.has(event.name)}
 						/>
 					)}

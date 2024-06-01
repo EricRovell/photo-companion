@@ -1,9 +1,11 @@
 import { dateFrom, incrementDateByDay } from "utils/date";
+import { isNullable } from "utils/validators";
 
-import { schedule } from "./schedule";
-import { isNavigationTime } from "./navigation";
 import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
-import type { BridgeState, BridgeName, BridgeScheduleEntry } from "./types";
+import { isNavigationTime } from "./navigation";
+import { schedule } from "./schedule";
+
+import type { BridgeName, BridgeScheduleEntry, BridgeState } from "./types";
 
 /**
  * Returns a bridge state by a given date. The navigation period is taken into account.
@@ -116,22 +118,26 @@ export function getBridgeState(name: BridgeName, date = new Date(), ignoreNaviga
  * TODO: refactor and move to "events" file
  */
 export function getNextBridgeEvent(date = new Date()): BridgeState {
-	let nextEventState: BridgeState;
+	let nextEventState: Nullable<BridgeState> = null;
 
 	for (const name of SUPPORTED_BRIDGES_NAME_SET) {
 		const state = getBridgeState(name, date, true);
 
-		if (!nextEventState! || state.timestamp < nextEventState.timestamp) {
-			nextEventState = state!;
+		if (isNullable(nextEventState) || state.timestamp < nextEventState.timestamp) {
+			nextEventState = state;
 		}
 	}
 
-	return nextEventState!;
+	if (isNullable(nextEventState)) {
+		throw new Error(`Something is wrong, for the ${date} the next event is ${nextEventState}`);
+	}
+
+	return nextEventState;
 }
 
 /**
  * Returns a schedule entry data for a specific bridge.
  */
 export function getBridgeScheduleEntry(name: BridgeName): BridgeScheduleEntry {
-	return schedule["bridges"][name];
+	return schedule.bridges[name];
 }

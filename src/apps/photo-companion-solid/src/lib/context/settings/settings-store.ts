@@ -6,6 +6,7 @@ import {
 	SETTINGS_LOCAL_STORAGE_KEY,
 	SETTINGS_LOCAL_STORAGE_VERSION
 } from "./settings.const";
+
 import type { SettingsStore } from ".";
 
 export const storage = new Storage(

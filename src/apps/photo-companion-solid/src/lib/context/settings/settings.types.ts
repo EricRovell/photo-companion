@@ -1,6 +1,4 @@
 import type { Accessor, Setter } from "solid-js";
-
-import type { UserLang, NavigationTabName } from "@lib/types";
 import type {
 	BridgeEventName,
 	LightsCity,
@@ -8,6 +6,8 @@ import type {
 	MoonEventName,
 	SunEventName
 } from "types";
+
+import type { NavigationTabName, UserLang } from "@lib/types";
 
 /**
  * Events:
@@ -34,6 +34,6 @@ export interface SettingsStore {
 
 export interface SettingsContextType {
 	readonly getSettings: Accessor<SettingsStore>;
-	readonly setSettings: Setter<SettingsStore>;
 	readonly resetSettings: () => void;
+	readonly setSettings: Setter<SettingsStore>;
 }

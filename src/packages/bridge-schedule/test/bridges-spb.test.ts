@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { isNavigationTime, getBridgeState } from "../src";
+
+import { getBridgeState, isNavigationTime } from "../src";
 import { SUPPORTED_BRIDGES_NAME_SET } from "../src/const";
-import type { BridgeName } from "../src/types";
 import { schedule as data } from "../src/schedule";
+
+import type { BridgeName } from "../src/types";
 
 const BETWEEN_OPENINGS_GAP_MINUTES = 10;
 const OPENING_GAP_MINUTES = 30;
@@ -16,10 +18,10 @@ const afterNavigation = new Date(2023, 11, 31);
 
 interface Fixture {
 	bridgeName: BridgeName;
-	when: string;
-	open: boolean;
 	date: Date;
+	open: boolean;
 	timestamp: number;
+	when: string;
 }
 
 const generateBridgeScheduleFixtures = (bridgeName) => {
@@ -28,36 +30,36 @@ const generateBridgeScheduleFixtures = (bridgeName) => {
 
 	fixtures.push({
 		bridgeName,
-		when: "before first opening",
-		open: false,
 		date: new Date(data.year, 5, 21, scheduleList[0][0] - 1, scheduleList[0][1], 0, 0),
-		timestamp: new Date(data.year, 5, 21, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime()
+		open: false,
+		timestamp: new Date(data.year, 5, 21, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime(),
+		when: "before first opening"
 	});
 
 	fixtures.push({
 		bridgeName,
-		when: "after last opening",
-		open: false,
 		date: new Date(data.year, 5, 21, scheduleList.at(-1)[2] + 1, scheduleList.at(-1)[3], 0, 0),
-		timestamp: new Date(data.year, 5, 22, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime()
+		open: false,
+		timestamp: new Date(data.year, 5, 22, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime(),
+		when: "after last opening"
 	});
 
 	for (const [ hoursOpen, minutesOpen, hoursClose, minutesClose ] of scheduleList) {
 		fixtures.push({
 			bridgeName,
-			when: "at the opening",
-			open: true,
 			date: new Date(data.year, 5, 21, hoursOpen, minutesOpen, 0, 0),
-			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime()
+			open: true,
+			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime(),
+			when: "at the opening"
 		});
 
 		fixtures.push({
 			bridgeName,
-			when: "during the opening",
-			open: true,
 			// ASSUMING no bridge is opened only for 30 minutes
 			date: new Date(data.year, 5, 21, hoursOpen, minutesOpen + OPENING_GAP_MINUTES, 0, 0),
-			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime()
+			open: true,
+			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime(),
+			when: "during the opening"
 		});
 	}
 
@@ -65,19 +67,19 @@ const generateBridgeScheduleFixtures = (bridgeName) => {
 		for (let i = 0; i < scheduleList.length - 1; i++) {
 			fixtures.push({
 				bridgeName,
-				when: "at closing",
-				open: false,
 				date: new Date(data.year, 5, 21, scheduleList[i][2], scheduleList[i][3], 0, 0),
-				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime()
+				open: false,
+				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime(),
+				when: "at closing"
 			});
 
 			fixtures.push({
 				bridgeName,
-				when: "between openings",
-				open: false,
 				// ASSUMING no bridge is closed only for 10 minutes
 				date: new Date(data.year, 5, 21, scheduleList[i][2], scheduleList[i][3] + BETWEEN_OPENINGS_GAP_MINUTES, 0, 0),
-				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime()
+				open: false,
+				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime(),
+				when: "between openings"
 			});
 		}
 	}
@@ -120,7 +122,7 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 			it(`Getting the schedule of ${bridgeName}`, () => {
 				const fixtures = generateBridgeScheduleFixtures(bridgeName);
 
-				for (const { open, date, timestamp } of fixtures) {
+				for (const { date, open, timestamp } of fixtures) {
 					expect(getBridgeState(bridgeName, date, true)).toEqual({
 						name: bridgeName,
 						open,

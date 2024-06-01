@@ -1,8 +1,9 @@
-import { createSignal, createContext, useContext, onMount, createEffect, type ParentProps } from "solid-js";
+import { createContext, createEffect, createSignal, onMount, type ParentProps, useContext } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { SETTINGS_DEFAULT } from "./settings.const";
 import { storage } from "./settings-store";
+import { SETTINGS_DEFAULT } from "./settings.const";
+
 import type { SettingsContextType, SettingsStore } from "./settings.types";
 
 const SettingsContext = createContext<SettingsContextType>();
@@ -28,8 +29,8 @@ export function SettingsProvider(props: ParentProps) {
 	return (
 		<SettingsContext.Provider value={{
 			getSettings,
-			setSettings,
-			resetSettings
+			resetSettings,
+			setSettings
 		}}>
 			{props.children}
 		</SettingsContext.Provider>

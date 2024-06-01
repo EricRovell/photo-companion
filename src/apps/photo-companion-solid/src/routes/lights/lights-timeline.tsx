@@ -1,9 +1,11 @@
 import { For } from "solid-js";
+
 import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTE } from "@lib/consts";
 import { useDatetime, useLightsProvider, useLocation, useTimelineProvider } from "@lib/hooks";
+
 import { getSunEvents } from "../../services/sun";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
@@ -23,6 +25,7 @@ export function LightsTimeline() {
 	const { getLatitude, getLongitude } = useLocation();
 	const { getLightsProvider } = useLightsProvider();
 	const { getTimeline } = useTimelineProvider({
+		predicate: event => TIMELINE_EVENT_SET.has(event.name),
 		providers: [
 			{
 				provider: getLightsProvider().getEventsByDate,
@@ -32,8 +35,7 @@ export function LightsTimeline() {
 				provider: getSunEvents,
 				type: "LOCATION"
 			}
-		],
-		predicate: event => TIMELINE_EVENT_SET.has(event.name)
+		]
 	});
 
 	const events = () => getTimeline(getDatetime(), getLatitude(), getLongitude());
@@ -44,8 +46,8 @@ export function LightsTimeline() {
 				<For each={events()}>
 					{event => (
 						<TimelineEvent
-							href={ROUTE.LIGHTS}
 							event={event}
+							href={ROUTE.LIGHTS}
 							secondary={SECONDARY_EVENT_SET.has(event.name)}
 						/>
 					)}

@@ -1,20 +1,22 @@
+import { For, mergeProps } from "solid-js";
 import { round } from "utils/math";
 
+import { useTranslation } from "@lib/context";
 import { getDate } from "@lib/helpers";
 import { createWavyPath } from "@lib/helpers/svg";
-import styles from "./card-bridge.module.css";
 
-import { mergeProps, For } from "solid-js";
-import type { BridgeSparklineProps, ScheduleEntry, SparklineProps, TimeProps, WaterPathProps } from "./card-bridge.types";
 import { DEFAULT_PROPS_SPARKLINE } from "./card-bridge.const";
 import { buildBridgeSparklinePath } from "./card-bridge.utils";
-import { useTranslation } from "@lib/context";
+
+import type { BridgeSparklineProps, ScheduleEntry, SparklineProps, TimeProps, WaterPathProps } from "./card-bridge.types";
+
+import styles from "./card-bridge.module.css";
 
 const Sparkline = (props: SparklineProps) => (
 	<path
 		d={buildBridgeSparklinePath(props)}
-		stroke-linecap="round"
 		fill="none"
+		stroke-linecap="round"
 	/>
 );
 
@@ -23,10 +25,10 @@ function Time(props: TimeProps) {
 
 	return (
 		<text
+			fill="white"
+			font-size={props.fontSize.toString()}
 			x={props.x}
 			y={props.y}
-			font-size={props.fontSize.toString()}
-			fill="white"
 		>
 			{formatters().formatTimeShort(props.date)}
 			<title>
@@ -38,10 +40,10 @@ function Time(props: TimeProps) {
 
 const WaterPath = (props: WaterPathProps) => (
 	<path
+		d={createWavyPath(`M ${props.x1 + 6},0 L ${props.x2 - 6},0`, 5, 2)}
 		data-stroke-water
-		d={createWavyPath(`M ${props.x1 + 6},0 L ${props.x2 - 6},${0}`, 5, 2)}
-		stroke-linecap="round"
 		fill="none"
+		stroke-linecap="round"
 	/>
 );
 
@@ -63,16 +65,16 @@ function SparklineEntry(props: ScheduleEntry) {
 		<>
 			<WaterPath x1={x1()} x2={x2()} />
 			<Time
+				date={dateStart()}
+				fontSize={props.fontSize}
 				x={x1() - props.fontSize}
 				y={props.fontSize * 1.5}
-				fontSize={props.fontSize}
-				date={dateStart()}
 			/>
 			<Time
+				date={dateEnd()}
+				fontSize={props.fontSize}
 				x={x2() - props.fontSize}
 				y={props.fontSize * 1.5}
-				fontSize={props.fontSize}
-				date={dateEnd()}
 			/>
 		</>
 	);
@@ -94,20 +96,20 @@ export function BridgeSparkline(allProps: BridgeSparklineProps) {
 			viewBox={viewBox()}
 		>
 			<Sparkline
-				schedule={props.schedule}
 				dx={dx()}
 				dy={dy()}
-				start={props.start}
 				end={props.end}
+				schedule={props.schedule}
+				start={props.start}
 			/>
 			<For each={props.schedule}>
 				{([ hoursStart, minutesStart, hoursEnd, minutesEnd ]) => (
 					<SparklineEntry
-						hoursStart={hoursStart}
-						minutesStart={minutesStart}
-						hoursEnd={hoursEnd}
-						minutesEnd={minutesEnd}
 						fontSize={props.fontSize}
+						hoursEnd={hoursEnd}
+						hoursStart={hoursStart}
+						minutesEnd={minutesEnd}
+						minutesStart={minutesStart}
 					/>
 				)}
 			</For>

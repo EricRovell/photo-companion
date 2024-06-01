@@ -1,13 +1,13 @@
 import type { ActionReturn } from "svelte/action";
 
-type Direction = "up" | "right" | "down" | "left";
+type Direction = "down" | "left" | "right" | "up";
 type EventName = `swipe-${Direction}`;
 
 export interface SwipeEvent {
 	direction: Direction;
 	x1: number;
-	y1: number;
 	x2: number;
+	y1: number;
 	y2: number;
 }
 
@@ -18,10 +18,10 @@ interface Options {
 
 interface Attributes {
 	"on:swipe"?: (e: CustomEvent<SwipeEvent>) => void;
+	"on:swipe-down"?: (e: CustomEvent<SwipeEvent>) => void;
 	"on:swipe-left"?: (e: CustomEvent<SwipeEvent>) => void;
 	"on:swipe-right"?: (e: CustomEvent<SwipeEvent>) => void;
 	"on:swipe-up"?: (e: CustomEvent<SwipeEvent>) => void;
-	"on:swipe-down"?: (e: CustomEvent<SwipeEvent>) => void;
 }
 
 type SwipableAction = (node: HTMLElement, options: Options) => ActionReturn<Options, Attributes>;
@@ -95,8 +95,8 @@ export const swipable: SwipableAction = (node, { threshold = 25, timeout = 750 }
 			const detail = {
 				direction: eventType.replace(/swipe-/, ""),
 				x1: Math.round(x),
-				y1: Math.round(y),
 				x2,
+				y1: Math.round(y),
 				y2
 			};
 

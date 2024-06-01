@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { getSunPosition,getSunTime,getSunTimes } from "../src";
 import {
 	DATE,
@@ -18,9 +19,9 @@ expect.extend({
 		const pass = difference < precision;
 
 		return {
-			pass,
 			message: () =>
-				`expected ${received} to be close to ${expected} with precision ${precision}, differenece is ${difference}`
+				`expected ${received} to be close to ${expected} with precision ${precision}, difference is ${difference}`,
+			pass
 		};
 	}
 });

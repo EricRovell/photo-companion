@@ -1,6 +1,6 @@
-import { type ParentProps, createEffect } from "solid-js";
 import { useMatch, useSearchParams } from "@solidjs/router";
-import { Link, IconGithub, IconQuestion, IconSettings } from "ui-solid";
+import { createEffect, type ParentProps } from "solid-js";
+import { IconGithub, IconQuestion, IconSettings, Link } from "ui-solid";
 import { isNullable } from "utils/validators";
 
 import { LinkQuery, Navigation } from "@lib/components";

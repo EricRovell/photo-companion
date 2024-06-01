@@ -1,9 +1,10 @@
 import { createMemo } from "solid-js";
 
 import { useDatetime, useLightsProvider } from "@lib/hooks";
-import { LightsTimeline } from "./lights-timeline";
-import { LightsInfo } from "./lights-info";
+
 import { LightGauge } from "./lights-gauge";
+import { LightsInfo } from "./lights-info";
+import { LightsTimeline } from "./lights-timeline";
 
 import styles from "./lights.module.css";
 
@@ -23,8 +24,8 @@ export function PageLights() {
 			/>
 			<LightsInfo
 				city={getLightsProvider().city}
-				schedule={schedule()}
 				lights={state().lights}
+				schedule={schedule()}
 			/>
 			<LightsTimeline />
 		</div>

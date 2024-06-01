@@ -12,20 +12,20 @@ export function calcDuration(from: Nullish<DateLike> = null, to: Nullish<DateLik
 		throw new Error("Both dates should be provided");
 	}
 
-	if (isNullable(from) && to) {
+	if (isNullable(from) && !isNullable(to)) {
 		from = dateFrom(to, { hours: 0, minutes: 0, seconds: 0 });
 
 		return new Date(to).getTime() - from.getTime();
 	}
 
-	if (from && isNullable(to)) {
+	if (!isNullable(from) && isNullable(to)) {
 		to = dateFrom(from, { hours: 24, minutes: 0, seconds: 0 });
 
 		return to.getTime() - new Date(from).getTime();
 	}
 
-	const startTime = new Date(from!).getTime();
-	const endTime = new Date(to!).getTime();
+	const startTime = new Date(from).getTime();
+	const endTime = new Date(to).getTime();
 
 	if (endTime >= startTime) {
 		return endTime - startTime;
@@ -64,12 +64,12 @@ export function countDays(from: DateLike, to: DateLike) {
 }
 
 interface DateFromOptions {
-	year?: number;
-	month?: number;
 	date?: number;
 	hours?: number;
 	minutes?: number;
+	month?: number;
 	seconds?: number;
+	year?: number;
 }
 
 /**
@@ -79,7 +79,7 @@ interface DateFromOptions {
  */
 export function dateFrom(input: DateLike = new Date(), options: DateFromOptions = {}): Date {
 	const output = new Date(input);
-	const { year, month, date, hours, minutes, seconds } = options;
+	const { date, hours, minutes, month, seconds, year } = options;
 
 	isInteger(year) && output.setFullYear(year);
 	isInteger(month) && output.setMonth(month - 1);

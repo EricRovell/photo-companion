@@ -1,19 +1,20 @@
-import type { LightsCity, LightsSchedule } from "types";
 import { createEffect, createSignal } from "solid-js";
 import { createTimeoutLoop } from "ui-solid/primitives";
 
-import { useTranslation } from "@lib/context";
+import type { LightsCity, LightsSchedule } from "types";
+
 import { CardEntry, CardInfo } from "@lib/components";
+import { useTranslation } from "@lib/context";
 import { useLightsProvider } from "@lib/hooks";
 
 interface Props {
-	schedule: LightsSchedule;
 	city: LightsCity;
 	lights: boolean;
+	schedule: LightsSchedule;
 }
 
 function LightsCountdown(props: { lights: boolean }) {
-	const { t, formatters } = useTranslation();
+	const { formatters, t } = useTranslation();
 	const { getLightsProvider } = useLightsProvider();
 	const getState = () => getLightsProvider().getStateByDate();
 	const [ time, setTime ] = createSignal(getState().timestamp - Date.now());
@@ -37,12 +38,12 @@ function LightsCountdown(props: { lights: boolean }) {
 }
 
 export const LightsInfo = (props: Props) => {
-	const { t, formatters } = useTranslation();
+	const { formatters, t } = useTranslation();
 
 	return (
 		<CardInfo>
 			<CardEntry property={t().LABEL.CITY}>
-				{t().CITIES[props.city ?? "SAINT_PETERSBURG"]}
+				{t().CITIES[props.city]}
 			</CardEntry>
 			<CardEntry property={t().LABEL.LIGHTS_CITY}>
 				{props.lights ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}

@@ -4,8 +4,8 @@ type SymbolType = Nullish<"CHECK" | "CROSS" | "MINUS">;
 
 export interface CheckboxIconProps {
 	symbolChecked?: SymbolType;
-	symbolUnchecked?: SymbolType;
 	symbolIndeterminate?: SymbolType;
+	symbolUnchecked?: SymbolType;
 }
 
 export interface InputCheckboxProps extends JSX.InputHTMLAttributes<HTMLInputElement>, CheckboxIconProps {

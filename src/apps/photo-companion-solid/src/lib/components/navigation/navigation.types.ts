@@ -1,16 +1,16 @@
-import type { IconProps } from "ui-solid";
 import type { Component } from "solid-js";
+import type { IconProps } from "ui-solid";
 
 export type NavigationTabName =
-	| "TIMELINE"
+	| "BRIDGES"
 	| "LIGHTS"
-	| "SUN"
 	| "MOON"
-	| "BRIDGES";
+	| "SUN"
+	| "TIMELINE";
 
 export interface NavigationRoute {
-	href: string;
 	disabled?: boolean;
+	href: string;
 	Icon: Component<IconProps>;
 	label: NavigationTabName;
 }

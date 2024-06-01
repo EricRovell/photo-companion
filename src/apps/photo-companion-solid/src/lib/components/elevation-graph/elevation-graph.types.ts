@@ -14,8 +14,8 @@ export type AltitudeGetter = ( date: DateLike, latitude: number, longitude: numb
 export interface GraphEntityProps {
 	class?: string;
 	date: Date;
-	id: string;
 	getAltitude: AltitudeGetter;
+	id: string;
 	// Note: the reason is that Safari does not support "r" attribute via CSS
 	pointerSize?: number;
 }
@@ -26,7 +26,7 @@ export interface GraphProps {
 }
 
 export interface Tick {
+	text: string;
 	x: number;
 	y: number;
-	text: string;
 }

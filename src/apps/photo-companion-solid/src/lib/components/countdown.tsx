@@ -1,19 +1,19 @@
-import { createSignal, createEffect } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
+import { Time } from "ui-solid";
 import { createTimeoutLoop } from "ui-solid/primitives";
 
-import { Time } from "ui-solid";
 import { useTranslation } from "@lib/context";
 
 interface Props {
-	initialTimestamp: number;
 	callback?: () => number;
+	initialTimestamp: number;
 }
 
 export function Countdown(props: Props) {
 	const { formatters } = useTranslation();
 
 	const [ time, setTime ] = createSignal(props.initialTimestamp - Date.now());
-	const [ getDelay, setDelay ] = createSignal<number | false>(1000);
+	const [ getDelay, setDelay ] = createSignal<false | number>(1000);
 	const handleIncrement = () => setTime(value => value - 1000);
 
 	createTimeoutLoop(handleIncrement, getDelay);

@@ -1,6 +1,8 @@
-import { useSettings } from "@lib/context";
-import type { EventName } from "types";
 import { isNullable } from "utils/validators";
+
+import type { EventName } from "types";
+
+import { useSettings } from "@lib/context";
 
 /**
  * Returns a Set of user blocked timeline events.

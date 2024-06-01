@@ -2,9 +2,11 @@ import { For, Index, mergeProps, type ParentProps } from "solid-js";
 
 import { X_RANGE, Y_MIN, Y_RANGE, Y_RANGE_TICKS } from "./elevation-graph.consts";
 import { getTicks } from "./elevation-graph.helpers";
-import type { GraphEntityProps, GraphProps } from "./elevation-graph.types";
 import { GraphPath } from "./path";
 import { GraphPointer } from "./pointer";
+
+import type { GraphEntityProps, GraphProps } from "./elevation-graph.types";
+
 import styles from "./elevation-graph.module.css";
 
 const Ticks = () => (
@@ -12,9 +14,9 @@ const Ticks = () => (
 		<Index each={getTicks()}>
 			{(item) => (
 				<text
+					dominant-baseline="middle"
 					x={item().x}
 					y={item().y}
-					dominant-baseline="middle"
 				>
 					{item().text}
 				</text>
@@ -27,8 +29,8 @@ const ZeroAxis = () => (
 	<line
 		class={styles["zero-axis"]}
 		x1="0"
-		y1="0"
 		x2={X_RANGE}
+		y1="0"
 		y2="0"
 	/>
 );

@@ -1,4 +1,5 @@
-import { createContext, createSignal, useContext, type ParentProps } from "solid-js";
+import { createContext, createSignal, type ParentProps, useContext } from "solid-js";
+
 import type { DefinitionProps} from "./markdown.types";
 
 export type DefinitionContextValue = Record<string, Pick<DefinitionProps, "label" | "title" | "url">>;

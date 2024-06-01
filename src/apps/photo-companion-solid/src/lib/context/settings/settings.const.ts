@@ -1,6 +1,7 @@
-import type { NavigationTabName } from "@lib/types";
 import { detectUserLanguage } from "@lib/helpers";
+
 import type { SettingsStore } from "./settings.types";
+import type { NavigationTabName } from "@lib/types";
 
 export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 export const SETTINGS_LOCAL_STORAGE_VERSION = 2;

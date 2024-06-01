@@ -2,6 +2,7 @@ import { Show, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { FieldsetProps, FormProps } from "./form.types";
+
 import styles from "./form.module.css";
 
 export function Form(allProps: FormProps) {

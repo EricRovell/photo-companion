@@ -1,12 +1,14 @@
 import { isNavigationTime } from "bridge-schedule";
 
 import { useSettings } from "@lib/context";
-import type { NavigationTabName } from "@lib/types";
+
 import { NAVIGATION_TAB_DATA } from "./navigation.const";
+
+import type { NavigationTabName } from "@lib/types";
 
 export const useNavigationTabs = () => {
 	const { getSettings } = useSettings();
-	const { tabs, bridges_spb_navigation } = getSettings();
+	const { bridges_spb_navigation, tabs } = getSettings();
 
 	if (bridges_spb_navigation && !isNavigationTime()) {
 		return tabs.filter(i => i !== "BRIDGES");

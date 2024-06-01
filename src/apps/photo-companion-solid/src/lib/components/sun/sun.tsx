@@ -1,8 +1,10 @@
 
 import { type JSX, mergeProps, splitProps } from "solid-js";
 
-import { DEFAULT_PROPS, SUN_COLOR } from "./sun.const";
 import type { SunEventName } from "types";
+
+import { DEFAULT_PROPS, SUN_COLOR } from "./sun.const";
+
 import styles from "./sun.module.css";
 
 interface SunProps extends JSX.SvgSVGAttributes<SVGSVGElement> {

@@ -1,12 +1,13 @@
 import { For } from "solid-js";
 import { Time } from "ui-solid";
 
-import { useTranslation } from "@lib/context";
 import { LinkQuery, Moon } from "@lib/components";
+import { useTranslation } from "@lib/context";
+import { createQueryDate } from "@lib/helpers";
+
 import type { MoonData } from "./use-moon-data";
 
 import styles from "./moon.module.css";
-import { createQueryDate } from "@lib/helpers";
 
 interface MoonPhasesProps {
 	state: MoonData;
@@ -15,10 +16,10 @@ interface MoonPhasesProps {
 const MOON_SIZE = 75;
 
 export function MoonPhases(props: MoonPhasesProps) {
-	const { t, formatters } = useTranslation();
+	const { formatters, t } = useTranslation();
 
 	return (
-		<section data-label="phases-calendar" class={`card ${styles.phases}`}>
+		<section class={`card ${styles.phases}`} data-label="phases-calendar">
 			<header>
 				<h2>{t().TITLE.MOON_PHASE_CALENDAR}</h2>
 			</header>

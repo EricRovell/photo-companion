@@ -2,6 +2,7 @@
 	"files.associations": {
 		"*.mdx": "markdown"
 	},
+	"eslint.experimental.useFlatConfig": true,
 	"eslint.workingDirectories": [
 		"./src/apps/*",
 		"./src/core/*",

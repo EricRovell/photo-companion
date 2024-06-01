@@ -1,6 +1,7 @@
-import { splitProps, type JSX } from "solid-js";
+import { type JSX, splitProps } from "solid-js";
 
 import { setAttribute } from "../../helpers";
+
 import styles from "./gauge.module.css";
 
 interface Props extends JSX.SvgSVGAttributes<SVGCircleElement> {

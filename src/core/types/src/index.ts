@@ -1,28 +1,30 @@
+/* eslint-disable perfectionist/sort-union-types */
+
 export type BridgeName =
 	| "ALEXANDER_NEVSKY"
 	| "ANNUNCIATION"
-	| "EXCHANGE"
 	| "BOLSHEOKHTINSKY"
-	| "VOLODARSKY"
-	| "PALACE"
+	| "EXCHANGE"
+	| "GRENADERSKY"
+	| "KANTEMIROVSKY"
 	| "LITEYNY"
+	| "PALACE"
+	| "SAMPSONIEVSKY"
 	| "TRINITY"
 	| "TUCHKOV"
-	| "SAMPSONIEVSKY"
-	| "GRENADERSKY"
-	| "KANTEMIROVSKY";
+	| "VOLODARSKY";
 
 export type BridgeEventName = `${BridgeName}_${"OPEN" | "CLOSE"}`;
 
 export type MoonPhaseName =
-	| "NEW_MOON"
-	| "WAXING_CRESCENT"
 	| "FIRST_QUARTER"
-	| "WAXING_GIBBOUS"
 	| "FULL_MOON"
-	| "WANING_GIBBOUS"
+	| "NEW_MOON"
 	| "THIRD_QUARTER"
-	| "WANING_CRESCENT";
+	| "WANING_CRESCENT"
+	| "WANING_GIBBOUS"
+	| "WAXING_CRESCENT"
+	| "WAXING_GIBBOUS";
 
 export type SunEventName =
 	// Sun is in the highest position)
@@ -71,29 +73,29 @@ export type MoonEventName =
 	| "MOONSET";
 
 export type LightsEventName =
-	| "LIGHTS_START"
-	| "LIGHTS_END";
+	| "LIGHTS_END"
+	| "LIGHTS_START";
 
 export type SunColor =
 	| "astronomical"
-	| "nautical"
 	| "blue-hour"
 	| "civil"
-	| "golden-hour"
 	| "day"
+	| "golden-hour"
+	| "nautical"
 	| "night";
 
 export interface ScheduleDataItem {
-	lights: boolean;
 	event: LightsEventName;
+	lights: boolean;
 	timestamp: number
 }
 
 export type EventName =
 	| BridgeEventName
 	| LightsEventName
-	| SunEventName
-	| MoonEventName;
+	| MoonEventName
+	| SunEventName;
 
 export interface BridgeState {
 	name: BridgeName;
@@ -103,23 +105,23 @@ export interface BridgeState {
 
 export interface LightsSchedule {
 	duration: number;
-	LIGHTS_START: number;
 	LIGHTS_END: number;
+	LIGHTS_START: number;
 }
 
 export interface IlluminationState {
-	lights: boolean;
 	event: LightsEventName;
+	lights: boolean;
 	timestamp: number;
 }
 
 export type LightsCity =
-	| "SAINT_PETERSBURG"
-	| "MOSCOW";
+	| "MOSCOW"
+	| "SAINT_PETERSBURG";
 
 export interface ScheduleDataItem {
-	lights: boolean;
 	event: LightsEventName;
+	lights: boolean;
 	timestamp: number
 }
 
@@ -151,10 +153,10 @@ export type LightsEvent = Event<"LIGHTS", LightsEventName, {
 
 export type MoonEvent = Event<"MOON", MoonEventName, {
 	azimuth: string;
-	phase: number,
-	waxing: boolean,
 	fraction: string;
+	phase: number,
 	rotation: number;
+	waxing: boolean,
 }>;
 
 export type SunEvent = Event<"SUN", SunEventName, {

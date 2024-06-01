@@ -1,10 +1,11 @@
 import replace from "@rollup/plugin-replace";
-import { compileServiceWorker, getCommitHash } from "./plugins/compile-service-worker";
-import { defineConfig } from "vite";
 import { resolve } from "node:path";
+import pluginPostCssNesting from "postcss-nesting";
+import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import solidMarkedPlugin from "vite-plugin-solid-marked";
-import pluginPostCssNesting from "postcss-nesting";
+
+import { compileServiceWorker, getCommitHash } from "./plugins/compile-service-worker";
 
 export default defineConfig({
 	css: {

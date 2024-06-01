@@ -5,6 +5,10 @@ export default defineConfig({
 		coverage: {
 			provider: "v8",
 			reporter: [ "json", "html" ]
-		}
+		},
+		environmentMatchGlobs: [
+			[ "**/test/**", "node" ],
+			[ "**/versioned-local-storage/test/*.test.ts", "happy-dom" ]
+		]
 	}
 });

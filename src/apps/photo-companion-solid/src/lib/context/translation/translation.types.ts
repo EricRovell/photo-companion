@@ -1,6 +1,7 @@
 import type { Accessor } from "solid-js";
-import type { UserLang } from "@lib/types";
+
 import type { t } from "./translation.en";
+import type { UserLang } from "@lib/types";
 
 export type Translation = typeof t;
 
@@ -20,7 +21,7 @@ interface Formatters {
 }
 
 export interface TranslationContextType {
-	lang: Accessor<UserLang>,
 	formatters: Accessor<Formatters>;
+	lang: Accessor<UserLang>,
 	t: Accessor<Translation>;
 }
