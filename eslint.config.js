@@ -17,8 +17,7 @@ export default tseslint.config(
 			"**/dist/*",
 			"**/node_modules/*",
 			"**/service-worker.js",
-			"**/photo-companion/*",
-			"**/packages/ui/*",
+			"**/deprecated/*",
 			"**/bundle-dts.js"
 		]
 	},

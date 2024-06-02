@@ -8,9 +8,8 @@
 	"homepage": "https://github.com/EricRovell/photo-companion#readme",
 	"scripts": {
 		"build": "pnpm --filter ./src/apps/photo-companion run build",
-		"clean": "pnpm -r exec rm -rf node_modules",
+		"clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
 		"dev": "pnpm --filter photo-companion run dev",
-		"dev:solid": "pnpm --filter photo-companion-solid run dev",
 		"test:unit": "vitest run",
 		"test:unit:ci": "vitest run --coverage",
 		"lint": "pnpm lint:code && pnpm lint:types && pnpm lint:styles",

@@ -1,0 +1,25 @@
+.disclose {
+	display: grid;
+	grid-template-rows: 0fr;
+	overflow: hidden;
+	opacity: 0;
+	transition:
+		grid-template-rows var(--disclose-duration, 0.75s) ease-in-out,
+		opacity var(--disclose-duration, 0.75s) ease-in-out;
+
+	& > * {
+		align-self: end;
+		min-height: 0;
+		transition: visibility var(--disclose-duration, 0.75s);
+		visibility: hidden;
+	}
+
+	&[aria-expanded] {
+		grid-template-rows: 1fr;
+		opacity: 1;
+
+		& > * {
+			visibility: visible;
+		}
+	}
+}

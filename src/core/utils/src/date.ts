@@ -24,7 +24,9 @@ export function calcDuration(from: Nullish<DateLike> = null, to: Nullish<DateLik
 		return to.getTime() - new Date(from).getTime();
 	}
 
+	// @ts-expect-error: the null-case was checked above
 	const startTime = new Date(from).getTime();
+	// @ts-expect-error: the null-case was checked above
 	const endTime = new Date(to).getTime();
 
 	if (endTime >= startTime) {
