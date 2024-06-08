@@ -11,6 +11,9 @@
 		},
 		"./styles/*.css": {
 			"import": "./src/styles/*.css"
+		},
+		"./types": {
+			"import": "./src/types.ts"
 		}
 	},
 	"keywords": [
