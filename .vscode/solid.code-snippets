@@ -1,0 +1,41 @@
+{
+	"Solid Arrow Component": {
+		"scope": "typescriptreact",
+		"prefix": "solid:component:arrow",
+		"body": [
+			"export const ${1:name} = () => (",
+			"$0",
+			");"
+		],
+		"description": "Dumb arrow component"
+	},
+	"Solid Function Component": {
+		"scope": "typescriptreact",
+		"prefix": "solid:component:function",
+		"body": [
+			"export function ${1:name}(${2:props}: Props) {",
+			"\t$0",
+			"\treturn (",
+			"\t\t",
+			"\t);",
+			"}",
+		],
+		"description": "Function component"
+	},
+	"Solid Signal": {
+		"scope": "typescriptreact, typescript",
+		"prefix": "solid:signal",
+		"body": [
+			"const [ ${1:getter}, ${2:setter} ] = createSignal(${3:initialValue});"
+		],
+		"description": "SolidJS signal"
+	},
+	"Solid Store": {
+		"scope": "typescriptreact, typescript",
+		"prefix": "solid:store",
+		"body": [
+			"const [ ${1:storeName}, ${2:storeSetterName} ] = createStore(${3:initialValue});"
+		],
+		"description": "SolidJS store"
+	}
+}
