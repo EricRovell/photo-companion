@@ -3,9 +3,9 @@ import { For } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 import { useTranslation } from "@lib/context";
+import { useNavigationTabs } from "@lib/hooks";
 
 import { LinkQuery } from "../link-query";
-import { getTabData, useNavigationTabs } from "./navigation.helpers";
 
 import type { NavigationRoute } from "./navigation.types";
 
@@ -29,15 +29,19 @@ function NavigationItem(props: NavigationRoute) {
 	);
 }
 
-export const Navigation = () => (
-	<nav
-		class={styles.navigation}
-		style={{ "--navigation-items-count": useNavigationTabs().length }}
-	>
-		<ul class={styles["nav-items"]}>
-			<For each={useNavigationTabs()}>
-				{item => <NavigationItem {...getTabData(item)} />}
-			</For>
-		</ul>
-	</nav>
-);
+export function Navigation() {
+	const { getTabLinks } = useNavigationTabs();
+
+	return (
+		<nav
+			class={styles.navigation}
+			style={{ "--navigation-items-count": getTabLinks().length }}
+		>
+			<ul class={styles["nav-items"]}>
+				<For each={getTabLinks()}>
+					{item => <NavigationItem {...item} />}
+				</For>
+			</ul>
+		</nav>
+	);
+}
