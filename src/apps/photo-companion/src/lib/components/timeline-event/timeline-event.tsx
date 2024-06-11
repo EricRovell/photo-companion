@@ -8,6 +8,7 @@ import type { TimelineEvent } from "types";
 import { useTranslation } from "@lib/context";
 import { createQueryDate, setAttribute } from "@lib/helpers";
 import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "@lib/helpers/validators";
+import { useDatetime } from "@lib/hooks";
 
 import { LinkQuery } from "../link-query";
 import { bridgeEventComponent } from "./timeline-event-bridge";
@@ -48,14 +49,17 @@ interface TimelineEventProps {
 const HREF_FALLBACK = "/#";
 
 export function TimelineEvent(props: TimelineEventProps) {
-	const match = useMatch(() => props.href ?? HREF_FALLBACK);
+	const { getTimestamp } = useDatetime();
 	const { formatters } = useTranslation();
 	const data = () => eventComponent(props.event);
-	const linkTitle = () => `${data().title}: ${formatters().formatDatetime(new Date(props.event.timestamp))}`;
+	const linkTitle = () => `${data().title}: ${formatters().formatDatetime(props.event.timestamp)}`;
+
+	// `datetime` query is taking only minutes into consideration, need to round up
+	const current = () => Math.abs(getTimestamp() - props.event.timestamp) < 60000;
 
 	return (
 		<li
-			aria-current={match() ? "date" : undefined}
+			aria-current={current() ? "date" : undefined}
 			class={styles.event}
 			data-event-name={props.event.name}
 			data-secondary={setAttribute(props.secondary)}
