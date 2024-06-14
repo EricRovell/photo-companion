@@ -1,4 +1,12 @@
 {
+	"files.exclude": {
+		"**/.git": true,
+		"**/deprecated": true
+	},
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/deprecated": true
+	},
 	"files.associations": {
 		"*.mdx": "markdown"
 	},

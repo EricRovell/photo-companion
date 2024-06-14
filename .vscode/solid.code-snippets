@@ -13,7 +13,7 @@
 		"scope": "typescriptreact",
 		"prefix": "solid:component:function",
 		"body": [
-			"export function ${1:name}(${2:props}: Props) {",
+			"export function ${1:name}(${2:props}: ${3:Props}) {",
 			"\t$0",
 			"\treturn (",
 			"\t\t",
