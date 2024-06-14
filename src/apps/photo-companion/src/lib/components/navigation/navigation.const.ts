@@ -1,47 +1,58 @@
 import {
+	IconBook,
 	IconBridge,
 	IconLights,
 	IconMoon,
+	IconPullRequest,
+	IconSettings,
 	IconSun,
 	IconTimeline
 } from "ui";
 
 import { ROUTE } from "@lib/consts";
 
-import type { NavigationRoute, NavigationTabName } from "./navigation.types";
+import type { NavigationRoute } from "./navigation.types";
+import type { ROUTE_LABEL } from "@lib/consts/routes";
 
-export const NAVIGATION_TABS: NavigationTabName[] = [
-	"TIMELINE",
-	"LIGHTS",
-	"SUN",
-	"MOON",
-	"BRIDGES"
-];
-
-export const NAVIGATION_TAB_DATA: Record<NavigationTabName, NavigationRoute> = {
+export const NAVIGATION_TAB_DATA: Record<ROUTE_LABEL, NavigationRoute> = {
+	ABOUT: {
+		href: ROUTE.ABOUT,
+		icon: IconBook,
+		label: "ABOUT"
+	},
 	BRIDGES: {
 		href: ROUTE.BRIDGES,
-		Icon: IconBridge,
+		icon: IconBridge,
 		label: "BRIDGES"
+	},
+	CHANGELOG: {
+		href: ROUTE.CHANGELOG,
+		icon: IconPullRequest,
+		label: "CHANGELOG"
 	},
 	LIGHTS: {
 		href: ROUTE.LIGHTS,
-		Icon: IconLights,
+		icon: IconLights,
 		label: "LIGHTS"
 	},
 	MOON: {
 		href: ROUTE.MOON,
-		Icon: IconMoon,
+		icon: IconMoon,
 		label: "MOON"
+	},
+	SETTINGS: {
+		href: ROUTE.SETTINGS,
+		icon: IconSettings,
+		label: "SETTINGS"
 	},
 	SUN: {
 		href: ROUTE.SUN,
-		Icon: IconSun,
+		icon: IconSun,
 		label: "SUN"
 	},
 	TIMELINE: {
 		href: ROUTE.TIMELINE,
-		Icon: IconTimeline,
+		icon: IconTimeline,
 		label: "TIMELINE"
 	}
 };

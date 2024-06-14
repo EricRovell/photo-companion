@@ -22,3 +22,23 @@ export const ROUTE = {
 	SUN: ROUTE_SUN,
 	TIMELINE: ROUTE_TIMELINE
 };
+
+export type ROUTE_LABEL = Exclude<keyof typeof ROUTE, "ROOT">;
+
+/**
+ * Routes that define an app-feature section.
+ */
+export const ROUTES_PRIMARY: ROUTE_PRIMARY_LABEL[] = [
+	"BRIDGES",
+	"LIGHTS",
+	"MOON",
+	"SUN",
+	"TIMELINE"
+] as const;
+
+export type ROUTE_PRIMARY_LABEL = 
+	| "BRIDGES"
+	| "LIGHTS"
+	| "MOON"
+	| "SUN"
+	| "TIMELINE";

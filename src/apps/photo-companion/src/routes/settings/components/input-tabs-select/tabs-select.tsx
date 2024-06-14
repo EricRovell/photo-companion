@@ -1,7 +1,7 @@
 import { createEffect, createSignal, For, mergeProps } from "solid-js";
 import { Button, IconArrowDown, IconArrowUp, InputCheckbox } from "ui"; 
 
-import { NAVIGATION_TABS } from "@lib/components/navigation/navigation.const";
+import { type ROUTE_PRIMARY_LABEL, ROUTES_PRIMARY } from "@lib/consts/routes";
 import { useTranslation } from "@lib/context";
 
 import type { NavigationTabName } from "@lib/types";
@@ -11,7 +11,7 @@ import styles from "./tabs-select.module.css";
 type ChangeHandler = (name: string, value: NavigationTabName[]) => void;
 
 interface TabsSelectProps {
-	initialTabs: NavigationTabName[];
+	initialTabs: ROUTE_PRIMARY_LABEL[];
 	name: string;
 	onChange: ChangeHandler;
 }
@@ -20,16 +20,22 @@ interface TabSelectProps {
 	index: number;
 	onMove: (event: Event) => void;
 	onSelect: (event: Event) => void;
-	tab: NavigationTabName;
-	value: NavigationTabName[];
+	tab: ROUTE_PRIMARY_LABEL;
+	value: ROUTE_PRIMARY_LABEL[];
 }
+
+const OPTIONS_MIN_COUNT = 2;
+const OPTIONS_MAX_COUNT = 4;
 
 export function TabSelect(props: TabSelectProps) {
 	const { t } = useTranslation();
 	const checked = () => props.value.includes(props.tab);
-	const itemDisabled = () => (checked() && props.value.length <= 2) || (!checked() && props.value.length >= 5);
 	const disabledDown = () => props.index >= props.value.length - 1;
 	const disabledUp = () => props.index === 0 || props.index > props.value.length - 1;
+	const itemDisabled = () => (
+		(checked() && props.value.length <= OPTIONS_MIN_COUNT) ||
+		(!checked() && props.value.length >= OPTIONS_MAX_COUNT)
+	);
 
 	return (
 		<li
@@ -67,14 +73,14 @@ export function TabSelect(props: TabSelectProps) {
 
 export function InputTabsSelect(allProps: TabsSelectProps) {
 	const props = mergeProps({ initialTabs: [] }, allProps);
-	const initialInactiveTabs = NAVIGATION_TABS.filter(item => !props.initialTabs.includes(item));
+	const initialInactiveTabs = ROUTES_PRIMARY.filter(item => !props.initialTabs.includes(item));
 
-	const [ getTabs, setTabs ] = createSignal<NavigationTabName[]>(props.initialTabs);
-	const [ getInactiveTabs, setInactiveTabs ] = createSignal<NavigationTabName[]>(initialInactiveTabs);
+	const [ getTabs, setTabs ] = createSignal<ROUTE_PRIMARY_LABEL[]>(props.initialTabs);
+	const [ getInactiveTabs, setInactiveTabs ] = createSignal<ROUTE_PRIMARY_LABEL[]>(initialInactiveTabs);
 
 	createEffect(() => {
 		setTabs(props.initialTabs);
-		setInactiveTabs(NAVIGATION_TABS.filter(item => !props.initialTabs.includes(item)));
+		setInactiveTabs(ROUTES_PRIMARY.filter(item => !props.initialTabs.includes(item)));
 	});
 
 	const handleMove = (event: Event) => {

@@ -1,16 +1,11 @@
 import type { Component } from "solid-js";
 import type { IconProps } from "ui";
 
-export type NavigationTabName =
-	| "BRIDGES"
-	| "LIGHTS"
-	| "MOON"
-	| "SUN"
-	| "TIMELINE";
+import type { ROUTE_LABEL } from "@lib/consts/routes";
 
 export interface NavigationRoute {
 	disabled?: boolean;
 	href: string;
-	Icon: Component<IconProps>;
-	label: NavigationTabName;
+	icon: Component<IconProps>;
+	label: ROUTE_LABEL;
 }

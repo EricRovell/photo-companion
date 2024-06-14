@@ -1,45 +1,15 @@
-import { useMatch, useSearchParams } from "@solidjs/router";
+import { useSearchParams } from "@solidjs/router";
 import { createEffect, type ParentProps } from "solid-js";
-import { IconGithub, IconQuestion, IconSettings, Link } from "ui";
+import { IconGithub, Link } from "ui";
 import { isNullable } from "utils/validators";
 
 import { LinkQuery, Navigation } from "@lib/components";
 import { TITLE, VERSION } from "@lib/consts";
-import { ROUTE_ABOUT, ROUTE_CHANGELOG, ROUTE_SETTINGS, URL_GITHUB_REPO } from "@lib/consts";
-import { useSettings, useTranslation } from "@lib/context";
+import { ROUTE_CHANGELOG, URL_GITHUB_REPO } from "@lib/consts";
+import { useSettings } from "@lib/context";
 import { useLocation } from "@lib/hooks";
 
 import styles from "./root.module.css";
-
-/**
- * TODO: links should have some visual indicator.
- */
-function SecondaryNavigation() {
-	const { t } = useTranslation();
-	const matchSettings = useMatch(() => ROUTE_SETTINGS);
-	const matchAbout = useMatch(() => ROUTE_ABOUT);
-
-	return (
-		<nav>
-			<LinkQuery
-				aria-current={matchSettings() ? "page" : undefined}
-				class={styles.icon}
-				href={ROUTE_SETTINGS}
-				title={t().TITLE.SETTINGS}
-			>
-				<IconSettings />
-			</LinkQuery>
-			<LinkQuery
-				aria-current={matchAbout() ? "page" : undefined}
-				class={styles.icon}
-				href={ROUTE_ABOUT}
-				title={t().TITLE.ABOUT}
-			>
-				<IconQuestion />
-			</LinkQuery>
-		</nav>
-	);
-}
 
 function Header() {
 	const { getSettings } = useSettings();
@@ -51,7 +21,6 @@ function Header() {
 				<LinkQuery href={`/${mainTab.toLowerCase()}`}>
 					<h1>{TITLE}</h1>
 				</LinkQuery>
-				<SecondaryNavigation />
 			</div>
 		</header>
 	);
