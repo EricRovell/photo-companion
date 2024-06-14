@@ -17,6 +17,7 @@ export function Button(allProps: ButtonProps) {
 		"appearance",
 		"children",
 		"class",
+		"icon",
 		"loading",
 		"variant"
 	]);
@@ -25,6 +26,7 @@ export function Button(allProps: ButtonProps) {
 		<button
 			class={classnames(styles.button, props.class)}
 			data-appearance={props.appearance}
+			data-icon={props.icon ? "" : undefined}
 			data-loading={props.loading ? "" : undefined}
 			data-variant={props.variant}
 			{...rest}

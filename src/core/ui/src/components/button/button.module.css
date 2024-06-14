@@ -35,6 +35,11 @@
 	}
 }
 
+.button[data-icon] {
+	aspect-ratio: 1;
+	padding: var(--space-2);
+}
+
 .button[data-appearance="ghost"] {
 	background-color: transparent;
 
