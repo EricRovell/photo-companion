@@ -1,38 +1,15 @@
 .dialog {
-	display: grid;
-	border: none;
-	background-color: transparent;
 	transition: opacity 0.35s ease-in-out;
-
-	&::backdrop {
-		background-color: rgb(0 0 0 / 50%);
-		backdrop-filter: blur(2px);
-		overscroll-behavior-y: contain;
-	}
-
-	&:not([open]) {
-		pointer-events: none;
-		opacity: 0;
-	}
-}
-
-.backdrop {
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100vh;
 }
 
 .modal {
 	display: grid;
+	grid-template: auto 1fr / 1fr;
 	border-radius: var(--radius);
 	background-color: var(--color-surface-1);
 	border: 3px solid var(--color-surface-2);
 	width: min(85vw, 450px);
+	max-height: 85vh;
 	overscroll-behavior-y: contain;
 }
 
@@ -63,7 +40,6 @@
 	gap: var(--space-4);
 	padding: var(--space-4);
 	width: 100%;
-	max-height: 80vh;
 	overflow-y: auto;
 	overscroll-behavior: contain;
 

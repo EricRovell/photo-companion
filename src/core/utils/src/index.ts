@@ -66,7 +66,7 @@ export function classnames(...args: InputClassnames[]): string {
  * Prevents the page scroll depending on condition.
  */
 export function preventPageScroll(condition = false) {
-	if (!isNullable(globalThis.window)) {
+	if (isNullable(globalThis.window)) {
 		return;
 	}
 
