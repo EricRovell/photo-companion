@@ -7,6 +7,7 @@ import { WithSwipe } from "@lib/layout/with-swipe";
 
 import { PageAbout } from "./about/about.page";
 import { PageBridges } from "./bridges/bridges.page";
+import { PageChangelog } from "./changelog/changelog.page";
 import { PageLights } from "./lights/lights.page";
 import { PageMoon } from "./moon/moon.page";
 import { PageSettings } from "./settings/settings.page";
@@ -36,5 +37,6 @@ export const Routes = () => (
 		</Route>
 		<Route component={PageSettings} path={ROUTE.SETTINGS} />
 		<Route component={PageAbout} path={ROUTE.ABOUT} />
+		<Route component={PageChangelog} path={ROUTE.CHANGELOG} />
 	</Router>
 );
