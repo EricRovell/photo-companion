@@ -62,7 +62,7 @@ export const LinkReference = (props: LinkReferenceProps) => {
 
 export const List = (props: ListProps) => (
 	<Dynamic
-		component={props.ordered ? "ul" : "ol"}
+		component={props.ordered ? "ol" : "ul"}
 		start={props.start ?? undefined}
 	>
 		{props.children}
