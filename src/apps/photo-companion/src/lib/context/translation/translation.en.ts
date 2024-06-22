@@ -63,6 +63,7 @@ export const t = {
 		DURATION_MOONLIGHT: "Moonlight duration",
 		EVENT_ALLOW_LIST: "Event allow list",
 		GEOLOCATION: "Geolocation",
+		GO_HOME: "Go Home",
 		LANGUAGE: "Language",
 		LATITUDE: "Latitude",
 		LIGHTS_CITY: "City lights",
@@ -102,12 +103,13 @@ export const t = {
 		NAVIGATION_IN: "Till the navigation period",
 		NAVIGATION_MODE: "The tab will be available when the drawbridges are actually operating.",
 		NO_EVENTS: "No more events for this date",
+		PAGE_404: "Unfortunately, such page does not exist...",
 		SET_CURRENT_DATE_ADVICE: "Set the current date and time using the button below",
 		SET_CURRENT_DATETIME: "Set the current date and time",
 		TAB_LIMITS: "Select at least 2 or at most 4 tabs",
 		UPDATE: "Update is ready to be installed. To get it ready, please, reload the application or the web page.",
 		WRONG_DATE: "Error: incorrect date-time value.",
-		WRONG_DATE_URL: "Please, check the URL for correct date-time format"
+		WRONG_DATE_URL: "Please, check the URL for correct date-time format",
 	},
 	MOON_PHASE: {
 		FIRST_QUARTER: "First Quarter",

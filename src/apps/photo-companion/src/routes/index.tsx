@@ -5,6 +5,7 @@ import { Root } from "@lib/layout/root/root";
 import { WithDate } from "@lib/layout/with-date/with-date";
 import { WithSwipe } from "@lib/layout/with-swipe";
 
+import { Page404 } from "./404/404.page";
 import { PageAbout } from "./about/about.page";
 import { PageBridges } from "./bridges/bridges.page";
 import { PageChangelog } from "./changelog/changelog.page";
@@ -38,5 +39,6 @@ export const Routes = () => (
 		<Route component={PageSettings} path={ROUTE.SETTINGS} />
 		<Route component={PageAbout} path={ROUTE.ABOUT} />
 		<Route component={PageChangelog} path={ROUTE.CHANGELOG} />
+		<Route component={Page404} path="*404" />
 	</Router>
 );
