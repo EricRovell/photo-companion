@@ -1,5 +1,6 @@
 export { Button } from "./button/button";
 export { Details } from "./details/details";
+export { Dialog } from "./dialog/dialog";
 export { Disclose } from "./disclose/disclose";
 export {Drawer } from "./drawer/drawer";
 export { Fieldset, Form } from "./form/form";
