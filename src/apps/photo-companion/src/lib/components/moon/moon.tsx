@@ -1,4 +1,4 @@
-import { mergeProps } from "solid-js";
+import { mergeProps, splitProps } from "solid-js";
 import { createTweened } from "ui/primitives";
 
 import { DEFAULT_PROPS } from "./moon.const";
@@ -15,7 +15,8 @@ export function createCircle(commonProps: CircleCommonProps) {
 }
 
 export function Moon(allProps: MoonProps) {
-	const props = mergeProps(DEFAULT_PROPS, allProps);
+	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
+	const [ props, rest ] = splitProps(mergedProps, [ "size", "precision", "phase", "rotation" ]);
 	const phase = createTweened(() => props.phase);
 
 	const viewBox = () => `0 0 ${props.size} ${props.size}`;
@@ -41,6 +42,7 @@ export function Moon(allProps: MoonProps) {
 				"transform": `rotate(${props.rotation}deg)`
 			}}
 			viewBox={viewBox()}
+			{...rest}
 		>
 			<Circle class={styles.shadow} />
 			<Circle

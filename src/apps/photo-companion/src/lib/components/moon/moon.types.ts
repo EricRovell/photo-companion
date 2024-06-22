@@ -1,6 +1,6 @@
 import type { JSX } from "solid-js";
 
-export interface MoonProps {
+export interface MoonProps extends JSX.SvgSVGAttributes<SVGSVGElement> {
 	phase?: number;
 	precision?: number;
 	rotation?: number;
