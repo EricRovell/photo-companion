@@ -62,6 +62,7 @@ export const t = {
 		DURATION_LIGHTS: "Lights duration",
 		DURATION_MOONLIGHT: "Moonlight duration",
 		EVENT_ALLOW_LIST: "Event allow list",
+		FULL_MOON_NAME: "Full Moon Name",
 		GEOLOCATION: "Geolocation",
 		GO_HOME: "Go Home",
 		LANGUAGE: "Language",
@@ -110,7 +111,21 @@ export const t = {
 		TAB_LIMITS: "Select at least 2 tabs",
 		UPDATE: "Update is ready to be installed. To get it ready, please, reload the application or the web page.",
 		WRONG_DATE: "Error: incorrect date-time value.",
-		WRONG_DATE_URL: "Please, check the URL for correct date-time format",
+		WRONG_DATE_URL: "Please, check the URL for correct date-time format"
+	},
+	MOON_NAME: {
+		BEAVER: "Beaver",
+		BUCK: "Buck",
+		COLD: "Cold",
+		CORN: "Corn",
+		FLOWER: "Flower",
+		HUNTER: "Hunter",
+		PINK: "Pink",
+		SNOW: "Snow",
+		STRAWBERRY: "Strawberry",
+		STURGEON: "Sturgeon",
+		WOLF: "Wolf",
+		WORM: "Worm"
 	},
 	MOON_PHASE: {
 		FIRST_QUARTER: "First Quarter",

@@ -1,6 +1,7 @@
 import type { MoonPhaseName } from "types";
 
 import type { Coordinates } from "../types";
+import type { MOON_NAMES } from "./consts";
 
 export interface MoonCoordinates extends Coordinates {
 	distance: number;
@@ -13,6 +14,7 @@ export interface MoonIllumination {
 	 */
 	angle: number;
 	fraction: number;
+	fullMoonName?: typeof MOON_NAMES[number];
 	phase: MoonPhase;
 	phaseValue: number;
 }

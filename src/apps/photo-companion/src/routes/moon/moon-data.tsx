@@ -1,3 +1,5 @@
+import { Show } from "solid-js";
+
 import { CardEntry, CardInfo } from "@lib/components";
 import { useTranslation } from "@lib/context";
 
@@ -13,8 +15,15 @@ export function MoonData(props: MoonDataProps) {
 	return (
 		<CardInfo>
 			<CardEntry property={t().LABEL.MOON_PHASE}>
-				{t().MOON_PHASE[props.state.name]}
+				{t().MOON_PHASE[props.state.phaseName]}
 			</CardEntry>
+			<Show when={props.state.fullMoonName}>
+				{(fullMoonName) => (
+					<CardEntry property={t().LABEL.FULL_MOON_NAME}>
+						{t().MOON_NAME[fullMoonName()]}
+					</CardEntry>
+				)}
+			</Show>
 			<CardEntry property={t().LABEL.MOON_ILLUMINATION}>
 				{props.state.fraction}
 			</CardEntry>

@@ -3,6 +3,7 @@ import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 
+import type { MoonIllumination } from "moon-sun-calc/src/moon/types";
 import type { MoonPhaseName } from "types";
 
 import { useTranslation } from "@lib/context";
@@ -15,10 +16,11 @@ export interface MoonData {
 	distance: string;
 	duration: string;
 	fraction: string;
+	fullMoonName?: MoonIllumination["fullMoonName"];
 	moonrise: Nullish<Date>;
 	moonset: Nullish<Date>;
-	name: MoonPhaseName;
 	parallacticAngle: string;
+	phaseName: MoonPhaseName;
 	phases: ReturnType<typeof getMoonPhases>;
 	phaseValue: number;
 	rotation: number;
@@ -52,10 +54,11 @@ export function useMoonData(): Output {
 			distance: formatters().formatKilometers(round(position.distance, 2)),
 			duration: formatters().formatTimeDuration(calcDuration(times.rise, times.set)),
 			fraction: formatters().formatPercent(round(illumination.fraction * 100, 1)),
+			fullMoonName: illumination.fullMoonName,
 			moonrise: times.rise,
 			moonset: times.set,
-			name: illumination.phase.id,
 			parallacticAngle: formatters().formatDegrees(round(position.parallacticAngle, 1)),
+			phaseName: illumination.phase.id,
 			phases: phases,
 			phaseValue: round(illumination.phaseValue, 4),
 			rotation: -(illumination.angle - position.parallacticAngle) / 4,

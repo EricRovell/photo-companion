@@ -64,6 +64,7 @@ export const t: Translation = {
 		DURATION_LIGHTS: "Длительность освещения",
 		DURATION_MOONLIGHT: "Длительность лунного дня",
 		EVENT_ALLOW_LIST: "Фильтры событий",
+		FULL_MOON_NAME: "Имя полнолуния",
 		GEOLOCATION: "Геолокация",
 		GO_HOME: "На главную",
 		LANGUAGE: "Язык",
@@ -113,6 +114,20 @@ export const t: Translation = {
 		UPDATE: "Обновление готово к установке. Для установки, пожалуйста, перезагрузите приложение или страницу.",
 		WRONG_DATE: "Выбрана неверная дата. Для решения проблемы",
 		WRONG_DATE_URL: "Проверьте адресную строку, дата должна соответствовать формату"
+	},
+	MOON_NAME: {
+		BEAVER: "Бобровая",
+		BUCK: "Грозовая",
+		COLD: "Холодная",
+		CORN: "Урожайная",
+		FLOWER: "Цветочная",
+		HUNTER: "Охотничья",
+		PINK: "Розовая",
+		SNOW: "Снежная",
+		STRAWBERRY: "Клубничная",
+		STURGEON: "Осетровая",
+		WOLF: "Волчья",
+		WORM: "Червя"
 	},
 	MOON_PHASE: {
 		FIRST_QUARTER: "Первая четверть",

@@ -7,6 +7,7 @@
 - Timeline event are now more symmetric on where the screen not yet small but already not wide enough;
 - Scrollbars for wides screens now have custom stylization;
 - Fixed wrong "Bridges SPb" navigation period message, the correct countdown is shown;
+- To the moon data added a full moon name when it's a full moon;
 
 ### 2.21.1
 

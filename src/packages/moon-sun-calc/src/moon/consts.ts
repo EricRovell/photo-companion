@@ -64,3 +64,18 @@ export const MOON_CYCLE_LIST: MoonPhase[] = [
 		weight: 1
 	}
 ];
+
+export const MOON_NAMES = [
+	"WOLF",
+	"SNOW",
+	"WORM",
+	"PINK",
+	"FLOWER",
+	"STRAWBERRY",
+	"BUCK",
+	"STURGEON",
+	"CORN",
+	"HUNTER",
+	"BEAVER",
+	"COLD"
+] as const;
