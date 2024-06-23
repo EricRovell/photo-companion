@@ -26,9 +26,8 @@ export function MoonPhases(props: MoonPhasesProps) {
 			<div>
 				<For each={props.state.phases}>
 					{phase => (
-						<LinkQuery href={"/moon"} query={new URLSearchParams({ date: createQueryDate(phase.timestamp) })}>
-							<Moon phase={phase.phaseValue} size={MOON_SIZE}
-							/>
+						<LinkQuery href={"/moon"} query={new URLSearchParams({ datetime: createQueryDate(phase.timestamp) })}>
+							<Moon phase={phase.phaseValue} size={MOON_SIZE} />
 							<Time>
 								{formatters().formatDate(phase.timestamp)}
 							</Time>
