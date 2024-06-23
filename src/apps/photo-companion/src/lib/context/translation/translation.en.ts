@@ -106,7 +106,7 @@ export const t = {
 		PAGE_404: "Unfortunately, such page does not exist...",
 		SET_CURRENT_DATE_ADVICE: "Set the current date and time using the button below",
 		SET_CURRENT_DATETIME: "Set the current date and time",
-		TAB_LIMITS: "Select at least 2 or at most 4 tabs",
+		TAB_LIMITS: "Select at least 2 tabs",
 		UPDATE: "Update is ready to be installed. To get it ready, please, reload the application or the web page.",
 		WRONG_DATE: "Error: incorrect date-time value.",
 		WRONG_DATE_URL: "Please, check the URL for correct date-time format",

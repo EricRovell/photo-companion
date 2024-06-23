@@ -79,7 +79,7 @@
 	justify-content: space-between;
 }
 
-@media screen and (width <= 600px) {
+@media screen and (width <= 650px) {
 	.header {
 		margin-bottom: var(--space-7);
 		padding-bottom: var(--space-3);

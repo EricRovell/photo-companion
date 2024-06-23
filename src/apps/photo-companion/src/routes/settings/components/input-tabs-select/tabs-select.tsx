@@ -24,18 +24,14 @@ interface TabSelectProps {
 	value: ROUTE_PRIMARY_LABEL[];
 }
 
-const OPTIONS_MIN_COUNT = 2;
-const OPTIONS_MAX_COUNT = 4;
+const OPTIONS_MIN_COUNT = 1;
 
 export function TabSelect(props: TabSelectProps) {
 	const { t } = useTranslation();
 	const checked = () => props.value.includes(props.tab);
 	const disabledDown = () => props.index >= props.value.length - 1;
 	const disabledUp = () => props.index === 0 || props.index > props.value.length - 1;
-	const itemDisabled = () => (
-		(checked() && props.value.length <= OPTIONS_MIN_COUNT) ||
-		(!checked() && props.value.length >= OPTIONS_MAX_COUNT)
-	);
+	const itemDisabled = () => checked() && props.value.length <= OPTIONS_MIN_COUNT;
 
 	return (
 		<li

@@ -1,14 +1,38 @@
 .menu {
-	padding: var(--space-4) var(--space-2);
+	display: grid;
+	grid-template: min-content min-content 1fr / 1fr;
+	padding: var(--space-1) var(--space-4);
+	height: 100%;
 
 	& > section {
 		display: grid;
 		gap: var(--space-1);
 	}
+}
 
-	hr {
-		border: 1px solid rgba(173, 216, 230, 0.1);
-		margin-block: var(--space-2);
+.section {
+	padding-block: var(--space-2);
+	border-block-end: 1px solid rgba(173, 216, 230, 0.1);
+}
+
+.section,
+.form {
+	padding-block: var(--space-2);
+}
+
+.form {
+	position: sticky;
+	bottom: 0;
+	display: flex;
+	margin-block-start: auto;
+	margin-inline-start: auto;
+	width: min-content;
+	height: min-content;
+
+	& > button[data-icon] {
+		--icon-size: 1rem;
+
+		padding: var(--space-1);
 	}
 }
 
@@ -20,5 +44,11 @@
 	&:hover {
 		background-color: var(--color-surface-2);
 		text-decoration: none;
+	}
+}
+
+@media screen and (width <= 650px) {
+	.form svg {
+		transform: rotate(90deg);
 	}
 }

@@ -1,5 +1,10 @@
 ## Changelog
 
+## Unreleased
+
+- Page 404;
+- Improved navigation. Wider screens have enough space but not all tab-sections would be visible. Not there are no upper limits for maximum active tabs. On smaller screens there will be visible up to 4 top chosen tabs. All links are always accessible via side-menu;
+
 ### 2.21.1
 
 - Use the correct label for language settings;
