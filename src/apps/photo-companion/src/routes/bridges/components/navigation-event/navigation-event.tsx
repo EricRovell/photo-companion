@@ -9,21 +9,25 @@ import styles from "./navigation-event.module.css";
 
 export function NavigationEvent() {
 	const { formatters, t } = useTranslation();
-	const { days, navigation} = getNavigationState(new Date());
+	const { days, navigation} = getNavigationState();
+
+	const title = () => navigation
+		? t().TITLE.NAVIGATION_OPENED
+		: t().TITLE.NAVIGATION_CLOSED;
+
+	const subtitle = () => navigation
+		? t().MESSAGE.NAVIGATION_ENDS_AT
+		: t().MESSAGE.NAVIGATION_STARTS_AT;
 
 	return (
 		<article
 			class={classnames("card", styles["navigation-info"])}
-			data-closed={setAttribute(navigation)}
+			data-closed={setAttribute(!navigation)}
 		>
 			<header>
-				{
-					navigation
-						? t().TITLE.NAVIGATION_OPENED
-						: t().TITLE.NAVIGATION_CLOSED
-				}
+				{title()}
 			</header>
-			<p>{t().MESSAGE.NAVIGATION_IN}</p>
+			<p>{subtitle()}</p>
 			<p>
 				<output>
 					{formatters().formatDays(days)}

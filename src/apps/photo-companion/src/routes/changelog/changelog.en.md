@@ -6,6 +6,7 @@
 - Improved navigation. Wider screens have enough space but not all tab-sections would be visible. Not there are no upper limits for maximum active tabs. On smaller screens there will be visible up to 4 top chosen tabs. All links are always accessible via side-menu;
 - Timeline event are now more symmetric on where the screen not yet small but already not wide enough;
 - Scrollbars for wides screens now have custom stylization;
+- Fixed wrong "Bridges SPb" navigation period message, the correct countdown is shown;
 
 ### 2.21.1
 

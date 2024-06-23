@@ -37,7 +37,7 @@ export function getNavigationState(date: Date = new Date()): { days: number, nav
 
 	if (now >= start && now <= end) {
 		return {
-			days: countDays(now, start),
+			days: countDays(now, end),
 			navigation: true
 		};
 	}
