@@ -8,6 +8,7 @@
 - Scrollbars for wides screens now have custom stylization;
 - Fixed wrong "Bridges SPb" navigation period message, the correct countdown is shown;
 - To the moon data added a full moon name when it's a full moon;
+- Fixed a problem with invalid sun events being rendered, (during White nights for example);
 
 ### 2.21.1
 

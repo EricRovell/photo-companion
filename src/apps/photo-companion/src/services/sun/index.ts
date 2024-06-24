@@ -13,6 +13,10 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	const sunEvents: SunEvent[] = [];
 
 	for (const [ key, value ] of objectEntries(data)) {
+		if (!value.valid) {
+			continue;
+		}
+
 		sunEvents.push({
 			data: {
 				azimuth: formatters().formatDegrees(round(getSunPosition(value.timestamp, lat, lon).azimuth, 1))
