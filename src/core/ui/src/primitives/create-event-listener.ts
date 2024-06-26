@@ -18,7 +18,14 @@ type Input<E> = E extends keyof HTMLElementEventMap
 			options?: AddEventListenerOptions;
 			target: Window;
 		}
-		: never;
+		: E extends keyof DocumentEventMap
+			? {
+				event: E;
+				listener: (this: Window, event: DocumentEventMap[E]) => void;
+				options?: AddEventListenerOptions;
+				target: Document;
+			}
+			: never;
 
 /**
  * Registers using `addEventListener` on mounted, and `removeEventListener` automatically on unmounted.
@@ -42,7 +49,7 @@ export function createEventListener<E>(input: Input<E>): VoidFn {
 		event: E,
 		listener: Input<E>["listener"],
 		options: Input<E>["options"],
-		target: HTMLElement | Window
+		target: Document | HTMLElement | Window;
 	}) => {
 		// @ts-expect-error: TODO type check
 		target.addEventListener(event, listener, options);
