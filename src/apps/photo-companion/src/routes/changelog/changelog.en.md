@@ -9,6 +9,7 @@
 - Fixed wrong "Bridges SPb" navigation period message, the correct countdown is shown;
 - To the moon data added a full moon name when it's a full moon;
 - Fixed a problem with invalid sun events being rendered, (during White nights for example);
+- Next lights event countdown now based on chosen datetime (previously is was based on current datetime);
 
 ### 2.21.1
 
