@@ -24,7 +24,7 @@ export interface SunTime {
 	elevation?: number;
 	index: number;
 	julian: number;
-	name: string;
+	name: SunEventName;
 	timestamp: number;
 	valid: boolean;
 }
