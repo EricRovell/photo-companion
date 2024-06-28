@@ -9,6 +9,7 @@ export { IconChevronDown } from "./icons/icon-chevron-down";
 export { IconChevronLeft } from "./icons/icon-chevron-left";
 export { IconChevronRight } from "./icons/icon-chevron-right";
 export { IconClose } from "./icons/icon-close";
+export { IconCube } from "./icons/icon-cube";
 export { IconGithub } from "./icons/icon-github";
 export { IconLights } from "./icons/icon-lights";
 export { IconMenu } from "./icons/icon-menu";

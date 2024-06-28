@@ -14,6 +14,7 @@ export {
 	IconChevronLeft,
 	IconChevronRight,
 	IconClose,
+	IconCube,
 	IconGithub,
 	IconLights,
 	IconMenu,
