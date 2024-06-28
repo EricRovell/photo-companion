@@ -5,7 +5,6 @@ import { SUPPORTED_BRIDGES_NAME_SET } from "../src/const";
 import { FIRST_OPENING_MINUTES, LAST_CLOSING_MINUTES, schedule as data } from "../src/schedule";
 
 import type { BridgeName } from "../src/types";
-import { dateFrom } from "utils/date";
 
 const BETWEEN_OPENINGS_GAP_MINUTES = 10;
 const OPENING_GAP_MINUTES = 30;
@@ -88,7 +87,7 @@ const generateBridgeScheduleFixtures = (bridgeName) => {
 	return fixtures;
 };
 
-describe("Illumination schedule, Saint-Petersburg, Russia", () => {
+describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 	describe("Navigation time", () => {
 		it("Detects the no-navigation time", () => {
 			expect(isNavigationTime(beforeNavigation)).toBe(false);

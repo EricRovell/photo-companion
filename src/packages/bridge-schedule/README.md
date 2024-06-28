@@ -89,6 +89,16 @@ interface BridgeState {
 const state = getBridgeState("ALEXANDER_NEVSKY");
 ```
 
+### `getBridgesState(date?: Date, ignoreNavigationSchedule?: true): Record<BridgeName, boolean>;`
+
+Same as `getBridgeState`, but returns data for all the bridges. Takes the navigation period into account.
+
+```ts
+import { getBridgeStates } from "bridge-schedule";
+
+const state = getBridgeState();
+```
+
 ### `getBridgeScheduleEntry(name: BridgeName): BridgeScheduleEntry`
 
 Returns a schedule entry data for a specific bridge.

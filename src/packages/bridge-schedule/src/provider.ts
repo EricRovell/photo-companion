@@ -15,14 +15,15 @@ import type { BridgeName, BridgeScheduleEntry, BridgeState } from "./types";
  * 
  * The current date is used as fallback.
  */
-export function getBridgeState(name: BridgeName, date: Date, ignoreNavigationSchedule?: true): BridgeState;
-export function getBridgeState(name: BridgeName, date = new Date(), ignoreNavigationSchedule = false): Nullish<BridgeState> {
+export function getBridgeState(name: BridgeName, date: DateLike, ignoreNavigationSchedule?: true): BridgeState;
+export function getBridgeState(name: BridgeName, date: DateLike = Date.now(), ignoreNavigationSchedule = false): Nullish<BridgeState> {
 	if (!ignoreNavigationSchedule && !isNavigationTime(date)) {
 		return null;
 	}
 
 	const scheduleList = schedule.bridges[name];
-	const now = date.getTime();
+	const nowDate = date instanceof Date ? date : new Date(date);
+	const now = nowDate.getTime();
 
 	// before first opening
 	const firstOpeningTime = dateFrom(date, {
@@ -111,13 +112,29 @@ export function getBridgeState(name: BridgeName, date = new Date(), ignoreNaviga
 }
 
 /**
+ * Returns bridges state by a given date. The navigation period is taken into account.
+ * 
+ * The current date is used as fallback.
+ */
+export function getBridgesState(date: DateLike = Date.now(), ignoreNavigation: Undefinable<true> = true): Record<BridgeName, boolean> {
+	const result = {} as ReturnType<typeof getBridgesState>;
+
+	for (const bridgeName of SUPPORTED_BRIDGES_NAME_SET) {
+		const { name, open } = getBridgeState(bridgeName, date, ignoreNavigation);
+		result[name] = open;
+	}
+
+	return result;
+}
+
+/**
  * Returns the closest bridge event from the given date.
  * 
  * The current date is used as fallback.
  * 
  * TODO: refactor and move to "events" file
  */
-export function getNextBridgeEvent(date = new Date()): BridgeState {
+export function getNextBridgeEvent(date: DateLike = Date.now()): BridgeState {
 	let nextEventState: Nullable<BridgeState> = null;
 
 	for (const name of SUPPORTED_BRIDGES_NAME_SET) {
