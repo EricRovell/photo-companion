@@ -127,6 +127,17 @@ import { getBridgeEvents } from "bridge-schedule";
 const events = getBridgeEvents();
 ```
 
+### `isAllBridgesLiftedDown(date?: DateLike, ignoreNavigation? = false): boolean`
+
+Returns a boolean indicating whether all the drawbridges are lifted down for a specific time.
+
+```ts
+import { isAllBridgesLiftedDown } from "bridge-schedule";
+
+const isLiftedDownNow = isisAllBridgesLiftedDown();
+const isLiftedDown = isisAllBridgesLiftedDown(new Date(2021, 7, 21));
+```
+
 ### `isBridgeException(name: BridgeName): boolean`
 
 Some drawbridges has non-permanent schedule. The `isBridgeException` provides a way to check is the given bridge should be considered as such an exception.

@@ -23,3 +23,8 @@ export const schedule: NavigationSchedule = {
 	"navigation": [ 4, 10, 11, 30 ],
 	"year": 2024
 };
+
+// Note: These constants are covered by unit tests
+
+export const FIRST_OPENING_MINUTES = schedule.bridges.PALACE[0][0] * 60 + schedule.bridges.PALACE[0][1];
+export const LAST_CLOSING_MINUTES = schedule.bridges.VOLODARSKY[1][2] * 60 + schedule.bridges.VOLODARSKY[1][3];

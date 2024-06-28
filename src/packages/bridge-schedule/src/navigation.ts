@@ -9,10 +9,16 @@ import { schedule } from "./schedule";
  *
  * The current date is used as fallback.
  */
-export function isNavigationTime(date: Date = new Date()): boolean {
-	const now = date.getTime();
-	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0);
-	const end = new Date(date.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999);
+export function isNavigationTime(date: DateLike = Date.now()): boolean {
+	if (date instanceof Date) {
+		date = date.getTime();
+	}
+
+	const dateInput = new Date(date);
+
+	const now = dateInput.getTime();
+	const start = new Date(dateInput.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0);
+	const end = new Date(dateInput.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999);
 
 	return now >= start.getTime() && now <= end.getTime();
 }

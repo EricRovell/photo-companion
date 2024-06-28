@@ -3,4 +3,4 @@ export { SUPPORTED_BRIDGES_NAME_SET } from "./const";
 export { getBridgeEvents } from "./events";
 export { getNavigationState, isNavigationTime } from "./navigation";
 export { getBridgeScheduleEntry, getBridgeState, getNextBridgeEvent } from "./provider";
-export { isBridgeException } from "./utils";
+export { isAllBridgesLiftedDown, isBridgeException } from "./utils";
