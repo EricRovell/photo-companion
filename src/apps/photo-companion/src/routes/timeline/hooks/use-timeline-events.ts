@@ -1,8 +1,8 @@
 import { getBridgeEvents } from "bridge-schedule";
 import { isNullable } from "utils/validators";
 
-import { useSettings } from "@lib/context";
-import { useDatetime, useLightsProvider, useTimelineProvider } from "@lib/hooks";
+import { useCityLights, useSettings } from "@lib/context";
+import { useDatetime, useTimelineProvider } from "@lib/hooks";
 
 import { getMoonEvents } from "../../../services/moon";
 import { getSunEvents } from "../../../services/sun";
@@ -10,7 +10,7 @@ import { useTimelineFilters } from "./use-timeline-filters";
 
 export function useTimelineEvents() {
 	const { getSettings } = useSettings();
-	const { getLightsProvider } = useLightsProvider();
+	const { getEventsByDate } = useCityLights();
 	const timelineFilterSet = useTimelineFilters();
 	const { getTimestamp } = useDatetime();
 
@@ -24,7 +24,7 @@ export function useTimelineEvents() {
 			},
 			{
 				disabled: isNullable(getSettings().events_lights),
-				provider: getLightsProvider().getEventsByDate,
+				provider: getEventsByDate,
 				type: "DATE"
 			},
 			{

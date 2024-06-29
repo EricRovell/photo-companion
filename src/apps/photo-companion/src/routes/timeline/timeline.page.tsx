@@ -5,7 +5,7 @@ import { incrementDateByDay } from "utils/date";
 import type { EventGroupName } from "types";
 
 import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "@lib/components";
-import { useTranslation } from "@lib/context";
+import { CityLightsProvider, useTranslation } from "@lib/context";
 import { useDatetime, useLocation } from "@lib/hooks";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
@@ -51,7 +51,7 @@ function Events(props: EventsProps) {
 	);
 }
 
-export function PageTimeline() {
+function EventTimeline() {
 	const { getDatetime } = useDatetime();
 	const { getLatitude, getLongitude } = useLocation();
 	const { getTimeline } = useTimelineEvents();
@@ -80,3 +80,9 @@ export function PageTimeline() {
 		</div>
 	);
 }
+
+export const PageTimeline = () => (
+	<CityLightsProvider>
+		<EventTimeline />
+	</CityLightsProvider>
+);

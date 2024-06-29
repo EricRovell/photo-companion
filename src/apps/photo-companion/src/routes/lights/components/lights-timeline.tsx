@@ -4,9 +4,10 @@ import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTE } from "@lib/consts";
-import { useDatetime, useLightsProvider, useLocation, useTimelineProvider } from "@lib/hooks";
+import { useCityLights } from "@lib/context";
+import { useDatetime, useLocation, useTimelineProvider } from "@lib/hooks";
 
-import { getSunEvents } from "../../services/sun";
+import { getSunEvents } from "../../../services/sun";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
 	"LIGHTS_START",
@@ -23,12 +24,12 @@ const SECONDARY_EVENT_SET = new Set<EventName>([
 export function LightsTimeline() {
 	const { getDatetime } = useDatetime();
 	const { getLatitude, getLongitude } = useLocation();
-	const { getLightsProvider } = useLightsProvider();
+	const { getEventsByDate } = useCityLights();
 	const { getTimeline } = useTimelineProvider({
 		predicate: event => TIMELINE_EVENT_SET.has(event.name),
 		providers: [
 			{
-				provider: getLightsProvider().getEventsByDate,
+				provider: getEventsByDate,
 				type: "DATE"
 			},
 			{
