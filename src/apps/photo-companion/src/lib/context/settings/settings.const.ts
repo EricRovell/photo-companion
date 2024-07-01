@@ -7,7 +7,6 @@ export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 export const SETTINGS_LOCAL_STORAGE_VERSION = 2;
 
 export const SETTINGS_DEFAULT: Readonly<SettingsStore> = Object.freeze({
-	bridges_spb_navigation: true,
 	events_bridges_spb: [],
 	events_lights: [],
 	events_moon: [],

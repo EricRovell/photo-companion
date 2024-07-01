@@ -20,7 +20,6 @@ import type { NavigationTabName, UserLang } from "@lib/types";
  *  3. Non-empty array — the forbidden events are listed.
  */
 export interface SettingsStore {
-	bridges_spb_navigation: boolean;
 	events_bridges_spb: Nullish<BridgeEventName[]>;
 	events_lights: Nullish<LightsEventName[]>;
 	events_moon: Nullish<MoonEventName[]>;

@@ -1,5 +1,5 @@
 import { createStore, unwrap } from "solid-js/store";
-import { Button, Fieldset, Form, InputCheckbox, InputRadio } from "ui";
+import { Button, Fieldset, Form, InputRadio } from "ui";
 
 import { SETTINGS_DEFAULT, useSettings, useTranslation } from "@lib/context";
 
@@ -26,10 +26,6 @@ export function PageSettings() {
 			case "latitude":
 			case "longitude": {
 				setStore({ [name]: Number(value) });
-				break;
-			}
-			case "bridges-spb-navigation": {
-				setStore({ bridges_spb_navigation: target.checked });
 				break;
 			}
 		}
@@ -76,17 +72,6 @@ export function PageSettings() {
 						name="lights_city"
 						options={LIGHTS_CITY_OPTIONS(t())}
 						value={store.lights_city}
-					/>
-				</Fieldset>
-				<Fieldset legend={t().LABEL.BRIDGES_SPB}>
-					<aside>
-						{t().MESSAGE.NAVIGATION_MODE}
-					</aside>
-					<InputCheckbox
-						checked={store.bridges_spb_navigation}
-						disabled={store.tabs.includes("BRIDGES") === false}
-						label={t().LABEL.NAVIGATION_ONLY}
-						name="bridges-spb-navigation"
 					/>
 				</Fieldset>
 				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>

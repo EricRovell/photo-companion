@@ -5,7 +5,7 @@
 - Page 404;
 - Improved navigation. Wider screens have enough space but not all tab-sections would be visible. Not there are no upper limits for maximum active tabs. On smaller screens there will be visible up to 4 top chosen tabs. All links are always accessible via side-menu;
 - Timeline event are now more symmetric on where the screen not yet small but already not wide enough;
-- Scrollbars for wides screens now have custom stylization;
+- Scroll-bars for wides screens now have custom stylization;
 - Fixed wrong "Bridges SPb" navigation period message, the correct countdown is shown;
 - To the moon data added a full moon name when it's a full moon;
 - Fixed a problem with invalid sun events being rendered, (during White nights for example);
@@ -13,6 +13,7 @@
 - Saint-Petersburg Drawbridges section now supports the same date-time input as all other application sections. It makes the experience more coherent and as the information is shown for a specific date-time, that makes easier to plan activities dependant on drawbridges operations;
 - Side panel for drawbridges section was redesigned and now shows a list of all drawbridges state for a given moment;
 - New section "Now" where the most important information is gathered in one place;
+- The "navigation mode" settings option was removed. For most users this options was misleading and unclear. Another reason is that the drawbridges section supports the date-time input. The navigation is taken into account automatically behind the scenes, and the in formation is displayed via side-panel;
 
 ### 2.21.1
 
