@@ -16,5 +16,5 @@ export const SETTINGS_DEFAULT: Readonly<SettingsStore> = Object.freeze({
 	latitude: 59.844404,
 	lights_city: "SAINT_PETERSBURG",
 	longitude: 30.3131,
-	tabs: [ "TIMELINE", "LIGHTS", "SUN", "MOON" ] as NavigationTabName[]
+	tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON" ] as NavigationTabName[]
 });

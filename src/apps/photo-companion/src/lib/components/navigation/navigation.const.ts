@@ -1,6 +1,7 @@
 import {
 	IconBook,
 	IconBridge,
+	IconCube,
 	IconLights,
 	IconMoon,
 	IconPullRequest,
@@ -39,6 +40,11 @@ export const NAVIGATION_TAB_DATA: Record<ROUTE_LABEL, NavigationRoute> = {
 		href: ROUTE.MOON,
 		icon: IconMoon,
 		label: "MOON"
+	},
+	NOW: {
+		href: ROUTE.NOW,
+		icon: IconCube,
+		label: "NOW"
 	},
 	SETTINGS: {
 		href: ROUTE.SETTINGS,

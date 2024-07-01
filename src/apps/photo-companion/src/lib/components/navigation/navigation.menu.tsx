@@ -15,6 +15,7 @@ export function NavigationMenu(props: ParentProps) {
 	return (
 		<nav class={styles.menu}>
 			<section class={styles.section}>
+				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.NOW} />
 				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.TIMELINE} />
 				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.LIGHTS} />
 				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.SUN} />

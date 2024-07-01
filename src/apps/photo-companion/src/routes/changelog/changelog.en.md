@@ -12,6 +12,7 @@
 - Next lights event countdown now based on chosen datetime (previously is was based on current datetime);
 - Saint-Petersburg Drawbridges section now supports the same date-time input as all other application sections. It makes the experience more coherent and as the information is shown for a specific date-time, that makes easier to plan activities dependant on drawbridges operations;
 - Side panel for drawbridges section was redesigned and now shows a list of all drawbridges state for a given moment;
+- New section "Now" where the most important information is gathered in one place;
 
 ### 2.21.1
 

@@ -97,6 +97,8 @@ export const t: Translation = {
 		TABS: "Разделы приложения",
 		TILL_TURNED_OFF: "До отключения",
 		TILL_TURNED_ON: "До включения",
+		TIME_OFF: "Время отключения",
+		TIME_ON: "Время включения",
 		TURNED_OFF: "Отключено",
 		TURNED_ON: "Включено",
 		WANING: "Убывающая",

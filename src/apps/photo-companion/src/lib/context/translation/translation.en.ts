@@ -95,6 +95,8 @@ export const t = {
 		TABS: "Tabs",
 		TILL_TURNED_OFF: "Till turning off",
 		TILL_TURNED_ON: "Till turning on",
+		TIME_OFF: "Shutdown time",
+		TIME_ON: "On time",
 		TURNED_OFF: "Turned off",
 		TURNED_ON: "Turned on",
 		WANING: "Waning",

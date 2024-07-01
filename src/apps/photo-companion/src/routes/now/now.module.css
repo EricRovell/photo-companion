@@ -1,0 +1,7 @@
+.page {
+	display: grid;
+	grid-auto-rows: min-content;
+	gap: var(--space-6);
+	width: var(--content-width);
+	min-height: 115vh;
+}

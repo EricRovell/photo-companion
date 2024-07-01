@@ -18,6 +18,7 @@ export type NavigationTabName =
 	| "BRIDGES"
 	| "LIGHTS"
 	| "MOON"
+	| "NOW"
 	| "SUN"
 	| "TIMELINE";
 
