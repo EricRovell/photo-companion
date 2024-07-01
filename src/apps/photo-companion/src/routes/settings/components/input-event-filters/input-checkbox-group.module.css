@@ -1,0 +1,65 @@
+.checkbox-group {
+	/* Note: the reason is written in component */
+	--checkbox-unchecked-bg: hsl(120deg 90% 30%);
+	--checkbox-checked-bg: var(--color-surface-5);
+
+	border: none;
+	overflow: hidden;
+
+	&:hover {
+		background-color: var(--color-surface-3);
+		border-radius: var(--radius);
+	}
+
+	ul {
+		list-style: none;
+		display: grid;
+		justify-items: start;
+
+		li {
+			padding-block: var(--space-1);
+			padding-inline-start: calc(2 * var(--space-2) + var(--space-3));
+			width: 100%;
+
+			&:hover {
+				background-color: var(--color-surface-4);
+			}
+		}
+	}
+
+	details[open] > summary svg {
+		transform: rotate(0);
+	}
+
+	details[data-disabled] {
+		pointer-events: none;
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+
+	summary {
+		display: flex;
+		background-color: var(--color-surface-2);
+		padding: var(--space-2);
+		cursor: pointer;
+		border-radius: var(--radius);
+
+		&:hover {
+			background-color: var(--color-surface-3);
+		}
+
+		&::marker {
+			display: none;
+		}
+
+		& > svg {
+			align-self: center;
+			size: var(--space-3);
+			height: var(--space-3);
+			margin-inline-end: var(--space-2);
+			fill: currentcolor;
+			transform: rotate(-90deg);
+			transition: transform 0.125s linear;
+		}
+	}
+}

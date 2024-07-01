@@ -12,6 +12,11 @@
 				"default": "./src/date.ts"
 			}
 		},
+		"./easing": {
+			"import": {
+				"default": "./src/easing.ts"
+			}
+		},
 		"./formatters": {
 			"import": {
 				"default": "./src/formatters.ts"

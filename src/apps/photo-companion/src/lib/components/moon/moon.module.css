@@ -14,7 +14,7 @@
 	transform: rotateY(var(--moon-disk-angle));
 	transform-origin: 50% 50%;
 
-	&:global(.dark) {
+	&.dark {
 		fill: var(--moon-shadow-color);
 	}
 }
@@ -31,7 +31,7 @@
 		clip-path: inset(0 0 0 50%);
 	}
 
-	&:global(.visible) {
+	&.visible {
 		opacity: 1;
 	}
 }

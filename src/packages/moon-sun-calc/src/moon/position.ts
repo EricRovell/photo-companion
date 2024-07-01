@@ -1,9 +1,10 @@
 import { isLatitude, isLongitude } from "utils/validators";
 
-import { calcMoonCoordinates } from "./coordinates";
 import { RAD } from "../consts";
+import { altitudeCalc, azimuthCalc, siderealTime, toDays, toDegrees } from "../utils";
+import { calcMoonCoordinates } from "./coordinates";
 import { astroRefraction } from "./utils";
-import { siderealTime, altitudeCalc, toDays, azimuthCalc, toDegrees } from "../utils";
+
 import type { MoonPosition } from "./types";
 
 /**
@@ -38,8 +39,8 @@ export function getMoonPosition(dateValue: DateLike, latitude: number, longitude
 	const azimuth = azimuthCalc(H, phi, coords.declination);
 
 	return {
-		azimuth: toDegrees(azimuth, degrees),
 		altitude: toDegrees(altitude, degrees),
+		azimuth: toDegrees(azimuth, degrees),
 		distance: coords.distance,
 		parallacticAngle: toDegrees(pa, degrees)
 	};

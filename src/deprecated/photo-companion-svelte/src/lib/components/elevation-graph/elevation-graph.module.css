@@ -1,0 +1,42 @@
+.view {
+	/* Flip the vertical axis in <g> to emulate cartesian. */
+	transform: scaleY(-1);
+	width: 100%;
+
+	& text {
+		transform: scaleY(-1);
+	}
+}
+
+.zero-axis {
+	stroke: var(--color-surface-3);
+	stroke-width: 2px;
+	opacity: 0.5;
+}
+
+.ticks text {
+	font-size: 10px;
+	text-anchor: middle;
+	fill: currentcolor;
+	opacity: 0.75;
+}
+
+.graph {
+	stroke-width: var(--elevation-graph-stroke-width, 2px);
+	fill: none;
+	opacity: var(--elevation-graph-stroke-opacity, 1);
+	stroke: var(--elevation-graph-accent, gold);
+	filter: drop-shadow(0 0 15px var(--elevation-graph-accent, gold));
+}
+
+.pointer {
+	fill: var(--elevation-graph-accent, gold);
+	transition:
+		cx 0.125s ease-in-out,
+		cy 0.125s ease-in-out,
+		filter 0.5s linear;
+
+	&[data-above] {
+		filter: drop-shadow(0 0 10px var(--elevation-graph-accent, gold));
+	}
+}

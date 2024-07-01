@@ -1,18 +1,19 @@
 import { isLatitude, isLongitude } from "utils/validators";
 
 import { RAD } from "../consts";
-import { declination, toDays, eclipticLongitude } from "../utils";
-import { approxTransit, getSetJ, fromJulianDay, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
+import { declination, eclipticLongitude, toDays } from "../utils";
+import { approxTransit, fromJulianDay, getSetJ, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
+
 import type { SunTime } from "./types";
 
 interface Options {
-	height?: number;
 	degrees?: boolean;
+	height?: number;
 }
 
 interface SunTimeByElevation {
-	set: SunTime;
 	rise: SunTime;
+	set: SunTime;
 }
 
 /**
@@ -41,7 +42,7 @@ export function getSunTime(
 		throw new Error(`Invalid elevation angle is provided: ${elevationAngle}`);
 	}
 
-	const { height = 0, degrees = false } = options;
+	const { degrees = false, height = 0 } = options;
 
 	if (degrees) {
 		elevationAngle = elevationAngle * RAD;
@@ -70,21 +71,21 @@ export function getSunTime(
 	const v2 = fromJulianDay(Jrise);
 
 	return {
-		set: {
-			elevation: elevationAngle,
-			julian: Jset,
-			index: 0,
-			name: "set",
-			timestamp: v1,
-			valid: !isNaN(Jset)
-		},
 		rise: {
 			elevation: elevationAngle, // (180 + (elevationAngle * -1)),
-			julian: Jrise,
 			index: 1,
+			julian: Jrise,
 			name: "rise",
 			timestamp: v2,
 			valid: !isNaN(Jrise)
+		},
+		set: {
+			elevation: elevationAngle,
+			index: 0,
+			julian: Jset,
+			name: "set",
+			timestamp: v1,
+			valid: !isNaN(Jset)
 		}
 	};
 }

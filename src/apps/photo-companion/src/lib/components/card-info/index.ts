@@ -1,1 +1,1 @@
-export { default as CardInfo } from "./card-info.svelte";
+export { CardEntry, CardInfo } from "./card-info";

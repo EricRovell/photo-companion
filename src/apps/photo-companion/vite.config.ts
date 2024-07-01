@@ -1,60 +1,13 @@
-import * as child from "child_process";
-import { join, resolve } from "node:path";
-import { type PluginOption, defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
+import replace from "@rollup/plugin-replace";
+import { resolve } from "node:path";
 import pluginPostCssNesting from "postcss-nesting";
-import { build } from "esbuild";
-import { replace } from "esbuild-plugin-replace";
-import replaceRollup from "@rollup/plugin-replace";
+import { defineConfig } from "vite";
+import solid from "vite-plugin-solid";
+import solidMarkedPlugin from "vite-plugin-solid-marked";
 
-function getHash(short = false) {
-	return child
-		.execSync(`git rev-parse ${short ? "--short" : ""} HEAD`)
-		.toString()
-		.trim();
-}
+import { compileServiceWorker, getCommitHash } from "./plugins/compile-service-worker";
 
-const compileServiceWorkerPlugin: PluginOption = {
-	name: "compile-service-worker",
-	apply: "build",
-	enforce: "post",
-	transformIndexHtml() {
-		void build({
-			minify: true,
-			bundle: true,
-			entryPoints: [ join(process.cwd(), "src", "service-worker.js") ],
-			outfile: join(process.cwd(), "dist", "service-worker.js"),
-			target: "es2021",
-			plugins: [
-				replace({
-					values: {
-						"__COMMIT_HASH__": () => getHash()
-					}
-				})
-			]
-		});
-	}
-};
-
-// https://vitejs.dev/config/
 export default defineConfig({
-	resolve: {
-		alias: {
-			"@lib": resolve(__dirname, "./src/lib"),
-			"@services": resolve(__dirname, "./src/services"),
-			"@stores": resolve(__dirname, "./src/lib/stores")
-		}
-	},
-	plugins: [
-		replaceRollup({
-			preventAssignment: false,
-			values: {
-				"__COMMIT_HASH__": () => getHash(true)
-			}
-		}),
-		svelte(),
-		compileServiceWorkerPlugin
-	],
 	css: {
 		postcss: {
 			plugins: [
@@ -62,7 +15,20 @@ export default defineConfig({
 			]
 		}
 	},
-	optimizeDeps: {
-		exclude: [ "fsevents" ]
+	plugins: [
+		replace({
+			preventAssignment: false,
+			values: {
+				"__COMMIT_HASH__": () => getCommitHash(true)
+			}
+		}),
+		solid({ extensions: [ ".md" ] }),
+		solidMarkedPlugin({}),
+		compileServiceWorker
+	],
+	resolve: {
+		alias: {
+			"@lib": resolve(__dirname, "./src/lib")
+		}
 	}
 });

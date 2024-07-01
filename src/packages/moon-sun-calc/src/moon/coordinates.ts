@@ -1,5 +1,6 @@
 import { RAD } from "../consts";
 import { declination, rightAscension } from "../utils";
+
 import type { MoonCoordinates } from "./types";
 
 /**
@@ -14,8 +15,8 @@ export function calcMoonCoordinates(days: number): MoonCoordinates {
 	const distanceToTheMoonInKm = 385001 - 20905 * Math.cos(meanAnomaly);
 
 	return {
-		rightAscension: rightAscension(longitude, latitude),
 		declination: declination(longitude, latitude),
-		distance: distanceToTheMoonInKm
+		distance: distanceToTheMoonInKm,
+		rightAscension: rightAscension(longitude, latitude)
 	};
 }

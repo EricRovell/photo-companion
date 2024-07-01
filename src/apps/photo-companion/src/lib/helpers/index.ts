@@ -1,10 +1,11 @@
-import type { UserLang } from "@lib/types";
 import { isNullable, isValidDate } from "utils/validators";
+
+import type { UserLang } from "@lib/types";
 
 /**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.
  */
-export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback: number = 0): number {
+export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback = 0): number {
 	if (isNullable(date) || !isValidDate(date)) {
 		return fallback;
 	}
@@ -14,56 +15,42 @@ export function getAngleFromTime(date: Nullish<DateLike> = new Date(), fallback:
 	return Math.round(360 * (hours * 60 + minutes) / (24 * 60));
 }
 
-export function getDateTimeString(date = new Date()): string {
+/**
+ * Returns a part of ISO string (removes all data after minutes) for an datetime input.
+ */
+export function getDateTimeString(date: DateLike = new Date()): string {
+	if (!(date instanceof Date)) {
+		date = new Date(date);
+	}
+
 	const timezoneOffset = date.getTimezoneOffset() * 60000;
 	return (new Date(date.getTime() - timezoneOffset)).toISOString().slice(0, 16);
 }
 
 /**
- * Prevents the page scroll depending on condition.
+ * Parses a query `datetime` string in format YYYY-MM-DD-hh-mm
+ * into a Date object.
  */
-export function preventPageScroll(condition: boolean) {
-	if (!globalThis.window) {
-		return;
-	}
-
-	if (condition) {
-		// prevent page scroll, mostly for safari hack
-		document.body.style.cssText = `
-			top: -${window.scrollY}px;
-			position: fixed;
-			overflow-y: scroll;
-			overscroll-behavior: none;
-		`;
-
-		return;
-	}
-
-	const scrollY: number = parseInt(document.body.style.top || "0");
-	document.body.style.cssText = "";
-	window.scrollTo({
-		top: -1 * scrollY,
-		behavior: "auto"
-	});
-}
-
-export function parseQueryDate(input: string): string {
-	if (!input) {
-		return getDateTimeString();
+export function parseQueryDate(input: string): Date {
+	if (isNullable(input)) {
+		return new Date();
 	}
 
 	const [ yy, mm, dd, h, m ] = input.split("-").map(Number);
+	const output = new Date(yy, mm - 1, dd, h, m);
 
-	const date = new Date(yy, mm - 1, dd, h, m);
-
-	if (!isValidDate(date)) {
-		return "invalid";
+	if (!isValidDate(output)) {
+		console.warn(`Invalid date input: ${input}`);
 	}
 
-	return getDateTimeString(date);
+	return output;
 }
 
-export function createQueryDate(d: Date = new Date()): string {
+export function createQueryDate(d: DateLike = new Date()): string {
+	if (typeof d === "number") {
+		d = new Date(d);
+	}
+
 	return [
 		d.getFullYear(),
 		d.getMonth() + 1,
@@ -71,40 +58,43 @@ export function createQueryDate(d: Date = new Date()): string {
 		d.getHours(),
 		d.getMinutes()
 	]
-		.map(value => value < 10 ? `0${value}` : value.toString())
+		.map(value => value.toString().padStart(2, "0"))
 		.join("-");
 }
 
-export async function getUserLocation(): Promise<Nullish<{ lat: number, lon: number }>> {
-	if (!navigator.geolocation) {
-		return null;
-	}
+const REPLACE_REGEX = /T|:/g;
+const DELIMITER = "-";
 
-	const position: GeolocationPosition = await new Promise<GeolocationPosition>((resolve, reject) => {
-		return navigator.geolocation.getCurrentPosition(resolve, reject);
+/**
+ * Parses the datetime sting in format YYYY-MM-DDThh:mm into YYYY-MM-DD-hh-mm.
+ */
+export function parseDateTimeString(input: string): string {
+	return input.replace(REPLACE_REGEX, DELIMITER);
+}
+
+export function getUserLocation(): Promise<GeolocationCoordinates> {
+	return new Promise((resolve, reject) => {
+		if ("geolocation" in navigator) {
+			navigator.geolocation.getCurrentPosition(position => {
+				resolve(position.coords);
+			}, reject);
+		} else {
+			reject(new Error("Geolocation not supported"));
+		}
 	});
-
-	if (position) {
-		return {
-			lat: position.coords.latitude,
-			lon: position.coords.longitude
-		};
-	}
-
-	return null;
 }
 
 interface DateParams {
-	year: number,
-	month: number
 	date: number
 	hours: number
-	minutes: number
-	seconds: number
 	milliseconds: number
+	minutes: number
+	month: number
+	seconds: number
+	year: number,
 }
 
-export function getDate({ year, month, date, hours, minutes, seconds, milliseconds }: Partial<DateParams>) {
+export function getDate({ date, hours, milliseconds, minutes, month, seconds, year }: Partial<DateParams>) {
 	const now = new Date();
 
 	(typeof year === "number") && now.setFullYear(year);
@@ -121,19 +111,8 @@ export function getDate({ year, month, date, hours, minutes, seconds, millisecon
 /**
  * Sets the boolean attribute depending on state.
  */
-export function setAttribute(state: boolean) {
-	return state ? "" : undefined;
-}
-
-export function scrollToTop() {
-	if (isNullable(globalThis.window)) {
-		return;
-	}
-
-	window.scrollTo({
-		behavior: "smooth",
-		top: 0
-	});
+export function setAttribute(state?: boolean, value = "") {
+	return state ? value : undefined;
 }
 
 /**

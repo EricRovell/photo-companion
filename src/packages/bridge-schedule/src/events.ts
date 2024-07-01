@@ -1,9 +1,11 @@
-import type { BridgeEvent } from "types";
 import { dateFrom } from "utils/date";
 
-import { schedule } from "./schedule";
-import { SUPPORTED_BRIDGES_NAME_SET } from ".";
+import type { BridgeEvent } from "types";
+
 import { isNavigationTime } from "./navigation";
+import { schedule } from "./schedule";
+
+import { SUPPORTED_BRIDGES_NAME_SET } from ".";
 
 /**
  * Returns all bridge events occurred at the given date.

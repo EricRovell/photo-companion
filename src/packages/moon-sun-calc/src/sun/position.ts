@@ -1,8 +1,9 @@
 import { isLatitude, isLongitude } from "utils/validators";
 
 import { RAD } from "../consts";
-import { siderealTime, toDays, azimuthCalc, altitudeCalc, toDegrees } from "../utils";
+import { altitudeCalc, azimuthCalc, siderealTime, toDays, toDegrees } from "../utils";
 import { calcSunCoordinates } from "./coordinates";
+
 import type { SunPosition } from "./types";
 
 /**

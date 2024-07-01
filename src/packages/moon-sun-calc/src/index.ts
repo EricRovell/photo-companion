@@ -1,6 +1,6 @@
 export {
-	getMoonPhases,
 	getMoonIllumination,
+	getMoonPhases,
 	getMoonPosition,
 	getMoonTimes
 } from "./moon";
@@ -14,4 +14,4 @@ export {
 	getSunTimes
 } from "./sun";
 
-export type { SunCoordinates } from "./sun/types";
+export type { SunCoordinates, SunTime } from "./sun/types";

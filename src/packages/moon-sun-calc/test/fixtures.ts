@@ -4,7 +4,7 @@
  * The fixtures are in UTC, so the UTC options should be used.
  */
 
-import { SunEventName } from "types";
+import type { SunEventName } from "types";
 
 interface SolarFixture {
 	event: SunEventName;

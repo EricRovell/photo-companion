@@ -31,3 +31,19 @@
 		font-size: var(--font-size-4);
 	}
 }
+
+.custom-scrollbar {
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: 5px;
+		background-color: var(--color-surface-3, hsl(210deg 23% 30%));
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 5px;
+		background-color: var(--color-surface-6, hsl(210deg 23% 36%));
+	}
+}

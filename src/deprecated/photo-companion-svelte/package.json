@@ -1,0 +1,44 @@
+{
+	"name": "photo-companion",
+	"description": "Minimalistic photography toolkit progressive web application.",
+	"private": true,
+	"version": "2.21.1",
+	"type": "module",
+	"author": "Eric Rovell",
+	"license": "MIT",
+	"homepage": "https://github.com/EricRovell/photo-companion#readme",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "npm run lint:code && npm run lint:styles && npm run lint:svelte",
+		"lint:code": "eslint src/**/*.{ts,js,svelte}",
+		"lint:svelte": "svelte-check --tsconfig ./tsconfig.json"
+	},
+	"keywords": [
+		"photography",
+		"scheduler",
+		"web-application"
+	],
+	"devDependencies": {
+		"@rollup/plugin-replace": "^5.0.5",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@tsconfig/svelte": "^5.0.2",
+		"esbuild": "^0.19.11",
+		"esbuild-plugin-replace": "^1.4.0",
+		"mdsvex": "^0.11.0",
+		"postcss-nesting": "^12.0.1",
+		"svelte": "^4.2.5",
+		"svelte-pathfinder": "^4.7.1",
+		"vite": "^5.0.11"
+	},
+	"dependencies": {
+		"bridge-schedule": "workspace:*",
+		"lights-schedule": "workspace:*",
+		"moon-sun-calc": "workspace:*",
+		"types": "workspace:*",
+		"ui": "workspace:*",
+		"utils": "workspace:*",
+		"versioned-local-storage": "workspace:*"
+	}
+}

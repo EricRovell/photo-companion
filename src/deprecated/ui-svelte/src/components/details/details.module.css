@@ -1,0 +1,59 @@
+.details {
+	display: flex;
+	flex-direction: column;
+	max-width: 100%;
+	border-radius: var(--radius);
+	font-size: inherit;
+}
+
+.summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 100%;
+	padding: var(--space-1);
+	padding-inline: var(--space-3) var(--space-2);
+	border-radius: var(--radius);
+	border: 2px solid var(--color-border);
+	list-style: none;
+	user-select: none;
+	cursor: pointer;
+}
+
+.summary::marker {
+	display: none;
+}
+
+.summary:focus-visible {
+	outline: 2px dashed var(--focus-ring-color);
+	outline-offset: var(--space-2);
+}
+
+.icon {
+	width: 1.5em;
+	height: 1.5em;
+	padding: 0.3em;
+	border-radius: var(--radius);
+}
+
+.details:hover > .summary {
+	outline: 3px solid var(--color-accent);
+	outline-offset: -3px;
+}
+
+.icon polygon {
+	fill: currentcolor;
+	transform-origin: center;
+	transition: transform 0.125s ease-in-out;
+}
+
+.details[open] .icon polygon {
+	transform: scaleY(-1);
+}
+
+.details[open] > .content {
+	margin-block-start: var(--space-2);
+	padding: var(--space-2) var(--space-2);
+	border-block: 1px solid var(--color-border-50);
+}

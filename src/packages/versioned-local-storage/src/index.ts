@@ -1,6 +1,6 @@
-import { isNonNegativeInteger, isNonNullable } from "utils/validators";
+import { isNonNegativeInteger, isNonNullable, isNullable } from "utils/validators";
 
-import { get, getVersion, set, remove, clear } from "./utils";
+import { clear, get, getVersion, remove, set } from "./utils";
 
 const EMPTY_VERSION = 0;
 
@@ -49,7 +49,7 @@ export class Storage<T> {
 		const storedValue = get(key);
 		let value: Nullish<T> = null;
 
-		if (storedValue) {
+		if (!isNullable(storedValue)) {
 			try {
 				value = JSON.parse(storedValue);
 			} catch (error) {

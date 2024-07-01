@@ -1,1 +1,1 @@
-export { default as ElevationGraph } from "./elevation-graph.svelte";
+export { ElevationGraph } from "./elevation-graph";

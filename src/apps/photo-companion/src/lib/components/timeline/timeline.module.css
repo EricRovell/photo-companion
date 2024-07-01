@@ -45,7 +45,7 @@
 	display: grid;
 }
 
-@media screen and (width <= 600px) {
+@media screen and (width <= 650px) {
 	.timeline > time {
 		position: sticky;
 		top: var(--space-4);

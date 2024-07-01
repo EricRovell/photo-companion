@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { round, scale } from "../src/math";
 
 describe("Project's core math utilities", () => {

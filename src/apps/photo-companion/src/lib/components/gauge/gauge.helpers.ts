@@ -33,8 +33,8 @@ export function describeArc(x: number, y: number, radius: number, angleStart: nu
 
 interface Point {
 	x1: number;
-	y1: number;
 	x2: number;
+	y1: number;
 	y2: number;
 }
 
@@ -49,8 +49,8 @@ export const createMarksCoords = (count = 24, r1: number, r2: number): Point[] =
 
 		points.push({
 			x1: +(r1 * Math.cos(angle)).toFixed(2),
-			y1: +(r1 * Math.sin(angle)).toFixed(2),
 			x2: +(r2 * Math.cos(angle)).toFixed(2),
+			y1: +(r1 * Math.sin(angle)).toFixed(2),
 			y2: +(r2 * Math.sin(angle)).toFixed(2)
 		});
 	}

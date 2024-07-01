@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { calcDuration, countDays, isLeapYear, isSameDay } from "../src/date";
 
 describe("date utilities", () => {

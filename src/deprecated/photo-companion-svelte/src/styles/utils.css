@@ -1,0 +1,33 @@
+.success,
+.danger {
+	font-variation-settings: "wght" 500;
+}
+
+.success {
+	color: var(--color-success);
+}
+
+.danger {
+	color: var(--color-danger);
+}
+
+.card {
+	width: 100%;
+	height: fit-content;
+	border-radius: 10px;
+	border: 3px solid var(--card-border-color, var(--color-surface-3));
+
+	& > header {
+		border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		border-radius: 10px 10px 0 0;
+		padding: var(--space-2) var(--space-5);
+	}
+
+	h2 {
+		font-size: var(--font-size-4);
+	}
+}

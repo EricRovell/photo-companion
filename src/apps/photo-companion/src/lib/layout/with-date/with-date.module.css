@@ -6,7 +6,7 @@
 	margin-block-end: var(--space-5);
 }
 
-@media screen and (width <= 600px) {
+@media screen and (width <= 650px) {
 	.date-input {
 		bottom: calc(2 * var(--space-3) + 2 * var(--space-2) + var(--font-size-2) + var(--space-4));
 
