@@ -1,13 +1,24 @@
-import type { ParentProps } from "solid-js";
+import { type ParentProps, Show } from "solid-js";
+import { classnames } from "utils";
 
 import styles from "./card-info.module.css";
 
-interface CardEntry {
+interface CardInfoProps extends ParentProps {
+	classes?: {
+		card?: string;
+		list?: string;
+		title?: string;
+	};
+	title?: string;
+}
+
+interface CardEntryProps extends ParentProps {
+	class?: string;
 	property: string;
 }
 
-export const CardEntry = (props: ParentProps<CardEntry>) => (
-	<div class={styles.entry}>
+export const CardEntry = (props: CardEntryProps) => (
+	<div class={classnames(styles.entry, props.class)}>
 		<dt>
 			{props.property}
 		</dt>
@@ -17,9 +28,16 @@ export const CardEntry = (props: ParentProps<CardEntry>) => (
 	</div>
 );
 
-export const CardInfo = (props: ParentProps) => (
-	<article class={styles.card}>
-		<dl>
+export const CardInfo = (props: CardInfoProps) => (
+	<article class={classnames(styles.card, props.classes?.card)}>
+		<Show when={props.title}>
+			{title => (
+				<header class={classnames(styles.title, props.classes?.title)}>
+					{title()}
+				</header>
+			)}
+		</Show>
+		<dl class={props.classes?.list}>
 			{props.children}
 		</dl>
 	</article>
