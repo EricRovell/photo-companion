@@ -51,7 +51,7 @@ interface TransitionHelperArgs {
 }
 
 // copied from Jake Archibald's explainer
-// https://developer.chrome.com/docs/web-platform/view-transitions/#not-a-polyfill
+// https://developer.chrome.com/docs/web-platform/view-transitions/same-document#not-a-polyfill
 function transitionHelper({ skipTransition = false, classNames = [], updateDOM }: TransitionHelperArgs) {
 	// @ts-expect-error: new feature
 	if (skipTransition || !document.startViewTransition) {
