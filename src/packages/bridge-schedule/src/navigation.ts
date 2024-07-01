@@ -29,7 +29,8 @@ export function isNavigationTime(date: DateLike = Date.now()): boolean {
  *
  * The current date is used as fallback.
  */
-export function getNavigationState(date: Date = new Date()): { days: number, navigation: boolean } {
+export function getNavigationState(dateInput: DateLike = new Date()): { days: number, navigation: boolean } {
+	const date = new Date(dateInput);
 	const now = date.getTime();
 	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0).getTime();
 	const end = new Date(date.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999).getTime();
