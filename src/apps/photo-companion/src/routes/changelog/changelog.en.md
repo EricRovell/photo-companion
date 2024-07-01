@@ -10,6 +10,8 @@
 - To the moon data added a full moon name when it's a full moon;
 - Fixed a problem with invalid sun events being rendered, (during White nights for example);
 - Next lights event countdown now based on chosen datetime (previously is was based on current datetime);
+- Saint-Petersburg Drawbridges section now supports the same date-time input as all other application sections. It makes the experience more coherent and as the information is shown for a specific date-time, that makes easier to plan activities dependant on drawbridges operations;
+- Side panel for drawbridges section was redesigned and now shows a list of all drawbridges state for a given moment;
 
 ### 2.21.1
 
