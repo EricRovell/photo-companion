@@ -1,15 +1,15 @@
 import { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import { For } from "solid-js";
-import { Button, IconChevronDown } from "ui";
 
+import { BridgesInfo } from "@lib/components";
 import { useTranslation } from "@lib/context";
 
-import { CardBridge, NavigationEvent, NextBridgeEvent } from "./components";
+import { CardBridge } from "./components";
 
 import styles from "./bridges.module.css";
 
 const BridgeList = () => (
-	<ul>
+	<ul class={styles["bridge-list"]}>
 		<For each={Array.from(SUPPORTED_BRIDGES_NAME_SET)}>
 			{name => (
 				<li>
@@ -28,26 +28,14 @@ export function PageBridges() {
 
 	return (
 		<div class={styles.page}>
-			<div>
-				<h2 id="bridge-schedule">
+			<div class={styles.wrapper}>
+				<h2 class={styles.title} id="bridge-schedule">
 					{t().TITLE.BRIDGES_SCHEDULE_SPB}
 				</h2>
 				<BridgeList />
 			</div>
-			<aside>
-				<NavigationEvent />
-				<NextBridgeEvent />
-				<Button
-					appearance="ghost"
-					onClick={() => {
-						document.querySelector("#bridge-schedule")
-							?.scrollIntoView({
-								behavior: "smooth"
-							});
-					}}
-				>
-					<IconChevronDown />
-				</Button>
+			<aside class={styles.info}>
+				<BridgesInfo />
 			</aside>
 		</div>
 	);
