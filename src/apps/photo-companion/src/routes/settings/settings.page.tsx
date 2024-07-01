@@ -4,7 +4,7 @@ import { Button, Fieldset, Form, InputCheckbox, InputRadio } from "ui";
 import { SETTINGS_DEFAULT, useSettings, useTranslation } from "@lib/context";
 
 import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
-import { LANGUAGE_OPTIONS } from "./settings.const";
+import { LANGUAGE_OPTIONS, LIGHTS_CITY_OPTIONS } from "./settings.const";
 
 import styles from "./settings.module.css";
 
@@ -19,7 +19,7 @@ export function PageSettings() {
 
 		switch (name) {
 			case "language":
-			case "lights-city": {
+			case "lights_city": {
 				setStore({ [name]: value });
 				break;
 			}
@@ -69,6 +69,13 @@ export function PageSettings() {
 						initialTabs={store.tabs}
 						name="tabs"
 						onChange={(name, value) => setStore({ [name]: value })}
+					/>
+				</Fieldset>
+				<Fieldset legend={t().LABEL.LIGHTS_CITY}>
+					<InputRadio
+						name="lights_city"
+						options={LIGHTS_CITY_OPTIONS(t())}
+						value={store.lights_city}
 					/>
 				</Fieldset>
 				<Fieldset legend={t().LABEL.BRIDGES_SPB}>
