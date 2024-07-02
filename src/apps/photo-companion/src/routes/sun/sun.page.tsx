@@ -21,3 +21,5 @@ export function PageSun() {
 		</div>
 	);
 }
+
+export default PageSun;

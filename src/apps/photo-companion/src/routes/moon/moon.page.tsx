@@ -23,3 +23,5 @@ export function PageMoon() {
 		</div>
 	);
 }
+
+export default PageMoon;

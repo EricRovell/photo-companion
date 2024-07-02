@@ -40,3 +40,5 @@ export function PageBridges() {
 		</div>
 	);
 }
+
+export default PageBridges;

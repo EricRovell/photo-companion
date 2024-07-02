@@ -13,3 +13,5 @@ export const PageLights = () => (
 		</div>
 	</CityLightsProvider>
 );
+
+export default PageLights;

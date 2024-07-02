@@ -1,6 +1,6 @@
 import { useBeforeLeave } from "@solidjs/router";
 import { For } from "solid-js";
-import { Button, Drawer, IconArrowLeft, IconChevronRight, IconClose, IconMenu } from "ui";
+import { Button, Drawer, IconChevronRight, IconMenu } from "ui";
 import { createToggle } from "ui/primitives";
 import { classnames } from "utils";
 

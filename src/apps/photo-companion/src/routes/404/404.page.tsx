@@ -26,3 +26,5 @@ export const Page404 = () => {
 		</aside>
 	);
 };
+
+export default Page404;

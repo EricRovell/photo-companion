@@ -13,3 +13,5 @@ export function PageNow() {
 		</div>
 	);
 }
+
+export default PageNow;

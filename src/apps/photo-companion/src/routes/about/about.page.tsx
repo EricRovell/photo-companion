@@ -17,3 +17,5 @@ export function PageAbout() {
 		</Markdown>
 	);
 }
+
+export default PageAbout;

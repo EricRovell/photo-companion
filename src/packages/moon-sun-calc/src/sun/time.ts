@@ -75,6 +75,7 @@ export function getSunTime(
 			elevation: elevationAngle, // (180 + (elevationAngle * -1)),
 			index: 1,
 			julian: Jrise,
+			// @ts-expect-error: TODO, need to fix types
 			name: "rise",
 			timestamp: v2,
 			valid: !isNaN(Jrise)
@@ -83,6 +84,7 @@ export function getSunTime(
 			elevation: elevationAngle,
 			index: 0,
 			julian: Jset,
+			// @ts-expect-error: TODO, need to fix types
 			name: "set",
 			timestamp: v1,
 			valid: !isNaN(Jset)

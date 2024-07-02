@@ -1,20 +1,22 @@
 import { Route, Router } from "@solidjs/router";
+import { lazy } from "solid-js";
 
 import { ROUTE } from "@lib/consts";
 import { Root } from "@lib/layout/root/root";
 import { WithDate } from "@lib/layout/with-date/with-date";
 import { WithSwipe } from "@lib/layout/with-swipe";
 
-import { Page404 } from "./404/404.page";
-import { PageAbout } from "./about/about.page";
 import { PageBridges } from "./bridges/bridges.page";
-import { PageChangelog } from "./changelog/changelog.page";
 import { PageLights } from "./lights/lights.page";
 import { PageMoon } from "./moon/moon.page";
 import { PageNow } from "./now/now.page";
 import { PageSettings } from "./settings/settings.page";
 import { PageSun } from "./sun/sun.page";
 import { PageTimeline } from "./timeline/timeline.page";
+
+const Page404 = lazy(() => import("./404/404.page"));
+const PageAbout = lazy(() => import("./about/about.page"));
+const PageChangelog = lazy(() => import("./changelog/changelog.page"));
 
 const WITH_DATE_ROUTES = [
 	ROUTE.ROOT,

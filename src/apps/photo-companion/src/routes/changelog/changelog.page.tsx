@@ -17,3 +17,5 @@ export function PageChangelog() {
 		</Markdown>
 	);
 }
+
+export default PageChangelog;
