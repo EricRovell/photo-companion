@@ -1,18 +1,18 @@
+import { useSearchParams } from "@solidjs/router";
 import { InputNumber } from "ui";
 
-import type { SetStoreFunction, Store } from "solid-js/store";
+import { useTranslation } from "@lib/context";
 
-import { type SettingsStore, useTranslation } from "@lib/context";
-
+import { FORM_INPUT_NAME } from "../../settings.const";
+import { useSettingsPage } from "../../settings.context";
 import { GeolocationButton } from "./geolocation-button";
 
-interface Props {
-	setStore: SetStoreFunction<SettingsStore>;
-	store: Store<SettingsStore>;
-}
-
-export function InputGeolocation(props: Props) {
+export function InputGeolocation() {
 	const { t } = useTranslation();
+	const { setSettingsStore, settingsStore } = useSettingsPage();
+
+	// TODO make a hook or move into one place
+	const [ , setParams ] = useSearchParams();
 
 	return (
 		<>
@@ -20,9 +20,9 @@ export function InputGeolocation(props: Props) {
 				inputmode="numeric"
 				max={90}
 				min={-90}
-				name="latitude"
+				name={FORM_INPUT_NAME.LATITUDE}
 				step={0.000000000001}
-				value={props.store.latitude}
+				value={settingsStore.latitude}
 			>
 				{t().LABEL.LATITUDE}
 			</InputNumber>
@@ -30,15 +30,16 @@ export function InputGeolocation(props: Props) {
 				inputmode="numeric"
 				max={180}
 				min={-180}
-				name="longitude"
+				name={FORM_INPUT_NAME.LONGITUDE}
 				step={0.000000000001}
-				value={props.store.longitude}
+				value={settingsStore.longitude}
 			>
 				{t().LABEL.LONGITUDE}
 			</InputNumber>
 			<GeolocationButton
 				handleLocation={(latitude, longitude) => {
-					props.setStore({ latitude, longitude });
+					setSettingsStore({ latitude, longitude });
+					setParams({ latitude, longitude });
 				}}
 			/>
 		</>

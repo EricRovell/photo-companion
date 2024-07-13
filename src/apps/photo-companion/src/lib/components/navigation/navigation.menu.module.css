@@ -12,7 +12,7 @@
 
 .section {
 	padding-block: var(--space-2);
-	border-block-end: 1px solid rgba(173, 216, 230, 0.1);
+	border-block-end: 1px solid rgba(173 216 230 / 10%);
 }
 
 .section,

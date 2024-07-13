@@ -4,16 +4,15 @@ import { Button, IconArrowDown, IconArrowUp, InputCheckbox } from "ui";
 import { type ROUTE_PRIMARY_LABEL, ROUTES_PRIMARY } from "@lib/consts/routes";
 import { useTranslation } from "@lib/context";
 
+import { FORM_INPUT_NAME } from "../../settings.const";
+import { useSettingsPage } from "../../settings.context";
+
 import type { NavigationTabName } from "@lib/types";
 
 import styles from "./tabs-select.module.css";
 
-type ChangeHandler = (name: string, value: NavigationTabName[]) => void;
-
 interface TabsSelectProps {
 	initialTabs: ROUTE_PRIMARY_LABEL[];
-	name: string;
-	onChange: ChangeHandler;
 }
 
 interface TabSelectProps {
@@ -70,6 +69,7 @@ export function TabSelect(props: TabSelectProps) {
 export function InputTabsSelect(allProps: TabsSelectProps) {
 	const props = mergeProps({ initialTabs: [] }, allProps);
 	const initialInactiveTabs = ROUTES_PRIMARY.filter(item => !props.initialTabs.includes(item));
+	const { setSettingsStore } = useSettingsPage();
 
 	const [ getTabs, setTabs ] = createSignal<ROUTE_PRIMARY_LABEL[]>(props.initialTabs);
 	const [ getInactiveTabs, setInactiveTabs ] = createSignal<ROUTE_PRIMARY_LABEL[]>(initialInactiveTabs);
@@ -103,7 +103,7 @@ export function InputTabsSelect(allProps: TabsSelectProps) {
 			return valueCopy;
 		});
 
-		props.onChange(props.name, getTabs());
+		setSettingsStore(FORM_INPUT_NAME.TABS, getTabs());
 	};
 
 	const handleSelect = (event: Event) => {
@@ -119,7 +119,7 @@ export function InputTabsSelect(allProps: TabsSelectProps) {
 			setInactiveTabs(value => [ ...value.filter(i => i !== tab) ]);
 		}
 
-		props.onChange(props.name, getTabs());
+		setSettingsStore(FORM_INPUT_NAME.TABS, getTabs());
 	};
 
 	return (

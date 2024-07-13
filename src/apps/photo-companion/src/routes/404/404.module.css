@@ -6,11 +6,13 @@
 	align-items: center;
 	gap: var(--space-7);
 	width: var(--max-width);
+	margin-block-start: 15vh;
 	
-	@media screen and (max-width: 620px) {
+	@media screen and (width <= 620px) {
 		--moon-scale: 5ch;
 	}
-	@media screen and (max-width: 400px) {
+
+	@media screen and (width <= 400px) {
 		--moon-scale: 2.5ch;
 	}
 }
