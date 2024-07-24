@@ -25,7 +25,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"utils": "workspace:*",
-		"solid-js": "^1.8.16"
+		"solid-js": "catalog:default"
 	},
 	"private": true,
 	"scripts": {},

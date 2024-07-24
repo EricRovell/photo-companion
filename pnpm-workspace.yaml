@@ -2,3 +2,7 @@ packages:
   - "src/apps/*"
   - "src/core/*"
   - "src/packages/*"
+
+catalog:
+  solid-js: ^1.8.17
+  typescript: ^5.4.3
