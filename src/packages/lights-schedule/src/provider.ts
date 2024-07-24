@@ -18,7 +18,8 @@ export function isSupportedCity(city: Nullable<string>): city is LightsCity {
 
 export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvider {
 	if (!isSupportedCity(cityName)) {
-		throw new Error(`Unsupported city provided: ${cityName}`);
+		console.warn(`Unsupported city provided: ${cityName}`);
+		cityName = "SAINT_PETERSBURG";
 	}
 
 	const { city, getter, schedule, year } = data[cityName];
