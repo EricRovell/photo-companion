@@ -1,8 +1,10 @@
+import { useNavigate } from "@solidjs/router";
 import { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
-import { For } from "solid-js";
+import { For, onMount } from "solid-js";
 
-import { BridgesInfo } from "@lib/components";
+import { BridgesInfo, SupportsBridges } from "@lib/components";
 import { useTranslation } from "@lib/context";
+import { useSupportsBridges } from "@lib/hooks";
 
 import { CardBridge } from "./components";
 
@@ -25,19 +27,29 @@ const BridgeList = () => (
 
 export function PageBridges() {
 	const { t } = useTranslation();
+	const supports = useSupportsBridges();
+	const navigate = useNavigate();
+
+	onMount(() => {
+		if (!supports()) {
+			navigate("/404", { replace: true });
+		}
+	});
 
 	return (
-		<div class={styles.page}>
-			<div class={styles.wrapper}>
-				<h2 class={styles.title} id="bridge-schedule">
-					{t().TITLE.BRIDGES_SCHEDULE_SPB}
-				</h2>
-				<BridgeList />
+		<SupportsBridges>
+			<div class={styles.page}>
+				<div class={styles.wrapper}>
+					<h2 class={styles.title} id="bridge-schedule">
+						{t().TITLE.BRIDGES_SCHEDULE_SPB}
+					</h2>
+					<BridgeList />
+				</div>
+				<aside class={styles.info}>
+					<BridgesInfo />
+				</aside>
 			</div>
-			<aside class={styles.info}>
-				<BridgesInfo />
-			</aside>
-		</div>
+		</SupportsBridges>
 	);
 }
 

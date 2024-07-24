@@ -19,7 +19,10 @@ const CityLightsContext = createContext<CityLightsContextType>();
 export function CityLightsProvider(props: ParentProps) {
 	const { getSettings } = useSettings();
 	const { getDatetime } = useDatetime();
-	const getCityLightsProvider = createMemo(() => initLightsProvider(getSettings().lights_city));
+
+	const city = () => getSettings().city;
+	// @ts-expect-error TODO: manage type for fallback
+	const getCityLightsProvider = createMemo(() => initLightsProvider(city()));
 
 	const getYear = () => getCityLightsProvider().year;
 	const getCity = () => getCityLightsProvider().city;

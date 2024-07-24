@@ -1,21 +1,21 @@
 import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 
-import type { LightsCity } from "types";
+import type { City } from "types";
 import type { InputSelectOption } from "ui";
 
 import type { SettingsStore, Translation } from "@lib/context";
 
-export const lightsCityList: LightsCity[] = [
+export const cityOptions: City[] = [
 	"MOSCOW",
-	"SAINT_PETERSBURG"
+	"SAINT_PETERSBURG",
+	"OTHER"
 ];
 
-export const LIGHTS_CITY_OPTIONS = (t: Translation): InputSelectOption[] => {
-	return lightsCityList
-		.map(item => ({
-			label: t.CITIES[item],
-			value: item
-		}));
+export const CITY_OPTIONS = (t: Translation): InputSelectOption[] => {
+	return cityOptions.map(item => ({
+		label: t.CITIES[item],
+		value: item
+	}));
 };
 
 export const LANGUAGE_OPTIONS: InputSelectOption[] = [
@@ -45,13 +45,13 @@ export const BRIDGES_EVENTS_OPTIONS = (t: Translation): InputSelectOption[] => {
 };
 
 export const FORM_INPUT_NAME: Record<Uppercase<keyof SettingsStore>, keyof SettingsStore> = {
+	CITY: "city",
 	EVENTS_BRIDGES_SPB: "events_bridges_spb",
 	EVENTS_LIGHTS: "events_bridges_spb",
 	EVENTS_MOON: "events_bridges_spb",
 	EVENTS_SUN: "events_bridges_spb",
 	LANGUAGE: "language",
 	LATITUDE: "latitude",
-	LIGHTS_CITY: "lights_city",
 	LONGITUDE: "longitude",
 	TABS: "tabs"
 };

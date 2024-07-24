@@ -2,7 +2,10 @@ import { createContext, type ParentProps, useContext } from "solid-js";
 import { createStore, type SetStoreFunction, type Store, unwrap } from "solid-js/store";
 import { isNullable } from "utils/validators";
 
+import type { City } from "types";
+
 import { SETTINGS_DEFAULT, type SettingsStore, useSettings } from "@lib/context";
+import { SETTINGS_CITY_PRESETS } from "@lib/context/settings/settings.const";
 
 import { FORM_INPUT_NAME } from "./settings.const";
 
@@ -30,6 +33,11 @@ export function SettingsPageProvider(props: ParentProps) {
 		setSettings({ ...unwrap(settingsStore) });
 	};
 
+	const handleCityChange = (city: City) => {
+		const preset = SETTINGS_CITY_PRESETS[city];
+		setSettingsStore({ ...preset });
+	};
+
 	/**
 	 * Used for native controls change within the form.
 	 */
@@ -38,8 +46,11 @@ export function SettingsPageProvider(props: ParentProps) {
 		const { name, value } = target;
 
 		switch (name) {
-			case FORM_INPUT_NAME.LANGUAGE:
-			case FORM_INPUT_NAME.LIGHTS_CITY: {
+			case FORM_INPUT_NAME.CITY: {
+				handleCityChange(value as City);
+				break;
+			}
+			case FORM_INPUT_NAME.LANGUAGE: {
 				setSettingsStore({ [name]: value });
 				break;
 			}

@@ -1,9 +1,10 @@
 import { Button, Fieldset, Form, InputRadio } from "ui";
 
 import { useTranslation } from "@lib/context";
+import { SETTINGS_CITY_PRESETS } from "@lib/context/settings/settings.const";
 
 import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
-import { FORM_INPUT_NAME, LANGUAGE_OPTIONS, LIGHTS_CITY_OPTIONS } from "./settings.const";
+import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "./settings.const";
 import { useSettingsPage } from "./settings.context";
 
 import styles from "./settings.module.css";
@@ -24,6 +25,13 @@ export function SettingsForm() {
 						value={settingsStore.language}
 					/>
 				</Fieldset>
+				<Fieldset legend={t().LABEL.CITY}>
+					<InputRadio
+						name={FORM_INPUT_NAME.CITY}
+						options={CITY_OPTIONS(t())}
+						value={settingsStore.city}
+					/>
+				</Fieldset>
 				<Fieldset legend={t().LABEL.GEOLOCATION}>
 					<InputGeolocation />
 				</Fieldset>
@@ -32,14 +40,7 @@ export function SettingsForm() {
 						{t().MESSAGE.TAB_LIMITS}
 					</aside>
 					<InputTabsSelect
-						initialTabs={settingsStore.tabs}
-					/>
-				</Fieldset>
-				<Fieldset legend={t().LABEL.LIGHTS_CITY}>
-					<InputRadio
-						name={FORM_INPUT_NAME.LIGHTS_CITY}
-						options={LIGHTS_CITY_OPTIONS(t())}
-						value={settingsStore.lights_city}
+						tabs={SETTINGS_CITY_PRESETS[settingsStore.city].tabs}
 					/>
 				</Fieldset>
 				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>

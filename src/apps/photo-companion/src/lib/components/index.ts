@@ -10,5 +10,7 @@ export { Markdown } from "./markdown";
 export { Moon } from "./moon/moon";
 export { Navigation } from "./navigation/navigation";
 export { Sun } from "./sun/sun";
+export { SupportsBridges } from "./supports/supports-bridges";
+export { SupportsLights } from "./supports/supports-lights";
 export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";
 export { Timeline, TimelineGroup } from "./timeline/timeline";

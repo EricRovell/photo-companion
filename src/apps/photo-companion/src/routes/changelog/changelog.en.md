@@ -14,6 +14,7 @@
 - Side panel for drawbridges section was redesigned and now shows a list of all drawbridges state for a given moment;
 - New section "Now" where the most important information is gathered in one place;
 - The "navigation mode" settings option was removed. For most users this options was misleading and unclear. Another reason is that the drawbridges section supports the date-time input. The navigation is taken into account automatically behind the scenes, and the in formation is displayed via side-panel;
+- Settings was reworked, now feature set is automatically connected to the chosen city;
 
 ### 2.21.1
 

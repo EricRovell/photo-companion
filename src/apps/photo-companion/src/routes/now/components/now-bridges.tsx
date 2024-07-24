@@ -8,3 +8,5 @@ export function NowBridges() {
 		<BridgesInfo title={t().TITLE.BRIDGES_FULL} />
 	);
 }
+
+export default NowBridges;

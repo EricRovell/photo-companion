@@ -1,5 +1,5 @@
-import { CardEntry, CardInfo, LightsCountdown} from "@lib/components";
-import { CityLightsProvider, useCityLights, useTranslation } from "@lib/context";
+import { CardEntry, CardInfo, LightsCountdown, SupportsLights} from "@lib/components";
+import { useCityLights, useTranslation } from "@lib/context";
 
 export const NowLightsInfo = () => {
 	const { formatters, t } = useTranslation();
@@ -33,7 +33,9 @@ export const NowLightsInfo = () => {
 };
 
 export const NowLights = () => (
-	<CityLightsProvider>
+	<SupportsLights>
 		<NowLightsInfo />
-	</CityLightsProvider>
+	</SupportsLights>
 );
+
+export default NowLights;

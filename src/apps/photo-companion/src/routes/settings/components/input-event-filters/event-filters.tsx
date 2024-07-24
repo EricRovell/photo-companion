@@ -1,3 +1,6 @@
+import { isSupportedCity } from "lights-schedule";
+import { Show } from "solid-js";
+
 import { useTranslation } from "@lib/context";
 
 import { BRIDGES_EVENTS_OPTIONS } from "../../settings.const";
@@ -11,25 +14,29 @@ export const InputEventFilters = () => {
 
 	return (
 		<>
-			<InputCheckboxGroup
-				groupLabel={t().LABEL.BRIDGES_SPB}
-				groupValue="bridges"
-				name="events_bridges_spb"
-				onChange={setSettingsStore}
-				options={BRIDGES_EVENTS_OPTIONS(t())}
-				value={settingsStore.events_bridges_spb}
-			/>
-			<InputCheckboxGroup
-				groupLabel={t().LABEL.LIGHTS_CITY}
-				groupValue="lights"
-				name="events_lights"
-				onChange={setSettingsStore}
-				options={LIGHTS_EVENT_NAMES.map(value => ({
-					label: t().LIGHTS_EVENTS[value],
-					value
-				}))}
-				value={settingsStore.events_lights}
-			/>
+			<Show when={settingsStore.city === "SAINT_PETERSBURG"}>
+				<InputCheckboxGroup
+					groupLabel={t().LABEL.BRIDGES_SPB}
+					groupValue="bridges"
+					name="events_bridges_spb"
+					onChange={setSettingsStore}
+					options={BRIDGES_EVENTS_OPTIONS(t())}
+					value={settingsStore.events_bridges_spb}
+				/>
+			</Show>
+			<Show when={isSupportedCity(settingsStore.city)}>
+				<InputCheckboxGroup
+					groupLabel={t().LABEL.LIGHTS_CITY}
+					groupValue="lights"
+					name="events_lights"
+					onChange={setSettingsStore}
+					options={LIGHTS_EVENT_NAMES.map(value => ({
+						label: t().LIGHTS_EVENTS[value],
+						value
+					}))}
+					value={settingsStore.events_lights}
+				/>
+			</Show>
 			<InputCheckboxGroup
 				groupLabel={t().TITLE.SUN}
 				groupValue="sun"

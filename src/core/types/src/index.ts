@@ -115,9 +115,12 @@ export interface IlluminationState {
 	timestamp: number;
 }
 
-export type LightsCity =
+export type City =
 	| "MOSCOW"
+	| "OTHER"
 	| "SAINT_PETERSBURG";
+
+export type LightsCity = Exclude<City, "OTHER">;
 
 export interface ScheduleDataItem {
 	event: LightsEventName;

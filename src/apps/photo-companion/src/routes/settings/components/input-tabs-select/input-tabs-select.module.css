@@ -1,11 +1,3 @@
-.tabs-select {
-	& header {
-		color: var(--color-text-secondary);
-		margin-block-end: var(--space-4);
-		text-wrap: balance;
-	}
-}
-
 .entry {
 	--icon-size: var(--space-4);
 
@@ -18,17 +10,17 @@
 		border-bottom: var(--border);
 	}
 
-	& button {
-		aspect-ratio: 1;
-		width: min-content;
-		padding: var(--space-2);
-
-		&:disabled {
-			opacity: 0;
-		}
-	}
-
 	& label {
 		justify-self: start;
+	}
+}
+
+.button {
+	aspect-ratio: 1;
+	width: min-content;
+	padding: var(--space-2);
+
+	&:disabled {
+		opacity: 0.25;
 	}
 }
