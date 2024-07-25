@@ -10,7 +10,7 @@ I could not just get the data and display it within the app. The curiosity pushe
 
 ## Sections
 
-The application view is broken into sections that user can activate and put in specific order.
+The application view is broken into sections that user can activate and put in specific order. Some sections are available only for specific location.
 
 ### City Lights
 
@@ -20,6 +20,8 @@ The following cities schedule are supported:
 
 - Saint-Petersburg, Russia — [source][lights-schedule-spb];
 - Moscow, Russia — [source][lights-schedule-moscow];
+
+**Important**: For another location the section and the data won't be available.
 
 The section contains the following data:
 
@@ -58,13 +60,13 @@ For convenience, the Moon times along with the Sun times are presented within a 
 
 ### St. Petersburg Drawbridges
 
-This section is not enabled by default, as it makes little sense if the user is not located in St. Petersburg.
+**Important**: This section is available only for Saint-Petersburg city location.
 
 The status of drawbridges in St. Petersburg is displayed here according to the *permanent* schedule.
 
 **Important**: sometimes short-term adjustments are made to the schedule in the event of holidays or repair work. Such changes in the application are not taken into account.
 
-In addition, even when active, the tab may not appear in the navigation menu — it will only be active during the **navigation period** when bridges are actually operating. This behavior can also be customized, more on that a little later.
+Using this section the **navigation period** should be taken into account. It is the period of time when bridges are actually operating.
 
 The section displays:
 
@@ -80,6 +82,8 @@ This section aggregates various events into a single timeline. Events from the s
 
 Certain events can be disabled completely.
 
+**Important**: "City Lights" or "St. Petersburg Drawbridges" events may not be available depending on selected city location.
+
 ### Settings
 
 In this section, the user has access to parameters to customize the application for himself.
@@ -88,29 +92,27 @@ User settings are stored locally on the device. When you clear the cache, they w
 
 **Important:** In order for the settings to take effect, you must use the "Save" button.
 
+#### Language
+
+The language of the user interface can be specified. By default the system language is used.
+
+#### City
+
+The city of your location can be chosen. This option is crucial as it activates some functionality available only for specific location. By default St. Petersburg is chosen.
+
 ### Geoposition
+
+Choosing city the geoposition data is being set up automatically. The city center is taken as default.
 
 Geoposition data is necessary for the calculations accuracy of ephemeris data (Moon and Sun). Geoposition data can be entered manually or requested from the device. The data is stored directly on the device and is not used except for ephemeris calculations.
 
 ### Application Sections
 
-Application sections can be deactivated (at least 2 sections must be active) and their order can be changed.
-
-**Important**: the drawbridge section may still not appear if navigation has not yet started.
-
-### St. Petersburg drawbridges
-
-Here you can change the activation behavior of the section dedicated to drawbridges. By default, the tab appears during navigation. If necessary, the tab can be forcibly activated.
-
-### City lights
-
-Here you can select a city for which the city lighting schedule is available.
+Application sections can be deactivated (at least 1 section must be active) and their order can be changed.
 
 ### Event filters
 
 Here you can filter events either individually or as a whole group.
-
-**Important**: Drawbridge events are *only* available while navigation is open. They cannot be forcibly activated.
 
 ## Notes
 
