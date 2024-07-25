@@ -1,6 +1,7 @@
 import { DEV, Show } from "solid-js";
 
-import { SettingsProvider, TranslationProvider } from "@lib/context";
+import { SettingsProvider } from "@lib/context/settings";
+import { TranslationProvider } from "@lib/context/translation";
 
 import { Routes } from "./routes";
 import { UpdateService } from "./sw-update-service";
@@ -14,11 +15,11 @@ export function App() {
 
 	return (
 		<>
-			<Show when={!DEV}>
-				<UpdateService />
-			</Show>
 			<SettingsProvider>
 				<TranslationProvider>
+					<Show when={!DEV}>
+						<UpdateService />
+					</Show>
 					<Routes />
 				</TranslationProvider>
 			</SettingsProvider>
