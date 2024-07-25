@@ -3,7 +3,7 @@ import { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import { For, onMount } from "solid-js";
 
 import { BridgesInfo, SupportsBridges } from "@lib/components";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { useSupportsBridges } from "@lib/hooks";
 
 import { CardBridge } from "./components";

@@ -1,7 +1,7 @@
 import { Button, Fieldset, Form, InputRadio } from "ui";
 
-import { useTranslation } from "@lib/context";
-import { SETTINGS_CITY_PRESETS } from "@lib/context/settings/settings.const";
+import { SETTINGS_CITY_PRESETS } from "@lib/context/settings";
+import { useTranslation } from "@lib/context/translation";
 
 import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
 import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "./settings.const";

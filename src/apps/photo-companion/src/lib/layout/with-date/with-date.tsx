@@ -2,7 +2,7 @@ import { InputDatetime } from "ui";
 
 import type { ParentProps } from "solid-js";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { getDateTimeString, parseDateTimeString } from "@lib/helpers";
 import { useDatetime } from "@lib/hooks";
 

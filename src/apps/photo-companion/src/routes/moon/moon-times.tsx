@@ -1,7 +1,7 @@
 import { classnames } from "utils";
 
 import { GaugeTime, Moon } from "@lib/components";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 import type { MoonData } from "./use-moon-data";
 

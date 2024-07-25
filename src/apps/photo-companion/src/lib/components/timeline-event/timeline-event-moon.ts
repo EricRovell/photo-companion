@@ -4,7 +4,7 @@ import type { MoonEvent } from "types";
 
 import { Moon } from "../moon/moon";
 
-import type { Translation } from "@lib/context";
+import type { Translation } from "@lib/context/translation";
 import type { EventComponent } from "@lib/types";
 
 export function moonEventComponent(event: MoonEvent, t: Translation): EventComponent<{ phase: number, rotation: number }> {

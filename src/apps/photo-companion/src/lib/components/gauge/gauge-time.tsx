@@ -1,6 +1,6 @@
 import type { ParentProps } from "solid-js";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { getAngleFromTime } from "@lib/helpers";
 
 import { Gauge } from "./gauge";

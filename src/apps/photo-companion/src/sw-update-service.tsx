@@ -2,7 +2,7 @@ import { onMount } from "solid-js";
 import { Button, Modal } from "ui";
 import { createToggle } from "ui/primitives";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 export function UpdateService() {
 	const { t } = useTranslation();

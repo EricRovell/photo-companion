@@ -1,7 +1,8 @@
 import { getBridgeEvents } from "bridge-schedule";
 import { isNullable } from "utils/validators";
 
-import { useCityLights, useSettings } from "@lib/context";
+import { useCityLights } from "@lib/context/city-lights";
+import { useSettings } from "@lib/context/settings";
 import { useSupportsBridges, useSupportsLights } from "@lib/hooks";
 import { useDatetime, useTimelineProvider } from "@lib/hooks";
 

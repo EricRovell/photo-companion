@@ -6,7 +6,7 @@ import { isNullable } from "utils/validators";
 import { LinkQuery, Navigation } from "@lib/components";
 import { TITLE, VERSION } from "@lib/consts";
 import { ROUTE_CHANGELOG, URL_GITHUB_REPO } from "@lib/consts";
-import { useSettings } from "@lib/context";
+import { useSettings } from "@lib/context/settings";
 import { useLocation } from "@lib/hooks";
 
 import styles from "./root.module.css";

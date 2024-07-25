@@ -1,4 +1,4 @@
-import { useSettings } from "@lib/context";
+import { useSettings } from "@lib/context/settings";
 
 export function useLocation() {
 	const { getSettings } = useSettings();

@@ -4,7 +4,7 @@ import { Dynamic } from "solid-js/web";
 import type { Component } from "solid-js";
 import type { IconProps } from "ui";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 import { LinkQuery } from "../link-query";
 

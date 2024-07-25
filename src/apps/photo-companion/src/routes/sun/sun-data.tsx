@@ -1,5 +1,5 @@
 import { CardEntry, CardInfo } from "@lib/components";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 import type { SunData as SunDataType } from "./use-sun-data";
 

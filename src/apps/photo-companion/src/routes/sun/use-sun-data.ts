@@ -3,7 +3,7 @@ import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { useDatetime, useLocation } from "@lib/hooks";
 
 export interface SunData {

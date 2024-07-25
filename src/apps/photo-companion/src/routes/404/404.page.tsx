@@ -2,7 +2,7 @@ import { Link } from "ui";
 
 import { Moon } from "@lib/components";
 import { ROUTE_ROOT } from "@lib/consts";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 import styles from "./404.module.css";
 

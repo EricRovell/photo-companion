@@ -6,7 +6,7 @@ import { round } from "utils/math";
 import type { MoonIllumination } from "moon-sun-calc/src/moon/types";
 import type { MoonPhaseName } from "types";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { useDatetime, useLocation } from "@lib/hooks";
 
 export interface MoonData {

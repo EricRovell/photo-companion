@@ -1,6 +1,6 @@
 import { createMemo } from "solid-js";
 
-import { useSettings } from "@lib/context";
+import { useSettings } from "@lib/context/settings";
 
 import { NAVIGATION_TAB_DATA } from "../components/navigation/navigation.const";
 

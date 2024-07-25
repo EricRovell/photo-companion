@@ -48,7 +48,7 @@ export function useTranslation() {
 	const value = useContext(TranslationContext);
 
 	if (isNullable(value)) {
-		throw new Error("useSettings must be used with a TranslationContext.Provider");
+		throw new Error("useTranslation must be used within a TranslationContext.Provider");
 	}
 
 	return value;

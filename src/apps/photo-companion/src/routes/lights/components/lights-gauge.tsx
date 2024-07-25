@@ -1,5 +1,6 @@
 import { Bulb, GaugeTime } from "@lib/components";
-import { useCityLights, useTranslation } from "@lib/context";
+import { useCityLights } from "@lib/context/city-lights";
+import { useTranslation } from "@lib/context/translation";
 import { useDatetime } from "@lib/hooks";
 
 export function LightGauge() {

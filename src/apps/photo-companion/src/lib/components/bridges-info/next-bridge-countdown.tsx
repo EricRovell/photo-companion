@@ -2,7 +2,7 @@ import { getNextBridgeEvent } from "bridge-schedule";
 import { createMemo} from "solid-js";
 
 import { CardEntry } from "@lib/components";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { createCountdown, useDatetime } from "@lib/hooks";
 
 /**

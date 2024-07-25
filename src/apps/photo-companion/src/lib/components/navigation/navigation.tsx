@@ -4,7 +4,7 @@ import { Button, Drawer, IconChevronRight, IconMenu } from "ui";
 import { createToggle } from "ui/primitives";
 import { classnames } from "utils";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { useNavigationTabs } from "@lib/hooks";
 
 import { NAVIGATION_TAB_DATA } from "./navigation.const";

@@ -1,6 +1,6 @@
 import { isSupportedCity } from "lights-schedule";
 
-import { useSettings } from "@lib/context";
+import { useSettings } from "@lib/context/settings";
 
 export function useSupportsLights() {
 	const { getSettings } = useSettings();

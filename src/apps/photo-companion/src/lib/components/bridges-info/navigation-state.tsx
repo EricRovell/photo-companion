@@ -2,7 +2,7 @@ import { getNavigationState } from "bridge-schedule";
 import { createMemo } from "solid-js";
 
 import { CardEntry } from "@lib/components";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { useDatetime } from "@lib/hooks";
 
 /**

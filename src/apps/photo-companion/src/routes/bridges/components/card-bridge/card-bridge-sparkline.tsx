@@ -1,7 +1,7 @@
 import { For, mergeProps } from "solid-js";
 import { round } from "utils/math";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { getDate } from "@lib/helpers";
 import { createWavyPath } from "@lib/helpers/svg";
 

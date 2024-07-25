@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 
 import { Markdown } from "@lib/components/markdown";
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 import PageAboutEn from "./about.en.md";
 import PageAboutRu from "./about.ru.md";

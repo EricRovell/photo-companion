@@ -4,7 +4,7 @@ import { isNullable } from "utils/validators";
 
 import type { MoonEvent } from "types";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 
 export const getMoonEvents = (date: Date = new Date(), latitude: number, longitude: number): MoonEvent[] => {
 	const events: MoonEvent[] = [];

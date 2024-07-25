@@ -1,5 +1,6 @@
 import { CardEntry, CardInfo, LightsCountdown } from "@lib/components";
-import { useCityLights, useTranslation } from "@lib/context";
+import { useCityLights } from "@lib/context/city-lights";
+import { useTranslation } from "@lib/context/translation";
 
 export const LightsInfo = () => {
 	const { getCity, getScheduleByDate, getStateByDate } = useCityLights();

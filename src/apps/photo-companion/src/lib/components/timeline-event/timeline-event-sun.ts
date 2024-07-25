@@ -4,7 +4,7 @@ import type { SunEvent, SunEventName } from "types";
 
 import { Sun } from "../sun/sun";
 
-import type { Translation } from "@lib/context";
+import type { Translation } from "@lib/context/translation";
 import type { EventComponent } from "@lib/types";
 
 export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {

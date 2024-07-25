@@ -5,7 +5,8 @@ import { incrementDateByDay } from "utils/date";
 import type { EventGroupName } from "types";
 
 import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "@lib/components";
-import { CityLightsProvider, useTranslation } from "@lib/context";
+import { CityLightsProvider } from "@lib/context/city-lights";
+import { useTranslation } from "@lib/context/translation";
 import { useDatetime, useLocation } from "@lib/hooks";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";

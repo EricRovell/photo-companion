@@ -4,7 +4,7 @@ import { IconWarning } from "ui";
 
 import type { BridgeName } from "types";
 
-import { useTranslation } from "@lib/context";
+import { useTranslation } from "@lib/context/translation";
 import { createCountdown, useDatetime } from "@lib/hooks";
 
 import { BridgeSparkline } from "./card-bridge-sparkline";
