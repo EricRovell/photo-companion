@@ -1,7 +1,6 @@
 .bulb {
 	width: var(--bulb-size);
 	height: var(--bulb-size);
-
 	transition:
 		filter 0.250s ease-in-out,
 		fill 0.250s ease-in-out;
