@@ -40,8 +40,8 @@ export class Storage<T> {
 		this.version = existingVersion;
 	}
 
-	get key() {
-		return `${this.name}:${this.version}`;
+	static reset(): void {
+		clear();
 	}
 
 	read(): Nullish<T> {
@@ -61,10 +61,6 @@ export class Storage<T> {
 		return value;
 	}
 
-	static reset(): void {
-		clear();
-	}
-
 	write(value: T): void {
 		const key = this.key;
 		const valueString = JSON.stringify(value);
@@ -74,5 +70,9 @@ export class Storage<T> {
 		} else {
 			set(key, valueString);
 		}
+	}
+
+	get key() {
+		return `${this.name}:${this.version}`;
 	}
 }

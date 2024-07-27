@@ -51,7 +51,6 @@ export default tseslint.config(
 		plugins: {
 			"solid": solid.configs["flat/typescript"].plugins.solid
 		},
-		// @ts-expect-error TODO fix after update
 		rules: solid.configs["flat/typescript"].rules,
 		languageOptions: {
 			parser: tseslint.parser
@@ -61,8 +60,6 @@ export default tseslint.config(
 		files: [ "**/*.{ts,tsx}" ],
 		plugins: {
 			"@typescript-eslint": tseslint.plugin,
-			// TODO next major version will include typing
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			perfectionist: perfectionist
 		},
 		languageOptions: {
@@ -86,7 +83,7 @@ export default tseslint.config(
 			"perfectionist/sort-exports": "error",
 			"perfectionist/sort-imports": [
 				"error", {
-					"ignore-case": true,
+					ignoreCase: true,
 					type: "alphabetical",
 					order: "asc",
 					groups: [
@@ -100,8 +97,8 @@ export default tseslint.config(
 						[ "style" ],
 						"unknown"
 					],
-					"newlines-between": "always",
-					"internal-pattern": [
+					newlinesBetween: "always",
+					internalPattern: [
 						"@lib/**"
 					]
 				}

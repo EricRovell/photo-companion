@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { getBridgeState, isAllBridgesLiftedDown, isNavigationTime } from "../src";
 import { SUPPORTED_BRIDGES_NAME_SET } from "../src/const";
-import { FIRST_OPENING_MINUTES, LAST_CLOSING_MINUTES, schedule as data } from "../src/schedule";
+import { schedule as data, FIRST_OPENING_MINUTES, LAST_CLOSING_MINUTES } from "../src/schedule";
 
 import type { BridgeName } from "../src/types";
 
