@@ -1,4 +1,7 @@
 .bulb {
+	width: var(--bulb-size);
+	height: var(--bulb-size);
+
 	transition:
 		filter 0.250s ease-in-out,
 		fill 0.250s ease-in-out;
@@ -7,7 +10,8 @@
 		transition: fill 0.250s ease-in-out;
 	}
 
-	&.glow {
+	&[data-glow],
+	&[data-hover-glow]:hover {
 		filter: drop-shadow(0 0 var(--bulb-glow-size, 15px) #FFA000);
 
 		.wire {

@@ -1,19 +1,28 @@
-import { type JSX, Show, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { type JSX, mergeProps, Show, splitProps } from "solid-js";
+import { classnames, setAttribute } from "utils";
 
 import styles from "./bulb.module.css";
 
 interface Props extends JSX.SvgSVGAttributes<SVGSVGElement> {
-	glow: boolean;
+	glow?: boolean;
+	hoverGlow?: boolean;
 	title?: string;
 }
 
+const DEFAULT_PROPS: Props = {
+	glow: false,
+	hoverGlow: false
+};
+
 export const Bulb = (allProps: Props) => {
-	const [ props, rest ] = splitProps(allProps, [ "glow", "title" ]);
+	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
+	const [ props, rest ] = splitProps(mergedProps, [ "class", "hoverGlow", "glow", "title" ]);
 
 	return (
 		<svg
-			class={classnames(styles.bulb, props.glow && styles.glow)}
+			class={classnames(styles.bulb, props.class)}
+			data-glow={setAttribute(props.glow)}
+			data-hover-glow={setAttribute(props.hoverGlow)}
 			viewBox="0 0 128 128"
 			{...rest}
 		>
