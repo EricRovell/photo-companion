@@ -3,7 +3,7 @@ import { createEffect, type ParentProps } from "solid-js";
 import { IconGithub, Link } from "ui";
 import { isNullable } from "utils/validators";
 
-import { LinkQuery, Navigation } from "@lib/components";
+import { Bulb, LinkQuery, Navigation } from "@lib/components";
 import { TITLE, VERSION } from "@lib/consts";
 import { ROUTE_CHANGELOG, URL_GITHUB_REPO } from "@lib/consts";
 import { useSettings } from "@lib/context/settings";
@@ -18,8 +18,11 @@ function Header() {
 	return (
 		<header class={styles.header}>
 			<div class={styles.content}>
-				<LinkQuery href={`/${mainTab.toLowerCase()}`}>
-					<h1>{TITLE}</h1>
+				<LinkQuery class={styles["title-link"]} href={`/${mainTab.toLowerCase()}`}>
+					<h1 class={styles.title}>
+						<Bulb class={styles["title-icon"]} hoverGlow />
+						{TITLE}
+					</h1>
 				</LinkQuery>
 			</div>
 		</header>
