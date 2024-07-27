@@ -1,0 +1,29 @@
+.dialog:not([open]) {
+	transition:
+		/* a bit of delay for better visuals */
+		opacity 0.35s ease-in-out 0.250s,
+		visibility 0.35s ease-in-out 0.125s;
+
+	& .drawer {
+		transform: translateX(100%);
+	}
+}
+
+.dialog[open] .drawer {
+	transform: translateX(0%);
+}
+
+.drawer {
+	position: relative;
+	max-width: 80vw;
+	background-color: var(--color-surface-1);
+	width: min(80vw, 300px);
+	height: 100vh;
+	transition: transform 0.125s ease-in-out;
+	overflow-y: auto;
+}
+
+.backdrop {
+	justify-content: flex-end;
+}
+

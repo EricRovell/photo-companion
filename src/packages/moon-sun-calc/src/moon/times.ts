@@ -1,8 +1,9 @@
-import { isLatitude, isLongitude } from "utils/validators";
+import { isLatitude, isLongitude, isNonNullable, isNullable } from "utils/validators";
 
-import { getMoonPosition } from "./position";
 import { RAD } from "../consts";
+import { getMoonPosition } from "./position";
 import { hoursLater } from "./utils";
+
 import type { MoonTimes } from "./types";
 
 /**
@@ -32,8 +33,8 @@ export function getMoonTimes(dateValue: DateLike, latitude: number, longitude: n
 
 	const hc = 0.133 * RAD;
 	let h0 = getMoonPosition(dateValue, latitude, longitude).altitude - hc;
-	let rise;
-	let set;
+	let rise: Nullable<number> = null;
+	let set: Nullable<number> = null;
 	let ye = 0;
 	let d;
 	let roots;
@@ -82,24 +83,27 @@ export function getMoonTimes(dateValue: DateLike, latitude: number, longitude: n
 			set = i + (ye < 0 ? x1 : x2);
 		}
 
-		if (rise && set) {
+		if (isNonNullable(rise) && isNonNullable(set)) {
 			break;
 		}
 
 		h0 = h2;
 	}
 
-	const result: Partial<MoonTimes> = {};
+	const result: Partial<MoonTimes> = {
+		rise: null,
+		set: null
+	};
 
-	result.rise = rise
-		? new Date(hoursLater(dateValue, rise))
-		: null;
+	if (!isNullable(rise)) {
+		result.rise = new Date(hoursLater(dateValue, rise));
+	}
 
-	result.set = set
-		? new Date(hoursLater(dateValue, set))
-		: null;
+	if (!isNullable(set)) {
+		result.set = new Date(hoursLater(dateValue, set));
+	}
 
-	if (!rise && !set) {
+	if (isNullable(rise) && isNullable(set)) {
 		if (ye > 0) {
 			result.alwaysUp = true;
 			result.alwaysDown = false;
@@ -107,7 +111,7 @@ export function getMoonTimes(dateValue: DateLike, latitude: number, longitude: n
 			result.alwaysUp = false;
 			result.alwaysDown = true;
 		}
-	} else if (rise && set) {
+	} else if (!isNullable(rise) && !isNullable(set)) {
 		result.alwaysUp = false;
 		result.alwaysDown = false;
 		result.highest = new Date(hoursLater(dateValue, Math.min(rise, set) + (Math.abs(set - rise) / 2)));

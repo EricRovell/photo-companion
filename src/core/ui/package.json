@@ -1,0 +1,33 @@
+{
+	"author": "Eric Rovell",
+	"description": "Core UI components",
+	"exports": {
+		".": {
+			"import": "./src/components/index.ts",
+			"default": "./src/components/index.ts"
+		},
+		"./primitives": {
+			"import": "./src/primitives/index.ts"
+		},
+		"./styles/*.css": {
+			"import": "./src/styles/*.css"
+		},
+		"./types": {
+			"import": "./src/types.ts"
+		}
+	},
+	"keywords": [
+		"components",
+		"core",
+		"ui"
+	],
+	"name": "ui",
+	"license": "MIT",
+	"dependencies": {
+		"utils": "workspace:*",
+		"solid-js": "catalog:default"
+	},
+	"private": true,
+	"scripts": {},
+	"type": "module"
+}

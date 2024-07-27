@@ -1,0 +1,142 @@
+.header {
+	--bulb-size: 1em;
+
+	display: grid;
+	gap: var(--space-2);
+	background-color: var(--color-surface-0);
+	width: 100%;
+	padding-top: var(--space-3);
+	view-transition-name: header;
+}
+
+.content {
+	justify-self: center;
+	width: var(--max-width);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	& nav {
+		display: flex;
+		flex-flow: nowrap;
+		gap: var(--space-2);
+	}
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	gap: var(--space-2);
+	font-size: var(--font-size-5);
+	font-variation-settings: "wght" 350;
+	padding: var(--space-2);
+	margin: 0;
+	border-radius: var(--radius);
+	transition: background-color 0.125s ease-in-out;
+
+	&:hover {
+		background-color: var(--color-surface-2);
+	}
+
+	&:active {
+		background-color: var(--color-surface-1);
+	}
+
+	@media screen and (width <= 650px) {
+		font-size: var(--font-size-7);
+	}
+}
+
+.title-link {
+	&:hover {
+		text-decoration: none;
+	}
+
+	@media screen and (width <= 650px) {
+		margin-inline: auto;
+	}
+}
+
+.title-icon {
+	margin-block-end: 0.1em;
+}
+
+.icon {
+	--icon-size: 1rem;
+
+	padding: var(--space-2);
+	background-color: var(--color-surface-2);
+
+	&[aria-current] {
+		background-color: var(--color-surface-1);
+	}
+
+	&:hover {
+		background-color: var(--color-surface-3);
+	}
+
+	&:active {
+		background-color: var(--color-surface-4);
+	}
+}
+
+.footer {
+	align-self: end;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	border-block-start: 3px solid var(--color-surface-3);
+	padding-block: var(--space-4);
+	background-color: var(--color-surface-0);
+	font-size: var(--font-size-3);
+
+	p {
+		font-size: inherit;
+	}
+
+	@media screen and (width <= 420px) {
+		font-size: var(--font-size-2);
+	}
+}
+
+.header,
+.footer {
+	padding-inline: var(--space-2);
+}
+
+.header > div,
+.footer > div {
+	justify-content: space-between;
+}
+
+@media screen and (width <= 650px) {
+	.header {
+		margin-bottom: var(--space-7);
+		padding-bottom: var(--space-3);
+		border-block-end: 3px solid var(--color-surface-3);
+	}
+
+	.icon {
+		--icon-size: 1rem;
+	}
+
+	.header,
+	.footer {
+		padding-inline: var(--space-4);
+		background-color: var(--color-surface-1);
+	}
+
+	.footer {
+		padding-block-end: var(--header-menu-height);
+		border-block-end: 3px solid var(--color-surface-3);
+	}
+}
+
+@media screen and (width <= 340px) {
+	.footer > div {
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+}

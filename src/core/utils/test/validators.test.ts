@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
+
 import {
 	isInteger,
 	isLatitude,
 	isLongitude,
 	isNonEmptyString,
 	isNonNegativeInteger,
-	isNullable,
 	isNonNullable,
+	isNullable,
 	isValidDate
 } from "../src/validators";
 

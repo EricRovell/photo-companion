@@ -73,8 +73,8 @@ export const percentFormatter = getNumberFormatter({
  * hence wrong results.
  */
 export const timeDurationFormatter = getDateTimeFormatter({
-	hourCycle: "h23",
 	hour: "2-digit",
+	hourCycle: "h23",
 	minute: "2-digit",
 	second: "2-digit",
 	timeZone: "UTC"
@@ -84,8 +84,8 @@ export const timeDurationFormatter = getDateTimeFormatter({
  * Formats a date into HH:MM:SS time string format.
  */
 export const timeFormatter = getDateTimeFormatter({
-	hourCycle: "h23",
 	hour: "2-digit",
+	hourCycle: "h23",
 	minute: "2-digit",
 	second: "2-digit"
 });
@@ -94,8 +94,8 @@ export const timeFormatter = getDateTimeFormatter({
  * Formats a time into HH:MM format.
  */
 export const timeShortFormatter = getDateTimeFormatter({
-	hourCycle: "h23",
 	hour: "2-digit",
+	hourCycle: "h23",
 	minute: "2-digit"
 });
 
@@ -109,8 +109,8 @@ export const timeShortFormatter = getDateTimeFormatter({
  * 
  * template("Hello, {name}!", {}) -> "Hello, name!"
  */
-export function template(input: string, dict: Record<string, string | number>, regex = /{(.*?)}/g): string {
-	const replacer = (match: string, capture: string) => {
+export function template(input: string, dict: Record<string, number | string>, regex = /{(.*?)}/g): string {
+	const replacer = (_match: string, capture: string) => {
 		const trimmedCapture = capture.trim();
 		const replaceValue = dict[trimmedCapture];
 		

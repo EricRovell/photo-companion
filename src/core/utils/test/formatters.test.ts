@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { template } from "../src/formatters";
 
 describe("Project's core utilities", () => {
@@ -8,10 +9,10 @@ describe("Project's core utilities", () => {
 				name: "Peter"
 			})).toBe("Hello, Peter!");
 			expect(template("My name is {name}. I am {age} years old", {
-				name: "Peter",age: 5
+				age: 5,name: "Peter"
 			})).toBe("My name is Peter. I am 5 years old");
 			expect(template("My name is {name}. I am {age} years old and I am {name} too!", {
-				name: "Peter",age: 5
+				age: 5,name: "Peter"
 			})).toBe("My name is Peter. I am 5 years old and I am Peter too!");
 		});
 		it("Leaves the capture in place if no value is provided to replace", () => {

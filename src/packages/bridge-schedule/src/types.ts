@@ -1,17 +1,18 @@
 export type BridgeName =
 	| "ALEXANDER_NEVSKY"
 	| "ANNUNCIATION"
-	| "EXCHANGE"
 	| "BOLSHEOKHTINSKY"
-	| "VOLODARSKY"
-	| "PALACE"
+	| "EXCHANGE"
+	| "GRENADERSKY"
+	| "KANTEMIROVSKY"
 	| "LITEYNY"
+	| "PALACE"
+	| "SAMPSONIEVSKY"
 	| "TRINITY"
 	| "TUCHKOV"
-	| "SAMPSONIEVSKY"
-	| "GRENADERSKY"
-	| "KANTEMIROVSKY";
+	| "VOLODARSKY";
 
+// eslint-disable-next-line @typescript-eslint/array-type
 export type BridgeScheduleEntry = Array<[
 	hoursOpen: number,
 	minutesOpen: number,
@@ -20,8 +21,8 @@ export type BridgeScheduleEntry = Array<[
 ]>;
 
 export interface NavigationSchedule {
-	// the date the schedule was updated
-	year: number;
+	bridges: Record<BridgeName, BridgeScheduleEntry>;
+	exception: BridgeName[];
 	// the navigation period dates
 	navigation: [
 		monthStart: number,
@@ -29,8 +30,8 @@ export interface NavigationSchedule {
 		monthEnd: number,
 		dateEnd: number
 	],
-	exception: Array<BridgeName>;
-	bridges: Record<BridgeName, BridgeScheduleEntry>;
+	// the date the schedule was updated
+	year: number;
 }
 
 export interface BridgeState {

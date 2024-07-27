@@ -1,6 +1,9 @@
-// @vitest-environment happy-dom
+/**
+ * @vitest-environment happy-dom
+ */
 
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+
 import { Storage } from "../src";
 
 const STORAGE_NAME = "TEST_STORAGE";

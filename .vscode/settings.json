@@ -1,7 +1,15 @@
 {
+	"files.exclude": {
+		"**/.git": true,
+	},
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/deprecated": true
+	},
 	"files.associations": {
 		"*.mdx": "markdown"
 	},
+	"eslint.experimental.useFlatConfig": true,
 	"eslint.workingDirectories": [
 		"./src/apps/*",
 		"./src/core/*",

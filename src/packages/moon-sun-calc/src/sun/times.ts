@@ -1,11 +1,12 @@
-import { isLatitude, isLongitude } from "utils/validators";
 import { incrementDateByDay, isSameDay } from "utils/date";
+import { isLatitude, isLongitude } from "utils/validators";
 
 import { RAD } from "../consts";
+import { declination, eclipticLongitude, toDays } from "../utils";
 import { SUN_TIMES } from "./consts";
-import { declination, toDays, eclipticLongitude } from "../utils";
-import { approxTransit, getSetJ, fromJulianDay, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
-import type { SunTime, SunEventName } from "./types";
+import { approxTransit, fromJulianDay, getSetJ, julianCycle, observerAngle, solarMeanAnomaly, solarTransitJ } from "./utils";
+
+import type { SunEventName, SunTime } from "./types";
 
 interface Options {
 	height?: number;
@@ -87,19 +88,19 @@ export function getSunTimes(date: DateLike, latitude: number, longitude: number,
 	const result: Record<SunEventName, SunTime> = {};
 
 	result.SOLAR_NOON = {
-		timestamp: noonVal,
-		name: "SOLAR_NOON",
+		index: SUN_TIMES.length,
 		julian: Jnoon,
-		valid: !isNaN(Jnoon),
-		index: SUN_TIMES.length
+		name: "SOLAR_NOON",
+		timestamp: noonVal,
+		valid: !isNaN(Jnoon)
 	};
 
 	result.NADIR = {
-		timestamp: nadirVal,
-		name: "NADIR",
+		index: (SUN_TIMES.length * 2) + 1,
 		julian: Jnoon + 0.5,
-		valid: !isNaN(Jnoon),
-		index: (SUN_TIMES.length * 2) + 1
+		name: "NADIR",
+		timestamp: nadirVal,
+		valid: !isNaN(Jnoon)
 	};
 
 	for (let i = 0, len = SUN_TIMES.length; i < len; i += 1) {
@@ -126,21 +127,21 @@ export function getSunTimes(date: DateLike, latitude: number, longitude: number,
 		const v2 = fromJulianDay(Jrise);
 
 		result[time.setName] = {
-			timestamp: v1,
-			name: time.setName,
 			elevation: sa,
+			index: len + i + 1,
 			julian: Jset,
-			valid,
-			index: len + i + 1
+			name: time.setName,
+			timestamp: v1,
+			valid
 		};
 
 		result[time.riseName] = {
-			timestamp: v2,
-			name: time.riseName,
 			elevation: sa, // (180 + (sa * -1)),
+			index: len - i - 1,
 			julian: Jrise,
-			valid,
-			index: len - i - 1
+			name: time.riseName,
+			timestamp: v2,
+			valid
 		};
 	}
 

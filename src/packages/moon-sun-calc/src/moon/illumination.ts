@@ -1,12 +1,12 @@
 import { calcSunCoordinates } from "../sun/coordinates";
-
-import { MOON_CYCLE_LIST } from "./consts";
-import { calcMoonCoordinates } from "./coordinates";
 import { toDays, toDegrees } from "../utils";
+import { MOON_CYCLE_LIST, MOON_NAMES } from "./consts";
+import { calcMoonCoordinates } from "./coordinates";
+
 import type { MoonIllumination, MoonPhase } from "./types";
 
 /**
- * Calculates the illumination paramteters of the Moon.
+ * Calculates the illumination parameters of the Moon.
  * The output angle values are in radians by default.
  *
  * based on http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro formulas and
@@ -16,6 +16,8 @@ export function getMoonIllumination(dateValue: DateLike, degrees = false): MoonI
 	if (dateValue instanceof Date) {
 		dateValue = dateValue.valueOf();
 	}
+
+	const month = new Date(dateValue).getMonth();
 
 	// distance from Earth to Sun in km
 	const sunDistance = 149598000;
@@ -53,9 +55,10 @@ export function getMoonIllumination(dateValue: DateLike, degrees = false): MoonI
 	}
 
 	return {
+		angle: toDegrees(angle, degrees),
 		fraction: (1 + Math.cos(inc)) / 2,
+		fullMoonName: phase.id === "FULL_MOON" ? MOON_NAMES[month] : undefined,
 		phase,
-		phaseValue,
-		angle: toDegrees(angle, degrees)
+		phaseValue
 	};
 }

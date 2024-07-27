@@ -5,6 +5,7 @@
 import fs from "fs/promises";
 import path from "path";
 
+// eslint-disable-next-line no-undef
 const cwd = process.cwd();
 const re = /declare module "(.*?)"/g;
 
@@ -15,6 +16,7 @@ async function readJSON(file) {
 	const resolved = path.resolve(cwd, file);
 	const content = await fs.readFile(resolved, "utf-8");
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return JSON.parse(content);
 }
 
@@ -27,8 +29,10 @@ export default async function main() {
 		throw new Error(`No found declarations at ${dtsFilePath}`);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const json = await readJSON("package.json");
 	const searchValue = declarations.at(-1);
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	const replaceValue = searchValue.replace(/"(.*?)"/, `"${json.name}"`);
 	const edited = content.replace(searchValue, replaceValue);
 

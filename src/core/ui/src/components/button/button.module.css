@@ -1,0 +1,120 @@
+.button {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--space-2) var(--space-4);
+	border-radius: var(--radius);
+	border: none;
+	outline: none;
+	color: inherit;
+	cursor: pointer;
+	background-color: var(--color-surface-3);
+	transition: background-color 0.25s linear;
+
+	&:hover {
+		background-color: var(--color-surface-4);
+	}
+
+	&:active {
+		background-color: var(--color-surface-3);
+	}
+
+	&:focus-visible {
+		outline: 3px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.75;
+	}
+
+	& svg {
+		pointer-events: none;
+	}
+}
+
+.button[data-icon] {
+	aspect-ratio: 1;
+	padding: var(--space-2);
+}
+
+.button[data-appearance="ghost"] {
+	background-color: transparent;
+
+	&:hover {
+		background-color: var(--color-surface-2);
+	}
+
+	&:active {
+		background-color: var(--color-surface-3);
+	}
+}
+
+.button[data-appearance="outline"] {
+	background-color: transparent;
+	border: 2px solid var(--color-border);
+
+	&:hover {
+		background-color: var(--color-surface-2);
+	}
+
+	&:active {
+		background-color: var(--color-surface-3);
+	}
+}
+
+.button[data-variant="success"] {
+	background-color: hsl(160deg 60% 35%);
+
+	&:hover {
+		background-color: hsl(160deg 60% 40%);
+	}
+
+	&:active {
+		background-color: hsl(160deg 60% 45%);
+	}
+}
+
+.button[data-variant="danger"] {
+	background-color: hsl(0deg 90% 35%);
+
+	&:hover {
+		background-color: hsl(0deg 90% 40%);
+	}
+
+	&:active {
+		background-color: hsl(0deg 90% 45%);
+	}
+}
+
+.button[data-loading] {
+	color: transparent;
+	pointer-events: none;
+
+	&::after {
+		--button-loader-size: 1em;
+	
+		content: '';
+		position: absolute;
+		top: calc(50% - var(--button-loader-size) / 2);
+		right: calc(50% - var(--button-loader-size) / 2);
+		width: var(--button-loader-size);
+		height: var(--button-loader-size);
+		border-radius: 50%;
+		box-shadow: 1px 0 0 0 grey inset;
+		animation: .7s button-loader linear infinite;
+		background: transparent;
+	}
+}
+
+@keyframes button-loader {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(359deg);
+	}
+}

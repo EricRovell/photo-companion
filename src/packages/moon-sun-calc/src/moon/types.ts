@@ -1,5 +1,7 @@
-import type { Coordinates } from "../types";
 import type { MoonPhaseName } from "types";
+
+import type { Coordinates } from "../types";
+import type { MOON_NAMES } from "./consts";
 
 export interface MoonCoordinates extends Coordinates {
 	distance: number;
@@ -12,32 +14,33 @@ export interface MoonIllumination {
 	 */
 	angle: number;
 	fraction: number;
+	fullMoonName?: typeof MOON_NAMES[number];
 	phase: MoonPhase;
 	phaseValue: number;
 }
 
 export interface MoonPhase {
-	id: MoonPhaseName;
 	from: number;
+	id: MoonPhaseName;
 	to: number;
 	weight: number;
 }
 
 export interface MoonPosition {
-	azimuth: number;
 	altitude: number;
+	azimuth: number;
 	distance: number;
 	parallacticAngle: number;
 }
 
 export interface MoonTimes {
-	rise: Nullish<Date>;
-	set: Nullish<Date>;
-	alwaysUp: boolean;
 	alwaysDown: boolean;
+	alwaysUp: boolean;
 	/**
 	 * Date of the highest position.
 	 * Available if `set` and `rise` is not `null`.
 	 */
 	highest?: Date;
+	rise: Nullish<Date>;
+	set: Nullish<Date>;
 }

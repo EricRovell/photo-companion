@@ -1,5 +1,6 @@
-import { schedule } from "./schedule";
 import { countDays } from "utils/date";
+
+import { schedule } from "./schedule";
 
 /**
  * Drawbridges are functional within a so called navigation period when the rivers are not frozen.
@@ -8,10 +9,16 @@ import { countDays } from "utils/date";
  *
  * The current date is used as fallback.
  */
-export function isNavigationTime(date: Date = new Date()): boolean {
-	const now = date.getTime();
-	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0);
-	const end = new Date(date.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999);
+export function isNavigationTime(date: DateLike = Date.now()): boolean {
+	if (date instanceof Date) {
+		date = date.getTime();
+	}
+
+	const dateInput = new Date(date);
+
+	const now = dateInput.getTime();
+	const start = new Date(dateInput.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0);
+	const end = new Date(dateInput.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999);
 
 	return now >= start.getTime() && now <= end.getTime();
 }
@@ -22,22 +29,23 @@ export function isNavigationTime(date: Date = new Date()): boolean {
  *
  * The current date is used as fallback.
  */
-export function getNavigationState(date: Date = new Date()): { navigation: boolean, days: number } {
+export function getNavigationState(dateInput: DateLike = new Date()): { days: number, navigation: boolean } {
+	const date = new Date(dateInput);
 	const now = date.getTime();
 	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0).getTime();
 	const end = new Date(date.getFullYear(), schedule.navigation[2] - 1, schedule.navigation[3], 23, 59, 59, 999).getTime();
 
 	if (now < start) {
 		return {
-			navigation: false,
-			days: countDays(now, start)
+			days: countDays(now, start),
+			navigation: false
 		};
 	}
 
 	if (now >= start && now <= end) {
 		return {
-			navigation: true,
-			days: countDays(now, start)
+			days: countDays(now, end),
+			navigation: true
 		};
 	}
 
@@ -45,7 +53,7 @@ export function getNavigationState(date: Date = new Date()): { navigation: boole
 	nextYearStartDate.setFullYear(date.getFullYear() + 1);
 
 	return {
-		navigation: false,
-		days: countDays(now, nextYearStartDate)
+		days: countDays(now, nextYearStartDate),
+		navigation: false
 	};
 }

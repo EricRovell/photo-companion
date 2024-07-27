@@ -89,6 +89,16 @@ interface BridgeState {
 const state = getBridgeState("ALEXANDER_NEVSKY");
 ```
 
+### `getBridgesState(date?: Date, ignoreNavigationSchedule?: true): Record<BridgeName, boolean>;`
+
+Same as `getBridgeState`, but returns data for all the bridges. Takes the navigation period into account.
+
+```ts
+import { getBridgeStates } from "bridge-schedule";
+
+const state = getBridgeState();
+```
+
 ### `getBridgeScheduleEntry(name: BridgeName): BridgeScheduleEntry`
 
 Returns a schedule entry data for a specific bridge.
@@ -125,6 +135,17 @@ Note: Bridge events **only** available during navigation.
 import { getBridgeEvents } from "bridge-schedule";
 
 const events = getBridgeEvents();
+```
+
+### `isAllBridgesLiftedDown(date?: DateLike, ignoreNavigation? = false): boolean`
+
+Returns a boolean indicating whether all the drawbridges are lifted down for a specific time.
+
+```ts
+import { isAllBridgesLiftedDown } from "bridge-schedule";
+
+const isLiftedDownNow = isisAllBridgesLiftedDown();
+const isLiftedDown = isisAllBridgesLiftedDown(new Date(2021, 7, 21));
 ```
 
 ### `isBridgeException(name: BridgeName): boolean`

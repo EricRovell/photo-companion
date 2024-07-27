@@ -1,0 +1,56 @@
+.gauge {
+	width: var(--gauge-size, min(100%, 45vh));
+	height: var(--gauge-size, min(100%, 45vh));
+
+	& text {
+		font-size: 3.5px;
+		font-variant-numeric: tabular-nums;
+		font-family: inherit;
+		font-weight: 400;
+		letter-spacing: 0.1em;
+		fill: var(--gauge-text-color, hsl(0deg 50% 100%));
+		transform-box: fill-box;
+		text-anchor: middle;
+	}
+}
+
+.progress-background {
+	fill: none;
+	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
+	opacity: 0.5;
+}
+
+.progress {
+	fill: none;
+	stroke: var(--gauge-color, hsl(195deg 41% 58%));
+	filter: drop-shadow(0 0 4px var(--gauge-color, hsl(195deg 41% 58%)));
+}
+
+.marks line {
+	stroke-width: var(--gauge-mark-width, 0.125);
+	stroke: var(--gauge-mark-color, hsl(0deg 50% 100% / 50%));
+}
+
+.marks line:nth-child(n + 25):nth-child(-n + 28) {
+	stroke-width: var(--gauge-mark-prime-width, 0.25);
+	stroke: var(--gauge-markprime-color, hsl(0deg 5% 50%));
+}
+
+.pointer {
+	fill: var(--gauge-background, hsl(0deg 50% 100% / 50%));
+	transform-origin: 0 0;
+	transform: rotate(var(--gauge-pointer-angle));
+	transition:
+		transform 0.5s ease-in-out,
+		fill 0.5s linear;
+	
+	&[data-active] {
+		fill: var(--gauge-color, hsl(195deg 41% 58%));
+	}
+}
+
+.current-pointer {
+	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
+	stroke-width: 0.25;
+	fill: var(--color-surface-0);
+}

@@ -1,0 +1,26 @@
+.entry {
+	--icon-size: var(--space-4);
+
+	display: grid;
+	grid-template: 1fr / 1fr repeat(2, var(--space-8));
+	place-items: center;
+	padding-block: var(--space-1);
+
+	&:not(:last-child) {
+		border-bottom: var(--border);
+	}
+
+	& label {
+		justify-self: start;
+	}
+}
+
+.button {
+	aspect-ratio: 1;
+	width: min-content;
+	padding: var(--space-2);
+
+	&:disabled {
+		opacity: 0.25;
+	}
+}

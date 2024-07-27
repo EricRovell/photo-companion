@@ -1,14 +1,23 @@
 .bulb {
-	transition: filter;
+	width: var(--bulb-size);
+	height: var(--bulb-size);
+	transition:
+		filter 0.250s ease-in-out,
+		fill 0.250s ease-in-out;
 
-	&:global(.glow) {
+	& path {
+		transition: fill 0.250s ease-in-out;
+	}
+
+	&[data-glow],
+	&[data-hover-glow]:hover {
 		filter: drop-shadow(0 0 var(--bulb-glow-size, 15px) #FFA000);
 
-		path:nth-of-type(2) {
+		.wire {
 			fill: #FFE082;
 		}
 
-		path:nth-of-type(4) {
+		.glass {
 			fill: #FFA000;
 		}
 	}

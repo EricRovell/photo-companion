@@ -1,8 +1,14 @@
 import type { CityLightsSchedule } from "../types";
 
 export const schedule: CityLightsSchedule = {
-	"year": 2024,
 	"city": "SAINT_PETERSBURG",
+	"getter": (date: Date) => {
+		const month = date.getMonth() + 1;
+		const row = ( month * 6 - 6) + Math.min(Math.floor((date.getDate() - 1) / 5), 5);
+		const index = row * 4;
+
+		return index;
+	},
 	"schedule": [
 		16,15,9,50,
 		16,25,9,45,
@@ -77,11 +83,5 @@ export const schedule: CityLightsSchedule = {
 		16,0,9,50,
 		16,10,9,50
 	],
-	"getter": (date: Date) => {
-		const month = date.getMonth() + 1;
-		const row = ( month * 6 - 6) + Math.min(Math.floor((date.getDate() - 1) / 5), 5);
-		const index = row * 4;
-
-		return index;
-	}
+	"year": 2024
 };

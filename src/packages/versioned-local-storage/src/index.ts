@@ -1,6 +1,6 @@
-import { isNonNegativeInteger, isNonNullable } from "utils/validators";
+import { isNonNegativeInteger, isNonNullable, isNullable } from "utils/validators";
 
-import { get, getVersion, set, remove, clear } from "./utils";
+import { clear, get, getVersion, remove, set } from "./utils";
 
 const EMPTY_VERSION = 0;
 
@@ -40,8 +40,8 @@ export class Storage<T> {
 		this.version = existingVersion;
 	}
 
-	get key() {
-		return `${this.name}:${this.version}`;
+	static reset(): void {
+		clear();
 	}
 
 	read(): Nullish<T> {
@@ -49,7 +49,7 @@ export class Storage<T> {
 		const storedValue = get(key);
 		let value: Nullish<T> = null;
 
-		if (storedValue) {
+		if (!isNullable(storedValue)) {
 			try {
 				value = JSON.parse(storedValue);
 			} catch (error) {
@@ -61,10 +61,6 @@ export class Storage<T> {
 		return value;
 	}
 
-	static reset(): void {
-		clear();
-	}
-
 	write(value: T): void {
 		const key = this.key;
 		const valueString = JSON.stringify(value);
@@ -74,5 +70,9 @@ export class Storage<T> {
 		} else {
 			set(key, valueString);
 		}
+	}
+
+	get key() {
+		return `${this.name}:${this.version}`;
 	}
 }

@@ -1,4 +1,8 @@
+/* eslint-disable no-constant-binary-expression */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+
 import { describe, expect, it } from "vitest";
+
 import { classnames } from "../src";
 
 describe("Common utils: classnames", () => {
@@ -11,7 +15,7 @@ describe("Common utils: classnames", () => {
 		expect(classnames({ hello: true })).toBe("hello");
 		expect(classnames({ hello: true, world: true })).toBe("hello world");
 		expect(classnames({ hello: true, world: false })).toBe("hello");
-		expect(classnames({ hello: true, world: false, heavens: true })).toBe("hello heavens");
+		expect(classnames({ heavens: true, hello: true, world: false })).toBe("heavens hello");
 	});
 	it("Takes in an array argument", () => {
 		expect(classnames([ "hello" ])).toBe("hello");

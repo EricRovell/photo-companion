@@ -1,4 +1,4 @@
-import type { ComponentType } from "svelte";
+import type { Component } from "solid-js";
 
 export type EventGroupName =
 	| "bridges-spb"
@@ -7,18 +7,19 @@ export type EventGroupName =
 	| "sun";
 
 export interface EventComponent<Props> {
-	component: ComponentType;
-	props: Props;
+	component: Component<Props>;
 	message?: string;
+	props: Props;
 	title: string;
 	type?: "bridge" | "lights" | "moon" | "sun";
 }
 
 export type NavigationTabName =
-	| "TIMELINE"
+	| "BRIDGES"
 	| "LIGHTS"
-	| "SUN"
 	| "MOON"
-	| "BRIDGES";
+	| "NOW"
+	| "SUN"
+	| "TIMELINE";
 
 export type UserLang = "en" | "ru";

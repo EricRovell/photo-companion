@@ -1,5 +1,6 @@
-import { FIRST_NEW_MOON_2000, LUNAR_DAYS_MS, LUNAR_DAYS_MS_HALF, LUNAR_DAYS_MS_QUARTER } from "./consts";
 import type { MoonPhaseName } from "types";
+
+import { FIRST_NEW_MOON_2000, LUNAR_DAYS_MS, LUNAR_DAYS_MS_HALF, LUNAR_DAYS_MS_QUARTER } from "./consts";
 
 interface MoonPhase {
 	phaseName: MoonPhaseName;

@@ -1,13 +1,15 @@
-import type { IlluminationState, LightsSchedule, LightsCity, LightsEvent } from "types";
 import { calcDuration, incrementDateByDay } from "utils/date";
-import { isValidDate } from "utils/validators";
+import { isNullable, isValidDate } from "utils/validators";
 
-import { data } from "./schedule";
+import type { IlluminationState, LightsCity, LightsEvent, LightsSchedule } from "types";
+
 import { SUPPORTED_CITY_SET } from "./const";
+import { data } from "./schedule";
+
 import type { LightsProvider } from "./types";
 
 export function isSupportedCity(city: Nullable<string>): city is LightsCity {
-	if (!city) {
+	if (isNullable(city)) {
 		return false;
 	}
 
@@ -16,10 +18,11 @@ export function isSupportedCity(city: Nullable<string>): city is LightsCity {
 
 export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvider {
 	if (!isSupportedCity(cityName)) {
-		throw new Error(`Unsupported city provided: ${cityName}`);
+		console.warn(`Unsupported city provided: ${cityName}`);
+		cityName = "SAINT_PETERSBURG";
 	}
 
-	const { year, city, schedule, getter } = data[cityName];
+	const { city, getter, schedule, year } = data[cityName];
 
 	/**
 	 * Returns the lights schedule for a given date.
@@ -28,8 +31,8 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 		if (!isValidDate(input)) {
 			return {
 				duration: 0,
-				"LIGHTS_START": NaN,
-				"LIGHTS_END": NaN
+				"LIGHTS_END": NaN,
+				"LIGHTS_START": NaN
 			};
 		}
 	
@@ -43,8 +46,8 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 
 		return {
 			duration: calcDuration(start, end),
-			LIGHTS_START: start.getTime(),
-			LIGHTS_END: end.getTime()
+			LIGHTS_END: end.getTime(),
+			LIGHTS_START: start.getTime()
 		};
 	}
 
@@ -61,19 +64,19 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 		const schedule = getScheduleByDate(input);
 		const timestamp = input.getTime();
 
-		if (timestamp < schedule["LIGHTS_END"]) {
+		if (timestamp < schedule.LIGHTS_END) {
 			return {
-				lights: true,
 				event: "LIGHTS_END",
-				timestamp: schedule["LIGHTS_END"]
+				lights: true,
+				timestamp: schedule.LIGHTS_END
 			};
 		}
 
-		if (timestamp >= schedule["LIGHTS_END"] && timestamp <= schedule["LIGHTS_START"]) {
+		if (timestamp >= schedule.LIGHTS_END && timestamp <= schedule.LIGHTS_START) {
 			return {
-				lights: false,
 				event: "LIGHTS_START",
-				timestamp: schedule["LIGHTS_START"]
+				lights: false,
+				timestamp: schedule.LIGHTS_START
 			};
 		}
 
@@ -81,9 +84,9 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 		const scheduleNext = getScheduleByDate(nextDay);
 
 		return {
-			lights: true,
 			event: "LIGHTS_END",
-			timestamp: scheduleNext["LIGHTS_END"]
+			lights: true,
+			timestamp: scheduleNext.LIGHTS_END
 		};
 	}
 
@@ -96,7 +99,7 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 					city
 				},
 				name: "LIGHTS_START",
-				timestamp: data["LIGHTS_START"],
+				timestamp: data.LIGHTS_START,
 				type: "LIGHTS"
 			},
 			{
@@ -104,7 +107,7 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 					city
 				},
 				name: "LIGHTS_END",
-				timestamp: data["LIGHTS_END"],
+				timestamp: data.LIGHTS_END,
 				type: "LIGHTS"
 			}
 		];

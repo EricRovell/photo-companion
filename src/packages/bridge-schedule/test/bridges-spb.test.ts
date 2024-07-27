@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { isNavigationTime, getBridgeState } from "../src";
+
+import { getBridgeState, isAllBridgesLiftedDown, isNavigationTime } from "../src";
 import { SUPPORTED_BRIDGES_NAME_SET } from "../src/const";
+import { schedule as data, FIRST_OPENING_MINUTES, LAST_CLOSING_MINUTES } from "../src/schedule";
+
 import type { BridgeName } from "../src/types";
-import { schedule as data } from "../src/schedule";
 
 const BETWEEN_OPENINGS_GAP_MINUTES = 10;
 const OPENING_GAP_MINUTES = 30;
@@ -16,10 +18,10 @@ const afterNavigation = new Date(2023, 11, 31);
 
 interface Fixture {
 	bridgeName: BridgeName;
-	when: string;
-	open: boolean;
 	date: Date;
+	open: boolean;
 	timestamp: number;
+	when: string;
 }
 
 const generateBridgeScheduleFixtures = (bridgeName) => {
@@ -28,36 +30,36 @@ const generateBridgeScheduleFixtures = (bridgeName) => {
 
 	fixtures.push({
 		bridgeName,
-		when: "before first opening",
-		open: false,
 		date: new Date(data.year, 5, 21, scheduleList[0][0] - 1, scheduleList[0][1], 0, 0),
-		timestamp: new Date(data.year, 5, 21, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime()
+		open: false,
+		timestamp: new Date(data.year, 5, 21, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime(),
+		when: "before first opening"
 	});
 
 	fixtures.push({
 		bridgeName,
-		when: "after last opening",
-		open: false,
 		date: new Date(data.year, 5, 21, scheduleList.at(-1)[2] + 1, scheduleList.at(-1)[3], 0, 0),
-		timestamp: new Date(data.year, 5, 22, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime()
+		open: false,
+		timestamp: new Date(data.year, 5, 22, scheduleList[0][0], scheduleList[0][1], 0, 0).getTime(),
+		when: "after last opening"
 	});
 
 	for (const [ hoursOpen, minutesOpen, hoursClose, minutesClose ] of scheduleList) {
 		fixtures.push({
 			bridgeName,
-			when: "at the opening",
-			open: true,
 			date: new Date(data.year, 5, 21, hoursOpen, minutesOpen, 0, 0),
-			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime()
+			open: true,
+			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime(),
+			when: "at the opening"
 		});
 
 		fixtures.push({
 			bridgeName,
-			when: "during the opening",
-			open: true,
 			// ASSUMING no bridge is opened only for 30 minutes
 			date: new Date(data.year, 5, 21, hoursOpen, minutesOpen + OPENING_GAP_MINUTES, 0, 0),
-			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime()
+			open: true,
+			timestamp: new Date(data.year, 5, 21, hoursClose, minutesClose, 0).getTime(),
+			when: "during the opening"
 		});
 	}
 
@@ -65,19 +67,19 @@ const generateBridgeScheduleFixtures = (bridgeName) => {
 		for (let i = 0; i < scheduleList.length - 1; i++) {
 			fixtures.push({
 				bridgeName,
-				when: "at closing",
-				open: false,
 				date: new Date(data.year, 5, 21, scheduleList[i][2], scheduleList[i][3], 0, 0),
-				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime()
+				open: false,
+				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime(),
+				when: "at closing"
 			});
 
 			fixtures.push({
 				bridgeName,
-				when: "between openings",
-				open: false,
 				// ASSUMING no bridge is closed only for 10 minutes
 				date: new Date(data.year, 5, 21, scheduleList[i][2], scheduleList[i][3] + BETWEEN_OPENINGS_GAP_MINUTES, 0, 0),
-				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime()
+				open: false,
+				timestamp: new Date(data.year, 5, 21, scheduleList[i + 1][0], scheduleList[i + 1][1], 0).getTime(),
+				when: "between openings"
 			});
 		}
 	}
@@ -85,7 +87,7 @@ const generateBridgeScheduleFixtures = (bridgeName) => {
 	return fixtures;
 };
 
-describe("Illumination schedule, Saint-Petersburg, Russia", () => {
+describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 	describe("Navigation time", () => {
 		it("Detects the no-navigation time", () => {
 			expect(isNavigationTime(beforeNavigation)).toBe(false);
@@ -120,7 +122,7 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 			it(`Getting the schedule of ${bridgeName}`, () => {
 				const fixtures = generateBridgeScheduleFixtures(bridgeName);
 
-				for (const { open, date, timestamp } of fixtures) {
+				for (const { date, open, timestamp } of fixtures) {
 					expect(getBridgeState(bridgeName, date, true)).toEqual({
 						name: bridgeName,
 						open,
@@ -129,5 +131,44 @@ describe("Illumination schedule, Saint-Petersburg, Russia", () => {
 				}
 			});
 		}
+	});
+	describe("Checks if all drawbridges are lifted down", () => {
+		let firstTimeMinutes = Infinity;
+		let lastTimeMinutes = -Infinity;
+
+		for (const entries of Object.values(data.bridges)) {
+			const minutesOpen = entries[0][0] * 60 + entries[0][1];
+			const minutesClose = entries[entries.length - 1][2] * 60 +  entries[entries.length - 1][3];
+
+			firstTimeMinutes = Math.min(firstTimeMinutes, minutesOpen);
+			lastTimeMinutes = Math.max(lastTimeMinutes, minutesClose);
+		}
+
+		it("The first lifting up values is taken correctly", () => {
+			expect(firstTimeMinutes).toBe(FIRST_OPENING_MINUTES);
+		});
+		it("The latest lifting up values is taken correctly", () => {
+			expect(lastTimeMinutes).toBe(LAST_CLOSING_MINUTES);
+		});
+		it("Checks if all the drawbridges are lifted down before/after first lift", () => {
+			const timestamp = new Date(2000, 1, 1, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
+			expect(isAllBridgesLiftedDown(timestamp - 1000, true)).toBe(true);
+			expect(isAllBridgesLiftedDown(timestamp + 1000, true)).toBe(false);
+		});
+		it("Checks if all the drawbridges are lifted down taking navigation period into consideration", () => {
+			const timestampBefore = new Date(2000, data.navigation[0] - 1, data.navigation[1] - 1, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
+			expect(isAllBridgesLiftedDown(timestampBefore)).toBe(true);
+
+			const timestampDuring = new Date(2000, data.navigation[0] - 1, data.navigation[1] + 5, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
+			expect(isAllBridgesLiftedDown(timestampDuring + 10000)).toBe(false);
+
+			const timestampAfter = new Date(2000, data.navigation[2] - 1, data.navigation[3] + 1, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
+			expect(isAllBridgesLiftedDown(timestampAfter)).toBe(true);
+		});
+		it("Checks if all the drawbridges are lifted down before/after last lift", () => {
+			const timestamp = new Date(2000, 1, 1, 0, 0, 0, 0).getTime() + lastTimeMinutes * 60 * 1000;
+			expect(isAllBridgesLiftedDown(timestamp - 1000, true)).toBe(false);
+			expect(isAllBridgesLiftedDown(timestamp + 1000, true)).toBe(true);
+		});
 	});
 });

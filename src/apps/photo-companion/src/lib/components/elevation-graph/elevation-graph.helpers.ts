@@ -6,12 +6,13 @@ import {
 	ALTITUDE_MIN,
 	DAY_MS,
 	STEP_COUNT,
-	X_RANGE,
-	Y_RANGE,
 	TICK_COUNT,
+	X_RANGE,
 	Y_MAX,
+	Y_RANGE,
 	Y_RANGE_TICKS
 } from "./elevation-graph.consts";
+
 import type { AltitudeGetter, Tick } from "./elevation-graph.types";
 
 function getDayStart(date: DateLike) {
