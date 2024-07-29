@@ -4,6 +4,7 @@
 
 - Fix gauge chart flickering transition issues on some mobile devices;
 - Fix gauge chart clipping shadow issues on some mobile devices;
+- Remove tap highlight on mobile devices;
 
 ## 2.22.0
 

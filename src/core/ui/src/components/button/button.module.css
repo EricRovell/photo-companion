@@ -11,6 +11,7 @@
 	cursor: pointer;
 	background-color: var(--color-surface-3);
 	transition: background-color 0.25s linear;
+	-webkit-tap-highlight-color: transparent;
 
 	&:hover {
 		background-color: var(--color-surface-4);
