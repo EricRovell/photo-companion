@@ -1,4 +1,6 @@
 .page {
+	--loader-size: 2rem;
+
 	display: grid;
 	grid-auto-rows: min-content;
 	gap: var(--space-6);

@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "solid-js";
+import { Loader } from "ui";
 
 import { SupportsBridges, SupportsLights } from "@lib/components";
 
@@ -13,10 +14,12 @@ export const PageNow = () => (
 	<div class={styles.page}>
 		<NowSun />
 		<NowMoon />
-		<Suspense>
+		<Suspense fallback={<Loader />}>
 			<SupportsLights>
 				<NowLights />
 			</SupportsLights>
+		</Suspense>
+		<Suspense fallback={<Loader />}>
 			<SupportsBridges>
 				<NowBridges />
 			</SupportsBridges>
