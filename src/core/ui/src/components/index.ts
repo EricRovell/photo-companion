@@ -38,5 +38,6 @@ export type { InputSelectOption } from "./input-select/input-select.types";
 export { InputText } from "./input-text/input-text";
 export { Link } from "./link/link";
 export type { LinkProps } from "./link/link.types";
+export { Loader } from "./loader/loader";
 export { Modal } from "./modal/modal";
 export { Time } from "./time/time";

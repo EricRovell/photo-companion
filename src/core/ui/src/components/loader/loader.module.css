@@ -1,0 +1,18 @@
+.loader {
+	--_loader-r: calc(var(--loader-radius, 0.16) * var(--loader-size, 1rem));
+
+	width: var(--loader-size, 1rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: 
+		radial-gradient(farthest-side, var(--loader-color, var(--color-accent)) 94%, #0000) top / var(--_loader-r) var(--_loader-r) no-repeat,
+		conic-gradient(#0000 30%, var(--loader-color, var(--color-accent)));
+	mask: radial-gradient(farthest-side,#0000 calc(100% - var(--_loader-r)),#000 0);
+	animation: loader 1s infinite linear;
+}
+
+@keyframes loader { 
+	100% {
+		transform: rotate(1turn)
+	}
+}
