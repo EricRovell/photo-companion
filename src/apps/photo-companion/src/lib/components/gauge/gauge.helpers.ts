@@ -7,13 +7,15 @@ export function polarToCartesian(centerX: number, centerY: number, radius: numbe
 	};
 }
 
-export function describeArc(x: number, y: number, radius: number, angleStart: number, angleEnd: number){
+export function describeArc(x: number, y: number, r1: number, r2: number, angleStart: number, angleEnd: number){
 	if (angleStart === angleEnd) {
 		return "";
 	}
 
-	const start = polarToCartesian(x, y, radius, angleEnd);
-	const end = polarToCartesian(x, y, radius, angleStart);
+	const innerStart = polarToCartesian(x, y, r1, angleEnd);
+	const innerEnd = polarToCartesian(x, y, r1, angleStart);
+	const outerStart = polarToCartesian(x, y, r2, angleEnd);
+	const outerEnd = polarToCartesian(x, y, r2, angleStart);
 
 	let largeArcFlag = "0";
 
@@ -23,12 +25,14 @@ export function describeArc(x: number, y: number, radius: number, angleStart: nu
 		largeArcFlag = (angleEnd + 360.0) - angleStart <= 180 ? "0" : "1";
 	}
 
-	const d = [
-		"M", start.x, start.y, 
-		"A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+	return [
+		"M", outerStart.x, outerStart.y,
+		"A", r2, r2, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y,
+		"L", innerEnd.x, innerEnd.y,
+		"A", r1, r1, 0, largeArcFlag, 1, innerStart.x, innerStart.y,
+		"L", outerStart.x, outerStart.y,
+		"Z"
 	].join(" ");
-
-	return d;
 }
 
 interface Point {

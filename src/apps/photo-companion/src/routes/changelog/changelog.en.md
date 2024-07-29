@@ -1,5 +1,10 @@
 ## Changelog
 
+## 2.22.1
+
+- Fix gauge chart flickering transition issues on some mobile devices;
+- Fix gauge chart clipping shadow issues on some mobile devices;
+
 ## 2.22.0
 
 - Page 404;

@@ -21,9 +21,10 @@
 }
 
 .progress {
-	fill: none;
+	fill: var(--gauge-color, hsl(195deg 41% 58%));;
 	stroke: var(--gauge-color, hsl(195deg 41% 58%));
-	filter: drop-shadow(0 0 4px var(--gauge-color, hsl(195deg 41% 58%)));
+	filter: drop-shadow(0 0 2px var(--gauge-color, hsl(195deg 41% 58% / 0.5)));
+	stroke-width: 0;
 }
 
 .marks line {
