@@ -1,9 +1,12 @@
-import { mergeProps, Show, splitProps } from "solid-js";
+import { type JSX, mergeProps, type ParentProps, Show, splitProps } from "solid-js";
 import { classnames } from "utils";
 
-import type { IconProps } from "./icon.types";
-
 import styles from "./icon.module.css";
+
+export interface IconProps extends ParentProps<JSX.SvgSVGAttributes<SVGSVGElement>> {
+	title?: string;
+	viewBox?: string;
+}
 
 const DEFAULT_PROPS: Omit<IconProps, "path"> = {
 	viewBox: "0 0 256 256"

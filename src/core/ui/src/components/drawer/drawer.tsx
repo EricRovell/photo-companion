@@ -3,14 +3,12 @@ import { classnames } from "utils";
 
 import { Dialog } from "../dialog/dialog";
 
+import type { Classes } from "../../types";
+
 import styles from "./drawer.module.css";
 
 interface DrawerProps extends ParentProps {
-	classes?: {
-		backdrop?: string;
-		dialog?: string;
-		drawer?: string;
-	};
+	classes?: Classes<"backdrop" | "dialog" | "drawer">;
 	lightDismiss?: boolean;
 	onClose?: VoidFn;
 	open?: boolean;
@@ -23,8 +21,10 @@ export const Drawer = (allProps: DrawerProps) => {
 
 	return (
 		<Dialog
-			class={classnames(styles.dialog, props.classes?.dialog)}
-			classNameBackdrop={classnames(styles.backdrop, props.classes?.backdrop)}
+			classes={{
+				backdrop: classnames(styles.backdrop, props.classes?.backdrop),
+				dialog: classnames(styles.dialog, props.classes?.dialog)
+			}}
 			{...rest}
 		>
 			<aside class={classnames(styles.drawer, props.classes?.drawer)}>

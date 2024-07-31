@@ -42,6 +42,8 @@ export function Gauge(allProps: ParentProps<GaugeProps>) {
 	const angleStart = createTweened(() => props.angleStart);
 	const angleEnd = createTweened(() => props.angleEnd);
 
+	const r2 = () => props.radius + props.width / 2;
+
 	return (
 		<svg
 			class={styles.gauge}
@@ -56,18 +58,17 @@ export function Gauge(allProps: ParentProps<GaugeProps>) {
 			/>
 			<path
 				class={styles.progress}
-				d={describeArc(0, 0, props.radius, angleStart(), angleEnd())}
-				stroke-width={props.width}
+				d={describeArc(0, 0, props.radius - props.width / 2, r2(), angleStart(), angleEnd())}
 			/>
 			<MarksWrapper>
 				<Marks
 					count={24}
-					r1={props.radius + props.width / 2}
+					r1={r2()}
 					r2={props.radius + 10}
 				/>
 				<Marks
 					count={4}
-					r1={props.radius + props.width / 2}
+					r1={r2()}
 					r2={props.radius + 15}
 				/>
 			</MarksWrapper>
@@ -78,7 +79,7 @@ export function Gauge(allProps: ParentProps<GaugeProps>) {
 					stroke-width="0.75px"
 					x1={0}
 					x2={0}
-					y1={-props.radius + props.width / 2}
+					y1={-1 * r2()}
 					y2={-props.radius - props.width / 2}
 				/>
 			</Show>

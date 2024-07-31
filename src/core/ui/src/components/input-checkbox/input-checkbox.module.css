@@ -16,12 +16,19 @@
 	border: 1px solid var(--checkbox-border-color);
 	border-radius: 15%;
 	fill: currentcolor;
-	transition: var(--transition-bg);
+	transition:
+		var(--transition-bg),
+		outline-offset 0.125s ease-in-out,
+		transform 0.125s ease-in-out;
 
 	& path {
 		opacity: 0;
 		fill: var(--checkbox-symbol-color);
 		transition: opacity 0.125s linear;
+	}
+
+	&:active {
+		transform: scale(0.85);
 	}
 }
 
@@ -55,5 +62,14 @@
 		& path[data-indeterminate] {
 			opacity: 1;
 		}
+	}
+
+	&:focus-visible ~ .box {
+		outline: 2px dashed var(--focus-ring-color);
+		outline-offset: 3px;
+	}
+
+	&:hover ~ .box {
+		filter: brightness(1.2);
 	}
 }

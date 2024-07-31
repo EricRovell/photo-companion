@@ -1,5 +1,14 @@
 ## Changelog
 
+## 2.22.1
+
+- Fix gauge chart flickering transition issues on some mobile devices;
+- Fix gauge chart clipping shadow issues on some mobile devices;
+- Remove tap highlight on mobile devices;
+- "Changelog" and "FAQ" loads language-specific content upon request;
+- Loader is shown when some deferred content is loaded;
+- Small form element visual improvements;
+
 ## 2.22.0
 
 - Page 404;

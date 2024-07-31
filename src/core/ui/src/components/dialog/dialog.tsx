@@ -1,10 +1,12 @@
 import { createEffect, createSignal, type JSX, mergeProps, splitProps } from "solid-js";
 import { classnames, preventPageScroll } from "utils";
 
+import type { Classes } from "../../types";
+
 import styles from "./dialog.module.css";
 
-export interface DialogProps extends JSX.DialogHtmlAttributes<HTMLDialogElement> {
-	classNameBackdrop?: string;
+export interface DialogProps extends Omit<JSX.DialogHtmlAttributes<HTMLDialogElement>, "class"> {
+	classes?: Classes<"backdrop" | "dialog">;
 	lightDismiss?: boolean;
 	onClose?: () => void;
 	preventPageScroll?: boolean;
@@ -18,8 +20,7 @@ const DEFAULT_PROPS = {
 export function Dialog(allProps: DialogProps) {
 	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
 	const [ props, rest ] = splitProps(mergedProps, [
-		"class",
-		"classNameBackdrop",
+		"classes",
 		"lightDismiss",
 		"children",
 		"onClose",
@@ -65,13 +66,13 @@ export function Dialog(allProps: DialogProps) {
 
 	return (
 		<dialog
-			class={classnames(styles.dialog, props.class)}
+			class={classnames(styles.dialog, props.classes?.dialog)}
 			onClose={handleClose}
 			ref={setRef}
 			{...rest}
 		>
 			<div
-				class={classnames(styles.backdrop, props.classNameBackdrop)}
+				class={classnames(styles.backdrop, props.classes?.backdrop)}
 				data-backdrop onClick={handleLightDismiss}
 			>
 				{props.children}

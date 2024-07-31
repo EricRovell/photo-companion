@@ -69,6 +69,7 @@
 	outline-offset: -3px;
 	border-radius: 5px;
 	padding-inline: var(--space-3);
+	-webkit-tap-highlight-color: transparent;
 
 	&:hover {
 		outline-color: var(--color-accent);

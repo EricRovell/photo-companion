@@ -9,6 +9,7 @@
 	text-decoration: unset;
 	transition: outline-offset 0.125s ease-in-out;
 	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
 
 	&:focus-visible {
 		color: var(--color-link-hover);

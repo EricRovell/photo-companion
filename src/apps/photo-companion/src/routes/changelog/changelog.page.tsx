@@ -1,20 +1,28 @@
-import { Show } from "solid-js";
+import { lazy, Match, Suspense, Switch } from "solid-js";
+import { Loader } from "ui";
 
 import { Markdown } from "@lib/components/markdown";
 import { useTranslation } from "@lib/context/translation";
 
-import PageChangelogEn from "./changelog.en.md";
-import PageChangelogRu from "./changelog.ru.md";
+const PageChangelogEn = lazy(() => import("./changelog.en.md"));
+const PageChangelogRu = lazy(() => import("./changelog.ru.md"));
 
 export function PageChangelog() {
 	const { lang } = useTranslation();
 
 	return (
-		<Markdown>
-			<Show fallback={<PageChangelogRu />} when={lang() === "en"}>
-				<PageChangelogEn />
-			</Show>
-		</Markdown>
+		<Suspense fallback={<Loader style={{ "--loader-size": "2rem" }} />}>
+			<Markdown>
+				<Switch>
+					<Match when={lang() === "en"}>
+						<PageChangelogEn />
+					</Match>
+					<Match when={lang() === "ru"}>
+						<PageChangelogRu />
+					</Match>
+				</Switch>
+			</Markdown>
+		</Suspense>
 	);
 }
 

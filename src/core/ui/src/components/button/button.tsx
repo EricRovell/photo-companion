@@ -1,5 +1,5 @@
 import { mergeProps, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { classnames, setAttribute } from "utils";
 
 import type { ButtonProps } from "./button.types";
 
@@ -26,8 +26,8 @@ export function Button(allProps: ButtonProps) {
 		<button
 			class={classnames(styles.button, props.class)}
 			data-appearance={props.appearance}
-			data-icon={props.icon ? "" : undefined}
-			data-loading={props.loading ? "" : undefined}
+			data-icon={setAttribute(props.icon)}
+			data-loading={setAttribute(props.loading)}
 			data-variant={props.variant}
 			{...rest}
 		>

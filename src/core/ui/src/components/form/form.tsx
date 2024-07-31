@@ -1,9 +1,9 @@
-import { Show, splitProps } from "solid-js";
+import { type JSX, splitProps } from "solid-js";
 import { classnames } from "utils";
 
-import type { FieldsetProps, FormProps } from "./form.types";
-
 import styles from "./form.module.css";
+
+type FormProps = JSX.HTMLAttributes<HTMLFormElement>;
 
 export function Form(allProps: FormProps) {
 	const [ props, rest ] = splitProps(allProps, [ "children", "class" ]);
@@ -12,26 +12,5 @@ export function Form(allProps: FormProps) {
 		<form class={classnames(styles.form, props.class)} {...rest}>
 			{props.children}
 		</form>
-	);
-}
-
-export function Fieldset(allProps: FieldsetProps) {
-	const [ props, rest ] = splitProps(allProps, [
-		"children",
-		"class",
-		"legend"
-	]);
-
-	return (
-		<fieldset class={classnames(styles.fieldset, props.class)} {...rest}>
-			<Show when={props.legend}>
-				<legend>
-					{props.legend}
-				</legend>
-			</Show>
-			<div>
-				{props.children}
-			</div>
-		</fieldset>
 	);
 }

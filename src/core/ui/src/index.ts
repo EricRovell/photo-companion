@@ -12,5 +12,6 @@ export {
 	type InputSelectOption,
 	InputText,
 	Link,
+	Loader,
 	Time
 } from "./components";
