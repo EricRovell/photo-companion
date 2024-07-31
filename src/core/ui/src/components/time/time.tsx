@@ -1,9 +1,9 @@
-import { splitProps } from "solid-js";
+import { type JSX, splitProps } from "solid-js";
 import { classnames } from "utils";
 
-import type { TimeProps } from "./time.types";
-
 import styles from "./time.module.css";
+
+type TimeProps = JSX.TimeHTMLAttributes<HTMLElement>;
 
 export function Time(allProps: TimeProps) {
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);

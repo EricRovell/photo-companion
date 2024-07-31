@@ -46,7 +46,7 @@ export function SettingsForm() {
 				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>
 					<InputEventFilters />
 				</Fieldset>
-				<Fieldset class={styles.submit}>
+				<Fieldset classes={{ fieldset: styles.submit }}>
 					<Button
 						appearance="outline"
 						color="success"

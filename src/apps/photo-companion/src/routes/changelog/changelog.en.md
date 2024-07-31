@@ -7,6 +7,7 @@
 - Remove tap highlight on mobile devices;
 - "Changelog" and "FAQ" loads language-specific content upon request;
 - Loader is shown when some deferred content is loaded;
+- Small form element visual improvements;
 
 ## 2.22.0
 

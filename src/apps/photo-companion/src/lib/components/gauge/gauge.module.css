@@ -23,7 +23,7 @@
 .progress {
 	fill: var(--gauge-color, hsl(195deg 41% 58%));;
 	stroke: var(--gauge-color, hsl(195deg 41% 58%));
-	filter: drop-shadow(0 0 2px var(--gauge-color, hsl(195deg 41% 58% / 0.5)));
+	filter: drop-shadow(0 0 2px var(--gauge-color, hsl(195deg 41% 58% / 50%)));
 	stroke-width: 0;
 }
 

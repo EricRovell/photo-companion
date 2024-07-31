@@ -16,7 +16,7 @@ interface Props extends DialogProps {
 
 export function Modal(allProps: Props) {
 	const [ props, rest ] = splitProps(allProps, [
-		"class",
+		"classes",
 		"children",
 		"onClose",
 		"title"
@@ -24,7 +24,10 @@ export function Modal(allProps: Props) {
 
 	return (
 		<Dialog
-			class={classnames(styles.dialog, props.class)}
+			classes={{
+				backdrop: props.classes?.backdrop,
+				dialog: classnames(styles.dialog, props.classes?.dialog)
+			}}
 			onClose={props.onClose}
 			{...rest}
 		>

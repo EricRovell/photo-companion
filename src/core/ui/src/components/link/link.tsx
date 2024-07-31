@@ -1,10 +1,14 @@
-import { splitProps } from "solid-js";
+import { type JSX, splitProps } from "solid-js";
 import { classnames } from "utils";
 import { isNonEmptyString, isNullable } from "utils/validators";
 
-import type { LinkProps } from "./link.types";
-
 import styles from "./link.module.css";
+
+export interface LinkProps extends JSX.AnchorHTMLAttributes<HTMLAnchorElement> {
+	block?: boolean;
+	nofollow?: boolean;
+	query?: string | URLSearchParams;
+}
 
 export function Link(allProps: LinkProps) {
 	const [ props, rest ] = splitProps(allProps, [

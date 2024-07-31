@@ -1,6 +1,6 @@
 import { Icon } from "../icon";
 
-import type { IconProps } from "../icon.types";
+import type { IconProps } from "../icon";
 
 export const IconClose = (props: IconProps) => (
 	<Icon {...props}>
