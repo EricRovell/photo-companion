@@ -3,18 +3,19 @@
 	gap: var(--space-4);
 	width: min(100%, 60ch);
 	font-size: var(--font-size-2);
+}
 
-	h2 {
-		justify-self: start;
-		font-size: var(--font-size-5);
-	}
+.title {
+	justify-self: start;
+	font-size: var(--font-size-5);
 }
 
 .submit {
 	border: none;
 
-	& > div {
+	& > .submit-content {
 		display: flex;
+		flex-direction: row;
 		justify-content: flex-end;
 		padding: 0;
 	}

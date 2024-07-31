@@ -16,7 +16,9 @@ export function SettingsForm() {
 
 	return (
 		<div class={styles.page}>
-			<h2>{t().TITLE.SETTINGS}</h2>
+			<h2 class={styles.title}>
+				{t().TITLE.SETTINGS}
+			</h2>
 			<Form onChange={handleFormChange}>
 				<Fieldset legend={t().LABEL.LANGUAGE}>
 					<InputRadio
@@ -46,7 +48,10 @@ export function SettingsForm() {
 				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>
 					<InputEventFilters />
 				</Fieldset>
-				<Fieldset classes={{ fieldset: styles.submit }}>
+				<Fieldset classes={{
+					content: styles["submit-content"],
+					fieldset: styles.submit
+				}}>
 					<Button
 						appearance="outline"
 						color="success"
