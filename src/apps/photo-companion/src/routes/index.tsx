@@ -10,6 +10,7 @@ import { PageBridges } from "./bridges/bridges.page";
 import { PageLights } from "./lights/lights.page";
 import { PageMoon } from "./moon/moon.page";
 import { PageNow } from "./now/now.page";
+import { PageRoot } from "./root/root.page";
 import { PageSettings } from "./settings/settings.page";
 import { PageSun } from "./sun/sun.page";
 import { PageTimeline } from "./timeline/timeline.page";
@@ -24,16 +25,16 @@ const WITH_DATE_ROUTES = [
 	ROUTE.LIGHTS,
 	ROUTE.MOON,
 	ROUTE.SUN,
-	ROUTE.NOW
+	ROUTE.NOW,
+	ROUTE.BRIDGES
 ];
-
-const WITH_SWIPE_ROUTES = [ ...WITH_DATE_ROUTES, ROUTE.BRIDGES ];
 
 export const Routes = () => (
 	<Router root={Root}>
-		<Route component={WithSwipe} path={WITH_SWIPE_ROUTES}>
+		<Route component={WithSwipe} path={WITH_DATE_ROUTES}>
 			<Route component={WithDate} path={WITH_DATE_ROUTES}>
-				<Route component={PageTimeline} path={[ ROUTE.ROOT, ROUTE.TIMELINE ]} />
+				<Route component={PageRoot} path={ROUTE.ROOT}/>
+				<Route component={PageTimeline} path={ROUTE.TIMELINE} />
 				<Route component={PageLights} path={ROUTE.LIGHTS} />
 				<Route component={PageMoon} path={ROUTE.MOON} />
 				<Route component={PageSun} path={ROUTE.SUN} />
