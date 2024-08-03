@@ -1,0 +1,33 @@
+{
+	"name": "meeus-algorithms",
+	"version": "0.1.0",
+	"description": "JavaScript library for Sun and Moon calculations.",
+	"keywords": [
+		"sun",
+		"astronomy",
+		"math",
+		"calculation",
+		"sunrise",
+		"sunset",
+		"twilight",
+		"moon"
+	],
+	"main": "./src/index.ts",
+	"scripts": {
+		"build": "node esbuild && pnpm build:types && pnpm bundle:types",
+		"build:types": "tsc --moduleResolution node --emitDeclarationOnly --outDir dist",
+		"bundle:types": "node ./scripts/bundle-dts.js",
+		"lint:types": "tsc --noEmit"
+	},
+	"type": "module",
+	"dependencies": {
+		"utils": "workspace:*"
+	},
+	"devDependencies": {
+		"types": "workspace:*"
+	},
+	"files": [
+		"CHANGELOG.md",
+		"dist"
+	]
+}
