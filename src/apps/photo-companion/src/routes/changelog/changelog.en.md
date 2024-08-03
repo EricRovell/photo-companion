@@ -1,5 +1,11 @@
 ## Changelog
 
+## 2.22.2
+
+- Fix loading wrong initial tab (sometimes it even caused app crash);
+- Fix navigation items focus indicator being cropped;
+- Fix loader being invisible due the broken styles;
+
 ## 2.22.1
 
 - Fix gauge chart flickering transition issues on some mobile devices;

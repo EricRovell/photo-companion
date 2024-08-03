@@ -13,12 +13,12 @@ import styles from "./root.module.css";
 
 function Header() {
 	const { getSettings } = useSettings();
-	const mainTab = getSettings().tabs[0];
+	const getMainTabHref = () => `/${getSettings().tabs[0].toLowerCase()}`;
 
 	return (
 		<header class={styles.header}>
 			<div class={styles.content}>
-				<LinkQuery class={styles["title-link"]} href={`/${mainTab.toLowerCase()}`}>
+				<LinkQuery class={styles["title-link"]} href={getMainTabHref()}>
 					<h1 class={styles.title}>
 						<Bulb class={styles["title-icon"]} hoverGlow />
 						{TITLE}
