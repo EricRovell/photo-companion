@@ -155,6 +155,16 @@ importers:
         specifier: workspace:*
         version: link:../../core/utils
 
+  src/packages/meeus-algorithms:
+    dependencies:
+      utils:
+        specifier: workspace:*
+        version: link:../../core/utils
+    devDependencies:
+      types:
+        specifier: workspace:*
+        version: link:../../core/types
+
   src/packages/moon-sun-calc:
     dependencies:
       esbuild:
