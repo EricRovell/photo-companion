@@ -1,4 +1,4 @@
-import { type Accessor, createContext, createMemo, type ParentProps, useContext } from "solid-js";
+import { type Accessor, createContext, createEffect, createMemo, type ParentProps, useContext } from "solid-js";
 import {
 	dateFormatter,
 	dateTimeFormatter,
@@ -36,6 +36,12 @@ export function TranslationProvider(props: ParentProps) {
 		formatTimeDuration: timeDurationFormatter(lang()),
 		formatTimeShort: timeShortFormatter(lang())
 	}));
+
+	createEffect(() => {
+		if (!isNullable(globalThis.window)) {
+			document.documentElement.setAttribute("lang", lang());
+		}
+	});
 
 	return (
 		<TranslationContext.Provider value={{ formatters, lang, t }}>

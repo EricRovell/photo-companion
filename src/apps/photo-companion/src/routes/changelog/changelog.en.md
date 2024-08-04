@@ -4,6 +4,7 @@
 
 - Improved web-application's SEO;
 - Title updates during navigation;
+- Fixed inconsistent `lang` attribute;
 
 ## 2.22.2
 
