@@ -1,3 +1,4 @@
+import { MetaProvider } from "@solidjs/meta";
 import { DEV, Show } from "solid-js";
 
 import { SettingsProvider } from "@lib/context/settings";
@@ -11,10 +12,9 @@ import "./styles/main.css";
 import "./styles/utils.css";
 import "ui/styles/tokens.css";
 
-export function App() {
-
-	return (
-		<>
+export const App = () => (
+	<>
+		<MetaProvider>
 			<SettingsProvider>
 				<TranslationProvider>
 					<Show when={!DEV}>
@@ -23,6 +23,6 @@ export function App() {
 					<Routes />
 				</TranslationProvider>
 			</SettingsProvider>
-		</>
-	);
-}
+		</MetaProvider>
+	</>
+);

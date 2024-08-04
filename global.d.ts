@@ -5,6 +5,8 @@ type Undefinable<T> = T | undefined;
 
 type VoidFn = () => void;
 
+type MaybeArray<T> = T | T[];
+
 /**
  * Returns optional keys of an object.
  */
