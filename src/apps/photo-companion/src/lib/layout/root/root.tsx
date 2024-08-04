@@ -3,7 +3,7 @@ import { createEffect, type ParentProps } from "solid-js";
 import { IconGithub, Link } from "ui";
 import { isNullable } from "utils/validators";
 
-import { Bulb, LinkQuery, Navigation } from "@lib/components";
+import { Bulb, LinkQuery, Navigation, PageMeta } from "@lib/components";
 import { TITLE, VERSION } from "@lib/consts";
 import { ROUTE_CHANGELOG, URL_GITHUB_REPO } from "@lib/consts";
 import { useSettings } from "@lib/context/settings";
@@ -59,6 +59,7 @@ export const Root = (props: ParentProps) => {
 
 	return (
 		<>
+			<PageMeta />
 			<Header />
 			<Navigation />
 			<main>

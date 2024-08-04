@@ -104,7 +104,9 @@ export default tseslint.config(
 				}
 			],
 			"perfectionist/sort-interfaces": "error",
-			"perfectionist/sort-jsx-props": "error",
+			"perfectionist/sort-jsx-props": [ "error", {
+				ignorePattern: [ "Meta", "Show" ],
+			}],
 			"perfectionist/sort-maps": "error",
 			"perfectionist/sort-named-imports": "error",
 			"perfectionist/sort-named-exports": "error",

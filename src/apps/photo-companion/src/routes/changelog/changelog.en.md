@@ -1,5 +1,10 @@
 ## Changelog
 
+## 2.23.0
+
+- Improved web-application's SEO;
+- Title updates during navigation;
+
 ## 2.22.2
 
 - Fix loading wrong initial tab (sometimes it even caused app crash);
