@@ -1,5 +1,5 @@
 import { MetaProvider } from "@solidjs/meta";
-import { DEV, Show } from "solid-js";
+import { DEV, Show, Suspense } from "solid-js";
 
 import { SettingsProvider } from "@lib/context/settings";
 import { TranslationProvider } from "@lib/context/translation";
@@ -16,12 +16,14 @@ export const App = () => (
 	<>
 		<MetaProvider>
 			<SettingsProvider>
-				<TranslationProvider>
-					<Show when={!DEV}>
-						<UpdateService />
-					</Show>
-					<Routes />
-				</TranslationProvider>
+				<Suspense>
+					<TranslationProvider>
+						<Show when={!DEV}>
+							<UpdateService />
+						</Show>
+						<Routes />
+					</TranslationProvider>
+				</Suspense>
 			</SettingsProvider>
 		</MetaProvider>
 	</>
