@@ -1,4 +1,4 @@
-import { type Accessor, createContext, createEffect, createMemo, type ParentProps, useContext } from "solid-js";
+import { createContext, createEffect, createMemo, createResource, type ParentProps, Show, useContext } from "solid-js";
 import {
 	dateFormatter,
 	dateTimeFormatter,
@@ -13,17 +13,24 @@ import {
 import { isNullable } from "utils/validators";
 
 import { useSettings } from "../settings";
-import { t as translationEN } from "./translation.en";
-import { t as translationRU } from "./translation.ru";
 
-import type { Translation, TranslationContextType } from "./translation.types";
+import type { TranslationContextType } from "./translation.types";
 
 const TranslationContext = createContext<TranslationContextType>();
+
+const TRANSLATIONS = {
+	"en": () => import("./translation.en"),
+	"ru": () => import("./translation.ru")
+};
 
 export function TranslationProvider(props: ParentProps) {
 	const { getSettings } = useSettings();
 	const lang = () => getSettings().language;
-	const t: Accessor<Translation> = createMemo(() => lang() === "en" ? translationEN : translationRU);
+
+	const [ t ] = createResource(lang, async () => {
+		const dict = await TRANSLATIONS[lang()]();
+		return dict.t;
+	});
 
 	const formatters = createMemo(() => ({
 		formatDate: dateFormatter(lang()),
@@ -44,9 +51,13 @@ export function TranslationProvider(props: ParentProps) {
 	});
 
 	return (
-		<TranslationContext.Provider value={{ formatters, lang, t }}>
-			{props.children}
-		</TranslationContext.Provider>
+		<Show when={t()}>
+			{(t) => (
+				<TranslationContext.Provider value={{ formatters, lang, t }}>
+					{props.children}
+				</TranslationContext.Provider>
+			)}
+		</Show>
 	);
 }
 

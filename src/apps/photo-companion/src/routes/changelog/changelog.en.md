@@ -1,18 +1,22 @@
 ## Changelog
 
-## 2.23.0
+### 2.24.0
+
+- Translations are loaded on demand;
+
+### 2.23.0
 
 - Improved web-application's SEO;
 - Title updates during navigation;
 - Fixed inconsistent `lang` attribute;
 
-## 2.22.2
+### 2.22.2
 
 - Fix loading wrong initial tab (sometimes it even caused app crash);
 - Fix navigation items focus indicator being cropped;
 - Fix loader being invisible due the broken styles;
 
-## 2.22.1
+### 2.22.1
 
 - Fix gauge chart flickering transition issues on some mobile devices;
 - Fix gauge chart clipping shadow issues on some mobile devices;
@@ -21,7 +25,7 @@
 - Loader is shown when some deferred content is loaded;
 - Small form element visual improvements;
 
-## 2.22.0
+### 2.22.0
 
 - Page 404;
 - Improved navigation. Wider screens have enough space but not all tab-sections would be visible. Not there are no upper limits for maximum active tabs. On smaller screens there will be visible up to 4 top chosen tabs. All links are always accessible via side-menu;

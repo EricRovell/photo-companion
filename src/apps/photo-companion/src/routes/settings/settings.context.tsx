@@ -1,4 +1,4 @@
-import { createContext, type ParentProps, useContext } from "solid-js";
+import { createContext, type ParentProps, startTransition, useContext } from "solid-js";
 import { createStore, type SetStoreFunction, type Store, unwrap } from "solid-js/store";
 import { isNullable } from "utils/validators";
 
@@ -25,12 +25,16 @@ export function SettingsPageProvider(props: ParentProps) {
 	const [ settingsStore, setSettingsStore ] = createStore(getSettings());
 
 	const handleReset = () => {
-		setSettingsStore(SETTINGS_DEFAULT);
-		resetSettings();
+		void startTransition(() => {
+			setSettingsStore(SETTINGS_DEFAULT);
+			resetSettings();
+		});
 	};
 
 	const handleSubmit = () => {
-		setSettings({ ...unwrap(settingsStore) });
+		void startTransition(() => {
+			setSettings({ ...unwrap(settingsStore) });
+		});
 	};
 
 	const handleCityChange = (city: City) => {
