@@ -1,5 +1,9 @@
 ## Changelog
 
+### Unreleased
+
+- Remove PWA quick actions;
+
 ### 2.24.0
 
 - Translations are loaded on demand;
