@@ -45,6 +45,6 @@ export const Routes = () => (
 		<Route component={PageSettings} path={ROUTE.SETTINGS} />
 		<Route component={PageAbout} path={ROUTE.ABOUT} />
 		<Route component={PageChangelog} path={ROUTE.CHANGELOG} />
-		<Route component={Page404} path="*404" />
+		<Route component={Page404} path={[ ROUTE.NOT_FOUND, "*404" ]} />
 	</Router>
 );
