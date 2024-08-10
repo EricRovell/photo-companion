@@ -18,19 +18,20 @@ self.addEventListener("message", event => {
 	}
 });
 
-self.addEventListener("activate", event => {
-	self.skipWaiting();
+self.addEventListener('activate', (event) => {
+	self.clients.claim();
 
-	event.waitUntil(async () => {
-		const keyList = await caches.keys();
-		const promises = keyList.map(key => {
-			if (key !== VERSION_HASH) {
-				return caches.delete(key);
+	const removePromiseList = async () => {
+		const promises = (await caches.keys()).map((cacheName) => {
+			if (cacheName !== VERSION_HASH) {
+				return caches.delete(cacheName);
 			}
 		});
 
-		return await Promise.all(promises);
-	});
+		Promise.all<any>(promises);
+	}
+
+	event.waitUntil(removePromiseList());
 });
 
 /**
