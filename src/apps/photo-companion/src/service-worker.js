@@ -34,8 +34,8 @@ self.addEventListener("activate", event => {
 });
 
 /**
- * Network first, falling back to cache strategy
- * https://developer.chrome.com/docs/workbox/caching-strategies-overview/#network-first-falling-back-to-cache
+ * Cache first, falling back to network strategy
+ * https://developer.chrome.com/docs/workbox/caching-strategies-overview/#cache_first_falling_back_to_network
  */
 self.addEventListener("fetch", async (event) => {
 	event.respondWith(caches.open(VERSION_HASH).then(async (cache) => {
