@@ -1,6 +1,16 @@
 "use strict";
 
-const SERVICE_WORKER_CACHE_NAME = "__COMMIT_HASH__";
+const VERSION_HASH = __VERSION_HASH__;
+const ASSETS = __SERVICE_WORKER_ASSETS__;
+
+self.addEventListener("install", event => {
+	const cacheBundles = async () => {
+		const cache = await caches.open(VERSION_HASH);
+		return cache.addAll(ASSETS);
+	};
+
+	event.waitUntil(cacheBundles());
+});
 
 self.addEventListener("message", event => {
 	if (event.data.action === "skipWaiting") {
@@ -14,7 +24,7 @@ self.addEventListener("activate", event => {
 	event.waitUntil(async () => {
 		const keyList = await caches.keys();
 		const promises = keyList.map(key => {
-			if (key !== SERVICE_WORKER_CACHE_NAME) {
+			if (key !== VERSION_HASH) {
 				return caches.delete(key);
 			}
 		});
@@ -28,7 +38,7 @@ self.addEventListener("activate", event => {
  * https://developer.chrome.com/docs/workbox/caching-strategies-overview/#network-first-falling-back-to-cache
  */
 self.addEventListener("fetch", async (event) => {
-	event.respondWith(caches.open(SERVICE_WORKER_CACHE_NAME).then(async (cache) => {
+	event.respondWith(caches.open(VERSION_HASH).then(async (cache) => {
 		const cachedResponse = await cache.match(event.request.url);
 
 		if (cachedResponse) {

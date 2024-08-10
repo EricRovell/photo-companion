@@ -3,6 +3,7 @@
 ### Unreleased
 
 - Remove PWA quick actions;
+- Load entire application assets in the background to provide full offline functionality after initial web application startup (previously assets loaded lazily upon navigation);
 
 ### 2.24.0
 
