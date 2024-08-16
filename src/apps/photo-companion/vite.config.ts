@@ -1,11 +1,22 @@
 import replace from "@rollup/plugin-replace";
+import * as child from "child_process";
 import { resolve } from "node:path";
 import pluginPostCssNesting from "postcss-nesting";
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import solidMarkedPlugin from "vite-plugin-solid-marked";
 
-import { compileServiceWorker, getCommitHash } from "./plugins/compile-service-worker";
+import { compileServiceWorker } from "./plugins/compile-service-worker";
+
+/**
+ * Returns the hash of the latest git commit
+ */
+export function getCommitHash(short = false) {
+	return child
+		.execSync(`git rev-parse ${short ? "--short" : ""} HEAD`)
+		.toString()
+		.trim();
+}
 
 export default defineConfig({
 	css: {

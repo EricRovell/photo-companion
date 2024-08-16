@@ -1,5 +1,11 @@
 ## Changelog
 
+### 2.25.0
+
+- Remove PWA quick actions;
+- Load entire application assets in the background to provide full offline functionality after initial web application startup (previously assets loaded lazily upon navigation);
+- Fixed an issue due to which the cache for older versions of the application was not cleared after the next update;
+
 ### 2.24.0
 
 - Translations are loaded on demand;

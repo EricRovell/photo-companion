@@ -1,23 +1,23 @@
-import * as child from "child_process";
+
 import { build } from "esbuild";
 import { replace } from "esbuild-plugin-replace";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 
 import type { PluginOption } from "vite";
 
 /**
- * Returns the hash of the latest git commit
+ * Storing build assets (`.js` and `.css` bundles)
+ * to inject the URLs into service-worker.
  */
-export function getCommitHash(short = false) {
-	return child
-		.execSync(`git rev-parse ${short ? "--short" : ""} HEAD`)
-		.toString()
-		.trim();
-}
+let bundles: string[] = [];
 
 export const compileServiceWorker: PluginOption = {
 	apply: "build",
 	enforce: "post",
+	generateBundle(this, options, bundle) {
+		bundles = [ ...Object.keys(bundle) ].map(item => `/${item}`);
+	},
 	name: "compile-service-worker",
 	transformIndexHtml() {
 		void build({
@@ -28,11 +28,16 @@ export const compileServiceWorker: PluginOption = {
 			plugins: [
 				replace({
 					values: {
-						"__COMMIT_HASH__": () => getCommitHash()
+						"__SERVICE_WORKER_ASSETS__": () => JSON.stringify(bundles),
+						"__VERSION_HASH__": () => {
+							const versionHash = createHash("sha1");
+							const version = versionHash.digest("hex");
+							return JSON.stringify(version);
+						}
 					}
 				})
 			],
-			target: "es2021"
+			target: "es2022"
 		});
 	}
 };

@@ -1,2 +1,2 @@
 export { TranslationProvider, useTranslation } from "./translation.context";
-export type { Translation } from "./translation.types";
+export type { Translation } from "./translation.type";

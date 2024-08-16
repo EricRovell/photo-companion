@@ -1,8 +1,11 @@
 {
 	"background_color": "#008B8B",
 	"categories": [
+		"photography",
 		"photo",
-		"events"
+		"scheduling",
+		"events",
+		"ephemerids calculations"
 	],
 	"description": "Minimalistic photography toolkit progressive web application.",
 	"display": "standalone",
@@ -29,60 +32,6 @@
 	"orientation": "portrait",
 	"scope": "/",
 	"short_name": "Photo Companion",
-	"shortcuts": [
-		{
-			"name": "Timeline",
-			"short_name": "Timeline",
-			"description": "Timeline of events to occur",
-			"url": "/timeline",
-			"icons": [
-				{
-					"src": "/shortcut-icon-timeline.png",
-					"type": "image/png",
-					"sizes": "128x128"
-				}
-			]
-		},
-		{
-			"name": "Lights",
-			"short_name": "Lights",
-			"description": "City lights schedule",
-			"url": "/lights",
-			"icons": [
-				{
-					"src": "/shortcut-icon-lights.png",
-					"type": "image/png",
-					"sizes": "128x128"
-				}
-			]
-		},
-		{
-			"name": "Sun",
-			"short_name": "Sun",
-			"description": "Sun related data such as sunset and sunrise times for any date",
-			"url": "/sun",
-			"icons": [
-				{
-					"src": "/shortcut-icon-sun.png",
-					"type": "image/png",
-					"sizes": "128x128"
-				}
-			]
-		},
-		{
-			"name": "Moon",
-			"short_name": "Moon",
-			"description": "Moon related data such as sunset and sunrise times for any date",
-			"url": "/moon",
-			"icons": [
-				{
-					"src": "/shortcut-icon-moon.png",
-					"type": "image/png",
-					"sizes": "128x128"
-				}
-			]
-		}
-	],
 	"start_url": "/",
 	"theme_color": "#008B8B"
 }
