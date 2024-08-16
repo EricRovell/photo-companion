@@ -1,9 +1,8 @@
 import type { Accessor } from "solid-js";
 
-import type { t } from "./translation.en";
+import type { t as tEn } from "./translation.en";
+import type { t as tRu } from "./translation.ru";
 import type { UserLang } from "@lib/types";
-
-export type Translation = typeof t;
 
 export type DateFormatter = (value: Nullish<DateLike>) => string;
 export type NumberFormatter = (value: number) => string;
@@ -23,5 +22,5 @@ interface Formatters {
 export interface TranslationContextType {
 	formatters: Accessor<Formatters>;
 	lang: Accessor<UserLang>,
-	t: Accessor<Translation>;
+	t: Accessor<typeof tEn | typeof tRu>;
 }

@@ -1,6 +1,6 @@
-import type { Translation } from "./translation.types";
+import type { Translation } from "./translation.type";
 
-export const t: Translation = {
+export const t = {
 	BRIDGE_NAME_SPB: {
 		ALEXANDER_NEVSKY: "Александра Невского",
 		ANNUNCIATION: "Благовещенский",
@@ -222,4 +222,4 @@ export const t: Translation = {
 		TIMELINE: "События",
 		UPDATE: "Обновление"
 	}
-};
+} as const satisfies Translation;
