@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.25.1
+
+- Fixed missing gauge separator (apparent in Moon section);
+
 ### 2.25.0
 
 - Remove PWA quick actions;

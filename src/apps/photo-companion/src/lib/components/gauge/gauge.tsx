@@ -76,10 +76,10 @@ export function Gauge(allProps: ParentProps<GaugeProps>) {
 				<line
 					opacity="0.5"
 					stroke="var(--color-surface-1)"
-					stroke-width="0.75px"
+					stroke-width="0.5"
 					x1={0}
 					x2={0}
-					y1={-1 * r2()}
+					y1={-props.radius + props.width / 2}
 					y2={-props.radius - props.width / 2}
 				/>
 			</Show>

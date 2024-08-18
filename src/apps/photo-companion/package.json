@@ -2,7 +2,7 @@
 	"name": "photo-companion",
 	"description": "Minimalistic photography toolkit progressive web application.",
 	"private": true,
-	"version": "2.25.0",
+	"version": "2.25.1",
 	"type": "module",
 	"author": "Eric Rovell",
 	"license": "MIT",
