@@ -1,6 +1,8 @@
 import { calcDecimalDate, getTimeFromDecimalDate } from "./decimal-date";
 import { isGregorian } from "./validators";
 
+import type { JulianDay } from "../types/units";
+
 /**
  * Converts the gregorian calendar date to Julian Day.
  * 
@@ -8,7 +10,7 @@ import { isGregorian } from "./validators";
  * from beginning of the year -4712. By tradition, the Julian Day begins
  * at Greenwich mean noon.
  */
-export function toJulianDay(input: DateLike = Date.now()): number {
+export function toJulianDay(input: DateLike = Date.now()): JulianDay {
 	const date = new Date(input);
 	let year = date.getFullYear();
 	let month = date.getMonth() + 1;
@@ -44,7 +46,7 @@ export function toJulianDay(input: DateLike = Date.now()): number {
  * 
  * Note: works for gregorian dates.
  */
-export function toZeroJulianDay(input: DateLike = Date.now()): number {
+export function toZeroJulianDay(input: DateLike = Date.now()): JulianDay {
 	const date = new Date(input);
 	const year = date.getFullYear() - 1;
 	const A = Math.trunc(year / 100);
@@ -60,7 +62,7 @@ export function toZeroJulianDay(input: DateLike = Date.now()): number {
 /**
  * Modified Julian Day - begins at Greenwich mean midnight.
  */
-export function getMJD(input: DateLike = Date.now()): number {
+export function getMJD(input: DateLike = Date.now()): JulianDay {
 	return toJulianDay(input) - 2400000.5;
 }
 
@@ -70,11 +72,11 @@ export function getMJD(input: DateLike = Date.now()): number {
  * Both positive and negative years are supported,
  * but not negative Julian Day numbers.
  */
-export function fromJulianDay(julianDay: number): Date {
-	julianDay += 0.5;
+export function fromJulianDay(jd: JulianDay): Date {
+	jd += 0.5;
 
-	const Z = Math.trunc(julianDay);
-	const F = julianDay - Z;
+	const Z = Math.trunc(jd);
+	const F = jd - Z;
 
 	let A = Z;
 
