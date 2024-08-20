@@ -1,4 +1,4 @@
-import type { Degree, Hour, JulianDay, Millisecond, Radian, Second } from "./types/units";
+import type { Degree, Hour, JulianDay, Millisecond, Radian, Second } from "./types";
 
 export const HOUR_SECONDS: Second = 3600;
 export const DAY_SECONDS: Second = HOUR_SECONDS * 24;
