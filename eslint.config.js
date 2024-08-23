@@ -16,7 +16,6 @@ export default tseslint.config(
 		ignores: [
 			"**/dist/*",
 			"**/node_modules/*",
-			"**/service-worker.js",
 			"**/deprecated/*",
 			"**/bundle-dts.js"
 		]
