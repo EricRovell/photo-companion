@@ -1,7 +1,7 @@
 
 import { build } from "esbuild";
 import { replace } from "esbuild-plugin-replace";
-import { createHash } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { join } from "node:path";
 
 import type { PluginOption } from "vite";
@@ -29,11 +29,7 @@ export const compileServiceWorker: PluginOption = {
 				replace({
 					values: {
 						"__SERVICE_WORKER_ASSETS__": () => JSON.stringify(bundles),
-						"__VERSION_HASH__": () => {
-							const versionHash = createHash("sha1");
-							const version = versionHash.digest("hex");
-							return JSON.stringify(version);
-						}
+						"__VERSION_HASH__": () => JSON.stringify(randomUUID())
 					}
 				})
 			],

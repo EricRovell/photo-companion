@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.25.2
+
+- Fixed error within `service-worker` that prevented version upgrade;
+
 ### 2.25.1
 
 - Fixed missing gauge separator (apparent in Moon section);
