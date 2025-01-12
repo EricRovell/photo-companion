@@ -11,7 +11,8 @@
 		"noEmit": true,
 		"strict": true,
 		"strictNullChecks": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"noUncheckedSideEffectImports": true
 	},
 	"include": [
 		"./src/**/*.ts",

@@ -7,7 +7,6 @@ import perfectionist from "eslint-plugin-perfectionist";
 
 export default tseslint.config(
 	{
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
 		rules: eslint.configs.recommended.rules
 	},
 	...tseslint.configs.strictTypeChecked,
@@ -16,8 +15,8 @@ export default tseslint.config(
 		ignores: [
 			"**/dist/*",
 			"**/node_modules/*",
-			"**/deprecated/*",
-			"**/bundle-dts.js"
+			"**/bundle-dts.js",
+			"eslint.config.js"
 		]
 	},
 	{
@@ -69,10 +68,7 @@ export default tseslint.config(
 					"./tsconfig.node.json",
 					"./src/**/tsconfig.json",
 					"./src/**/tsconfig.test.json"
-				],
-				/* EXPERIMENTAL_useProjectService: {
-					maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 12,
-				} */
+				]
 			},
 		},
 		rules: {
@@ -98,7 +94,7 @@ export default tseslint.config(
 					],
 					newlinesBetween: "always",
 					internalPattern: [
-						"@lib/**"
+						"^@lib/*"
 					]
 				}
 			],
