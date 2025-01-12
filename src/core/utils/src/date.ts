@@ -83,12 +83,30 @@ export function dateFrom(input: DateLike = new Date(), options: DateFromOptions 
 	const output = new Date(input);
 	const { date, hours, minutes, month, seconds, year } = options;
 
-	isInteger(year) && output.setFullYear(year);
-	isInteger(month) && output.setMonth(month - 1);
-	isInteger(date) && output.setDate(date);
-	isInteger(hours) && output.setHours(hours);
-	isInteger(minutes) && output.setMinutes(minutes);
-	isInteger(seconds) && output.setSeconds(seconds);
+	if (isInteger(year)) {
+		output.setFullYear(year);
+	}
+
+	if (isInteger(month)) {
+		output.setMonth(month - 1);
+	}
+
+	if (isInteger(date)) {
+		output.setDate(date);
+	}
+
+	if (isInteger(hours)) {
+		output.setHours(hours);
+	}
+
+	if (isInteger(minutes)) {
+		output.setMinutes(minutes);
+	}
+
+	if (isInteger(seconds)) {
+		output.setSeconds(seconds);
+	}
+
 	output.setMilliseconds(0);
 
 	return output;

@@ -8,6 +8,10 @@ export class Storage<T> {
 	name: string;
 	version: number;
 
+	get key() {
+		return `${this.name}:${this.version}`;
+	}
+
 	constructor(name: string, version?: number) {
 		this.name = name;
 
@@ -52,7 +56,7 @@ export class Storage<T> {
 		if (!isNullable(storedValue)) {
 			try {
 				value = JSON.parse(storedValue);
-			} catch (error) {
+			} catch {
 				// purge the corrupted data
 				remove(key);
 			}
@@ -70,9 +74,5 @@ export class Storage<T> {
 		} else {
 			set(key, valueString);
 		}
-	}
-
-	get key() {
-		return `${this.name}:${this.version}`;
 	}
 }

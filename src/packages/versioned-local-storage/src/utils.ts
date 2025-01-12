@@ -7,7 +7,7 @@ export function get(key: string): Nullish<string> {
 
 	try {
 		value = globalThis.localStorage.getItem(key);
-	} catch (error) {
+	} catch {
 		throw new Error(LOCAL_STORAGE_ERROR);
 	}
 
@@ -17,7 +17,7 @@ export function get(key: string): Nullish<string> {
 export function set(key: string, value: string): void {
 	try {
 		globalThis.localStorage.setItem(key, value);
-	} catch (error) {
+	} catch {
 		throw new Error(LOCAL_STORAGE_ERROR);
 	}
 }
@@ -25,7 +25,7 @@ export function set(key: string, value: string): void {
 export function remove(key: string): void {
 	try {
 		globalThis.localStorage.removeItem(key);
-	} catch (error) {
+	} catch {
 		throw new Error(LOCAL_STORAGE_ERROR);
 	}
 }
@@ -33,7 +33,7 @@ export function remove(key: string): void {
 export function clear(): void {
 	try {
 		globalThis.localStorage.clear();
-	} catch (error) {
+	} catch {
 		throw new Error(LOCAL_STORAGE_ERROR);
 	}
 }

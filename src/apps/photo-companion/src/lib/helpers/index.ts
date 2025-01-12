@@ -97,13 +97,33 @@ interface DateParams {
 export function getDate({ date, hours, milliseconds, minutes, month, seconds, year }: Partial<DateParams>) {
 	const now = new Date();
 
-	(typeof year === "number") && now.setFullYear(year);
-	(typeof month === "number") && now.setMonth(month);
-	(typeof date === "number") && now.setDate(date);
-	(typeof hours === "number") && now.setHours(hours);
-	(typeof minutes === "number") && now.setMinutes(minutes);
-	(typeof seconds === "number") && now.setSeconds(seconds);
-	(typeof milliseconds === "number") && now.setMilliseconds(milliseconds);
+	if (typeof year === "number") {
+		now.setFullYear(year);
+	}
+	
+	if (typeof month === "number") {
+		now.setMonth(month);
+	}
+	
+	if (typeof date === "number") {
+		now.setDate(date);
+	}
+	
+	if (typeof hours === "number") {
+		now.setHours(hours);
+	}
+	
+	if (typeof minutes === "number") {
+		now.setMinutes(minutes);
+	}
+	
+	if (typeof seconds === "number") {
+		now.setSeconds(seconds);
+	}
+	
+	if (typeof milliseconds === "number") {
+		now.setMilliseconds(milliseconds);
+	}
 
 	return now;
 }

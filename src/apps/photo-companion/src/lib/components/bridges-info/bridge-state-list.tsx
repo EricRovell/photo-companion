@@ -37,7 +37,12 @@ export function BridgeStateList() {
 
 		for (const [ name, state ] of objectEntries(bridgesState())) {
 			const label = t().BRIDGE_NAME_SPB[name];
-			state ? liftedUp.push(label) : liftedDown.push(label);
+
+			if (state) {
+				liftedUp.push(label);
+			} else {
+				liftedDown.push(label);
+			}
 		}
 
 		return {

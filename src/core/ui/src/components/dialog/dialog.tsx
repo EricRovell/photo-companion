@@ -61,7 +61,9 @@ export function Dialog(allProps: DialogProps) {
 			handleClose();
 		}
 
-		props.preventPageScroll && preventPageScroll(props.open);
+		if (props.preventPageScroll) {
+			preventPageScroll(props.open);
+		}
 	});
 
 	return (

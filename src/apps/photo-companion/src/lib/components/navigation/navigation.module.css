@@ -46,7 +46,7 @@
 
 .link {
 	position: relative;
-	scroll-snap-align: left;
+	scroll-snap-align: start;
 	color: var(--color-text-secondary);
 	display: flex;
 	place-content: center;
