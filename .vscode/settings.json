@@ -20,11 +20,15 @@
 		"cy",
 		"r"
 	],
-  "cSpell.language": "en,ru,en-US,ru-RU",
-  "cSpell.words": [
-    "cведены",
-    "Большеохтинского",
-    "Гренадёрского",
-    "Темнейший"
-  ]
+	//"typescript.referencesCodeLens.enabled": true,
+	"cSpell.language": "en,ru,en-US,ru-RU",
+	"cSpell.words": [
+		"cведены",
+		"Большеохтинского",
+		"Гренадёрского",
+		"Темнейший"
+	],
+	"catppuccin-icons.associations.extensions": {
+		"tsx": "solid"
+	},
 }
