@@ -1,15 +1,14 @@
 {
 	"compilerOptions": {
-		"composite": true,
-		"skipLibCheck": true,
+		"target": "ESNext",
 		"module": "ESNext",
+		"esModuleInterop": true,
 		"moduleResolution": "bundler",
-		"allowSyntheticDefaultImports": true,
 		"strict": true
 	},
 	"include": [
-		"./src",
+		"./src/**/*.ts",
 		"./test",
-		"../../../global.d.ts"
+		"../../global.d.ts"
 	]
 }

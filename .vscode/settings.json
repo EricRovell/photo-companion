@@ -3,24 +3,20 @@
 		"**/.git": true,
 	},
 	"search.exclude": {
-		"**/node_modules": true,
-		"**/deprecated": true
+		"**/node_modules": true
 	},
 	"files.associations": {
 		"*.mdx": "markdown"
 	},
 	"eslint.experimental.useFlatConfig": true,
 	"eslint.workingDirectories": [
-		"./src/apps/*",
-		"./src/core/*",
-		"./src/packages/*"
+		"./packages/*"
 	],
 	"css.lint.validProperties": [
 		"cx",
 		"cy",
 		"r"
 	],
-	//"typescript.referencesCodeLens.enabled": true,
 	"cSpell.language": "en,ru,en-US,ru-RU",
 	"cSpell.words": [
 		"cведены",
@@ -30,5 +26,5 @@
 	],
 	"catppuccin-icons.associations.extensions": {
 		"tsx": "solid"
-	},
+	}
 }

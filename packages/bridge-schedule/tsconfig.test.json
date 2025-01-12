@@ -9,6 +9,6 @@
 	"include": [
 		"./src/*.ts",
 		"./test/*.test.ts",
-		"../../../global.d.ts"
+		"../../global.d.ts"
 	]
 }

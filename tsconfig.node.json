@@ -10,6 +10,7 @@
 	"include": [
 		"./eslint.config.js",
 		"./vitest.config.ts",
-		"./vitest.workspace.ts"
+		"./vitest.workspace.ts",
+		"./vitest.d.ts"
 	]
 }

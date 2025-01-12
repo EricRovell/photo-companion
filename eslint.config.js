@@ -36,8 +36,8 @@ export default tseslint.config(
 				project: [
 					"./tsconfig.base.json",
 					"./tsconfig.node.json",
-					"./src/**/tsconfig.json",
-					"./src/**/tsconfig.test.json",
+					"./packages/**/tsconfig.json",
+					"./packages/**/tsconfig.test.json",
 				],
 				tsconfigRootDir: import.meta.dirname,
 				ecmaVersion: "latest"
@@ -66,8 +66,8 @@ export default tseslint.config(
 				project: [
 					"./tsconfig.base.json",
 					"./tsconfig.node.json",
-					"./src/**/tsconfig.json",
-					"./src/**/tsconfig.test.json"
+					"./packages/**/tsconfig.json",
+					"./packages/**/tsconfig.test.json"
 				]
 			},
 		},

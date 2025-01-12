@@ -14,10 +14,8 @@ on:
   workflow_call:
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -48,5 +46,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: photo-companion
-          path: ./src/apps/photo-companion/dist
+          path: ./packages/photo-companion/dist
           if-no-files-found: error

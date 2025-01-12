@@ -7,15 +7,15 @@
 	"license": "MIT",
 	"homepage": "https://github.com/EricRovell/photo-companion#readme",
 	"scripts": {
-		"build": "pnpm --filter ./src/apps/photo-companion run build",
-		"preview": "pnpm --filter ./src/apps/photo-companion run preview",
+		"build": "pnpm --filter ./packages/photo-companion run build",
+		"preview": "pnpm --filter ./packages/photo-companion run preview",
 		"clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
 		"dev": "pnpm --filter photo-companion run dev",
 		"test:unit": "vitest run",
 		"test:unit:ci": "vitest run --coverage",
 		"lint": "pnpm lint:code && pnpm lint:types && pnpm lint:styles",
 		"lint:code": "eslint",
-		"lint:styles": "npx stylelint src/**/*.css",
+		"lint:styles": "npx stylelint packages/**/*.css",
 		"lint:types": "pnpm --parallel run lint:types",
 		"eslint:inspector": "eslint --inspect-config"
 	},
@@ -43,9 +43,7 @@
 		"vitest": "^2.1.8"
 	},
 	"workspaces": [
-		"src/apps/*",
-		"src/core/*",
-		"src/packages/*"
+		"packages/*"
 	],
 	"packageManager": "pnpm@9.5.0"
 }

@@ -69,7 +69,38 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.5)(happy-dom@14.11.0)(jsdom@24.1.0)
 
-  src/apps/photo-companion:
+  packages/bridge-schedule:
+    devDependencies:
+      types:
+        specifier: workspace:*
+        version: link:../types
+      utils:
+        specifier: workspace:*
+        version: link:../utils
+
+  packages/lights-schedule:
+    devDependencies:
+      types:
+        specifier: workspace:*
+        version: link:../types
+      utils:
+        specifier: workspace:*
+        version: link:../utils
+
+  packages/moon-sun-calc:
+    dependencies:
+      esbuild:
+        specifier: ^0.19.11
+        version: 0.19.11
+      utils:
+        specifier: workspace:*
+        version: link:../utils
+    devDependencies:
+      types:
+        specifier: workspace:*
+        version: link:../types
+
+  packages/photo-companion:
     dependencies:
       '@solidjs/meta':
         specifier: ^0.29.4
@@ -79,28 +110,28 @@ importers:
         version: 0.15.2(solid-js@1.8.17)
       bridge-schedule:
         specifier: workspace:*
-        version: link:../../packages/bridge-schedule
+        version: link:../bridge-schedule
       lights-schedule:
         specifier: workspace:*
-        version: link:../../packages/lights-schedule
+        version: link:../lights-schedule
       moon-sun-calc:
         specifier: workspace:*
-        version: link:../../packages/moon-sun-calc
+        version: link:../moon-sun-calc
       solid-js:
         specifier: catalog:default
         version: 1.8.17
       types:
         specifier: workspace:*
-        version: link:../../core/types
+        version: link:../types
       ui:
         specifier: workspace:*
-        version: link:../../core/ui
+        version: link:../ui
       utils:
         specifier: workspace:*
-        version: link:../../core/utils
+        version: link:../utils
       versioned-local-storage:
         specifier: workspace:*
-        version: link:../../packages/versioned-local-storage
+        version: link:../versioned-local-storage
     devDependencies:
       '@rollup/plugin-replace':
         specifier: ^5.0.7
@@ -124,9 +155,9 @@ importers:
         specifier: ^0.6.3
         version: 0.6.3(solid-js@1.8.17)(solid-marked@0.6.3(solid-js@1.8.17))(vite@6.0.7(@types/node@22.10.5)(yaml@2.4.2))
 
-  src/core/types: {}
+  packages/types: {}
 
-  src/core/ui:
+  packages/ui:
     dependencies:
       solid-js:
         specifier: catalog:default
@@ -135,44 +166,13 @@ importers:
         specifier: workspace:*
         version: link:../utils
 
-  src/core/utils: {}
+  packages/utils: {}
 
-  src/packages/bridge-schedule:
-    devDependencies:
-      types:
-        specifier: workspace:*
-        version: link:../../core/types
-      utils:
-        specifier: workspace:*
-        version: link:../../core/utils
-
-  src/packages/lights-schedule:
-    devDependencies:
-      types:
-        specifier: workspace:*
-        version: link:../../core/types
-      utils:
-        specifier: workspace:*
-        version: link:../../core/utils
-
-  src/packages/moon-sun-calc:
-    dependencies:
-      esbuild:
-        specifier: ^0.19.11
-        version: 0.19.11
-      utils:
-        specifier: workspace:*
-        version: link:../../core/utils
-    devDependencies:
-      types:
-        specifier: workspace:*
-        version: link:../../core/types
-
-  src/packages/versioned-local-storage:
+  packages/versioned-local-storage:
     devDependencies:
       utils:
         specifier: workspace:*
-        version: link:../../core/utils
+        version: link:../utils
 
 packages:
 
@@ -1309,16 +1309,6 @@ packages:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-
-  acorn@8.11.3:
-    resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
-  acorn@8.12.1:
-    resolution: {integrity: sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
 
   acorn@8.14.0:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
@@ -3851,17 +3841,9 @@ snapshots:
       loupe: 3.1.2
       tinyrainbow: 1.2.0
 
-  acorn-jsx@5.3.2(acorn@8.11.3):
-    dependencies:
-      acorn: 8.11.3
-
   acorn-jsx@5.3.2(acorn@8.14.0):
     dependencies:
       acorn: 8.14.0
-
-  acorn@8.11.3: {}
-
-  acorn@8.12.1: {}
 
   acorn@8.14.0: {}
 
@@ -5034,8 +5016,8 @@ snapshots:
 
   micromark-extension-mdxjs@3.0.0:
     dependencies:
-      acorn: 8.11.3
-      acorn-jsx: 5.3.2(acorn@8.11.3)
+      acorn: 8.14.0
+      acorn-jsx: 5.3.2(acorn@8.14.0)
       micromark-extension-mdx-expression: 3.0.0
       micromark-extension-mdx-jsx: 3.0.0
       micromark-extension-mdx-md: 2.0.0
@@ -5680,7 +5662,7 @@ snapshots:
 
   unplugin@1.10.1:
     dependencies:
-      acorn: 8.12.1
+      acorn: 8.14.0
       chokidar: 3.6.0
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1

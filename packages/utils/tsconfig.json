@@ -1,5 +1,5 @@
 {
-	"extends": "../../../tsconfig.base.json",
+	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"target": "ESNext",
 		"module": "ESNext",
@@ -9,6 +9,6 @@
 	},
 	"include": [
 		"./src/*.ts",
-		"../../../global.d.ts"
+		"../../global.d.ts"
 	]
 }

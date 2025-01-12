@@ -13,6 +13,6 @@
 		"./src/**/*.ts",
 		"./test/*.test.ts",
 		"./test.global.ts",
-		"../../../global.d.ts"
+		"../../global.d.ts"
 	]
 }

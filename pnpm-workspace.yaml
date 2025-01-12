@@ -1,7 +1,5 @@
 packages:
-  - "src/apps/*"
-  - "src/core/*"
-  - "src/packages/*"
+  - "packages/*"
 
 catalog:
   solid-js: ^1.8.17
