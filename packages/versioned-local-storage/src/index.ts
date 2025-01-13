@@ -4,20 +4,26 @@ import { clear, get, getVersion, remove, set } from "./utils";
 
 const EMPTY_VERSION = 0;
 
-interface StorageOptions {
+interface StorageOptions<T> {
+	deserialize?: (value: string) => T;
+	serialize?: (value: T) => string;
 	version?: number;
 }
 
 export class Storage<T> {
+	deserialize: (value: string) => T;
 	name: string;
+	serialize: (value: T) => string;
 	version: number;
 
 	get key() {
 		return `${this.name}:${this.version}`;
 	}
 
-	constructor(name: string, options: StorageOptions = {}) {
+	constructor(name: string, options: StorageOptions<T> = {}) {
 		this.name = name;
+		this.deserialize = options.deserialize ?? JSON.parse;
+		this.serialize = options.serialize ?? JSON.stringify;
 
 		if (isNonNullable(options.version)) {
 			if (!isNonNegativeInteger(options.version)) {
@@ -59,7 +65,7 @@ export class Storage<T> {
 
 		if (!isNullable(storedValue)) {
 			try {
-				value = JSON.parse(storedValue);
+				value = this.deserialize(storedValue);
 			} catch {
 				// purge the corrupted data
 				remove(key);
@@ -71,7 +77,7 @@ export class Storage<T> {
 
 	write(value: T): void {
 		const key = this.key;
-		const valueString = JSON.stringify(value);
+		const valueString = this.serialize(value);
 
 		if (!valueString) {
 			remove(key);
