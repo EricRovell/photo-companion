@@ -43,14 +43,14 @@ describe("Versioned Local Storage", () => {
 
 	describe("Versioning", () => {
 		it("Accepts name and version via constructor", () => {
-			const storage = new Storage(STORAGE_NAME, STORAGE_VERSION);
-		
+			const storage = new Storage(STORAGE_NAME, { version: STORAGE_VERSION });
+
 			expect(storage.name).toBe(STORAGE_NAME);
 			expect(storage.version).toBe(STORAGE_VERSION);
 		});
 		it("Stores version number", () => {
-			new Storage(STORAGE_NAME, STORAGE_VERSION);
-	
+			new Storage(STORAGE_NAME, { version: STORAGE_VERSION });
+
 			expect(setItemSpy).toHaveBeenCalledOnce();
 			expect(setItemSpy).toBeCalledWith(STORAGE_NAME, STORAGE_VERSION_STRING);
 		});
@@ -60,16 +60,16 @@ describe("Versioned Local Storage", () => {
 				expect(key).toBe(STORAGE_NAME);
 				return STORAGE_VERSION;
 			});
-		
+
 			const storage = new Storage(STORAGE_NAME);
-			
+
 			expect(storage.version).toBe(STORAGE_VERSION);
-	
+
 			getItemSpy.mockImplementationOnce((key) => {
 				expect(key).toBe(STORAGE_VERSIONED_KEY);
 				return TEST_OBJECT_STRING;
 			});
-		
+
 			const json = storage.read();
 			expect(json).toEqual(TEST_OBJECT);
 		});
@@ -79,39 +79,39 @@ describe("Versioned Local Storage", () => {
 				expect(key).toBe(STORAGE_NAME);
 				return undefined;
 			});
-	
+
 			expect(() => new Storage(STORAGE_NAME)).toThrow();
 		});
 		it("Will throw if version is a negative number", () => {
-			expect(() => new Storage(STORAGE_NAME, -STORAGE_VERSION)).toThrow();
+			expect(() => new Storage(STORAGE_NAME, { version: -STORAGE_VERSION })).toThrow();
 		});
 		it("Will throw if existing version is corrupted", () => {
 			getItemSpy.mockImplementationOnce(key => {
 				expect(key).toBe(STORAGE_NAME);
 				return `ABC${STORAGE_VERSION}`;
 			});
-	
-			expect(() => new Storage(STORAGE_NAME, STORAGE_VERSION)).toThrow();
+
+			expect(() => new Storage(STORAGE_NAME, { version: STORAGE_VERSION })).toThrow();
 		});
 	});
 	describe("Reading", () => {
 		it("Can read object from storage", () => {
-			const storage = new Storage(STORAGE_NAME, STORAGE_VERSION);
-	
+			const storage = new Storage(STORAGE_NAME, { version: STORAGE_VERSION });
+
 			getItemSpy.mockImplementationOnce(key => {
 				expect(key).toBe(STORAGE_VERSIONED_KEY);
-	
+
 				return TEST_OBJECT_STRING;
 			});
-	
+
 			expect(storage.read()).toEqual(TEST_OBJECT);
 		});
 	});
 	describe("Writing", () => {
 		it("Can write object to storage", () => {
-			const storage = new Storage(STORAGE_NAME, STORAGE_VERSION);
+			const storage = new Storage(STORAGE_NAME, { version: STORAGE_VERSION });
 			storage.write(TEST_OBJECT);
-	
+
 			expect(setItemSpy).toBeCalledTimes(2);
 			expect(setItemSpy).toHaveBeenLastCalledWith(STORAGE_VERSIONED_KEY, TEST_OBJECT_STRING);
 		});
@@ -120,28 +120,28 @@ describe("Versioned Local Storage", () => {
 		it("Clears storage after version bumping", () => {
 			getItemSpy.mockImplementationOnce(key => {
 				expect(key).toBe(STORAGE_NAME);
-	
+
 				return STORAGE_VERSION_STRING;
 			});
-	
-			new Storage(STORAGE_NAME, STORAGE_VERSION + 1);
-	
+
+			new Storage(STORAGE_NAME, { version: STORAGE_VERSION + 1 });
+
 			expect(removeItemSpy).toHaveBeenCalledOnce();
 			expect(removeItemSpy).toHaveBeenCalledWith(STORAGE_VERSIONED_KEY);
 		});
 		it("Clears storage if data is corrupted", () => {
-			const storage = new Storage(STORAGE_NAME, STORAGE_VERSION);
-	
+			const storage = new Storage(STORAGE_NAME, { version: STORAGE_VERSION });
+
 			getItemSpy.mockImplementationOnce((key) => {
 				expect(key).toBe(STORAGE_VERSIONED_KEY);
 				return `//${STORAGE_VERSION}`;
 			});
-		
+
 			removeItemSpy.mockClear();
-	
+
 			const object = storage.read();
 			expect(object).toBeNull();
-	
+
 			expect(removeItemSpy).toHaveBeenCalledOnce();
 			expect(removeItemSpy).toHaveBeenCalledWith(STORAGE_VERSIONED_KEY);
 		});
@@ -152,18 +152,18 @@ describe("Versioned Local Storage", () => {
 	});
 	describe("Errors", () => {
 		it("setItem", () => {
-			const storage = new Storage(STORAGE_NAME, STORAGE_VERSION);
-	
+			const storage = new Storage(STORAGE_NAME, { version: STORAGE_VERSION });
+
 			setItemSpy.mockImplementationOnce(() => { throw new Error(); });
 			expect(() => storage.write(TEST_OBJECT)).toThrow();
 		});
 		it("removeItem", () => {
 			removeItemSpy.mockImplementationOnce(() => { throw new Error(); });
-			expect(() => new Storage(STORAGE_NAME, STORAGE_VERSION + 1)).toThrow();
+			expect(() => new Storage(STORAGE_NAME, { version: STORAGE_VERSION + 1 })).toThrow();
 		});
 		it("getItem", () => {
 			getItemSpy.mockImplementationOnce(() => { throw new Error(); });
-			expect(() => new Storage(STORAGE_NAME, STORAGE_VERSION)).toThrow();
+			expect(() => new Storage(STORAGE_NAME, { version: STORAGE_VERSION })).toThrow();
 		});
 		it("clear", () => {
 			clearSpy.mockImplementationOnce(() => { throw new Error(); });
