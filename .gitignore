@@ -2,7 +2,5 @@
 coverage
 dist
 node_modules
-npm-debug.log*
-pnpm-debug.log*
 tsconfig.tsbuildinfo
 vite.config.ts.timestamp*

@@ -2,7 +2,7 @@
 	"buildCommand": "npm i pnpm -g && pnpm build",
 	"cleanUrls": true,
 	"devCommand": "pnpm build && pnpm dev",
-	"framework": "svelte",
+	"framework": "solidjs",
 	"headers": [
 		{
 			"source": "/service-worker.js",
@@ -18,7 +18,7 @@
 		"enabled": false,
 		"silent": true
 	},
-	"outputDirectory": "src/apps/photo-companion/dist",
+	"outputDirectory": "packages/photo-companion/dist",
 	"rewrites": [
 		{
 			"source": "/robots.txt",

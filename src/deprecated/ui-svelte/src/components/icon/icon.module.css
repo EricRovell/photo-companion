@@ -1,6 +1,0 @@
-.icon {
-	aspect-ratio: 1 / 1;
-	width: var(--icon-size, 1em);
-	height: var(--icon-size, 1em);
-	fill: var(--icon-color, currentcolor);
-}

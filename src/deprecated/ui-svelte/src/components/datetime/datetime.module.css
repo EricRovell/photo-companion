@@ -1,7 +1,0 @@
-.datetime {
-	display: inline-flex;
-	justify-content: flex-start;
-	align-items: center;
-	font-size: var(--datetime-font-size, inherit);
-	color: var(--datetime-color, inherit);
-}

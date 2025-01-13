@@ -11,19 +11,18 @@
 		"noEmit": true,
 		"strict": true,
 		"strictNullChecks": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"noUncheckedSideEffectImports": true
 	},
 	"include": [
-		"./src/**/*.ts",
-		"./src/**/*.tsx",
-		"./src/**/*.js",
+		"./packages/**/*.ts",
+		"./packages/**/*.tsx",
+		"./packages/**/*.js",
 		"**/*.d.ts",
-		"./global.d.ts",
-		"./vitest.d.ts"
+		"./global.d.ts"
 	],
 	"exclude": [
-		"node_modules/",
-		"./src/deprecated",
-		"**/dist/"
+		"node_modules",
+		"**/dist"
 	]
 }

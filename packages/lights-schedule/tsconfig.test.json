@@ -8,9 +8,8 @@
 		"strict": true
 	},
 	"include": [
-		"./eslint.config.js",
-		"./vitest.config.ts",
-		"./vitest.workspace.ts",
-		"./vitest.d.ts"
+		"./src",
+		"./test",
+		"../../global.d.ts"
 	]
 }

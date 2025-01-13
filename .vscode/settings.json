@@ -3,28 +3,28 @@
 		"**/.git": true,
 	},
 	"search.exclude": {
-		"**/node_modules": true,
-		"**/deprecated": true
+		"**/node_modules": true
 	},
 	"files.associations": {
 		"*.mdx": "markdown"
 	},
 	"eslint.experimental.useFlatConfig": true,
 	"eslint.workingDirectories": [
-		"./src/apps/*",
-		"./src/core/*",
-		"./src/packages/*"
+		"./packages/*"
 	],
 	"css.lint.validProperties": [
 		"cx",
 		"cy",
 		"r"
 	],
-  "cSpell.language": "en,ru,en-US,ru-RU",
-  "cSpell.words": [
-    "cведены",
-    "Большеохтинского",
-    "Гренадёрского",
-    "Темнейший"
-  ]
+	"cSpell.language": "en,ru,en-US,ru-RU",
+	"cSpell.words": [
+		"cведены",
+		"Большеохтинского",
+		"Гренадёрского",
+		"Темнейший"
+	],
+	"catppuccin-icons.associations.extensions": {
+		"tsx": "solid"
+	}
 }

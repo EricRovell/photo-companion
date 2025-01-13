@@ -8,34 +8,13 @@ Minimalistic photography toolkit progressive web application.
 
 This is a monorepo containing `Photo companion` web-application and it's supporting packages based on workspaces. Each workspace has it's own **README** file with more details.
 
-All packages are broken into 4 categories.
-
-### `src/apps/*`
-
-This directory contains web-applications packages. Right now it contains the only [`photo-companion`][app-photo-companion] package itself.
-
-### `src/core/*`
-
-This directory contains core packages used within monorepo.
-
+- [`bridge-schedule`][bridge-schedule] — Saint-Petersburg bridges schedule provider;
+- [`lights-schedule`][lights-schedule] — city lights schedule provider;
+- [`moon-sun-calc`][moon-sun-calc] — the Sun and the Moon calculations;
+- [`photo-companion`][photo-companion-repo] — the main web-app;
 - `types` — common project types;
 - `ui` — core UI components and helpers;
-- [`utils`][package-utils] — common project utility functions;
-- 
-### `src/deprecated/*`
-
-This directory contains deprecated apps and packages.
-
-- `photo-companion-svelte` — `Svelte JS` implementation of `photo-companion-app`, `Solid JS` is used instead;
-- `ui-svelte` — core UI components and helpers based on `Svelte JS`;
-
-### `src/packages/*`
-
-This directory contains independent packages used to build web-applications.
-
-- [`bridge-schedule`][package-bridge-schedule] — Saint-Petersburg bridges schedule provider;
-- [`lights-schedule`][package-lights-schedule] — city lights schedule provider;
-- [`moon-sun-calc`][package-moon-sun-calc] — the Sun and the Moon calculations;
+- [`utils`][utils] — common project utility functions;
 - [`versioned-local-storage`][package-versioned-local-storage] — browser local storage with versioning;
 
 ## Developing
@@ -80,9 +59,9 @@ The environment should be specified in `vitest.config.ts` file.
 2. To run a particular test suite, use `pnpm test:unit <suite-name>`, for example `pnpm test:unit moon`;
 
 [photo-companion]: https://photo-companion.vercel.app
-[app-photo-companion]: https://github.com/EricRovell/photo-companion/tree/main/src/apps/photo-companion
-[package-bridge-schedule]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/bridge-schedule
-[package-lights-schedule]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/lights-schedule
-[package-moon-sun-calc]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/moon-sun-calc
-[package-versioned-local-storage]: https://github.com/EricRovell/photo-companion/tree/main/src/packages/versioned-local-storage
-[package-utils]: https://github.com/EricRovell/photo-companion/tree/main/src/core/utils
+[photo-companion-repo]: https://github.com/EricRovell/photo-companion/tree/main/packages/photo-companion
+[bridge-schedule]: https://github.com/EricRovell/photo-companion/tree/main/packages/bridge-schedule
+[lights-schedule]: https://github.com/EricRovell/photo-companion/tree/main/packages/lights-schedule
+[moon-sun-calc]: https://github.com/EricRovell/photo-companion/tree/main/packages/moon-sun-calc
+[versioned-local-storage]: https://github.com/EricRovell/photo-companion/tree/main/packages/versioned-local-storage
+[utils]: https://github.com/EricRovell/photo-companion/tree/main/packages/utils
