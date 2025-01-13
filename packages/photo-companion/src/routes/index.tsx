@@ -17,7 +17,6 @@ import { PageTimeline } from "./timeline/timeline.page";
 
 const Page404 = lazy(() => import("./404/404.page"));
 const PageAbout = lazy(() => import("./about/about.page"));
-const PageChangelog = lazy(() => import("./changelog/changelog.page"));
 
 const WITH_DATE_ROUTES = [
 	ROUTE.ROOT,
@@ -44,7 +43,6 @@ export const Routes = () => (
 		</Route>
 		<Route component={PageSettings} path={ROUTE.SETTINGS} />
 		<Route component={PageAbout} path={ROUTE.ABOUT} />
-		<Route component={PageChangelog} path={ROUTE.CHANGELOG} />
 		<Route component={Page404} path={[ ROUTE.NOT_FOUND, "*404" ]} />
 	</Router>
 );

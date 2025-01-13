@@ -21,11 +21,6 @@ export const PAGE_META: PageMetaDict = {
 		KEYWORDS: [ "bridges", "drawbridges", "saint-petersburg", "schedule" ],
 		TITLE: [ "St. Petersburg Drawbridges", "Photo-Companion" ]
 	},
-	"/changelog": {
-		DESCRIPTION: "Changelog",
-		KEYWORDS: [ "changelog" ],
-		TITLE: [ "Changelog", "Photo-Companion" ]
-	},
 	"/lights": {
 		DESCRIPTION: "City Lights",
 		KEYWORDS: [ "city lights", "schedule" ],

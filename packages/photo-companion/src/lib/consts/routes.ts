@@ -3,7 +3,7 @@ export const URL_COMMIT_HASH = "https://github.com/ericrovell/photo-companion/co
 
 export const ROUTE_ABOUT = "/about";
 export const ROUTE_BRIDGES = "/bridges";
-export const ROUTE_CHANGELOG = "/changelog";
+export const ROUTE_CHANGELOG = "https://github.com/EricRovell/photo-companion/tree/main/packages/photo-companion/CHANGELOG.md";
 export const ROUTE_LIGHTS = "/lights";
 export const ROUTE_MOON = "/moon";
 export const ROUTE_NOW = "/now";
@@ -28,7 +28,7 @@ export const ROUTE = {
 } as const;
 
 export type ROUTE_LABEL = Exclude<keyof typeof ROUTE, "NOT_FOUND" | "ROOT">;
-export type ROUTE_VALUE = typeof ROUTE[keyof typeof ROUTE];
+export type ROUTE_VALUE = typeof ROUTE[Exclude<keyof typeof ROUTE, "CHANGELOG">];
 
 /**
  * Routes that define an app-feature section.

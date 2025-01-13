@@ -21,11 +21,6 @@ export const PAGE_META: PageMetaDict = {
 		KEYWORDS: [ "мосты", "разводные мосты", "санкт-петербург", "расписание" ],
 		TITLE: [ "Разводные мосты г.Санкт-Петербурга", "Photo-Companion" ]
 	},
-	"/changelog": {
-		DESCRIPTION: "История изменений",
-		KEYWORDS: [ "история изменений", "нововведения" ],
-		TITLE: [ "История изменений", "Photo-Companion" ]
-	},
 	"/lights": {
 		DESCRIPTION: "Городское освещение",
 		KEYWORDS: [ "городское освещение", "расписание" ],
