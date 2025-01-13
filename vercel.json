@@ -2,7 +2,7 @@
 	"buildCommand": "npm i pnpm -g && pnpm build",
 	"cleanUrls": true,
 	"devCommand": "pnpm build && pnpm dev",
-	"framework": "solidjs",
+	"framework": "svelte",
 	"headers": [
 		{
 			"source": "/service-worker.js",
