@@ -4,6 +4,10 @@ import { clear, get, getVersion, remove, set } from "./utils";
 
 const EMPTY_VERSION = 0;
 
+interface StorageOptions {
+	version?: number;
+}
+
 export class Storage<T> {
 	name: string;
 	version: number;
@@ -12,24 +16,24 @@ export class Storage<T> {
 		return `${this.name}:${this.version}`;
 	}
 
-	constructor(name: string, version?: number) {
+	constructor(name: string, options: StorageOptions = {}) {
 		this.name = name;
 
-		if (isNonNullable(version)) {
-			if (!isNonNegativeInteger(version)) {
-				throw new Error(`version should be a non-negative integer: ${version} was provided`);
+		if (isNonNullable(options.version)) {
+			if (!isNonNegativeInteger(options.version)) {
+				throw new Error(`version should be a non-negative integer: ${options.version} was provided`);
 			}
 
-			this.version = version;
+			this.version = options.version;
 			const previousVersion = getVersion(name, EMPTY_VERSION);
 
 			if (isNaN(previousVersion)) {
 				throw new Error(`The previous version for ${name} is broken: ${previousVersion}`);
 			}
 
-			if (version > previousVersion) {
+			if (this.version > previousVersion) {
 				remove(`${name}:${previousVersion}`);
-				set(name, version.toString(10));
+				set(name, this.version.toString(10));
 			}
 
 			return;

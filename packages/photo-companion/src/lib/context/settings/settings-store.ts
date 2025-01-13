@@ -9,10 +9,9 @@ import {
 
 import type { SettingsStore } from ".";
 
-export const storage = new Storage(
-	SETTINGS_LOCAL_STORAGE_KEY,
-	SETTINGS_LOCAL_STORAGE_VERSION
-);
+export const storage = new Storage(SETTINGS_LOCAL_STORAGE_KEY, {
+	version: SETTINGS_LOCAL_STORAGE_VERSION
+});
 
 export const [ settings, setSettings ] = createSignal<SettingsStore>(SETTINGS_DEFAULT);
 
