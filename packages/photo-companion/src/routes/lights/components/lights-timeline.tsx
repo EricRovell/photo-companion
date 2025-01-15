@@ -5,7 +5,8 @@ import type { EventName } from "types";
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTE } from "@lib/consts";
 import { useCityLights } from "@lib/context/city-lights";
-import { useDatetime, useLocation, useTimelineProvider } from "@lib/hooks";
+import { useSettings } from "@lib/context/settings";
+import { useDatetime, useTimelineProvider } from "@lib/hooks";
 
 import { getSunEvents } from "../../../services/sun";
 
@@ -23,7 +24,7 @@ const SECONDARY_EVENT_SET = new Set<EventName>([
 
 export function LightsTimeline() {
 	const { getDatetime } = useDatetime();
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 	const { getEventsByDate } = useCityLights();
 	const { getTimeline } = useTimelineProvider({
 		predicate: event => TIMELINE_EVENT_SET.has(event.name),
@@ -39,7 +40,7 @@ export function LightsTimeline() {
 		]
 	});
 
-	const events = () => getTimeline(getDatetime(), getLatitude(), getLongitude());
+	const events = () => getTimeline(getDatetime(), settings.latitude, settings.longitude);
 
 	return (
 		<section data-label="timeline">

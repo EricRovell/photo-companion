@@ -4,7 +4,8 @@ import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTE } from "@lib/consts";
-import { useLocation, useTimelineProvider } from "@lib/hooks";
+import { useSettings } from "@lib/context/settings";
+import { useTimelineProvider } from "@lib/hooks";
 
 import { getMoonEvents } from "../../services/moon";
 import { getSunEvents } from "../../services/sun";
@@ -26,7 +27,7 @@ const SECONDARY_EVENT_SET = new Set<EventName>([
 ]);
 
 export function MoonTimeline(props: MoonTimelineProps) {
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 
 	const { getTimeline } = useTimelineProvider({
 		predicate: event => TIMELINE_EVENT_SET.has(event.name),
@@ -43,7 +44,7 @@ export function MoonTimeline(props: MoonTimelineProps) {
 	});
 
 	const events = createMemo(() => {
-		return getTimeline(props.date, getLatitude(), getLongitude());
+		return getTimeline(props.date, settings.latitude, settings.longitude);
 	});
 
 	return (

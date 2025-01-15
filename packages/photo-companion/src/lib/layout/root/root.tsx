@@ -7,7 +7,6 @@ import { Bulb, LinkQuery, Navigation, PageMeta } from "@lib/components";
 import { TITLE, VERSION } from "@lib/consts";
 import { ROUTE_CHANGELOG, URL_GITHUB_REPO } from "@lib/consts";
 import { useSettings } from "@lib/context/settings";
-import { useLocation } from "@lib/hooks";
 
 import styles from "./root.module.css";
 
@@ -46,13 +45,13 @@ const Footer = () => (
 
 export const Root = (props: ParentProps) => {
 	const [ searchParams, setSearchParams ] = useSearchParams();
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 
 	createEffect(() => {
 		if (isNullable(searchParams.latitude) || isNullable(searchParams.longitude)) {
 			setSearchParams({
-				latitude: getLatitude(),
-				longitude: getLongitude()
+				latitude: settings.latitude,
+				longitude: settings.longitude
 			});
 		}
 	});

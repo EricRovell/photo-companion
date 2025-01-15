@@ -2,7 +2,8 @@ import { For } from "solid-js";
 
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTE_SUN } from "@lib/consts";
-import { useLocation, useTimelineProvider } from "@lib/hooks";
+import { useSettings } from "@lib/context/settings";
+import { useTimelineProvider } from "@lib/hooks";
 
 import { getSunEvents } from "../../services/sun";
 
@@ -11,7 +12,7 @@ interface SunTimelineProps {
 }
 
 export function SunTimeline(props: SunTimelineProps) {
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 	const { getTimeline } = useTimelineProvider({
 		providers: [
 			{
@@ -21,7 +22,7 @@ export function SunTimeline(props: SunTimelineProps) {
 		]
 	});
 
-	const events = () => getTimeline(props.date, getLatitude(), getLongitude());
+	const events = () => getTimeline(props.date, settings.latitude, settings.longitude);
 
 	return (
 		<section data-label="timeline">
