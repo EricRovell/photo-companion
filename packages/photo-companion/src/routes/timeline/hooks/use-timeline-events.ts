@@ -10,41 +10,47 @@ import { getMoonEvents } from "../../../services/moon";
 import { getSunEvents } from "../../../services/sun";
 import { useTimelineFilters } from "./use-timeline-filters";
 
-/* 
+/*
 	TODO: think about code-splitting,
 	as some providers can be deactivated or not available,
 	but the code is loaded nevertheless.
 */
 
 export function useTimelineEvents() {
+	const { settings } = useSettings();
+
 	const timelineFilterSet = useTimelineFilters();
-	const { getSettings } = useSettings();
 	const { getEventsByDate } = useCityLights();
 	const { getTimestamp } = useDatetime();
 
 	const supportsLights = useSupportsLights();
 	const supportsBridges = useSupportsBridges();
 
+	const hasNoBridgeEvents = () => isNullable(settings.events_bridges_spb);
+	const hasNoLightsEvents = () => isNullable(settings.events_lights);
+	const hasNoSunEvents = () => isNullable(settings.events_sun);
+	const hasNoMoonEvents = () => isNullable(settings.events_moon);
+
 	const provider = useTimelineProvider({
-		predicate: event => !timelineFilterSet.has(event.name) && event.timestamp >= getTimestamp(),
+		predicate: event => !timelineFilterSet().has(event.name) && event.timestamp >= getTimestamp(),
 		providers: [
 			{
-				disabled: !supportsBridges() || isNullable(getSettings().events_bridges_spb),
+				disabled: !supportsBridges() || hasNoBridgeEvents(),
 				provider: getBridgeEvents,
 				type: "DATE"
 			},
 			{
-				disabled: !supportsLights() || isNullable(getSettings().events_lights),
+				disabled: !supportsLights() || hasNoLightsEvents(),
 				provider: getEventsByDate,
 				type: "DATE"
 			},
 			{
-				disabled: isNullable(getSettings().events_moon),
+				disabled: hasNoMoonEvents(),
 				provider: getMoonEvents,
 				type: "LOCATION"
 			},
 			{
-				disabled: isNullable(getSettings().events_sun),
+				disabled: hasNoSunEvents(),
 				provider: getSunEvents,
 				type: "LOCATION"
 			}

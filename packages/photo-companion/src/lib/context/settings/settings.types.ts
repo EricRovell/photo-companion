@@ -1,4 +1,4 @@
-import type { Accessor, Setter } from "solid-js";
+import type { SetStoreFunction } from "solid-js/store";
 import type {
 	BridgeEventName,
 	City,
@@ -12,9 +12,9 @@ import type { UserLang } from "@lib/types";
 
 /**
  * Events:
- * 
+ *
  * `key` is an event group name.
- * 
+ *
  *  `value` is:
  *  1. Empty array — all events are allowed for this group;
  *  2. `null` — all events are forbidden for this group;
@@ -33,9 +33,9 @@ export interface SettingsStore {
 }
 
 export interface SettingsContextType {
-	readonly getSettings: Accessor<SettingsStore>;
 	readonly resetSettings: () => void;
-	readonly setSettings: Setter<SettingsStore>;
+	readonly setSettings: SetStoreFunction<SettingsStore>;
+	readonly settings: SettingsStore;
 }
 
 export interface CitySettingsPreset extends Pick<SettingsStore, "city" | "latitude" | "longitude"> {

@@ -1,3 +1,4 @@
+import { createMemo } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import type { EventName } from "types";
@@ -8,19 +9,30 @@ import { useSettings } from "@lib/context/settings";
  * Returns a Set of user blocked timeline events.
  */
 export function useTimelineFilters() {
-	const { getSettings } = useSettings();
-	const eventBlockSet = new Set<EventName>();
-	const { events_bridges_spb, events_lights, events_moon, events_sun } = getSettings();
+	const { settings } = useSettings();
 
-	for (const events of [ events_bridges_spb, events_lights, events_moon, events_sun]) {
-		if (isNullable(events)) {
-			continue;
+	const getEventBlockSet = createMemo(() => {
+		const eventBlockSet = new Set<EventName>();
+
+		const eventGroups = [
+			settings.events_bridges_spb,
+			settings.events_lights,
+			settings.events_moon,
+			settings.events_sun
+		];
+
+		for (const events of eventGroups) {
+			if (isNullable(events)) {
+				continue;
+			}
+
+			for (const event of events) {
+				eventBlockSet.add(event);
+			}
 		}
 
-		for (const event of events) {
-			eventBlockSet.add(event);
-		}
-	}
+		return eventBlockSet;
+	});
 
-	return eventBlockSet;
+	return getEventBlockSet;
 }

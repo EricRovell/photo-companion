@@ -12,8 +12,8 @@ import { useLocation } from "@lib/hooks";
 import styles from "./root.module.css";
 
 function Header() {
-	const { getSettings } = useSettings();
-	const getMainTabHref = () => `/${getSettings().tabs[0].toLowerCase()}`;
+	const { settings } = useSettings();
+	const getMainTabHref = () => `/${settings.tabs[0].toLowerCase()}`;
 
 	return (
 		<header class={styles.header}>
@@ -33,7 +33,7 @@ const Footer = () => (
 	<footer class={styles.footer}>
 		<div class={styles.content}>
 			<p>
-				{TITLE}, <Link href={ROUTE_CHANGELOG}>v.{VERSION}</Link> 
+				{TITLE}, <Link href={ROUTE_CHANGELOG}>v.{VERSION}</Link>
 				<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">#__COMMIT_HASH__</Link>
 			</p>
 			<Link href={URL_GITHUB_REPO}>

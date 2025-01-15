@@ -17,12 +17,11 @@ interface CityLightsContextType extends Omit<LightsProvider, "city" | "year"> {
 const CityLightsContext = createContext<CityLightsContextType>();
 
 export function CityLightsProvider(props: ParentProps) {
-	const { getSettings } = useSettings();
+	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
-	const city = () => getSettings().city;
 	// @ts-expect-error TODO: manage type for fallback
-	const getCityLightsProvider = createMemo(() => initLightsProvider(city()));
+	const getCityLightsProvider = createMemo(() => initLightsProvider(settings.city));
 
 	const getYear = () => getCityLightsProvider().year;
 	const getCity = () => getCityLightsProvider().city;

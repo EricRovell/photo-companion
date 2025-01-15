@@ -3,15 +3,11 @@ import { isSupportedCity } from "lights-schedule";
 import { useSettings } from "@lib/context/settings";
 
 export function useSupportsLights() {
-	const { getSettings } = useSettings();
-	const supports = () => isSupportedCity(getSettings().city);
-
-	return supports;
+	const { settings } = useSettings();
+	return () => isSupportedCity(settings.city);
 }
 
 export function useSupportsBridges() {
-	const { getSettings } = useSettings();
-	const supportsBridges = () => getSettings().city === "SAINT_PETERSBURG";
-
-	return supportsBridges;
+	const { settings } = useSettings();
+	return () => settings.city === "SAINT_PETERSBURG";
 }
