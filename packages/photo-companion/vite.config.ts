@@ -2,6 +2,7 @@ import replace from "@rollup/plugin-replace";
 import * as child from "child_process";
 import { resolve } from "node:path";
 import pluginPostCssNesting from "postcss-nesting";
+import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import solidMarkedPlugin from "vite-plugin-solid-marked";
@@ -35,7 +36,8 @@ export default defineConfig({
 		}),
 		solid({ extensions: [ ".md" ] }),
 		solidMarkedPlugin({}),
-		compileServiceWorker
+		compileServiceWorker,
+		visualizer()
 	],
 	resolve: {
 		alias: {
