@@ -1,7 +1,7 @@
 import { createMemo } from "solid-js";
 import { isSameDay } from "utils/date";
 
-import { useLocation } from "@lib/hooks";
+import { useSettings } from "@lib/context/settings";
 
 import { createPathBuilder } from "./elevation-graph.helpers";
 
@@ -19,11 +19,11 @@ const MEMO_OPTIONS = {
 };
 
 export function GraphPath(props: Props) {
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 	const buildPath = () => createPathBuilder(props.getAltitude);
 
 	const path = createMemo(() => {
-		return buildPath()(props.date, getLatitude(), getLongitude());
+		return buildPath()(props.date, settings.latitude, settings.longitude);
 	}, MEMO_OPTIONS);
 
 	return (

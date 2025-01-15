@@ -1,7 +1,7 @@
 import { createMemo, mergeProps } from "solid-js";
 
+import { useSettings } from "@lib/context/settings";
 import { setAttribute } from "@lib/helpers";
-import { useLocation } from "@lib/hooks";
 
 import { createObjectCoordsGetter } from "./elevation-graph.helpers";
 
@@ -21,12 +21,10 @@ const DEFAULT_PROPS = {
 
 export function GraphPointer(allProps: Props) {
 	const props = mergeProps(DEFAULT_PROPS, allProps);
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 
 	const getPosition = () => createObjectCoordsGetter(props.getAltitude);
-	const position = createMemo(() => {
-		return getPosition()(props.date, getLatitude(), getLongitude());
-	});
+	const position = createMemo(() => getPosition()(props.date, settings.latitude, settings.longitude));
 
 	return (
 		<circle

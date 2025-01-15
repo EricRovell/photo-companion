@@ -6,8 +6,9 @@ import type { EventGroupName } from "types";
 
 import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "@lib/components";
 import { CityLightsProvider } from "@lib/context/city-lights";
+import { useSettings } from "@lib/context/settings";
 import { useTranslation } from "@lib/context/translation";
-import { useDatetime, useLocation } from "@lib/hooks";
+import { useDatetime } from "@lib/hooks";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
 
@@ -54,7 +55,7 @@ function Events(props: EventsProps) {
 
 function EventTimeline() {
 	const { getDatetime } = useDatetime();
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 	const { getTimeline } = useTimelineEvents();
 	const disabled = useDisabledTimeline();
 
@@ -64,11 +65,11 @@ function EventTimeline() {
 		return [
 			{
 				date: getDatetime(),
-				items: getTimeline(getDatetime(), getLatitude(), getLongitude())
+				items: getTimeline(getDatetime(), settings.latitude, settings.longitude)
 			},
 			{
 				date: tomorrow,
-				items: getTimeline(tomorrow, getLatitude(), getLongitude())
+				items: getTimeline(tomorrow, settings.latitude, settings.longitude)
 			}
 		];
 	};

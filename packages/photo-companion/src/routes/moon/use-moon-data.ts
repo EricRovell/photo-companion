@@ -6,8 +6,9 @@ import { round } from "utils/math";
 import type { MoonIllumination } from "moon-sun-calc/src/moon/types";
 import type { MoonPhaseName } from "types";
 
+import { useSettings } from "@lib/context/settings";
 import { useTranslation } from "@lib/context/translation";
-import { useDatetime, useLocation } from "@lib/hooks";
+import { useDatetime } from "@lib/hooks";
 
 export interface MoonData {
 	altitude: string;
@@ -33,15 +34,15 @@ interface Output {
 }
 
 export function useMoonData(): Output {
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 	const { formatters } = useTranslation();
 
 	const data = createMemo(() => ({
 		illumination: getMoonIllumination(getDatetime(), true),
 		phases: getMoonPhases(getDatetime()),
-		position: getMoonPosition(getDatetime(), getLatitude(), getLongitude(), true),
-		times: getMoonTimes(getDatetime(), getLatitude(), getLongitude())
+		position: getMoonPosition(getDatetime(), settings.latitude, settings.longitude, true),
+		times: getMoonTimes(getDatetime(), settings.latitude, settings.longitude)
 	}));
 
 	const getMoonData = () => {

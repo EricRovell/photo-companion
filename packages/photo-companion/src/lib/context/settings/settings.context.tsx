@@ -1,39 +1,44 @@
-import { createContext, createEffect, createSignal, type ParentProps, useContext } from "solid-js";
+import { createContext, type ParentProps, useContext } from "solid-js";
+import { createStore, reconcile, unwrap } from "solid-js/store";
 import { isNullable } from "utils/validators";
+import { Storage } from "versioned-local-storage";
 
-import { storage } from "./settings-store";
-import { SETTINGS_DEFAULT } from "./settings.const";
+import {
+	SETTINGS_DEFAULT,
+	SETTINGS_LOCAL_STORAGE_KEY,
+	SETTINGS_LOCAL_STORAGE_VERSION
+} from "./settings.const";
 
 import type { SettingsContextType, SettingsStore } from "./settings.types";
+
+export const storage = new Storage(SETTINGS_LOCAL_STORAGE_KEY, {
+	version: SETTINGS_LOCAL_STORAGE_VERSION
+});
 
 const SettingsContext = createContext<SettingsContextType>();
 
 export function SettingsProvider(props: ParentProps) {
-	const [ getSettings, setSettings ] = createSignal<SettingsStore>({
+	const [ settings, setSettings ] = createStore<SettingsStore>({
 		...SETTINGS_DEFAULT,
 		...storage.read() ?? {}
 	});
 
 	function resetSettings(): void {
-		setSettings(SETTINGS_DEFAULT);
+		setSettings(reconcile(SETTINGS_DEFAULT));
+		storage.write({ ...unwrap(settings) });
 	}
 
-	/* onMount(() => {
-		setSettings({
-			...SETTINGS_DEFAULT,
-			...storage.read() ?? {}
-		});
-	}); */
-
-	createEffect(() => {
-		storage.write(getSettings());
-	});
+	const setSettingsWithEffect: typeof setSettings = (...args: unknown[]) => {
+		// @ts-expect-error: types are fine
+		setSettings(...args);
+		storage.write({ ...unwrap(settings) });
+	};
 
 	return (
 		<SettingsContext.Provider value={{
-			getSettings,
 			resetSettings,
-			setSettings
+			setSettings: setSettingsWithEffect,
+			settings
 		}}>
 			{props.children}
 		</SettingsContext.Provider>

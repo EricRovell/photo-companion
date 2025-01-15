@@ -24,8 +24,9 @@ const TRANSLATIONS = {
 };
 
 export function TranslationProvider(props: ParentProps) {
-	const { getSettings } = useSettings();
-	const lang = () => getSettings().language;
+	const { settings } = useSettings();
+
+	const lang = () => settings.language;
 
 	const [ t ] = createResource(lang, async () => {
 		const dict = await TRANSLATIONS[lang()]();

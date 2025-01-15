@@ -3,8 +3,9 @@ import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 
+import { useSettings } from "@lib/context/settings";
 import { useTranslation } from "@lib/context/translation";
-import { useDatetime, useLocation } from "@lib/hooks";
+import { useDatetime } from "@lib/hooks";
 
 export interface SunData {
 	blueHourDawn: string;
@@ -29,15 +30,15 @@ interface Output {
 }
 
 export function useSunData(): Output {
-	const { getLatitude, getLongitude } = useLocation();
+	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 	const { formatters } = useTranslation();
 
 	const data = createMemo(() => {
-		const suntimes = getSunTimes(getDatetime(), getLatitude(), getLongitude());
+		const suntimes = getSunTimes(getDatetime(), settings.latitude, settings.longitude);
 
 		return {
-			position: getSunPosition(getDatetime(), getLatitude(), getLongitude(), true),
+			position: getSunPosition(getDatetime(), settings.latitude, settings.longitude, true),
 			sunrise: suntimes.SUNRISE_START.timestamp,
 			sunset: suntimes.SUNSET_END.timestamp,
 			suntimes
