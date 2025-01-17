@@ -6,12 +6,14 @@ import { createEffect, createSignal, on, onCleanup } from "solid-js";
 import { isServer } from "solid-js/web";
 import { cubicInOut, type EasingFn } from "utils/easing";
 
+import type { Accessor} from "solid-js";
+
 export interface TweenedProps {
 	duration?: number;
 	ease?: EasingFn;
 }
 
-type CreateTweened = (target: () => number, options?: TweenedProps) => () => number
+type CreateTweened = (target: Accessor<number>, options?: TweenedProps) => Accessor<number>
 
 const DEFAULT_OPTIONS = {
 	duration: 400,
@@ -20,7 +22,7 @@ const DEFAULT_OPTIONS = {
 
 /**
  * Creates a tween signal.
- * 
+ *
  */
 export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) => {
 	if (isServer) {
@@ -46,23 +48,16 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 		}
 	}
 
-	createEffect(
-		on(
-			target,
-			() => {
-				start = performance.now();
-				startValue = value();
-				delta = target() - startValue;
-				frameId = requestAnimationFrame(tick);
-				onCleanup(() => {
-					cancelAnimationFrame(frameId);
-				});
-			},
-			{
-				defer: true
-			}
-		)
-	);
+	createEffect(on(target, () => {
+		start = performance.now();
+		startValue = value();
+		delta = target() - startValue;
+		frameId = requestAnimationFrame(tick);
+
+		onCleanup(() => {
+			cancelAnimationFrame(frameId);
+		});
+	}, { defer: true }));
 
 	return value;
 };
