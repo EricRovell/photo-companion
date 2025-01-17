@@ -9,18 +9,19 @@
 	dt {
 		text-align: left;
 	}
+}
 
-	ul {
-		list-style: none;
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-2);
-	}
+.list {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+	justify-content: flex-end;
 
 	li {
 		background-color: var(--color-surface-2);
 		padding: var(--space-1) var(--space-2);
 		border-radius: var(--radius);
-		font-size: var(--font-size-1);
+		font-size: var(--font-size-2);
 	}
 }

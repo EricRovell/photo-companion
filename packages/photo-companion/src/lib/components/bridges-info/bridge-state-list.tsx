@@ -15,7 +15,7 @@ interface BridgeListProps {
 }
 
 const BridgeNameList = (props: BridgeListProps) => (
-	<ul>
+	<ul class={styles.list}>
 		<For each={props.bridges}>
 			{bridgeName => <li>{bridgeName}</li>}
 		</For>
