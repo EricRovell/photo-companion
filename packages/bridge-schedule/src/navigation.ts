@@ -2,6 +2,8 @@ import { countDays } from "utils/date";
 
 import { schedule } from "./schedule";
 
+import type { NavigationState } from "./types";
+
 /**
  * Drawbridges are functional within a so called navigation period when the rivers are not frozen.
  * `isNavigationTime` provides a convenient way to check
@@ -29,7 +31,7 @@ export function isNavigationTime(date: DateLike = Date.now()): boolean {
  *
  * The current date is used as fallback.
  */
-export function getNavigationState(dateInput: DateLike = new Date()): { days: number, navigation: boolean } {
+export function getNavigationState(dateInput: DateLike = new Date()): NavigationState {
 	const date = new Date(dateInput);
 	const now = date.getTime();
 	const start = new Date(date.getFullYear(), schedule.navigation[0] - 1, schedule.navigation[1], 0, 0, 0, 0).getTime();

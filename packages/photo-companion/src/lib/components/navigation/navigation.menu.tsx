@@ -1,4 +1,6 @@
-import type { ParentProps } from "solid-js";
+import { For, type ParentProps } from "solid-js";
+
+import { useSupportsBridges, useSupportsLights } from "@lib/hooks";
 
 import { NAVIGATION_TAB_DATA } from "./navigation.const";
 import { NavigationItem } from "./navigation.item";
@@ -9,24 +11,43 @@ const classes = {
 	link: styles.link
 };
 
+function useNavItemGroups() {
+	const supportsLights = useSupportsLights();
+	const supportsBridges = useSupportsBridges();
+
+	return () => ([
+		[
+			NAVIGATION_TAB_DATA.NOW,
+			NAVIGATION_TAB_DATA.TIMELINE,
+			...(supportsLights() ? [ NAVIGATION_TAB_DATA.LIGHTS ] : []),
+			NAVIGATION_TAB_DATA.SUN,
+			NAVIGATION_TAB_DATA.MOON,
+			...(supportsBridges() ? [ NAVIGATION_TAB_DATA.BRIDGES ] : [])
+		],
+		[
+			NAVIGATION_TAB_DATA.SETTINGS,
+			NAVIGATION_TAB_DATA.ABOUT,
+			NAVIGATION_TAB_DATA.CHANGELOG
+		]
+	]);
+}
+
 export function NavigationMenu(props: ParentProps) {
-	
+	const groups = useNavItemGroups();
 
 	return (
 		<nav class={styles.menu}>
-			<section class={styles.section}>
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.NOW} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.TIMELINE} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.LIGHTS} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.SUN} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.MOON} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.BRIDGES} />
-			</section>
-			<section class={styles.section}>
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.SETTINGS} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.ABOUT} />
-				<NavigationItem classes={classes} {...NAVIGATION_TAB_DATA.CHANGELOG} />
-			</section>
+			<For each={groups()}>
+				{group => (
+					<section class={styles.section}>
+						<For each={group}>
+							{item => (
+								<NavigationItem classes={classes} {...item} />
+							)}
+						</For>
+					</section>
+				)}
+			</For>
 			<form class={styles.form}>
 				{props.children}
 			</form>

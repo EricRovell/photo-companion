@@ -1,4 +1,4 @@
-import { CardEntry, CardInfo, SupportsLights} from "@lib/components";
+import { CardEntry, CardInfo, SupportsLights } from "@lib/components";
 import { LightsCountdown } from "@lib/components/lights-countdown/lights-countdown";
 import { useCityLights } from "@lib/context/city-lights";
 import { useTranslation } from "@lib/context/translation";

@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 2.25.4
+
+- Correct bridge list alignment (all table data has left alignment, but bridges);
+- Hide next bridge event countdown during no navigation period;
+- Deactivated sections are hidden from drawer menu;
+
+## 2.25.3
 
 - Remove changelog pages from the bundle. Even with the code-splitting, it takes a lot of space and will get more and more. Now the changelog stored only within the repository;
 
