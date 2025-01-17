@@ -39,3 +39,8 @@ export interface BridgeState {
 	open: boolean;
 	timestamp: number;
 }
+
+export interface NavigationState {
+	days: number;
+	navigation: boolean;
+}

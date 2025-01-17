@@ -1,27 +1,23 @@
-import { getNavigationState } from "bridge-schedule";
-import { createMemo } from "solid-js";
+import type {  NavigationState as NavigationStateType } from "bridge-schedule";
 
 import { CardEntry } from "@lib/components";
 import { useTranslation } from "@lib/context/translation";
-import { useDatetime } from "@lib/hooks";
 
 /**
  * Renders navigation period related card entries.
  */
-export function NavigationState() {
+export function NavigationState(props: NavigationStateType) {
 	const { formatters, t } = useTranslation();
-	const { getTimestamp } = useDatetime();
-	const getState = createMemo(() => getNavigationState(getTimestamp()));
 
-	const getNavigationLabel = () => getState().navigation
+	const getNavigationLabel = () => props.navigation
 		? t().LABEL.NAVIGATION_OPENED_SHORT
 		: t().LABEL.NAVIGATION_CLOSED_SHORT;
 
-	const subtitle = () => getState().navigation
+	const subtitle = () => props.navigation
 		? t().MESSAGE.NAVIGATION_ENDS_AT
 		: t().MESSAGE.NAVIGATION_STARTS_AT;
 
-	const getValue = () => formatters().formatDays(getState().days);
+	const getValue = () => formatters().formatDays(props.days);
 
 	return (
 		<>
