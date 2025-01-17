@@ -1,5 +1,4 @@
-import { lazy, Match, Suspense, Switch } from "solid-js";
-import { Loader } from "ui";
+import { lazy, Match, Switch } from "solid-js";
 
 import { Markdown } from "@lib/components/markdown";
 import { useTranslation } from "@lib/context/translation";
@@ -11,18 +10,16 @@ export function PageAbout() {
 	const { lang } = useTranslation();
 
 	return (
-		<Suspense fallback={<Loader style={{ "--loader-size": "2rem" }} />}>
-			<Markdown>
-				<Switch>
-					<Match when={lang() === "en"}>
-						<PageAboutEn />
-					</Match>
-					<Match when={lang() === "ru"}>
-						<PageAboutRu />
-					</Match>
-				</Switch>
-			</Markdown>
-		</Suspense>
+		<Markdown>
+			<Switch>
+				<Match when={lang() === "en"}>
+					<PageAboutEn />
+				</Match>
+				<Match when={lang() === "ru"}>
+					<PageAboutRu />
+				</Match>
+			</Switch>
+		</Markdown>
 	);
 }
 
