@@ -18,7 +18,9 @@ export const NowLightsInfo = () => {
 				{t().CITIES[getCity()]}
 			</CardEntry>
 			<CardEntry property={t().LABEL.LIGHTS_CITY}>
-				{lights() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
+				<span data-text={lights() ? "success" : "danger"}>
+					{lights() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
+				</span>
 			</CardEntry>
 			<CardEntry property={t().LABEL.TIME_OFF}>
 				{formatters().formatTime(getTimeOff())}

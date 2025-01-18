@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.25.5
+
+- City lights state has meaningful color;
+
 ## 2.25.4
 
 - Correct bridge list alignment (all table data has left alignment, but bridges);
