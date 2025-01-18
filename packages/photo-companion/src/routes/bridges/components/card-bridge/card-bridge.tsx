@@ -10,7 +10,6 @@ import { createCountdown, useDatetime } from "@lib/hooks";
 import { BridgeSparkline } from "./card-bridge-sparkline";
 
 import styles from "./card-bridge.module.css";
-import { setAttribute } from "utils";
 
 interface CardBridgeProps {
 	exception?: boolean;
