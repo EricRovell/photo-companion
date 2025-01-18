@@ -22,7 +22,9 @@ export function NavigationState(props: NavigationStateType) {
 	return (
 		<>
 			<CardEntry property={t().LABEL.NAVIGATION}>
-				{getNavigationLabel()}
+				<span data-text={props.navigation ? "success" : "danger"}>
+					{getNavigationLabel()}
+				</span>
 			</CardEntry>
 			<CardEntry property={subtitle()}>
 				{getValue()}

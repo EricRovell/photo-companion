@@ -2,6 +2,7 @@
 
 ## 2.25.5
 
+- Navigation state label has meaningful color;
 - City lights state has meaningful color;
 
 ## 2.25.4
