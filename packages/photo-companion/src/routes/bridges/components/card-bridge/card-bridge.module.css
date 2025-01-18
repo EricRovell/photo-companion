@@ -25,12 +25,6 @@
 		font-size: var(--font-size-4);
 	}
 
-	output {
-		font-size: var(--font-size-2);
-		color: var(--color-text-secondary);
-		font-variant-numeric: tabular-nums;
-	}
-
 	footer {
 		display: flex;
 		justify-content: space-between;
@@ -68,7 +62,7 @@
 
 	& path {
 		stroke-width: var(--sparkline-stroke-width, 0.5px);
-		stroke: var(--color-success);
+		stroke: var(--color-text-secondary);
 	}
 
 	& path[data-stroke-water] {
@@ -81,4 +75,15 @@
 		opacity: 0.6;
 		cursor: default;
 	}
+}
+
+.state {
+	font-size: var(--font-size-2);
+	font-variant-numeric: tabular-nums;
+}
+
+.footer {
+	font-size: var(--font-size-2);
+	font-variant-numeric: tabular-nums;
+	color: var(--color-text-secondary);
 }
