@@ -38,8 +38,8 @@
 	--color-surface-3: hsl(210deg 23% 20%);
 	--color-surface-4: hsl(210deg 23% 24%);
 	--color-surface-5: hsl(210deg 23% 28%);
-	--color-success: rgb(32 230 230);
-	--color-danger: rgb(192 53 53);
+	--color-success: hsl(153deg 78% 51%);
+	--color-danger: hsl(0deg 95% 65%);
 	--color-info: #003C5A;
 	--color-border: hsl(210deg 23% 25%);
 	--border: 1px solid hsl(210deg 23% 25%);

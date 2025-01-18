@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.25.5
+
+- Hide card bridge countdown during no navigation;
+- Bridge state label has meaningful color;
+- Navigation state label has meaningful color;
+- City lights state has meaningful color;
+
 ## 2.25.4
 
 - Correct bridge list alignment (all table data has left alignment, but bridges);

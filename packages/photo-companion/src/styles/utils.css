@@ -3,11 +3,11 @@
 	font-variation-settings: "wght" 500;
 }
 
-.success {
+[data-text="success"] {
 	color: var(--color-success);
 }
 
-.danger {
+[data-text="danger"] {
 	color: var(--color-danger);
 }
 
