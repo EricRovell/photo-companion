@@ -5,6 +5,7 @@
 - Fix modal and drawer height on mobile, panel height are taken into account;
 - Removed footer, for better "app"-like user experience;
 - Moved app information into drawer;
+- Reverse bridge lifted state color indicator;
 
 ## 2.25.5
 

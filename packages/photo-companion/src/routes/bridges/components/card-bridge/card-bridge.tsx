@@ -64,7 +64,7 @@ export function CardBridge(props: CardBridgeProps) {
 						<IconWarning title={t().MESSAGE.BRIDGE_EXCEPTION} />
 					</Show>
 				</h2>
-				<output class={styles.state} data-text={getState().open ? "success" : "danger"}>
+				<output class={styles.state} data-text={getState().open ? "danger" : "success"}>
 					<Show fallback={t().LABEL.BRIDGE_CLOSED} when={getState().open}>
 						{t().LABEL.BRIDGE_OPENED}
 					</Show>
