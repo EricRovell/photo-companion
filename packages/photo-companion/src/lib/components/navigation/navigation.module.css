@@ -14,6 +14,12 @@
 	height: min-content;
 	padding-inline: var(--space-2);
 	view-transition-name: navigation;
+
+	& .drawer {
+		display: grid;
+		grid-template-rows: min-content;
+		border-inline-start: 3px solid hsl(0deg 0% 50% / 15%);
+	}
 }
 
 .nav-items {
@@ -198,21 +204,22 @@
 	.dialog:not([open]) .drawer {
 		transform: translateY(100%);
 	}
-	
+
 	.dialog[open] .drawer {
 		transform: translateX(0%);
 	}
-	
+
 	.drawer {
-		justify-content: center;
 		align-items: flex-end;
 		max-height: 75vh;
 		height: auto;
 		width: 90vw;
 		max-width: unset;
 		border-radius: 1rem 1rem 0 0;
+		border: 3px solid hsl(0deg 0% 50% / 15%);
+		border-block-end: none;
 	}
-	
+
 	.backdrop {
 		justify-content: center;
 		align-items: flex-end;

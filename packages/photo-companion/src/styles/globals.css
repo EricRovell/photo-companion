@@ -74,8 +74,8 @@ main {
 	gap: var(--space-4);
 	width: 100%;
 	padding-inline: var(--space-2);
-	padding-block-end: var(--space-8);
-	min-height: 125vh;
+	min-height: 115vh;
+	margin-block-end: 5.6rem;
 }
 
 button,

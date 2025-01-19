@@ -1,8 +1,8 @@
 .dialog:not([open]) {
 	transition:
 		/* a bit of delay for better visuals */
-		opacity 0.35s ease-in-out 0.250s,
-		visibility 0.35s ease-in-out 0.125s;
+		opacity 0.35s ease-in-out 0.25s,
+		visibility 0.35s ease-in-out 0.25s;
 
 	& .drawer {
 		transform: translateX(100%);
@@ -19,7 +19,8 @@
 	background-color: var(--color-surface-1);
 	width: min(80vw, 300px);
 	height: 100vh;
-	transition: transform 0.125s ease-in-out;
+	height: 100dvh;
+	transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
 	overflow-y: auto;
 }
 
