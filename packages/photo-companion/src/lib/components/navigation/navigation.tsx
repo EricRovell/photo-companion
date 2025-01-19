@@ -1,6 +1,6 @@
 import { useBeforeLeave } from "@solidjs/router";
 import { For } from "solid-js";
-import { Button, Drawer, IconChevronRight, IconMenu } from "ui";
+import { Button, Drawer, IconMenu } from "ui";
 import { createToggle } from "ui/primitives";
 import { classnames } from "utils";
 
@@ -37,11 +37,7 @@ function SideMenu() {
 				onClose={handleClose}
 				open={getShowMenu()}
 			>
-				<NavigationMenu>
-					<Button icon onClick={handleClose} type="button">
-						<IconChevronRight />
-					</Button>
-				</NavigationMenu>
+				<NavigationMenu onClose={handleClose} />
 			</Drawer>
 		</li>
 	);

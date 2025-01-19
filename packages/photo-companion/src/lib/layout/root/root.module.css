@@ -6,7 +6,12 @@
 	background-color: var(--color-surface-0);
 	width: 100%;
 	padding-top: var(--space-3);
+	padding-inline: var(--space-2);
 	view-transition-name: header;
+
+	.header > div {
+		justify-content: space-between;
+	}
 }
 
 .content {
@@ -82,61 +87,16 @@
 	}
 }
 
-.footer {
-	align-self: end;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	border-block-start: 3px solid var(--color-surface-3);
-	padding-block: var(--space-4);
-	background-color: var(--color-surface-0);
-	font-size: var(--font-size-3);
-
-	p {
-		font-size: inherit;
-	}
-
-	@media screen and (width <= 420px) {
-		font-size: var(--font-size-2);
-	}
-}
-
-.header,
-.footer {
-	padding-inline: var(--space-2);
-}
-
-.header > div,
-.footer > div {
-	justify-content: space-between;
-}
-
 @media screen and (width <= 650px) {
 	.header {
 		margin-bottom: var(--space-7);
 		padding-bottom: var(--space-3);
 		border-block-end: 3px solid var(--color-surface-3);
-	}
-
-	.icon {
-		--icon-size: 1rem;
-	}
-
-	.header,
-	.footer {
 		padding-inline: var(--space-4);
 		background-color: var(--color-surface-1);
 	}
 
-	.footer {
-		padding-block-end: var(--header-menu-height);
-		border-block-end: 3px solid var(--color-surface-3);
-	}
-}
-
-@media screen and (width <= 340px) {
-	.footer > div {
-		flex-direction: column;
-		gap: var(--space-2);
+	.icon {
+		--icon-size: 1rem;
 	}
 }

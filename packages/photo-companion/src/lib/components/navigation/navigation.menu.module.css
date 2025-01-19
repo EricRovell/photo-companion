@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template: min-content min-content 1fr / 1fr;
 	padding: var(--space-1) var(--space-4);
-	height: 100%;
+	height: fit-content;
 
 	& > section {
 		display: grid;
@@ -10,30 +10,52 @@
 	}
 }
 
+.header {
+	--icon-size: 1em;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--space-4) calc(var(--space-4) + var(--space-2)) var(--space-4);
+	border-block-end: 1px solid rgba(173 216 230 / 10%);
+
+	& h2 {
+		font-size: var(--font-size-5);
+	}
+}
+
+.footer {
+	margin-block-start: auto;
+	padding-block: var(--space-4);
+	padding-inline: calc(var(--space-4) + var(--space-2));
+}
+
+.info {
+	display: grid;
+	justify-content: start;
+	font-size: var(--font-size-2);
+
+	& > div {
+		display: flex;
+		gap: var(--space-2);
+	}
+
+	& dt {
+		color: var(--color-text-secondary);
+	}
+
+	@media screen and (width <= 650px) {
+		justify-self: center;
+
+		& > div {
+			justify-content: center;
+		}
+	}
+}
+
 .section {
 	padding-block: var(--space-2);
 	border-block-end: 1px solid rgba(173 216 230 / 10%);
-}
-
-.section,
-.form {
-	padding-block: var(--space-2);
-}
-
-.form {
-	position: sticky;
-	bottom: 0;
-	display: flex;
-	margin-block-start: auto;
-	margin-inline-start: auto;
-	width: min-content;
-	height: min-content;
-
-	& > button[data-icon] {
-		--icon-size: 1rem;
-
-		padding: var(--space-1);
-	}
 }
 
 .link {
@@ -44,11 +66,5 @@
 	&:hover {
 		background-color: var(--color-surface-2);
 		text-decoration: none;
-	}
-}
-
-@media screen and (width <= 650px) {
-	.form svg {
-		transform: rotate(90deg);
 	}
 }

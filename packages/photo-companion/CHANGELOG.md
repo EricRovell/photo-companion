@@ -3,6 +3,8 @@
 ## 2.26.0
 
 - Fix modal and drawer height on mobile, panel height are taken into account;
+- Removed footer, for better "app"-like user experience;
+- Moved app information into drawer;
 
 ## 2.25.5
 

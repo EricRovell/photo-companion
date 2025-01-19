@@ -1,11 +1,9 @@
 import { useSearchParams } from "@solidjs/router";
 import { createEffect, type ParentProps } from "solid-js";
-import { IconGithub, Link } from "ui";
 import { isNullable } from "utils/validators";
 
 import { Bulb, LinkQuery, Navigation, PageMeta } from "@lib/components";
-import { TITLE, VERSION } from "@lib/consts";
-import { ROUTE_CHANGELOG, URL_GITHUB_REPO } from "@lib/consts";
+import { TITLE } from "@lib/consts";
 import { useSettings } from "@lib/context/settings";
 
 import styles from "./root.module.css";
@@ -28,21 +26,6 @@ function Header() {
 	);
 }
 
-const Footer = () => (
-	<footer class={styles.footer}>
-		<div class={styles.content}>
-			<p>
-				{TITLE}, <Link href={ROUTE_CHANGELOG}>v.{VERSION}</Link>
-				<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">#__COMMIT_HASH__</Link>
-			</p>
-			<Link href={URL_GITHUB_REPO}>
-				<IconGithub />
-				<span>Github</span>
-			</Link>
-		</div>
-	</footer>
-);
-
 export const Root = (props: ParentProps) => {
 	const [ searchParams, setSearchParams ] = useSearchParams();
 	const { settings } = useSettings();
@@ -64,7 +47,6 @@ export const Root = (props: ParentProps) => {
 			<main>
 				{props.children}
 			</main>
-			<Footer />
 		</>
 	);
 };
