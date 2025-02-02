@@ -3,6 +3,7 @@
 ## 2.27.0
 
 - Fixed incorrect sun azimuth numeric value;
+- New section: height by shadow length calculator;
 
 ## 2.26.0
 
