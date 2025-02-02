@@ -6,6 +6,7 @@ import {
 	IconMoon,
 	IconPullRequest,
 	IconSettings,
+	IconShadow,
 	IconSun,
 	IconTimeline
 } from "ui";
@@ -30,6 +31,11 @@ export const NAVIGATION_TAB_DATA: Record<ROUTE_LABEL, NavigationRoute> = {
 		href: ROUTE.CHANGELOG,
 		icon: IconPullRequest,
 		label: "CHANGELOG"
+	},
+	HEIGHT_BY_SHADOW: {
+		href: ROUTE.HEIGHT_BY_SHADOW,
+		icon: IconShadow,
+		label: "HEIGHT_BY_SHADOW"
 	},
 	LIGHTS: {
 		href: ROUTE.LIGHTS,

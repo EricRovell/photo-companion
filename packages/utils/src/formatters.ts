@@ -59,6 +59,14 @@ export const kilometersFormatter = getNumberFormatter({
 });
 
 /**
+ * Formats a numeric value into kilometers unit.
+ */
+export const metersFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "meter"
+});
+
+/**
  * Formats a numeric value into % unit.
  */
 export const percentFormatter = getNumberFormatter({
@@ -68,7 +76,7 @@ export const percentFormatter = getNumberFormatter({
 
 /**
  * Formats a number of ms into a countdown in format HH:MM:SS.
- * 
+ *
  * Note: `formatTime` is not a good option, as it uses local timezone,
  * hence wrong results.
  */
@@ -102,18 +110,18 @@ export const timeShortFormatter = getDateTimeFormatter({
 /**
  * Replaces the entries within the string in curly braces (can be specified via regex parameter)
  * with values in object.
- * 
+ *
  * template("Hello, {name}!", { name: "Peter" }) -> "Hello, Peter!"
- * 
+ *
  * In case no replacement is provided, the capture leaves as it is, just curly braces are removed.
- * 
+ *
  * template("Hello, {name}!", {}) -> "Hello, name!"
  */
 export function template(input: string, dict: Record<string, number | string>, regex = /{(.*?)}/g): string {
 	const replacer = (_match: string, capture: string) => {
 		const trimmedCapture = capture.trim();
 		const replaceValue = dict[trimmedCapture];
-		
+
 		if (isNullable(replaceValue)) {
 			return trimmedCapture;
 		}

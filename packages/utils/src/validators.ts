@@ -23,6 +23,10 @@ export function isNonNegativeInteger(value: unknown): value is number {
 	return isInteger(value) && value >= 0;
 }
 
+export function isNonNegativeNumber(value: unknown): value is number {
+	return typeof value === "number" && value >= 0;
+}
+
 export function isNullable(value: unknown): value is null | undefined {
 	return value === null || typeof value === "undefined";
 }
@@ -33,7 +37,7 @@ export function isNonNullable<T = unknown>(value: T): value is T {
 
 export function isValidDate(value: Nullable<DateLike | string>): value is DateLike {
 	if (value instanceof Date) {
-		return !isNaN(value.getTime());
+		return value.toString() !== "Invalid Date";
 	}
 
 	if (typeof value === "number" || typeof value === "string") {
@@ -41,4 +45,8 @@ export function isValidDate(value: Nullable<DateLike | string>): value is DateLi
 	}
 
 	return false;
+}
+
+export function isTimezone(value: unknown): boolean {
+	return isInteger(value) && value >= -12 && value <= 12;
 }

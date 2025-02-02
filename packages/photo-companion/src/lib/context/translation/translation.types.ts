@@ -13,6 +13,7 @@ interface Formatters {
 	formatDays: NumberFormatter;
 	formatDegrees: NumberFormatter;
 	formatKilometers: NumberFormatter;
+	formatMeters: NumberFormatter;
 	formatPercent: NumberFormatter;
 	formatTime: DateFormatter;
 	formatTimeDuration: DateFormatter;

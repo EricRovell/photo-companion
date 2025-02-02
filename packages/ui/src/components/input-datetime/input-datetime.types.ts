@@ -8,6 +8,6 @@ interface Dict {
 }
 
 export interface InputDatetimeProps extends JSX.InputHTMLAttributes<HTMLInputElement> {
-	dict: Dict;
+	dict?: Dict;
 	onDatetimeChange?: (value: string) => void;
 }

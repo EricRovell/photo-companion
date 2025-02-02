@@ -21,6 +21,11 @@ export const PAGE_META: PageMetaDict = {
 		KEYWORDS: [ "bridges", "drawbridges", "saint-petersburg", "schedule" ],
 		TITLE: [ "St. Petersburg Drawbridges", "Photo-Companion" ]
 	},
+	"/height-by-shadow": {
+		DESCRIPTION: "Height by shadow length calculator",
+		KEYWORDS: [ "the sun", "shadow", "calculator" ],
+		TITLE: "Height by shadow calculator"
+	},
 	"/lights": {
 		DESCRIPTION: "City Lights",
 		KEYWORDS: [ "city lights", "schedule" ],

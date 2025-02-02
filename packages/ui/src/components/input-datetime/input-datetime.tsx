@@ -48,7 +48,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				class={styles["button-increment"]}
 				data-step={-1}
 				onClick={handleIncrement}
-				title={props.dict.PREVIOUS_DAY}
+				title={props.dict?.PREVIOUS_DAY ?? "Previous day"}
 				type="button"
 			>
 				<IconChevronLeft />
@@ -57,7 +57,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				<label class={styles.label}>
 					{props.children}
 					<input
-						aria-label={props.dict.DATETIME}
+						aria-label={props.dict?.DATETIME ?? "Date and time"}
 						class={styles.input}
 						onChange={handleChange}
 						ref={inputRef}
@@ -68,7 +68,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				<Button
 					class={styles.button}
 					onClick={handleReset}
-					title={props.dict.NOW}
+					title={props.dict?.NOW ?? "Now"}
 					type="button"
 				>
 					<IconTimeline />
@@ -78,7 +78,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				class={styles["button-increment"]}
 				data-step={1}
 				onClick={handleIncrement}
-				title={props.dict.NEXT_DAY}
+				title={props.dict?.NEXT_DAY ?? "Next day"}
 				type="button"
 			>
 				<IconChevronRight

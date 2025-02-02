@@ -17,6 +17,7 @@ export { IconMoon } from "./icons/icon-moon";
 export { IconPullRequest } from "./icons/icon-pull-request";
 export { IconQuestion } from "./icons/icon-question";
 export { IconSettings } from "./icons/icon-settings";
+export { IconShadow } from "./icons/icon-shadow";
 export { IconSun } from "./icons/icon-sun";
 export { IconTimeline } from "./icons/icon-timeline";
 export { IconWarning } from "./icons/icon-warning";

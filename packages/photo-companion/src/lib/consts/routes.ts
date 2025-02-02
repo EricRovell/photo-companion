@@ -4,6 +4,7 @@ export const URL_COMMIT_HASH = "https://github.com/ericrovell/photo-companion/co
 export const ROUTE_ABOUT = "/about";
 export const ROUTE_BRIDGES = "/bridges";
 export const ROUTE_CHANGELOG = "https://github.com/EricRovell/photo-companion/tree/main/packages/photo-companion/CHANGELOG.md";
+export const ROUTE_HEIGHT_BY_SHADOW = "/height-by-shadow";
 export const ROUTE_LIGHTS = "/lights";
 export const ROUTE_MOON = "/moon";
 export const ROUTE_NOW = "/now";
@@ -17,6 +18,7 @@ export const ROUTE = {
 	ABOUT: ROUTE_ABOUT,
 	BRIDGES: ROUTE_BRIDGES,
 	CHANGELOG: ROUTE_CHANGELOG,
+	HEIGHT_BY_SHADOW: ROUTE_HEIGHT_BY_SHADOW,
 	LIGHTS: ROUTE_LIGHTS,
 	MOON: ROUTE_MOON,
 	NOT_FOUND: ROUTE_404,
@@ -39,13 +41,15 @@ export const ROUTES_PRIMARY: ROUTE_PRIMARY_LABEL[] = [
 	"MOON",
 	"NOW",
 	"SUN",
-	"TIMELINE"
+	"TIMELINE",
+	"HEIGHT_BY_SHADOW"
 ] as const;
 
-export type ROUTE_PRIMARY_LABEL = 
+export type ROUTE_PRIMARY_LABEL =
 	| "BRIDGES"
+	| "HEIGHT_BY_SHADOW"
 	| "LIGHTS"
 	| "MOON"
 	| "NOW"
 	| "SUN"
-	| "TIMELINE";
+	| "TIMELINE"

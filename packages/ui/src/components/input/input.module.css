@@ -1,8 +1,14 @@
-.label {
+.root {
 	display: grid;
-	gap: var(--space-2);
+	gap: var(--space-1);
 	text-align: left;
 	font-size: var(--font-size-2);
+	width: 100%;
+	min-width: 0;
+}
+
+.label {
+	width: fit-content;
 }
 
 .input {
@@ -12,6 +18,7 @@
 	padding: calc(1.5 * var(--space-1)) var(--space-2);
 	color: inherit;
 	transition: var(--transition-bg);
+	min-width: 0;
 
 	&:focus-visible {
 		background-color: var(--color-surface-2);
@@ -19,8 +26,14 @@
 		outline-offset: -3px;
 	}
 
-	&:user-invalid {
+	&:user-invalid,
+	&[data-error] {
 		border-color: var(--color-danger);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 
 	&::-webkit-inner-spin-button {
