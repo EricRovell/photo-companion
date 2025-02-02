@@ -3,15 +3,15 @@ import { classnames, setAttribute } from "utils";
 
 import type { Classes } from "../../types";
 
-import styles from "./input-text.module.css";
+import styles from "./input.module.css";
 
-export interface InputTextProps extends Omit<JSX.InputHTMLAttributes<HTMLInputElement>, "class"> {
+export interface InputProps extends Omit<JSX.InputHTMLAttributes<HTMLInputElement>, "class"> {
 	classes?: Classes<"input" | "label" | "root">;
 	error?: boolean;
 	label?: string;
 }
 
-export function InputText(allProps: InputTextProps) {
+export function Input(allProps: InputProps) {
 	const [ props, rest ] = splitProps(allProps, [ "classes", "children", "error" ]);
 
 	return (

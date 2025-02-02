@@ -4,12 +4,12 @@ export {
 	Fieldset,
 	Form,
 	Icon,
+	Input,
 	InputCheckbox,
 	InputDatetime,
 	InputRadio,
 	InputSelect,
 	type InputSelectOption,
-	InputText,
 	Link,
 	Loader,
 	Time

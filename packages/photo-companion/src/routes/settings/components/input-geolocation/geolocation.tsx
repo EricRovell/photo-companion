@@ -1,5 +1,5 @@
 import { useSearchParams } from "@solidjs/router";
-import { InputText } from "ui";
+import { Input } from "ui";
 
 import { useTranslation } from "@lib/context/translation";
 
@@ -16,7 +16,7 @@ export function InputGeolocation() {
 
 	return (
 		<>
-			<InputText
+			<Input
 				inputmode="numeric"
 				max={90}
 				min={-90}
@@ -26,8 +26,8 @@ export function InputGeolocation() {
 				value={settingsStore.latitude}
 			>
 				{t().LABEL.LATITUDE}
-			</InputText>
-			<InputText
+			</Input>
+			<Input
 				inputmode="numeric"
 				max={180}
 				min={-180}
@@ -37,7 +37,7 @@ export function InputGeolocation() {
 				value={settingsStore.longitude}
 			>
 				{t().LABEL.LONGITUDE}
-			</InputText>
+			</Input>
 			<GeolocationButton
 				handleLocation={(latitude, longitude) => {
 					setSettingsStore({ latitude, longitude });

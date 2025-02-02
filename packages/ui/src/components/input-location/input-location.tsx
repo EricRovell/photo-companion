@@ -1,5 +1,5 @@
 import { createMemo, createSignal, splitProps } from "solid-js";
-import { InputText } from "ui";
+import { Input } from "ui";
 import { isNullable } from "utils/validators";
 
 import type { JSX, ParentProps } from "solid-js";
@@ -71,7 +71,7 @@ export function InputLocation(allProps: Props) {
 			<legend class={styles.legend}>
 				{props.children}
 			</legend>
-			<InputText
+			<Input
 				classes={{
 					label: styles.label
 				}}
@@ -86,8 +86,8 @@ export function InputLocation(allProps: Props) {
 				value={initialValue().degrees}
 			>
 				{props.labels?.degrees ?? "Degrees"}
-			</InputText>
-			<InputText
+			</Input>
+			<Input
 				classes={{
 					label: styles.label
 				}}
@@ -102,8 +102,8 @@ export function InputLocation(allProps: Props) {
 				value={initialValue().minutes}
 			>
 				{props.labels?.minutes ?? "Minutes"}
-			</InputText>
-			<InputText
+			</Input>
+			<Input
 				classes={{
 					label: styles.label
 				}}
@@ -118,7 +118,7 @@ export function InputLocation(allProps: Props) {
 				value={initialValue().seconds}
 			>
 				{props.labels?.seconds ?? "Seconds"}
-			</InputText>
+			</Input>
 		</fieldset>
 	);
 }

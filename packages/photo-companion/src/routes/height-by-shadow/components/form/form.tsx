@@ -1,4 +1,4 @@
-import { Button, InputLocation, InputText } from "ui";
+import { Button, Input, InputLocation } from "ui";
 
 import type { ParentProps} from "solid-js";
 
@@ -31,7 +31,7 @@ export function Form(props: ParentProps) {
 	return (
 		<form class={styles.form} onSubmit={e => e.preventDefault()}>
 			<fieldset class={styles.datetime}>
-				<InputText
+				<Input
 					error={getValidity().date}
 					name={FORM_NAME.DATE}
 					onInput={handleInput}
@@ -40,8 +40,8 @@ export function Form(props: ParentProps) {
 					value={store.date?.toISOString().slice(0, 10)}
 				>
 					{t().LABEL.DATE}
-				</InputText>
-				<InputText
+				</Input>
+				<Input
 					error={getValidity().time}
 					name={FORM_NAME.TIME}
 					onInput={handleInput}
@@ -50,8 +50,8 @@ export function Form(props: ParentProps) {
 					value={store.date?.toISOString().slice(11, 16)}
 				>
 					{t().LABEL.TIME}
-				</InputText>
-				<InputText
+				</Input>
+				<Input
 					disabled
 					error={getValidity().timezone}
 					max={12}
@@ -64,7 +64,7 @@ export function Form(props: ParentProps) {
 					value={store.timezone}
 				>
 					{t().LABEL.TIMEZONE}
-				</InputText>
+				</Input>
 			</fieldset>
 			<InputLocation
 				error={getValidity().latitude}
@@ -94,7 +94,7 @@ export function Form(props: ParentProps) {
 			>
 				{t().LABEL.LONGITUDE}
 			</InputLocation>
-			<InputText
+			<Input
 				error={getValidity().length_shadow}
 				min={0}
 				name={FORM_NAME.LENGTH_SHADOW}
@@ -105,9 +105,9 @@ export function Form(props: ParentProps) {
 				value={store.length_shadow}
 			>
 				{t().LABEL.SHADOW_LENGTH}
-			</InputText>
+			</Input>
 			<fieldset class={styles.level}>
-				<InputText
+				<Input
 					error={getValidity().level_object}
 					min={0}
 					name={FORM_NAME.LEVEL_OBJECT}
@@ -117,8 +117,8 @@ export function Form(props: ParentProps) {
 					value={store.level_object}
 				>
 					{t().LABEL.OBJECT_LEVEL}
-				</InputText>
-				<InputText
+				</Input>
+				<Input
 					error={getValidity().level_shadow}
 					min={0}
 					name={FORM_NAME.LEVEL_SHADOW}
@@ -128,7 +128,7 @@ export function Form(props: ParentProps) {
 					value={store.level_shadow}
 				>
 					{t().LABEL.SHADOW_LEVEL}
-				</InputText>
+				</Input>
 			</fieldset>
 			<Button type="submit">
 				{t().LABEL.CALCULATE}

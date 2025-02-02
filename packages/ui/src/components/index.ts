@@ -34,7 +34,7 @@ export { InputDatetime } from "./input-datetime/input-datetime";
 export { InputLocation } from "./input-location/input-location";
 export { InputRadio } from "./input-radio/input-radio";
 export { InputSelect, type InputSelectOption } from "./input-select/input-select";
-export { InputText } from "./input-text/input-text";
+export { Input } from "./input/input";
 export { Link, type LinkProps } from "./link/link";
 export { Loader } from "./loader/loader";
 export { Modal } from "./modal/modal";
