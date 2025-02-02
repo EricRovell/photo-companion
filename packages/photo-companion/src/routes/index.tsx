@@ -18,6 +18,7 @@ const Page404 = lazy(() => import("./404/404.page"));
 const PageAbout = lazy(() => import("./about/about.page"));
 const PageBridges = lazy(() => import("./bridges/bridges.page"));
 const PageSettings = lazy(() => import("./settings/settings.page"));
+const PageHeightByShadow = lazy(() => import("./height-by-shadow/height-by-shadow.page"));
 
 const WITH_DATE_ROUTES = [
 	ROUTE.ROOT,
@@ -42,6 +43,7 @@ export const Routes = () => (
 					<Route component={PageNow} path={ROUTE.NOW} />
 					<Route component={PageBridges} path={ROUTE.BRIDGES} />
 				</Route>
+				<Route component={PageHeightByShadow} path={ROUTE.HEIGHT_BY_SHADOW} />
 			</Route>
 			<Route component={PageSettings} path={ROUTE.SETTINGS} />
 			<Route component={PageAbout} path={ROUTE.ABOUT} />

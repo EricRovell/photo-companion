@@ -15,7 +15,7 @@ export const SETTINGS_DEFAULT: Readonly<SettingsStore> = Object.freeze({
 	language: detectUserLanguage(),
 	latitude: 59.844404,
 	longitude: 30.3131,
-	tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "BRIDGES" ] as NavigationTabName[]
+	tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "BRIDGES", "HEIGHT_BY_SHADOW" ] as NavigationTabName[]
 });
 
 /**
@@ -26,18 +26,18 @@ export const SETTINGS_CITY_PRESETS: Record<SettingsStore["city"], CitySettingsPr
 		city: "MOSCOW",
 		latitude: 55.755826,
 		longitude: 37.617299,
-		tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON" ]
+		tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "HEIGHT_BY_SHADOW" ]
 	},
 	OTHER: {
 		city: "OTHER",
 		latitude: 59.844404,
 		longitude: 30.3131,
-		tabs: [ "NOW", "TIMELINE", "SUN", "MOON" ]
+		tabs: [ "NOW", "TIMELINE", "SUN", "MOON", "HEIGHT_BY_SHADOW" ]
 	},
 	SAINT_PETERSBURG: {
 		city: "SAINT_PETERSBURG",
 		latitude: 59.844404,
 		longitude: 30.3131,
-		tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "BRIDGES" ]
+		tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "BRIDGES", "HEIGHT_BY_SHADOW" ]
 	}
 };

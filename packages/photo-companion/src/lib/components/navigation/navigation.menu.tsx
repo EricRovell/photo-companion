@@ -29,7 +29,8 @@ function useNavItemGroups() {
 			...(supportsLights() ? [ NAVIGATION_TAB_DATA.LIGHTS ] : []),
 			NAVIGATION_TAB_DATA.SUN,
 			NAVIGATION_TAB_DATA.MOON,
-			...(supportsBridges() ? [ NAVIGATION_TAB_DATA.BRIDGES ] : [])
+			...(supportsBridges() ? [ NAVIGATION_TAB_DATA.BRIDGES ] : []),
+			NAVIGATION_TAB_DATA.HEIGHT_BY_SHADOW
 		],
 		[
 			NAVIGATION_TAB_DATA.SETTINGS,

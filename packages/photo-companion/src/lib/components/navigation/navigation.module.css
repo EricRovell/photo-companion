@@ -110,14 +110,20 @@
 	}
 }
 
-@media screen and (width <= 840px) {
+@media screen and (width <= 1000px) {
 	.nav-item:nth-last-child(3) {
 		display: none;
 	}
 }
 
-@media screen and (width <= 750px) {
+@media screen and (width <= 840px) {
 	.nav-item:nth-last-child(4) {
+		display: none;
+	}
+}
+
+@media screen and (width <= 735px) {
+	.nav-item:nth-last-child(5) {
 		display: none;
 	}
 }
