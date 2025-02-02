@@ -23,6 +23,10 @@ export function isNonNegativeInteger(value: unknown): value is number {
 	return isInteger(value) && value >= 0;
 }
 
+export function isNonNegativeNumber(value: unknown): value is number {
+	return typeof value === "number" && value >= 0;
+}
+
 export function isNullable(value: unknown): value is null | undefined {
 	return value === null || typeof value === "undefined";
 }
