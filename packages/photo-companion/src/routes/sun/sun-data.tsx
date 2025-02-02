@@ -19,7 +19,7 @@ export function SunData(props: SunDataProps) {
 				{props.state.position.altitude}
 			</CardEntry>
 			<CardEntry property={t().LABEL.AZIMUTH}>
-				{props.state.position.zenith}
+				{props.state.position.azimuth}
 			</CardEntry>
 			<CardEntry property={t().LABEL.DECLINATION}>
 				{props.state.position.declination}
