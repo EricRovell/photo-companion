@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.27.1
+
+- Исправлена недостаточная ширина элементов ввода в формах;
+
 ## 2.27.0
 
 - Fixed incorrect sun azimuth numeric value;

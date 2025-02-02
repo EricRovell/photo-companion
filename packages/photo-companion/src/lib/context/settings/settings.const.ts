@@ -4,7 +4,7 @@ import type { CitySettingsPreset, SettingsStore } from "./settings.types";
 import type { NavigationTabName } from "@lib/types";
 
 export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
-export const SETTINGS_LOCAL_STORAGE_VERSION = 3;
+export const SETTINGS_LOCAL_STORAGE_VERSION = 4;
 
 export const SETTINGS_DEFAULT: Readonly<SettingsStore> = Object.freeze({
 	city: "SAINT_PETERSBURG",
