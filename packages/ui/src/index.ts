@@ -6,7 +6,6 @@ export {
 	Icon,
 	InputCheckbox,
 	InputDatetime,
-	InputNumber,
 	InputRadio,
 	InputSelect,
 	type InputSelectOption,
