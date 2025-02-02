@@ -1,0 +1,16 @@
+.fieldset {
+	display: grid;
+	grid-template: min-content 1fr / repeat(3, minmax(0, 1fr));
+	gap: 0.5rem;
+	border: none;
+}
+
+.legend {
+	float: left;
+	text-align: left;
+	grid-column: 1 / -1;
+}
+
+.label {
+	color: var(--color-text-secondary);
+}
