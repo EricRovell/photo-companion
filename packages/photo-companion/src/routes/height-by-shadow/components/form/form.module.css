@@ -1,0 +1,37 @@
+.form {
+	display: grid;
+	grid-auto-rows: min-content;
+	gap: 1.2rem;
+	width: 100%;
+}
+
+.datetime {
+	display: grid;
+	grid-template: 1fr / minmax(0, 3fr) minmax(0, 1.5fr) minmax(8ch, 1fr);
+	gap: 0.8rem;
+	border: none;
+	width: 100%;
+	min-width: 0;
+
+	@media screen and (width <= 440px) {
+		grid-template: 1fr 1fr / repeat(2, minmax(0, 1fr));
+
+		& :first-child {
+			grid-column: 1 / -1;
+			grid-row: 1;
+		}
+	}
+}
+
+.level {
+	display: grid;
+	grid-template: 1fr / repeat(2, minmax(0, 1fr));
+	gap: 0.5rem;
+	border: none;
+	width: 100%;
+	min-width: 0;
+
+	@media screen and (width <= 380px) {
+		grid-template: repeat(2, 1fr) / minmax(0, 1fr);
+	}
+}

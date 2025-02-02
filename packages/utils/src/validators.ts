@@ -37,7 +37,7 @@ export function isNonNullable<T = unknown>(value: T): value is T {
 
 export function isValidDate(value: Nullable<DateLike | string>): value is DateLike {
 	if (value instanceof Date) {
-		return !isNaN(value.getTime());
+		return value.toString() !== "Invalid Date";
 	}
 
 	if (typeof value === "number" || typeof value === "string") {
@@ -45,4 +45,8 @@ export function isValidDate(value: Nullable<DateLike | string>): value is DateLi
 	}
 
 	return false;
+}
+
+export function isTimezone(value: unknown): boolean {
+	return isInteger(value) && value >= -12 && value <= 12;
 }

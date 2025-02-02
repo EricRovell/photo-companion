@@ -44,6 +44,18 @@ export interface Translation {
 		OTHER: string;
 		SAINT_PETERSBURG: string;
 	};
+	ERRORS: {
+		DATE: string;
+		LATITUDE: string;
+		LENGTH_SHADOW: string;
+		LEVEL_OBJECT: string;
+		LEVEL_SHADOW: string;
+		LONGITUDE: string;
+		NEGATIVE_HEIGHT: string;
+		SUN_IS_BELOW: string;
+		TIME: string;
+		TIMEZONE: string;
+	},
 	LABEL: {
 		ALL_BRIDGES_LIFTED_DOWN: string;
 		ALL_BRIDGES_LIFTED_UP: string;
@@ -59,9 +71,12 @@ export interface Translation {
 		BRIDGES_LIFTED_DOWN: string;
 		BRIDGES_LIFTED_UP: string;
 		BRIDGES_SPB: string;
+		CALCULATE: string;
 		CITY: string;
+		DATE: string;
 		DATETIME: string;
 		DECLINATION: string;
+		DEGREES: string;
 		DISTANCE: string;
 		DURATION_DAYLIGHT: string;
 		DURATION_LIGHTS: string;
@@ -70,11 +85,13 @@ export interface Translation {
 		FULL_MOON_NAME: string;
 		GEOLOCATION: string;
 		GO_HOME: string;
+		HEIGHT: string;
 		LANGUAGE: string;
 		LATITUDE: string;
 		LIGHTS_CITY: string;
 		LONGITUDE: string;
 		MENU: string;
+		MINUTES: string;
 		MOON_ILLUMINATION: string;
 		MOON_PHASE: string;
 		MOONRISE_TIME: string;
@@ -84,19 +101,25 @@ export interface Translation {
 		NAVIGATION_OPENED_SHORT: string;
 		NEXT_DAY: string;
 		NOW: string;
+		OBJECT_LEVEL: string;
 		PARALLACTIC_ANGLE: string;
 		PREVIOUS_DAY: string;
 		RELOAD: string;
 		RESET: string;
 		SAVE: string;
+		SECONDS: string;
+		SHADOW_LENGTH: string;
+		SHADOW_LEVEL: string;
 		STATE: string;
 		SUNRISE_TIME: string;
 		SUNSET_TIME: string;
 		TABS: string;
 		TILL_TURNED_OFF: string;
 		TILL_TURNED_ON: string;
+		TIME: string;
 		TIME_OFF: string;
 		TIME_ON: string;
+		TIMEZONE: string;
 		TURNED_OFF: string;
 		TURNED_ON: string;
 		WANING: string;
@@ -204,6 +227,8 @@ export interface Translation {
 		ELEVATION_MOON: string;
 		ELEVATION_SUN: string;
 		ERROR: string;
+		HEIGHT_BY_SHADOW: string;
+		HEIGHT_BY_SHADOW_FULL: string;
 		LIGHTS: string;
 		LIGHTS_DATA_BY_DATE: string;
 		LIGHTS_FULL: string;
