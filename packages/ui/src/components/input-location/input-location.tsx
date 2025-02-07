@@ -6,7 +6,7 @@ import type { JSX, ParentProps } from "solid-js";
 
 import styles from "./input-location.module.css";
 
-interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement>, "onInput"> {
+interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement>, "onChange"> {
 	error?: boolean;
 	labels?: {
 		degrees: string;
@@ -14,7 +14,7 @@ interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement
 		seconds: string;
 	};
 	name: string;
-	onInput?: (value: number) => void;
+	onChange?: (value: number) => void;
 	required?: boolean;
 	value?: number;
 }
@@ -23,7 +23,7 @@ export function InputLocation(allProps: Props) {
 	const [ props, rest ] = splitProps(allProps, [
 		"children",
 		"name",
-		"onInput",
+		"onChange",
 		"labels",
 		"value",
 		"required",
@@ -56,18 +56,18 @@ export function InputLocation(allProps: Props) {
 	const [ refMinutes, setRefMinutes ] = createSignal<HTMLInputElement>();
 	const [ refSeconds, setRefSeconds ] = createSignal<HTMLInputElement>();
 
-	const handleInput = () => {
+	const handleChange = () => {
 		const degrees = refDegrees()?.valueAsNumber ?? 0;
 		const minutes = refMinutes()?.valueAsNumber ?? 0;
 		const seconds = refSeconds()?.valueAsNumber ?? 0;
 
 		const value = Math.round(degrees) + Math.round(minutes) / 60 + Math.round(seconds) / 3600;
 
-		props.onInput?.(Number.isNaN(value) ? 0 : value);
+		props.onChange?.(Number.isNaN(value) ? 0 : value);
 	};
 
 	return (
-		<fieldset class={styles.fieldset} onInput={handleInput} {...rest}>
+		<fieldset class={styles.fieldset} onChange={handleChange} {...rest}>
 			<legend class={styles.legend}>
 				{props.children}
 			</legend>
