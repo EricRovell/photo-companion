@@ -1,8 +1,13 @@
 # Changelog
 
+## 2.28.0
+
+- Height by shadow calculator: changed  input dataset;
+- Height by shadow calculator: removed "calculate" button, validation and calculation happens automatically;
+
 ## 2.27.1
 
-- Исправлена недостаточная ширина элементов ввода в формах;
+- Fixed form input length;
 
 ## 2.27.0
 

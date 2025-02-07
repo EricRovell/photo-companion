@@ -1,4 +1,4 @@
-import { Button, Input, InputLocation } from "ui";
+import { Input, InputLocation } from "ui";
 
 import type { ParentProps} from "solid-js";
 
@@ -19,53 +19,27 @@ export function Form(props: ParentProps) {
 			return;
 		}
 
-		if (event.target.name === "date" || event.target.name === "time") {
-			handleChange(event.target.name as FormKey, event.target.valueAsDate);
-		} else {
-			handleChange(event.target.name as FormKey, event.target.valueAsNumber);
-		}
+		const value = event.target.name === "date"
+			? event.target.valueAsDate
+			: event.target.valueAsNumber;
 
-		//event.target.form?.submit();
+		handleChange(event.target.name as FormKey, value);
+
+		event.target.form?.requestSubmit();
 	};
 
 	return (
 		<form class={styles.form} onSubmit={e => e.preventDefault()}>
-			<fieldset class={styles.datetime}>
-				<Input
-					error={getValidity().date}
-					name={FORM_NAME.DATE}
-					onInput={handleInput}
-					required
-					type="date"
-					value={store.date?.toISOString().slice(0, 10)}
-				>
-					{t().LABEL.DATE}
-				</Input>
-				<Input
-					error={getValidity().time}
-					name={FORM_NAME.TIME}
-					onInput={handleInput}
-					required
-					type="time"
-					value={store.date?.toISOString().slice(11, 16)}
-				>
-					{t().LABEL.TIME}
-				</Input>
-				<Input
-					disabled
-					error={getValidity().timezone}
-					max={12}
-					min={-12}
-					name={FORM_NAME.TIMEZONE}
-					onInput={handleInput}
-					required
-					step={1}
-					type="number"
-					value={store.timezone}
-				>
-					{t().LABEL.TIMEZONE}
-				</Input>
-			</fieldset>
+			<Input
+				error={getValidity().date}
+				name={FORM_NAME.DATE}
+				onInput={handleInput}
+				required
+				type="date"
+				value={store.date?.toISOString().slice(0, 10)}
+			>
+				{t().LABEL.DATE}
+			</Input>
 			<InputLocation
 				error={getValidity().latitude}
 				labels={{
@@ -94,6 +68,19 @@ export function Form(props: ParentProps) {
 			>
 				{t().LABEL.LONGITUDE}
 			</InputLocation>
+			<Input
+				error={getValidity().solar_azimuth_angle}
+				max={359}
+				min={0}
+				name={FORM_NAME.SOLAR_AZIMUTH_ANGLE}
+				onInput={handleInput}
+				required
+				step={0.001}
+				type="number"
+				value={store.solar_azimuth_angle}
+			>
+				{t().LABEL.SOLAR_AZIMUTH_ANGLE}
+			</Input>
 			<Input
 				error={getValidity().length_shadow}
 				min={0}
@@ -130,9 +117,6 @@ export function Form(props: ParentProps) {
 					{t().LABEL.SHADOW_LEVEL}
 				</Input>
 			</fieldset>
-			<Button type="submit">
-				{t().LABEL.CALCULATE}
-			</Button>
 			{props.children}
 		</form>
 	);
