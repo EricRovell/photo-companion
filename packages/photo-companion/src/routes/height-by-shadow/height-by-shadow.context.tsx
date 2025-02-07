@@ -60,7 +60,7 @@ function createFormState() {
 
 	const hasError = () => getInvalidFields().length > 0;
 
-	const handleChange = (name: FormKey, value: FormState[FormKey]) => {
+	const update = (name: FormKey, value: FormState[FormKey]) => {
 		setStore(name, value);
 		setValidity(validate(unwrap(store)));
 	};
@@ -69,10 +69,10 @@ function createFormState() {
 		FORM_NAME,
 		getInvalidFields,
 		getValidity,
-		handleChange,
 		hasError,
 		setStore,
-		store
+		store,
+		update
 	};
 }
 

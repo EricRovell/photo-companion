@@ -1,6 +1,6 @@
-import { Input, InputLocation } from "ui";
+import { Button, Input, InputLocation } from "ui";
 
-import type { ParentProps} from "solid-js";
+import type { JSX, ParentProps} from "solid-js";
 
 import { useTranslation } from "@lib/context/translation";
 
@@ -11,10 +11,10 @@ import type { FormKey } from "../../height-by-shadow.context";
 import styles from "./form.module.css";
 
 export function Form(props: ParentProps) {
-	const { FORM_NAME, getValidity, handleChange, store } = useForm();
+	const { FORM_NAME, getValidity, store, update } = useForm();
 	const { t } = useTranslation();
 
-	const handleInput = (event: InputEvent) => {
+	const handleChange: JSX.ChangeEventHandlerUnion<HTMLInputElement, Event> = (event) => {
 		if (!(event.target instanceof HTMLInputElement)) {
 			return;
 		}
@@ -23,9 +23,7 @@ export function Form(props: ParentProps) {
 			? event.target.valueAsDate
 			: event.target.valueAsNumber;
 
-		handleChange(event.target.name as FormKey, value);
-
-		event.target.form?.requestSubmit();
+		update(event.target.name as FormKey, value);
 	};
 
 	return (
@@ -33,7 +31,7 @@ export function Form(props: ParentProps) {
 			<Input
 				error={getValidity().date}
 				name={FORM_NAME.DATE}
-				onInput={handleInput}
+				onChange={handleChange}
 				required
 				type="date"
 				value={store.date?.toISOString().slice(0, 10)}
@@ -48,7 +46,7 @@ export function Form(props: ParentProps) {
 					seconds: t().LABEL.SECONDS
 				}}
 				name="latitude"
-				onInput={value => handleChange("latitude", value)}
+				onChange={value => update("latitude", value)}
 				required
 				value={store.latitude}
 			>
@@ -62,7 +60,7 @@ export function Form(props: ParentProps) {
 					seconds: t().LABEL.SECONDS
 				}}
 				name="longitude"
-				onInput={value => handleChange("longitude", value)}
+				onChange={value => update("longitude", value)}
 				required
 				value={store.longitude}
 			>
@@ -73,7 +71,7 @@ export function Form(props: ParentProps) {
 				max={359}
 				min={0}
 				name={FORM_NAME.SOLAR_AZIMUTH_ANGLE}
-				onInput={handleInput}
+				onChange={handleChange}
 				required
 				step={0.001}
 				type="number"
@@ -85,7 +83,7 @@ export function Form(props: ParentProps) {
 				error={getValidity().length_shadow}
 				min={0}
 				name={FORM_NAME.LENGTH_SHADOW}
-				onInput={handleInput}
+				onChange={handleChange}
 				required
 				step={0.001}
 				type="number"
@@ -98,7 +96,7 @@ export function Form(props: ParentProps) {
 					error={getValidity().level_object}
 					min={0}
 					name={FORM_NAME.LEVEL_OBJECT}
-					onInput={handleInput}
+					onChange={handleChange}
 					step={0.001}
 					type="number"
 					value={store.level_object}
@@ -109,7 +107,7 @@ export function Form(props: ParentProps) {
 					error={getValidity().level_shadow}
 					min={0}
 					name={FORM_NAME.LEVEL_SHADOW}
-					onInput={handleInput}
+					onChange={handleChange}
 					step={0.001}
 					type="number"
 					value={store.level_shadow}
@@ -117,6 +115,9 @@ export function Form(props: ParentProps) {
 					{t().LABEL.SHADOW_LEVEL}
 				</Input>
 			</fieldset>
+			<Button type="submit">
+				Calculate
+			</Button>
 			{props.children}
 		</form>
 	);

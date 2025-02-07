@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.28.1
+
+- Height by shadow calculator: changed automatic calculation as-you-type in favor of submit button to remove some weird form behavior;
+
 ## 2.28.0
 
 - Height by shadow calculator: changed  input dataset;
