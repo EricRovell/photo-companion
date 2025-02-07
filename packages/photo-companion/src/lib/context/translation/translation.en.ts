@@ -54,9 +54,8 @@ export const t = {
 		LEVEL_SHADOW: "Shadow sea-level should be a non-negative number",
 		LONGITUDE: "Invalid longitude value",
 		NEGATIVE_HEIGHT: "Negative result. Possibly, invalid input",
-		SUN_IS_BELOW: "Sun is below the horizon",
-		TIME: "Invalid time",
-		TIMEZONE: "Invalid timezone"
+		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle should be in 0 ... 359 degrees range",
+		SUN_IS_BELOW: "Sun is below the horizon"
 	},
 	LABEL: {
 		ALL_BRIDGES_LIFTED_DOWN: "All drawbridges are lifted down",
@@ -112,6 +111,7 @@ export const t = {
 		SECONDS: "Seconds",
 		SHADOW_LENGTH: "Shadow length, m",
 		SHADOW_LEVEL: "Shadow level, m",
+		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle, deg",
 		STATE: "State",
 		SUNRISE_TIME: "Sunrise time",
 		SUNSET_TIME: "Sunset time",
@@ -121,7 +121,6 @@ export const t = {
 		TIME: "Time",
 		TIME_OFF: "Shutdown time",
 		TIME_ON: "On time",
-		TIMEZONE: "Timezone",
 		TURNED_OFF: "Turned off",
 		TURNED_ON: "Turned on",
 		WANING: "Waning",

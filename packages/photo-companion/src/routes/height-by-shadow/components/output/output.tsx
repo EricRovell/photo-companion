@@ -1,6 +1,5 @@
-import { getSunPosition } from "moon-sun-calc";
+import { getSunPosition, getSunTimeByAzimuth } from "moon-sun-calc";
 import { createMemo, Match, Show, Switch } from "solid-js";
-import { dateFrom } from "utils/date";
 import { isNullable } from "utils/validators";
 
 import { useTranslation } from "@lib/context/translation";
@@ -12,25 +11,19 @@ import styles from "./output.module.css";
 function useOutput() {
 	const { hasError, store } = useForm();
 
-	const getAltitude = createMemo(() => {
-		if (hasError() || isNullable(store.date) || isNullable(store.time)) {
+	const getSolarAltitude = createMemo(() => {
+		if (hasError() || isNullable(store.date) || Number.isNaN(store.solar_azimuth_angle)) {
 			return null;
 		}
 
-		const d = dateFrom(undefined, {
-			date: store.date.getDate(),
-			hours: store.time.getHours(),
-			minutes: store.time.getMinutes(),
-			month: store.date.getMonth(),
-			seconds: 0,
-			year: store.date.getFullYear()
-		});
+		const datetime = getSunTimeByAzimuth(store.date, store.latitude, store.longitude, store.solar_azimuth_angle, true);
+		const position = getSunPosition(datetime, store.latitude, store.longitude);
 
-		return getSunPosition(d, store.latitude, store.longitude).altitude;
+		return position.altitude;
 	});
 
 	const getHeight = createMemo(() => {
-		const altitude = getAltitude();
+		const altitude = getSolarAltitude();
 
 		if (isNullable(altitude)) {
 			return null;
@@ -41,7 +34,7 @@ function useOutput() {
 	});
 
 	const isSunBelowHorizon = createMemo(() => {
-		const altitude = getAltitude();
+		const altitude = getSolarAltitude();
 		return !isNullable(altitude) && altitude < 0;
 	});
 
@@ -51,8 +44,8 @@ function useOutput() {
 	});
 
 	return {
-		getAltitude,
 		getHeight,
+		getSolarAltitude,
 		isInvalidInput,
 		isSunBelowHorizon
 	};

@@ -82,3 +82,7 @@ button,
 input {
 	font: inherit;
 }
+
+fieldset {
+	border: none;
+}

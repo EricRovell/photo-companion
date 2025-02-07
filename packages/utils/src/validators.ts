@@ -46,7 +46,3 @@ export function isValidDate(value: Nullable<DateLike | string>): value is DateLi
 
 	return false;
 }
-
-export function isTimezone(value: unknown): boolean {
-	return isInteger(value) && value >= -12 && value <= 12;
-}

@@ -15,8 +15,7 @@ export interface FormState {
 	level_object?: number;
 	level_shadow?: number;
 	longitude: number;
-	time: Date | null;
-	timezone: number;
+	solar_azimuth_angle: number;
 }
 
 export type FormKey = keyof FormState;
@@ -28,15 +27,24 @@ const FORM_NAME = {
 	LEVEL_OBJECT: "level_object",
 	LEVEL_SHADOW: "level_shadow",
 	LONGITUDE: "longitude",
-	TIME: "time",
-	TIMEZONE: "timezone"
+	SOLAR_AZIMUTH_ANGLE: "solar_azimuth_angle"
 } as const;
 
 function createFormState() {
 	const { settings } = useSettings();
 	const { latitude, longitude } = unwrap(settings);
 
-	const [ getValidity, setValidity ] = createSignal<Partial<Record<FormKey, boolean>>>({});
+	const [ store, setStore ] = createStore<FormState>({
+		date: new Date(),
+		latitude,
+		length_shadow: 5,
+		level_object: 0,
+		level_shadow: 0,
+		longitude,
+		solar_azimuth_angle: 0
+	});
+
+	const [ getValidity, setValidity ] = createSignal<Partial<Record<FormKey, boolean>>>(validate(store));
 
 	const getInvalidFields = () => {
 		const fields: FormKey[] = [];
@@ -52,28 +60,9 @@ function createFormState() {
 
 	const hasError = () => getInvalidFields().length > 0;
 
-	const [ store, setStore ] = createStore<FormState>({
-		date: new Date(),
-		latitude,
-		length_shadow: 5,
-		level_object: 0,
-		level_shadow: 0,
-		longitude,
-		time: new Date(),
-		timezone: 0
-	});
-
 	const handleChange = (name: FormKey, value: FormState[FormKey]) => {
-		switch (name) {
-			case "date": {
-				setStore(name, value as Date);
-				break;
-			}
-			default:
-				setStore(name, value as number);
-		}
-
-		setValidity(validate(store));
+		setStore(name, value);
+		setValidity(validate(unwrap(store)));
 	};
 
 	return {

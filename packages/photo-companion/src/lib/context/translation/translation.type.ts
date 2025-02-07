@@ -52,9 +52,8 @@ export interface Translation {
 		LEVEL_SHADOW: string;
 		LONGITUDE: string;
 		NEGATIVE_HEIGHT: string;
+		SOLAR_AZIMUTH_ANGLE: string;
 		SUN_IS_BELOW: string;
-		TIME: string;
-		TIMEZONE: string;
 	},
 	LABEL: {
 		ALL_BRIDGES_LIFTED_DOWN: string;
@@ -110,6 +109,7 @@ export interface Translation {
 		SECONDS: string;
 		SHADOW_LENGTH: string;
 		SHADOW_LEVEL: string;
+		SOLAR_AZIMUTH_ANGLE: string;
 		STATE: string;
 		SUNRISE_TIME: string;
 		SUNSET_TIME: string;
@@ -119,7 +119,6 @@ export interface Translation {
 		TIME: string;
 		TIME_OFF: string;
 		TIME_ON: string;
-		TIMEZONE: string;
 		TURNED_OFF: string;
 		TURNED_ON: string;
 		WANING: string;
