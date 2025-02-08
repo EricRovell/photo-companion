@@ -105,7 +105,6 @@ export const t = {
 		OBJECT_LEVEL: "Object level, m",
 		PARALLACTIC_ANGLE: "Parallactic angle",
 		PREVIOUS_DAY: "Previous day",
-		RELOAD: "Reload",
 		RESET: "Reset",
 		SAVE: "Save",
 		SECONDS: "Seconds",
@@ -123,6 +122,7 @@ export const t = {
 		TIME_ON: "On time",
 		TURNED_OFF: "Turned off",
 		TURNED_ON: "Turned on",
+		UPDATE: "Update",
 		WANING: "Waning",
 		WAXING: "Waxing",
 		ZENITH: "Zenith"
@@ -146,7 +146,7 @@ export const t = {
 		SET_CURRENT_DATE_ADVICE: "Set the current date and time using the button below",
 		SET_CURRENT_DATETIME: "Set the current date and time",
 		TAB_LIMITS: "Select at least 1 tab",
-		UPDATE: "Update is ready to be installed. To get it ready, please, reload the application or the web page.",
+		UPDATE: "Update is ready to be installed.",
 		WRONG_DATE: "Error: incorrect date-time value.",
 		WRONG_DATE_URL: "Please, check the URL for correct date-time format"
 	},
@@ -243,7 +243,6 @@ export const t = {
 		SUN: "The Sun",
 		SUN_TIMES: "The Sun Times",
 		THE_CLOSEST_EVENT: "The closest event",
-		TIMELINE: "Timeline",
-		UPDATE: "Update"
+		TIMELINE: "Timeline"
 	}
 } as const satisfies Translation;

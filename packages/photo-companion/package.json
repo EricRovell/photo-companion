@@ -25,6 +25,7 @@
 		"lights-schedule": "workspace:*",
 		"moon-sun-calc": "workspace:*",
 		"solid-js": "catalog:default",
+		"solid-sonner": "^0.2.8",
 		"types": "workspace:*",
 		"ui": "workspace:*",
 		"utils": "workspace:*",
@@ -36,7 +37,7 @@
 		"esbuild-plugin-replace": "^1.4.0",
 		"solid-marked": "^0.6.3",
 		"typescript": "catalog:default",
-		"vite-plugin-solid-marked": "^0.6.3",
-		"vite": "catalog:default"
+		"vite": "catalog:default",
+		"vite-plugin-solid-marked": "^0.6.3"
 	}
 }

@@ -123,6 +123,9 @@ importers:
       solid-js:
         specifier: catalog:default
         version: 1.8.17
+      solid-sonner:
+        specifier: ^0.2.8
+        version: 0.2.8(solid-js@1.8.17)
       types:
         specifier: workspace:*
         version: link:../types
@@ -2555,6 +2558,11 @@ packages:
     resolution: {integrity: sha512-F3aPsX6hVw9ttm5LYlth8Q15x6MlI/J3Dn+o3EQyRTtTxidepSTwAYdozt01/YA+7ObcciagGEyXIopGZzQtbA==}
     peerDependencies:
       solid-js: ^1.3
+
+  solid-sonner@0.2.8:
+    resolution: {integrity: sha512-EQ2EIznvHHpAmkYh2CTu0AdCgmPJRJWLGFRWygE8j+vMEfvIV2wotHU5qgWzqzVTG1SODGsay2Lwq6ENWx/rPA==}
+    peerDependencies:
+      solid-js: ^1.6.0
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -5526,6 +5534,10 @@ snapshots:
       '@babel/generator': 7.24.1
       '@babel/helper-module-imports': 7.24.3
       '@babel/types': 7.24.0
+      solid-js: 1.8.17
+
+  solid-sonner@0.2.8(solid-js@1.8.17):
+    dependencies:
       solid-js: 1.8.17
 
   source-map-js@1.2.1: {}

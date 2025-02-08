@@ -1,7 +1,8 @@
 import { MetaProvider } from "@solidjs/meta";
 import { Suspense } from "solid-js";
+import { Toaster } from "solid-sonner";
 
-import { ModalSuggestUpdate } from "@lib/components";
+import { ToastSuggestUpdate } from "@lib/components";
 import { SettingsProvider } from "@lib/context/settings";
 import { TranslationProvider } from "@lib/context/translation";
 
@@ -20,7 +21,8 @@ export const App = () => (
 				<Suspense>
 					<TranslationProvider>
 						<Routes />
-						<ModalSuggestUpdate />
+						<ToastSuggestUpdate />
+						<Toaster position="bottom-center" richColors theme="dark" />
 					</TranslationProvider>
 				</Suspense>
 			</SettingsProvider>
