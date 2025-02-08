@@ -103,7 +103,6 @@ export interface Translation {
 		OBJECT_LEVEL: string;
 		PARALLACTIC_ANGLE: string;
 		PREVIOUS_DAY: string;
-		RELOAD: string;
 		RESET: string;
 		SAVE: string;
 		SECONDS: string;
@@ -121,6 +120,7 @@ export interface Translation {
 		TIME_ON: string;
 		TURNED_OFF: string;
 		TURNED_ON: string;
+		UPDATE: string;
 		WANING: string;
 		WAXING: string;
 		ZENITH: string;
@@ -242,6 +242,5 @@ export interface Translation {
 		SUN_TIMES: string;
 		THE_CLOSEST_EVENT: string;
 		TIMELINE: string;
-		UPDATE: string;
 	};
 }
