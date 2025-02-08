@@ -5,6 +5,7 @@ export { Gauge } from "./gauge/gauge";
 export { GaugeTime } from "./gauge/gauge-time";
 export { LinkQuery } from "./link-query";
 export { Markdown } from "./markdown";
+export { ModalSuggestUpdate } from "./modal-suggest-update";
 export { Moon } from "./moon/moon";
 export { Navigation } from "./navigation/navigation";
 export { PageMeta } from "./page-meta/PageMeta";

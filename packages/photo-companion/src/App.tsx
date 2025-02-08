@@ -1,11 +1,12 @@
 import { MetaProvider } from "@solidjs/meta";
-import { DEV, Show, Suspense } from "solid-js";
+import { Suspense } from "solid-js";
 
+import { ModalSuggestUpdate } from "@lib/components";
 import { SettingsProvider } from "@lib/context/settings";
 import { TranslationProvider } from "@lib/context/translation";
 
 import { Routes } from "./routes";
-import { UpdateService } from "./sw-update-service";
+import { ServiceWorkerProvider } from "./services/service-worker";
 
 import "./styles/globals.css";
 import "./styles/main.css";
@@ -13,18 +14,16 @@ import "./styles/utils.css";
 import "ui/styles/tokens.css";
 
 export const App = () => (
-	<>
+	<ServiceWorkerProvider>
 		<MetaProvider>
 			<SettingsProvider>
 				<Suspense>
 					<TranslationProvider>
-						<Show when={!DEV}>
-							<UpdateService />
-						</Show>
 						<Routes />
+						<ModalSuggestUpdate />
 					</TranslationProvider>
 				</Suspense>
 			</SettingsProvider>
 		</MetaProvider>
-	</>
+	</ServiceWorkerProvider>
 );
