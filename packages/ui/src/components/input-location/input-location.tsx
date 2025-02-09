@@ -1,4 +1,4 @@
-import { createMemo, createSignal, splitProps } from "solid-js";
+import { createMemo, createSignal, Show, splitProps } from "solid-js";
 import { Input } from "ui";
 import { isNullable } from "utils/validators";
 
@@ -7,12 +7,17 @@ import type { JSX, ParentProps } from "solid-js";
 import styles from "./input-location.module.css";
 
 interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement>, "onChange"> {
+	/**
+	 * Should the value have sign?
+	 */
+	abs?: boolean;
 	error?: boolean;
 	labels?: {
 		degrees: string;
 		minutes: string;
 		seconds: string;
 	};
+	legend?: string;
 	name: string;
 	onChange?: (value: number) => void;
 	required?: boolean;
@@ -21,9 +26,11 @@ interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement
 
 export function InputLocation(allProps: Props) {
 	const [ props, rest ] = splitProps(allProps, [
+		"abs",
 		"children",
 		"name",
 		"onChange",
+		"legend",
 		"labels",
 		"value",
 		"required",
@@ -68,16 +75,18 @@ export function InputLocation(allProps: Props) {
 
 	return (
 		<fieldset class={styles.fieldset} onChange={handleChange} {...rest}>
-			<legend class={styles.legend}>
-				{props.children}
-			</legend>
+			<Show when={props.legend}>
+				<legend class={styles.legend}>
+					{props.legend}
+				</legend>
+			</Show>
 			<Input
 				classes={{
 					label: styles.label
 				}}
 				error={props.error}
 				max={90}
-				min={-90}
+				min={props.abs ? 0 : -90}
 				name={`${props.name}-degrees`}
 				ref={setRefDegrees}
 				required={props.required}
@@ -119,6 +128,7 @@ export function InputLocation(allProps: Props) {
 			>
 				{props.labels?.seconds ?? "Seconds"}
 			</Input>
+			{props.children}
 		</fieldset>
 	);
 }

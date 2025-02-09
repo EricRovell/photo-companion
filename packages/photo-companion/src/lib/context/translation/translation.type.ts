@@ -87,8 +87,12 @@ export interface Translation {
 		HEIGHT: string;
 		LANGUAGE: string;
 		LATITUDE: string;
+		LATITUDE_NORTH: string;
+		LATITUDE_SOUTH: string;
 		LIGHTS_CITY: string;
 		LONGITUDE: string;
+		LONGITUDE_EAST: string;
+		LONGITUDE_WEST: string;
 		MENU: string;
 		MINUTES: string;
 		MOON_ILLUMINATION: string;

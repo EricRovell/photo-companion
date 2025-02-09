@@ -1,3 +1,14 @@
+/**
+ * Checks if `value` is within the given `[ from, to ]` range.
+ */
+export function isWithinRange(value: unknown, from: number, to: number) {
+	if (typeof value !== "number") {
+		return false;
+	}
+
+	return value >= from && value <= to;
+}
+
 export function isInteger(value: unknown): value is number {
 	return (
 		typeof value === "number" &&
@@ -8,11 +19,11 @@ export function isInteger(value: unknown): value is number {
 }
 
 export function isLatitude(value: number): boolean {
-	return value >= -90 && value <= 90;
+	return isWithinRange(value, -90, 90);
 }
 
 export function isLongitude(value: number): boolean {
-	return value >= -180 && value <= 180;
+	return isWithinRange(value, -180, 180);
 }
 
 export function isNonEmptyString(value: unknown): value is string {

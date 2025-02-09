@@ -16,8 +16,10 @@ function useOutput() {
 			return null;
 		}
 
-		const datetime = getSunTimeByAzimuth(store.date, store.latitude, store.longitude, store.solar_azimuth_angle, true);
-		const position = getSunPosition(datetime, store.latitude, store.longitude);
+		const latitude = store.latitude_direction === "N" ? store.latitude : -store.latitude;
+		const longitude = store.longitude_direction === "E" ? store.longitude : -store.longitude;
+		const datetime = getSunTimeByAzimuth(store.date, latitude, longitude, store.solar_azimuth_angle, true);
+		const position = getSunPosition(datetime, latitude, longitude);
 
 		return position.altitude;
 	});

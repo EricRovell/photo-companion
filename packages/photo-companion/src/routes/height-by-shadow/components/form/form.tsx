@@ -1,4 +1,4 @@
-import { Button, Input, InputLocation } from "ui";
+import { Button, Input, InputLocation, InputRadio } from "ui";
 
 import type { JSX, ParentProps} from "solid-js";
 
@@ -19,11 +19,17 @@ export function Form(props: ParentProps) {
 			return;
 		}
 
-		const value = event.target.name === "date"
-			? event.target.valueAsDate
-			: event.target.valueAsNumber;
-
-		update(event.target.name as FormKey, value);
+		switch (event.target.name) {
+			case FORM_NAME.DATE:
+				update(event.target.name as FormKey, event.target.valueAsDate);
+				break;
+			case FORM_NAME.LATITUDE_DIRECTION:
+			case FORM_NAME.LONGITUDE_DIRECTION:
+				update(event.target.name, event.target.value as "E" | "N" | "S" | "W");
+				break;
+			default:
+				update(event.target.name as FormKey, event.target.valueAsNumber);
+		}
 	};
 
 	return (
@@ -39,33 +45,61 @@ export function Form(props: ParentProps) {
 				{t().LABEL.DATE}
 			</Input>
 			<InputLocation
+				abs
 				error={getValidity().latitude}
 				labels={{
 					degrees: t().LABEL.DEGREES,
 					minutes: t().LABEL.MINUTES,
 					seconds: t().LABEL.SECONDS
 				}}
+				legend={t().LABEL.LATITUDE}
 				name="latitude"
 				onChange={value => update("latitude", value)}
 				required
 				value={store.latitude}
-			>
-				{t().LABEL.LATITUDE}
-			</InputLocation>
+			/>
+			<fieldset class={styles.radio}>
+				<InputRadio
+					classes={{
+						label: styles["radio-label"]
+					}}
+					name={FORM_NAME.LATITUDE_DIRECTION}
+					onChange={handleChange}
+					options={[
+						{ label: t().LABEL.LATITUDE_NORTH, value: "N" },
+						{ label: t().LABEL.LATITUDE_SOUTH, value: "S" }
+					]}
+					value={store.latitude_direction}
+				/>
+			</fieldset>
 			<InputLocation
+				abs
 				error={getValidity().longitude}
 				labels={{
 					degrees: t().LABEL.DEGREES,
 					minutes: t().LABEL.MINUTES,
 					seconds: t().LABEL.SECONDS
 				}}
+				legend={t().LABEL.LONGITUDE}
 				name="longitude"
 				onChange={value => update("longitude", value)}
 				required
 				value={store.longitude}
-			>
-				{t().LABEL.LONGITUDE}
-			</InputLocation>
+			/>
+			<fieldset class={styles.radio}>
+				<InputRadio
+					classes={{
+						label: styles["radio-label"]
+					}}
+					name={FORM_NAME.LONGITUDE_DIRECTION}
+					onChange={handleChange}
+					options={[
+						{ label: t().LABEL.LONGITUDE_EAST, value: "E" },
+						{ label: t().LABEL.LONGITUDE_WEST, value: "W" }
+					]}
+					value={store.longitude_direction}
+				/>
+			</fieldset>
 			<Input
 				error={getValidity().solar_azimuth_angle}
 				max={359}
@@ -116,7 +150,7 @@ export function Form(props: ParentProps) {
 				</Input>
 			</fieldset>
 			<Button type="submit">
-				Calculate
+				{t().LABEL.CALCULATE}
 			</Button>
 			{props.children}
 		</form>
