@@ -13,7 +13,7 @@ export interface InputRadioOption {
 }
 
 export interface InputRadioProps extends Omit<JSX.InputHTMLAttributes<HTMLInputElement>, "class"> {
-	classes?: Classes<"indicator" | "input" | "label">;
+	classes?: Classes<"indicator" | "input" | "label" | "root">;
 	options: InputRadioOption[];
 }
 
@@ -28,7 +28,7 @@ export function InputRadio(allProps: InputRadioProps) {
 	return (
 		<Index each={props.options}>
 			{item => (
-				<label class={classnames(styles.label, props.classes?.label)}>
+				<label class={classnames(styles.root, props.classes?.root)}>
 					<input
 						checked={props.value === item().value}
 						class={classnames(styles.radio, props.classes?.input)}
@@ -37,8 +37,10 @@ export function InputRadio(allProps: InputRadioProps) {
 						value={item().value}
 						{...rest}
 					/>
-					<span class={props.classes?.indicator} />
-					{item().label}
+					<span class={classnames(styles.indicator, props.classes?.indicator)} />
+					<span class={classnames(styles.label, props.classes?.label)}>
+						{item().label}
+					</span>
 				</label>
 			)}
 		</Index>

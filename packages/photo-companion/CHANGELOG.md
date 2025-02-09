@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.29.0
+
+- Height by shadow calculator: latitude and longitude directions;
+
 ## 2.28.2
 
 - Refactor: better service worker service architecture;

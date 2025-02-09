@@ -17,3 +17,12 @@
 		grid-template: repeat(2, 1fr) / minmax(0, 1fr);
 	}
 }
+
+.radio {
+	display: flex;
+	gap: 1rem;
+}
+
+.radio-label {
+	font-size: 0.8rem;
+}
