@@ -1,5 +1,6 @@
 import { For, Show } from "solid-js";
-import { IconWarning, Time } from "ui";
+import { Time } from "ui";
+import { IconWarning } from "ui/icons";
 import { incrementDateByDay } from "utils/date";
 
 import type { EventGroupName } from "types";

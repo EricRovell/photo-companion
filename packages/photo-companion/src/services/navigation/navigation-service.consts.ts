@@ -9,7 +9,7 @@ import {
 	IconShadow,
 	IconSun,
 	IconTimeline
-} from "ui";
+} from "ui/icons";
 
 import type { Component } from "solid-js";
 import type { IconProps } from "ui";

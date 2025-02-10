@@ -1,6 +1,6 @@
 import { getBridgeScheduleEntry, getBridgeState, getNavigationState } from "bridge-schedule";
 import { createMemo, Show } from "solid-js";
-import { IconWarning } from "ui";
+import { IconWarning } from "ui/icons";
 
 import type { BridgeName, BridgeState } from "types";
 

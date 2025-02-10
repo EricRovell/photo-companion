@@ -1,4 +1,4 @@
-import { IconShadow } from "ui";
+import { IconShadow } from "ui/icons";
 
 import { useTranslation } from "~/services/translation";
 
