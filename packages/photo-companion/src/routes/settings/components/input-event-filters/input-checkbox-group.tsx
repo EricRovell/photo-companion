@@ -1,7 +1,7 @@
 import { createEffect, createSignal, For, mergeProps } from "solid-js";
 import { InputCheckbox, type InputSelectOption } from "ui";
 
-import { setAttribute } from "@lib/helpers";
+import { setAttribute } from "~/lib/helpers";
 
 import styles from "./input-checkbox-group.module.css";
 

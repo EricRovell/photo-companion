@@ -1,11 +1,11 @@
 import { getBridgeScheduleEntry, getBridgeState, getNavigationState } from "bridge-schedule";
 import { createMemo, Show } from "solid-js";
-import { IconWarning } from "ui";
+import { IconWarning } from "ui/icons";
 
 import type { BridgeName, BridgeState } from "types";
 
-import { useTranslation } from "@lib/context/translation";
-import { createCountdown, useDatetime } from "@lib/hooks";
+import { createCountdown, useDatetime } from "~/lib/hooks";
+import { useTranslation } from "~/services/translation";
 
 import { BridgeSparkline } from "./card-bridge-sparkline";
 

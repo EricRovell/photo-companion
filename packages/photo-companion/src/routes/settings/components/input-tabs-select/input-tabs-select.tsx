@@ -4,7 +4,7 @@ import { FORM_INPUT_NAME } from "../../settings.const";
 import { useSettingsPage } from "../../settings.context";
 import { TabSelect } from "./input-tabs-select.tab";
 
-import type { ROUTE_PRIMARY_LABEL } from "@lib/consts/routes";
+import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 
 import styles from "./input-tabs-select.module.css";
 
@@ -25,7 +25,7 @@ export function InputTabsSelect(props: InputTabsSelectProps) {
 				output.push({ active: false, tab });
 			}
 		}
-	
+
 		return output;
 	});
 

@@ -1,85 +1,38 @@
 import { getSunPosition, getSunTimeByAzimuth } from "moon-sun-calc";
-import { createMemo, Match, Show, Switch } from "solid-js";
-import { isNullable } from "utils/validators";
+import { convertDegreesIntoDecimal } from "utils/math";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/services/translation";
 
-import { useForm } from "../../height-by-shadow.context";
+import type { Model} from "../../height-by-shadow.context";
 
 import styles from "./output.module.css";
 
-function useOutput() {
-	const { hasError, store } = useForm();
+interface Props {
+	altitude?: null | number;
+	height?: null | number;
+}
 
-	const getSolarAltitude = createMemo(() => {
-		if (hasError() || isNullable(store.date) || Number.isNaN(store.solar_azimuth_angle)) {
-			return null;
-		}
+export function calcOutput(model: Model) {
+	const latitude = (model.latitude_direction === "N" ? 1 : -1) * convertDegreesIntoDecimal(model.latitude);
+	const longitude = (model.longitude_direction === "E" ? 1 : -1) * convertDegreesIntoDecimal(model.longitude);
+	const datetime = getSunTimeByAzimuth(model.date, latitude, longitude, model.solar_azimuth_angle, true);
+	const altitude = getSunPosition(datetime, latitude, longitude).altitude;
 
-		const latitude = store.latitude_direction === "N" ? store.latitude : -store.latitude;
-		const longitude = store.longitude_direction === "E" ? store.longitude : -store.longitude;
-		const datetime = getSunTimeByAzimuth(store.date, latitude, longitude, store.solar_azimuth_angle, true);
-		const position = getSunPosition(datetime, latitude, longitude);
-
-		return position.altitude;
-	});
-
-	const getHeight = createMemo(() => {
-		const altitude = getSolarAltitude();
-
-		if (isNullable(altitude)) {
-			return null;
-		}
-
-		const diff = (store.level_shadow ?? 0) - (store.level_object ?? 0);
-		return store.length_shadow * Math.tan(altitude) + diff;
-	});
-
-	const isSunBelowHorizon = createMemo(() => {
-		const altitude = getSolarAltitude();
-		return !isNullable(altitude) && altitude < 0;
-	});
-
-	const isInvalidInput = createMemo(() => {
-		const height = getHeight();
-		return !isNullable(height) && height < 0;
-	});
+	const diff = (model.level_shadow ?? 0) - (model.level_object ?? 0);
+	const height = model.length_shadow * Math.tan(altitude) + diff;
 
 	return {
-		getHeight,
-		getSolarAltitude,
-		isInvalidInput,
-		isSunBelowHorizon
+		altitude,
+		height
 	};
 }
 
-export function Output() {
-	const { hasError } = useForm();
+export function Output(props: Props) {
 	const { formatters, t } = useTranslation();
-	const { getHeight, isInvalidInput, isSunBelowHorizon } = useOutput();
-
-	const Height = () => (
-		<p>
-			{t().LABEL.HEIGHT}: <span class={styles.value}>{formatters().formatMeters(getHeight() ?? 0)}</span>
-		</p>
-	);
 
 	return (
-		<Show when={!hasError()}>
-			<output class={styles.output}>
-				<Switch fallback={<Height />}>
-					<Match when={isSunBelowHorizon()}>
-						<p data-error>
-							{t().ERRORS.SUN_IS_BELOW}
-						</p>
-					</Match>
-					<Match when={isInvalidInput()}>
-						<p data-error>
-							{t().ERRORS.NEGATIVE_HEIGHT}
-						</p>
-					</Match>
-				</Switch>
-			</output>
-		</Show>
+		<output class={styles.output}>
+			{t().LABEL.HEIGHT}: <span class={styles.value}>{formatters().formatMeters(props.height ?? 0)}</span>
+		</output>
 	);
 }

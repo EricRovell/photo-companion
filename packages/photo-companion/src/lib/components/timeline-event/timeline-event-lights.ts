@@ -2,8 +2,8 @@ import type { LightsEvent } from "types";
 
 import { Bulb } from "../bulb/bulb";
 
-import type { Translation } from "@lib/context/translation";
-import type { EventComponent } from "@lib/types";
+import type { EventComponent } from "~/lib/types";
+import type { Translation } from "~/services/translation";
 
 export function lightsEventComponent(event: LightsEvent, t: Translation): EventComponent<{ glow: boolean }> {
 	return {

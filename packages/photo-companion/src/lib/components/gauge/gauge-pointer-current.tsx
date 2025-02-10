@@ -2,7 +2,7 @@ import { createSignal, type JSX, onCleanup, onMount } from "solid-js";
 import { classnames } from "utils";
 import { isNonNegativeInteger } from "utils/validators";
 
-import { getAngleFromTime } from "@lib/helpers";
+import { getAngleFromTime } from "~/lib/helpers";
 
 import styles from "./gauge.module.css";
 

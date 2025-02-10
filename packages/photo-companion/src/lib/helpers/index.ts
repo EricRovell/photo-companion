@@ -1,6 +1,6 @@
 import { isNullable, isValidDate } from "utils/validators";
 
-import type { UserLang } from "@lib/types";
+import type { UserLang } from "~/lib/types";
 
 /**
  * Calculates the angle in degrees from `Date` object using time for 24 hour circle.

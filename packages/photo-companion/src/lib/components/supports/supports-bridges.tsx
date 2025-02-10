@@ -1,12 +1,12 @@
 import { type ParentProps, Show } from "solid-js";
 
-import { useSupportsBridges } from "@lib/hooks";
+import { useSettings } from "~/services/settings";
 
 export function SupportsBridges(props: ParentProps) {
-	const supports = useSupportsBridges();
+	const { isSupportsBridges } = useSettings();
 
 	return (
-		<Show when={supports()}>
+		<Show when={isSupportsBridges()}>
 			{props.children}
 		</Show>
 	);

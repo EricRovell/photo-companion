@@ -1,23 +1,11 @@
-import { useLocation, useNavigate } from "@solidjs/router";
 import { onMount } from "solid-js";
 
-import { ROUTE_ROOT } from "@lib/consts";
-import { useSettings } from "@lib/context/settings";
+import { useNavigationService } from "~/services/navigation";
 
 export function PageRoot() {
-	const location = useLocation();
-	const navigate = useNavigate();
-	const { settings } = useSettings();
+	const { navigateHome } = useNavigationService();
 
-	onMount(() => {
-		if (location.pathname !== ROUTE_ROOT) {
-			return;
-		}
+	onMount(() => navigateHome());
 
-		const rootTab = `/${settings.tabs[0].toLowerCase()}${location.search}`;
-
-		navigate(rootTab, { replace: true });
-	});
-
-	return <></>;
+	return null;
 }

@@ -1,8 +1,8 @@
 import { getNavigationState, isAllBridgesLiftedDown } from "bridge-schedule";
 import { createMemo, Show } from "solid-js";
 
-import { CardInfo } from "@lib/components";
-import { useDatetime } from "@lib/hooks";
+import { CardInfo } from "~/lib/components";
+import { useDatetime } from "~/lib/hooks";
 
 import { BridgesStateAll } from "./bridge-state-all";
 import { BridgeStateList } from "./bridge-state-list";

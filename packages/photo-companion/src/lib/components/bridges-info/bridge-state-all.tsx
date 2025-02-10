@@ -1,4 +1,4 @@
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/services/translation";
 
 import { CardEntry } from "../card-info";
 

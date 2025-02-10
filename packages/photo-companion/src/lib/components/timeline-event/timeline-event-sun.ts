@@ -4,8 +4,8 @@ import type { SunEvent, SunEventName } from "types";
 
 import { Sun } from "../sun/sun";
 
-import type { Translation } from "@lib/context/translation";
-import type { EventComponent } from "@lib/types";
+import type { EventComponent } from "~/lib/types";
+import type { Translation } from "~/services/translation";
 
 export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {
 	let message: Undefinable<string> = undefined;

@@ -2,13 +2,12 @@ import { For } from "solid-js";
 
 import type { EventName } from "types";
 
-import { Timeline, TimelineEvent } from "@lib/components";
-import { ROUTE } from "@lib/consts";
-import { useCityLights } from "@lib/context/city-lights";
-import { useSettings } from "@lib/context/settings";
-import { useDatetime, useTimelineProvider } from "@lib/hooks";
-
-import { getSunEvents } from "../../../services/sun";
+import { Timeline, TimelineEvent } from "~/lib/components";
+import { ROUTES } from "~/lib/consts";
+import { useDatetime, useTimelineProvider } from "~/lib/hooks";
+import { useCityLights } from "~/services/city-lights";
+import { useSettings } from "~/services/settings";
+import { getSunEvents } from "~/services/sun";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
 	"LIGHTS_START",
@@ -49,7 +48,7 @@ export function LightsTimeline() {
 					{event => (
 						<TimelineEvent
 							event={event}
-							href={ROUTE.LIGHTS}
+							href={ROUTES.LIGHTS}
 							secondary={SECONDARY_EVENT_SET.has(event.name)}
 						/>
 					)}

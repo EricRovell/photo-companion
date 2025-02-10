@@ -5,9 +5,8 @@ import { isNullable } from "utils/validators";
 import type { Accessor } from "solid-js";
 import type { LightsCity } from "types";
 
-import { useDatetime } from "@lib/hooks";
-
-import { useSettings } from "./settings";
+import { useDatetime } from "~/lib/hooks";
+import { useSettings } from "~/services/settings";
 
 interface CityLightsContextType extends Omit<LightsProvider, "city" | "year"> {
 	getCity: Accessor<LightsCity>;

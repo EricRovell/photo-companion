@@ -2,8 +2,8 @@ import { createSignal, onCleanup } from "solid-js";
 import { Button } from "ui";
 import { isNullable } from "utils/validators";
 
-import { useTranslation } from "@lib/context/translation";
-import { getUserLocation } from "@lib/helpers";
+import { getUserLocation } from "~/lib/helpers";
+import { useTranslation } from "~/services/translation";
 
 type Status = Nullish<"danger" | "loading" | "success">;
 

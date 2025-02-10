@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.29.1
+
+- Fixed swipe actions, now swipe occurs only withing the page;
+- Height by shadow calculator: calculate the output lazily, on submit;
+- Height by shadow calculator: united error display, both for input and output;
+- Height by shadow calculator: fix latitude and longitude values shift on input due conversion deviation;
+
 ## 2.29.0
 
 - Height by shadow calculator: latitude and longitude directions;

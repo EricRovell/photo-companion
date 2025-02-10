@@ -1,5 +1,3 @@
-export { Icon } from "./icon";
-
 export { IconAnchor } from "./icons/icon-anchor";
 export { IconArrowDown } from "./icons/icon-arrow-down";
 export { IconArrowUp } from "./icons/icon-arrow-up";

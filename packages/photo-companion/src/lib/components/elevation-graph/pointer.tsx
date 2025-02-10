@@ -1,7 +1,7 @@
 import { createMemo, mergeProps } from "solid-js";
 
-import { useSettings } from "@lib/context/settings";
-import { setAttribute } from "@lib/helpers";
+import { setAttribute } from "~/lib/helpers";
+import { useSettings } from "~/services/settings";
 
 import { createObjectCoordsGetter } from "./elevation-graph.helpers";
 

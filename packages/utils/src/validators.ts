@@ -30,6 +30,10 @@ export function isNonEmptyString(value: unknown): value is string {
 	return typeof value === "string" && value.length > 0;
 }
 
+export function isNonEmptyArray<T>(value: unknown): value is T[] {
+	return Array.isArray(value) && value.length > 0;
+}
+
 export function isNonNegativeInteger(value: unknown): value is number {
 	return isInteger(value) && value >= 0;
 }

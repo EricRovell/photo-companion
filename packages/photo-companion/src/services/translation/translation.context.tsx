@@ -13,7 +13,7 @@ import {
 } from "utils/formatters";
 import { isNullable } from "utils/validators";
 
-import { useSettings } from "../settings";
+import { useSettings } from "~/services/settings";
 
 import type { TranslationContextType } from "./translation.types";
 

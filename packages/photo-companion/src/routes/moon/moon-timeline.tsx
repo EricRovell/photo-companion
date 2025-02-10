@@ -2,13 +2,12 @@ import { createMemo, For } from "solid-js";
 
 import type { EventName } from "types";
 
-import { Timeline, TimelineEvent } from "@lib/components";
-import { ROUTE } from "@lib/consts";
-import { useSettings } from "@lib/context/settings";
-import { useTimelineProvider } from "@lib/hooks";
-
-import { getMoonEvents } from "../../services/moon";
-import { getSunEvents } from "../../services/sun";
+import { Timeline, TimelineEvent } from "~/lib/components";
+import { ROUTES } from "~/lib/consts";
+import { useTimelineProvider } from "~/lib/hooks";
+import { getMoonEvents } from "~/services/moon";
+import { useSettings } from "~/services/settings";
+import { getSunEvents } from "~/services/sun";
 
 interface MoonTimelineProps {
 	date: Date;
@@ -54,7 +53,7 @@ export function MoonTimeline(props: MoonTimelineProps) {
 					{event => (
 						<TimelineEvent
 							event={event}
-							href={ROUTE.MOON}
+							href={ROUTES.MOON}
 							secondary={SECONDARY_EVENT_SET.has(event.name)}
 						/>
 					)}

@@ -1,5 +1,5 @@
-import { CardEntry, CardInfo } from "@lib/components";
-import { useTranslation } from "@lib/context/translation";
+import { CardEntry, CardInfo } from "~/lib/components";
+import { useTranslation } from "~/services/translation";
 
 import { useSunData } from "../../sun/use-sun-data";
 

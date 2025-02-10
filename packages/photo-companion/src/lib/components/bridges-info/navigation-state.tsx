@@ -1,7 +1,7 @@
 import type {  NavigationState as NavigationStateType } from "bridge-schedule";
 
-import { CardEntry } from "@lib/components";
-import { useTranslation } from "@lib/context/translation";
+import { CardEntry } from "~/lib/components";
+import { useTranslation } from "~/services/translation";
 
 /**
  * Renders navigation period related card entries.
