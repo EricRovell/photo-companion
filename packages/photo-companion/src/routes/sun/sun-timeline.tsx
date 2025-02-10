@@ -1,11 +1,10 @@
+import { getSunEvents } from "~/services/sun";
 import { For } from "solid-js";
 
 import { Timeline, TimelineEvent } from "@lib/components";
 import { ROUTES } from "@lib/consts";
 import { useSettings } from "@lib/context/settings";
 import { useTimelineProvider } from "@lib/hooks";
-
-import { getSunEvents } from "../../services/sun";
 
 interface SunTimelineProps {
 	date: Date;

@@ -1,3 +1,5 @@
+import { getMoonEvents } from "~/services/moon";
+import { getSunEvents } from "~/services/sun";
 import { getBridgeEvents } from "bridge-schedule";
 import { isNullable } from "utils/validators";
 
@@ -6,8 +8,6 @@ import { useSettings } from "@lib/context/settings";
 import { useSupportsBridges, useSupportsLights } from "@lib/hooks";
 import { useDatetime, useTimelineProvider } from "@lib/hooks";
 
-import { getMoonEvents } from "../../../services/moon";
-import { getSunEvents } from "../../../services/sun";
 import { useTimelineFilters } from "./use-timeline-filters";
 
 /*

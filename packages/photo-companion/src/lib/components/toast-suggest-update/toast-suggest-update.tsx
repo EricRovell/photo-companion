@@ -1,10 +1,9 @@
+import { useServiceWorker } from "~/services/service-worker";
 import { createEffect, on } from "solid-js";
 import { toast } from "solid-sonner";
 import { Button } from "ui";
 
 import { useTranslation } from "@lib/context/translation";
-
-import { useServiceWorker } from "../../../services/service-worker";
 
 import styles from "./toast-suggest-update.module.css";
 
