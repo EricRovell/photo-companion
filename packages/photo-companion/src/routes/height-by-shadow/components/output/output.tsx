@@ -1,4 +1,5 @@
 import { getSunPosition, getSunTimeByAzimuth } from "moon-sun-calc";
+import { convertDegreesIntoDecimal } from "utils/math";
 
 import { useTranslation } from "~/services/translation";
 
@@ -12,8 +13,8 @@ interface Props {
 }
 
 export function calcOutput(model: Model) {
-	const latitude = model.latitude_direction === "N" ? model.latitude : -model.latitude;
-	const longitude = model.longitude_direction === "E" ? model.longitude : -model.longitude;
+	const latitude = (model.latitude_direction === "N" ? 1 : -1) * convertDegreesIntoDecimal(model.latitude);
+	const longitude = (model.longitude_direction === "E" ? 1 : -1) * convertDegreesIntoDecimal(model.longitude);
 	const datetime = getSunTimeByAzimuth(model.date, latitude, longitude, model.solar_azimuth_angle, true);
 	const altitude = getSunPosition(datetime, latitude, longitude).altitude;
 

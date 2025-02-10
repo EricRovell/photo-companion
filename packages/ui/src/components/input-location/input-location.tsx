@@ -1,8 +1,8 @@
-import { createMemo, createSignal, Show, splitProps } from "solid-js";
+import { createSignal, Show, splitProps } from "solid-js";
 import { Input } from "ui";
-import { isNullable } from "utils/validators";
 
 import type { JSX, ParentProps } from "solid-js";
+import type { Degrees } from "utils/math";
 
 import styles from "./input-location.module.css";
 
@@ -19,9 +19,9 @@ interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement
 	};
 	legend?: string;
 	name: string;
-	onChange?: (value: number) => void;
+	onChange?: (value: Degrees) => void;
 	required?: boolean;
-	value?: number;
+	value?: Degrees;
 }
 
 export function InputLocation(allProps: Props) {
@@ -37,40 +37,16 @@ export function InputLocation(allProps: Props) {
 		"error"
 	]);
 
-	const initialValue = createMemo(() => {
-		if (isNullable(props.value) || Number.isNaN(props.value)) {
-			return {
-				degrees: 0,
-				minutes: 0,
-				seconds: 0
-			};
-		}
-
-		const degrees = Math.trunc(props.value);
-		const frac = (props.value - degrees) * 60;
-
-		const minutes = Math.trunc(frac);
-		const seconds = Math.trunc((frac - minutes) * 60);
-
-		return {
-			degrees,
-			minutes,
-			seconds
-		};
-	});
-
 	const [ refDegrees, setRefDegrees ] = createSignal<HTMLInputElement>();
 	const [ refMinutes, setRefMinutes ] = createSignal<HTMLInputElement>();
 	const [ refSeconds, setRefSeconds ] = createSignal<HTMLInputElement>();
 
 	const handleChange = () => {
-		const degrees = refDegrees()?.valueAsNumber ?? 0;
-		const minutes = refMinutes()?.valueAsNumber ?? 0;
-		const seconds = refSeconds()?.valueAsNumber ?? 0;
-
-		const value = Math.round(degrees) + Math.round(minutes) / 60 + Math.round(seconds) / 3600;
-
-		props.onChange?.(Number.isNaN(value) ? 0 : value);
+		props.onChange?.([
+			refDegrees()?.valueAsNumber ?? 0,
+			refMinutes()?.valueAsNumber ?? 0,
+			refSeconds()?.valueAsNumber ?? 0
+		]);
 	};
 
 	return (
@@ -92,7 +68,7 @@ export function InputLocation(allProps: Props) {
 				required={props.required}
 				step={1}
 				type="number"
-				value={initialValue().degrees}
+				value={props.value?.[0] ?? 0}
 			>
 				{props.labels?.degrees ?? "Degrees"}
 			</Input>
@@ -108,7 +84,7 @@ export function InputLocation(allProps: Props) {
 				required={props.required}
 				step={1}
 				type="number"
-				value={initialValue().minutes}
+				value={props.value?.[1] ?? 0}
 			>
 				{props.labels?.minutes ?? "Minutes"}
 			</Input>
@@ -124,7 +100,7 @@ export function InputLocation(allProps: Props) {
 				required={props.required}
 				step={1}
 				type="number"
-				value={initialValue().seconds}
+				value={props.value?.[2] ?? 0}
 			>
 				{props.labels?.seconds ?? "Seconds"}
 			</Input>

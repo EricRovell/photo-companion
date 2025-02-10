@@ -1,4 +1,5 @@
 import { createMemo, createSignal, Show } from "solid-js";
+import { unwrap } from "solid-js/store";
 import { IconShadow } from "ui/icons";
 import { isNullable } from "utils/validators";
 
@@ -27,7 +28,7 @@ function Calculator() {
 		}
 
 		setShowOutput(true);
-		setOutput(calcOutput(model));
+		setOutput(calcOutput(unwrap(model)));
 	};
 
 	const handleInput = () => {

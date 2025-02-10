@@ -1,5 +1,6 @@
 import { createContext, createSignal, useContext } from "solid-js";
 import { createStore, unwrap } from "solid-js/store";
+import { convertIntoDegrees, type Degrees } from "utils/math";
 import { isNullable } from "utils/validators";
 
 import type { ParentProps} from "solid-js";
@@ -10,12 +11,12 @@ import { validate } from "./form-validator";
 
 export interface Model {
 	date: Date;
-	latitude: number;
+	latitude: Degrees;
 	latitude_direction: "N" | "S",
 	length_shadow: number;
 	level_object?: number;
 	level_shadow?: number;
-	longitude: number;
+	longitude: Degrees;
 	longitude_direction: "E" | "W"
 	solar_azimuth_angle: number;
 }
@@ -40,12 +41,12 @@ function createFormState() {
 
 	const [ model, setModel ] = createStore<Model>({
 		date: new Date(),
-		latitude,
+		latitude: convertIntoDegrees(latitude),
 		latitude_direction: "N",
 		length_shadow: 5,
 		level_object: 0,
 		level_shadow: 0,
-		longitude,
+		longitude: convertIntoDegrees(longitude),
 		longitude_direction: "E",
 		solar_azimuth_angle: 0
 	});
