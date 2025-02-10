@@ -2,16 +2,16 @@ import { isNonNegativeNumber, isValidDate, isWithinRange } from "utils/validator
 
 import type { FormKey, Model } from "./height-by-shadow.context";
 
-export function validate(state: Model): Record<FormKey, boolean> {
+export function validate(model: Model): Record<FormKey, boolean> {
 	return {
-		date: !isValidDate(state.date),
-		latitude: !isWithinRange(state.latitude, 0, 90),
+		date: !isValidDate(model.date),
+		latitude: !isWithinRange(model.latitude, 0, 90),
 		latitude_direction: false,
-		length_shadow: !isNonNegativeNumber(state.length_shadow),
-		level_object: !isNonNegativeNumber(state.level_object),
-		level_shadow:  !isNonNegativeNumber(state.level_shadow),
-		longitude: !isWithinRange(state.longitude, 0, 180),
+		length_shadow: !isNonNegativeNumber(model.length_shadow),
+		level_object: !isNonNegativeNumber(model.level_object),
+		level_shadow:  !isNonNegativeNumber(model.level_shadow),
+		longitude: !isWithinRange(model.longitude, 0, 180),
 		longitude_direction: false,
-		solar_azimuth_angle: !isNonNegativeNumber(state.solar_azimuth_angle) || state.solar_azimuth_angle > 359
+		solar_azimuth_angle: !isNonNegativeNumber(model.solar_azimuth_angle) || model.solar_azimuth_angle > 359
 	};
 }

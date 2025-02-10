@@ -9,7 +9,7 @@ import { useSettings } from "~/services/settings";
 import { validate } from "./form-validator";
 
 export interface Model {
-	date: Date | null;
+	date: Date;
 	latitude: number;
 	latitude_direction: "N" | "S",
 	length_shadow: number;
@@ -38,7 +38,7 @@ function createFormState() {
 	const { settings } = useSettings();
 	const { latitude, longitude } = unwrap(settings);
 
-	const [ store, setStore ] = createStore<Model>({
+	const [ model, setModel ] = createStore<Model>({
 		date: new Date(),
 		latitude,
 		latitude_direction: "N",
@@ -50,7 +50,7 @@ function createFormState() {
 		solar_azimuth_angle: 0
 	});
 
-	const [ getValidity, setValidity ] = createSignal<Partial<Record<FormKey, boolean>>>(validate(store));
+	const [ getValidity, setValidity ] = createSignal<Partial<Record<FormKey, boolean>>>(validate(model));
 
 	const getInvalidFields = () => {
 		const fields: FormKey[] = [];
@@ -67,8 +67,8 @@ function createFormState() {
 	const hasError = () => getInvalidFields().length > 0;
 
 	const update = <T extends FormKey>(name: T, value: Model[T]) => {
-		setStore(name, value);
-		setValidity(validate(unwrap(store)));
+		setModel(name, value);
+		setValidity(validate(unwrap(model)));
 	};
 
 	return {
@@ -76,9 +76,8 @@ function createFormState() {
 		getInvalidFields,
 		getValidity,
 		hasError,
-		setStore,
-		store,
-		update
+		model,
+		setModel: update
 	};
 }
 

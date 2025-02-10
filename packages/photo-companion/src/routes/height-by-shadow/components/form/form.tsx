@@ -1,4 +1,5 @@
 import { Button, Input, InputLocation, InputRadio } from "ui";
+import { isNullable } from "utils/validators";
 
 import type { JSX, ParentProps} from "solid-js";
 
@@ -10,8 +11,8 @@ import type { FormKey } from "../../height-by-shadow.context";
 
 import styles from "./form.module.css";
 
-export function Form(props: ParentProps) {
-	const { FORM_NAME, getValidity, store, update } = useForm();
+export function Form(props: JSX.FormHTMLAttributes<HTMLFormElement> & ParentProps) {
+	const { FORM_NAME, getValidity, model, setModel } = useForm();
 	const { t } = useTranslation();
 
 	const handleChange: JSX.ChangeEventHandlerUnion<HTMLInputElement, Event> = (event) => {
@@ -21,26 +22,28 @@ export function Form(props: ParentProps) {
 
 		switch (event.target.name) {
 			case FORM_NAME.DATE:
-				update(event.target.name as FormKey, event.target.valueAsDate);
+				if (!isNullable(event.target.valueAsDate)) {
+					setModel(event.target.name as FormKey, event.target.valueAsDate);
+				}
 				break;
 			case FORM_NAME.LATITUDE_DIRECTION:
 			case FORM_NAME.LONGITUDE_DIRECTION:
-				update(event.target.name, event.target.value as "E" | "N" | "S" | "W");
+				setModel(event.target.name, event.target.value as "E" | "N" | "S" | "W");
 				break;
 			default:
-				update(event.target.name as FormKey, event.target.valueAsNumber);
+				setModel(event.target.name as FormKey, event.target.valueAsNumber);
 		}
 	};
 
 	return (
-		<form class={styles.form} onSubmit={e => e.preventDefault()}>
+		<form class={styles.form} {...props}>
 			<Input
 				error={getValidity().date}
 				name={FORM_NAME.DATE}
 				onChange={handleChange}
 				required
 				type="date"
-				value={store.date?.toISOString().slice(0, 10)}
+				value={model.date.toISOString().slice(0, 10)}
 			>
 				{t().LABEL.DATE}
 			</Input>
@@ -54,9 +57,9 @@ export function Form(props: ParentProps) {
 				}}
 				legend={t().LABEL.LATITUDE}
 				name="latitude"
-				onChange={value => update("latitude", value)}
+				onChange={value => setModel("latitude", value)}
 				required
-				value={store.latitude}
+				value={model.latitude}
 			/>
 			<fieldset class={styles.radio}>
 				<InputRadio
@@ -69,7 +72,7 @@ export function Form(props: ParentProps) {
 						{ label: t().LABEL.LATITUDE_NORTH, value: "N" },
 						{ label: t().LABEL.LATITUDE_SOUTH, value: "S" }
 					]}
-					value={store.latitude_direction}
+					value={model.latitude_direction}
 				/>
 			</fieldset>
 			<InputLocation
@@ -82,9 +85,9 @@ export function Form(props: ParentProps) {
 				}}
 				legend={t().LABEL.LONGITUDE}
 				name="longitude"
-				onChange={value => update("longitude", value)}
+				onChange={value => setModel("longitude", value)}
 				required
-				value={store.longitude}
+				value={model.longitude}
 			/>
 			<fieldset class={styles.radio}>
 				<InputRadio
@@ -97,7 +100,7 @@ export function Form(props: ParentProps) {
 						{ label: t().LABEL.LONGITUDE_EAST, value: "E" },
 						{ label: t().LABEL.LONGITUDE_WEST, value: "W" }
 					]}
-					value={store.longitude_direction}
+					value={model.longitude_direction}
 				/>
 			</fieldset>
 			<Input
@@ -107,9 +110,9 @@ export function Form(props: ParentProps) {
 				name={FORM_NAME.SOLAR_AZIMUTH_ANGLE}
 				onChange={handleChange}
 				required
-				step={0.001}
+				step="any"
 				type="number"
-				value={store.solar_azimuth_angle}
+				value={model.solar_azimuth_angle}
 			>
 				{t().LABEL.SOLAR_AZIMUTH_ANGLE}
 			</Input>
@@ -119,9 +122,9 @@ export function Form(props: ParentProps) {
 				name={FORM_NAME.LENGTH_SHADOW}
 				onChange={handleChange}
 				required
-				step={0.001}
+				step="any"
 				type="number"
-				value={store.length_shadow}
+				value={model.length_shadow}
 			>
 				{t().LABEL.SHADOW_LENGTH}
 			</Input>
@@ -131,9 +134,9 @@ export function Form(props: ParentProps) {
 					min={0}
 					name={FORM_NAME.LEVEL_OBJECT}
 					onChange={handleChange}
-					step={0.001}
+					step="any"
 					type="number"
-					value={store.level_object}
+					value={model.level_object}
 				>
 					{t().LABEL.OBJECT_LEVEL}
 				</Input>
@@ -142,9 +145,9 @@ export function Form(props: ParentProps) {
 					min={0}
 					name={FORM_NAME.LEVEL_SHADOW}
 					onChange={handleChange}
-					step={0.001}
+					step="any"
 					type="number"
-					value={store.level_shadow}
+					value={model.level_shadow}
 				>
 					{t().LABEL.SHADOW_LEVEL}
 				</Input>
