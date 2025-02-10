@@ -1,7 +1,7 @@
 import { type ParentProps, Show } from "solid-js";
 
-import { CityLightsProvider } from "~/lib/context/city-lights";
 import { useSupportsLights } from "~/lib/hooks";
+import { CityLightsProvider } from "~/services/city-lights";
 
 export function SupportsLights(props: ParentProps) {
 	const supports = useSupportsLights();

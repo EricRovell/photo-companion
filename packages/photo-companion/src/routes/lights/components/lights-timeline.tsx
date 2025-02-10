@@ -4,8 +4,8 @@ import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "~/lib/components";
 import { ROUTES } from "~/lib/consts";
-import { useCityLights } from "~/lib/context/city-lights";
 import { useDatetime, useTimelineProvider } from "~/lib/hooks";
+import { useCityLights } from "~/services/city-lights";
 import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 
