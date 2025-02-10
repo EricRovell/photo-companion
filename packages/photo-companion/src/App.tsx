@@ -2,9 +2,9 @@ import { MetaProvider } from "@solidjs/meta";
 import { Suspense } from "solid-js";
 import { Toaster } from "solid-sonner";
 
-import { ToastSuggestUpdate } from "@lib/components";
-import { SettingsProvider } from "@lib/context/settings";
-import { TranslationProvider } from "@lib/context/translation";
+import { ToastSuggestUpdate } from "~/lib/components";
+import { SettingsProvider } from "~/lib/context/settings";
+import { TranslationProvider } from "~/lib/context/translation";
 
 import { Routes } from "./routes";
 import { NavigationServiceProvider } from "./services/navigation";

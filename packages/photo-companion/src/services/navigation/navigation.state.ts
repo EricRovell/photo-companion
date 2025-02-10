@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "@solidjs/router";
 import { createMemo } from "solid-js";
 
-import { ROUTES } from "@lib/consts";
-import { useSettings } from "@lib/context/settings";
-import { useSupportsBridges, useSupportsLights } from "@lib/hooks";
+import { ROUTES } from "~/lib/consts";
+import { useSettings } from "~/lib/context/settings";
+import { useSupportsBridges, useSupportsLights } from "~/lib/hooks";
 
 import { NAVIGATION_TAB_DATA } from "./navigation-service.consts";
 

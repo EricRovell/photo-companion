@@ -2,7 +2,7 @@ import { Button, Input, InputLocation, InputRadio } from "ui";
 
 import type { JSX, ParentProps} from "solid-js";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/lib/context/translation";
 
 import { useForm } from "../../height-by-shadow.context";
 

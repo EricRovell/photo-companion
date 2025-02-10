@@ -1,5 +1,6 @@
-import { useNavigationService } from "~/services/navigation";
 import { onMount } from "solid-js";
+
+import { useNavigationService } from "~/services/navigation";
 
 export function PageRoot() {
 	const { navigateHome } = useNavigationService();

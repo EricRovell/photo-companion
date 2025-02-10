@@ -4,7 +4,7 @@ import { round } from "utils/math";
 
 import type { SunEvent, SunEventName } from "types";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/lib/context/translation";
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
 	const { formatters } = useTranslation();

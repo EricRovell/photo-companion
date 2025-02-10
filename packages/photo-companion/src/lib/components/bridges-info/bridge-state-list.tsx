@@ -2,9 +2,9 @@ import { getBridgesState } from "bridge-schedule";
 import { createMemo, For, Show } from "solid-js";
 import { objectEntries } from "utils";
 
-import { CardEntry } from "@lib/components";
-import { useTranslation } from "@lib/context/translation";
-import { useDatetime } from "@lib/hooks";
+import { CardEntry } from "~/lib/components";
+import { useTranslation } from "~/lib/context/translation";
+import { useDatetime } from "~/lib/hooks";
 
 import { BridgesStateAll } from "./bridge-state-all";
 

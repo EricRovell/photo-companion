@@ -1,4 +1,4 @@
-import { useSettings } from "@lib/context/settings";
+import { useSettings } from "~/lib/context/settings";
 
 export function useDisabledTimeline() {
 	const { settings } = useSettings();

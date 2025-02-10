@@ -1,13 +1,13 @@
-import { getSunEvents } from "~/services/sun";
 import { For } from "solid-js";
 
 import type { EventName } from "types";
 
-import { Timeline, TimelineEvent } from "@lib/components";
-import { ROUTES } from "@lib/consts";
-import { useCityLights } from "@lib/context/city-lights";
-import { useSettings } from "@lib/context/settings";
-import { useDatetime, useTimelineProvider } from "@lib/hooks";
+import { Timeline, TimelineEvent } from "~/lib/components";
+import { ROUTES } from "~/lib/consts";
+import { useCityLights } from "~/lib/context/city-lights";
+import { useSettings } from "~/lib/context/settings";
+import { useDatetime, useTimelineProvider } from "~/lib/hooks";
+import { getSunEvents } from "~/services/sun";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
 	"LIGHTS_START",

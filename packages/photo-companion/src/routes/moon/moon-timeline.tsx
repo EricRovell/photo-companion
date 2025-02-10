@@ -1,13 +1,13 @@
-import { getMoonEvents } from "~/services/moon";
-import { getSunEvents } from "~/services/sun";
 import { createMemo, For } from "solid-js";
 
 import type { EventName } from "types";
 
-import { Timeline, TimelineEvent } from "@lib/components";
-import { ROUTES } from "@lib/consts";
-import { useSettings } from "@lib/context/settings";
-import { useTimelineProvider } from "@lib/hooks";
+import { Timeline, TimelineEvent } from "~/lib/components";
+import { ROUTES } from "~/lib/consts";
+import { useSettings } from "~/lib/context/settings";
+import { useTimelineProvider } from "~/lib/hooks";
+import { getMoonEvents } from "~/services/moon";
+import { getSunEvents } from "~/services/sun";
 
 interface MoonTimelineProps {
 	date: Date;

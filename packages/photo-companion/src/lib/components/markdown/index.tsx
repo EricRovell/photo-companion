@@ -11,7 +11,7 @@ import {
 	Paragraph,
 	Root,
 	Strong
-} from "@lib/components/markdown/markdown.blocks";
+} from "~/lib/components/markdown/markdown.blocks";
 
 import { DefinitionProvider } from "./markdown.context";
 

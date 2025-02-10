@@ -1,7 +1,7 @@
-import { type ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 import { Button, IconArrowDown, IconArrowUp, InputCheckbox } from "ui";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/lib/context/translation";
+import { type ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 
 import styles from "./input-tabs-select.module.css";
 

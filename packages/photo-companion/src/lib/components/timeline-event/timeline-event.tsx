@@ -4,10 +4,10 @@ import { Time } from "ui";
 
 import type { TimelineEvent } from "types";
 
-import { useTranslation } from "@lib/context/translation";
-import { createQueryDate, setAttribute } from "@lib/helpers";
-import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "@lib/helpers/validators";
-import { useDatetime } from "@lib/hooks";
+import { useTranslation } from "~/lib/context/translation";
+import { createQueryDate, setAttribute } from "~/lib/helpers";
+import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "~/lib/helpers/validators";
+import { useDatetime } from "~/lib/hooks";
 
 import { LinkQuery } from "../link-query";
 import { bridgeEventComponent } from "./timeline-event-bridge";

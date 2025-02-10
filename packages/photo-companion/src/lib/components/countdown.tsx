@@ -2,7 +2,7 @@ import { createEffect, createSignal } from "solid-js";
 import { Time } from "ui";
 import { createTimeoutLoop } from "ui/primitives";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/lib/context/translation";
 
 interface Props {
 	callback?: () => number;

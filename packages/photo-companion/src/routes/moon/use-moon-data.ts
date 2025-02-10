@@ -6,9 +6,9 @@ import { round } from "utils/math";
 import type { MoonIllumination } from "moon-sun-calc/src/moon/types";
 import type { MoonPhaseName } from "types";
 
-import { useSettings } from "@lib/context/settings";
-import { useTranslation } from "@lib/context/translation";
-import { useDatetime } from "@lib/hooks";
+import { useSettings } from "~/lib/context/settings";
+import { useTranslation } from "~/lib/context/translation";
+import { useDatetime } from "~/lib/hooks";
 
 export interface MoonData {
 	altitude: string;

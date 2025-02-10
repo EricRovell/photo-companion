@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 
-import { CardEntry, CardInfo } from "@lib/components";
-import { useTranslation } from "@lib/context/translation";
+import { CardEntry, CardInfo } from "~/lib/components";
+import { useTranslation } from "~/lib/context/translation";
 
 import { useMoonData } from "../../moon/use-moon-data";
 

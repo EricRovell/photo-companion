@@ -1,8 +1,8 @@
 
 import { getSunPosition } from "moon-sun-calc";
 
-import { ElevationGraph } from "@lib/components";
-import { useTranslation } from "@lib/context/translation";
+import { ElevationGraph } from "~/lib/components";
+import { useTranslation } from "~/lib/context/translation";
 
 interface SunAltitudeProps {
 	date: Date;

@@ -2,7 +2,7 @@ import { useSearchParams } from "@solidjs/router";
 import { createEffect, createMemo } from "solid-js";
 import { isNonEmptyString, isNullable } from "utils/validators";
 
-import { createQueryDate, parseQueryDate } from "@lib/helpers";
+import { createQueryDate, parseQueryDate } from "~/lib/helpers";
 
 export function useDatetime() {
 	const [ searchParams, setSearchParams ] = useSearchParams<{ datetime: string }>();

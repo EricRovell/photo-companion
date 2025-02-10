@@ -1,7 +1,7 @@
-import { CardEntry } from "@lib/components";
-import { useCityLights } from "@lib/context/city-lights";
-import { useTranslation } from "@lib/context/translation";
-import { createCountdown, useDatetime } from "@lib/hooks";
+import { CardEntry } from "~/lib/components";
+import { useCityLights } from "~/lib/context/city-lights";
+import { useTranslation } from "~/lib/context/translation";
+import { createCountdown, useDatetime } from "~/lib/hooks";
 
 /**
  * City lights countdown used as card entry.

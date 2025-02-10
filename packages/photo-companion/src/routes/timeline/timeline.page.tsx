@@ -4,11 +4,11 @@ import { incrementDateByDay } from "utils/date";
 
 import type { EventGroupName } from "types";
 
-import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "@lib/components";
-import { CityLightsProvider } from "@lib/context/city-lights";
-import { useSettings } from "@lib/context/settings";
-import { useTranslation } from "@lib/context/translation";
-import { useDatetime } from "@lib/hooks";
+import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "~/lib/components";
+import { CityLightsProvider } from "~/lib/context/city-lights";
+import { useSettings } from "~/lib/context/settings";
+import { useTranslation } from "~/lib/context/translation";
+import { useDatetime } from "~/lib/hooks";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
 

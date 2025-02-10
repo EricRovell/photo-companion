@@ -94,7 +94,7 @@ export default tseslint.config(
 					],
 					newlinesBetween: "always",
 					internalPattern: [
-						"^@lib/*"
+						"^~/.*"
 					]
 				}
 			],

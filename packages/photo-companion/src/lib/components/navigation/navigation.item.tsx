@@ -1,13 +1,14 @@
 import { useMatch } from "@solidjs/router";
 import { Dynamic } from "solid-js/web";
 
-import type { ROUTE_LABEL } from "~/services/navigation";
 import type { Component } from "solid-js";
 import type { IconProps } from "ui";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/lib/context/translation";
 
 import { LinkQuery } from "../link-query";
+
+import type { ROUTE_LABEL } from "~/services/navigation";
 
 interface NavigationItemProps {
 	classes?: {

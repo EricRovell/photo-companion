@@ -14,7 +14,7 @@ import {
 import type { Component } from "solid-js";
 import type { IconProps } from "ui";
 
-import { ROUTES } from "@lib/consts";
+import { ROUTES } from "~/lib/consts";
 
 export interface NavigationRoute {
 	disabled?: boolean;

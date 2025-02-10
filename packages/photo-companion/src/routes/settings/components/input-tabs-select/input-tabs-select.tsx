@@ -1,10 +1,10 @@
 import { createMemo, For } from "solid-js";
 
-import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
-
 import { FORM_INPUT_NAME } from "../../settings.const";
 import { useSettingsPage } from "../../settings.context";
 import { TabSelect } from "./input-tabs-select.tab";
+
+import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 
 import styles from "./input-tabs-select.module.css";
 

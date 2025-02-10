@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import { useTranslation } from "@lib/context/translation";
+import { useTranslation } from "~/lib/context/translation";
 
 import { useForm } from "../../height-by-shadow.context";
 
