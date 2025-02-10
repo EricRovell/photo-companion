@@ -4,7 +4,7 @@ import { For, Show } from "solid-js";
 
 import { BridgesInfo } from "~/lib/components/bridges-info/bridges-info";
 import { ROUTES } from "~/lib/consts/routes";
-import { useSupportsBridges } from "~/lib/hooks";
+import { useSettings } from "~/services/settings";
 import { useTranslation } from "~/services/translation";
 
 import { CardBridge } from "./components";
@@ -28,10 +28,10 @@ const BridgeList = () => (
 
 export function PageBridges() {
 	const { t } = useTranslation();
-	const supports = useSupportsBridges();
+	const { isSupportsBridges } = useSettings();
 
 	return (
-		<Show when={supports()} fallback={<Navigate href={ROUTES.NOT_FOUND} />}>
+		<Show when={isSupportsBridges()} fallback={<Navigate href={ROUTES.NOT_FOUND} />}>
 			<div class={styles.page}>
 				<div class={styles.wrapper}>
 					<h2 class={styles.title} id="bridge-schedule">

@@ -2,17 +2,14 @@ import { useLocation, useNavigate } from "@solidjs/router";
 import { createMemo } from "solid-js";
 
 import { ROUTES } from "~/lib/consts";
-import { useSupportsBridges, useSupportsLights } from "~/lib/hooks";
 import { useSettings } from "~/services/settings";
 
 import { NAVIGATION_TAB_DATA } from "./navigation-service.consts";
 
 export function createNavigationService() {
-	const { settings } = useSettings();
+	const { isSupportsBridges, isSupportsCityLights, settings } = useSettings();
 
 	const getTabNames = createMemo(() => settings.tabs);
-	const supportsBridges = useSupportsBridges();
-	const supportsLights = useSupportsLights();
 
 	const navigateHome = () => {
 		const navigate = useNavigate();
@@ -29,10 +26,10 @@ export function createNavigationService() {
 		[
 			NAVIGATION_TAB_DATA.NOW,
 			NAVIGATION_TAB_DATA.TIMELINE,
-			...(supportsLights() ? [ NAVIGATION_TAB_DATA.LIGHTS ] : []),
+			...(isSupportsCityLights() ? [ NAVIGATION_TAB_DATA.LIGHTS ] : []),
 			NAVIGATION_TAB_DATA.SUN,
 			NAVIGATION_TAB_DATA.MOON,
-			...(supportsBridges() ? [ NAVIGATION_TAB_DATA.BRIDGES ] : []),
+			...(isSupportsBridges() ? [ NAVIGATION_TAB_DATA.BRIDGES ] : []),
 			NAVIGATION_TAB_DATA.HEIGHT_BY_SHADOW
 		],
 		[

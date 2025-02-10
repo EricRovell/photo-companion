@@ -1,7 +1,6 @@
 import { getBridgeEvents } from "bridge-schedule";
 import { isNullable } from "utils/validators";
 
-import { useSupportsBridges, useSupportsLights } from "~/lib/hooks";
 import { useDatetime, useTimelineProvider } from "~/lib/hooks";
 import { useCityLights } from "~/services/city-lights";
 import { getMoonEvents } from "~/services/moon";
@@ -17,14 +16,11 @@ import { useTimelineFilters } from "./use-timeline-filters";
 */
 
 export function useTimelineEvents() {
-	const { settings } = useSettings();
+	const { isSupportsBridges, isSupportsCityLights, settings } = useSettings();
 
 	const timelineFilterSet = useTimelineFilters();
 	const { getEventsByDate } = useCityLights();
 	const { getTimestamp } = useDatetime();
-
-	const supportsLights = useSupportsLights();
-	const supportsBridges = useSupportsBridges();
 
 	const hasNoBridgeEvents = () => isNullable(settings.events_bridges_spb);
 	const hasNoLightsEvents = () => isNullable(settings.events_lights);
@@ -35,12 +31,12 @@ export function useTimelineEvents() {
 		predicate: event => !timelineFilterSet().has(event.name) && event.timestamp >= getTimestamp(),
 		providers: [
 			{
-				disabled: !supportsBridges() || hasNoBridgeEvents(),
+				disabled: !isSupportsBridges() || hasNoBridgeEvents(),
 				provider: getBridgeEvents,
 				type: "DATE"
 			},
 			{
-				disabled: !supportsLights() || hasNoLightsEvents(),
+				disabled: !isSupportsCityLights() || hasNoLightsEvents(),
 				provider: getEventsByDate,
 				type: "DATE"
 			},

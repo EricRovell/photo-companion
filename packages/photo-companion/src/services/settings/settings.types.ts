@@ -1,4 +1,3 @@
-import type { SetStoreFunction } from "solid-js/store";
 import type {
 	BridgeEventName,
 	City,
@@ -30,12 +29,6 @@ export interface SettingsStore {
 	latitude: number;
 	longitude: number;
 	tabs: ROUTE_PRIMARY_LABEL[];
-}
-
-export interface SettingsContextType {
-	readonly resetSettings: () => void;
-	readonly setSettings: SetStoreFunction<SettingsStore>;
-	readonly settings: SettingsStore;
 }
 
 export interface CitySettingsPreset extends Pick<SettingsStore, "city" | "latitude" | "longitude"> {
