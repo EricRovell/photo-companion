@@ -1,7 +1,7 @@
 import { Link } from "ui";
 
 import { Moon } from "@lib/components";
-import { ROUTE_ROOT } from "@lib/consts";
+import { ROUTES } from "@lib/consts";
 import { useTranslation } from "@lib/context/translation";
 
 import styles from "./404.module.css";
@@ -20,7 +20,7 @@ export const Page404 = () => {
 				/>
 				<span class={styles.digit}>4</span>
 			</div>
-			<Link class={styles.link} href={ROUTE_ROOT}>
+			<Link class={styles.link} href={ROUTES.ROOT}>
 				{t().LABEL.GO_HOME}
 			</Link>
 		</aside>

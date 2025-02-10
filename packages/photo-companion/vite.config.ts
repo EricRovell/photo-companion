@@ -41,7 +41,8 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
-			"@lib": resolve(__dirname, "./src/lib")
+			"@lib": resolve(__dirname, "./src/lib"),
+			"~": resolve(__dirname, "./src")
 		}
 	}
 });

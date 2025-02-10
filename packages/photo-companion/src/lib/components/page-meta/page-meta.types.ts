@@ -1,4 +1,4 @@
-import type { ROUTE_VALUE } from "@lib/consts/routes";
+import type { ROUTE_VALUE } from "~/services/navigation";
 
 export interface PageMetaData {
 	DESCRIPTION: string;

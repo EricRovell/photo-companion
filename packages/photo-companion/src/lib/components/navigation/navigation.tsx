@@ -1,13 +1,12 @@
 import { useBeforeLeave } from "@solidjs/router";
+import { useNavigationService } from "~/services/navigation";
 import { For } from "solid-js";
 import { Button, Drawer, IconMenu } from "ui";
 import { createToggle } from "ui/primitives";
 import { classnames } from "utils";
 
 import { useTranslation } from "@lib/context/translation";
-import { useNavigationTabs } from "@lib/hooks";
 
-import { NAVIGATION_TAB_DATA } from "./navigation.const";
 import { NavigationItem } from "./navigation.item";
 import { NavigationMenu } from "./navigation.menu";
 
@@ -43,17 +42,21 @@ function SideMenu() {
 	);
 }
 
-const SettingsLink = () => (
-	<li class={classnames(styles["nav-item"], styles["nav-item-settings"])}>
-		<NavigationItem
-			classes={{
-				icon: styles.icon,
-				link: styles.link
-			}}
-			{...NAVIGATION_TAB_DATA.SETTINGS}
-		/>
-	</li>
-);
+const SettingsLink = () => {
+	const { NAVIGATION_TAB_DATA } = useNavigationService();
+
+	return (
+		<li class={classnames(styles["nav-item"], styles["nav-item-settings"])}>
+			<NavigationItem
+				classes={{
+					icon: styles.icon,
+					link: styles.link
+				}}
+				{...NAVIGATION_TAB_DATA.SETTINGS}
+			/>
+		</li>
+	);
+};
 
 /**
  * Wide screens: all non-disabled primary sections are shown, `settings` and `menu` are on the right edge;
@@ -61,15 +64,15 @@ const SettingsLink = () => (
  * Smaller screens, possibly mobile: show only at max 4 sections, `settings` are hidden and `menu` is shown always;
  */
 export function Navigation() {
-	const { getTabLinks } = useNavigationTabs();
+	const { getNavigationTabs } = useNavigationService();
 
 	return (
 		<nav
 			class={styles.navigation}
-			style={{ "--navigation-items-count": getTabLinks().slice(0, 4).length + 1 }}
+			style={{ "--navigation-items-count": getNavigationTabs().slice(0, 4).length + 1 }}
 		>
 			<ul class={styles["nav-items"]}>
-				<For each={getTabLinks()}>
+				<For each={getNavigationTabs()}>
 					{item => (
 						<li class={styles["nav-item"]}>
 							<NavigationItem

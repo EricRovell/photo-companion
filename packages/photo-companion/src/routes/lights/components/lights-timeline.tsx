@@ -3,7 +3,7 @@ import { For } from "solid-js";
 import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "@lib/components";
-import { ROUTE } from "@lib/consts";
+import { ROUTES } from "@lib/consts";
 import { useCityLights } from "@lib/context/city-lights";
 import { useSettings } from "@lib/context/settings";
 import { useDatetime, useTimelineProvider } from "@lib/hooks";
@@ -49,7 +49,7 @@ export function LightsTimeline() {
 					{event => (
 						<TimelineEvent
 							event={event}
-							href={ROUTE.LIGHTS}
+							href={ROUTES.LIGHTS}
 							secondary={SECONDARY_EVENT_SET.has(event.name)}
 						/>
 					)}

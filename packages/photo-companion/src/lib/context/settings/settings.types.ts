@@ -1,3 +1,4 @@
+import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 import type { SetStoreFunction } from "solid-js/store";
 import type {
 	BridgeEventName,
@@ -7,7 +8,6 @@ import type {
 	SunEventName
 } from "types";
 
-import type { ROUTE_PRIMARY_LABEL } from "@lib/consts/routes";
 import type { UserLang } from "@lib/types";
 
 /**

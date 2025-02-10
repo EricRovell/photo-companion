@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 
 import { Timeline, TimelineEvent } from "@lib/components";
-import { ROUTE_SUN } from "@lib/consts";
+import { ROUTES } from "@lib/consts";
 import { useSettings } from "@lib/context/settings";
 import { useTimelineProvider } from "@lib/hooks";
 
@@ -28,7 +28,7 @@ export function SunTimeline(props: SunTimelineProps) {
 		<section data-label="timeline">
 			<Timeline>
 				<For each={events()}>
-					{event => <TimelineEvent event={event} href={ROUTE_SUN} />}
+					{event => <TimelineEvent event={event} href={ROUTES.SUN} />}
 				</For>
 			</Timeline>
 		</section>

@@ -1,48 +1,26 @@
-import { useLocation, useNavigate } from "@solidjs/router";
-import { createMemo, type ParentProps } from "solid-js";
+import { useNavigationService } from "~/services/navigation";
+import { createSignal, type ParentProps } from "solid-js";
 import { useSwipe } from "ui/primitives";
 
-import { useNavigationTabs } from "@lib/hooks";
-
-export function useSwipeTab() {
-	const { getTabLinks } = useNavigationTabs();
-	const navigate = useNavigate();
-	const location = useLocation();
-	const pathname = createMemo(() => location.pathname);
-
-	const index = createMemo(() => getTabLinks().findIndex(tab => tab.href === pathname()));
-
-	const navigateTab = (step: -1 | 1 = 1) => {
-		let nextIndex = index() + step;
-		
-		if (nextIndex < 0) {
-			nextIndex = getTabLinks().length - 1;
-		} else if (nextIndex > getTabLinks().length - 1) {
-			nextIndex = 0;
-		}
-
-		navigate(getTabLinks()[nextIndex].href);
-	};
-
-	return navigateTab;
-}
-
 export function WithSwipe(props: ParentProps) {
-	const navigate = useSwipeTab();
+	const [ getRef, setRef ] = createSignal<HTMLDivElement | null>(null);
+	const { createSwiper } = useNavigationService();
 
-	useSwipe(undefined, {
+	const swipe = createSwiper();
+
+	useSwipe(getRef, {
 		onSwipeEnd(_, direction) {
 			if (direction === "LEFT") {
-				navigate(1);
+				swipe(1);
 			} else if (direction === "RIGHT") {
-				navigate(-1);
+				swipe(-1);
 			}
 		}
 	});
 
 	return (
-		<>
+		<div ref={setRef} style={{ display: "contents" }}>
 			{props.children}
-		</>
+		</div>
 	);
 }

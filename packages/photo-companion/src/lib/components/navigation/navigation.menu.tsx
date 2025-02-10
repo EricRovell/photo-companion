@@ -1,11 +1,10 @@
+import { useNavigationService } from "~/services/navigation";
 import { For } from "solid-js";
 import { Button, IconClose, Link } from "ui";
 
-import { ROUTE_CHANGELOG, VERSION } from "@lib/consts";
+import { ROUTES, VERSION } from "@lib/consts";
 import { useTranslation } from "@lib/context/translation";
-import { useSupportsBridges, useSupportsLights } from "@lib/hooks";
 
-import { NAVIGATION_TAB_DATA } from "./navigation.const";
 import { NavigationItem } from "./navigation.item";
 
 import styles from "./navigation.menu.module.css";
@@ -18,31 +17,9 @@ interface Props {
 	onClose: VoidFunction;
 }
 
-function useNavItemGroups() {
-	const supportsLights = useSupportsLights();
-	const supportsBridges = useSupportsBridges();
-
-	return () => ([
-		[
-			NAVIGATION_TAB_DATA.NOW,
-			NAVIGATION_TAB_DATA.TIMELINE,
-			...(supportsLights() ? [ NAVIGATION_TAB_DATA.LIGHTS ] : []),
-			NAVIGATION_TAB_DATA.SUN,
-			NAVIGATION_TAB_DATA.MOON,
-			...(supportsBridges() ? [ NAVIGATION_TAB_DATA.BRIDGES ] : []),
-			NAVIGATION_TAB_DATA.HEIGHT_BY_SHADOW
-		],
-		[
-			NAVIGATION_TAB_DATA.SETTINGS,
-			NAVIGATION_TAB_DATA.ABOUT,
-			NAVIGATION_TAB_DATA.CHANGELOG
-		]
-	]);
-}
-
 export function NavigationMenu(props: Props) {
 	const { t } = useTranslation();
-	const groups = useNavItemGroups();
+	const { getNavigationMenuItems } = useNavigationService();
 
 	return (
 		<>
@@ -53,7 +30,7 @@ export function NavigationMenu(props: Props) {
 				</Button>
 			</header>
 			<nav class={styles.menu}>
-				<For each={groups()}>
+				<For each={getNavigationMenuItems()}>
 					{group => (
 						<section class={styles.section}>
 							<For each={group}>
@@ -70,7 +47,7 @@ export function NavigationMenu(props: Props) {
 					<div>
 						<dt>Version:</dt>
 						<dd>
-							<Link href={ROUTE_CHANGELOG}>
+							<Link href={ROUTES.CHANGELOG}>
 								v.{VERSION}
 							</Link>
 						</dd>
