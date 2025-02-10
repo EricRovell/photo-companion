@@ -2,7 +2,7 @@ import { getSunPosition, getSunTimeByAzimuth } from "moon-sun-calc";
 import { createMemo, Match, Show, Switch } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { useTranslation } from "~/lib/context/translation";
+import { useTranslation } from "~/services/translation";
 
 import { useForm } from "../../height-by-shadow.context";
 

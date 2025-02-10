@@ -2,8 +2,8 @@ import { For } from "solid-js";
 import { Button, IconClose, Link } from "ui";
 
 import { ROUTES, VERSION } from "~/lib/consts";
-import { useTranslation } from "~/lib/context/translation";
 import { useNavigationService } from "~/services/navigation";
+import { useTranslation } from "~/services/translation";
 
 import { NavigationItem } from "./navigation.item";
 

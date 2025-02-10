@@ -1,6 +1,6 @@
 import { IconShadow } from "ui";
 
-import { useTranslation } from "~/lib/context/translation";
+import { useTranslation } from "~/services/translation";
 
 import { Error } from "./components/error/error";
 import { Form } from "./components/form/form";

@@ -1,7 +1,7 @@
 import { useSearchParams } from "@solidjs/router";
 import { Input } from "ui";
 
-import { useTranslation } from "~/lib/context/translation";
+import { useTranslation } from "~/services/translation";
 
 import { FORM_INPUT_NAME } from "../../settings.const";
 import { useSettingsPage } from "../../settings.context";

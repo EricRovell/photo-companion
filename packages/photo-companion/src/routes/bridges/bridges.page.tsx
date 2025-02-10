@@ -4,8 +4,8 @@ import { For, Show } from "solid-js";
 
 import { BridgesInfo } from "~/lib/components/bridges-info/bridges-info";
 import { ROUTES } from "~/lib/consts/routes";
-import { useTranslation } from "~/lib/context/translation";
 import { useSupportsBridges } from "~/lib/hooks";
+import { useTranslation } from "~/services/translation";
 
 import { CardBridge } from "./components";
 

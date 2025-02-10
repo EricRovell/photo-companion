@@ -3,8 +3,8 @@ import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import type { City } from "types";
 import type { InputSelectOption } from "ui";
 
-import type { Translation } from "~/lib/context/translation";
 import type { SettingsStore } from "~/services/settings";
+import type { Translation } from "~/services/translation";
 
 export const cityOptions: City[] = [
 	"MOSCOW",

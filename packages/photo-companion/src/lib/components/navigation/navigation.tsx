@@ -4,8 +4,8 @@ import { Button, Drawer, IconMenu } from "ui";
 import { createToggle } from "ui/primitives";
 import { classnames } from "utils";
 
-import { useTranslation } from "~/lib/context/translation";
 import { useNavigationService } from "~/services/navigation";
+import { useTranslation } from "~/services/translation";
 
 import { NavigationItem } from "./navigation.item";
 import { NavigationMenu } from "./navigation.menu";
