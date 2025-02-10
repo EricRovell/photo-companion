@@ -4,7 +4,7 @@ import { isNullable } from "utils/validators";
 
 import { Bulb, LinkQuery, Navigation, PageMeta } from "~/lib/components";
 import { TITLE } from "~/lib/consts";
-import { useSettings } from "~/lib/context/settings";
+import { useSettings } from "~/services/settings";
 
 import styles from "./root.module.css";
 

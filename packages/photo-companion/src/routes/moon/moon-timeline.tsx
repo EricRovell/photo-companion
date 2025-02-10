@@ -4,9 +4,9 @@ import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "~/lib/components";
 import { ROUTES } from "~/lib/consts";
-import { useSettings } from "~/lib/context/settings";
 import { useTimelineProvider } from "~/lib/hooks";
 import { getMoonEvents } from "~/services/moon";
+import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 
 interface MoonTimelineProps {

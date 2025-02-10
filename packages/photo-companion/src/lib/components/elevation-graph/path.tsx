@@ -1,7 +1,7 @@
 import { createMemo } from "solid-js";
 import { isSameDay } from "utils/date";
 
-import { useSettings } from "~/lib/context/settings";
+import { useSettings } from "~/services/settings";
 
 import { createPathBuilder } from "./elevation-graph.helpers";
 

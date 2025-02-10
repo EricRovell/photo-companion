@@ -3,9 +3,9 @@ import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 
-import { useSettings } from "~/lib/context/settings";
 import { useTranslation } from "~/lib/context/translation";
 import { useDatetime } from "~/lib/hooks";
+import { useSettings } from "~/services/settings";
 
 export interface SunData {
 	blueHourDawn: string;
