@@ -1,16 +1,22 @@
-import type { TimelineGroupProps, TimelineProps } from "./timeline.types";
+import { type JSXElement, type ParentProps, Show } from "solid-js";
+import { Time } from "ui";
+import { isNullable } from "utils/validators";
 
 import styles from "./timeline.module.css";
 
-export const TimelineGroup = (props: TimelineGroupProps) => (
+export const TimelineGroup = (props: ParentProps) => (
 	<div class={styles.wrapper}>
 		{props.children}
 	</div>
 );
 
-export const Timeline = (props: TimelineProps) => (
+export const Timeline = (props: ParentProps<{ date?: JSXElement; }>) => (
 	<article class={styles.timeline}>
-		{props.date}
+		<Show when={!isNullable(props.date)}>
+			<Time class={styles.datetime}>
+				{props.date}
+			</Time>
+		</Show>
 		<ol class={styles["timeline-entries"]}>
 			{props.children}
 		</ol>

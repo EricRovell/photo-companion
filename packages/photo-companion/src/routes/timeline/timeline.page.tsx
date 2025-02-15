@@ -1,5 +1,4 @@
 import { For, Show } from "solid-js";
-import { Time } from "ui";
 import { IconWarning } from "ui/icons";
 import { incrementDateByDay } from "utils/date";
 
@@ -43,7 +42,7 @@ function Events(props: EventsProps) {
 		<TimelineGroup>
 			<For each={props.timeline}>
 				{({ date, items }) => (
-					<Timeline date={<Time>{formatters().formatDate(date)}</Time>}>
+					<Timeline date={formatters().formatDate(date)}>
 						<For each={items} fallback={<TimelineEventEmpty />}>
 							{event => <TimelineEvent event={event} href={createEventLink(event.type)} />}
 						</For>
