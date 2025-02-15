@@ -1,21 +1,14 @@
-import { type JSX, mergeProps, splitProps } from "solid-js";
+import { type JSX, splitProps } from "solid-js";
 import { classnames } from "utils";
+
+import type { Classes } from "../../types";
 
 import styles from "./details.module.css";
 
 export interface DetailsProps extends JSX.DetailsHtmlAttributes<HTMLDetailsElement> {
-	classes?: {
-		content?: string;
-		details?: string;
-		label?: string;
-		summary?: string;
-	};
+	classes?: Classes<"content" | "details" | "label" | "summary">;
 	label: string;
 }
-
-const DEFAULT_PROPS: Partial<DetailsProps> = {
-	open: false
-};
 
 const DetailsIcon = () => (
 	<svg class={styles.icon} viewBox="0 0 24 24">
@@ -24,8 +17,7 @@ const DetailsIcon = () => (
 );
 
 export function Details(allProps: DetailsProps) {
-	const merged = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(merged, [
+	const [ props, rest ] = splitProps(allProps, [
 		"classes",
 		"children",
 		"label",
