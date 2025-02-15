@@ -6,7 +6,7 @@ import { isNullable } from "utils/validators";
 import type { JSX } from "solid-js";
 
 import { Button } from "../button/button";
-import { IconChevronLeft, IconChevronRight, IconTimeline } from "../icon";
+import { IconChevronLeft, IconChevronRight, IconTimeline } from "../icons";
 
 import styles from "./input-datetime.module.css";
 

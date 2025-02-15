@@ -7,7 +7,7 @@
 			"default": "./src/components/index.ts"
 		},
 		"./icons": {
-			"import": "./src/components/icon/index.ts"
+			"import": "./src/components/icons/index.tsx"
 		},
 		"./primitives": {
 			"import": "./src/primitives/index.ts"
