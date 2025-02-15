@@ -3,19 +3,33 @@ import { classnames } from "utils";
 import { incrementDateByDay } from "utils/date";
 import { isNullable } from "utils/validators";
 
+import type { JSX } from "solid-js";
+
 import { Button } from "../button/button";
 import { IconChevronLeft, IconChevronRight, IconTimeline } from "../icon";
-import { getDatetimeString } from "./input-datetime.helpers";
-
-import type { InputDatetimeProps } from "./input-datetime.types";
 
 import styles from "./input-datetime.module.css";
+
+export interface InputDatetimeProps extends JSX.InputHTMLAttributes<HTMLInputElement> {
+	labels?: {
+		DATETIME: string;
+		NEXT_DAY: string;
+		NOW: string;
+		PREVIOUS_DAY: string;
+	};
+	onDatetimeChange?: (value: string) => void;
+}
+
+export function getDatetimeString(date = new Date()): string {
+	const timezoneOffset = date.getTimezoneOffset() * 60000;
+	return (new Date(date.getTime() - timezoneOffset)).toISOString().slice(0, 16);
+}
 
 export function InputDatetime(allProps: InputDatetimeProps) {
 	const [ props, rest ] = splitProps(allProps, [
 		"class",
 		"children",
-		"dict",
+		"labels",
 		"onChange",
 		"onDatetimeChange"
 	]);
@@ -48,7 +62,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				class={styles["button-increment"]}
 				data-step={-1}
 				onClick={handleIncrement}
-				title={props.dict?.PREVIOUS_DAY ?? "Previous day"}
+				title={props.labels?.PREVIOUS_DAY ?? "Previous day"}
 				type="button"
 			>
 				<IconChevronLeft />
@@ -57,7 +71,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				<label class={styles.label}>
 					{props.children}
 					<input
-						aria-label={props.dict?.DATETIME ?? "Date and time"}
+						aria-label={props.labels?.DATETIME ?? "Date and time"}
 						class={styles.input}
 						onChange={handleChange}
 						ref={inputRef}
@@ -68,7 +82,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				<Button
 					class={styles.button}
 					onClick={handleReset}
-					title={props.dict?.NOW ?? "Now"}
+					title={props.labels?.NOW ?? "Now"}
 					type="button"
 				>
 					<IconTimeline />
@@ -78,7 +92,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 				class={styles["button-increment"]}
 				data-step={1}
 				onClick={handleIncrement}
-				title={props.dict?.NEXT_DAY ?? "Next day"}
+				title={props.labels?.NEXT_DAY ?? "Next day"}
 				type="button"
 			>
 				<IconChevronRight

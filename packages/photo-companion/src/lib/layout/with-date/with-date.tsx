@@ -18,23 +18,17 @@ export function WithDate(props: ParentProps) {
 		setDatetimeQuery(parseDateTimeString(input));
 	};
 
-	const dict = () => {
-		const tr = t();
-
-		return {
-			DATETIME: tr.LABEL.DATETIME,
-			NEXT_DAY: tr.LABEL.NEXT_DAY,
-			NOW: tr.LABEL.NOW,
-			PREVIOUS_DAY: tr.LABEL.PREVIOUS_DAY
-		};
-	};
-
 	return (
 		<>
 			{props.children}
 			<InputDatetime
 				class={styles["date-input"]}
-				dict={dict()}
+				labels={{
+					DATETIME: t().LABEL.DATETIME,
+					NEXT_DAY: t().LABEL.NEXT_DAY,
+					NOW: t().LABEL.NOW,
+					PREVIOUS_DAY: t().LABEL.PREVIOUS_DAY
+				}}
 				onDatetimeChange={handleDatetimeChange}
 				value={value()}
 			/>
