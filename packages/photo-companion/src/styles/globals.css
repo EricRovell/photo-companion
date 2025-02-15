@@ -5,10 +5,21 @@
 }
 
 :root {
-	scroll-behavior: smooth;
-
 	--font-main: var(--font-fallback);
 	--font-fallback: system-ui, "Segoe UI", roboto, "Helvetica Neue", arial;
+
+	scroll-behavior: smooth;
+	color: var(--color-text);
+	background-color: var(--color-surface-1);
+	font-synthesis: none;
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	font-size: 16px;
+	line-height: 1.3;
+	font-weight: 400;
+	font-family: var(--font-main);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 /* variation fonts */

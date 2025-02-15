@@ -1,12 +1,11 @@
 import { For, Show } from "solid-js";
-import { Time } from "ui";
 import { IconWarning } from "ui/icons";
 import { incrementDateByDay } from "utils/date";
 
 import type { EventGroupName } from "types";
 
-import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "~/lib/components";
-import { useDatetime } from "~/lib/hooks";
+import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "~/components";
+import { useDatetime } from "~/hooks";
 import { CityLightsProvider } from "~/services/city-lights";
 import { useSettings } from "~/services/settings";
 import { useTranslation } from "~/services/translation";
@@ -43,7 +42,7 @@ function Events(props: EventsProps) {
 		<TimelineGroup>
 			<For each={props.timeline}>
 				{({ date, items }) => (
-					<Timeline date={<Time>{formatters().formatDate(date)}</Time>}>
+					<Timeline date={formatters().formatDate(date)}>
 						<For each={items} fallback={<TimelineEventEmpty />}>
 							{event => <TimelineEvent event={event} href={createEventLink(event.type)} />}
 						</For>

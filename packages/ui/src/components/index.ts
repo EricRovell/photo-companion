@@ -1,10 +1,8 @@
 export { Button } from "./button/button";
 export { Details } from "./details/details";
 export { Dialog } from "./dialog/dialog";
-export { Disclose } from "./disclose/disclose";
 export { Drawer } from "./drawer/drawer";
-export { Fieldset } from "./form/fieldset";
-export { Form } from "./form/form";
+export { Fieldset, Form } from "./form/form";
 export { Icon, type IconProps } from "./icon/icon";
 export { InputCheckbox } from "./input-checkbox/input-checkbox";
 export { InputDatetime } from "./input-datetime/input-datetime";

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "solid-js";
 import { Loader } from "ui";
 
-import { SupportsBridges, SupportsLights } from "~/lib/components";
+import { SupportsBridges, SupportsLights } from "~/components";
 
 import { NowMoon, NowSun } from "./components";
 

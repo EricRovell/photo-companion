@@ -1,4 +1,4 @@
-import { isNonEmptyString, isNullable } from "./validators";
+import { isNonEmptyString } from "./validators";
 
 export function padWithZero(number: number): string {
 	return number < 10 ? `0${number}` : number.toString();
@@ -28,7 +28,7 @@ type InputClassnames =
 
 /**
  * Utility for constructing `class | className` strings.
- * 
+ *
  * Note: Takes as an input shallow arrays and objects. All falsy values are discarded.
  */
 export function classnames(...args: InputClassnames[]): string {
@@ -60,45 +60,6 @@ export function classnames(...args: InputClassnames[]): string {
 	}
 
 	return classList.join(" ");
-}
-
-/**
- * Prevents the page scroll depending on condition.
- */
-export function preventPageScroll(condition = false) {
-	if (isNullable(globalThis.window)) {
-		return;
-	}
-
-	const element = document.body;
-	const isLocked = element.hasAttribute("data-locked");
-
-	if (isLocked && condition) {
-		return;
-	}
-
-	if (!isLocked && condition) {
-		element.setAttribute("data-locked", "");
-
-		// prevent page scroll, mostly for safari hack
-		element.style.cssText = `
-			top: -${window.scrollY}px;
-			position: fixed;
-			overflow-y: scroll;
-			overscroll-behavior: none;
-		`;
-
-		return;
-	}
-
-	const offset = -1 * parseInt(element.style.top || "0");
-	element.style.cssText = "";
-	element.removeAttribute("data-locked");
-
-	window.scrollTo({
-		behavior: "instant",
-		top: offset
-	});
 }
 
 /**

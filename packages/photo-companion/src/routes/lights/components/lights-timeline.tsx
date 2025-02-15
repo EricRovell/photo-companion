@@ -2,9 +2,9 @@ import { For } from "solid-js";
 
 import type { EventName } from "types";
 
-import { Timeline, TimelineEvent } from "~/lib/components";
-import { ROUTES } from "~/lib/consts";
-import { useDatetime, useTimelineProvider } from "~/lib/hooks";
+import { Timeline, TimelineEvent } from "~/components";
+import { ROUTES } from "~/consts";
+import { useDatetime, useTimelineProvider } from "~/hooks";
 import { useCityLights } from "~/services/city-lights";
 import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";

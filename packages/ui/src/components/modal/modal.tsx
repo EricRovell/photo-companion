@@ -3,7 +3,7 @@ import { classnames } from "utils";
 
 import { Button } from "../button/button";
 import { Dialog, type DialogProps } from "../dialog/dialog";
-import { IconClose } from "../icon";
+import { IconClose } from "../icons";
 
 import styles from "./modal.module.css";
 

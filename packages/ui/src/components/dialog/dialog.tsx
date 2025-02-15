@@ -1,5 +1,7 @@
-import { createEffect, createSignal, type JSX, mergeProps, splitProps } from "solid-js";
-import { classnames, preventPageScroll } from "utils";
+import { createRenderEffect, createSignal, type JSX, mergeProps, splitProps } from "solid-js";
+import { classnames } from "utils";
+
+import { preventPageScroll } from "./dialog.helpers";
 
 import type { Classes } from "../../types";
 
@@ -50,7 +52,7 @@ export function Dialog(allProps: DialogProps) {
 		}
 	};
 
-	createEffect(() => {
+	createRenderEffect(() => {
 		if (!getRef()) {
 			return;
 		}
@@ -75,7 +77,8 @@ export function Dialog(allProps: DialogProps) {
 		>
 			<div
 				class={classnames(styles.backdrop, props.classes?.backdrop)}
-				data-backdrop onClick={handleLightDismiss}
+				data-backdrop
+				onClick={handleLightDismiss}
 			>
 				{props.children}
 			</div>

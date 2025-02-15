@@ -3,7 +3,7 @@ import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 import { round } from "utils/math";
 
-import { useDatetime } from "~/lib/hooks";
+import { useDatetime } from "~/hooks";
 import { useSettings } from "~/services/settings";
 import { useTranslation } from "~/services/translation";
 

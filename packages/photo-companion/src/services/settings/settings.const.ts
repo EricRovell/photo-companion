@@ -1,7 +1,7 @@
-import { detectUserLanguage } from "~/lib/helpers";
+import { detectUserLanguage } from "~/helpers";
 
 import type { CitySettingsPreset, SettingsStore } from "./settings.types";
-import type { NavigationTabName } from "~/lib/types";
+import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 
 export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 export const SETTINGS_LOCAL_STORAGE_VERSION = 4;
@@ -15,7 +15,7 @@ export const SETTINGS_DEFAULT: Readonly<SettingsStore> = Object.freeze({
 	language: detectUserLanguage(),
 	latitude: 59.844404,
 	longitude: 30.3131,
-	tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "BRIDGES", "HEIGHT_BY_SHADOW" ] as NavigationTabName[]
+	tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "BRIDGES", "HEIGHT_BY_SHADOW" ] as ROUTE_PRIMARY_LABEL[]
 });
 
 /**

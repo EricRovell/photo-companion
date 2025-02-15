@@ -1,4 +1,4 @@
-import { CardEntry, CardInfo } from "~/lib/components";
+import { CardEntry, CardInfo } from "~/components";
 import { useTranslation } from "~/services/translation";
 
 import { useSunData } from "../../sun/use-sun-data";

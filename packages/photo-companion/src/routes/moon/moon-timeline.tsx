@@ -2,9 +2,9 @@ import { createMemo, For } from "solid-js";
 
 import type { EventName } from "types";
 
-import { Timeline, TimelineEvent } from "~/lib/components";
-import { ROUTES } from "~/lib/consts";
-import { useTimelineProvider } from "~/lib/hooks";
+import { Timeline, TimelineEvent } from "~/components";
+import { ROUTES } from "~/consts";
+import { useTimelineProvider } from "~/hooks";
 import { getMoonEvents } from "~/services/moon";
 import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";

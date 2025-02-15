@@ -1,6 +1,6 @@
 import { lazy, Match, Switch } from "solid-js";
 
-import { Markdown } from "~/lib/components/markdown";
+import { Markdown } from "~/components/markdown";
 import { useTranslation } from "~/services/translation";
 
 const PageAboutEn = lazy(() => import("./about.en.md"));

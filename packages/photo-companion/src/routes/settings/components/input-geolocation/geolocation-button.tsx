@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 import { Button } from "ui";
 
-import { ErrorMessage } from "~/lib/components";
+import { ErrorMessage } from "~/components";
 import { useGeolocationService } from "~/services/geolocation";
 import { useTranslation } from "~/services/translation";
 
@@ -37,8 +37,8 @@ export function GeolocationButton() {
 		<>
 			<Button
 				appearance="outline"
-				loading={geolocation.status === "pending"}
 				onClick={handleGeolocation}
+				pending={geolocation.status === "pending"}
 			>
 				{t().LABEL.ASK_DEVICE_GEOLOCATION}
 			</Button>

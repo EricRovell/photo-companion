@@ -1,7 +1,7 @@
 
 import { getMoonPosition, getSunPosition } from "moon-sun-calc";
 
-import { ElevationGraph } from "~/lib/components";
+import { ElevationGraph } from "~/components";
 import { useTranslation } from "~/services/translation";
 
 import styles from "./moon.module.css";

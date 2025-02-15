@@ -1,4 +1,4 @@
-import { GaugeTime, Sun } from "~/lib/components";
+import { GaugeTime, Sun } from "~/components";
 import { useTranslation } from "~/services/translation";
 
 import type { SunData } from "./use-sun-data";

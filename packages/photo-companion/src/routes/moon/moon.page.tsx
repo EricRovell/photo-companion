@@ -1,4 +1,4 @@
-import { useDatetime } from "~/lib/hooks";
+import { useDatetime } from "~/hooks";
 
 import { MoonAltitude } from "./moon-altitude";
 import { MoonData } from "./moon-data";

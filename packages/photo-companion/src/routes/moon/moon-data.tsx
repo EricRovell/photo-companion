@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import { CardEntry, CardInfo } from "~/lib/components";
+import { CardEntry, CardInfo } from "~/components";
 import { useTranslation } from "~/services/translation";
 
 import type { MoonData as MoonDataType } from "./use-moon-data";

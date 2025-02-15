@@ -1,8 +1,8 @@
 import { For } from "solid-js";
 
-import { Timeline, TimelineEvent } from "~/lib/components";
-import { ROUTES } from "~/lib/consts";
-import { useTimelineProvider } from "~/lib/hooks";
+import { Timeline, TimelineEvent } from "~/components";
+import { ROUTES } from "~/consts";
+import { useTimelineProvider } from "~/hooks";
 import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 
