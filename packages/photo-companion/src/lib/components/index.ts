@@ -1,6 +1,7 @@
 export { Bulb } from "./bulb/bulb";
 export { CardEntry, CardInfo } from "./card-info";
 export { ElevationGraph} from "./elevation-graph";
+export { ErrorMessage } from "./error-message/error-message";
 export { Gauge } from "./gauge/gauge";
 export { GaugeTime } from "./gauge/gauge-time";
 export { LinkQuery } from "./link-query";
