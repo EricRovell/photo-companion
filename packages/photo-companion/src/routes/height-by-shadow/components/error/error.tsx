@@ -1,13 +1,12 @@
 import { Show } from "solid-js";
 import { isNonEmptyArray } from "utils/validators";
 
+import { ErrorMessage } from "~/lib/components";
 import { useTranslation } from "~/services/translation";
 
 import { useForm } from "../../height-by-shadow.context";
 
 import type { FormKey} from "../../height-by-shadow.context";
-
-import styles from "./error.module.css";
 
 type ErrorFieldNames = Exclude<FormKey, "latitude_direction" | "longitude_direction">
 
@@ -38,9 +37,7 @@ export function Error(props: Props) {
 
 	return (
 		<Show when={hasSomeError()}>
-			<aside class={styles.error}>
-				<p>{message()}</p>
-			</aside>
+			<ErrorMessage message={message()} />
 		</Show>
 	);
 }

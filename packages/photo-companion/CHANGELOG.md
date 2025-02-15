@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.29.2
+
+- Small optimizations;
+
 ## 2.29.1
 
 - Fixed swipe actions, now swipe occurs only withing the page;

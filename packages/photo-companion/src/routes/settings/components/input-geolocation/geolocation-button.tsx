@@ -1,70 +1,50 @@
-import { createSignal, onCleanup } from "solid-js";
+import { Show } from "solid-js";
 import { Button } from "ui";
-import { isNullable } from "utils/validators";
 
-import { getUserLocation } from "~/lib/helpers";
+import { ErrorMessage } from "~/lib/components";
+import { useGeolocationService } from "~/services/geolocation";
 import { useTranslation } from "~/services/translation";
 
-type Status = Nullish<"danger" | "loading" | "success">;
+import { useSettingsForm } from "../../settings.context";
 
-interface GeolocationButtonProps {
-	handleLocation: (latitude: number, longitude: number) => void;
-}
-
-export function GeolocationButton(props: GeolocationButtonProps) {
+export function GeolocationButton() {
 	const { t } = useTranslation();
-	const MESSAGE = {
-		danger: () => t().MESSAGE.DATA_UPDATE_ERROR,
-		loading: () => "loading",
-		success: () => t().MESSAGE.DATA_UPDATE_SUCCESS
+	const { geolocation, getGeolocation } = useGeolocationService();
+
+	const { setSettingsStore } = useSettingsForm();
+
+	const handleGeolocation = () => {
+		getGeolocation(position => {
+			setSettingsStore({
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude
+			});
+		});
 	};
 
-	const [ getState, setState ] = createSignal<Status>(null);
+	const errorMessage = () => {
+		const code = geolocation.error?.code;
 
-	const message = () => {
-		const state = getState();
-		return state ? MESSAGE[state]() : t().LABEL.ASK_DEVICE_GEOLOCATION;
-	};
-
-	const variant = () => {
-		const state = getState();
-
-		if (state !== "danger" && state !== "success") {
-			return null;
-		}
-
-		return state;
-	};
-
-	let timerID: Undefinable<number> = undefined;
-	onCleanup(() => clearInterval(timerID));
-
-	const handleGetGeolocation = async () => {
-		try {
-			clearInterval(timerID);
-			setState("loading");
-			const position = await getUserLocation();
-
-			if (!isNullable(position)) {
-				props.handleLocation(position.latitude, position.longitude);
-				setState("success");
-			}
-		} catch (error) {
-			console.warn(`Could not get location: ${JSON.stringify(error)}`);
-			setState("danger");
-		} finally {
-			timerID = window.setTimeout(() => setState(null), 2500);
+		switch (code) {
+			case 1: return t().ERRORS.GEOLOCATION_PERMISSION_DENIED;
+			case 2: return t().ERRORS.GEOLOCATION_POSITION_UNAVAILABLE;
+			case 3: return t().ERRORS.GEOLOCATION_TIMEOUT;
+			default: return "";
 		}
 	};
 
 	return (
-		<Button
-			appearance="outline"
-			loading={getState() === "loading"}
-			onClick={() => void handleGetGeolocation()}
-			variant={variant()}
-		>
-			{message()}
-		</Button>
+		<>
+			<Button
+				appearance="outline"
+				loading={geolocation.status === "pending"}
+				onClick={handleGeolocation}
+			>
+				{t().LABEL.ASK_DEVICE_GEOLOCATION}
+			</Button>
+			<Show when={geolocation.status === "error"}>
+				<ErrorMessage message={errorMessage()} />
+			</Show>
+		</>
 	);
 }

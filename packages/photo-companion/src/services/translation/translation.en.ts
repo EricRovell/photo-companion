@@ -48,6 +48,9 @@ export const t = {
 	},
 	ERRORS: {
 		DATE: "Invalid date",
+		GEOLOCATION_PERMISSION_DENIED: "No permission granted",
+		GEOLOCATION_POSITION_UNAVAILABLE: "Geolocation is unavailable",
+		GEOLOCATION_TIMEOUT: "Timeout error",
 		LATITUDE: "Invalid latitude value",
 		LENGTH_SHADOW: "Shadow length should be a non-negative number",
 		LEVEL_OBJECT: "Object sea-level should be a non-negative number",
@@ -140,8 +143,6 @@ export const t = {
 		BRIDGE_WILL_CLOSE_WITHIN: "The bridge will be lifted down within",
 		BRIDGE_WILL_OPEN_WITHIN: "The bridge will be lifted up within",
 		CHECK_DATE_INPUT: "Please, check out the date-time input and choose it right",
-		DATA_UPDATE_ERROR: "Error: could not get the data",
-		DATA_UPDATE_SUCCESS: "Data was updated successfully",
 		EVENTS_ARE_DISABLED: "All events are disabled",
 		NAVIGATION_ENDS_AT: "Navigation ends in",
 		NAVIGATION_STARTS_AT: "Navigation starts after",

@@ -5,14 +5,13 @@ import { useTranslation } from "~/services/translation";
 
 import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
 import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "./settings.const";
-import { useSettingsPage } from "./settings.context";
+import { useSettingsForm } from "./settings.context";
 
 import styles from "./settings.module.css";
 
 export function SettingsForm() {
 	const { t } = useTranslation();
-
-	const { handleFormChange, handleReset, handleSubmit, settingsStore } = useSettingsPage();
+	const { handleFormChange, handleReset, handleSubmit, settingsStore } = useSettingsForm();
 
 	return (
 		<div class={styles.page}>

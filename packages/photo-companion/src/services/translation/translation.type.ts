@@ -46,6 +46,9 @@ export interface Translation {
 	};
 	ERRORS: {
 		DATE: string;
+		GEOLOCATION_PERMISSION_DENIED: string;
+		GEOLOCATION_POSITION_UNAVAILABLE: string;
+		GEOLOCATION_TIMEOUT: string;
 		LATITUDE: string;
 		LENGTH_SHADOW: string;
 		LEVEL_OBJECT: string;
@@ -138,8 +141,6 @@ export interface Translation {
 		BRIDGE_WILL_CLOSE_WITHIN: string;
 		BRIDGE_WILL_OPEN_WITHIN: string;
 		CHECK_DATE_INPUT: string;
-		DATA_UPDATE_ERROR: string;
-		DATA_UPDATE_SUCCESS: string;
 		EVENTS_ARE_DISABLED: string;
 		NAVIGATION_ENDS_AT: string;
 		NAVIGATION_STARTS_AT: string;

@@ -48,6 +48,9 @@ export const t = {
 	},
 	ERRORS: {
 		DATE: "Неверное значение даты",
+		GEOLOCATION_PERMISSION_DENIED: "Необходимо выдать разрешение",
+		GEOLOCATION_POSITION_UNAVAILABLE: "Геолокация недоступна",
+		GEOLOCATION_TIMEOUT: "Ошибка времени ожидания",
 		LATITUDE: "Неверное значение широты",
 		LENGTH_SHADOW: "Длина тени должна быть неотрицательной",
 		LEVEL_OBJECT: "Уровень объекта должен быть неотрицательным",
@@ -140,8 +143,6 @@ export const t = {
 		BRIDGE_WILL_CLOSE_WITHIN: "Мост будет сведён через",
 		BRIDGE_WILL_OPEN_WITHIN: "Мост будет разведён через",
 		CHECK_DATE_INPUT: "Проверьте поле ввода даты у нижнего края экрана, выберите верное значение",
-		DATA_UPDATE_ERROR: "Не удалось получить данные",
-		DATA_UPDATE_SUCCESS: "Данные обновлены",
 		EVENTS_ARE_DISABLED: "Все типы событий отключены",
 		NAVIGATION_ENDS_AT: "До окончания навигации",
 		NAVIGATION_STARTS_AT: "До начала навигации",

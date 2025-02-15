@@ -4,13 +4,13 @@ import { Show } from "solid-js";
 import { useTranslation } from "~/services/translation";
 
 import { BRIDGES_EVENTS_OPTIONS } from "../../settings.const";
-import { useSettingsPage } from "../../settings.context";
+import { useSettingsForm } from "../../settings.context";
 import { InputCheckboxGroup } from "./input-checkbox-group";
 import { LIGHTS_EVENT_NAMES, MOON_EVENT_NAMES, SUN_EVENT_NAMES } from "./input-event-filters.consts";
 
 export const InputEventFilters = () => {
 	const { t } = useTranslation();
-	const { setSettingsStore, settingsStore } = useSettingsPage();
+	const { setSettingsStore, settingsStore } = useSettingsForm();
 
 	return (
 		<>
