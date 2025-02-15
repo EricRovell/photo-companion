@@ -1,5 +1,5 @@
 import { createContext, type ParentProps, startTransition, useContext } from "solid-js";
-import { createStore, reconcile, type SetStoreFunction, type Store, unwrap } from "solid-js/store";
+import { createStore, reconcile, unwrap } from "solid-js/store";
 import { isNullable } from "utils/validators";
 
 import type { City } from "types";
@@ -9,18 +9,7 @@ import { SETTINGS_CITY_PRESETS } from "~/services/settings/settings.const";
 
 import { FORM_INPUT_NAME } from "./settings.const";
 
-export interface SettingsPageContextType {
-	readonly handleChange: <T extends keyof SettingsStore>(name: T, value: SettingsStore[T]) => void;
-	readonly handleFormChange: (event: Event) => void;
-	readonly handleReset: VoidFn;
-	readonly handleSubmit: VoidFn;
-	readonly setSettingsStore: SetStoreFunction<SettingsStore>;
-	readonly settingsStore: Store<SettingsStore>
-}
-
-const SettingsPageContext = createContext<SettingsPageContextType>();
-
-export function SettingsPageProvider(props: ParentProps) {
+function createSettingsFormState() {
 	const { resetSettings, setSettings, settings } = useSettings();
 
 	const [ settingsStore, setSettingsStore ] = createStore({ ...unwrap(settings) });
@@ -75,25 +64,33 @@ export function SettingsPageProvider(props: ParentProps) {
 		setSettingsStore(name, value);
 	};
 
+	return {
+		handleChange,
+		handleFormChange,
+		handleReset,
+		handleSubmit,
+		setSettingsStore,
+		settingsStore
+	};
+}
+
+const SettingsFormContext = createContext<ReturnType<typeof createSettingsFormState>>();
+
+export function SettingsFormProvider(props: ParentProps) {
+	const state = createSettingsFormState();
+
 	return (
-		<SettingsPageContext.Provider value={{
-			handleChange,
-			handleFormChange,
-			handleReset,
-			handleSubmit,
-			setSettingsStore,
-			settingsStore
-		}}>
+		<SettingsFormContext.Provider value={state}>
 			{props.children}
-		</SettingsPageContext.Provider>
+		</SettingsFormContext.Provider>
 	);
 }
 
-export function useSettingsPage() {
-	const value = useContext(SettingsPageContext);
+export function useSettingsForm() {
+	const value = useContext(SettingsFormContext);
 
 	if (isNullable(value)) {
-		throw new Error("useSettings must be used with a SettingsPage.Provider");
+		throw new Error("useSettings must be used with a SettingsForm.Provider");
 	}
 
 	return value;

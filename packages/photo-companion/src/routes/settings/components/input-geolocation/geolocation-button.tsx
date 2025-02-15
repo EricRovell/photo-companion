@@ -5,13 +5,13 @@ import { ErrorMessage } from "~/lib/components";
 import { useGeolocationService } from "~/services/geolocation";
 import { useTranslation } from "~/services/translation";
 
-import { useSettingsPage } from "../../settings.context";
+import { useSettingsForm } from "../../settings.context";
 
 export function GeolocationButton() {
 	const { t } = useTranslation();
 	const { geolocation, getGeolocation } = useGeolocationService();
 
-	const { setSettingsStore } = useSettingsPage();
+	const { setSettingsStore } = useSettingsForm();
 
 	const handleGeolocation = () => {
 		getGeolocation(position => {

@@ -1,7 +1,7 @@
 import { createMemo, For } from "solid-js";
 
 import { FORM_INPUT_NAME } from "../../settings.const";
-import { useSettingsPage } from "../../settings.context";
+import { useSettingsForm } from "../../settings.context";
 import { TabSelect } from "./input-tabs-select.tab";
 
 import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
@@ -15,7 +15,7 @@ interface InputTabsSelectProps {
 }
 
 export function InputTabsSelect(props: InputTabsSelectProps) {
-	const { setSettingsStore, settingsStore } = useSettingsPage();
+	const { setSettingsStore, settingsStore } = useSettingsForm();
 
 	const state = createMemo(() => {
 		const output = settingsStore.tabs.map(tab => ({ active: true, tab }));

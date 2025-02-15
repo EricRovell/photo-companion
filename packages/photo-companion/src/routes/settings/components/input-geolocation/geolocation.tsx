@@ -3,12 +3,12 @@ import { Input } from "ui";
 import { useTranslation } from "~/services/translation";
 
 import { FORM_INPUT_NAME } from "../../settings.const";
-import { useSettingsPage } from "../../settings.context";
+import { useSettingsForm } from "../../settings.context";
 import { GeolocationButton } from "./geolocation-button";
 
 export function InputGeolocation() {
 	const { t } = useTranslation();
-	const { settingsStore } = useSettingsPage();
+	const { settingsStore } = useSettingsForm();
 
 	return (
 		<>
