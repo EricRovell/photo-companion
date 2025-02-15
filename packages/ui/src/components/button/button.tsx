@@ -1,13 +1,20 @@
 import { mergeProps, splitProps } from "solid-js";
 import { classnames, setAttribute } from "utils";
 
-import type { ButtonProps } from "./button.types";
+import type { JSX } from "solid-js";
 
 import styles from "./button.module.css";
 
+export interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
+	appearance?: "fill" | "ghost" | "outline";
+	icon?: boolean;
+	pending?: boolean;
+	variant?: Nullable<"danger" | "success">;
+}
+
 const DEFAULT_PROPS: ButtonProps = {
 	appearance: "fill",
-	loading: false,
+	pending: false,
 	type: "button"
 };
 
@@ -18,7 +25,7 @@ export function Button(allProps: ButtonProps) {
 		"children",
 		"class",
 		"icon",
-		"loading",
+		"pending",
 		"variant"
 	]);
 
@@ -27,7 +34,7 @@ export function Button(allProps: ButtonProps) {
 			class={classnames(styles.button, props.class)}
 			data-appearance={props.appearance}
 			data-icon={setAttribute(props.icon)}
-			data-loading={setAttribute(props.loading)}
+			data-pending={setAttribute(props.pending)}
 			data-variant={props.variant}
 			{...rest}
 		>

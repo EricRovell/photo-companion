@@ -90,14 +90,14 @@
 	}
 }
 
-.button[data-loading] {
-	color: transparent;
+.button[data-pending] {
+	color: transparent !important;
 	pointer-events: none;
 
 	&::after {
 		--button-loader-size: 1em;
-	
-		content: '';
+
+		content: "";
 		position: absolute;
 		top: calc(50% - var(--button-loader-size) / 2);
 		right: calc(50% - var(--button-loader-size) / 2);

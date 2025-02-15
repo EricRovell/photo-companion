@@ -37,8 +37,8 @@ export function GeolocationButton() {
 		<>
 			<Button
 				appearance="outline"
-				loading={geolocation.status === "pending"}
 				onClick={handleGeolocation}
+				pending={geolocation.status === "pending"}
 			>
 				{t().LABEL.ASK_DEVICE_GEOLOCATION}
 			</Button>
