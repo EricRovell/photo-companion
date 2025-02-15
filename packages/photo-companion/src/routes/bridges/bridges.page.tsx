@@ -2,8 +2,8 @@ import { Navigate } from "@solidjs/router";
 import { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import { For, Show } from "solid-js";
 
-import { BridgesInfo } from "~/lib/components/bridges-info/bridges-info";
-import { ROUTES } from "~/lib/consts/routes";
+import { BridgesInfo } from "~/components/bridges-info/bridges-info";
+import { ROUTES } from "~/consts/routes";
 import { useSettings } from "~/services/settings";
 import { useTranslation } from "~/services/translation";
 

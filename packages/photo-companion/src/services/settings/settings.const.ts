@@ -1,7 +1,7 @@
-import { detectUserLanguage } from "~/lib/helpers";
+import { detectUserLanguage } from "~/helpers";
 
 import type { CitySettingsPreset, SettingsStore } from "./settings.types";
-import type { NavigationTabName } from "~/lib/types";
+import type { NavigationTabName } from "~/types";
 
 export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 export const SETTINGS_LOCAL_STORAGE_VERSION = 4;

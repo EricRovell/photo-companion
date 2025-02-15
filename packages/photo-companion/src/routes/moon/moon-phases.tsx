@@ -1,8 +1,8 @@
 import { For } from "solid-js";
 import { Time } from "ui";
 
-import { LinkQuery, Moon } from "~/lib/components";
-import { createQueryDate } from "~/lib/helpers";
+import { LinkQuery, Moon } from "~/components";
+import { createQueryDate } from "~/helpers";
 import { useTranslation } from "~/services/translation";
 
 import type { MoonData } from "./use-moon-data";

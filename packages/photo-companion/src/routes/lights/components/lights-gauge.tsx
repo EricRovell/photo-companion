@@ -1,5 +1,5 @@
-import { Bulb, GaugeTime } from "~/lib/components";
-import { useDatetime } from "~/lib/hooks";
+import { Bulb, GaugeTime } from "~/components";
+import { useDatetime } from "~/hooks";
 import { useCityLights } from "~/services/city-lights";
 import { useTranslation } from "~/services/translation";
 

@@ -1,4 +1,4 @@
-import { BridgesInfo } from "~/lib/components/bridges-info/bridges-info";
+import { BridgesInfo } from "~/components/bridges-info/bridges-info";
 import { useTranslation } from "~/services/translation";
 
 export function NowBridges() {

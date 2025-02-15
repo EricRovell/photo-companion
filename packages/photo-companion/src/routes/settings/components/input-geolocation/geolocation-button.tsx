@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 import { Button } from "ui";
 
-import { ErrorMessage } from "~/lib/components";
+import { ErrorMessage } from "~/components";
 import { useGeolocationService } from "~/services/geolocation";
 import { useTranslation } from "~/services/translation";
 

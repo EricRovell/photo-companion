@@ -4,8 +4,8 @@ import { incrementDateByDay } from "utils/date";
 
 import type { EventGroupName } from "types";
 
-import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "~/lib/components";
-import { useDatetime } from "~/lib/hooks";
+import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "~/components";
+import { useDatetime } from "~/hooks";
 import { CityLightsProvider } from "~/services/city-lights";
 import { useSettings } from "~/services/settings";
 import { useTranslation } from "~/services/translation";

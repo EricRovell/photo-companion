@@ -2,7 +2,7 @@ import { MetaProvider } from "@solidjs/meta";
 import { Suspense } from "solid-js";
 import { Toaster } from "solid-sonner";
 
-import { ToastSuggestUpdate } from "~/lib/components";
+import { ToastSuggestUpdate } from "~/components";
 import { SettingsProvider } from "~/services/settings";
 import { TranslationProvider } from "~/services/translation";
 

@@ -1,7 +1,7 @@
 import { getBridgeEvents } from "bridge-schedule";
 import { isNullable } from "utils/validators";
 
-import { useDatetime, useTimelineProvider } from "~/lib/hooks";
+import { useDatetime, useTimelineProvider } from "~/hooks";
 import { useCityLights } from "~/services/city-lights";
 import { getMoonEvents } from "~/services/moon";
 import { useSettings } from "~/services/settings";
