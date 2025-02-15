@@ -39,4 +39,10 @@
 		appearance: none;
 		margin: 0;
 	}
+
+	&[type="number"] {
+		/* stylelint-disable-next-line property-no-vendor-prefix */
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
 }
