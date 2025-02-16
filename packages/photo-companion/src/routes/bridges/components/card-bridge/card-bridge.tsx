@@ -21,7 +21,7 @@ interface BridgeTimerProps {
 }
 
 function BridgeTimer(props: BridgeTimerProps) {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 	const { getTimestamp } = useDatetime();
 	const navigation = () => getNavigationState(getTimestamp()).navigation;
 
@@ -29,8 +29,6 @@ function BridgeTimer(props: BridgeTimerProps) {
 		getTimestampEnd: () => props.state.timestamp,
 		getTimestampStart: () => getTimestamp()
 	});
-
-	const formatTime = () => formatters().formatTimeDuration(getTime());
 
 	return (
 		<Show when={navigation()}>
@@ -41,7 +39,7 @@ function BridgeTimer(props: BridgeTimerProps) {
 					</Show>
 				</p>
 				<output class={styles.countdown}>
-					{formatTime()}
+					{format().timeDuration(getTime())}
 				</output>
 			</footer>
 		</Show>

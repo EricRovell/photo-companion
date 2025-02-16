@@ -49,9 +49,9 @@ const HREF_FALLBACK = "/#";
 
 export function TimelineEvent(props: TimelineEventProps) {
 	const { getTimestamp } = useDatetime();
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 	const data = () => eventComponent(props.event);
-	const linkTitle = () => `${data().title}: ${formatters().formatDatetime(props.event.timestamp)}`;
+	const linkTitle = () => `${data().title}: ${format().datetime(props.event.timestamp)}`;
 
 	// `datetime` query is taking only minutes into consideration, need to round up
 	const current = () => Math.abs(getTimestamp() - props.event.timestamp) < 60000;
@@ -64,7 +64,7 @@ export function TimelineEvent(props: TimelineEventProps) {
 			data-secondary={setAttribute(props.secondary)}
 		>
 			<Time>
-				{formatters().formatTimeShort(props.event.timestamp)}
+				{format().timeShort(props.event.timestamp)}
 			</Time>
 			<div class={styles.icon} data-event-icon>
 				<LinkQuery

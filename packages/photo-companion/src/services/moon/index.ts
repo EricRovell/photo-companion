@@ -9,7 +9,7 @@ import { useTranslation } from "~/services/translation";
 export const getMoonEvents = (date: Date = new Date(), latitude: number, longitude: number): MoonEvent[] => {
 	const events: MoonEvent[] = [];
 	const times = getMoonTimes(date, latitude, longitude);
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	if (!isNullable(times.rise)) {
 		const illumination = getMoonIllumination(times.rise);
@@ -17,8 +17,8 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 
 		events.push({
 			data: {
-				azimuth: formatters().formatDegrees(round(position.azimuth, 1)),
-				fraction: formatters().formatPercent(round(illumination.fraction * 100, 1)),
+				azimuth: format().degrees(round(position.azimuth, 1)),
+				fraction: format().percent(round(illumination.fraction * 100, 1)),
 				phase: round(illumination.phaseValue, 4),
 				rotation: -(illumination.angle - position.parallacticAngle) / 4,
 				waxing: illumination.angle < 0
@@ -35,8 +35,8 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 
 		events.push({
 			data: {
-				azimuth: formatters().formatDegrees(round(position.azimuth, 1)),
-				fraction: formatters().formatPercent(round(illumination.fraction * 100, 1)),
+				azimuth: format().degrees(round(position.azimuth, 1)),
+				fraction: format().percent(round(illumination.fraction * 100, 1)),
 				phase: round(illumination.phaseValue, 4),
 				rotation: -(illumination.angle - position.parallacticAngle) / 4,
 				waxing: illumination.angle < 0

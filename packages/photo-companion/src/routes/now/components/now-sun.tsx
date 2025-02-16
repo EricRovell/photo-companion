@@ -4,16 +4,16 @@ import { useTranslation } from "~/services/translation";
 import { useSunData } from "../../sun/use-sun-data";
 
 export function NowSun() {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 	const { getSunData } = useSunData();
 
 	return (
 		<CardInfo title={t().TITLE.SUN}>
 			<CardEntry property={t().LABEL.SUNRISE_TIME}>
-				{formatters().formatTimeShort(getSunData().sunrise)}
+				{format().timeShort(getSunData().sunrise)}
 			</CardEntry>
 			<CardEntry property={t().LABEL.SUNSET_TIME}>
-				{formatters().formatTimeShort(getSunData().sunset)}
+				{format().timeShort(getSunData().sunset)}
 			</CardEntry>
 			<CardEntry property={t().LABEL.DURATION_DAYLIGHT}>
 				{getSunData().dayDuration}

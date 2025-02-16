@@ -36,13 +36,13 @@ function NoEvents() {
 }
 
 function Events(props: EventsProps) {
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	return (
 		<TimelineGroup>
 			<For each={props.timeline}>
 				{({ date, items }) => (
-					<Timeline date={formatters().formatDate(date)}>
+					<Timeline date={format().date(date)}>
 						<For each={items} fallback={<TimelineEventEmpty />}>
 							{event => <TimelineEvent event={event} href={createEventLink(event.type)} />}
 						</For>

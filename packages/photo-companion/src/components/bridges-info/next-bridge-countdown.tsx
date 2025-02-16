@@ -10,7 +10,7 @@ import { useTranslation } from "~/services/translation";
  */
 export function NextBridgeCountdown() {
 	const { getTimestamp } = useDatetime();
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	const getNextEvent = createMemo(() => getNextBridgeEvent(getTimestamp()));
 
@@ -26,7 +26,7 @@ export function NextBridgeCountdown() {
 
 	return (
 		<CardEntry property={property()}>
-			{formatters().formatTimeDuration(time())}
+			{format().timeDuration(time())}
 		</CardEntry>
 	);
 }

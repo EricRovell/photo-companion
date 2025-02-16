@@ -16,7 +16,7 @@ interface MoonPhasesProps {
 const MOON_SIZE = 75;
 
 export function MoonPhases(props: MoonPhasesProps) {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	return (
 		<section class={`card ${styles.phases}`} data-label="phases-calendar">
@@ -29,7 +29,7 @@ export function MoonPhases(props: MoonPhasesProps) {
 						<LinkQuery href={"/moon"} query={new URLSearchParams({ datetime: createQueryDate(phase.timestamp) })}>
 							<Moon phase={phase.phaseValue} size={MOON_SIZE} />
 							<Time>
-								{formatters().formatDate(phase.timestamp)}
+								{format().date(phase.timestamp)}
 							</Time>
 						</LinkQuery>
 					)}

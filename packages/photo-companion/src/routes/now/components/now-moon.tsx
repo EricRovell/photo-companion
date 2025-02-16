@@ -6,19 +6,19 @@ import { useTranslation } from "~/services/translation";
 import { useMoonData } from "../../moon/use-moon-data";
 
 export function NowMoon() {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 	const { getMoonData } = useMoonData();
 
 	return (
 		<CardInfo title={t().TITLE.MOON}>
 			<CardEntry property={t().LABEL.MOONRISE_TIME}>
 				<Show fallback="—" when={getMoonData().moonrise}>
-					{value => formatters().formatTimeShort(value())}
+					{value => format().timeShort(value())}
 				</Show>
 			</CardEntry>
 			<CardEntry property={t().LABEL.MOONSET_TIME}>
 				<Show fallback="—" when={getMoonData().moonset}>
-					{value => formatters().formatTimeShort(value())}
+					{value => format().timeShort(value())}
 				</Show>
 			</CardEntry>
 			<CardEntry property={t().LABEL.MOON_ILLUMINATION}>

@@ -32,7 +32,7 @@ interface Output {
 export function useSunData(): Output {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	const data = createMemo(() => {
 		const suntimes = getSunTimes(getDatetime(), settings.latitude, settings.longitude);
@@ -50,33 +50,33 @@ export function useSunData(): Output {
 
 		return {
 			blueHourDawn: [
-				formatters().formatTimeShort(suntimes.BLUE_HOUR_START_DAWN.timestamp),
+				format().timeShort(suntimes.BLUE_HOUR_START_DAWN.timestamp),
 				"—",
-				formatters().formatTimeShort(suntimes.BLUE_HOUR_END_DAWN.timestamp)
+				format().timeShort(suntimes.BLUE_HOUR_END_DAWN.timestamp)
 			].join(" "),
 			blueHourDusk: [
-				formatters().formatTimeShort(suntimes.BLUE_HOUR_START_DUSK.timestamp),
+				format().timeShort(suntimes.BLUE_HOUR_START_DUSK.timestamp),
 				"—",
-				formatters().formatTimeShort(suntimes.BLUE_HOUR_END_DUSK.timestamp)
+				format().timeShort(suntimes.BLUE_HOUR_END_DUSK.timestamp)
 			].join(" "),
-			dayDuration: formatters().formatTimeDuration(calcDuration(sunrise, sunset)),
+			dayDuration: format().timeDuration(calcDuration(sunrise, sunset)),
 			goldenHourDawn: [
-				formatters().formatTimeShort(suntimes.GOLDEN_HOUR_START_DAWN.timestamp),
+				format().timeShort(suntimes.GOLDEN_HOUR_START_DAWN.timestamp),
 				"—",
-				formatters().formatTimeShort(suntimes.GOLDEN_HOUR_END_DAWN.timestamp)
+				format().timeShort(suntimes.GOLDEN_HOUR_END_DAWN.timestamp)
 			].join(" "),
 			goldenHourDusk: [
-				formatters().formatTimeShort(suntimes.GOLDEN_HOUR_START_DUSK.timestamp),
+				format().timeShort(suntimes.GOLDEN_HOUR_START_DUSK.timestamp),
 				"—",
-				formatters().formatTimeShort(suntimes.GOLDEN_HOUR_END_DUSK.timestamp)
+				format().timeShort(suntimes.GOLDEN_HOUR_END_DUSK.timestamp)
 			].join(" "),
-			nightEnd: formatters().formatTimeShort(suntimes.ASTRONOMICAL_DAWN.timestamp),
-			nightStart: formatters().formatTimeShort(suntimes.ASTRONOMICAL_DUSK.timestamp),
+			nightEnd: format().timeShort(suntimes.ASTRONOMICAL_DAWN.timestamp),
+			nightStart: format().timeShort(suntimes.ASTRONOMICAL_DUSK.timestamp),
 			position: {
-				altitude: formatters().formatDegrees(round(position.altitude, 1)),
-				azimuth: formatters().formatDegrees(round(position.azimuth, 1)),
-				declination: formatters().formatDegrees(round(position.declination, 1)),
-				zenith: formatters().formatDegrees(round(position.zenith, 1))
+				altitude: format().degrees(round(position.altitude, 1)),
+				azimuth: format().degrees(round(position.azimuth, 1)),
+				declination: format().degrees(round(position.declination, 1)),
+				zenith: format().degrees(round(position.zenith, 1))
 			},
 			sunrise,
 			sunset

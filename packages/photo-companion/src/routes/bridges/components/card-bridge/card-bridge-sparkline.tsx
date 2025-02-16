@@ -21,7 +21,7 @@ const Sparkline = (props: SparklineProps) => (
 );
 
 function Time(props: TimeProps) {
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	return (
 		<text
@@ -30,9 +30,9 @@ function Time(props: TimeProps) {
 			x={props.x}
 			y={props.y}
 		>
-			{formatters().formatTimeShort(props.date)}
+			{format().timeShort(props.date)}
 			<title>
-				{formatters().formatTimeShort(props.date)}
+				{format().timeShort(props.date)}
 			</title>
 		</text>
 	);

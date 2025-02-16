@@ -28,11 +28,11 @@ export function calcOutput(model: Model) {
 }
 
 export function Output(props: Props) {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	return (
 		<output class={styles.output}>
-			{t().LABEL.HEIGHT}: <span class={styles.value}>{formatters().formatMeters(props.height ?? 0)}</span>
+			{t().LABEL.HEIGHT}: <span class={styles.value}>{format().meters(props.height ?? 0)}</span>
 		</output>
 	);
 }

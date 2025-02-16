@@ -4,7 +4,7 @@ import { useCityLights } from "~/services/city-lights";
 import { useTranslation } from "~/services/translation";
 
 export const NowLightsInfo = () => {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 	const { getCity, getScheduleByDate, getStateByDate} = useCityLights();
 
 	const duration = () => getScheduleByDate().duration;
@@ -23,13 +23,13 @@ export const NowLightsInfo = () => {
 				</span>
 			</CardEntry>
 			<CardEntry property={t().LABEL.TIME_OFF}>
-				{formatters().formatTime(getTimeOff())}
+				{format().time(getTimeOff())}
 			</CardEntry>
 			<CardEntry property={t().LABEL.TIME_ON}>
-				{formatters().formatTime(getTimeOn())}
+				{format().time(getTimeOn())}
 			</CardEntry>
 			<CardEntry property={t().LABEL.DURATION_LIGHTS}>
-				{formatters().formatTimeDuration(duration())}
+				{format().timeDuration(duration())}
 			</CardEntry>
 			<LightsCountdown lights={lights()} />
 		</CardInfo>
