@@ -36,7 +36,7 @@ interface Output {
 export function useMoonData(): Output {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	const data = createMemo(() => ({
 		illumination: getMoonIllumination(getDatetime(), true),
@@ -49,22 +49,22 @@ export function useMoonData(): Output {
 		const { illumination, phases, position, times } = data();
 
 		return {
-			altitude: formatters().formatDegrees(round(position.altitude, 1)),
+			altitude: format().degrees(round(position.altitude, 1)),
 			angle: illumination.angle,
-			azimuth: formatters().formatDegrees(round(position.azimuth, 1)),
-			distance: formatters().formatKilometers(round(position.distance, 2)),
-			duration: formatters().formatTimeDuration(calcDuration(times.rise, times.set)),
-			fraction: formatters().formatPercent(round(illumination.fraction * 100, 1)),
+			azimuth: format().degrees(round(position.azimuth, 1)),
+			distance: format().kilometers(round(position.distance, 2)),
+			duration: format().timeDuration(calcDuration(times.rise, times.set)),
+			fraction: format().percent(round(illumination.fraction * 100, 1)),
 			fullMoonName: illumination.fullMoonName,
 			moonrise: times.rise,
 			moonset: times.set,
-			parallacticAngle: formatters().formatDegrees(round(position.parallacticAngle, 1)),
+			parallacticAngle: format().degrees(round(position.parallacticAngle, 1)),
 			phaseName: illumination.phase.id,
 			phases: phases,
 			phaseValue: round(illumination.phaseValue, 4),
 			rotation: -(illumination.angle - position.parallacticAngle) / 4,
 			waxing: illumination.angle < 0,
-			zenith: formatters().formatDegrees(round(illumination.angle - position.parallacticAngle, 1))
+			zenith: format().degrees(round(illumination.angle - position.parallacticAngle, 1))
 		};
 	};
 

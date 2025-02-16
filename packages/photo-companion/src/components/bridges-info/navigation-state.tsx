@@ -7,7 +7,7 @@ import { useTranslation } from "~/services/translation";
  * Renders navigation period related card entries.
  */
 export function NavigationState(props: NavigationStateType) {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	const getNavigationLabel = () => props.navigation
 		? t().LABEL.NAVIGATION_OPENED_SHORT
@@ -17,8 +17,6 @@ export function NavigationState(props: NavigationStateType) {
 		? t().MESSAGE.NAVIGATION_ENDS_AT
 		: t().MESSAGE.NAVIGATION_STARTS_AT;
 
-	const getValue = () => formatters().formatDays(props.days);
-
 	return (
 		<>
 			<CardEntry property={t().LABEL.NAVIGATION}>
@@ -27,7 +25,7 @@ export function NavigationState(props: NavigationStateType) {
 				</span>
 			</CardEntry>
 			<CardEntry property={subtitle()}>
-				{getValue()}
+				{format().days(props.days)}
 			</CardEntry>
 		</>
 	);

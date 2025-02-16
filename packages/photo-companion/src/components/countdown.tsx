@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function Countdown(props: Props) {
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	const [ time, setTime ] = createSignal(props.initialTimestamp - Date.now());
 	const [ getDelay, setDelay ] = createSignal<false | number>(1000);
@@ -32,7 +32,7 @@ export function Countdown(props: Props) {
 
 	return (
 		<Time>
-			{formatters().formatTimeDuration(time())}
+			{format().timeDuration(time())}
 		</Time>
 	);
 }

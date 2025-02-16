@@ -12,14 +12,14 @@ interface Props {
 }
 
 export function GaugeTime(props: ParentProps<Props>) {
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 
 	return (
 		<Gauge
 			angleEnd={getAngleFromTime(props.timeEnd)}
 			angleStart={getAngleFromTime(props.timeStart)}
-			labelEnd={formatters().formatTimeShort(props.timeEnd)}
-			labelStart={formatters().formatTimeShort(props.timeStart)}
+			labelEnd={format().timeShort(props.timeEnd)}
+			labelStart={format().timeShort(props.timeStart)}
 			pointerAngle={getAngleFromTime(props.date)}
 		>
 			{props.children}

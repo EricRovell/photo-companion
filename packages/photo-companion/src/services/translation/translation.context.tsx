@@ -1,62 +1,26 @@
-import { createContext, createEffect, createMemo, createResource, type ParentProps, Show, useContext } from "solid-js";
-import {
-	dateFormatter,
-	dateTimeFormatter,
-	dayFormatter,
-	degreesFormatter,
-	kilometersFormatter,
-	metersFormatter,
-	percentFormatter,
-	timeDurationFormatter,
-	timeFormatter,
-	timeShortFormatter
-} from "utils/formatters";
+import { createContext, type ParentProps, Show, useContext } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { useSettings } from "~/services/settings";
+import type { Accessor} from "solid-js";
 
-import type { TranslationContextType } from "./translation.types";
+import { createTranslationState } from "./translation.state";
+
+import type { t as tEn } from "./translation.en";
+import type { t as tRu } from "./translation.ru";
+
+interface TranslationContextType extends Omit<ReturnType<typeof createTranslationState>, "t"> {
+	t: Accessor<typeof tEn | typeof tRu>;
+}
 
 const TranslationContext = createContext<TranslationContextType>();
 
-const TRANSLATIONS = {
-	"en": () => import("./translation.en"),
-	"ru": () => import("./translation.ru")
-};
-
 export function TranslationProvider(props: ParentProps) {
-	const { settings } = useSettings();
-
-	const lang = () => settings.language;
-
-	const [ t ] = createResource(lang, async () => {
-		const dict = await TRANSLATIONS[lang()]();
-		return dict.t;
-	});
-
-	const formatters = createMemo(() => ({
-		formatDate: dateFormatter(lang()),
-		formatDatetime: dateTimeFormatter(lang()),
-		formatDays: dayFormatter(lang()),
-		formatDegrees: degreesFormatter(lang()),
-		formatKilometers: kilometersFormatter(lang()),
-		formatMeters: metersFormatter(lang()),
-		formatPercent: percentFormatter(lang()),
-		formatTime: timeFormatter(lang()),
-		formatTimeDuration: timeDurationFormatter(lang()),
-		formatTimeShort: timeShortFormatter(lang())
-	}));
-
-	createEffect(() => {
-		if (!isNullable(globalThis.window)) {
-			document.documentElement.setAttribute("lang", lang());
-		}
-	});
+	const { t, ...rest } = createTranslationState();
 
 	return (
 		<Show when={t()}>
 			{(t) => (
-				<TranslationContext.Provider value={{ formatters, lang, t }}>
+				<TranslationContext.Provider value={{ t, ...rest }}>
 					{props.children}
 				</TranslationContext.Provider>
 			)}

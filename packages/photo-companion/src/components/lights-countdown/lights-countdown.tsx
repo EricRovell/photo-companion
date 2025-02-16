@@ -7,7 +7,7 @@ import { useTranslation } from "~/services/translation";
  * City lights countdown used as card entry.
  */
 export function LightsCountdown(props: { lights: boolean }) {
-	const { formatters, t } = useTranslation();
+	const { format, t } = useTranslation();
 	const { getTimestamp } = useDatetime();
 	const { getStateByDate } = useCityLights();
 	const getLabel = () => props.lights
@@ -21,7 +21,7 @@ export function LightsCountdown(props: { lights: boolean }) {
 
 	return (
 		<CardEntry property={getLabel()}>
-			{formatters().formatTimeDuration(time())}
+			{format().timeDuration(time())}
 		</CardEntry>
 	);
 }

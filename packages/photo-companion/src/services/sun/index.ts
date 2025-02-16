@@ -7,7 +7,7 @@ import type { SunEvent, SunEventName } from "types";
 import { useTranslation } from "~/services/translation";
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
-	const { formatters } = useTranslation();
+	const { format } = useTranslation();
 	const data = getSunTimes(date, lat, lon);
 
 	const sunEvents: SunEvent[] = [];
@@ -19,7 +19,7 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 
 		sunEvents.push({
 			data: {
-				azimuth: formatters().formatDegrees(round(getSunPosition(value.timestamp, lat, lon).azimuth, 1))
+				azimuth: format().degrees(round(getSunPosition(value.timestamp, lat, lon).azimuth, 1))
 			},
 			name: key as SunEventName,
 			timestamp: value.timestamp,
