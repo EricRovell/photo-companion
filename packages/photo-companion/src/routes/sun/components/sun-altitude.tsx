@@ -2,14 +2,12 @@
 import { getSunPosition } from "moon-sun-calc";
 
 import { ElevationGraph } from "~/components";
+import { useDatetime } from "~/hooks";
 import { useTranslation } from "~/services/translation";
 
-interface SunAltitudeProps {
-	date: Date;
-}
-
-export function SunAltitude(props: SunAltitudeProps) {
+export function SunAltitude() {
 	const { t } = useTranslation();
+	const { getDatetime } = useDatetime();
 
 	return (
 		<section class="card" data-label="altitude">
@@ -17,7 +15,7 @@ export function SunAltitude(props: SunAltitudeProps) {
 				<h2>{t().TITLE.ELEVATION_SUN}</h2>
 			</header>
 			<ElevationGraph
-				date={props.date}
+				date={getDatetime()}
 				entries={[
 					{
 						getAltitude: getSunPosition,

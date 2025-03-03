@@ -112,6 +112,11 @@ export const timeShortFormatter = getDateTimeFormatter({
 	minute: "2-digit"
 });
 
+export function timeShortDurationFormatter(locale?: string) {
+	const formatter = timeShortFormatter(locale);
+	return (start: DateLike, end: DateLike) => `${formatter(start)} — ${formatter(end)}}`;
+}
+
 /**
  * Replaces the entries within the string in curly braces (can be specified via regex parameter)
  * with values in object.

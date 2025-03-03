@@ -9,6 +9,7 @@ import {
 	percentFormatter,
 	timeDurationFormatter,
 	timeFormatter,
+	timeShortDurationFormatter,
 	timeShortFormatter
 } from "utils/formatters";
 import { isNullable } from "utils/validators";
@@ -40,7 +41,8 @@ export function createTranslationState() {
 		percent: percentFormatter(lang()),
 		time: timeFormatter(lang()),
 		timeDuration: timeDurationFormatter(lang()),
-		timeShort: timeShortFormatter(lang())
+		timeShort: timeShortFormatter(lang()),
+		timeShortDuration: timeShortDurationFormatter(lang())
 	}));
 
 	createEffect(() => {
