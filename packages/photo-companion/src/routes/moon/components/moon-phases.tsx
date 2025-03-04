@@ -3,20 +3,16 @@ import { Time } from "ui";
 
 import { LinkQuery, Moon } from "~/components";
 import { createQueryDate } from "~/helpers";
+import { useMoonService } from "~/services/moon";
 import { useTranslation } from "~/services/translation";
 
-import type { MoonData } from "./use-moon-data";
-
-import styles from "./moon.module.css";
-
-interface MoonPhasesProps {
-	state: MoonData;
-}
+import styles from "../moon.module.css";
 
 const MOON_SIZE = 75;
 
-export function MoonPhases(props: MoonPhasesProps) {
+export function MoonPhases() {
 	const { format, t } = useTranslation();
+	const { phases } = useMoonService();
 
 	return (
 		<section class={`card ${styles.phases}`} data-label="phases-calendar">
@@ -24,7 +20,7 @@ export function MoonPhases(props: MoonPhasesProps) {
 				<h2>{t().TITLE.MOON_PHASE_CALENDAR}</h2>
 			</header>
 			<div>
-				<For each={props.state.phases}>
+				<For each={phases()}>
 					{phase => (
 						<LinkQuery href={"/moon"} query={new URLSearchParams({ datetime: createQueryDate(phase.timestamp) })}>
 							<Moon phase={phase.phaseValue} size={MOON_SIZE} />

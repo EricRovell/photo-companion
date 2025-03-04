@@ -1,21 +1,18 @@
 import { classnames } from "utils";
 
 import { GaugeTime, Moon } from "~/components";
+import { useDatetime } from "~/hooks";
+import { useMoonService } from "~/services/moon";
 import { useTranslation } from "~/services/translation";
 
-import type { MoonData } from "./use-moon-data";
-
-import styles from "./moon.module.css";
-
-interface MoonTimesProps {
-	date: Date;
-	state: MoonData
-}
+import styles from "../moon.module.css";
 
 const MOON_SIZE = 48;
 
-export function MoonTimes(props: MoonTimesProps) {
+export function MoonTimes() {
 	const { t } = useTranslation();
+	const { getDatetime } = useDatetime();
+	const { moonrise, moonset, phaseValue, rotation } = useMoonService();
 
 	return (
 		<section class={classnames("card", styles.root)} data-label="moon">
@@ -23,9 +20,9 @@ export function MoonTimes(props: MoonTimesProps) {
 				<h2>{t().TITLE.MOON_TIMES}</h2>
 			</header>
 			<GaugeTime
-				date={props.date}
-				timeEnd={props.state.moonset}
-				timeStart={props.state.moonrise}
+				date={getDatetime()}
+				timeEnd={moonset()}
+				timeStart={moonrise()}
 			>
 				<foreignObject
 					height={MOON_SIZE}
@@ -34,8 +31,8 @@ export function MoonTimes(props: MoonTimesProps) {
 					y={-MOON_SIZE / 2}
 				>
 					<Moon
-						phase={props.state.phaseValue}
-						rotation={props.state.rotation}
+						phase={phaseValue()}
+						rotation={rotation()}
 						size={MOON_SIZE}
 					/>
 				</foreignObject>

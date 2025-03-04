@@ -4,14 +4,10 @@ import type { EventName } from "types";
 
 import { Timeline, TimelineEvent } from "~/components";
 import { ROUTES } from "~/consts";
-import { useTimelineProvider } from "~/hooks";
-import { getMoonEvents } from "~/services/moon";
+import { useDatetime, useTimelineProvider } from "~/hooks";
+import { getMoonEvents } from "~/services/moon/moon-events";
 import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
-
-interface MoonTimelineProps {
-	date: Date;
-}
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
 	"SUNRISE_START",
@@ -25,8 +21,9 @@ const SECONDARY_EVENT_SET = new Set<EventName>([
 	"SUNRISE_END"
 ]);
 
-export function MoonTimeline(props: MoonTimelineProps) {
+export function MoonTimeline() {
 	const { settings } = useSettings();
+	const { getDatetime } = useDatetime();
 
 	const { getTimeline } = useTimelineProvider({
 		predicate: event => TIMELINE_EVENT_SET.has(event.name),
@@ -43,7 +40,7 @@ export function MoonTimeline(props: MoonTimelineProps) {
 	});
 
 	const events = createMemo(() => {
-		return getTimeline(props.date, settings.latitude, settings.longitude);
+		return getTimeline(getDatetime(), settings.latitude, settings.longitude);
 	});
 
 	return (

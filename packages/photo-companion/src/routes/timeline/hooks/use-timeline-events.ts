@@ -3,7 +3,7 @@ import { isNullable } from "utils/validators";
 
 import { useDatetime, useTimelineProvider } from "~/hooks";
 import { useCityLights } from "~/services/city-lights";
-import { getMoonEvents } from "~/services/moon";
+import { getMoonEvents } from "~/services/moon/moon-events";
 import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 

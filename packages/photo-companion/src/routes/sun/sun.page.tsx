@@ -1,24 +1,22 @@
-import { useDatetime } from "~/hooks";
+import { SunProvider } from "~/services/sun";
 
-import { SunAltitude } from "./sun-altitude";
-import { SunData } from "./sun-data";
-import { SunTimeline } from "./sun-timeline";
-import { SunTimes } from "./sun-times";
-import { useSunData } from "./use-sun-data";
+import { SunAltitude } from "./components/sun-altitude";
+import { SunData } from "./components/sun-data";
+import { SunTimeline } from "./components/sun-timeline";
+import { SunTimes } from "./components/sun-times";
 
 import styles from "./sun.module.css";
 
 export function PageSun() {
-	const { getDatetime } = useDatetime();
-	const { getSunData } = useSunData();
-
 	return (
-		<div class={styles.page}>
-			<SunTimes date={getDatetime()} state={getSunData()} />
-			<SunAltitude date={getDatetime()} />
-			<SunData state={getSunData()} />
-			<SunTimeline date={getDatetime()} />
-		</div>
+		<SunProvider>
+			<div class={styles.page}>
+				<SunTimes />
+				<SunAltitude />
+				<SunData />
+				<SunTimeline />
+			</div>
+		</SunProvider>
 	);
 }
 

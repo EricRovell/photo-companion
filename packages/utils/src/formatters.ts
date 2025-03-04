@@ -46,6 +46,8 @@ export const dateTimeFormatter = getDateTimeFormatter({
  * Formats a value as a degree unit.
  */
 export const degreesFormatter = getNumberFormatter({
+	maximumFractionDigits: 2,
+	minimumFractionDigits: 2,
 	style: "unit",
 	unit: "degree"
 });
@@ -54,6 +56,8 @@ export const degreesFormatter = getNumberFormatter({
  * Formats a numeric value into kilometers unit.
  */
 export const kilometersFormatter = getNumberFormatter({
+	maximumFractionDigits: 2,
+	minimumFractionDigits: 2,
 	style: "unit",
 	unit: "kilometer"
 });
@@ -70,6 +74,7 @@ export const metersFormatter = getNumberFormatter({
  * Formats a numeric value into % unit.
  */
 export const percentFormatter = getNumberFormatter({
+	maximumFractionDigits: 1,
 	style: "unit",
 	unit: "percent"
 });
@@ -106,6 +111,11 @@ export const timeShortFormatter = getDateTimeFormatter({
 	hourCycle: "h23",
 	minute: "2-digit"
 });
+
+export function timeShortDurationFormatter(locale?: string) {
+	const formatter = timeShortFormatter(locale);
+	return (start: DateLike, end: DateLike) => `${formatter(start)} — ${formatter(end)}}`;
+}
 
 /**
  * Replaces the entries within the string in curly braces (can be specified via regex parameter)
