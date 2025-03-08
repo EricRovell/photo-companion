@@ -4,14 +4,15 @@
 	width: var(--loader-size, 1rem);
 	aspect-ratio: 1;
 	border-radius: 50%;
-	background: 
+	background:
 		radial-gradient(farthest-side, var(--loader-color, var(--color-accent)) 94%, #0000) top / var(--loader-radius) var(--loader-radius) no-repeat,
 		conic-gradient(#0000 30%, var(--loader-color, var(--color-accent)));
 	mask: radial-gradient(farthest-side,#0000 calc(100% - var(--loader-radius)),#000 0);
 	animation: loader 1s infinite linear;
+	justify-self: center;
 }
 
-@keyframes loader { 
+@keyframes loader {
 	100% {
 		transform: rotate(1turn)
 	}

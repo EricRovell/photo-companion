@@ -1,21 +1,11 @@
-import { initLightsProvider, type LightsProvider } from "lights-schedule";
-import { createContext, createMemo, type ParentProps, useContext } from "solid-js";
-import { isNullable } from "utils/validators";
+import { initLightsProvider } from "lights-schedule";
+import { createContext, createMemo } from "solid-js";
 
-import type { Accessor } from "solid-js";
-import type { LightsCity } from "types";
-
+import { createProvider } from "~/helpers/create-provider";
 import { useDatetime } from "~/hooks";
 import { useSettings } from "~/services/settings";
 
-interface CityLightsContextType extends Omit<LightsProvider, "city" | "year"> {
-	getCity: Accessor<LightsCity>;
-	getYear: Accessor<number>;
-}
-
-const CityLightsContext = createContext<CityLightsContextType>();
-
-export function CityLightsProvider(props: ParentProps) {
+function createCityLightsState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
@@ -28,25 +18,20 @@ export function CityLightsProvider(props: ParentProps) {
 	const getEventsByDate = createMemo(() => getCityLightsProvider().getEventsByDate(getDatetime()));
 	const getScheduleByDate = createMemo(() => getCityLightsProvider().getScheduleByDate(getDatetime()));
 
-	return (
-		<CityLightsContext.Provider value={{
-			getCity,
-			getEventsByDate,
-			getScheduleByDate,
-			getStateByDate,
-			getYear
-		}}>
-			{props.children}
-		</CityLightsContext.Provider>
-	);
+	return {
+		getCity,
+		getEventsByDate,
+		getScheduleByDate,
+		getStateByDate,
+		getYear
+	};
 }
 
-export function useCityLights() {
-	const value = useContext(CityLightsContext);
+const CityLightsContext = createContext<ReturnType<typeof createCityLightsState>>();
 
-	if (isNullable(value)) {
-		throw new Error("useCityLights must be used within Settings and CityLights providers.");
-	}
-
-	return value;
-}
+export const [ CityLightsProvider, useCityLights ] = createProvider({
+	consumerName: "useCityLights",
+	Context: CityLightsContext,
+	getValue: createCityLightsState,
+	providerName: "CityLights"
+});

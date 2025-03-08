@@ -1,8 +1,7 @@
-import { getNavigationState, isAllBridgesLiftedDown } from "bridge-schedule";
-import { createMemo, Show } from "solid-js";
+import { Show } from "solid-js";
 
 import { CardInfo } from "~/components";
-import { useDatetime } from "~/hooks";
+import { useBridges } from "~/services/bridges-spb";
 
 import { BridgesStateAll } from "./bridge-state-all";
 import { BridgeStateList } from "./bridge-state-list";
@@ -14,17 +13,15 @@ interface Props {
 }
 
 export function BridgesInfo(props: Props) {
-	const { getTimestamp } = useDatetime();
-	const isAllLiftedDown = () => isAllBridgesLiftedDown(getTimestamp());
-	const navigation = createMemo(() => getNavigationState(getTimestamp()));
+	const { getNavigationState, isAllBridgesLiftedDown } = useBridges();
 
 	return (
 		<CardInfo title={props.title}>
-			<NavigationState {...navigation()} />
-			<Show when={navigation().navigation}>
+			<NavigationState {...getNavigationState()} />
+			<Show when={getNavigationState().navigation}>
 				<NextBridgeCountdown />
 			</Show>
-			<Show fallback={<BridgesStateAll allLiftedDown />} when={!isAllLiftedDown()}>
+			<Show fallback={<BridgesStateAll allLiftedDown />} when={!isAllBridgesLiftedDown()}>
 				<BridgeStateList />
 			</Show>
 		</CardInfo>
