@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "solid-js";
+import { ErrorBoundary, lazy, Suspense } from "solid-js";
 import { Loader } from "ui";
 
-import { SupportsBridges, SupportsLights } from "~/components";
+import { ErrorMessage, SupportsBridges, SupportsLights } from "~/components";
 
 import { NowMoon, NowSun } from "./components";
 
@@ -14,16 +14,20 @@ export const PageNow = () => (
 	<div class={styles.page}>
 		<NowSun />
 		<NowMoon />
-		<Suspense fallback={<Loader />}>
-			<SupportsLights>
-				<NowLights />
-			</SupportsLights>
-		</Suspense>
-		<Suspense fallback={<Loader />}>
-			<SupportsBridges>
-				<NowBridges />
-			</SupportsBridges>
-		</Suspense>
+		<ErrorBoundary fallback={<ErrorMessage message="Something is wrong, could not load City Lights module" />}>
+			<Suspense fallback={<Loader />}>
+				<SupportsLights>
+					<NowLights />
+				</SupportsLights>
+			</Suspense>
+		</ErrorBoundary>
+		<ErrorBoundary fallback={<ErrorMessage message="Something is wrong, could not load Bridges module" />}>
+			<Suspense fallback={<Loader />}>
+				<SupportsBridges>
+					<NowBridges />
+				</SupportsBridges>
+			</Suspense>
+		</ErrorBoundary>
 	</div>
 );
 

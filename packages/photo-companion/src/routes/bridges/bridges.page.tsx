@@ -1,34 +1,37 @@
 import { Navigate } from "@solidjs/router";
-import { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 import { For, Show } from "solid-js";
 
 import { BridgesInfo } from "~/components/bridges-info/bridges-info";
 import { ROUTES } from "~/consts/routes";
-import { useSettings } from "~/services/settings";
+import { BridgesProvider, useBridges } from "~/services/bridges-spb";
 import { useTranslation } from "~/services/translation";
 
 import { CardBridge } from "./components";
 
 import styles from "./bridges.module.css";
 
-const BridgeList = () => (
-	<ul class={styles["bridge-list"]}>
-		<For each={Array.from(SUPPORTED_BRIDGES_NAME_SET)}>
-			{name => (
-				<li>
-					<CardBridge
-						exception={isBridgeException(name)}
-						name={name}
-					/>
-				</li>
-			)}
-		</For>
-	</ul>
-);
+function BridgeList() {
+	const { isBridgeException, SUPPORTED_BRIDGES_NAME_SET } = useBridges();
+
+	return (
+		<ul class={styles["bridge-list"]}>
+			<For each={Array.from(SUPPORTED_BRIDGES_NAME_SET)}>
+				{name => (
+					<li>
+						<CardBridge
+							exception={isBridgeException(name)}
+							name={name}
+						/>
+					</li>
+				)}
+			</For>
+		</ul>
+	);
+}
 
 export function PageBridges() {
 	const { t } = useTranslation();
-	const { isSupportsBridges } = useSettings();
+	const { isSupportsBridges } = useBridges();
 
 	return (
 		<Show when={isSupportsBridges()} fallback={<Navigate href={ROUTES.NOT_FOUND} />}>
@@ -47,4 +50,8 @@ export function PageBridges() {
 	);
 }
 
-export default PageBridges;
+export default () => (
+	<BridgesProvider>
+		<PageBridges />
+	</BridgesProvider>
+);

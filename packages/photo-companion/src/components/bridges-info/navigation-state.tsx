@@ -1,4 +1,4 @@
-import type {  NavigationState as NavigationStateType } from "bridge-schedule";
+import type { NavigationState as NavigationStateType } from "bridge-schedule";
 
 import { CardEntry } from "~/components";
 import { useTranslation } from "~/services/translation";

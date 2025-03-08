@@ -1,8 +1,8 @@
-import { getNextBridgeEvent } from "bridge-schedule";
-import { createMemo} from "solid-js";
+import { createMemo } from "solid-js";
 
 import { CardEntry } from "~/components";
 import { createCountdown, useDatetime } from "~/hooks";
+import { useBridges } from "~/services/bridges-spb";
 import { useTranslation } from "~/services/translation";
 
 /**
@@ -11,6 +11,7 @@ import { useTranslation } from "~/services/translation";
 export function NextBridgeCountdown() {
 	const { getTimestamp } = useDatetime();
 	const { format, t } = useTranslation();
+	const { getNextBridgeEvent } = useBridges();
 
 	const getNextEvent = createMemo(() => getNextBridgeEvent(getTimestamp()));
 

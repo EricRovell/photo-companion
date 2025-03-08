@@ -1,10 +1,10 @@
-import { getBridgeScheduleEntry, getBridgeState, getNavigationState } from "bridge-schedule";
 import { createMemo, Show } from "solid-js";
 import { IconWarning } from "ui/icons";
 
 import type { BridgeName, BridgeState } from "types";
 
 import { createCountdown, useDatetime } from "~/hooks";
+import { useBridges } from "~/services/bridges-spb";
 import { useTranslation } from "~/services/translation";
 
 import { BridgeSparkline } from "./card-bridge-sparkline";
@@ -23,7 +23,7 @@ interface BridgeTimerProps {
 function BridgeTimer(props: BridgeTimerProps) {
 	const { format, t } = useTranslation();
 	const { getTimestamp } = useDatetime();
-	const navigation = () => getNavigationState(getTimestamp()).navigation;
+	const { getNavigationState } = useBridges();
 
 	const getTime = createCountdown({
 		getTimestampEnd: () => props.state.timestamp,
@@ -31,7 +31,7 @@ function BridgeTimer(props: BridgeTimerProps) {
 	});
 
 	return (
-		<Show when={navigation()}>
+		<Show when={getNavigationState().navigation}>
 			<footer class={styles.footer}>
 				<p>
 					<Show fallback={t().MESSAGE.BRIDGE_WILL_OPEN_WITHIN} when={props.state.open}>
@@ -49,6 +49,7 @@ function BridgeTimer(props: BridgeTimerProps) {
 export function CardBridge(props: CardBridgeProps) {
 	const { t } = useTranslation();
 	const { getTimestamp } = useDatetime();
+	const { getBridgeScheduleEntry, getBridgeState } = useBridges();
 
 	const getSchedule = () => getBridgeScheduleEntry(props.name);
 	const getState = createMemo(() => getBridgeState(props.name, getTimestamp(), true));
