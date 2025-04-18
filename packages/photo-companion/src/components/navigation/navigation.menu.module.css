@@ -62,9 +62,18 @@
 	gap: var(--space-2);
 	padding: var(--space-2);
 	font-size: var(--font-size-2);
+	font-variant-caps: small-caps;
 
 	&:hover {
-		background-color: var(--color-surface-2);
+		background-color: var(--color-surface-3);
 		text-decoration: none;
+	}
+
+	&:where([aria-current="page"]) {
+		background-color: var(--color-surface-2);
+	}
+
+	&:active {
+		background-color: var(--color-surface-4);
 	}
 }

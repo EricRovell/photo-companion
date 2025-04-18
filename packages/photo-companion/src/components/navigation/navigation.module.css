@@ -63,6 +63,7 @@
 	user-select: none;
 	text-decoration: unset;
 	transition: var(--transition-bg), outline-offset 0.125s ease-in-out;
+	font-variant-caps: small-caps;
 
 	&:active {
 		background-color: var(--color-surface-4);
