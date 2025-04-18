@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.30.0
+
+- Close mobile menu on current section click;
+- Mobile menu current section visual indicator;
+- Mobile menu items use caps for better readability;
+- Update menu close button size;
+
 ## 2.29.2
 
 - Small optimizations;
