@@ -35,7 +35,7 @@ export function NavigationMenu(props: Props) {
 		<>
 			<header class={styles.header}>
 				<h2>{t().LABEL.MENU}</h2>
-				<Button icon onClick={props.onClose} type="button">
+				<Button class={styles.close} icon onClick={props.onClose} type="button">
 					<IconClose />
 				</Button>
 			</header>

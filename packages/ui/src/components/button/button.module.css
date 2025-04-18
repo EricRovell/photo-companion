@@ -36,7 +36,7 @@
 	}
 }
 
-.button[data-icon] {
+.button:where([data-icon]) {
 	aspect-ratio: 1;
 	padding: var(--space-2);
 }
