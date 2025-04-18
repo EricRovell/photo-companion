@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.30.0
+
+- Close mobile menu on current section click;
+
 ## 2.29.2
 
 - Small optimizations;

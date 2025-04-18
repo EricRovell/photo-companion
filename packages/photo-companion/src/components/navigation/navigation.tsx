@@ -20,7 +20,7 @@ function SideMenu() {
 	const handleOpen = () => toggleShowMenu(true);
 	const handleClose = () => toggleShowMenu(false);
 
-	useBeforeLeave(() => toggleShowMenu(false));
+	useBeforeLeave(handleClose);
 
 	return (
 		<li class={classnames(styles["nav-item"], styles["nav-item-menu"])}>
