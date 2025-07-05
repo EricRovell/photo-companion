@@ -19,7 +19,7 @@ export function useTimelineEvents() {
 	const { isSupportsBridges, isSupportsCityLights, settings } = useSettings();
 
 	const timelineFilterSet = useTimelineFilters();
-	const { getEventsByDate } = useCityLights();
+	const { getEventsByDateInput } = useCityLights();
 	const { getTimestamp } = useDatetime();
 
 	const hasNoBridgeEvents = () => isNullable(settings.events_bridges_spb);
@@ -37,7 +37,7 @@ export function useTimelineEvents() {
 			},
 			{
 				disabled: !isSupportsCityLights() || hasNoLightsEvents(),
-				provider: getEventsByDate,
+				provider: getEventsByDateInput(),
 				type: "DATE"
 			},
 			{
