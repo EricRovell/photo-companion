@@ -1,0 +1,22 @@
+{
+  "name": "meeus-1",
+  "description": "Astronomical Algorithms in Javascript",
+  "type": "module",
+	"exports": {
+		".": {
+			"import": {
+				"default": "./src/index.ts"
+			}
+		}
+	},
+  "scripts": {},
+  "keywords": [
+    "astronomy",
+    "algorithms"
+  ],
+  "author": "Cédric Foellmi",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "^1.11.6"
+  }
+}
