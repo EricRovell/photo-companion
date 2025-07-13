@@ -12,7 +12,7 @@ import { TranslationProvider } from "~/services/translation";
 import "../styles/globals.css";
 import "../styles/main.css";
 import "../styles/utils.css";
-import "ui/styles/tokens.css";
+import "../styles/tokens.css";
 
 export const App = () => (
 	<ServiceWorkerProvider>
