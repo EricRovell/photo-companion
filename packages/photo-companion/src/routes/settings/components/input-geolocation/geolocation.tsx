@@ -1,6 +1,5 @@
-import { Input } from "ui";
-
 import { useTranslation } from "~/services/translation";
+import { Input } from "~/shared/ui";
 
 import { FORM_INPUT_NAME } from "../../settings.const";
 import { useSettingsForm } from "../../settings.context";

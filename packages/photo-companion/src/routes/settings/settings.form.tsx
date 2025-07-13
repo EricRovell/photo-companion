@@ -1,7 +1,6 @@
-import { Button, Fieldset, Form, InputRadio } from "ui";
-
 import { SETTINGS_CITY_PRESETS } from "~/services/settings";
 import { useTranslation } from "~/services/translation";
+import { Button, Fieldset, Form, InputRadio } from "~/shared/ui";
 
 import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
 import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "./settings.const";

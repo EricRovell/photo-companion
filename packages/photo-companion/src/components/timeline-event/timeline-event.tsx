@@ -1,6 +1,5 @@
 import { Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import { Time } from "ui";
 
 import type { TimelineEvent } from "types";
 
@@ -8,6 +7,7 @@ import { createQueryDate, setAttribute } from "~/helpers";
 import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "~/helpers/validators";
 import { useDatetime } from "~/hooks";
 import { useTranslation } from "~/services/translation";
+import { Time } from "~/shared/ui";
 
 import { LinkQuery } from "../link-query";
 import { bridgeEventComponent } from "./timeline-event-bridge";

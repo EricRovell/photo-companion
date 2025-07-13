@@ -1,9 +1,9 @@
-import { Button, Input, InputLocation, InputRadio } from "ui";
 import { isNullable } from "utils/validators";
 
 import type { JSX, ParentProps} from "solid-js";
 
 import { useTranslation } from "~/services/translation";
+import { Button, Input, InputLocation, InputRadio } from "~/shared/ui";
 
 import { useForm } from "../../height-by-shadow.context";
 

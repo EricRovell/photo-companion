@@ -1,9 +1,9 @@
 import { createMemo, createSignal, Show } from "solid-js";
 import { unwrap } from "solid-js/store";
-import { IconShadow } from "ui/icons";
 import { isNullable } from "utils/validators";
 
 import { useTranslation } from "~/services/translation";
+import { IconShadow } from "~/shared/ui/icons";
 
 import { Error } from "./components/error/error";
 import { Form } from "./components/form/form";

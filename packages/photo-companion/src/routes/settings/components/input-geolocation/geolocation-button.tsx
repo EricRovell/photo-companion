@@ -1,9 +1,9 @@
 import { Show } from "solid-js";
-import { Button } from "ui";
 
 import { ErrorMessage } from "~/components";
 import { useGeolocationService } from "~/services/geolocation";
 import { useTranslation } from "~/services/translation";
+import { Button } from "~/shared/ui";
 
 import { useSettingsForm } from "../../settings.context";
 

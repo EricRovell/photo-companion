@@ -1,6 +1,7 @@
 import { type JSXElement, type ParentProps, Show } from "solid-js";
-import { Time } from "ui";
 import { isNullable } from "utils/validators";
+
+import { Time } from "~/shared/ui";
 
 import styles from "./timeline.module.css";
 

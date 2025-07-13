@@ -1,6 +1,7 @@
 import { type ParentProps, Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import { Link as Anchor } from "ui";
+
+import { Link as Anchor } from "~/shared/ui";
 
 import { useDefinition } from "./markdown.context";
 

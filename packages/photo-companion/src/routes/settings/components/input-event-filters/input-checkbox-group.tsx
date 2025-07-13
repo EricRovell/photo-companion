@@ -1,7 +1,7 @@
 import { createEffect, createSignal, For, mergeProps } from "solid-js";
-import { InputCheckbox, type InputSelectOption } from "ui";
 
 import { setAttribute } from "~/helpers";
+import { InputCheckbox, type InputSelectOption } from "~/shared/ui";
 
 import styles from "./input-checkbox-group.module.css";
 
@@ -76,7 +76,7 @@ function RootCheckbox(props: Props) {
 
 /**
  * Note: The checkbox state is reversed visually for the user.
- * 
+ *
  * This checkbox group behaves like a disallow list under the hood,
  * knowing which events are NOT allowed makes code easier,
  * as for allow list we should not all possible events ahead.
@@ -94,22 +94,22 @@ export function InputCheckboxGroup(allProps: Props) {
 	const handleChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;
 		const isRoot = target.hasAttribute("data-root");
-	
+
 		if (isRoot) {
 			setValue(target.checked ? null : []);
 			props.onChange?.(props.name, getValue());
 
 			return;
 		}
-	
+
 		if (target.checked && !getValue()) {
 			setValue([]);
 		}
-	
+
 		if (!target.checked && !getValue()) {
 			setValue(props.options.map(option => option.value));
 		}
-	
+
 		if (target.checked) {
 			// @ts-expect-error: value is set above
 			setValue(value => [ ...value, target.value ]);
@@ -117,14 +117,14 @@ export function InputCheckboxGroup(allProps: Props) {
 			// @ts-expect-error: value is set above
 			setValue(value => value.filter(item => item !== target.value));
 		}
-	
+
 		if (Array.isArray(getValue()) && getValue()?.length === props.options.length) {
 			setValue(null);
 		}
 
 		props.onChange?.(props.name, getValue());
 	};
-	
+
 	return (
 		<fieldset
 			class={styles["checkbox-group"]}

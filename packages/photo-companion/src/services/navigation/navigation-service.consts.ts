@@ -1,3 +1,6 @@
+import type { Component } from "solid-js";
+
+import { ROUTES } from "~/consts";
 import {
 	IconBook,
 	IconBridge,
@@ -9,12 +12,9 @@ import {
 	IconShadow,
 	IconSun,
 	IconTimeline
-} from "ui/icons";
+} from "~/shared/ui/icons";
 
-import type { Component } from "solid-js";
-import type { IconProps } from "ui";
-
-import { ROUTES } from "~/consts";
+import type { IconProps } from "~/shared/ui";
 
 export interface NavigationRoute {
 	disabled?: boolean;

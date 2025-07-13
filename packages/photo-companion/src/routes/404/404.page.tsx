@@ -1,8 +1,7 @@
-import { Link } from "ui";
-
 import { Moon } from "~/components";
 import { ROUTES } from "~/consts";
 import { useTranslation } from "~/services/translation";
+import { Link } from "~/shared/ui";
 
 import styles from "./404.module.css";
 

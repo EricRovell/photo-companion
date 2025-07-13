@@ -1,8 +1,9 @@
 import { createSignal, Show, splitProps } from "solid-js";
-import { Input } from "ui";
 
 import type { JSX, ParentProps } from "solid-js";
 import type { Degrees } from "utils/math";
+
+import { Input } from "../input/input";
 
 import styles from "./input-location.module.css";
 

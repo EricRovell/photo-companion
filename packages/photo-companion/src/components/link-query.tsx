@@ -1,6 +1,7 @@
 import { useLocation } from "@solidjs/router";
 import { createMemo, splitProps } from "solid-js";
-import { Link, type LinkProps } from "ui";
+
+import { Link, type LinkProps } from "~/shared/ui";
 
 /**
  * Wrapper over the `<Link />` that sync the query params.

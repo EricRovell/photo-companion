@@ -1,10 +1,9 @@
-import { InputDatetime } from "ui";
-
 import type { ParentProps } from "solid-js";
 
 import { getDateTimeString, parseDateTimeString } from "~/helpers";
 import { useDatetime } from "~/hooks";
 import { useTranslation } from "~/services/translation";
+import { InputDatetime } from "~/shared/ui";
 
 import styles from "./with-date.module.css";
 
