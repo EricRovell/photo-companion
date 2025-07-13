@@ -1,7 +1,7 @@
 import { createEffect, createSignal } from "solid-js";
-import { createTimeoutLoop } from "ui/primitives";
 
 import { useTranslation } from "~/services/translation";
+import { createTimeoutLoop } from "~/shared/primitives";
 import { Time } from "~/shared/ui";
 
 interface Props {

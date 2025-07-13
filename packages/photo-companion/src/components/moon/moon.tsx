@@ -1,5 +1,6 @@
 import { mergeProps, splitProps } from "solid-js";
-import { createTweened } from "ui/primitives";
+
+import { createTweened } from "~/shared/primitives";
 
 import { DEFAULT_PROPS } from "./moon.const";
 import { getNormalizedAngleRad, getNormalizedPhase } from "./moon.helpers";

@@ -1,6 +1,7 @@
 import { mergeProps, type ParentProps, Show } from "solid-js";
-import { createTweened } from "ui/primitives";
 import { isNonNegativeInteger } from "utils/validators";
+
+import { createTweened } from "~/shared/primitives";
 
 import { Label } from "./gauge-label";
 import { Marks, MarksWrapper } from "./gauge-marks";
