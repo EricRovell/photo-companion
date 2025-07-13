@@ -1,4 +1,4 @@
-import { MoonData } from "~/routes/moon/components/moon-data";
+import { MoonData } from "~/pages/moon/components/moon-data";
 import { MoonProvider } from "~/services/moon";
 import { useTranslation } from "~/services/translation";
 

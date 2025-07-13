@@ -1,4 +1,4 @@
-import { SunData } from "~/routes/sun/components/sun-data";
+import { SunData } from "~/pages/sun/components/sun-data";
 import { SunProvider } from "~/services/sun";
 import { useTranslation } from "~/services/translation";
 
