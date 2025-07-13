@@ -5,20 +5,19 @@ import { ROUTES } from "~/consts";
 import { Root } from "~/layout/root/root";
 import { WithDate } from "~/layout/with-date/with-date";
 import { WithSwipe } from "~/layout/with-swipe";
+import { PageLights } from "~/pages/lights/lights.page";
+import { PageMoon } from "~/pages/moon/moon.page";
+import { PageNow } from "~/pages/now/now.page";
+import { PageRoot } from "~/pages/root/root.page";
+import { PageSun } from "~/pages/sun/sun.page";
+import { PageTimeline } from "~/pages/timeline/timeline.page";
 import { Loader } from "~/shared/ui";
 
-import { PageLights } from "./lights/lights.page";
-import { PageMoon } from "./moon/moon.page";
-import { PageNow } from "./now/now.page";
-import { PageRoot } from "./root/root.page";
-import { PageSun } from "./sun/sun.page";
-import { PageTimeline } from "./timeline/timeline.page";
-
-const Page404 = lazy(() => import("./404/404.page"));
-const PageAbout = lazy(() => import("./about/about.page"));
-const PageBridges = lazy(() => import("./bridges/bridges.page"));
-const PageSettings = lazy(() => import("./settings/settings.page"));
-const PageHeightByShadow = lazy(() => import("./height-by-shadow/height-by-shadow.page"));
+const Page404 = lazy(() => import("~/pages/404/404.page"));
+const PageAbout = lazy(() => import("~/pages/about/about.page"));
+const PageBridges = lazy(() => import("~/pages/bridges/bridges.page"));
+const PageSettings = lazy(() => import("~/pages/settings/settings.page"));
+const PageHeightByShadow = lazy(() => import("~/pages/height-by-shadow/height-by-shadow.page"));
 
 const WITH_DATE_ROUTES = [
 	ROUTES.ROOT,
