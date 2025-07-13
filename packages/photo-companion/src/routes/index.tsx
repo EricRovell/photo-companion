@@ -1,11 +1,11 @@
 import { Route, Router } from "@solidjs/router";
 import { lazy, Suspense } from "solid-js";
-import { Loader } from "ui";
 
 import { ROUTES } from "~/consts";
 import { Root } from "~/layout/root/root";
 import { WithDate } from "~/layout/with-date/with-date";
 import { WithSwipe } from "~/layout/with-swipe";
+import { Loader } from "~/shared/ui";
 
 import { PageLights } from "./lights/lights.page";
 import { PageMoon } from "./moon/moon.page";

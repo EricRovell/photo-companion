@@ -1,5 +1,4 @@
 import { For, Show } from "solid-js";
-import { IconWarning } from "ui/icons";
 import { incrementDateByDay } from "utils/date";
 
 import type { EventGroupName } from "types";
@@ -9,6 +8,7 @@ import { useDatetime } from "~/hooks";
 import { CityLightsProvider } from "~/services/city-lights";
 import { useSettings } from "~/services/settings";
 import { useTranslation } from "~/services/translation";
+import { IconWarning } from "~/shared/ui/icons";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
 

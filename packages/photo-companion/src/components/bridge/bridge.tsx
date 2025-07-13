@@ -1,4 +1,4 @@
-import { Icon } from "ui";
+import { Icon } from "~/shared/ui";
 
 import styles from "./bridge.module.css";
 
