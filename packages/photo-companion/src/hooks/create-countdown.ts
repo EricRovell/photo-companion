@@ -1,5 +1,6 @@
 import { type Accessor, createEffect, createSignal, on } from "solid-js";
-import { createTimeoutLoop, useDocumentVisibility } from "ui/primitives";
+
+import { createTimeoutLoop, useDocumentVisibility } from "~/shared/primitives";
 
 interface Options {
 	getTimestampEnd: Accessor<number>;

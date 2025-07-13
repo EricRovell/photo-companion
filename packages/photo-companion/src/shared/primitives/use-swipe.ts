@@ -3,7 +3,7 @@ import { createStore } from "solid-js/store";
 
 import { createEventListener } from "./create-event-listener";
 
-import type { MaybeAccessor } from "../types";
+type MaybeAccessor<T> = Accessor<T> | T;
 
 export interface Coords {
 	t1: number;
