@@ -3,7 +3,7 @@ import { onMount } from "solid-js";
 import { createStore } from "solid-js/store";
 import { isNullable } from "utils/validators";
 
-import { createProvider } from "~/helpers/create-provider";
+import { createProvider } from "~/shared/lib/create-provider";
 
 interface GeolocationStore {
 	coordinates: GeolocationCoordinates | null;

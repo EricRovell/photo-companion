@@ -3,9 +3,9 @@ import { createContext } from "solid-js";
 import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 
-import { createProvider } from "~/helpers/create-provider";
 import { useDatetime } from "~/hooks";
 import { useSettings } from "~/services/settings";
+import { createProvider } from "~/shared/lib/create-provider";
 
 function createSunState() {
 	const { settings } = useSettings();

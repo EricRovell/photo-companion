@@ -13,9 +13,9 @@ import { objectEntries } from "utils";
 
 import type { BridgeName } from "types";
 
-import { createProvider } from "~/helpers/create-provider";
 import { useDatetime } from "~/hooks";
 import { useSettings } from "~/services/settings";
+import { createProvider } from "~/shared/lib/create-provider";
 
 function createBridgesState() {
 	const { isSupportsBridges } = useSettings();

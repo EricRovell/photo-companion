@@ -1,6 +1,6 @@
 import { createContext } from "solid-js";
 
-import { createProvider } from "~/helpers/create-provider";
+import { createProvider } from "~/shared/lib/create-provider";
 
 import { createSettingsState } from "./settings.state";
 
