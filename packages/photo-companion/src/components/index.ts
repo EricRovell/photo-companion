@@ -13,5 +13,4 @@ export { Sun } from "./sun/sun";
 export { SupportsBridges } from "./supports/supports-bridges";
 export { SupportsLights } from "./supports/supports-lights";
 export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";
-export { Timeline, TimelineGroup } from "./timeline/timeline";
 export { ToastSuggestUpdate } from "./toast-suggest-update/toast-suggest-update";
