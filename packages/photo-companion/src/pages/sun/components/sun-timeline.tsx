@@ -1,11 +1,11 @@
 import { For } from "solid-js";
 
 import { TimelineEvent } from "~/components";
-import { ROUTES } from "~/consts";
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { useDatetime } from "~/hooks";
 import { getSunEvents } from "~/services/sun";
+import { ROUTES } from "~/shared/consts";
 
 export function SunTimeline() {
 	const { settings } = useSettings();

@@ -1,8 +1,8 @@
 import { initLightsProvider } from "lights-schedule";
 import { createContext, createMemo } from "solid-js";
 
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { useDatetime } from "~/hooks";
 import { createProvider } from "~/shared/lib/create-provider";
 
 function createCityLightsState() {

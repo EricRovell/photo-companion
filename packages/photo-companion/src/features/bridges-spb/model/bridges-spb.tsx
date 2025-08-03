@@ -13,8 +13,8 @@ import { objectEntries } from "utils";
 
 import type { BridgeName } from "types";
 
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { useDatetime } from "~/hooks";
 import { createProvider } from "~/shared/lib/create-provider";
 
 function createBridgesState() {

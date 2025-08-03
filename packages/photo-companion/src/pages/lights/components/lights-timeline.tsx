@@ -3,12 +3,12 @@ import { For } from "solid-js";
 import type { EventName } from "types";
 
 import { TimelineEvent } from "~/components";
-import { ROUTES } from "~/consts";
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
 import { useCityLights } from "~/features/city-lights";
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { useDatetime } from "~/hooks";
 import { getSunEvents } from "~/services/sun";
+import { ROUTES } from "~/shared/consts";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
 	"LIGHTS_START",

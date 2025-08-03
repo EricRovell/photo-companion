@@ -1,7 +1,6 @@
 import { Route, Router } from "@solidjs/router";
 import { lazy, Suspense } from "solid-js";
 
-import { ROUTES } from "~/consts";
 import { Root } from "~/layout/root/root";
 import { WithDate } from "~/layout/with-date/with-date";
 import { PageLights } from "~/pages/lights/lights.page";
@@ -10,6 +9,7 @@ import { PageNow } from "~/pages/now/now.page";
 import { PageRoot } from "~/pages/root/root.page";
 import { PageSun } from "~/pages/sun/sun.page";
 import { PageTimeline } from "~/pages/timeline/timeline.page";
+import { ROUTES } from "~/shared/consts";
 import { Loader } from "~/shared/ui";
 
 import { WithSwipe } from "./with-swipe";

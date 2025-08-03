@@ -1,6 +1,6 @@
 import type { Component } from "solid-js";
 
-import { ROUTES } from "~/consts";
+import { ROUTES } from "~/shared/consts";
 import {
 	IconBook,
 	IconBridge,

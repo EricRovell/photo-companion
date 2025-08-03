@@ -6,9 +6,9 @@ import type { EventGroupName } from "types";
 import { TimelineEvent, TimelineEventEmpty } from "~/components";
 import { Timeline, TimelineGroup } from "~/entities/timeline";
 import { CityLightsProvider } from "~/features/city-lights";
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { useTranslation } from "~/features/translation";
-import { useDatetime } from "~/hooks";
 import { IconWarning } from "~/shared/ui/icons";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
