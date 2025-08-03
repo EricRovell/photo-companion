@@ -1,4 +1,4 @@
-import { detectUserLanguage } from "~/helpers";
+import { detectUserLanguage } from "./detect-lang";
 
 import type { CitySettingsPreset, SettingsStore } from "./settings.types";
 import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";

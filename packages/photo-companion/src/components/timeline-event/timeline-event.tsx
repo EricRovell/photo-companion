@@ -1,11 +1,12 @@
 import { Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
+import { setAttribute } from "utils";
 
 import type { TimelineEvent } from "types";
 
 import { useTranslation } from "~/features/translation";
-import { createQueryDate, setAttribute } from "~/helpers";
 import { useDatetime } from "~/hooks";
+import { createQueryDate } from "~/shared/lib/query-date";
 import { Time } from "~/shared/ui";
 
 import { LinkQuery } from "../link-query";
