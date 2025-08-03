@@ -1,11 +1,5 @@
 import type { SunEventName } from "types";
 
-export const DEFAULT_PROPS = {
-	event: "SOLAR_NOON" as SunEventName,
-	fallbackColor: "gold",
-	size: 100
-};
-
 export const SUN_COLOR: Record<SunEventName, string> = {
 	ASTRONOMICAL_DAWN: "#494582",
 	ASTRONOMICAL_DUSK: "#38325D",
