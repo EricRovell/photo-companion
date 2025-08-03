@@ -4,7 +4,6 @@ import { lazy, Suspense } from "solid-js";
 import { ROUTES } from "~/consts";
 import { Root } from "~/layout/root/root";
 import { WithDate } from "~/layout/with-date/with-date";
-import { WithSwipe } from "~/layout/with-swipe";
 import { PageLights } from "~/pages/lights/lights.page";
 import { PageMoon } from "~/pages/moon/moon.page";
 import { PageNow } from "~/pages/now/now.page";
@@ -12,6 +11,8 @@ import { PageRoot } from "~/pages/root/root.page";
 import { PageSun } from "~/pages/sun/sun.page";
 import { PageTimeline } from "~/pages/timeline/timeline.page";
 import { Loader } from "~/shared/ui";
+
+import { WithSwipe } from "./with-swipe";
 
 const Page404 = lazy(() => import("~/pages/404/404.page"));
 const PageAbout = lazy(() => import("~/pages/about/about.page"));
