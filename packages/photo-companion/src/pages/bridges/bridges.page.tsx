@@ -2,9 +2,9 @@ import { Navigate } from "@solidjs/router";
 import { For, Show } from "solid-js";
 
 import { BridgesInfo } from "~/components/bridges-info/bridges-info";
-import { ROUTES } from "~/consts/routes";
+import { BridgesProvider, useBridges } from "~/features/bridges-spb";
 import { useTranslation } from "~/features/translation";
-import { BridgesProvider, useBridges } from "~/services/bridges-spb";
+import { ROUTES } from "~/shared/consts";
 
 import { CardBridge } from "./components";
 

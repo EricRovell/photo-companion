@@ -3,8 +3,8 @@ import { isNullable } from "utils/validators";
 
 import { useTimelineProvider } from "~/entities/timeline";
 import { useCityLights } from "~/features/city-lights";
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { useDatetime } from "~/hooks";
 import { getMoonEvents } from "~/services/moon/moon-events";
 import { getSunEvents } from "~/services/sun";
 

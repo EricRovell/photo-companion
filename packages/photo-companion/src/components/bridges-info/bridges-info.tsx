@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 
 import { CardInfo } from "~/components";
-import { useBridges } from "~/services/bridges-spb";
+import { useBridges } from "~/features/bridges-spb";
 
 import { BridgesStateAll } from "./bridge-state-all";
 import { BridgeStateList } from "./bridge-state-list";

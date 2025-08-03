@@ -1,5 +1,5 @@
-export { homepage as URL_GITHUB_REPO } from "../../package.json";
-export const URL_COMMIT_HASH = "https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__";
+export const TITLE = "Photo Companion";
+export { version as VERSION } from "../../../package.json";
 
 export const ROUTES = {
 	ABOUT: "/about",

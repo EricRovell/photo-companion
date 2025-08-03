@@ -2,9 +2,9 @@ import { createMemo, Show } from "solid-js";
 
 import type { BridgeName, BridgeState } from "types";
 
+import { useBridges } from "~/features/bridges-spb";
+import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { useDatetime } from "~/hooks";
-import { useBridges } from "~/services/bridges-spb";
 import { createCountdown } from "~/shared/lib/timer";
 import { IconWarning } from "~/shared/ui/icons";
 

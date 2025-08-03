@@ -3,8 +3,8 @@ import { createEffect, type ParentProps } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import { Bulb, LinkQuery, Navigation, PageMeta } from "~/components";
-import { TITLE } from "~/consts";
 import { useSettings } from "~/features/settings";
+import { TITLE } from "~/shared/consts";
 
 import styles from "./root.module.css";
 

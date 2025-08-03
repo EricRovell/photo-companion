@@ -3,8 +3,8 @@ import { createContext } from "solid-js";
 import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 
+import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { useDatetime } from "~/hooks";
 import { createProvider } from "~/shared/lib/create-provider";
 
 function createSunState() {

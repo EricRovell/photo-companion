@@ -4,8 +4,8 @@ import { setAttribute } from "utils";
 
 import type { TimelineEvent } from "types";
 
+import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { useDatetime } from "~/hooks";
 import { createQueryDate } from "~/shared/lib/query-date";
 import { Time } from "~/shared/ui";
 

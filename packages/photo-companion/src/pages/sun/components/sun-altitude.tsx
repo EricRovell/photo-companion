@@ -2,8 +2,8 @@
 import { getSunPosition } from "moon-sun-calc";
 
 import { ElevationGraph } from "~/components";
+import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { useDatetime } from "~/hooks";
 
 export function SunAltitude() {
 	const { t } = useTranslation();

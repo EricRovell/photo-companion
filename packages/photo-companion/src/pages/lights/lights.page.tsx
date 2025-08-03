@@ -2,8 +2,8 @@ import { Navigate } from "@solidjs/router";
 import { Show } from "solid-js";
 
 import { SupportsLights } from "~/components";
-import { ROUTES } from "~/consts/routes";
 import { useSettings } from "~/features/settings";
+import { ROUTES } from "~/shared/consts";
 
 import { LightGauge, LightsInfo, LightsTimeline } from "./components";
 
