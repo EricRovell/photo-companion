@@ -2,7 +2,7 @@ import { template } from "utils/formatters";
 
 import type { SunEvent, SunEventName } from "types";
 
-import { Sun } from "../sun/sun";
+import { Sun } from "~/entities/sun";
 
 import type { EventComponent } from "./timeline-event.types";
 import type { Translation } from "~/features/translation";

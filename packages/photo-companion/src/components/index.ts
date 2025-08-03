@@ -9,7 +9,6 @@ export { Markdown } from "./markdown";
 export { Moon } from "./moon/moon";
 export { Navigation } from "./navigation/navigation";
 export { PageMeta } from "./page-meta/PageMeta";
-export { Sun } from "./sun/sun";
 export { SupportsBridges } from "./supports/supports-bridges";
 export { SupportsLights } from "./supports/supports-lights";
 export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";

@@ -1,4 +1,5 @@
-import { GaugeTime, Sun } from "~/components";
+import { GaugeTime } from "~/components";
+import { Sun } from "~/entities/sun";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { useSunService } from "~/services/sun";
