@@ -4,10 +4,10 @@ import { incrementDateByDay } from "utils/date";
 import type { EventGroupName } from "types";
 
 import { Timeline, TimelineEvent, TimelineEventEmpty, TimelineGroup } from "~/components";
+import { useTranslation } from "~/features/translation";
 import { useDatetime } from "~/hooks";
 import { CityLightsProvider } from "~/services/city-lights";
 import { useSettings } from "~/services/settings";
-import { useTranslation } from "~/services/translation";
 import { IconWarning } from "~/shared/ui/icons";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";

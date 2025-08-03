@@ -1,6 +1,6 @@
 import { BridgesInfo } from "~/components/bridges-info/bridges-info";
+import { useTranslation } from "~/features/translation";
 import { BridgesProvider } from "~/services/bridges-spb";
-import { useTranslation } from "~/services/translation";
 
 export function NowBridges() {
 	const { t } = useTranslation();

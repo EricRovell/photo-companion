@@ -3,7 +3,7 @@ import { objectEntries } from "utils";
 
 import type { SunEvent, SunEventName } from "types";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
 	const { format } = useTranslation();

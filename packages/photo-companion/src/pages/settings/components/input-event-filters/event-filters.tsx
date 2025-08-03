@@ -1,7 +1,7 @@
 import { isSupportedCity } from "lights-schedule";
 import { Show } from "solid-js";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import { BRIDGES_EVENTS_OPTIONS } from "../../settings.const";
 import { useSettingsForm } from "../../settings.context";

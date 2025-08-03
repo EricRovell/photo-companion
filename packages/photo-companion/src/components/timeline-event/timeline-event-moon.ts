@@ -5,7 +5,7 @@ import type { MoonEvent } from "types";
 import { Moon } from "../moon/moon";
 
 import type { EventComponent } from "./timeline-event.types";
-import type { Translation } from "~/services/translation";
+import type { Translation } from "~/features/translation";
 
 export function moonEventComponent(event: MoonEvent, t: Translation): EventComponent<{ phase: number, rotation: number }> {
 	const { azimuth, fraction, phase, rotation, waxing } = event.data;

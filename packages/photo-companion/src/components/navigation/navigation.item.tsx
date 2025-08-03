@@ -3,7 +3,7 @@ import { Dynamic } from "solid-js/web";
 
 import type { Component } from "solid-js";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import { LinkQuery } from "../link-query";
 

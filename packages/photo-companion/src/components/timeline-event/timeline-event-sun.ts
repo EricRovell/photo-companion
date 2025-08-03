@@ -5,7 +5,7 @@ import type { SunEvent, SunEventName } from "types";
 import { Sun } from "../sun/sun";
 
 import type { EventComponent } from "./timeline-event.types";
-import type { Translation } from "~/services/translation";
+import type { Translation } from "~/features/translation";
 
 export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {
 	let message: Undefinable<string> = undefined;

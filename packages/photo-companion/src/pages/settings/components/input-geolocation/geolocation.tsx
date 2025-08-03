@@ -1,4 +1,4 @@
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 import { Input } from "~/shared/ui";
 
 import { FORM_INPUT_NAME } from "../../settings.const";

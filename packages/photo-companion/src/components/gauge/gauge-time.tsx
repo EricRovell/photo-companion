@@ -1,7 +1,7 @@
 import type { ParentProps } from "solid-js";
 
+import { useTranslation } from "~/features/translation";
 import { getAngleFromTime } from "~/helpers";
-import { useTranslation } from "~/services/translation";
 
 import { Gauge } from "./gauge";
 

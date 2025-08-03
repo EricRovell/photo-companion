@@ -2,7 +2,7 @@ import { useLocation } from "@solidjs/router";
 import { createMemo } from "solid-js";
 import { isNonEmptyString } from "utils/validators";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import { PAGE_META as PAGE_META_EN } from "./page-meta.en";
 import { PAGE_META as PAGE_META_RU } from "./page-meta.ru";

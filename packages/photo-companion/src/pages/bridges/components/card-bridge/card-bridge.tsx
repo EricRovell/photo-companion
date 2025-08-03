@@ -2,9 +2,9 @@ import { createMemo, Show } from "solid-js";
 
 import type { BridgeName, BridgeState } from "types";
 
+import { useTranslation } from "~/features/translation";
 import { createCountdown, useDatetime } from "~/hooks";
 import { useBridges } from "~/services/bridges-spb";
-import { useTranslation } from "~/services/translation";
 import { IconWarning } from "~/shared/ui/icons";
 
 import { BridgeSparkline } from "./card-bridge-sparkline";

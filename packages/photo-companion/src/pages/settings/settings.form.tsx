@@ -1,5 +1,5 @@
+import { useTranslation } from "~/features/translation";
 import { SETTINGS_CITY_PRESETS } from "~/services/settings";
-import { useTranslation } from "~/services/translation";
 import { Button, Fieldset, Form, InputRadio } from "~/shared/ui";
 
 import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";

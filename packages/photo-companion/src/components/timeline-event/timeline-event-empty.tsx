@@ -1,6 +1,6 @@
 import { classnames } from "utils";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import styles from "./event.module.css";
 
