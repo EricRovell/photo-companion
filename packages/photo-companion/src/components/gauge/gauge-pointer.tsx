@@ -1,6 +1,5 @@
 import { type JSX, splitProps } from "solid-js";
-
-import { setAttribute } from "../../helpers";
+import { setAttribute } from "utils";
 
 import styles from "./gauge.module.css";
 
