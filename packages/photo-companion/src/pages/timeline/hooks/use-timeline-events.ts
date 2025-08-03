@@ -2,10 +2,10 @@ import { getBridgeEvents } from "bridge-schedule";
 import { isNullable } from "utils/validators";
 
 import { useTimelineProvider } from "~/entities/timeline";
+import { useCityLights } from "~/features/city-lights";
+import { useSettings } from "~/features/settings";
 import { useDatetime } from "~/hooks";
-import { useCityLights } from "~/services/city-lights";
 import { getMoonEvents } from "~/services/moon/moon-events";
-import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 
 import { useTimelineFilters } from "./use-timeline-filters";

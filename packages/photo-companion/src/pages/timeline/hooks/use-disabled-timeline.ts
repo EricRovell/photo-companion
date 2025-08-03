@@ -1,4 +1,4 @@
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 export function useDisabledTimeline() {
 	const { settings } = useSettings();

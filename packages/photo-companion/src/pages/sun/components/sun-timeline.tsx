@@ -3,8 +3,8 @@ import { For } from "solid-js";
 import { TimelineEvent } from "~/components";
 import { ROUTES } from "~/consts";
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
+import { useSettings } from "~/features/settings";
 import { useDatetime } from "~/hooks";
-import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 
 export function SunTimeline() {

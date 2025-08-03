@@ -5,7 +5,7 @@ import { isNullable } from "utils/validators";
 
 import type { ParentProps} from "solid-js";
 
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 import { validate } from "./form-validator";
 
