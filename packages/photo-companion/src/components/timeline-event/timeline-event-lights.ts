@@ -3,7 +3,7 @@ import type { LightsEvent } from "types";
 import { Bulb } from "../bulb/bulb";
 
 import type { EventComponent } from "./timeline-event.types";
-import type { Translation } from "~/services/translation";
+import type { Translation } from "~/features/translation";
 
 export function lightsEventComponent(event: LightsEvent, t: Translation): EventComponent<{ glow: boolean }> {
 	return {

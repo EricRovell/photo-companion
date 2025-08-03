@@ -1,9 +1,9 @@
 import { createMemo } from "solid-js";
 
 import { CardEntry } from "~/components";
+import { useTranslation } from "~/features/translation";
 import { createCountdown, useDatetime } from "~/hooks";
 import { useBridges } from "~/services/bridges-spb";
-import { useTranslation } from "~/services/translation";
 
 /**
  * Renders countdown till the next bridge event.

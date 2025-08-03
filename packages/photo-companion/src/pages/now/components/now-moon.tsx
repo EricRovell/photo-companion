@@ -1,6 +1,6 @@
+import { useTranslation } from "~/features/translation";
 import { MoonData } from "~/pages/moon/components/moon-data";
 import { MoonProvider } from "~/services/moon";
-import { useTranslation } from "~/services/translation";
 
 export function NowMoon() {
 	const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import { GaugeTime, Sun } from "~/components";
+import { useTranslation } from "~/features/translation";
 import { useDatetime } from "~/hooks";
 import { useSunService } from "~/services/sun";
-import { useTranslation } from "~/services/translation";
 
 const SUN_SIZE = 30;
 

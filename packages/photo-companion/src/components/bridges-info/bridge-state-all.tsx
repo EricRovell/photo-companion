@@ -1,4 +1,4 @@
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import { CardEntry } from "../card-info";
 

@@ -1,8 +1,8 @@
 import { For, Show } from "solid-js";
 
 import { CardEntry } from "~/components";
+import { useTranslation } from "~/features/translation";
 import { useBridges } from "~/services/bridges-spb";
-import { useTranslation } from "~/services/translation";
 
 import { BridgesStateAll } from "./bridge-state-all";
 

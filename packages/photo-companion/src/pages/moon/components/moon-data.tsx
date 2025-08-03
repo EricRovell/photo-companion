@@ -1,8 +1,8 @@
 import { Show } from "solid-js";
 
 import { CardEntry, CardInfo } from "~/components";
+import { useTranslation } from "~/features/translation";
 import { useMoonService } from "~/services/moon";
-import { useTranslation } from "~/services/translation";
 
 interface Props {
 	title?: string;

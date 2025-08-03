@@ -2,7 +2,7 @@ import { isNullable } from "utils/validators";
 
 import type { JSX, ParentProps} from "solid-js";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 import { Button, Input, InputLocation, InputRadio } from "~/shared/ui";
 
 import { useForm } from "../../height-by-shadow.context";

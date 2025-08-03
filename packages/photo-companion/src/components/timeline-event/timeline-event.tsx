@@ -3,10 +3,10 @@ import { Dynamic } from "solid-js/web";
 
 import type { TimelineEvent } from "types";
 
+import { useTranslation } from "~/features/translation";
 import { createQueryDate, setAttribute } from "~/helpers";
 import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "~/helpers/validators";
 import { useDatetime } from "~/hooks";
-import { useTranslation } from "~/services/translation";
 import { Time } from "~/shared/ui";
 
 import { LinkQuery } from "../link-query";

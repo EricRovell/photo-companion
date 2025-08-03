@@ -1,6 +1,6 @@
 import { Meta, Title } from "@solidjs/meta";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import { formatTitle, useMetaData } from "./page-meta.utils";
 

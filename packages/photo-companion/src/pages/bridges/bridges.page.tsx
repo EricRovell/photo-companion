@@ -3,8 +3,8 @@ import { For, Show } from "solid-js";
 
 import { BridgesInfo } from "~/components/bridges-info/bridges-info";
 import { ROUTES } from "~/consts/routes";
+import { useTranslation } from "~/features/translation";
 import { BridgesProvider, useBridges } from "~/services/bridges-spb";
-import { useTranslation } from "~/services/translation";
 
 import { CardBridge } from "./components";
 

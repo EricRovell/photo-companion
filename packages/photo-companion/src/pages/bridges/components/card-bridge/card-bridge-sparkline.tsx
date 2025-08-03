@@ -1,9 +1,9 @@
 import { For, mergeProps } from "solid-js";
 import { round } from "utils/math";
 
+import { useTranslation } from "~/features/translation";
 import { getDate } from "~/helpers";
 import { createWavyPath } from "~/helpers/svg";
-import { useTranslation } from "~/services/translation";
 
 import { DEFAULT_PROPS_SPARKLINE } from "./card-bridge.const";
 import { buildBridgeSparklinePath } from "./card-bridge.utils";

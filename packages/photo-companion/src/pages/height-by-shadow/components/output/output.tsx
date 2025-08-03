@@ -1,7 +1,7 @@
 import { getSunPosition, getSunTimeByAzimuth } from "moon-sun-calc";
 import { convertDegreesIntoDecimal } from "utils/math";
 
-import { useTranslation } from "~/services/translation";
+import { useTranslation } from "~/features/translation";
 
 import type { Model} from "../../height-by-shadow.context";
 
