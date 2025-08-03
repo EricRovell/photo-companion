@@ -5,9 +5,9 @@ import type { EventName } from "types";
 import { TimelineEvent } from "~/components";
 import { ROUTES } from "~/consts";
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
+import { useSettings } from "~/features/settings";
 import { useDatetime } from "~/hooks";
 import { getMoonEvents } from "~/services/moon/moon-events";
-import { useSettings } from "~/services/settings";
 import { getSunEvents } from "~/services/sun";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([

@@ -3,10 +3,10 @@ import { Suspense } from "solid-js";
 import { Toaster } from "solid-sonner";
 
 import { ToastSuggestUpdate } from "~/components";
+import { SettingsProvider } from "~/features/settings";
 import { TranslationProvider } from "~/features/translation";
 import { NavigationServiceProvider } from "~/services/navigation";
 import { ServiceWorkerProvider } from "~/services/service-worker";
-import { SettingsProvider } from "~/services/settings";
 
 import { Routes } from "../routes";
 

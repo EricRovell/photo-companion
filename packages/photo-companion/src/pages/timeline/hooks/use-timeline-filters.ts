@@ -3,7 +3,7 @@ import { isNullable } from "utils/validators";
 
 import type { EventName } from "types";
 
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 /**
  * Returns a Set of user blocked timeline events.

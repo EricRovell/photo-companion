@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "@solidjs/router";
 import { createMemo } from "solid-js";
 
 import { ROUTES } from "~/consts";
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 import { NAVIGATION_TAB_DATA } from "./navigation-service.consts";
 

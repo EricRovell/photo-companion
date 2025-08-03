@@ -4,8 +4,7 @@ import { isNullable } from "utils/validators";
 
 import type { City } from "types";
 
-import { SETTINGS_DEFAULT, type SettingsStore, useSettings } from "~/services/settings";
-import { SETTINGS_CITY_PRESETS } from "~/services/settings/settings.const";
+import { SETTINGS_CITY_PRESETS, SETTINGS_DEFAULT, type SettingsStore, useSettings } from "~/features/settings";
 
 import { FORM_INPUT_NAME } from "./settings.const";
 

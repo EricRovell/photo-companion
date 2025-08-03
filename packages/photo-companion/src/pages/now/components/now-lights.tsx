@@ -1,7 +1,7 @@
 import { CardEntry, CardInfo, SupportsLights } from "~/components";
 import { LightsCountdown } from "~/components/lights-countdown/lights-countdown";
+import { useCityLights } from "~/features/city-lights";
 import { useTranslation } from "~/features/translation";
-import { useCityLights } from "~/services/city-lights";
 
 export const NowLightsInfo = () => {
 	const { format, t } = useTranslation();

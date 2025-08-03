@@ -14,7 +14,7 @@ import {
 } from "utils/formatters";
 import { isNullable } from "utils/validators";
 
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 const TRANSLATIONS = {
 	"en": () => import("./translation.en"),

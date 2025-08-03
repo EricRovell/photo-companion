@@ -3,7 +3,7 @@ import { Show } from "solid-js";
 
 import { SupportsLights } from "~/components";
 import { ROUTES } from "~/consts/routes";
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 import { LightGauge, LightsInfo, LightsTimeline } from "./components";
 

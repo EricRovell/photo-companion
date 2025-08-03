@@ -1,6 +1,6 @@
 import { type ParentProps, Show } from "solid-js";
 
-import { useSettings } from "~/services/settings";
+import { useSettings } from "~/features/settings";
 
 export function SupportsBridges(props: ParentProps) {
 	const { isSupportsBridges } = useSettings();
