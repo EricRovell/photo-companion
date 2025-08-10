@@ -17,7 +17,7 @@ export const MOON_CYCLE_LIST: MoonPhase[] = [
 	},
 	{
 		from: 0.033863193308711,
-		id: "WANING_CRESCENT",
+		id: "WAXING_CRESCENT",
 		to: 0.216136806691289,
 		weight: 6.3825
 	},
@@ -29,7 +29,7 @@ export const MOON_CYCLE_LIST: MoonPhase[] = [
 	},
 	{
 		from: 0.283863193308711,
-		id: "WANING_GIBBOUS",
+		id: "WAXING_GIBBOUS",
 		to: 0.466136806691289,
 		weight: 6.3825
 	},
