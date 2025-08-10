@@ -7,7 +7,7 @@ import { Timeline, useTimelineProvider } from "~/entities/timeline";
 import { useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { getSunEvents } from "~/services/sun";
+import { getSunEvents } from "~/features/timeline";
 import { ROUTES } from "~/shared/consts";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([

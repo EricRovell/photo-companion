@@ -5,8 +5,7 @@ import { useTimelineProvider } from "~/entities/timeline";
 import { useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { getMoonEvents } from "~/services/moon/moon-events";
-import { getSunEvents } from "~/services/sun";
+import { getMoonEvents, getSunEvents } from "~/features/timeline";
 
 import { useTimelineFilters } from "./use-timeline-filters";
 
