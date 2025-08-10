@@ -1,13 +1,11 @@
 import { getMoonIllumination, getMoonPhases, getMoonPosition, getMoonTimes } from "moon-sun-calc";
-import { createContext } from "solid-js";
 import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { createProvider } from "~/shared/lib/create-provider";
 
-function createMoonServiceState() {
+export function createMoonServiceState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
@@ -35,12 +33,3 @@ function createMoonServiceState() {
 		zenith: () => illumination().angle - position().parallacticAngle
 	};
 }
-
-const MoonServiceContext = createContext<ReturnType<typeof createMoonServiceState>>();
-
-export const [ MoonProvider, useMoonService ] = createProvider({
-	consumerName: "useMoonService",
-	Context: MoonServiceContext,
-	getValue: createMoonServiceState,
-	providerName: "Moon"
-});

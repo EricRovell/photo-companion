@@ -1,4 +1,4 @@
-import { MoonProvider } from "~/services/moon";
+import { MoonProvider } from "~/features/moon";
 
 import { MoonAltitude } from "./components/moon-altitude";
 import { MoonData } from "./components/moon-data";
