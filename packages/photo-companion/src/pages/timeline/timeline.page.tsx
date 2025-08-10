@@ -8,8 +8,8 @@ import { Timeline, TimelineGroup } from "~/entities/timeline";
 import { CityLightsProvider } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
+import { NoEvents } from "~/features/timeline";
 import { useTranslation } from "~/features/translation";
-import { IconWarning } from "~/shared/ui/icons";
 
 import { useDisabledTimeline, useTimelineEvents } from "./hooks";
 
@@ -24,17 +24,6 @@ const createEventLink = (type: EventGroupName) => {
 
 	return `/${type.toLowerCase()}`;
 };
-
-function NoEvents() {
-	const { t } = useTranslation();
-
-	return (
-		<article class={styles.warning}>
-			<h2>{t().MESSAGE.EVENTS_ARE_DISABLED}</h2>
-			<IconWarning />
-		</article>
-	);
-}
 
 function Events(props: EventsProps) {
 	const { format } = useTranslation();

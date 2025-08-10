@@ -6,8 +6,7 @@ import { TimelineEvent } from "~/components";
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
-import { getMoonEvents } from "~/services/moon/moon-events";
-import { getSunEvents } from "~/services/sun";
+import { getMoonEvents, getSunEvents } from "~/features/timeline";
 import { ROUTES } from "~/shared/consts";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
