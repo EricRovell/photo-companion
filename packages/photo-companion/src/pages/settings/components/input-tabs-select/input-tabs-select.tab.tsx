@@ -1,5 +1,5 @@
+import { type ROUTE_PRIMARY_LABEL } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
-import { type ROUTE_PRIMARY_LABEL } from "~/services/navigation";
 import { Button, InputCheckbox } from "~/shared/ui";
 import { IconArrowDown, IconArrowUp } from "~/shared/ui/icons";
 

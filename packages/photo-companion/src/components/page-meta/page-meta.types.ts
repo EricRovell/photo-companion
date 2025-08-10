@@ -1,4 +1,4 @@
-import type { ROUTE_VALUE } from "~/services/navigation";
+import type { ROUTE_VALUE } from "~/features/navigation";
 
 export interface PageMetaData {
 	DESCRIPTION: string;

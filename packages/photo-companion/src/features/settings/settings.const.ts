@@ -1,7 +1,7 @@
 import { detectUserLanguage } from "./detect-lang";
 
 import type { CitySettingsPreset, SettingsStore } from "./settings.types";
-import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
+import type { ROUTE_PRIMARY_LABEL } from "~/features/navigation";
 
 export const SETTINGS_LOCAL_STORAGE_KEY = "settings";
 export const SETTINGS_LOCAL_STORAGE_VERSION = 4;

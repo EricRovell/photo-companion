@@ -4,7 +4,7 @@ import { FORM_INPUT_NAME } from "../../settings.const";
 import { useSettingsForm } from "../../settings.context";
 import { TabSelect } from "./input-tabs-select.tab";
 
-import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
+import type { ROUTE_PRIMARY_LABEL } from "~/features/navigation";
 
 import styles from "./input-tabs-select.module.css";
 

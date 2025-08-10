@@ -6,7 +6,7 @@ import type {
 	SunEventName
 } from "types";
 
-import type { ROUTE_PRIMARY_LABEL } from "~/services/navigation";
+import type { ROUTE_PRIMARY_LABEL } from "~/features/navigation";
 import type { UserLang } from "~/types";
 
 /**
