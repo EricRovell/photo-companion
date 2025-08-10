@@ -1,9 +1,9 @@
-import { createContext, createSignal, DEV, onMount, type ParentProps, useContext } from "solid-js";
+import { createSignal } from "solid-js";
 import { isNullable } from "utils/validators";
 
 const SW_PATH = "/service-worker.js";
 
-function createContextState() {
+export function createContextState() {
 	const [ getServiceWorker, setServiceWorker ] = createSignal<Nullable<ServiceWorker>>(null);
 	const [ getRegistration, setRegistration ] = createSignal<Nullable<ServiceWorkerRegistration>>(null);
 	const [ getIsUpdating, setIsUpdating ] = createSignal(false);
@@ -66,32 +66,4 @@ function createContextState() {
 		initServiceWorker,
 		setSuggestUpdate
 	};
-}
-
-const ServiceWorkerContext = createContext<ReturnType<typeof createContextState>>();
-
-export function ServiceWorkerProvider(props: ParentProps) {
-	const state = createContextState();
-
-	onMount(() => {
-		if (!DEV) {
-			void state.initServiceWorker();
-		}
-	});
-
-	return (
-		<ServiceWorkerContext.Provider value={state}>
-			{props.children}
-		</ServiceWorkerContext.Provider>
-	);
-}
-
-export function useServiceWorker() {
-	const value = useContext(ServiceWorkerContext);
-
-	if (isNullable(value)) {
-		throw new Error("useSettings must be used with a ServiceWorker.Provider");
-	}
-
-	return value;
 }

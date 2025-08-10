@@ -1,8 +1,8 @@
 import { createEffect, on } from "solid-js";
 import { toast } from "solid-sonner";
 
+import { useServiceWorker } from "~/features/service-worker";
 import { useTranslation } from "~/features/translation";
-import { useServiceWorker } from "~/services/service-worker";
 import { Button } from "~/shared/ui";
 
 import styles from "./toast-suggest-update.module.css";

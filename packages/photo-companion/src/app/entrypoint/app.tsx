@@ -4,9 +4,9 @@ import { Toaster } from "solid-sonner";
 
 import { ToastSuggestUpdate } from "~/components";
 import { NavigationServiceProvider } from "~/features/navigation";
+import { ServiceWorkerProvider } from "~/features/service-worker";
 import { SettingsProvider } from "~/features/settings";
 import { TranslationProvider } from "~/features/translation";
-import { ServiceWorkerProvider } from "~/services/service-worker";
 
 import { Routes } from "../routes";
 

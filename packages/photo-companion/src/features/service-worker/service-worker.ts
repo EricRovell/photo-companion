@@ -6,6 +6,8 @@ declare const self: ServiceWorkerGlobalScope;
 
 export {};
 
+// ! This file is transpiled by /plugins/compile-service-worker.ts
+
 // @ts-expect-error: this variable will be replace during build
 const VERSION_HASH = __VERSION_HASH__;
 // @ts-expect-error: this variable will be replace during build

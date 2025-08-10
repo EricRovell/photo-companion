@@ -22,7 +22,7 @@ export const compileServiceWorker: PluginOption = {
 	transformIndexHtml() {
 		void build({
 			bundle: true,
-			entryPoints: [ join(process.cwd(), "src", "service-worker.js") ],
+			entryPoints: [ join(process.cwd(), "src", "features", "service-worker", "service-worker.js") ],
 			minify: true,
 			outfile: join(process.cwd(), "dist", "service-worker.js"),
 			plugins: [
