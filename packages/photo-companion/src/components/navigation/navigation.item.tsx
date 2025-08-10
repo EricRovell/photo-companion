@@ -7,7 +7,7 @@ import { useTranslation } from "~/features/translation";
 
 import { LinkQuery } from "../link-query";
 
-import type { ROUTE_LABEL } from "~/services/navigation";
+import type { ROUTE_LABEL } from "~/features/navigation";
 import type { IconProps } from "~/shared/ui";
 
 interface NavigationItemProps {

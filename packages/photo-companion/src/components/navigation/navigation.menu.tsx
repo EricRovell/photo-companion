@@ -1,8 +1,8 @@
 import { For } from "solid-js";
 import { isNullable } from "utils/validators";
 
+import { useNavigationService } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
-import { useNavigationService } from "~/services/navigation";
 import { ROUTES, VERSION } from "~/shared/consts";
 import { Button, Link } from "~/shared/ui";
 import { IconClose } from "~/shared/ui/icons";

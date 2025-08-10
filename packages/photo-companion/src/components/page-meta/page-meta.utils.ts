@@ -7,7 +7,7 @@ import { useTranslation } from "~/features/translation";
 import { PAGE_META as PAGE_META_EN } from "./page-meta.en";
 import { PAGE_META as PAGE_META_RU } from "./page-meta.ru";
 
-import type { ROUTE_VALUE } from "~/services/navigation";
+import type { ROUTE_VALUE } from "~/features/navigation";
 
 export function formatTitle(title: MaybeArray<string>, separator = " | "): string {
 	return isNonEmptyString(title)
