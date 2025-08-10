@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.30.2
+
+- Correct moon phase label for waxing and waning types;
+
 ## 2.30.1
 
 - Wrong lights events within timeline for the next day
