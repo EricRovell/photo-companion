@@ -1,9 +1,6 @@
-import { createContext } from "solid-js";
 import { onMount } from "solid-js";
 import { createStore } from "solid-js/store";
 import { isNullable } from "utils/validators";
-
-import { createProvider } from "~/shared/lib/create-provider";
 
 interface GeolocationStore {
 	coordinates: GeolocationCoordinates | null;
@@ -19,7 +16,7 @@ const INITIAL_STATE: GeolocationStore = {
 	supports: false
 };
 
-function createGeolocationState() {
+export function createGeolocationState() {
 	const [ store, setStore ] = createStore<GeolocationStore>(INITIAL_STATE);
 
 	onMount(() => {
@@ -60,12 +57,3 @@ function createGeolocationState() {
 		getGeolocation
 	};
 }
-
-const GeolocationServiceContext = createContext<ReturnType<typeof createGeolocationState>>();
-
-export const [ GeolocationProvider, useGeolocationService ] = createProvider({
-	consumerName: "useGeolocationService",
-	Context: GeolocationServiceContext,
-	getValue: createGeolocationState,
-	providerName: "Geolocation"
-});

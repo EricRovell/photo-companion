@@ -1,8 +1,8 @@
 import { Show } from "solid-js";
 
 import { ErrorMessage } from "~/components";
+import { useGeolocationService } from "~/features/geolocation";
 import { useTranslation } from "~/features/translation";
-import { useGeolocationService } from "~/services/geolocation";
 import { Button } from "~/shared/ui";
 
 import { useSettingsForm } from "../../settings.context";
