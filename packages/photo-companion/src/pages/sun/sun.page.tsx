@@ -1,4 +1,4 @@
-import { SunProvider } from "~/services/sun";
+import { SunProvider } from "~/features/sun";
 
 import { SunAltitude } from "./components/sun-altitude";
 import { SunData } from "./components/sun-data";

@@ -1,6 +1,6 @@
 import { CardEntry, CardInfo } from "~/components";
+import { useSunService } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
-import { useSunService } from "~/services/sun";
 
 export function SunData(props: { title?: string }) {
 	const { format, t } = useTranslation();
