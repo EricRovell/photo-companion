@@ -46,8 +46,8 @@ export const dateTimeFormatter = getDateTimeFormatter({
  * Formats a value as a degree unit.
  */
 export const degreesFormatter = getNumberFormatter({
-	maximumFractionDigits: 2,
-	minimumFractionDigits: 2,
+	maximumFractionDigits: 1,
+	minimumFractionDigits: 1,
 	style: "unit",
 	unit: "degree"
 });
@@ -56,8 +56,8 @@ export const degreesFormatter = getNumberFormatter({
  * Formats a numeric value into kilometers unit.
  */
 export const kilometersFormatter = getNumberFormatter({
-	maximumFractionDigits: 2,
-	minimumFractionDigits: 2,
+	maximumFractionDigits: 1,
+	minimumFractionDigits: 0,
 	style: "unit",
 	unit: "kilometer"
 });

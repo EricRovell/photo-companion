@@ -1,6 +1,5 @@
 import { getSunPosition, getSunTimes } from "moon-sun-calc";
 import { objectEntries } from "utils";
-import { round } from "utils/math";
 
 import type { SunEvent, SunEventName } from "types";
 
@@ -19,7 +18,7 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 
 		sunEvents.push({
 			data: {
-				azimuth: format().degrees(round(getSunPosition(value.timestamp, lat, lon).azimuth, 1))
+				azimuth: format().degrees(getSunPosition(value.timestamp, lat, lon, true).azimuth)
 			},
 			name: key as SunEventName,
 			timestamp: value.timestamp,
