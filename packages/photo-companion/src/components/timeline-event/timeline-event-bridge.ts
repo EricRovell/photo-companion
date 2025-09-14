@@ -12,6 +12,6 @@ export function bridgeEventComponent(event: BridgeEvent, t: Translation): EventC
 		props: {
 			open: event.data.open
 		},
-		title: `${t.BRIDGE_NAME_SPB[event.data.bridgeName]} мост`
+		title: `${t.BRIDGE_NAME_SPB[event.data.bridgeName]} ${t.LABEL.BRIDGE.toLocaleLowerCase()}`
 	};
 }

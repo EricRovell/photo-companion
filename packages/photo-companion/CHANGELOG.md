@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.30.3
+
+- Correct timeline bridge event title translation;
+- Correct timeline sun azimuth value;
+- Use 1-digit angle values precision instead of 2;
+
 ## 2.30.2
 
 - Correct moon phase label for waxing and waning types;
