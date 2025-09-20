@@ -1,4 +1,4 @@
-import { CardEntry, CardInfo } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useSunService } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
 
@@ -8,27 +8,27 @@ export function SunData(props: { title?: string }) {
 
 	return (
 		<CardInfo title={props.title}>
-			<CardEntry property={t().LABEL.SUNRISE_TIME}>
+			<CardInfo.Entry property={t().LABEL.SUNRISE_TIME}>
 				{format().timeShort(sunrise())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.SUNSET_TIME}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.SUNSET_TIME}>
 				{format().timeShort(sunset())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.DURATION_DAYLIGHT}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.DURATION_DAYLIGHT}>
 				{format().timeDuration(dayDuration())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.ALTITUDE}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.ALTITUDE}>
 				{format().degrees(altitude())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.AZIMUTH}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.AZIMUTH}>
 				{format().degrees(azimuth())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.DECLINATION}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.DECLINATION}>
 				{format().degrees(declination())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.ZENITH}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.ZENITH}>
 				{format().degrees(zenith())}
-			</CardEntry>
+			</CardInfo.Entry>
 		</CardInfo>
 	);
 }

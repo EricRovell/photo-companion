@@ -1,6 +1,6 @@
 import { createMemo } from "solid-js";
 
-import { CardEntry } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useBridges } from "~/features/bridges-spb";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
@@ -27,8 +27,8 @@ export function NextBridgeCountdown() {
 	};
 
 	return (
-		<CardEntry property={property()}>
+		<CardInfo.Entry property={property()}>
 			{format().timeDuration(time())}
-		</CardEntry>
+		</CardInfo.Entry>
 	);
 }

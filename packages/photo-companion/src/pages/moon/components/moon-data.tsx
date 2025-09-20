@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import { CardEntry, CardInfo } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useMoonService } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
 
@@ -25,44 +25,44 @@ export function MoonData(props: Props) {
 
 	return (
 		<CardInfo title={props.title}>
-			<CardEntry property={t().LABEL.MOON_PHASE}>
+			<CardInfo.Entry property={t().LABEL.MOON_PHASE}>
 				{t().MOON_PHASE[phaseName()]}
-			</CardEntry>
+			</CardInfo.Entry>
 			<Show when={fullMoonName()}>
 				{name => (
-					<CardEntry property={t().LABEL.FULL_MOON_NAME}>
+					<CardInfo.Entry property={t().LABEL.FULL_MOON_NAME}>
 						{t().MOON_NAME[name()]}
-					</CardEntry>
+					</CardInfo.Entry>
 				)}
 			</Show>
-			<CardEntry property={t().LABEL.MOONRISE_TIME}>
+			<CardInfo.Entry property={t().LABEL.MOONRISE_TIME}>
 				<Show fallback="—" when={moonrise()}>
 					{value => format().timeShort(value())}
 				</Show>
-			</CardEntry>
-			<CardEntry property={t().LABEL.MOONSET_TIME}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.MOONSET_TIME}>
 				<Show fallback="—" when={moonset()}>
 					{value => format().timeShort(value())}
 				</Show>
-			</CardEntry>
-			<CardEntry property={t().LABEL.MOON_ILLUMINATION}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.MOON_ILLUMINATION}>
 				{format().percent(fraction())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.ZENITH}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.ZENITH}>
 				{format().degrees(zenith())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.ALTITUDE}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.ALTITUDE}>
 				{format().degrees(altitude())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.AZIMUTH}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.AZIMUTH}>
 				{format().degrees(azimuth())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.DISTANCE}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.DISTANCE}>
 				{format().kilometers(distance())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.PARALLACTIC_ANGLE}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.PARALLACTIC_ANGLE}>
 				{format().degrees(parallacticAngle())}
-			</CardEntry>
+			</CardInfo.Entry>
 		</CardInfo>
 	);
 }

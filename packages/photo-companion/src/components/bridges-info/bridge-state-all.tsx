@@ -1,6 +1,5 @@
+import { CardInfo } from "~/entities/card-info";
 import { useTranslation } from "~/features/translation";
-
-import { CardEntry } from "../card-info";
 
 interface Props {
 	allLiftedDown?: boolean;
@@ -18,8 +17,8 @@ export function BridgesStateAll(props: Props) {
 		: t().LABEL.ALL_BRIDGES_LIFTED_UP;
 
 	return (
-		<CardEntry property={t().LABEL.STATE}>
+		<CardInfo.Entry property={t().LABEL.STATE}>
 			{getLabel()}
-		</CardEntry>
+		</CardInfo.Entry>
 	);
 };

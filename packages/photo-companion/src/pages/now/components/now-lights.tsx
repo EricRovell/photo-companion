@@ -1,5 +1,5 @@
-import { CardEntry, CardInfo } from "~/components";
 import { LightsCountdown } from "~/components/lights-countdown/lights-countdown";
+import { CardInfo } from "~/entities/card-info";
 import { SupportsLights, useCityLights } from "~/features/city-lights";
 import { useTranslation } from "~/features/translation";
 
@@ -14,23 +14,23 @@ export const NowLightsInfo = () => {
 
 	return (
 		<CardInfo title={t().TITLE.LIGHTS_FULL}>
-			<CardEntry property={t().LABEL.CITY}>
+			<CardInfo.Entry property={t().LABEL.CITY}>
 				{t().CITIES[getCity()]}
-			</CardEntry>
-			<CardEntry property={t().LABEL.LIGHTS_CITY}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.LIGHTS_CITY}>
 				<span data-text={lights() ? "success" : "danger"}>
 					{lights() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
 				</span>
-			</CardEntry>
-			<CardEntry property={t().LABEL.TIME_OFF}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.TIME_OFF}>
 				{format().time(getTimeOff())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.TIME_ON}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.TIME_ON}>
 				{format().time(getTimeOn())}
-			</CardEntry>
-			<CardEntry property={t().LABEL.DURATION_LIGHTS}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.DURATION_LIGHTS}>
 				{format().timeDuration(duration())}
-			</CardEntry>
+			</CardInfo.Entry>
 			<LightsCountdown lights={lights()} />
 		</CardInfo>
 	);

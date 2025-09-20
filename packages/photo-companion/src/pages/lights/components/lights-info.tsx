@@ -1,5 +1,5 @@
-import { CardEntry, CardInfo } from "~/components";
 import { LightsCountdown } from "~/components/lights-countdown/lights-countdown";
+import { CardInfo } from "~/entities/card-info";
 import { useCityLights } from "~/features/city-lights";
 import { useTranslation } from "~/features/translation";
 
@@ -11,17 +11,17 @@ export const LightsInfo = () => {
 
 	return (
 		<CardInfo>
-			<CardEntry property={t().LABEL.CITY}>
+			<CardInfo.Entry property={t().LABEL.CITY}>
 				{t().CITIES[getCity()]}
-			</CardEntry>
-			<CardEntry property={t().LABEL.LIGHTS_CITY}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.LIGHTS_CITY}>
 				<span data-text={lightsOn() ? "success" : "danger"}>
 					{lightsOn() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
 				</span>
-			</CardEntry>
-			<CardEntry property={t().LABEL.DURATION_LIGHTS}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={t().LABEL.DURATION_LIGHTS}>
 				{format().timeDuration(getScheduleByDate().duration)}
-			</CardEntry>
+			</CardInfo.Entry>
 			<LightsCountdown lights={lightsOn()} />
 		</CardInfo>
 	);

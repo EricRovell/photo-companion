@@ -1,6 +1,6 @@
 import type { NavigationState as NavigationStateType } from "bridge-schedule";
 
-import { CardEntry } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useTranslation } from "~/features/translation";
 
 /**
@@ -19,14 +19,14 @@ export function NavigationState(props: NavigationStateType) {
 
 	return (
 		<>
-			<CardEntry property={t().LABEL.NAVIGATION}>
+			<CardInfo.Entry property={t().LABEL.NAVIGATION}>
 				<span data-text={props.navigation ? "success" : "danger"}>
 					{getNavigationLabel()}
 				</span>
-			</CardEntry>
-			<CardEntry property={subtitle()}>
+			</CardInfo.Entry>
+			<CardInfo.Entry property={subtitle()}>
 				{format().days(props.days)}
-			</CardEntry>
+			</CardInfo.Entry>
 		</>
 	);
 }

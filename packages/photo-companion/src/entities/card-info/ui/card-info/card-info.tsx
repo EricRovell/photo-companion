@@ -12,22 +12,6 @@ interface CardInfoProps extends ParentProps {
 	title?: string;
 }
 
-interface CardEntryProps extends ParentProps {
-	class?: string;
-	property: string;
-}
-
-export const CardEntry = (props: CardEntryProps) => (
-	<div class={classnames(styles.entry, props.class)}>
-		<dt>
-			{props.property}
-		</dt>
-		<dd class={styles.value}>
-			{props.children}
-		</dd>
-	</div>
-);
-
 export const CardInfo = (props: CardInfoProps) => (
 	<article class={classnames(styles.card, props.classes?.card)}>
 		<Show when={props.title}>

@@ -1,0 +1,16 @@
+.entry {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: var(--space-2) var(--space-4);
+	width: 100%;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--card-border-color, var(--color-surface-3));
+	}
+}
+
+.value {
+	font-variant-numeric: tabular-nums;
+}

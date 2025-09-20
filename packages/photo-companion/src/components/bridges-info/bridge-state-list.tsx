@@ -1,6 +1,6 @@
 import { For, Show } from "solid-js";
 
-import { CardEntry } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useBridges } from "~/features/bridges-spb";
 import { useTranslation } from "~/features/translation";
 
@@ -17,7 +17,7 @@ export function BridgeStateList() {
 
 	return (
 		<Show fallback={<BridgesStateAll />} when={isSomeBridgeLiftedUp()}>
-			<CardEntry class={styles["entry-list"]} property={t().LABEL.BRIDGES_LIFTED_UP}>
+			<CardInfo.Entry class={styles["entry-list"]} property={t().LABEL.BRIDGES_LIFTED_UP}>
 				<ul class={styles.list}>
 					<For each={getBridgesState()}>
 						{item => (
@@ -27,8 +27,8 @@ export function BridgeStateList() {
 						)}
 					</For>
 				</ul>
-			</CardEntry>
-			<CardEntry class={styles["entry-list"]} property={t().LABEL.BRIDGES_LIFTED_DOWN}>
+			</CardInfo.Entry>
+			<CardInfo.Entry class={styles["entry-list"]} property={t().LABEL.BRIDGES_LIFTED_DOWN}>
 				<ul class={styles.list}>
 					<For each={getBridgesState()}>
 						{item => (
@@ -38,7 +38,7 @@ export function BridgeStateList() {
 						)}
 					</For>
 				</ul>
-			</CardEntry>
+			</CardInfo.Entry>
 		</Show>
 	);
 }

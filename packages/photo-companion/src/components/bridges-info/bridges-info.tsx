@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import { CardInfo } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useBridges } from "~/features/bridges-spb";
 
 import { BridgesStateAll } from "./bridge-state-all";

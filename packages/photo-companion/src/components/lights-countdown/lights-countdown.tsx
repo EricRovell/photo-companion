@@ -1,4 +1,4 @@
-import { CardEntry } from "~/components";
+import { CardInfo } from "~/entities/card-info";
 import { useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
@@ -21,8 +21,8 @@ export function LightsCountdown(props: { lights: boolean }) {
 	});
 
 	return (
-		<CardEntry property={getLabel()}>
+		<CardInfo.Entry property={getLabel()}>
 			{format().timeDuration(time())}
-		</CardEntry>
+		</CardInfo.Entry>
 	);
 }
