@@ -4,7 +4,7 @@ import type { MoonEvent } from "types";
 
 import { Moon } from "~/entities/moon";
 
-import type { EventComponent } from "./timeline-event.types";
+import type { EventComponent } from "../types";
 import type { Translation } from "~/features/translation";
 
 export function moonEventComponent(event: MoonEvent, t: Translation): EventComponent<{ phase: number, rotation: number }> {

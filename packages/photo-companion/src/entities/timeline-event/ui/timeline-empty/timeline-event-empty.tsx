@@ -2,7 +2,7 @@ import { classnames } from "utils";
 
 import { useTranslation } from "~/features/translation";
 
-import styles from "./event.module.css";
+import styles from "../timeline-event/timeline-event.module.css";
 
 export function TimelineEventEmpty() {
 	const { t } = useTranslation();

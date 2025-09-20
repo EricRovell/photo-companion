@@ -3,8 +3,8 @@ import { incrementDateByDay } from "utils/date";
 
 import type { EventGroupName } from "types";
 
-import { TimelineEvent, TimelineEventEmpty } from "~/components";
 import { Timeline, TimelineGroup } from "~/entities/timeline";
+import { TimelineEvent, TimelineEventEmpty } from "~/entities/timeline-event";
 import { CityLightsProvider } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";

@@ -1,8 +1,8 @@
 import type { BridgeEvent } from "types";
 
-import { Bridge } from "../bridge/bridge";
+import { Bridge } from "~/components/bridge/bridge";
 
-import type { EventComponent } from "./timeline-event.types";
+import type { EventComponent } from "../types";
 import type { Translation } from "~/features/translation";
 
 export function bridgeEventComponent(event: BridgeEvent, t: Translation): EventComponent<{ open: boolean }> {

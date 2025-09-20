@@ -4,41 +4,15 @@ import { setAttribute } from "utils";
 
 import type { TimelineEvent } from "types";
 
+import { LinkQuery } from "~/components/link-query";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
 import { Time } from "~/shared/ui";
 
-import { LinkQuery } from "../link-query";
-import { bridgeEventComponent } from "./timeline-event-bridge";
-import { lightsEventComponent } from "./timeline-event-lights";
-import { moonEventComponent } from "./timeline-event-moon";
-import { sunEventComponent } from "./timeline-event-sun";
-import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "./validators";
+import { buildEventComponent } from "../../lib/build-timeline-event";
 
-import styles from "./event.module.css";
-
-const eventComponent = (event: TimelineEvent) => {
-	const { t } = useTranslation();
-
-	if (isBridgeEvent(event)) {
-		return bridgeEventComponent(event, t());
-	}
-
-	if (isLightsEvent(event)) {
-		return lightsEventComponent(event, t());
-	}
-
-	if (isMoonEvent(event)) {
-		return moonEventComponent(event, t());
-	}
-
-	if (isSunEvent(event)) {
-		return sunEventComponent(event, t());
-	}
-
-	throw new Error(`Unknown event is provided: ${JSON.stringify(event)}`);
-};
+import styles from "./timeline-event.module.css";
 
 interface TimelineEventProps {
 	event: TimelineEvent;
@@ -51,7 +25,7 @@ const HREF_FALLBACK = "/#";
 export function TimelineEvent(props: TimelineEventProps) {
 	const { getTimestamp } = useDatetime();
 	const { format } = useTranslation();
-	const data = () => eventComponent(props.event);
+	const data = () => buildEventComponent(props.event);
 	const linkTitle = () => `${data().title}: ${format().datetime(props.event.timestamp)}`;
 
 	// `datetime` query is taking only minutes into consideration, need to round up

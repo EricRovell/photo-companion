@@ -1,8 +1,8 @@
 import type { LightsEvent } from "types";
 
-import { Bulb } from "../bulb/bulb";
+import { Bulb } from "~/components/bulb/bulb";
 
-import type { EventComponent } from "./timeline-event.types";
+import type { EventComponent } from "../types";
 import type { Translation } from "~/features/translation";
 
 export function lightsEventComponent(event: LightsEvent, t: Translation): EventComponent<{ glow: boolean }> {

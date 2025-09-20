@@ -4,7 +4,7 @@ import type { SunEvent, SunEventName } from "types";
 
 import { Sun } from "~/entities/sun";
 
-import type { EventComponent } from "./timeline-event.types";
+import type { EventComponent } from "../types";
 import type { Translation } from "~/features/translation";
 
 export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {
