@@ -2,14 +2,14 @@ import { useBeforeLeave } from "@solidjs/router";
 import { For } from "solid-js";
 import { classnames } from "utils";
 
-import { useNavigationService } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { createToggle } from "~/shared/primitives";
 import { Button, Drawer } from "~/shared/ui";
 import { IconMenu } from "~/shared/ui/icons";
 
-import { NavigationItem } from "./navigation.item";
-import { NavigationMenu } from "./navigation.menu";
+import { useNavigationService } from "../../model";
+import { NavigationItem } from "../navigation-item/navigation-item";
+import { NavigationMenu } from "../navigation-menu/navigation.menu";
 
 import styles from "./navigation.module.css";
 

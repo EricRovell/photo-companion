@@ -4,7 +4,7 @@ import { createMemo } from "solid-js";
 import { useSettings } from "~/features/settings";
 import { ROUTES } from "~/shared/consts";
 
-import { NAVIGATION_TAB_DATA } from "./navigation-service.consts";
+import { NAVIGATION_TAB_DATA } from "../consts";
 
 export function createNavigationService() {
 	const { isSupportsBridges, isSupportsCityLights, settings } = useSettings();

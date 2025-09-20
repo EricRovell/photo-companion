@@ -129,9 +129,6 @@ importers:
       types:
         specifier: workspace:*
         version: link:../types
-      ui:
-        specifier: workspace:*
-        version: link:../ui
       utils:
         specifier: workspace:*
         version: link:../utils
@@ -162,15 +159,6 @@ importers:
         version: 0.6.3(solid-js@1.8.17)(solid-marked@0.6.3(solid-js@1.8.17))(vite@6.0.7(@types/node@22.10.5)(yaml@2.4.2))
 
   packages/types: {}
-
-  packages/ui:
-    dependencies:
-      solid-js:
-        specifier: catalog:default
-        version: 1.8.17
-      utils:
-        specifier: workspace:*
-        version: link:../utils
 
   packages/utils: {}
 

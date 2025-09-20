@@ -7,7 +7,6 @@ export { GaugeTime } from "./gauge/gauge-time";
 export { LinkQuery } from "./link-query";
 export { Markdown } from "./markdown";
 export { Moon } from "./moon/moon";
-export { Navigation } from "./navigation/navigation";
 export { PageMeta } from "./page-meta/PageMeta";
 export { TimelineEvent, TimelineEventEmpty } from "./timeline-event";
 export { ToastSuggestUpdate } from "./toast-suggest-update/toast-suggest-update";

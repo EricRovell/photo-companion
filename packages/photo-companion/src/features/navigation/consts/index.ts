@@ -99,4 +99,4 @@ export const NAVIGATION_TAB_DATA: Record<ROUTE_LABEL, NavigationRoute> = {
 		icon: IconTimeline,
 		label: "TIMELINE"
 	}
-};
+} as const;

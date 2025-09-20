@@ -1,15 +1,15 @@
 import { For } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { useNavigationService } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { ROUTES, VERSION } from "~/shared/consts";
 import { Button, Link } from "~/shared/ui";
 import { IconClose } from "~/shared/ui/icons";
 
-import { NavigationItem } from "./navigation.item";
+import { useNavigationService } from "../../model";
+import { NavigationItem } from "../navigation-item/navigation-item";
 
-import styles from "./navigation.menu.module.css";
+import styles from "./navigation-menu.module.css";
 
 const classes = {
 	link: styles.link
