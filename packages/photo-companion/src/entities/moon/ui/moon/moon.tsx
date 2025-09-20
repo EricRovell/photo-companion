@@ -1,13 +1,33 @@
-import { mergeProps, splitProps } from "solid-js";
+import { type JSX, mergeProps, splitProps } from "solid-js";
 
 import { createTweened } from "~/shared/primitives";
 
-import { DEFAULT_PROPS } from "./moon.const";
-import { getNormalizedAngleRad, getNormalizedPhase } from "./moon.helpers";
-
-import type { CircleCommonProps, CircleProps, MoonProps } from "./moon.types";
+import { getNormalizedAngleRad, getNormalizedPhase } from "../../lib";
 
 import styles from "./moon.module.css";
+
+export interface MoonProps extends JSX.SvgSVGAttributes<SVGSVGElement> {
+	phase?: number;
+	precision?: number;
+	rotation?: number;
+	size?: number;
+}
+
+export interface CircleCommonProps extends JSX.SvgSVGAttributes<SVGCircleElement> {
+	cx: number;
+	cy: number;
+	r: number;
+}
+
+export type CircleProps = JSX.SvgSVGAttributes<SVGCircleElement>;
+
+
+const DEFAULT_PROPS = {
+	phase: 0,
+	precision: 0.025,
+	rotation: 0,
+	size: 100
+};
 
 export function createCircle(commonProps: CircleCommonProps) {
 	return (props: CircleProps) => (

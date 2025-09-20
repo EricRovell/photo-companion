@@ -1,4 +1,4 @@
-import { Moon } from "~/components";
+import { Moon } from "~/entities/moon";
 import { useTranslation } from "~/features/translation";
 import { ROUTES } from "~/shared/consts";
 import { Link } from "~/shared/ui";

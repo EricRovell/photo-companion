@@ -1,6 +1,7 @@
 import { classnames } from "utils";
 
-import { GaugeTime, Moon } from "~/components";
+import { GaugeTime } from "~/components";
+import { Moon } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
 import { useMoonService } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
