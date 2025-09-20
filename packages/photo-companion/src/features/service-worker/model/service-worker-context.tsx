@@ -1,7 +1,7 @@
 import { createContext, DEV, onMount, type ParentProps, useContext } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { createContextState } from "./model";
+import { createContextState } from "./service-worker-model";
 
 const ServiceWorkerContext = createContext<ReturnType<typeof createContextState>>();
 

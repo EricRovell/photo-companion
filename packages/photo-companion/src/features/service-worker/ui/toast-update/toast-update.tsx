@@ -5,9 +5,9 @@ import { useServiceWorker } from "~/features/service-worker";
 import { useTranslation } from "~/features/translation";
 import { Button } from "~/shared/ui";
 
-import styles from "./toast-suggest-update.module.css";
+import styles from "./toast-update.module.css";
 
-export function ToastSuggestUpdate() {
+export function ToastUpdate() {
 	const { t } = useTranslation();
 	const { getSuggestUpdate, handleReload, setSuggestUpdate } = useServiceWorker();
 
