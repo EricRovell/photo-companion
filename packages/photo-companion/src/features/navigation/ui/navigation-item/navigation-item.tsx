@@ -3,7 +3,7 @@ import { Dynamic } from "solid-js/web";
 
 import type { Component } from "solid-js";
 
-import { LinkQuery } from "~/components/link-query";
+import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 
 import type { ROUTE_LABEL } from "../../consts";

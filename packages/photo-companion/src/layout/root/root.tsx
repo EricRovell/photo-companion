@@ -2,8 +2,8 @@ import { useSearchParams } from "@solidjs/router";
 import { createEffect, type ParentProps } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { Bulb, LinkQuery, PageMeta } from "~/components";
-import { Navigation } from "~/features/navigation";
+import { Bulb, PageMeta } from "~/components";
+import { LinkQuery, Navigation } from "~/features/navigation";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
 
