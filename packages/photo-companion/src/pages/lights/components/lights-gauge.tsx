@@ -1,6 +1,5 @@
-import { Bulb } from "~/components";
 import { GaugeTime } from "~/entities/gauge";
-import { useCityLights } from "~/features/city-lights";
+import { Bulb, useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 
