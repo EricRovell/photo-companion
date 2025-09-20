@@ -3,11 +3,11 @@ import { setAttribute } from "utils";
 
 import { useSettings } from "~/features/settings";
 
-import { createObjectCoordsGetter } from "./elevation-graph.helpers";
+import { createObjectCoordsGetter } from "../../lib";
 
-import type { AltitudeGetter } from "./elevation-graph.types";
+import type { AltitudeGetter } from "../../types";
 
-import styles from "./elevation-graph.module.css";
+import styles from "./graph-pointer.module.css";
 
 interface Props {
 	date: Date;

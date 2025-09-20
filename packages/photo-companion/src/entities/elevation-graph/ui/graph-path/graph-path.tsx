@@ -3,11 +3,11 @@ import { isSameDay } from "utils/date";
 
 import { useSettings } from "~/features/settings";
 
-import { createPathBuilder } from "./elevation-graph.helpers";
+import { createPathBuilder } from "../../lib";
 
-import type { AltitudeGetter } from "./elevation-graph.types";
+import type { AltitudeGetter } from "../../types";
 
-import styles from "./elevation-graph.module.css";
+import styles from "./graph-path.module.css";
 
 interface Props {
 	date: Date;

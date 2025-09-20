@@ -1,7 +1,7 @@
 
 import { getSunPosition } from "moon-sun-calc";
 
-import { ElevationGraph } from "~/components";
+import { ElevationGraph } from "~/entities/elevation-graph";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 

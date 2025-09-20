@@ -2,7 +2,7 @@ import { isInteger, isNullable } from "./validators";
 
 /**
  * Calculates the duration between two dates in seconds:
- * 
+ *
  * 1. Both dates are provided, returns the difference;
  * 2. `from` is not specified - the starting point is the beginning of the same day as the `to` date;
  * 3. `to` is not specified - the ending point is the beginning of the next day after the `from` date;
@@ -110,6 +110,14 @@ export function dateFrom(input: DateLike = new Date(), options: DateFromOptions 
 	output.setMilliseconds(0);
 
 	return output;
+}
+
+export function getDayStart(date: DateLike) {
+	return dateFrom(date, {
+		hours: 0,
+		minutes: 0,
+		seconds: 0
+	}).getTime();
 }
 
 /**

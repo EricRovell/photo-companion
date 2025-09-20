@@ -1,0 +1,7 @@
+.graph {
+	stroke-width: var(--elevation-graph-stroke-width, 2px);
+	fill: none;
+	opacity: var(--elevation-graph-stroke-opacity, 1);
+	stroke: var(--elevation-graph-accent, gold);
+	filter: drop-shadow(0 0 15px var(--elevation-graph-accent, gold));
+}

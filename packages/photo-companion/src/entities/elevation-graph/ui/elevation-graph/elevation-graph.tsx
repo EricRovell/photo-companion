@@ -1,11 +1,11 @@
 import { For, Index, mergeProps, type ParentProps } from "solid-js";
 
-import { X_RANGE, Y_MIN, Y_RANGE, Y_RANGE_TICKS } from "./elevation-graph.consts";
-import { getTicks } from "./elevation-graph.helpers";
-import { GraphPath } from "./path";
-import { GraphPointer } from "./pointer";
+import { X_RANGE, Y_MIN, Y_RANGE, Y_RANGE_TICKS } from "../../consts";
+import { getTicks } from "../../lib";
+import { GraphPath } from "../graph-path/graph-path";
+import { GraphPointer } from "../graph-pointer/graph-pointer";
 
-import type { GraphEntityProps, GraphProps } from "./elevation-graph.types";
+import type { GraphEntityProps, GraphProps } from "../../types";
 
 import styles from "./elevation-graph.module.css";
 
