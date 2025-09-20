@@ -2,9 +2,9 @@ import { createSignal, type JSX, onCleanup, onMount } from "solid-js";
 import { classnames } from "utils";
 import { isNonNegativeInteger } from "utils/validators";
 
-import { getAngleFromTime } from "./helpers";
+import { getAngleFromTime } from "../../lib";
 
-import styles from "./gauge.module.css";
+import styles from "./gauge-pointer-current.module.css";
 
 interface Props extends JSX.SvgSVGAttributes<SVGCircleElement> {
 	angle: number;

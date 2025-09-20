@@ -1,8 +1,6 @@
 import { type JSX, mergeProps } from "solid-js";
 
-import { polarToCartesian } from "./gauge.helpers";
-
-import styles from "./gauge.module.css";
+import { polarToCartesian } from "../../lib";
 
 interface Props extends JSX.SvgSVGAttributes<SVGTextElement> {
 	angle?: number;
@@ -24,7 +22,6 @@ export function Label(allProps: Props) {
 
 	return (
 		<text
-			class={styles.label}
 			{...coords()}
 			dominant-baseline="central"
 			transform={transform()}

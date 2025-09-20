@@ -3,11 +3,11 @@ import { isNonNegativeInteger } from "utils/validators";
 
 import { createTweened } from "~/shared/primitives";
 
-import { Label } from "./gauge-label";
-import { Marks, MarksWrapper } from "./gauge-marks";
-import { Pointer } from "./gauge-pointer";
-import { CurrentPointer } from "./gauge-pointer-current";
-import { checkIsPointerActive, describeArc } from "./gauge.helpers";
+import { checkIsPointerActive, describeArc } from "../../lib";
+import { Label } from "../gauge-label/gauge-label";
+import { CurrentPointer } from "../gauge-pointer-current/gauge-pointer-current";
+import { Pointer } from "../gauge-pointer/gauge-pointer";
+import { Ticks, TicksWrapper } from "../gauge-ticks/gauge-ticks";
 
 import styles from "./gauge.module.css";
 
@@ -61,18 +61,18 @@ export function Gauge(allProps: ParentProps<GaugeProps>) {
 				class={styles.progress}
 				d={describeArc(0, 0, props.radius - props.width / 2, r2(), angleStart(), angleEnd())}
 			/>
-			<MarksWrapper>
-				<Marks
+			<TicksWrapper>
+				<Ticks
 					count={24}
 					r1={r2()}
 					r2={props.radius + 10}
 				/>
-				<Marks
+				<Ticks
 					count={4}
 					r1={r2()}
 					r2={props.radius + 15}
 				/>
-			</MarksWrapper>
+			</TicksWrapper>
 			<Show when={props.angleStart > props.angleEnd}>
 				<line
 					opacity="0.5"

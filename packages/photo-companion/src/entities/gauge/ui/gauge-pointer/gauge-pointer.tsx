@@ -1,7 +1,7 @@
 import { type JSX, splitProps } from "solid-js";
 import { setAttribute } from "utils";
 
-import styles from "./gauge.module.css";
+import styles from "./gauge-pointer.module.css";
 
 interface Props extends JSX.SvgSVGAttributes<SVGCircleElement> {
 	active: boolean;

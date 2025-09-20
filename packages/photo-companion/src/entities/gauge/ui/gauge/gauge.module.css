@@ -1,0 +1,28 @@
+.gauge {
+	width: var(--gauge-size, min(100%, 45vh));
+	height: var(--gauge-size, min(100%, 45vh));
+
+	& text {
+		font-size: 3.5px;
+		font-variant-numeric: tabular-nums;
+		font-family: inherit;
+		font-weight: 400;
+		letter-spacing: 0.1em;
+		fill: var(--gauge-text-color, hsl(0deg 50% 100%));
+		transform-box: fill-box;
+		text-anchor: middle;
+	}
+}
+
+.progress-background {
+	fill: none;
+	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
+	opacity: 0.5;
+}
+
+.progress {
+	fill: var(--gauge-color, hsl(195deg 41% 58%));;
+	stroke: var(--gauge-color, hsl(195deg 41% 58%));
+	filter: drop-shadow(0 0 2px var(--gauge-color, hsl(195deg 41% 58% / 50%)));
+	stroke-width: 0;
+}

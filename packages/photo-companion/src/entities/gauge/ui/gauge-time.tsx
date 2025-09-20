@@ -2,8 +2,8 @@ import type { ParentProps } from "solid-js";
 
 import { useTranslation } from "~/features/translation";
 
-import { Gauge } from "./gauge";
-import { getAngleFromTime } from "./helpers";
+import { getAngleFromTime } from "../lib";
+import { Gauge } from "./gauge/gauge";
 
 interface Props {
 	date: Date;
