@@ -1,5 +1,4 @@
-import { LightsCountdown } from "~/components/lights-countdown/lights-countdown";
-import { SupportsLights, useCityLights } from "~/features/city-lights";
+import { LightsCountdown, SupportsLights, useCityLights } from "~/features/city-lights";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
 
