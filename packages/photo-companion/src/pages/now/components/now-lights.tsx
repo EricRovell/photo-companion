@@ -1,7 +1,7 @@
 import { LightsCountdown } from "~/components/lights-countdown/lights-countdown";
-import { CardInfo } from "~/entities/card-info";
 import { SupportsLights, useCityLights } from "~/features/city-lights";
 import { useTranslation } from "~/features/translation";
+import { PropertyList } from "~/shared/ui";
 
 export const NowLightsInfo = () => {
 	const { format, t } = useTranslation();
@@ -13,26 +13,38 @@ export const NowLightsInfo = () => {
 	const lights = () => getStateByDate().lights;
 
 	return (
-		<CardInfo title={t().TITLE.LIGHTS_FULL}>
-			<CardInfo.Entry property={t().LABEL.CITY}>
-				{t().CITIES[getCity()]}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.LIGHTS_CITY}>
-				<span data-text={lights() ? "success" : "danger"}>
-					{lights() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
-				</span>
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.TIME_OFF}>
-				{format().time(getTimeOff())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.TIME_ON}>
-				{format().time(getTimeOn())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.DURATION_LIGHTS}>
-				{format().timeDuration(duration())}
-			</CardInfo.Entry>
-			<LightsCountdown lights={lights()} />
-		</CardInfo>
+		<PropertyList>
+			<PropertyList.Header>
+				{t().TITLE.LIGHTS_FULL}
+			</PropertyList.Header>
+			<PropertyList.Body>
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.CITY}</PropertyList.Label>
+					<PropertyList.Value>{t().CITIES[getCity()]}</PropertyList.Value>
+				</PropertyList.Item>
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.LIGHTS_CITY}</PropertyList.Label>
+					<PropertyList.Value>
+						<span data-text={lights() ? "success" : "danger"}>
+							{lights() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
+						</span>
+					</PropertyList.Value>
+				</PropertyList.Item>
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.TIME_OFF}</PropertyList.Label>
+					<PropertyList.Value>{format().time(getTimeOff())}</PropertyList.Value>
+				</PropertyList.Item>
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.TIME_ON}</PropertyList.Label>
+					<PropertyList.Value>{format().time(getTimeOn())}</PropertyList.Value>
+				</PropertyList.Item>
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.DURATION_LIGHTS}</PropertyList.Label>
+					<PropertyList.Value>{format().timeDuration(duration())}</PropertyList.Value>
+				</PropertyList.Item>
+				<LightsCountdown lights={lights()} />
+			</PropertyList.Body>
+		</PropertyList>
 	);
 };
 

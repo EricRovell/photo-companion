@@ -1,8 +1,8 @@
 import { For, Show } from "solid-js";
 
-import { CardInfo } from "~/entities/card-info";
 import { useBridges } from "~/features/bridges-spb";
 import { useTranslation } from "~/features/translation";
+import { PropertyList } from "~/shared/ui";
 
 import { BridgesStateAll } from "./bridge-state-all";
 
@@ -17,28 +17,38 @@ export function BridgeStateList() {
 
 	return (
 		<Show fallback={<BridgesStateAll />} when={isSomeBridgeLiftedUp()}>
-			<CardInfo.Entry class={styles["entry-list"]} property={t().LABEL.BRIDGES_LIFTED_UP}>
-				<ul class={styles.list}>
-					<For each={getBridgesState()}>
-						{item => (
-							<Show when={item.open}>
-								<li>{t().BRIDGE_NAME_SPB[item.name]}</li>
-							</Show>
-						)}
-					</For>
-				</ul>
-			</CardInfo.Entry>
-			<CardInfo.Entry class={styles["entry-list"]} property={t().LABEL.BRIDGES_LIFTED_DOWN}>
-				<ul class={styles.list}>
-					<For each={getBridgesState()}>
-						{item => (
-							<Show when={!item.open}>
-								<li>{t().BRIDGE_NAME_SPB[item.name]}</li>
-							</Show>
-						)}
-					</For>
-				</ul>
-			</CardInfo.Entry>
+			<PropertyList.Item class={styles["entry-list"]}>
+				<PropertyList.Label>
+					{t().LABEL.BRIDGES_LIFTED_UP}
+				</PropertyList.Label>
+				<PropertyList.Value>
+					<ul class={styles.list}>
+						<For each={getBridgesState()}>
+							{item => (
+								<Show when={item.open}>
+									<li>{t().BRIDGE_NAME_SPB[item.name]}</li>
+								</Show>
+							)}
+						</For>
+					</ul>
+				</PropertyList.Value>
+			</PropertyList.Item>
+			<PropertyList.Item class={styles["entry-list"]}>
+				<PropertyList.Label>
+					{t().LABEL.BRIDGES_LIFTED_DOWN}
+				</PropertyList.Label>
+				<PropertyList.Value>
+					<ul class={styles.list}>
+						<For each={getBridgesState()}>
+							{item => (
+								<Show when={!item.open}>
+									<li>{t().BRIDGE_NAME_SPB[item.name]}</li>
+								</Show>
+							)}
+						</For>
+					</ul>
+				</PropertyList.Value>
+			</PropertyList.Item>
 		</Show>
 	);
 }

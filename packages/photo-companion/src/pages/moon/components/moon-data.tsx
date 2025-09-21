@@ -1,8 +1,8 @@
 import { Show } from "solid-js";
 
-import { CardInfo } from "~/entities/card-info";
 import { useMoonService } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
+import { PropertyList } from "~/shared/ui";
 
 interface Props {
 	title?: string;
@@ -24,45 +24,73 @@ export function MoonData(props: Props) {
 	} = useMoonService();
 
 	return (
-		<CardInfo title={props.title}>
-			<CardInfo.Entry property={t().LABEL.MOON_PHASE}>
-				{t().MOON_PHASE[phaseName()]}
-			</CardInfo.Entry>
-			<Show when={fullMoonName()}>
-				{name => (
-					<CardInfo.Entry property={t().LABEL.FULL_MOON_NAME}>
-						{t().MOON_NAME[name()]}
-					</CardInfo.Entry>
-				)}
-			</Show>
-			<CardInfo.Entry property={t().LABEL.MOONRISE_TIME}>
-				<Show fallback="—" when={moonrise()}>
-					{value => format().timeShort(value())}
+		<PropertyList>
+			<PropertyList.Header>
+				{props.title}
+			</PropertyList.Header>
+			<PropertyList.Body>
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.MOON_PHASE}</PropertyList.Label>
+					<PropertyList.Value>{t().MOON_PHASE[phaseName()]}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<Show when={fullMoonName()}>
+					{name => (
+						<PropertyList.Item>
+							<PropertyList.Label>{t().LABEL.FULL_MOON_NAME}</PropertyList.Label>
+							<PropertyList.Value>{t().MOON_NAME[name()]}</PropertyList.Value>
+						</PropertyList.Item>
+					)}
 				</Show>
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.MOONSET_TIME}>
-				<Show fallback="—" when={moonset()}>
-					{value => format().timeShort(value())}
-				</Show>
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.MOON_ILLUMINATION}>
-				{format().percent(fraction())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.ZENITH}>
-				{format().degrees(zenith())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.ALTITUDE}>
-				{format().degrees(altitude())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.AZIMUTH}>
-				{format().degrees(azimuth())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.DISTANCE}>
-				{format().kilometers(distance())}
-			</CardInfo.Entry>
-			<CardInfo.Entry property={t().LABEL.PARALLACTIC_ANGLE}>
-				{format().degrees(parallacticAngle())}
-			</CardInfo.Entry>
-		</CardInfo>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.MOONRISE_TIME}</PropertyList.Label>
+					<PropertyList.Value>
+						<Show fallback="—" when={moonrise()}>
+							{value => format().timeShort(value())}
+						</Show>
+					</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.MOONSET_TIME}</PropertyList.Label>
+					<PropertyList.Value>
+						<Show fallback="—" when={moonset()}>
+							{value => format().timeShort(value())}
+						</Show>
+					</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.MOON_ILLUMINATION}</PropertyList.Label>
+					<PropertyList.Value>{format().percent(fraction())}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.ZENITH}</PropertyList.Label>
+					<PropertyList.Value>{format().degrees(zenith())}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.ALTITUDE}</PropertyList.Label>
+					<PropertyList.Value>{format().degrees(altitude())}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.AZIMUTH}</PropertyList.Label>
+					<PropertyList.Value>{format().degrees(azimuth())}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.DISTANCE}</PropertyList.Label>
+					<PropertyList.Value>{format().kilometers(distance())}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.PARALLACTIC_ANGLE}</PropertyList.Label>
+					<PropertyList.Value>{format().degrees(parallacticAngle())}</PropertyList.Value>
+				</PropertyList.Item>
+			</PropertyList.Body>
+		</PropertyList>
 	);
 }

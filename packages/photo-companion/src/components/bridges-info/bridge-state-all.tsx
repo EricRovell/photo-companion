@@ -1,5 +1,5 @@
-import { CardInfo } from "~/entities/card-info";
 import { useTranslation } from "~/features/translation";
+import { PropertyList } from "~/shared/ui";
 
 interface Props {
 	allLiftedDown?: boolean;
@@ -17,8 +17,13 @@ export function BridgesStateAll(props: Props) {
 		: t().LABEL.ALL_BRIDGES_LIFTED_UP;
 
 	return (
-		<CardInfo.Entry property={t().LABEL.STATE}>
-			{getLabel()}
-		</CardInfo.Entry>
+		<PropertyList.Item>
+			<PropertyList.Label>
+				{t().LABEL.STATE}
+			</PropertyList.Label>
+			<PropertyList.Value>
+				{getLabel()}
+			</PropertyList.Value>
+		</PropertyList.Item>
 	);
 };

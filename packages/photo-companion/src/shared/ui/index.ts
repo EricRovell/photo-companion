@@ -13,4 +13,5 @@ export { Input } from "./input/input";
 export { Link, type LinkProps } from "./link/link";
 export { Loader } from "./loader/loader";
 export { Modal } from "./modal/modal";
+export { PropertyList } from "./property-list";
 export { Time } from "./time/time";

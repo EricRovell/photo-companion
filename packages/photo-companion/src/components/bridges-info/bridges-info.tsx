@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 
-import { CardInfo } from "~/entities/card-info";
 import { useBridges } from "~/features/bridges-spb";
+import { PropertyList } from "~/shared/ui";
 
 import { BridgesStateAll } from "./bridge-state-all";
 import { BridgeStateList } from "./bridge-state-list";
@@ -16,14 +16,19 @@ export function BridgesInfo(props: Props) {
 	const { getNavigationState, isAllBridgesLiftedDown } = useBridges();
 
 	return (
-		<CardInfo title={props.title}>
-			<NavigationState {...getNavigationState()} />
-			<Show when={getNavigationState().navigation}>
-				<NextBridgeCountdown />
-			</Show>
-			<Show fallback={<BridgesStateAll allLiftedDown />} when={!isAllBridgesLiftedDown()}>
-				<BridgeStateList />
-			</Show>
-		</CardInfo>
+		<PropertyList>
+			<PropertyList.Header>
+				{props.title}
+			</PropertyList.Header>
+			<PropertyList.Body>
+				<NavigationState {...getNavigationState()} />
+				<Show when={getNavigationState().navigation}>
+					<NextBridgeCountdown />
+				</Show>
+				<Show fallback={<BridgesStateAll allLiftedDown />} when={!isAllBridgesLiftedDown()}>
+					<BridgeStateList />
+				</Show>
+			</PropertyList.Body>
+		</PropertyList>
 	);
 }

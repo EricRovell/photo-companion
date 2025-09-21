@@ -1,8 +1,8 @@
-import { CardInfo } from "~/entities/card-info";
 import { useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createCountdown } from "~/shared/lib/timer";
+import { PropertyList } from "~/shared/ui";
 
 /**
  * City lights countdown used as card entry.
@@ -21,8 +21,13 @@ export function LightsCountdown(props: { lights: boolean }) {
 	});
 
 	return (
-		<CardInfo.Entry property={getLabel()}>
-			{format().timeDuration(time())}
-		</CardInfo.Entry>
+		<PropertyList.Item>
+			<PropertyList.Label>
+				{getLabel()}
+			</PropertyList.Label>
+			<PropertyList.Value>
+				{format().timeDuration(time())}
+			</PropertyList.Value>
+		</PropertyList.Item>
 	);
 }

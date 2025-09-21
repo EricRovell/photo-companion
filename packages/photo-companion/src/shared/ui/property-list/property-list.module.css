@@ -9,7 +9,7 @@
 	}
 }
 
-.title {
+.header {
 	font-size: var(--font-size-3);
 	font-weight: 600;
 	border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
@@ -19,4 +19,21 @@
 	width: 100%;
 	border-radius: 10px 10px 0 0;
 	padding: var(--space-2) var(--space-5);
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: var(--space-2) var(--space-4);
+	width: 100%;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--card-border-color, var(--color-surface-3));
+	}
+}
+
+.value {
+	font-variant-numeric: tabular-nums;
 }

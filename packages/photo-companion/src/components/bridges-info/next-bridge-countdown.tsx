@@ -1,10 +1,10 @@
 import { createMemo } from "solid-js";
 
-import { CardInfo } from "~/entities/card-info";
 import { useBridges } from "~/features/bridges-spb";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createCountdown } from "~/shared/lib/timer";
+import { PropertyList } from "~/shared/ui";
 
 /**
  * Renders countdown till the next bridge event.
@@ -27,8 +27,13 @@ export function NextBridgeCountdown() {
 	};
 
 	return (
-		<CardInfo.Entry property={property()}>
-			{format().timeDuration(time())}
-		</CardInfo.Entry>
+		<PropertyList.Item>
+			<PropertyList.Label>
+				{property()}
+			</PropertyList.Label>
+			<PropertyList.Value>
+				{format().timeDuration(time())}
+			</PropertyList.Value>
+		</PropertyList.Item>
 	);
 }
