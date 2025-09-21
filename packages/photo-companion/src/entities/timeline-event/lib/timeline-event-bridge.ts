@@ -1,13 +1,13 @@
 import type { BridgeEvent } from "types";
 
-import { Bridge } from "~/components/bridge/bridge";
+import { BridgeIcon } from "~/features/bridges-spb";
 
 import type { EventComponent } from "../types";
 import type { Translation } from "~/features/translation";
 
 export function bridgeEventComponent(event: BridgeEvent, t: Translation): EventComponent<{ open: boolean }> {
 	return {
-		component: Bridge,
+		component: BridgeIcon,
 		message: event.data.open ? t.LABEL.BRIDGE_OPENING : t.LABEL.BRIDGE_CLOSING,
 		props: {
 			open: event.data.open

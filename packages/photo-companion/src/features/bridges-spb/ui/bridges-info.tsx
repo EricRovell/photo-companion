@@ -1,10 +1,10 @@
 import { Show } from "solid-js";
 
-import { useBridges } from "~/features/bridges-spb";
 import { PropertyList } from "~/shared/ui";
 
+import { useBridges } from "../model";
 import { BridgesStateAll } from "./bridge-state-all";
-import { BridgeStateList } from "./bridge-state-list";
+import { BridgeStateList } from "./bridge-state-list/bridge-state-list";
 import { NavigationState } from "./navigation-state";
 import { NextBridgeCountdown } from "./next-bridge-countdown";
 
@@ -17,9 +17,13 @@ export function BridgesInfo(props: Props) {
 
 	return (
 		<PropertyList>
-			<PropertyList.Header>
-				{props.title}
-			</PropertyList.Header>
+			<Show when={props.title}>
+				{title => (
+					<PropertyList.Header>
+						{title()}
+					</PropertyList.Header>
+				)}
+			</Show>
 			<PropertyList.Body>
 				<NavigationState {...getNavigationState()} />
 				<Show when={getNavigationState().navigation}>

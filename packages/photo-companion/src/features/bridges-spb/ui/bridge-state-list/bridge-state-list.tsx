@@ -1,12 +1,12 @@
 import { For, Show } from "solid-js";
 
-import { useBridges } from "~/features/bridges-spb";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
 
-import { BridgesStateAll } from "./bridge-state-all";
+import { useBridges } from "../../model";
+import { BridgesStateAll } from "../bridge-state-all";
 
-import styles from "./bridges-info.module.css";
+import styles from "./bridge-state-list.module.css";
 
 /**
  * Renders lifted up/down bridge list.

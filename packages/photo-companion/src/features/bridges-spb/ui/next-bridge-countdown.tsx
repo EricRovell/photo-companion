@@ -1,10 +1,11 @@
 import { createMemo } from "solid-js";
 
-import { useBridges } from "~/features/bridges-spb";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createCountdown } from "~/shared/lib/timer";
 import { PropertyList } from "~/shared/ui";
+
+import { useBridges } from "../model";
 
 /**
  * Renders countdown till the next bridge event.
