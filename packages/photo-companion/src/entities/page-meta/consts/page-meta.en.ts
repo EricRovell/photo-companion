@@ -1,4 +1,4 @@
-import type { PageMetaDict } from "./page-meta.types";
+import type { PageMetaDict } from "../types";
 
 export const PAGE_META: PageMetaDict = {
 	"/": {

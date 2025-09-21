@@ -4,8 +4,8 @@ import { isNonEmptyString } from "utils/validators";
 
 import { useTranslation } from "~/features/translation";
 
-import { PAGE_META as PAGE_META_EN } from "./page-meta.en";
-import { PAGE_META as PAGE_META_RU } from "./page-meta.ru";
+import { PAGE_META as PAGE_META_EN } from "../consts/page-meta.en";
+import { PAGE_META as PAGE_META_RU } from "../consts/page-meta.ru";
 
 import type { ROUTE_VALUE } from "~/features/navigation";
 
@@ -17,11 +17,12 @@ export function formatTitle(title: MaybeArray<string>, separator = " | "): strin
 
 export function useMetaData() {
 	const location = useLocation();
-	const getPathname = createMemo(() => location.pathname as ROUTE_VALUE);
-
 	const { lang } = useTranslation();
+
+	const getPathname = createMemo(() => location.pathname as ROUTE_VALUE);
 	const dict = createMemo(() => lang() === "en" ? PAGE_META_EN : PAGE_META_RU);
 
+	// any unknown route means 404
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	const meta = createMemo(() => dict()[getPathname()] ?? dict()["/404"]);
 

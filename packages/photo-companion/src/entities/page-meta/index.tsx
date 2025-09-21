@@ -2,7 +2,7 @@ import { Meta, Title } from "@solidjs/meta";
 
 import { useTranslation } from "~/features/translation";
 
-import { formatTitle, useMetaData } from "./page-meta.utils";
+import { formatTitle, useMetaData } from "./lib";
 
 export function PageMeta() {
 	const getMeta = useMetaData();
