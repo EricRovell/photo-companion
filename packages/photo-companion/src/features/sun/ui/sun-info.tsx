@@ -4,7 +4,7 @@ import { useSunService } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
 
-export function SunData(props: { title?: string }) {
+export function SunInfo(props: { title?: string }) {
 	const { format, t } = useTranslation();
 	const { altitude, azimuth, dayDuration, declination, sunrise, sunset, zenith } = useSunService();
 

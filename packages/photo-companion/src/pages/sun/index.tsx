@@ -1,9 +1,5 @@
 import { SunProvider } from "~/features/sun";
-
-import { SunAltitude } from "./ui/sun-altitude";
-import { SunData } from "./ui/sun-data";
-import { SunTimeline } from "./ui/sun-timeline";
-import { SunTimes } from "./ui/sun-times";
+import { SunAltitude, SunInfo, SunTimeline, SunTimes } from "~/features/sun";
 
 import styles from "./sun.module.css";
 
@@ -13,7 +9,7 @@ export function PageSun() {
 			<div class={styles.page}>
 				<SunTimes />
 				<SunAltitude />
-				<SunData />
+				<SunInfo />
 				<SunTimeline />
 			</div>
 		</SunProvider>
