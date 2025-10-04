@@ -7,6 +7,7 @@ interface Props {
 	message?: string;
 }
 
+// TODO: refactor into configurable info message
 export function ErrorMessage(props: Props) {
 	const hasError = () => isNonEmptyString(props.message);
 

@@ -1,8 +1,8 @@
 import { ErrorBoundary, lazy, Suspense } from "solid-js";
 
-import { ErrorMessage  } from "~/components";
 import { SupportsBridges } from "~/features/bridges-spb";
 import { SupportsLights } from "~/features/city-lights";
+import { ErrorMessage  } from "~/shared/ui";
 import { Loader } from "~/shared/ui";
 
 import { NowMoon, NowSun } from "./components";

@@ -2,6 +2,7 @@ export { Button } from "./button/button";
 export { Details } from "./details/details";
 export { Dialog } from "./dialog/dialog";
 export { Drawer } from "./drawer/drawer";
+export { ErrorMessage } from "./error-message/error-message";
 export { Fieldset, Form } from "./form/form";
 export { Icon, type IconProps } from "./icon/icon";
 export { InputCheckbox } from "./input-checkbox/input-checkbox";
@@ -12,6 +13,7 @@ export { InputSelect, type InputSelectOption } from "./input-select/input-select
 export { Input } from "./input/input";
 export { Link, type LinkProps } from "./link/link";
 export { Loader } from "./loader/loader";
+export { Markdown } from "./markdown";
 export { Modal } from "./modal/modal";
 export { PropertyList } from "./property-list";
 export { Time } from "./time/time";

@@ -1,8 +1,8 @@
 import { Show } from "solid-js";
 import { isNonEmptyArray } from "utils/validators";
 
-import { ErrorMessage } from "~/components";
 import { useTranslation } from "~/features/translation";
+import { ErrorMessage } from "~/shared/ui";
 
 import { useForm } from "../../height-by-shadow.context";
 

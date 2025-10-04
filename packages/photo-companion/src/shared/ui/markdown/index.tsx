@@ -11,8 +11,7 @@ import {
 	Paragraph,
 	Root,
 	Strong
-} from "~/components/markdown/markdown.blocks";
-
+} from "./markdown.blocks";
 import { DefinitionProvider } from "./markdown.context";
 
 export const Markdown = (props: ParentProps) => (
