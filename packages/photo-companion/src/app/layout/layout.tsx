@@ -8,7 +8,7 @@ import { LinkQuery, Navigation } from "~/features/navigation";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
 
-import styles from "./root.module.css";
+import styles from "./layout.module.css";
 
 function Header() {
 	const { settings } = useSettings();
@@ -28,7 +28,7 @@ function Header() {
 	);
 }
 
-export const Root = (props: ParentProps) => {
+export const Layout = (props: ParentProps) => {
 	const [ searchParams, setSearchParams ] = useSearchParams();
 	const { settings } = useSettings();
 

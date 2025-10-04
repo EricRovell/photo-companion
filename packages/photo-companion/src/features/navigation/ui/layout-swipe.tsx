@@ -1,9 +1,10 @@
 import { createSignal, type ParentProps } from "solid-js";
 
-import { useNavigationService } from "~/features/navigation";
 import { useSwipe } from "~/shared/primitives";
 
-export function WithSwipe(props: ParentProps) {
+import { useNavigationService } from "../model";
+
+export function LayoutSwipe(props: ParentProps) {
 	const [ getRef, setRef ] = createSignal<HTMLDivElement | null>(null);
 	const { createSwiper } = useNavigationService();
 

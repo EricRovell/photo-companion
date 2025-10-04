@@ -2,7 +2,7 @@ import { Route, Router } from "@solidjs/router";
 import { lazy, Suspense } from "solid-js";
 
 import { LayoutDatetime } from "~/features/datetime-query";
-import { Root } from "~/layout/root/root";
+import { LayoutSwipe } from "~/features/navigation";
 import { PageLights } from "~/pages/lights/lights.page";
 import { PageMoon } from "~/pages/moon/moon.page";
 import { PageNow } from "~/pages/now/now.page";
@@ -12,7 +12,7 @@ import { PageTimeline } from "~/pages/timeline/timeline.page";
 import { ROUTES } from "~/shared/consts";
 import { Loader } from "~/shared/ui";
 
-import { WithSwipe } from "./with-swipe";
+import { Layout } from "../layout";
 
 const Page404 = lazy(() => import("~/pages/404/404.page"));
 const PageAbout = lazy(() => import("~/pages/about/about.page"));
@@ -32,10 +32,10 @@ const WITH_DATE_ROUTES = [
 
 export function Routes() {
 	return (
-		<Router root={Root}>
+		<Router root={Layout}>
 			<Suspense fallback={<Loader style={{ "--loader-size": "2rem" }} />}>
 				<Route component={PageRoot} path={ROUTES.ROOT} />
-				<Route component={WithSwipe} path={WITH_DATE_ROUTES}>
+				<Route component={LayoutSwipe} path={WITH_DATE_ROUTES}>
 					<Route component={LayoutDatetime} path={WITH_DATE_ROUTES}>
 						<Route component={PageTimeline} path={ROUTES.TIMELINE} />
 						<Route component={PageLights} path={ROUTES.LIGHTS} />
