@@ -1,6 +1,6 @@
 import { isNullable } from "utils/validators";
 
-import type { UserLang } from "~/types";
+import type { UserLang } from "../types";
 
 /**
  * Only two languages are supported: "en" and "ru".
