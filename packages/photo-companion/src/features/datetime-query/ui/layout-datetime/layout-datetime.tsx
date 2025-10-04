@@ -4,11 +4,11 @@ import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { InputDatetime } from "~/shared/ui";
 
-import { getDateTimeString, parseDateTimeString } from "./helpers";
+import { getDateTimeString, parseDateTimeString } from "../../lib";
 
-import styles from "./with-date.module.css";
+import styles from "./layout-datetime.module.css";
 
-export function WithDate(props: ParentProps) {
+export function LayoutDatetime(props: ParentProps) {
 	const { getDatetime, setDatetimeQuery } = useDatetime();
 	const { t } = useTranslation();
 

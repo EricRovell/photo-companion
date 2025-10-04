@@ -1,8 +1,8 @@
 import { Route, Router } from "@solidjs/router";
 import { lazy, Suspense } from "solid-js";
 
+import { LayoutDatetime } from "~/features/datetime-query";
 import { Root } from "~/layout/root/root";
-import { WithDate } from "~/layout/with-date/with-date";
 import { PageLights } from "~/pages/lights/lights.page";
 import { PageMoon } from "~/pages/moon/moon.page";
 import { PageNow } from "~/pages/now/now.page";
@@ -36,7 +36,7 @@ export function Routes() {
 			<Suspense fallback={<Loader style={{ "--loader-size": "2rem" }} />}>
 				<Route component={PageRoot} path={ROUTES.ROOT} />
 				<Route component={WithSwipe} path={WITH_DATE_ROUTES}>
-					<Route component={WithDate} path={WITH_DATE_ROUTES}>
+					<Route component={LayoutDatetime} path={WITH_DATE_ROUTES}>
 						<Route component={PageTimeline} path={ROUTES.TIMELINE} />
 						<Route component={PageLights} path={ROUTES.LIGHTS} />
 						<Route component={PageMoon} path={ROUTES.MOON} />
