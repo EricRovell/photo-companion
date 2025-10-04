@@ -7,7 +7,7 @@ import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
 import { Time } from "~/shared/ui";
 
-import styles from "../moon.module.css";
+import styles from "./moon-phases.module.css";
 
 const MOON_SIZE = 75;
 

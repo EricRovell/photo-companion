@@ -1,0 +1,17 @@
+.root {
+	--gauge-color: lightblue;
+
+	display: grid;
+	grid-auto-rows: min-content;
+	font-size: var(--font-size-6);
+	justify-items: center;
+
+	& > :is(header, footer) {
+		width: 100%;
+	}
+
+	& > div {
+		display: grid;
+		justify-content: center;
+	}
+}

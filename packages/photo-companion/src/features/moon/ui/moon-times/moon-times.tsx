@@ -6,7 +6,7 @@ import { useDatetime } from "~/features/datetime-query";
 import { useMoonService } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
 
-import styles from "../moon.module.css";
+import styles from "./moon-times.module.css";
 
 const MOON_SIZE = 48;
 

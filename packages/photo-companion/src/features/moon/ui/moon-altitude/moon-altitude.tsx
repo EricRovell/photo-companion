@@ -4,7 +4,7 @@ import { ElevationGraph } from "~/entities/elevation-graph";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 
-import styles from "../moon.module.css";
+import styles from "./moon-altitude.module.css";
 
 export function MoonAltitude() {
 	const { getDatetime } = useDatetime();

@@ -8,7 +8,7 @@ interface Props {
 	title?: string;
 }
 
-export function MoonData(props: Props) {
+export function MoonInfo(props: Props) {
 	const { format, t } = useTranslation();
 	const {
 		altitude,

@@ -1,13 +1,12 @@
-import { MoonProvider } from "~/features/moon";
+import { MoonInfo, MoonProvider } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
-import { MoonData } from "~/pages/moon/ui/moon-data";
 
 export function NowMoon() {
 	const { t } = useTranslation();
 
 	return (
 		<MoonProvider>
-			<MoonData title={t().TITLE.MOON} />
+			<MoonInfo title={t().TITLE.MOON} />
 		</MoonProvider>
 	);
 }
