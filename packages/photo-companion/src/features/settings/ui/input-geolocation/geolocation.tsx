@@ -2,7 +2,7 @@ import { useTranslation } from "~/features/translation";
 import { Input } from "~/shared/ui";
 
 import { FORM_INPUT_NAME } from "../../consts";
-import { useSettingsForm } from "../../settings.context";
+import { useSettingsForm } from "../../model";
 import { GeolocationButton } from "./geolocation-button";
 
 export function InputGeolocation() {

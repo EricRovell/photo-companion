@@ -4,7 +4,7 @@ import { Show } from "solid-js";
 import { useTranslation } from "~/features/translation";
 
 import { BRIDGES_EVENTS_OPTIONS } from "../../consts";
-import { useSettingsForm } from "../../settings.context";
+import { useSettingsForm } from "../../model";
 import { InputCheckboxGroup } from "./input-checkbox-group";
 import { LIGHTS_EVENT_NAMES, MOON_EVENT_NAMES, SUN_EVENT_NAMES } from "./input-event-filters.consts";
 

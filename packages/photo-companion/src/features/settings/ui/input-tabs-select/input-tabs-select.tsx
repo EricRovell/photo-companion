@@ -1,7 +1,7 @@
 import { createMemo, For } from "solid-js";
 
 import { FORM_INPUT_NAME } from "../../consts";
-import { useSettingsForm } from "../../settings.context";
+import { useSettingsForm } from "../../model";
 import { TabSelect } from "./input-tabs-select.tab";
 
 import type { ROUTE_PRIMARY_LABEL } from "~/features/navigation";

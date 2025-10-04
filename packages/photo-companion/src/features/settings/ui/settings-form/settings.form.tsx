@@ -3,7 +3,7 @@ import { useTranslation } from "~/features/translation";
 import { Button, Fieldset, Form, InputRadio } from "~/shared/ui";
 
 import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "../../consts";
-import { useSettingsForm } from "../../settings.context";
+import { useSettingsForm } from "../../model";
 import { InputEventFilters } from "../input-event-filters/event-filters";
 import { InputGeolocation } from "../input-geolocation/geolocation";
 import { InputTabsSelect } from "../input-tabs-select/input-tabs-select";

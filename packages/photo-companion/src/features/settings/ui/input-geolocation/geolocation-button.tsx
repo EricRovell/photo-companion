@@ -4,7 +4,7 @@ import { useGeolocationService } from "~/features/geolocation";
 import { useTranslation } from "~/features/translation";
 import { Button, ErrorMessage } from "~/shared/ui";
 
-import { useSettingsForm } from "../../settings.context";
+import { useSettingsForm } from "../../model";
 
 export function GeolocationButton() {
 	const { t } = useTranslation();

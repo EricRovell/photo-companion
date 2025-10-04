@@ -1,3 +1,4 @@
-export { SETTINGS_CITY_PRESETS, SETTINGS_DEFAULT } from "./settings.const";
-export { SettingsProvider, useSettings } from "./settings.context";
-export type { SettingsStore } from "./settings.types";
+export { SETTINGS_CITY_PRESETS, SETTINGS_DEFAULT } from "./consts/model";
+export * from "./model/settings";
+export type { SettingsStore } from "./types";
+export * from "./ui";

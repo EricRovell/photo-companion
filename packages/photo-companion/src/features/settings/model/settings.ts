@@ -1,14 +1,17 @@
 import { isSupportedCity } from "lights-schedule";
+import { createContext } from "solid-js";
 import { createStore, reconcile, unwrap } from "solid-js/store";
 import { Storage } from "versioned-local-storage";
+
+import { createProvider } from "~/shared/lib/create-provider";
 
 import {
 	SETTINGS_DEFAULT,
 	SETTINGS_LOCAL_STORAGE_KEY,
 	SETTINGS_LOCAL_STORAGE_VERSION
-} from "./settings.const";
+} from "../consts/model";
 
-import type { SettingsStore } from "./settings.types";
+import type { SettingsStore } from "../types";
 
 export function createSettingsState() {
 	const storage = new Storage(SETTINGS_LOCAL_STORAGE_KEY, {
@@ -42,3 +45,12 @@ export function createSettingsState() {
 		settings
 	};
 }
+
+const SettingsContext = createContext<ReturnType<typeof createSettingsState>>();
+
+export const [ SettingsProvider, useSettings ] = createProvider({
+	consumerName: "useSettings",
+	Context: SettingsContext,
+	getValue: createSettingsState,
+	providerName: "Settings"
+});
