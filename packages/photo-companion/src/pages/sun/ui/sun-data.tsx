@@ -1,3 +1,5 @@
+import { Show } from "solid-js";
+
 import { useSunService } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
@@ -8,9 +10,11 @@ export function SunData(props: { title?: string }) {
 
 	return (
 		<PropertyList>
-			<PropertyList.Header>
-				{props.title}
-			</PropertyList.Header>
+			<Show when={props.title}>
+				<PropertyList.Header>
+					{props.title}
+				</PropertyList.Header>
+			</Show>
 			<PropertyList.Body>
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.SUNRISE_TIME}</PropertyList.Label>

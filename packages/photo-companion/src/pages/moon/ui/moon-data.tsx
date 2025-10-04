@@ -25,9 +25,11 @@ export function MoonData(props: Props) {
 
 	return (
 		<PropertyList>
-			<PropertyList.Header>
-				{props.title}
-			</PropertyList.Header>
+			<Show when={props.title}>
+				<PropertyList.Header>
+					{props.title}
+				</PropertyList.Header>
+			</Show>
 			<PropertyList.Body>
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.MOON_PHASE}</PropertyList.Label>
