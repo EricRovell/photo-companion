@@ -1,6 +1,6 @@
 import { createMemo, For } from "solid-js";
 
-import { FORM_INPUT_NAME } from "../../settings.const";
+import { FORM_INPUT_NAME } from "../../consts";
 import { useSettingsForm } from "../../settings.context";
 import { TabSelect } from "./input-tabs-select.tab";
 

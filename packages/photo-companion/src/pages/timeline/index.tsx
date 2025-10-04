@@ -11,9 +11,9 @@ import { useSettings } from "~/features/settings";
 import { NoEvents } from "~/features/timeline";
 import { useTranslation } from "~/features/translation";
 
-import { useDisabledTimeline, useTimelineEvents } from "./hooks";
+import { useDisabledTimeline, useTimelineEvents } from "./model";
 
-import type { EventsProps } from "./timeline.types";
+import type { EventsProps } from "./types";
 
 import styles from "./timeline.module.css";
 

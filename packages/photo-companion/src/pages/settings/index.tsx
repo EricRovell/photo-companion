@@ -1,7 +1,7 @@
 import { GeolocationProvider } from "~/features/geolocation";
 
 import { SettingsFormProvider } from "./settings.context";
-import { SettingsForm } from "./settings.form";
+import { SettingsForm } from "./ui";
 
 export const PageSettings = () => (
 	<GeolocationProvider>

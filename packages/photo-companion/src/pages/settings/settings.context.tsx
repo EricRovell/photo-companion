@@ -6,7 +6,7 @@ import type { City } from "types";
 
 import { SETTINGS_CITY_PRESETS, SETTINGS_DEFAULT, type SettingsStore, useSettings } from "~/features/settings";
 
-import { FORM_INPUT_NAME } from "./settings.const";
+import { FORM_INPUT_NAME } from "./consts";
 
 function createSettingsFormState() {
 	const { resetSettings, setSettings, settings } = useSettings();

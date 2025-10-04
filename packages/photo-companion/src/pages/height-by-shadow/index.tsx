@@ -5,10 +5,10 @@ import { isNullable } from "utils/validators";
 import { useTranslation } from "~/features/translation";
 import { IconShadow } from "~/shared/ui/icons";
 
-import { Error } from "./components/error/error";
-import { Form } from "./components/form/form";
-import { calcOutput, Output } from "./components/output/output";
 import { FormProvider, useForm } from "./height-by-shadow.context";
+import { Error } from "./ui/error/error";
+import { Form } from "./ui/form/form";
+import { calcOutput, Output } from "./ui/output/output";
 
 import styles from "./height-by-shadow.module.css";
 

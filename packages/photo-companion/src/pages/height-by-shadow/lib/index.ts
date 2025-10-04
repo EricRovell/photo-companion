@@ -1,6 +1,6 @@
 import { isNonEmptyArray, isNonNegativeNumber, isValidDate, isWithinRange } from "utils/validators";
 
-import type { FormKey, Model } from "./height-by-shadow.context";
+import type { FormKey, Model } from "../height-by-shadow.context";
 
 export function validate(model: Model): Record<FormKey, boolean> {
 	return {

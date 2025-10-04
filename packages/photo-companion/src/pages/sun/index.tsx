@@ -1,9 +1,9 @@
 import { SunProvider } from "~/features/sun";
 
-import { SunAltitude } from "./components/sun-altitude";
-import { SunData } from "./components/sun-data";
-import { SunTimeline } from "./components/sun-timeline";
-import { SunTimes } from "./components/sun-times";
+import { SunAltitude } from "./ui/sun-altitude";
+import { SunData } from "./ui/sun-data";
+import { SunTimeline } from "./ui/sun-timeline";
+import { SunTimes } from "./ui/sun-times";
 
 import styles from "./sun.module.css";
 

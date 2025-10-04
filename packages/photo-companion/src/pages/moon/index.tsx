@@ -1,10 +1,10 @@
 import { MoonProvider } from "~/features/moon";
 
-import { MoonAltitude } from "./components/moon-altitude";
-import { MoonData } from "./components/moon-data";
-import { MoonPhases } from "./components/moon-phases";
-import { MoonTimeline } from "./components/moon-timeline";
-import { MoonTimes } from "./components/moon-times";
+import { MoonAltitude } from "./ui/moon-altitude";
+import { MoonData } from "./ui/moon-data";
+import { MoonPhases } from "./ui/moon-phases";
+import { MoonTimeline } from "./ui/moon-timeline";
+import { MoonTimes } from "./ui/moon-times";
 
 import styles from "./moon.module.css";
 

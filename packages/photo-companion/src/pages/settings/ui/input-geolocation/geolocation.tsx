@@ -1,7 +1,7 @@
 import { useTranslation } from "~/features/translation";
 import { Input } from "~/shared/ui";
 
-import { FORM_INPUT_NAME } from "../../settings.const";
+import { FORM_INPUT_NAME } from "../../consts";
 import { useSettingsForm } from "../../settings.context";
 import { GeolocationButton } from "./geolocation-button";
 

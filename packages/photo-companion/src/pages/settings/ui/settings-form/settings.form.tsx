@@ -2,11 +2,13 @@ import { SETTINGS_CITY_PRESETS } from "~/features/settings";
 import { useTranslation } from "~/features/translation";
 import { Button, Fieldset, Form, InputRadio } from "~/shared/ui";
 
-import { InputEventFilters, InputGeolocation, InputTabsSelect } from "./components";
-import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "./settings.const";
-import { useSettingsForm } from "./settings.context";
+import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "../../consts";
+import { useSettingsForm } from "../../settings.context";
+import { InputEventFilters } from "../input-event-filters/event-filters";
+import { InputGeolocation } from "../input-geolocation/geolocation";
+import { InputTabsSelect } from "../input-tabs-select/input-tabs-select";
 
-import styles from "./settings.module.css";
+import styles from "./settings-form.module.css";
 
 export function SettingsForm() {
 	const { t } = useTranslation();

@@ -5,12 +5,12 @@ import { SupportsLights } from "~/features/city-lights";
 import { ErrorMessage  } from "~/shared/ui";
 import { Loader } from "~/shared/ui";
 
-import { NowMoon, NowSun } from "./components";
+import { NowMoon, NowSun } from "./ui";
 
 import styles from "./now.module.css";
 
-const NowLights = lazy(() => import("./components/now-lights"));
-const NowBridges = lazy(() => import("./components/now-bridges"));
+const NowLights = lazy(() => import("./ui/now-lights"));
+const NowBridges = lazy(() => import("./ui/now-bridges"));
 
 export const PageNow = () => (
 	<div class={styles.page}>

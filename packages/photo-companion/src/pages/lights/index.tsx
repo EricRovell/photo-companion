@@ -5,7 +5,7 @@ import { SupportsLights } from "~/features/city-lights";
 import { useSettings } from "~/features/settings";
 import { ROUTES } from "~/shared/consts";
 
-import { LightGauge, LightsInfo, LightsTimeline } from "./components";
+import { LightGauge, LightsInfo, LightsTimeline } from "./ui";
 
 import styles from "./lights.module.css";
 

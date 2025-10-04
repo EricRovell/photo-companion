@@ -7,7 +7,7 @@ import type { ParentProps} from "solid-js";
 
 import { useSettings } from "~/features/settings";
 
-import { validate } from "./form-validator";
+import { validate } from "./lib";
 
 export interface Model {
 	date: Date;
