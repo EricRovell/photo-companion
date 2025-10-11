@@ -1,5 +1,7 @@
-import { createMemo, mergeProps } from "solid-js";
-import { setAttribute } from "utils";
+import { createMemo, splitProps } from "solid-js";
+import { classnames, setAttribute } from "utils";
+
+import type { JSX} from "solid-js";
 
 import { useSettings } from "~/features/settings";
 
@@ -7,20 +9,18 @@ import { createObjectCoordsGetter } from "../../lib";
 
 import type { AltitudeGetter } from "../../types";
 
-import styles from "./graph-pointer.module.css";
+import styles from "./pointer.module.css";
 
-interface Props {
+interface Props extends JSX.SvgSVGAttributes<SVGCircleElement> {
 	date: Date;
 	getAltitude: AltitudeGetter;
 	pointerSize?: number;
 }
 
-const DEFAULT_PROPS = {
-	pointerSize: 6
-};
+const DEFAULT_SIZE = 6;
 
-export function GraphPointer(allProps: Props) {
-	const props = mergeProps(DEFAULT_PROPS, allProps);
+export function Pointer(allProps: Props) {
+	const [ props, rest ] = splitProps(allProps, [ "class", "getAltitude", "date", "pointerSize" ]);
 	const { settings } = useSettings();
 
 	const getPosition = () => createObjectCoordsGetter(props.getAltitude);
@@ -28,11 +28,12 @@ export function GraphPointer(allProps: Props) {
 
 	return (
 		<circle
-			class={styles.pointer}
+			class={classnames(styles.pointer, props.class)}
 			cx={position().x}
 			cy={position().y}
 			data-above={setAttribute(position().y >= 0)}
-			r={props.pointerSize}
+			r={props.pointerSize ?? DEFAULT_SIZE}
+			{...rest}
 		/>
 	);
 }

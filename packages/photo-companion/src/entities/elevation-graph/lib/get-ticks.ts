@@ -11,7 +11,7 @@ export function getTicks() {
 
 	for (let i = 1; i <= consts.TICK_COUNT; i++) {
 		ticks.push({
-			text: i < 10 ? `0${i}` : i.toString(),
+			text: i.toString().padStart(2, "0"),
 			x: i * xStep,
 			y
 		});

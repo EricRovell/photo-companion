@@ -1,8 +1,12 @@
-.elevation-graph-sun {
-	--elevation-graph-stroke-width: 1.5px;
-	--elevation-graph-stroke-opacity: 0.35;
+.elevation-path-sun {
+	--elevation-graph-path-width: 1.5px;
+	--elevation-graph-path-opacity: 0.35;
 }
 
-.elevation-graph-moon {
-	--elevation-graph-accent: lightblue;
+.elevation-path-moon {
+	--elevation-graph-path-color: lightblue;
+}
+
+.elevation-pointer-moon {
+	--elevation-graph-pointer-color: lightblue;
 }

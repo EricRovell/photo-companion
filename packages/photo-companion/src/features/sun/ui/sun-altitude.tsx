@@ -14,15 +14,18 @@ export function SunAltitude() {
 			<header>
 				<h2>{t().TITLE.ELEVATION_SUN}</h2>
 			</header>
-			<ElevationGraph
-				date={getDatetime()}
-				entries={[
-					{
-						getAltitude: getSunPosition,
-						id: "sun"
-					}
-				]}
-			/>
+			<ElevationGraph>
+				<ElevationGraph.ZeroAxis />
+				<ElevationGraph.Path
+					date={getDatetime()}
+					getAltitude={getSunPosition}
+				/>
+				<ElevationGraph.Pointer
+					date={getDatetime()}
+					getAltitude={getSunPosition}
+				/>
+				<ElevationGraph.XAxis />
+			</ElevationGraph>
 		</section>
 	);
 }

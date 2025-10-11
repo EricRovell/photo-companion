@@ -1,0 +1,6 @@
+.x-axis-tick {
+	font-size: 10px;
+	text-anchor: middle;
+	fill: currentcolor;
+	opacity: 0.75;
+}

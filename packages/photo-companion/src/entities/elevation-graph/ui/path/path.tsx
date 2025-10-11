@@ -1,5 +1,8 @@
-import { createMemo } from "solid-js";
+import { createMemo, splitProps } from "solid-js";
+import { classnames } from "utils";
 import { isSameDay } from "utils/date";
+
+import type { JSX} from "solid-js";
 
 import { useSettings } from "~/features/settings";
 
@@ -7,9 +10,9 @@ import { createPathBuilder } from "../../lib";
 
 import type { AltitudeGetter } from "../../types";
 
-import styles from "./graph-path.module.css";
+import styles from "./path.module.css";
 
-interface Props {
+interface Props extends JSX.SvgSVGAttributes<SVGPathElement> {
 	date: Date;
 	getAltitude: AltitudeGetter;
 }
@@ -18,7 +21,9 @@ const MEMO_OPTIONS = {
 	equals: (prev: Date, next: Date) => isSameDay(prev, next)
 };
 
-export function GraphPath(props: Props) {
+export function Path(allProps: Props) {
+	const [ props, rest ] = splitProps(allProps, [ "class", "getAltitude", "date" ]);
+
 	const { settings } = useSettings();
 	const buildPath = () => createPathBuilder(props.getAltitude);
 
@@ -28,8 +33,9 @@ export function GraphPath(props: Props) {
 
 	return (
 		<path
-			class={styles.graph}
+			class={classnames(styles.graph, props.class)}
 			d={path()}
+			{...rest}
 		/>
 	);
 }
