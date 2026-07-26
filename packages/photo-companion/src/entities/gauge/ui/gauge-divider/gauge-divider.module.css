@@ -1,0 +1,5 @@
+.divider {
+	opacity: 0.5;
+	stroke: var(--gauge-divider-color, var(--color-surface-1));
+	stroke-width: var(--gauge-divider-width, 0.5);
+}

@@ -13,16 +13,3 @@
 		text-anchor: middle;
 	}
 }
-
-.progress-background {
-	fill: none;
-	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
-	opacity: 0.5;
-}
-
-.progress {
-	fill: var(--gauge-color, hsl(195deg 41% 58%));;
-	stroke: var(--gauge-color, hsl(195deg 41% 58%));
-	filter: drop-shadow(0 0 2px var(--gauge-color, hsl(195deg 41% 58% / 50%)));
-	stroke-width: 0;
-}
