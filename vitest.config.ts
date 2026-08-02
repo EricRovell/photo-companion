@@ -6,9 +6,27 @@ export default defineConfig({
 			provider: "v8",
 			reporter: [ "json", "html" ]
 		},
-		environmentMatchGlobs: [
-			[ "**/test/**", "node" ],
-			[ "**/versioned-local-storage/test/*.test.ts", "happy-dom" ]
+		projects: [
+			{
+				test: {
+					environment: "node",
+					exclude: [
+						"**/node_modules/**",
+						"packages/photo-companion/**",
+						"packages/versioned-local-storage/**"
+					],
+					include: [ "packages/**/test/**/*.test.ts" ],
+					name: "unit"
+				}
+			},
+			{
+				test: {
+					environment: "happy-dom",
+					include: [ "packages/versioned-local-storage/test/**/*.test.ts" ],
+					name: "versioned-local-storage"
+				}
+			},
+			"packages/photo-companion/vitest.config.ts"
 		]
 	}
 });

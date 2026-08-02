@@ -3,6 +3,7 @@
 ## 2.30.4
 
 - Fixed moon rotation angle.
+- Do not use datetime query by default, so the PWA install won't use stale query parameter.
 
 ## 2.30.3
 
