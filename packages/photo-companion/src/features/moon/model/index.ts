@@ -1,7 +1,8 @@
-import { getMoonIllumination, getMoonPhases, getMoonPosition, getMoonTimes } from "moon-sun-calc";
+import { getMoonIllumination, getMoonPhases, getMoonPosition, getMoonTimes, getMoonZenithAngle } from "moon-sun-calc";
 import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 
+import { getMoonRotation, normalizeAngleDegrees } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 
@@ -13,6 +14,7 @@ export function createMoonServiceState() {
 	const phases = createMemo(() => getMoonPhases(getDatetime()));
 	const position = createMemo(() => getMoonPosition(getDatetime(), settings.latitude, settings.longitude, true));
 	const	times = createMemo(() => getMoonTimes(getDatetime(), settings.latitude, settings.longitude));
+	const zenithAngle = createMemo(() => getMoonZenithAngle(illumination().angle, position().parallacticAngle));
 
 	return {
 		altitude: () => position().altitude,
@@ -28,8 +30,8 @@ export function createMoonServiceState() {
 		phaseName: () => illumination().phase.id,
 		phases,
 		phaseValue: () => illumination().phaseValue,
-		rotation: () => -(illumination().angle - position().parallacticAngle) / 4,
+		rotation: () => getMoonRotation(zenithAngle(), illumination().angle < 0),
 		waxing: () => illumination().angle < 0,
-		zenith: () => illumination().angle - position().parallacticAngle
+		zenith: () => normalizeAngleDegrees(zenithAngle())
 	};
 }

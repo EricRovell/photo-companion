@@ -175,6 +175,14 @@ interface MoonPosition {
 
 <details>
 	<summary>
+		<code>getMoonZenithAngle(illuminationAngle: number, parallacticAngle: number): number</code>
+	</summary>
+
+Calculates the Moon's bright-limb angle relative to the observer's zenith. Both inputs must use the same angular unit; the result uses that unit too.
+</details>
+
+<details>
+	<summary>
 		<code>getMoonTimes(dateValue: DateLike, latitude: number, longitude: number, inUTC = false): MoonTimes</code>
 	</summary>
 
