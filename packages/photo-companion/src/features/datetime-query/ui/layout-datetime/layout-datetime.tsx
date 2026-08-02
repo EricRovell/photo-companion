@@ -18,6 +18,10 @@ export function LayoutDatetime(props: ParentProps) {
 		setDatetimeQuery(parseDateTimeString(input));
 	};
 
+	const handleDatetimeReset = () => {
+		setDatetimeQuery();
+	};
+
 	return (
 		<>
 			{props.children}
@@ -30,6 +34,7 @@ export function LayoutDatetime(props: ParentProps) {
 					PREVIOUS_DAY: t().LABEL.PREVIOUS_DAY
 				}}
 				onDatetimeChange={handleDatetimeChange}
+				onReset={handleDatetimeReset}
 				value={value()}
 			/>
 		</>

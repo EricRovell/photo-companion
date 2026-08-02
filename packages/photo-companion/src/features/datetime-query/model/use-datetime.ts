@@ -1,15 +1,16 @@
 import { useSearchParams } from "@solidjs/router";
-import { createEffect, createMemo } from "solid-js";
+import { createMemo } from "solid-js";
 import { isNonEmptyString, isNullable } from "utils/validators";
 
 import { createQueryDate, parseQueryDate } from "~/shared/lib/query-date";
 
 export function useDatetime() {
 	const [ searchParams, setSearchParams ] = useSearchParams<{ datetime: string }>();
+	const initialDatetimeQuery = createQueryDate();
 
 	const getDatetimeQuery = createMemo(() => {
 		if (isNullable(searchParams.datetime)) {
-			return createQueryDate();
+			return initialDatetimeQuery;
 		}
 
 		return searchParams.datetime;
@@ -19,18 +20,17 @@ export function useDatetime() {
 	const getTimestamp = () => getDatetime().getTime();
 
 	const setDatetimeQuery = (input?: DateLike | string): void => {
+		if (isNullable(input)) {
+			setSearchParams({ datetime: undefined });
+			return;
+		}
+
 		const datetime = isNonEmptyString(input)
 			? input
 			: createQueryDate(input);
 
 		setSearchParams({ datetime });
 	};
-
-	createEffect(() => {
-		if (isNullable(searchParams.datetime)) {
-			setDatetimeQuery();
-		}
-	});
 
 	return {
 		getDatetime,

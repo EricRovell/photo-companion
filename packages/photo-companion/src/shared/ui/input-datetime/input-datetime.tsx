@@ -18,6 +18,7 @@ export interface InputDatetimeProps extends JSX.InputHTMLAttributes<HTMLInputEle
 		PREVIOUS_DAY: string;
 	};
 	onDatetimeChange?: (value: string) => void;
+	onReset?: () => void;
 }
 
 export function getDatetimeString(date = new Date()): string {
@@ -31,12 +32,18 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 		"children",
 		"labels",
 		"onChange",
-		"onDatetimeChange"
+		"onDatetimeChange",
+		"onReset"
 	]);
 
 	let inputRef: Undefinable<HTMLInputElement>;
 
 	const handleReset = () => {
+		if (props.onReset) {
+			props.onReset();
+			return;
+		}
+
 		props.onDatetimeChange?.(getDatetimeString());
 	};
 
