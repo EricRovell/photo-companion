@@ -1,0 +1,5 @@
+.zero-axis {
+	stroke: var(--color-surface-3);
+	stroke-width: 2px;
+	opacity: 0.5;
+}

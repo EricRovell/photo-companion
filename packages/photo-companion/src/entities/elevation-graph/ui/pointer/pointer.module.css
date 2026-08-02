@@ -1,0 +1,11 @@
+.pointer {
+	fill: var(--elevation-graph-pointer-color, gold);
+	transition:
+		cx 0.125s ease-in-out,
+		cy 0.125s ease-in-out,
+		filter 0.5s linear;
+
+	&[data-above] {
+		filter: drop-shadow(0 0 10px var(--elevation-graph-pointer-color, gold));
+	}
+}

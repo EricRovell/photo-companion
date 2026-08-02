@@ -1,0 +1,82 @@
+import { For, Show } from "solid-js";
+import { incrementDateByDay } from "utils/date";
+
+import type { EventGroupName } from "types";
+
+import { Timeline, TimelineGroup } from "~/entities/timeline";
+import { TimelineEvent, TimelineEventEmpty } from "~/entities/timeline-event";
+import { CityLightsProvider } from "~/features/city-lights";
+import { useDatetime } from "~/features/datetime-query";
+import { useSettings } from "~/features/settings";
+import { NoEvents } from "~/features/timeline";
+import { useTranslation } from "~/features/translation";
+
+import { useDisabledTimeline, useTimelineEvents } from "./model";
+
+import type { EventsProps } from "./types";
+
+import styles from "./timeline.module.css";
+
+const createEventLink = (type: EventGroupName) => {
+	if (type === "BRIDGE") {
+		return "/bridges";
+	}
+
+	return `/${type.toLowerCase()}`;
+};
+
+function Events(props: EventsProps) {
+	const { format } = useTranslation();
+
+	return (
+		<TimelineGroup>
+			<For each={props.timeline}>
+				{({ date, items }) => (
+					<Timeline date={format().date(date)}>
+						<For each={items} fallback={<TimelineEventEmpty />}>
+							{event => <TimelineEvent event={event} href={createEventLink(event.type)} />}
+						</For>
+					</Timeline>
+				)}
+			</For>
+		</TimelineGroup>
+	);
+}
+
+function EventTimeline() {
+	const { getDatetime } = useDatetime();
+	const { settings } = useSettings();
+	const { getTimeline } = useTimelineEvents();
+	const disabled = useDisabledTimeline();
+
+	const timeline = () => {
+		const tomorrow = incrementDateByDay(getDatetime(), 1);
+
+		return [
+			{
+				date: getDatetime(),
+				items: getTimeline(getDatetime(), settings.latitude, settings.longitude)
+			},
+			{
+				date: tomorrow,
+				items: getTimeline(tomorrow, settings.latitude, settings.longitude)
+			}
+		];
+	};
+
+	return (
+		<div class={styles.page}>
+			<Show fallback={<NoEvents />} when={disabled}>
+				<Events timeline={timeline()} />
+			</Show>
+		</div>
+	);
+}
+
+export const PageTimeline = () => (
+	<CityLightsProvider>
+		<EventTimeline />
+	</CityLightsProvider>
+);
+
+export default PageTimeline;

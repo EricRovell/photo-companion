@@ -1,0 +1,7 @@
+.graph {
+	stroke-width: var(--elevation-graph-path-width, 2px);
+	fill: none;
+	opacity: var(--elevation-graph-path-opacity, 1);
+	stroke: var(--elevation-graph-path-color, gold);
+	filter: drop-shadow(0 0 15px var(--elevation-graph-path-color, gold));
+}

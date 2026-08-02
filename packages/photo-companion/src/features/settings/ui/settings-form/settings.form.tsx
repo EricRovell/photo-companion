@@ -1,0 +1,73 @@
+import { SETTINGS_CITY_PRESETS } from "~/features/settings";
+import { useTranslation } from "~/features/translation";
+import { Button, Fieldset, Form, InputRadio } from "~/shared/ui";
+
+import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "../../consts";
+import { useSettingsForm } from "../../model";
+import { InputEventFilters } from "../input-event-filters/event-filters";
+import { InputGeolocation } from "../input-geolocation/geolocation";
+import { InputTabsSelect } from "../input-tabs-select/input-tabs-select";
+
+import styles from "./settings-form.module.css";
+
+export function SettingsForm() {
+	const { t } = useTranslation();
+	const { handleFormChange, handleReset, handleSubmit, settingsStore } = useSettingsForm();
+
+	return (
+		<div class={styles.page}>
+			<h2 class={styles.title}>
+				{t().TITLE.SETTINGS}
+			</h2>
+			<Form onChange={handleFormChange}>
+				<Fieldset legend={t().LABEL.LANGUAGE}>
+					<InputRadio
+						name={FORM_INPUT_NAME.LANGUAGE}
+						options={LANGUAGE_OPTIONS}
+						value={settingsStore.language}
+					/>
+				</Fieldset>
+				<Fieldset legend={t().LABEL.CITY}>
+					<InputRadio
+						name={FORM_INPUT_NAME.CITY}
+						options={CITY_OPTIONS(t())}
+						value={settingsStore.city}
+					/>
+				</Fieldset>
+				<Fieldset legend={t().LABEL.GEOLOCATION}>
+					<InputGeolocation />
+				</Fieldset>
+				<Fieldset legend={t().LABEL.TABS}>
+					<aside>
+						{t().MESSAGE.TAB_LIMITS}
+					</aside>
+					<InputTabsSelect
+						tabs={SETTINGS_CITY_PRESETS[settingsStore.city].tabs}
+					/>
+				</Fieldset>
+				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>
+					<InputEventFilters />
+				</Fieldset>
+				<Fieldset classes={{
+					content: styles["submit-content"],
+					fieldset: styles.submit
+				}}>
+					<Button
+						appearance="outline"
+						color="success"
+						onClick={handleSubmit}
+						variant="success"
+					>
+						{t().LABEL.SAVE}
+					</Button>
+					<Button
+						appearance="outline"
+						onClick={handleReset}
+					>
+						{t().LABEL.RESET}
+					</Button>
+				</Fieldset>
+			</Form>
+		</div>
+	);
+}

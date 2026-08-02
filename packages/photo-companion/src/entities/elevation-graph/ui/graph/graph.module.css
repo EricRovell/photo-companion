@@ -1,0 +1,9 @@
+.graph {
+	/* Flip the vertical axis in <g> to emulate cartesian. */
+	transform: scaleY(-1);
+	width: 100%;
+
+	& text {
+		transform: scaleY(-1);
+	}
+}
