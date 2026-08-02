@@ -2,7 +2,8 @@ export {
 	getMoonIllumination,
 	getMoonPhases,
 	getMoonPosition,
-	getMoonTimes
+	getMoonTimes,
+	getMoonZenithAngle
 } from "./moon";
 
 export type { MoonCoordinates } from "./moon/types";

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getMoonIllumination, getMoonPosition, getMoonTimes } from "../src";
+import { getMoonIllumination, getMoonPosition, getMoonTimes, getMoonZenithAngle } from "../src";
 import { DATE, LAT, LNG } from "./fixtures";
 
 describe("Moon", () => {
@@ -25,5 +25,9 @@ describe("Moon", () => {
 		expect(times.set).not.toBeNull();
 		expect(times.rise?.toUTCString()).toBe("Mon, 04 Mar 2013 23:54:29 GMT");
 		expect(times.set?.toUTCString()).toBe("Mon, 04 Mar 2013 07:47:58 GMT");
+	});
+	it("getMoonZenithAngle returns the bright-limb angle relative to the observer's zenith", () => {
+		expect(getMoonZenithAngle(1.5, 0.25)).toBe(1.25);
+		expect(getMoonZenithAngle(90, -10)).toBe(100);
 	});
 });

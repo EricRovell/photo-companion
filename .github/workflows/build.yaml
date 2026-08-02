@@ -18,10 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: install pnpm
-        run: npm i pnpm -g
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
 
       - name: install dependencies
         run: pnpm i -r
@@ -33,7 +38,7 @@ jobs:
         run: pnpm run test:unit:ci
 
       - name: test artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage
           path: ./coverage
@@ -43,7 +48,7 @@ jobs:
         run: pnpm run build
 
       - name: application build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: photo-companion
           path: ./packages/photo-companion/dist
