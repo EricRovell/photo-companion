@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.30.5
+
+- Fixed moon rotation transition to be cyclic, due phase value.
+
 ## 2.30.4
 
 - Fixed moon rotation angle.
