@@ -8,9 +8,9 @@
 	"files.associations": {
 		"*.mdx": "markdown"
 	},
-	"eslint.experimental.useFlatConfig": true,
+	"eslint.useFlatConfig": true,
 	"eslint.workingDirectories": [
-		"./packages/*"
+		"."
 	],
 	"css.lint.validProperties": [
 		"cx",

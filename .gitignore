@@ -5,3 +5,4 @@ node_modules
 *.tsbuildinfo
 vite.config.ts.timestamp*
 stats.html
+.pnpm-store

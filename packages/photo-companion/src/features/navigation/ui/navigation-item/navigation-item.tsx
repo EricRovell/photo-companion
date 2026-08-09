@@ -3,8 +3,9 @@ import { Dynamic } from "solid-js/web";
 
 import type { Component } from "solid-js";
 
-import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
+
+import { LinkQuery } from "../link-query";
 
 import type { ROUTE_LABEL } from "../../consts";
 import type { IconProps } from "~/shared/ui";

@@ -1,9 +1,10 @@
 import { createEffect, on } from "solid-js";
 import { toast } from "solid-sonner";
 
-import { useServiceWorker } from "~/features/service-worker";
 import { useTranslation } from "~/features/translation";
 import { Button } from "~/shared/ui";
+
+import { useServiceWorker } from "../../model";
 
 import styles from "./toast-update.module.css";
 
