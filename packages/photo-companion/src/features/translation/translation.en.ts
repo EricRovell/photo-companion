@@ -46,6 +46,12 @@ export const t = {
 		OTHER: "Other",
 		SAINT_PETERSBURG: "Saint-Petersburg, Russia"
 	},
+	EARTHSHINE_RATING: {
+		EXCELLENT: "Excellent",
+		FAIR: "Fair",
+		GOOD: "Good",
+		LOW: "Low"
+	},
 	ERRORS: {
 		DATE: "Invalid date",
 		GEOLOCATION_PERMISSION_DENIED: "No permission granted",
@@ -67,6 +73,7 @@ export const t = {
 		ALWAYS: "Always",
 		ASK_DEVICE_GEOLOCATION: "Ask device for geolocation",
 		AZIMUTH: "Azimuth",
+		BEST_WINDOW: "Best viewing window",
 		BRIDGE: "Bridge",
 		BRIDGE_CLOSED: "Lifted down",
 		BRIDGE_CLOSING: "Lifting down",
@@ -111,7 +118,9 @@ export const t = {
 		NOW: "Now",
 		OBJECT_LEVEL: "Object level, m",
 		PARALLACTIC_ANGLE: "Parallactic angle",
+		PEAK_TIME: "Best time",
 		PREVIOUS_DAY: "Previous day",
+		PROBABILITY: "Probability",
 		RESET: "Reset",
 		SAVE: "Save",
 		SECONDS: "Seconds",
@@ -143,6 +152,8 @@ export const t = {
 		BRIDGE_WILL_CLOSE_WITHIN: "The bridge will be lifted down within",
 		BRIDGE_WILL_OPEN_WITHIN: "The bridge will be lifted up within",
 		CHECK_DATE_INPUT: "Please, check out the date-time input and choose it right",
+		EARTHSHINE_NO_WINDOW: "No suitable astronomical earthshine window on this date.",
+		EARTHSHINE_WEATHER_NOTE: "Astronomical estimate only. Clouds, haze and light pollution can reduce visibility.",
 		EVENTS_ARE_DISABLED: "All events are disabled",
 		NAVIGATION_ENDS_AT: "Navigation ends in",
 		NAVIGATION_STARTS_AT: "Navigation starts after",
@@ -230,6 +241,7 @@ export const t = {
 		BRIDGES_FULL: "Saint-Petersburg Drawbridges",
 		BRIDGES_SCHEDULE_SPB: "Saint-Petersburg drawbridges schedule",
 		CHANGELOG: "Changelog",
+		EARTHSHINE: "Earthshine Probability",
 		ELEVATION_MOON: "The Moon Elevation",
 		ELEVATION_SUN: "The Sun Elevation",
 		ERROR: "Error",
