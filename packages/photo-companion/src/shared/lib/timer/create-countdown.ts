@@ -1,4 +1,5 @@
 import { type Accessor, createEffect, createSignal, on } from "solid-js";
+import { isNullable } from "utils/validators";
 
 import { useDocumentVisibility } from "../../primitives/use-document-visibility";
 import { createTimeoutLoop } from "./create-timeout-loop";
@@ -17,6 +18,8 @@ const getCurrentTimestamp = () => Date.now();
 export function createCountdown({ getTimestampEnd, getTimestampStart = getCurrentTimestamp, step = 1000 }: Options) {
 	const [ getTime, setTime ] = createSignal(0);
 	const getVisibility = useDocumentVisibility();
+	let previousDuration: Nullish<number> = null;
+	let wasVisible = getVisibility();
 
 	const handleIncrement = () => setTime(value => value - step);
 
@@ -27,9 +30,22 @@ export function createCountdown({ getTimestampEnd, getTimestampStart = getCurren
 	 * and when page "wakens up".
 	 */
 	createEffect(() => {
-		if (getVisibility()) {
-			setTime(getTimestampEnd() - getTimestampStart());
+		const duration = getTimestampEnd() - getTimestampStart();
+		const visible = getVisibility();
+
+		if (visible) {
+			setTime(time => {
+				if (isNullable(previousDuration) || !wasVisible) {
+					return duration;
+				}
+
+				// calc difference
+				return time + duration - previousDuration;
+			});
 		}
+
+		previousDuration = duration;
+		wasVisible = visible;
 	});
 
 	createEffect(on(getTime, time => {
