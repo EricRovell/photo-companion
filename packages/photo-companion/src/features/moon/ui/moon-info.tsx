@@ -1,8 +1,9 @@
 import { Show } from "solid-js";
 
-import { useMoonService } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
+
+import { useMoonService } from "../model";
 
 interface Props {
 	title?: string;

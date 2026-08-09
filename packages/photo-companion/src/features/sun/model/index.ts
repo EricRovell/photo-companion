@@ -1,1 +1,1 @@
-export { SunProvider, useSunService} from "./sun-service.context";
+export * from "./sun-service.context";

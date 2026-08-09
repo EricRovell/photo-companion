@@ -1,8 +1,9 @@
 import { GaugeTime } from "~/entities/gauge";
 import { Sun } from "~/entities/sun";
 import { useDatetime } from "~/features/datetime-query";
-import { useSunService } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
+
+import { useSunService } from "../model";
 
 const SUN_SIZE = 30;
 

@@ -1,8 +1,9 @@
-import { useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createCountdown } from "~/shared/lib/timer";
 import { PropertyList } from "~/shared/ui";
+
+import { useCityLights } from "../model";
 
 /**
  * City lights countdown used as card entry.

@@ -15,8 +15,9 @@
 		"test:unit:ci": "vitest run --coverage",
 		"lint": "pnpm lint:code && pnpm lint:types && pnpm lint:styles",
 		"lint:code": "eslint",
+		"lint:code:fix": "eslint --fix",
 		"lint:styles": "npx stylelint packages/**/*.css",
-		"lint:types": "pnpm --parallel run lint:types",
+		"lint:types": "pnpm --parallel run lint:types && tsc -p tsconfig.eslint.json",
 		"eslint:inspector": "eslint --inspect-config"
 	},
 	"keywords": [

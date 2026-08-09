@@ -15,7 +15,10 @@ export default defineConfig({
 						"packages/photo-companion/**",
 						"packages/versioned-local-storage/**"
 					],
-					include: [ "packages/**/test/**/*.test.ts" ],
+					include: [
+						"packages/**/test/**/*.test.ts",
+						"tooling/**/*.test.js"
+					],
 					name: "unit"
 				}
 			},

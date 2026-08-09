@@ -1,8 +1,9 @@
 import { Show } from "solid-js";
 
-import { useSunService } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
+
+import { useSunService } from "../model";
 
 export function SunInfo(props: { title?: string }) {
 	const { format, t } = useTranslation();

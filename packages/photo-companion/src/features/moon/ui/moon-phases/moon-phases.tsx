@@ -1,11 +1,12 @@
 import { For } from "solid-js";
 
 import { Moon } from "~/entities/moon";
-import { useMoonService } from "~/features/moon";
 import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
 import { Time } from "~/shared/ui";
+
+import { useMoonService } from "../../model";
 
 import styles from "./moon-phases.module.css";
 

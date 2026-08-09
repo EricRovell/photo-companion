@@ -6,6 +6,8 @@ import { getMoonRotation, normalizeAngleDegrees } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 
+export * from "./moon.context";
+
 export function createMoonServiceState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();

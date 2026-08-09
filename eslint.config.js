@@ -5,6 +5,8 @@ import tseslint from "typescript-eslint";
 import solid from "eslint-plugin-solid";
 import perfectionist from "eslint-plugin-perfectionist";
 
+import relativeImportsWithinSlices from "./tooling/eslint/fsd-relative-imports.js";
+
 export default tseslint.config(
 	{
 		rules: eslint.configs.recommended.rules
@@ -13,6 +15,7 @@ export default tseslint.config(
 	...tseslint.configs.stylisticTypeChecked,
 	{
 		ignores: [
+			"**/.vercel/**",
 			"**/dist/*",
 			"**/node_modules/*",
 			"**/bundle-dts.js",
@@ -35,6 +38,7 @@ export default tseslint.config(
 				},
 				project: [
 					"./tsconfig.base.json",
+					"./tsconfig.eslint.json",
 					"./tsconfig.node.json",
 					"./packages/**/tsconfig.json",
 					"./packages/**/tsconfig.test.json",
@@ -141,5 +145,6 @@ export default tseslint.config(
 			"no-var": "error",
 			"curly": "error"
 		}
-	}
+	},
+	...relativeImportsWithinSlices
 );

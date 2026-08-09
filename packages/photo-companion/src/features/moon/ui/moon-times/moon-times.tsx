@@ -3,8 +3,9 @@ import { classnames } from "utils";
 import { GaugeTime } from "~/entities/gauge";
 import { Moon } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
-import { useMoonService } from "~/features/moon";
 import { useTranslation } from "~/features/translation";
+
+import { useMoonService } from "../../model";
 
 import styles from "./moon-times.module.css";
 
