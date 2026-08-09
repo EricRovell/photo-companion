@@ -5,6 +5,8 @@ import { isNullable } from "utils/validators";
 
 import type { JSX } from "solid-js";
 
+import { createQueryDate, parseDatetimeLocal } from "~/shared/lib/query-date";
+
 import { Button } from "../button/button";
 import { IconChevronLeft, IconChevronRight, IconTimeline } from "../icons";
 
@@ -22,8 +24,7 @@ export interface InputDatetimeProps extends JSX.InputHTMLAttributes<HTMLInputEle
 }
 
 export function getDatetimeString(date = new Date()): string {
-	const timezoneOffset = date.getTimezoneOffset() * 60000;
-	return (new Date(date.getTime() - timezoneOffset)).toISOString().slice(0, 16);
+	return createQueryDate(date);
 }
 
 export function InputDatetime(allProps: InputDatetimeProps) {
@@ -48,13 +49,17 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 	};
 
 	const handleIncrement = (event: Event) => {
-		const target = event.target as HTMLButtonElement;
+		const target = event.currentTarget as HTMLButtonElement;
 		const step = Number(target.dataset.step);
 		const value = inputRef?.value;
 
 		if (!isNullable(value)) {
-			const nextValue = getDatetimeString(incrementDateByDay(value, step));
-			props.onDatetimeChange?.(nextValue);
+			const date = parseDatetimeLocal(value);
+
+			if (!isNullable(date)) {
+				const nextValue = getDatetimeString(incrementDateByDay(date, step));
+				props.onDatetimeChange?.(nextValue);
+			}
 		}
 	};
 
@@ -82,6 +87,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 						class={styles.input}
 						onChange={handleChange}
 						ref={inputRef}
+						step={1}
 						type="datetime-local"
 						{...rest}
 					/>
