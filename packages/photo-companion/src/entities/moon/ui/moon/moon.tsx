@@ -1,8 +1,8 @@
 import { type JSX, mergeProps, splitProps } from "solid-js";
 
-import { createTweened } from "~/shared/primitives";
+import { circular, createTweened } from "~/shared/primitives";
 
-import { getNormalizedAngleRad, getNormalizedPhase } from "../../lib";
+import { getNormalizedAngleRad, getNormalizedPhase, wrapPhase } from "../../lib";
 
 import styles from "./moon.module.css";
 
@@ -38,7 +38,11 @@ export function createCircle(commonProps: CircleCommonProps) {
 export function Moon(allProps: MoonProps) {
 	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
 	const [ props, rest ] = splitProps(mergedProps, [ "size", "precision", "phase", "rotation" ]);
-	const phase = createTweened(() => props.phase);
+
+	const phase = createTweened(() => props.phase, {
+		interpolate: circular(1),
+		map: wrapPhase
+	});
 
 	const viewBox = () => `0 0 ${props.size} ${props.size}`;
 	const center = () => props.size / 2;
