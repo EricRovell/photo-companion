@@ -1,4 +1,11 @@
 /**
+ * Restricts a number to the inclusive [ min, max ] range.
+ */
+export function clamp(value: number, min: number, max: number): number {
+	return Math.min(Math.max(value, min), max);
+}
+
+/**
  * Round the number up to the desired precision.
  */
 export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {

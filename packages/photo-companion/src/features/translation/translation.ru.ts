@@ -46,6 +46,12 @@ export const t = {
 		OTHER: "Другой",
 		SAINT_PETERSBURG: "г. Санкт-Петербург"
 	},
+	EARTHSHINE_RATING: {
+		EXCELLENT: "Отличная",
+		FAIR: "Удовлетворительная",
+		GOOD: "Хорошая",
+		LOW: "Низкая"
+	},
 	ERRORS: {
 		DATE: "Неверное значение даты",
 		GEOLOCATION_PERMISSION_DENIED: "Необходимо выдать разрешение",
@@ -67,6 +73,7 @@ export const t = {
 		ALWAYS: "Всегда",
 		ASK_DEVICE_GEOLOCATION: "Запросить данные с устройства",
 		AZIMUTH: "Азимут",
+		BEST_WINDOW: "Лучшее время наблюдения",
 		BRIDGE: "мост",
 		BRIDGE_CLOSED: "Сведён",
 		BRIDGE_CLOSING: "Сведение моста",
@@ -111,7 +118,9 @@ export const t = {
 		NOW: "Сейчас",
 		OBJECT_LEVEL: "Уровень объекта, м",
 		PARALLACTIC_ANGLE: "Параллактический угол",
+		PEAK_TIME: "Лучшее время",
 		PREVIOUS_DAY: "Предыдущий день",
+		PROBABILITY: "Возможность",
 		RESET: "Сбросить",
 		SAVE: "Сохранить",
 		SECONDS: "Секунды",
@@ -143,6 +152,8 @@ export const t = {
 		BRIDGE_WILL_CLOSE_WITHIN: "Мост будет сведён через",
 		BRIDGE_WILL_OPEN_WITHIN: "Мост будет разведён через",
 		CHECK_DATE_INPUT: "Проверьте поле ввода даты у нижнего края экрана, выберите верное значение",
+		EARTHSHINE_NO_WINDOW: "В этот день нет подходящего астрономического окна для пепельного света.",
+		EARTHSHINE_WEATHER_NOTE: "Только астрономическая оценка. Облака, дымка и городская засветка могут ухудшить видимость.",
 		EVENTS_ARE_DISABLED: "Все типы событий отключены",
 		NAVIGATION_ENDS_AT: "До окончания навигации",
 		NAVIGATION_STARTS_AT: "До начала навигации",
@@ -230,6 +241,7 @@ export const t = {
 		BRIDGES_FULL: "Разводные мосты г.Санкт-Петербург",
 		BRIDGES_SCHEDULE_SPB: "Расписание разведения мостов г. Санкт-Петербург",
 		CHANGELOG: "История изменений",
+		EARTHSHINE: "Возможность увидеть пепельный свет",
 		ELEVATION_MOON: "Высота Луны",
 		ELEVATION_SUN: "Высота Солнца",
 		ERROR: "Произошла ошибка",

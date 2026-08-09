@@ -1,4 +1,4 @@
-import { MoonAltitude, MoonInfo, MoonPhases, MoonProvider, MoonTimeline, MoonTimes } from "~/features/moon";
+import { Earthshine, MoonAltitude, MoonInfo, MoonPhases, MoonProvider, MoonTimeline, MoonTimes } from "~/features/moon";
 
 import styles from "./moon.module.css";
 
@@ -11,6 +11,7 @@ export function PageMoon() {
 				<MoonInfo />
 				<MoonTimeline />
 				<MoonPhases />
+				<Earthshine />
 			</div>
 		</MoonProvider>
 	);

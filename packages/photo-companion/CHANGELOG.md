@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.31.0
+
+- New moon widget: earthshine probability.
+
 ## 2.30.5
 
 - Fixed moon rotation transition to be cyclic, due phase value.

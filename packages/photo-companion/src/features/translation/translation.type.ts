@@ -44,6 +44,12 @@ export interface Translation {
 		OTHER: string;
 		SAINT_PETERSBURG: string;
 	};
+	EARTHSHINE_RATING: {
+		EXCELLENT: string;
+		FAIR: string;
+		GOOD: string;
+		LOW: string;
+	};
 	ERRORS: {
 		DATE: string;
 		GEOLOCATION_PERMISSION_DENIED: string;
@@ -65,6 +71,7 @@ export interface Translation {
 		ALWAYS: string;
 		ASK_DEVICE_GEOLOCATION: string;
 		AZIMUTH: string;
+		BEST_WINDOW: string;
 		BRIDGE: string;
 		BRIDGE_CLOSED: string;
 		BRIDGE_CLOSING: string;
@@ -109,7 +116,9 @@ export interface Translation {
 		NOW: string;
 		OBJECT_LEVEL: string;
 		PARALLACTIC_ANGLE: string;
+		PEAK_TIME: string;
 		PREVIOUS_DAY: string;
+		PROBABILITY: string;
 		RESET: string;
 		SAVE: string;
 		SECONDS: string;
@@ -141,6 +150,8 @@ export interface Translation {
 		BRIDGE_WILL_CLOSE_WITHIN: string;
 		BRIDGE_WILL_OPEN_WITHIN: string;
 		CHECK_DATE_INPUT: string;
+		EARTHSHINE_NO_WINDOW: string;
+		EARTHSHINE_WEATHER_NOTE: string;
 		EVENTS_ARE_DISABLED: string;
 		NAVIGATION_ENDS_AT: string;
 		NAVIGATION_STARTS_AT: string;
@@ -228,6 +239,7 @@ export interface Translation {
 		BRIDGES_FULL: string;
 		BRIDGES_SCHEDULE_SPB: string;
 		CHANGELOG: string;
+		EARTHSHINE: string;
 		ELEVATION_MOON: string;
 		ELEVATION_SUN: string;
 		ERROR: string;

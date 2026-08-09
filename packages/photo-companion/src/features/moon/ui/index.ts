@@ -1,3 +1,4 @@
+export { Earthshine } from "./earthshine/earthshine";
 export { MoonAltitude } from "./moon-altitude/moon-altitude";
 export { MoonInfo } from "./moon-info";
 export { MoonPhases } from "./moon-phases/moon-phases";

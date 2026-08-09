@@ -1,8 +1,22 @@
 import { describe, expect, it } from "vitest";
 
-import { round, scale } from "../src/math";
+import { clamp, round, scale } from "../src/math";
 
 describe("Project's core math utilities", () => {
+	describe("clamp", () => {
+		it("returns values within the range unchanged", () => {
+			expect(clamp(5, 0, 10)).toBe(5);
+		});
+		it("restricts values to the closest range boundary", () => {
+			expect(clamp(-1, 0, 10)).toBe(0);
+			expect(clamp(11, 0, 10)).toBe(10);
+		});
+		it("propagates NaN", () => {
+			expect(clamp(NaN, 0, 10)).toBeNaN();
+			expect(clamp(5, NaN, 10)).toBeNaN();
+			expect(clamp(5, 0, NaN)).toBeNaN();
+		});
+	});
 	describe("round", () => {
 		it("Returns NaN if any argument is NaN", () => {
 			expect(round(1.12345, 3, NaN)).toBeNaN();
