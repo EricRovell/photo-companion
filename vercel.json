@@ -1,6 +1,5 @@
 {
 	"buildCommand": "npm i pnpm -g && pnpm build",
-	"cleanUrls": true,
 	"devCommand": "pnpm build && pnpm dev",
 	"framework": "svelte",
 	"headers": [
@@ -26,7 +25,7 @@
 		},
 		{
 			"source": "/(.*)",
-			"destination": "/"
+			"destination": "/index.html"
 		}
 	]
 }
