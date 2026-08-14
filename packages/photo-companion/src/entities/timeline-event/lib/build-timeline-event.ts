@@ -1,5 +1,3 @@
-import type { TimelineEvent } from "types";
-
 import { useTranslation } from "~/features/translation";
 
 import { bridgeEventComponent } from "./timeline-event-bridge";
@@ -7,6 +5,8 @@ import { lightsEventComponent } from "./timeline-event-lights";
 import { moonEventComponent } from "./timeline-event-moon";
 import { sunEventComponent } from "./timeline-event-sun";
 import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "./validators";
+
+import type { TimelineEvent } from "../types";
 
 export function buildEventComponent(event: TimelineEvent) {
 	const { t } = useTranslation();

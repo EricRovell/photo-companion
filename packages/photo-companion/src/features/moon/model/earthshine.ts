@@ -50,13 +50,14 @@ export function getEarthshineProbability(
 	for (let timestamp = startOfDay; timestamp < endOfDay; timestamp += SAMPLE_INTERVAL) {
 		const time = new Date(timestamp);
 		const illumination = getMoonIllumination(time);
-		const moon = getMoonPosition(time, latitude, longitude, true);
-		const sun = getSunPosition(time, latitude, longitude, true);
+		const observer = { latitude, longitude };
+		const moon = getMoonPosition({ instant: time, observer });
+		const sun = getSunPosition({ instant: time, observer });
 
 		if (
 			!isWithinRange(illumination.fraction, MIN_ILLUMINATION, MAX_ILLUMINATION) ||
-			moon.altitude < MIN_MOON_ALTITUDE ||
-			sun.altitude > MAX_SUN_ALTITUDE
+			moon.apparentAltitude < MIN_MOON_ALTITUDE ||
+			sun.apparentAltitude > MAX_SUN_ALTITUDE
 		) {
 			currentWindowStart = null;
 			continue;
@@ -65,18 +66,18 @@ export function getEarthshineProbability(
 		currentWindowStart ??= timestamp;
 
 		const phaseScore = clamp(scale(illumination.fraction, MIN_ILLUMINATION, MAX_ILLUMINATION, 1, 0), 0, 1);
-		const darknessScore = clamp(scale(sun.altitude, MAX_SUN_ALTITUDE, -12, 0.2, 1), 0.2, 1);
-		const altitudeScore = clamp(scale(moon.altitude, MIN_MOON_ALTITUDE, 20, 0.2, 1), 0.2, 1);
+		const darknessScore = clamp(scale(sun.apparentAltitude, MAX_SUN_ALTITUDE, -12, 0.2, 1), 0.2, 1);
+		const altitudeScore = clamp(scale(moon.apparentAltitude, MIN_MOON_ALTITUDE, 20, 0.2, 1), 0.2, 1);
 
 		const score = Math.round(100 * (0.5 * phaseScore + 0.3 * darknessScore + 0.2 * altitudeScore));
 
 		const sample = {
-			altitude: moon.altitude,
+			altitude: moon.apparentAltitude,
 			azimuth: moon.azimuth,
 			illumination: illumination.fraction,
 			score,
 			time,
-			waxing: illumination.angle < 0
+			waxing: illumination.waxing
 		};
 
 		if (isNullable(bestSample) || sample.score > bestSample.score) {

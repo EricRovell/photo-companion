@@ -1,64 +1,77 @@
-import { calcSunCoordinates } from "../sun/coordinates";
-import { toDays, toDegrees } from "../utils";
-import { MOON_CYCLE_LIST, MOON_NAMES } from "./consts";
-import { calcMoonCoordinates } from "./coordinates";
+import { normalizeDegrees, toRadians, toTimestamp } from "../shared";
+import { getSunGeocentricCoords } from "../sun/ephemeris";
+import { moonGeocentric } from "./ephemeris";
 
-import type { MoonIllumination, MoonPhase } from "./types";
+import type { DateLike, Degree } from "../types";
+import type { MoonIllumination, MoonPhaseName } from "./types";
 
-/**
- * Calculates the illumination parameters of the Moon.
- * The output angle values are in radians by default.
- *
- * based on http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro formulas and
- * Chapter 48 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
- */
-export function getMoonIllumination(dateValue: DateLike, degrees = false): MoonIllumination {
-	if (dateValue instanceof Date) {
-		dateValue = dateValue.valueOf();
+function phaseName(value: number): MoonPhaseName {
+	if (value < 1 / 16 || value >= 15 / 16) {
+		return "NEW_MOON";
 	}
 
-	const month = new Date(dateValue).getMonth();
-
-	// distance from Earth to Sun in km
-	const sunDistance = 149598000;
-	const days = toDays(dateValue);
-	const sunCoords = calcSunCoordinates(days);
-	const moonCoords = calcMoonCoordinates(days);
-
-	const phi = Math.acos(
-		Math.sin(sunCoords.declination) * Math.sin(moonCoords.declination) +
-		Math.cos(sunCoords.declination) * Math.cos(moonCoords.declination) * Math.cos(sunCoords.rightAscension - moonCoords.rightAscension)
-	);
-
-	const inc = Math.atan2(
-		sunDistance * Math.sin(phi),
-		moonCoords.distance - sunDistance * Math.cos(phi)
-	);
-
-	const angle = Math.atan2(
-		Math.cos(sunCoords.declination) * Math.sin(sunCoords.rightAscension - moonCoords.rightAscension),
-		Math.sin(sunCoords.declination) * Math.cos(moonCoords.declination) -
-		Math.cos(sunCoords.declination) * Math.sin(moonCoords.declination) * Math.cos(sunCoords.rightAscension - moonCoords.rightAscension)
-	);
-
-	const phaseValue = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Math.PI;
-
-	let phase!: MoonPhase;
-
-	for (let index = 0; index < MOON_CYCLE_LIST.length; index++) {
-		const element = MOON_CYCLE_LIST[index];
-
-		if ((phaseValue >= element.from) && (phaseValue <= element.to) ) {
-			phase = element;
-			break;
-		}
+	if (value < 3 / 16) {
+		return "WAXING_CRESCENT";
 	}
+
+	if (value < 5 / 16) {
+		return "FIRST_QUARTER";
+	}
+
+	if (value < 7 / 16) {
+		return "WAXING_GIBBOUS";
+	}
+
+	if (value < 9 / 16) {
+		return "FULL_MOON";
+	}
+
+	if (value < 11 / 16) {
+		return "WANING_GIBBOUS";
+	}
+
+	if (value < 13 / 16) {
+		return "THIRD_QUARTER";
+	}
+
+	return "WANING_CRESCENT";
+}
+
+export function getMoonIllumination(input: DateLike): MoonIllumination {
+	const timestamp = toTimestamp(input);
+
+	const sun = getSunGeocentricCoords(timestamp);
+	const sunRightAscension = toRadians(sun.rightAscension);
+	const sunDeclination = toRadians(sun.declination);
+	const sunDistance = sun.distance;
+
+	const moon = moonGeocentric(timestamp);
+	const moonRightAscension = toRadians(moon.rightAscension);
+	const moonDeclination = toRadians(moon.declination);
+
+	const elongation = Math.acos(Math.min(1, Math.max(-1,
+		Math.sin(sunDeclination) * Math.sin(moonDeclination)
+		+ Math.cos(sunDeclination) * Math.cos(moonDeclination) * Math.cos(sunRightAscension - moonRightAscension)
+	)));
+
+	const incidence = Math.atan2(
+		sunDistance * Math.sin(elongation),
+		moon.distance - sunDistance * Math.cos(elongation)
+	);
+
+	const angle: Degree = Math.atan2(
+		Math.cos(sunDeclination) * Math.sin(sunRightAscension - moonRightAscension),
+		Math.sin(sunDeclination) * Math.cos(moonDeclination)
+			- Math.cos(sunDeclination) * Math.sin(moonDeclination) * Math.cos(sunRightAscension - moonRightAscension)
+	) * 180 / Math.PI;
+
+	const phaseValue = normalizeDegrees(moon.eclipticLongitude - sun.eclipticLongitude) / 360;
 
 	return {
-		angle: toDegrees(angle, degrees),
-		fraction: (1 + Math.cos(inc)) / 2,
-		fullMoonName: phase.id === "FULL_MOON" ? MOON_NAMES[month] : undefined,
-		phase,
-		phaseValue
+		angle,
+		fraction: (1 + Math.cos(incidence)) / 2,
+		phase: phaseName(phaseValue),
+		phaseValue,
+		waxing: phaseValue < 0.5
 	};
 }

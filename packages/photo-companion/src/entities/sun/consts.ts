@@ -1,4 +1,4 @@
-import type { SunEventName } from "types";
+import type { SunEventName } from "./types";
 
 export const SUN_COLOR: Record<SunEventName, string> = {
 	ASTRONOMICAL_DAWN: "#494582",

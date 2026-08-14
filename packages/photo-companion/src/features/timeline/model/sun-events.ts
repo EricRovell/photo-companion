@@ -1,27 +1,33 @@
-import { getSunPosition, getSunTimes } from "moon-sun-calc";
-import { objectEntries } from "utils";
-
-import type { SunEvent, SunEventName } from "types";
+import { getSunEvents as calculateSunEvents, getSunPosition } from "moon-sun-calc";
+import { getDayStart, incrementDateByDay } from "utils/date";
 
 import { useTranslation } from "~/features/translation";
 
+import type { SunEvent } from "~/entities/timeline-event/types";
+
 export const getSunEvents = (date: Date = new Date(), lat: number, lon: number): SunEvent[] => {
 	const { format } = useTranslation();
-	const data = getSunTimes(date, lat, lon);
+
+	const start = getDayStart(date);
+	const observer = { latitude: lat, longitude: lon };
+
+	const data = calculateSunEvents({
+		interval: {
+			end: incrementDateByDay(start, 1).getTime(),
+			start
+		},
+		observer
+	});
 
 	const sunEvents: SunEvent[] = [];
 
-	for (const [ key, value ] of objectEntries(data)) {
-		if (!value.valid) {
-			continue;
-		}
-
+	for (const event of data) {
 		sunEvents.push({
 			data: {
-				azimuth: format().degrees(getSunPosition(value.timestamp, lat, lon, true).azimuth)
+				azimuth: format().degrees(getSunPosition({ instant: event.time, observer }).azimuth)
 			},
-			name: key as SunEventName,
-			timestamp: value.timestamp,
+			name: event.name,
+			timestamp: event.time.getTime(),
 			type: "SUN"
 		});
 	}

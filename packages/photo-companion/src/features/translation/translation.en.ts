@@ -64,7 +64,7 @@ export const t = {
 		LONGITUDE: "Invalid longitude value",
 		NEGATIVE_HEIGHT: "Negative result. Possibly, invalid input",
 		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle should be in 0 ... 359 degrees range",
-		SUN_IS_BELOW: "Sun is below the horizon"
+		SUN_AZIMUTH_NOT_VISIBLE: "The Sun does not reach this azimuth above the horizon on the selected date"
 	},
 	LABEL: {
 		ALL_BRIDGES_LIFTED_DOWN: "All drawbridges are lifted down",

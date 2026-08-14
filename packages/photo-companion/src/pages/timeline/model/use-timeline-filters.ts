@@ -1,9 +1,9 @@
 import { createMemo } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { EventName } from "types";
-
 import { useSettings } from "~/features/settings";
+
+import type { EventName } from "~/entities/timeline-event/types";
 
 /**
  * Returns a Set of user blocked timeline events.

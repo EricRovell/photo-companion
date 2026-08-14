@@ -62,7 +62,7 @@ export interface Translation {
 		LONGITUDE: string;
 		NEGATIVE_HEIGHT: string;
 		SOLAR_AZIMUTH_ANGLE: string;
-		SUN_IS_BELOW: string;
+		SUN_AZIMUTH_NOT_VISIBLE: string;
 	},
 	LABEL: {
 		ALL_BRIDGES_LIFTED_DOWN: string;

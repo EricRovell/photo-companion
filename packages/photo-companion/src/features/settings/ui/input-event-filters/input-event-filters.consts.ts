@@ -1,4 +1,7 @@
-import type { LightsEventName, MoonEventName, SunEventName } from "types";
+import type { LightsEventName } from "types";
+
+import type { MoonEventName } from "~/entities/moon/types";
+import type { SunEventName } from "~/entities/sun/types";
 
 export const LIGHTS_EVENT_NAMES: LightsEventName[] = [
 	"LIGHTS_START",

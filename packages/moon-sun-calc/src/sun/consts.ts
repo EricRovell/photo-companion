@@ -1,49 +1,13 @@
-import type { SunTimeEvent } from "./types";
+import type { SunAltitudeEventDefinition } from "./types";
 
-export const SUN_TIMES: SunTimeEvent[] = [
-	{
-		angle: 6,
-		riseName: "GOLDEN_HOUR_END_DAWN",
-		setName: "GOLDEN_HOUR_START_DUSK"
-	},
-	{
-		angle: -0.3,
-		riseName: "SUNRISE_END",
-		setName: "SUNSET_START"
-	},
-	{
-		angle: -0.833,
-		riseName: "SUNRISE_START",
-		setName: "SUNSET_END"
-	},
-	{
-		angle: -1,
-		riseName: "GOLDEN_HOUR_START_DAWN",
-		setName: "GOLDEN_HOUR_END_DUSK"
-	},
-	{
-		angle: -4,
-		riseName: "BLUE_HOUR_END_DAWN",
-		setName: "BLUE_HOUR_START_DUSK"
-	},
-	{
-		angle: -6,
-		riseName: "CIVIL_DAWN",
-		setName: "CIVIL_DUSK"
-	},
-	{
-		angle: -8,
-		riseName: "BLUE_HOUR_START_DAWN",
-		setName: "BLUE_HOUR_END_DUSK"
-	},
-	{
-		angle: -12,
-		riseName: "NAUTICAL_DAWN",
-		setName: "NAUTICAL_DUSK"
-	},
-	{
-		angle: -18,
-		riseName: "ASTRONOMICAL_DAWN",
-		setName: "ASTRONOMICAL_DUSK"
-	}
+export const SUN_ALTITUDE_EVENTS: readonly SunAltitudeEventDefinition[] = [
+	[-18, "ASTRONOMICAL_DAWN", "ASTRONOMICAL_DUSK"],
+	[-12, "NAUTICAL_DAWN", "NAUTICAL_DUSK"],
+	[-8, "BLUE_HOUR_START_DAWN", "BLUE_HOUR_END_DUSK"],
+	[-6, "CIVIL_DAWN", "CIVIL_DUSK"],
+	[-4, "BLUE_HOUR_END_DAWN", "BLUE_HOUR_START_DUSK"],
+	[-1, "GOLDEN_HOUR_START_DAWN", "GOLDEN_HOUR_END_DUSK"],
+	[-0.833, "SUNRISE_START", "SUNSET_END"],
+	[-0.3, "SUNRISE_END", "SUNSET_START"],
+	[6, "GOLDEN_HOUR_END_DAWN", "GOLDEN_HOUR_START_DUSK"]
 ];

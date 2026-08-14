@@ -1,7 +1,6 @@
 import { isLatitude, isLongitude, isValidDate } from "utils/validators";
 
-import type { TimelineEvent } from "types";
-
+import type { TimelineEvent } from "~/entities/timeline-event/types";
 type ProviderArgType = "DATE" | "LOCATION";
 
 type ArgsDate = [ date: Date ];

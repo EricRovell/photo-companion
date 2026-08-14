@@ -1,4 +1,4 @@
-import type { TimelineEvent } from "types";
+import type { TimelineEvent } from "~/entities/timeline-event/types";
 
 interface TimelineEntry {
 	date: Date;

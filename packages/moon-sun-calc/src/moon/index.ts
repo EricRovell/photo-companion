@@ -1,7 +1,6 @@
-// moon calculations, based on http://aa.quae.nl/en/reken/hemelpositie.html formulas
-
+export { getMoonEvents } from "./events";
 export { getMoonIllumination } from "./illumination";
-export { getMoonPhases } from "./phases";
-export { getMoonPosition } from "./position";
-export { getMoonTimes } from "./times";
-export { getMoonZenithAngle } from "./zenith-angle";
+export { getNextMoonPhases } from "./phases";
+export { getMoonPosition, getMoonZenithAngle } from "./position";
+
+export type * from "./types";

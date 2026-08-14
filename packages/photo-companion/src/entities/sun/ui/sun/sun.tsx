@@ -1,9 +1,9 @@
 
 import { type JSX, mergeProps, splitProps } from "solid-js";
 
-import type { SunEventName } from "types";
-
 import { SUN_COLOR } from "../../consts";
+
+import type { SunEventName } from "../../types";
 
 import styles from "./sun.module.css";
 

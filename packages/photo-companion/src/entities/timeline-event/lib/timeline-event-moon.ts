@@ -1,10 +1,8 @@
 import { template } from "utils/formatters";
 
-import type { MoonEvent } from "types";
-
 import { Moon } from "~/entities/moon";
 
-import type { EventComponent } from "../types";
+import type { EventComponent, MoonEvent } from "../types";
 import type { Translation } from "~/features/translation";
 
 export function moonEventComponent(event: MoonEvent, t: Translation): EventComponent<{ phase: number, rotation: number }> {

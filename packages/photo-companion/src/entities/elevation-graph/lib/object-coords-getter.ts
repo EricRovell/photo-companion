@@ -10,12 +10,15 @@ export const createObjectCoordsGetter = (getAltitude: AltitudeGetter) => (date: 
 		date = new Date(date);
 	}
 
-	const { altitude } = getAltitude(date, latitude, longitude, true);
+	const { apparentAltitude } = getAltitude({
+		instant: date,
+		observer: { latitude, longitude }
+	});
 
 	const timeStart = getDayStart(date);
 	const timeEnd = timeStart + DAY_MS;
 
-	const y = round(scale(altitude, ALTITUDE_MIN, ALTITUDE_MAX, -Y_RANGE / 2, Y_RANGE / 2), 2);
+	const y = round(scale(apparentAltitude, ALTITUDE_MIN, ALTITUDE_MAX, -Y_RANGE / 2, Y_RANGE / 2), 2);
 	const x = scale(date.getTime(), timeStart, timeEnd, 0, X_RANGE);
 
 	return {

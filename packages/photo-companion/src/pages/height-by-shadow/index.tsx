@@ -43,14 +43,13 @@ function Calculator() {
 			return [];
 		}
 
-		const { altitude, height } = output;
 		const errors: string[] = [];
 
-		if (!isNullable(altitude) && altitude < 0) {
-			errors.push("SUN_IS_BELOW");
+		if (output.length === 0) {
+			errors.push("SUN_AZIMUTH_NOT_VISIBLE");
 		}
 
-		if (!isNullable(height) && height < 0) {
+		if (output.some(({ height }) => height < 0)) {
 			errors.push("NEGATIVE_HEIGHT");
 		}
 
@@ -65,7 +64,7 @@ function Calculator() {
 				<Error errors={outputErrors()} />
 			</Form>
 			<Show when={!hasSomeError() && getShowOutput()}>
-				<Output {...getOutput()} />
+				<Output candidates={getOutput() ?? []} />
 			</Show>
 		</>
 	);

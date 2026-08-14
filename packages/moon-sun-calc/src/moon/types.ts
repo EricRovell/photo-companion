@@ -1,46 +1,82 @@
-import type { MoonPhaseName } from "types";
+import type { EquatorialCoordinates } from "../shared/types";
+import type {
+	DateLike,
+	Degree,
+	EventOptions,
+	Fraction,
+	Kilometer,
+	Millisecond,
+	Observer,
+	PositionOptions,
+	UtcInterval
+} from "../types";
 
-import type { Coordinates } from "../types";
-import type { MOON_NAMES } from "./consts";
-
-export interface MoonCoordinates extends Coordinates {
-	distance: number;
+export interface MoonPosition extends EquatorialCoordinates {
+	/** Center altitude without atmospheric refraction. */
+	altitude: Degree;
+	/** Center altitude with atmospheric refraction. */
+	apparentAltitude: Degree;
+	/** North = 0 degrees, east = 90 degrees. */
+	azimuth: Degree;
+	distance: Kilometer;
+	parallacticAngle: Degree;
+	zenith: Degree;
 }
+
+export interface MoonPositionInput {
+	instant: DateLike;
+	observer: Observer;
+	options?: PositionOptions;
+}
+
+export type MoonPhaseName =
+	| "FIRST_QUARTER"
+	| "FULL_MOON"
+	| "NEW_MOON"
+	| "THIRD_QUARTER"
+	| "WANING_CRESCENT"
+	| "WANING_GIBBOUS"
+	| "WAXING_CRESCENT"
+	| "WAXING_GIBBOUS";
+
+export type PrincipalMoonPhaseName = Extract<
+	MoonPhaseName,
+	"FIRST_QUARTER" | "FULL_MOON" | "NEW_MOON" | "THIRD_QUARTER"
+>;
 
 export interface MoonIllumination {
-	/**
-	 * The midpoint angle in radians of the illuminated limb of the moon
-	 * reckoned eastward from the north point of the disk;
-	 */
-	angle: number;
-	fraction: number;
-	fullMoonName?: typeof MOON_NAMES[number];
-	phase: MoonPhase;
-	phaseValue: number;
+	/** Bright-limb position angle, eastward from celestial north. */
+	angle: Degree;
+	fraction: Fraction;
+	phase: MoonPhaseName;
+	/** Lunation fraction: 0 new, 0.25 first quarter, 0.5 full. */
+	phaseValue: Fraction;
+	waxing: boolean;
 }
 
-export interface MoonPhase {
-	from: number;
-	id: MoonPhaseName;
-	to: number;
-	weight: number;
+export interface MoonPhaseEvent {
+	phase: PrincipalMoonPhaseName;
+	time: Date;
 }
 
-export interface MoonPosition {
-	altitude: number;
-	azimuth: number;
-	distance: number;
-	parallacticAngle: number;
+export type MoonEventName = "MOON_ANTITRANSIT" | "MOON_TRANSIT" | "MOONRISE" | "MOONSET";
+
+export interface MoonEvent {
+	name: MoonEventName;
+	time: Date;
 }
 
-export interface MoonTimes {
-	alwaysDown: boolean;
-	alwaysUp: boolean;
-	/**
-	 * Date of the highest position.
-	 * Available if `set` and `rise` is not `null`.
-	 */
-	highest?: Date;
-	rise: Nullish<Date>;
-	set: Nullish<Date>;
+export interface MoonEventsInput {
+	interval: UtcInterval;
+	observer: Observer;
+	options?: EventOptions;
 }
+
+export interface RefinePhaseInput {
+	left: Millisecond;
+	right: Millisecond;
+	target: Degree;
+}
+
+export type LunarLongitudeDistanceTerm = readonly [number, number, number, number, number, number];
+export type LunarLatitudeTerm = readonly [number, number, number, number, number];

@@ -50,7 +50,9 @@ export function isNonNullable<T = unknown>(value: T): value is T {
 	return !isNullable(value);
 }
 
-export function isValidDate(value: Nullable<DateLike | string>): value is DateLike {
+export function isValidDate(
+	value: Date | null | number | string | undefined
+): value is Date | number {
 	if (value instanceof Date) {
 		return value.toString() !== "Invalid Date";
 	}

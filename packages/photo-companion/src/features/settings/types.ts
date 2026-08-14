@@ -1,11 +1,11 @@
 import type {
 	BridgeEventName,
 	City,
-	LightsEventName,
-	MoonEventName,
-	SunEventName
+	LightsEventName
 } from "types";
 
+import type { MoonEventName } from "~/entities/moon/types";
+import type { SunEventName } from "~/entities/sun/types";
 import type { ROUTE_PRIMARY_LABEL } from "~/features/navigation";
 
 export type UserLang = "en" | "ru";
