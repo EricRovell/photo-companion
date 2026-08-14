@@ -15,8 +15,11 @@ export const createPathBuilder = (getAltitude: AltitudeGetter) => (date: DateLik
 	const coords = [];
 
 	for (let i = 0; i <= STEP_COUNT; i++) {
-		const { altitude } = getAltitude(timestamp, latitude, longitude, true);
-		const y = round(altitude, 2);
+		const { apparentAltitude } = getAltitude({
+			instant: timestamp,
+			observer: { latitude, longitude }
+		});
+		const y = round(apparentAltitude, 2);
 
 		const x = scale(timestamp, timestampStart, timestampEnd, 0, X_RANGE);
 

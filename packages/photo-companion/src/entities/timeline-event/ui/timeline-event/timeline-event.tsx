@@ -2,8 +2,6 @@ import { Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { setAttribute } from "utils";
 
-import type { TimelineEvent } from "types";
-
 import { useDatetime } from "~/features/datetime-query";
 import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
@@ -11,6 +9,8 @@ import { createQueryDate } from "~/shared/lib/query-date";
 import { Time } from "~/shared/ui";
 
 import { buildEventComponent } from "../../lib/build-timeline-event";
+
+import type { TimelineEvent } from "../../types";
 
 import styles from "./timeline-event.module.css";
 

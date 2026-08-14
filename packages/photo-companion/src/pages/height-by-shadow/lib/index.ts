@@ -16,10 +16,10 @@ export function validate(model: Model): Record<FormKey, boolean> {
 		level_object: !isNonNegativeNumber(model.level_object),
 		level_shadow:  !isNonNegativeNumber(model.level_shadow),
 		longitude: (
-			!isNonEmptyArray(model.latitude) ||
-			!isWithinRange(model.latitude[0], 0, 180) ||
-			!isWithinRange(model.latitude[1], 0, 59) ||
-			!isWithinRange(model.latitude[2], 0, 59)
+			!isNonEmptyArray(model.longitude) ||
+			!isWithinRange(model.longitude[0], 0, 180) ||
+			!isWithinRange(model.longitude[1], 0, 59) ||
+			!isWithinRange(model.longitude[2], 0, 59)
 		),
 		longitude_direction: false,
 		solar_azimuth_angle: !isNonNegativeNumber(model.solar_azimuth_angle) || model.solar_azimuth_angle > 359

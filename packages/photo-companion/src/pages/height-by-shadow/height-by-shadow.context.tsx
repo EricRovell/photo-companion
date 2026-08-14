@@ -41,13 +41,13 @@ function createFormState() {
 
 	const [ model, setModel ] = createStore<Model>({
 		date: new Date(),
-		latitude: convertIntoDegrees(latitude),
-		latitude_direction: "N",
+		latitude: convertIntoDegrees(Math.abs(latitude)),
+		latitude_direction: latitude >= 0 ? "N" : "S",
 		length_shadow: 5,
 		level_object: 0,
 		level_shadow: 0,
-		longitude: convertIntoDegrees(longitude),
-		longitude_direction: "E",
+		longitude: convertIntoDegrees(Math.abs(longitude)),
+		longitude_direction: longitude >= 0 ? "E" : "W",
 		solar_azimuth_angle: 0
 	});
 

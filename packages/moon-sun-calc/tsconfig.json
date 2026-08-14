@@ -1,7 +1,13 @@
 {
 	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"noEmit": false,
+		"outDir": "./dist",
+		"rootDir": "./src"
+	},
 	"include": [
 		"./src/**/*.ts",
-		"../../global.d.ts"
 	]
 }

@@ -1,18 +1,19 @@
 export {
+	getMoonEvents,
 	getMoonIllumination,
-	getMoonPhases,
 	getMoonPosition,
-	getMoonTimes,
-	getMoonZenithAngle
+	getMoonZenithAngle,
+	getNextMoonPhases
 } from "./moon";
 
-export type { MoonCoordinates } from "./moon/types";
+export type * from "./moon/types";
 
 export {
-	getSunPosition,
-	getSunTime,
-	getSunTimeByAzimuth,
-	getSunTimes
+	findSunAltitudeCrossings,
+	findSunAzimuthCrossings,
+	getSunEvents,
+	getSunPosition
 } from "./sun";
 
-export type { SunCoordinates, SunTime } from "./sun/types";
+export type * from "./sun/types";
+export type * from "./types";

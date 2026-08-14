@@ -1,8 +1,6 @@
 import { For, Show } from "solid-js";
 import { incrementDateByDay } from "utils/date";
 
-import type { EventGroupName } from "types";
-
 import { Timeline, TimelineGroup } from "~/entities/timeline";
 import { TimelineEvent, TimelineEventEmpty } from "~/entities/timeline-event";
 import { CityLightsProvider } from "~/features/city-lights";
@@ -14,6 +12,7 @@ import { useTranslation } from "~/features/translation";
 import { useDisabledTimeline, useTimelineEvents } from "./model";
 
 import type { EventsProps } from "./types";
+import type { EventGroupName } from "~/entities/timeline-event/types";
 
 import styles from "./timeline.module.css";
 

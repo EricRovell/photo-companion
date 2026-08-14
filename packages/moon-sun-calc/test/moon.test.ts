@@ -1,33 +1,183 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "vitest";
 
-import { getMoonIllumination, getMoonPosition, getMoonTimes, getMoonZenithAngle } from "../src";
-import { DATE, LAT, LNG } from "./fixtures";
+import {
+	getMoonEvents,
+	getMoonIllumination,
+	getMoonPosition,
+	getMoonZenithAngle,
+	getNextMoonPhases
+} from "../src";
+
+const LONDON = { latitude: 51.5, longitude: -0.1 };
+
+const MOON_PHASE_CASES = [
+	{
+		description: "matches the 2025-01-06 USNO first-quarter fixture",
+		input: { count: 8, index: 0, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "FIRST_QUARTER", time: Date.parse("2025-01-06T23:56:00Z") }
+	},
+	{
+		description: "matches the 2025-01-13 USNO full-Moon fixture",
+		input: { count: 8, index: 1, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "FULL_MOON", time: Date.parse("2025-01-13T22:27:00Z") }
+	},
+	{
+		description: "matches the 2025-01-21 USNO third-quarter fixture",
+		input: { count: 8, index: 2, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "THIRD_QUARTER", time: Date.parse("2025-01-21T20:31:00Z") }
+	},
+	{
+		description: "matches the 2025-01-29 USNO new-Moon fixture",
+		input: { count: 8, index: 3, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "NEW_MOON", time: Date.parse("2025-01-29T12:36:00Z") }
+	},
+	{
+		description: "matches the 2025-02-05 USNO first-quarter fixture",
+		input: { count: 8, index: 4, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "FIRST_QUARTER", time: Date.parse("2025-02-05T08:02:00Z") }
+	},
+	{
+		description: "matches the 2025-02-12 USNO full-Moon fixture",
+		input: { count: 8, index: 5, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "FULL_MOON", time: Date.parse("2025-02-12T13:53:00Z") }
+	},
+	{
+		description: "matches the 2025-02-20 USNO third-quarter fixture",
+		input: { count: 8, index: 6, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "THIRD_QUARTER", time: Date.parse("2025-02-20T17:32:00Z") }
+	},
+	{
+		description: "matches the 2025-02-28 USNO new-Moon fixture",
+		input: { count: 8, index: 7, instant: Date.parse("2025-01-01T00:00:00Z") },
+		output: { phase: "NEW_MOON", time: Date.parse("2025-02-28T00:45:00Z") }
+	}
+];
+
+const MOON_EVENT_CASES = [
+	{
+		description: "matches the USNO Moon-transit minute fixture",
+		input: { eventName: "MOON_TRANSIT" },
+		output: Date.parse("2025-01-01T13:34:00Z")
+	},
+	{
+		description: "matches the USNO moonrise minute fixture",
+		input: { eventName: "MOONRISE" },
+		output: Date.parse("2025-01-01T09:47:00Z")
+	},
+	{
+		description: "matches the USNO moonset minute fixture",
+		input: { eventName: "MOONSET" },
+		output: Date.parse("2025-01-01T17:30:00Z")
+	}
+];
+
+const MOON_VALIDATION_CASES = [
+	{
+		description: "rejects a non-finite zenith-angle input",
+		input: () => {
+			getMoonZenithAngle(Number.NaN, 0);
+		},
+		output: RangeError
+	},
+	{
+		description: "rejects a phase count below its range",
+		input: () => {
+			getNextMoonPhases(Date.parse("2025-01-01T00:00:00Z"), 0);
+		},
+		output: RangeError
+	},
+	{
+		description: "rejects an invalid Date",
+		input: () => {
+			getMoonIllumination(new Date(Number.NaN));
+		},
+		output: RangeError
+	},
+	{
+		description: "rejects an instant before the supported range",
+		input: () => {
+			getMoonIllumination(Date.parse("1799-12-31T00:00:00Z"));
+		},
+		output: RangeError
+	}
+];
+
+const MOON_BOUNDARY_CASES = [
+	{
+		description: "keeps the minimum supported instant finite",
+		input: Date.parse("1800-01-01T00:00:00Z"),
+		output: true
+	},
+	{
+		description: "keeps the maximum supported instant finite",
+		input: Date.parse("2200-12-31T23:59:59Z"),
+		output: true
+	}
+];
 
 describe("Moon", () => {
-	it("getMoonPosition returns moon position data given time and location", () => {
-		const position = getMoonPosition(DATE, LAT, LNG);
+	test("matches a JPL Horizons topocentric position fixture", () => {
+		// JPL Horizons DE441, airless apparent coordinates, 2025-01-01 00:00 UTC.
+		const position = getMoonPosition({
+			instant: Date.parse("2025-01-01T00:00:00Z"),
+			observer: LONDON
+		});
 
-		expect(position.azimuth).toBeCloseTo(2.1631927013459706, 8);
-		expect(position.altitude).toBeCloseTo(0.014551482243892251, 8);
-		expect(position.distance).toBeCloseTo(364121.37256256194, 8);
+		expect(position.azimuth).toBeCloseTo(328.757161, 1);
+		expect(position.altitude).toBeCloseTo(-62.105703, 1);
 	});
-	it("getMoonIllumination returns fraction and angle of moon\"s illuminated limb and phase", () => {
-		const illumination = getMoonIllumination(DATE);
 
-		expect(illumination.fraction).toBeCloseTo(0.4848068202456373, 8);
-		expect(illumination.phaseValue).toBeCloseTo(0.7548368838538762, 8);
-		expect(illumination.angle).toBeCloseTo(1.6732942678578346, 8);
-	});
-	it("getMoonTimes returns moon rise and set times", () => {
-		const times = getMoonTimes(new Date("2013-03-04UTC"), LAT, LNG, true);
+	test("matches Meeus chapter 47's lunar distance example", () => {
+		const position = getMoonPosition({
+			instant: Date.parse("1992-04-12T00:00:00Z"),
+			observer: { latitude: 0, longitude: 0 }
+		});
 
-		expect(times.rise).not.toBeNull();
-		expect(times.set).not.toBeNull();
-		expect(times.rise?.toUTCString()).toBe("Mon, 04 Mar 2013 23:54:29 GMT");
-		expect(times.set?.toUTCString()).toBe("Mon, 04 Mar 2013 07:47:58 GMT");
+		expect(position.distance).toBeCloseTo(368_409.7, -1);
 	});
-	it("getMoonZenithAngle returns the bright-limb angle relative to the observer's zenith", () => {
-		expect(getMoonZenithAngle(1.5, 0.25)).toBe(1.25);
+
+	test("reports illumination and the third quarter consistently", () => {
+		const illumination = getMoonIllumination(Date.parse("2013-03-05T00:00:00Z"));
+
+		expect(illumination.fraction).toBeCloseTo(0.4912, 3);
+		expect(illumination.phase).toBe("THIRD_QUARTER");
+		expect(illumination.waxing).toBe(false);
+	});
+
+	test.each(MOON_PHASE_CASES)("$description", ({ input, output }) => {
+		const phase = getNextMoonPhases(input.instant, input.count)[input.index];
+
+		expect(phase.phase).toBe(output.phase);
+		expect(Math.abs(phase.time.getTime() - output.time)).toBeLessThan(120_000);
+	});
+
+	test.each(MOON_EVENT_CASES)("$description", ({ input, output }) => {
+		const events = getMoonEvents({
+			interval: {
+				end: Date.parse("2025-01-02T00:00:00Z"),
+				start: Date.parse("2025-01-01T00:00:00Z")
+			},
+			observer: LONDON
+		});
+		const actual = events.find(event => event.name === input.eventName)?.time.getTime();
+
+		expect(actual).toBeDefined();
+		expect(Math.abs((actual ?? 0) - output)).toBeLessThan(60_000);
+	});
+
+	test("uses degree-only zenith-angle inputs", () => {
 		expect(getMoonZenithAngle(90, -10)).toBe(100);
+	});
+
+	test.each(MOON_VALIDATION_CASES)("$description", ({ input, output }) => {
+		expect(input).toThrow(output);
+	});
+
+	test.each(MOON_BOUNDARY_CASES)("$description", ({ input, output }) => {
+		const position = getMoonPosition({ instant: input, observer: LONDON });
+		const illumination = getMoonIllumination(input);
+
+		expect(Object.values(position).every(Number.isFinite)).toBe(output);
+		expect(Object.values(illumination).filter(value => typeof value === "number").every(Number.isFinite)).toBe(output);
 	});
 });

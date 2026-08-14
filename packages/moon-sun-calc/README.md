@@ -1,204 +1,92 @@
-# MoonSunCalc
+# moon-sun-calc
 
-MoonSunCalc is a tiny TypeScript library for the Sun and the Mun calculations.
+A private workspace TypeScript library for Sun and Moon positions, illumination,
+principal phases, and rise/set/transit events. The numerical model follows the
+higher-order methods in Jean Meeus, *Astronomical Algorithms*, 2nd edition.
 
-## API
+## Design contract
 
-### The Sun
+- Supported UTC instants: `1800-01-01` through `2200-12-31`.
+- Every public angle is in degrees. Azimuth is clockwise from north.
+- Event searches use explicit half-open UTC intervals: `[start, end)`.
+- An interval may be at most 48 hours. The caller owns civil-time-zone and
+  calendar-day conversion.
+- Missing polar or grazing events are omitted; invalid dates are never
+  fabricated.
+- `altitude` is geometric center altitude. `apparentAltitude` additionally
+  applies atmospheric refraction.
 
-<details>
-	<summary>
-		<code>getSunPosition(date: DateLike, latitude: number, longitude: number, degrees = false): SunPosition</code>
-	</summary>
+Semantic aliases such as `Degree`, `Radian`, `JulianDay`, `Kilometer`, `Meter`,
+and `Millisecond` document unit contracts while remaining ordinary numbers at
+runtime.
 
-Calculates the Sun position for a given date and geoposition coordinates. The output is in radians by default.
+## Source organization
 
-```ts
-interface SunPosition {
-	altitude: number;
-	azimuth: number;
-	declination: number;
-	zenith: number;
-}
-```
-</details>
+- `src/sun` owns the solar constants, types, ephemeris, positions, and events.
+- `src/moon` owns the lunar constants, types, series, ephemeris, positions,
+  illumination, phases, and events.
+- `src/shared` contains only genuinely shared coordinate, time, mathematical,
+  validation, and root-finding infrastructure, with an internal barrel entry
+  point.
+- Each directory keeps its constants in `consts.ts` and its contracts in
+  `types.ts`; root `src/types.ts` contains only foundational units and inputs.
 
-<details>
-	<summary>
-		<code>getSunTime(date: DateLike, latitude: number, longitude: number, elevationAngle: number, options: Options = {}): SunTimeByElevation</code>
-	</summary>
+The public entry point exports the two domain barrels; internal implementation
+modules are not package subpath exports.
 
-Calculates the time at which the sun will have a given elevation angle when rising and when setting for a given date and geoposition. The observer `height` (in meters) relative to the horizon can be specified via options. The elevation angle input is in radians by default.
-
-```ts
-interface Options {
-	height?: number;
-	degrees?: boolean;
-}
-
-interface SunTimeByElevation {
-	set: SunTime;
-	rise: SunTime;
-}
-
-interface SunTime {
-	/**
-	 * Note: exception for `SOLAR_NOON` & `NADIR`
-	 */
-	elevation?: number;
-	julian: number;
-	index: number;
-	name: string;
-	timestamp: number;
-	valid: boolean;
-}
-```
-</details>
-
-<details>
-	<summary>
-		<code>getSunTimeByAzimuth(dateValue: DateLike, latitude: number, longitude: number, azimuth: number, degree = false): Date</code>
-	</summary>
-
-Calculates a sun time for a given azimuth angle for a given date and geoposition. The `azimuth` input value is in radians by default.
-</details>
-
-<details>
-	<summary>
-		<code>getSunTimes(date: DateLike, latitude: number, longitude: number, options: Options = {}): Record<SunEventName, SunTime></code>
-	</summary>
-
-Calculates sun times for a given date and geoposition.
+## Example
 
 ```ts
-type SunEventName =
-	| "SOLAR_NOON"
-	| "NADIR"
-	| "GOLDEN_HOUR_START_DAWN"
-	| "GOLDEN_HOUR_END_DAWN"
-	| "GOLDEN_HOUR_START_DUSK"
-	| "GOLDEN_HOUR_END_DUSK"
-	| "SUNRISE_START"
-	| "SUNRISE_END"
-	| "SUNSET_START"
-	| "SUNSET_END"
-	| "BLUE_HOUR_START_DAWN"
-	| "BLUE_HOUR_END_DAWN"
-	| "BLUE_HOUR_START_DUSK"
-	| "BLUE_HOUR_END_DUSK"
-	| "CIVIL_DAWN"
-	| "CIVIL_DUSK"
-	| "NAUTICAL_DAWN"
-	| "NAUTICAL_DUSK"
-	| "ASTRONOMICAL_DAWN"
-	| "ASTRONOMICAL_DUSK";
+import {
+  findSunAzimuthCrossings,
+  getMoonIllumination,
+  getMoonPosition,
+  getNextMoonPhases,
+  getSunEvents,
+  getSunPosition,
+  type Observer,
+  type UtcInterval
+} from "moon-sun-calc";
 
-interface SunTime {
-	/**
-	 * Note: exception for `SOLAR_NOON` & `NADIR`
-	 */
-	elevation?: number;
-	julian: number;
-	index: number;
-	name: string;
-	timestamp: number;
-	valid: boolean;
-}
+const observer: Observer = {
+  latitude: 51.5,
+  longitude: -0.1,
+  elevation: 24
+};
+const interval: UtcInterval = {
+  start: Date.parse("2025-01-01T00:00:00Z"),
+  end: Date.parse("2025-01-02T00:00:00Z")
+};
+
+const sun = getSunPosition({ instant: Date.now(), observer });
+const moon = getMoonPosition({ instant: Date.now(), observer });
+const illumination = getMoonIllumination(Date.now());
+const events = getSunEvents({ interval, observer });
+const phases = getNextMoonPhases(Date.now(), 4);
+
+// There can be more than one solution in an interval.
+const azimuthSolutions = findSunAzimuthCrossings({
+  azimuth: 90,
+  interval,
+  observer
+});
 ```
-</details>
 
-### The Moon
+## Public API
 
-<details>
-	<summary>
-		<code>getMoonPhases(date: DateLike): MoonPhase[]</code>
-	</summary>
+- `getSunPosition({ instant, observer, options? })`
+- `getMoonPosition({ instant, observer, options? })`
+- `getMoonIllumination(instant)`
+- `getNextMoonPhases(instant, count?)`
+- `getSunEvents({ interval, observer, options? })`
+- `getMoonEvents({ interval, observer, options? })`
+- `findSunAltitudeCrossings({ altitude, interval, observer, options? })`
+- `findSunAzimuthCrossings({ azimuth, interval, observer, options? })`
+- `getMoonZenithAngle(brightLimbAngle, parallacticAngle)`
 
-Calculates the nearest moon phases from the given date.
+Position options may specify atmospheric pressure in hPa and temperature in
+degrees Celsius. Event scans default to five-minute brackets and refine roots
+to about 100 milliseconds; `options.step` can tune the bracket size.
 
-```ts
-interface MoonPhase {
-	phaseName: MoonPhaseName;
-	phaseValue: number;
-	timestamp: number;
-}
-
-type MoonPhaseName =
-	| "NEW_MOON"
-	| "WAXING_CRESCENT"
-	| "FIRST_QUARTER"
-	| "WAXING_GIBBOUS"
-	| "FULL_MOON"
-	| "WANING_GIBBOUS"
-	| "THIRD_QUARTER"
-	| "WANING_CRESCENT";
-```
-</details>
-
-<details>
-	<summary>
-		<code>getMoonIllumination(dateValue: DateLike, degrees = false): MoonIllumination</code>
-	</summary>
-
-Calculates the illumination parameters of the Moon. The output angle values are in radians by default.
-
-```ts
-interface MoonIllumination {
-	/**
-	 * The midpoint angle in radians of the illuminated limb of the moon
-	 * reckoned eastward from the north point of the disk;
-	 */
-	angle: number;
-	fraction: number;
-	phase: MoonPhase;
-	phaseValue: number;
-}
-```
-</details>
-
-<details>
-	<summary>
-		<code>getMoonPosition(dateValue: DateLike, latitude: number, longitude: number, degrees = false): MoonPosition</code>
-	</summary>
-
-Calculates moon position for a given date and geoposition. The output angle values are in radians by default.
-
-```ts
-interface MoonPosition {
-	azimuth: number;
-	altitude: number;
-	distance: number;
-	parallacticAngle: number;
-}
-```
-</details>
-
-<details>
-	<summary>
-		<code>getMoonZenithAngle(illuminationAngle: number, parallacticAngle: number): number</code>
-	</summary>
-
-Calculates the Moon's bright-limb angle relative to the observer's zenith. Both inputs must use the same angular unit; the result uses that unit too.
-</details>
-
-<details>
-	<summary>
-		<code>getMoonTimes(dateValue: DateLike, latitude: number, longitude: number, inUTC = false): MoonTimes</code>
-	</summary>
-
-Calculates the moon rise and set times for a given date and geoposition. Local time is used by default.
-
-```ts
-export interface MoonTimes {
-	rise: Nullish<Date>;
-	set: Nullish<Date>;
-	alwaysUp: boolean;
-	alwaysDown: boolean;
-	/**
-	 * Date of the highest position.
-	 * Available if `set` and `rise` is not `null`.
-	 */
-	highest?: Date;
-}
-```
-</details>
+See [ACCURACY.md](./ACCURACY.md) for model scope and fixtures, and
+[MIGRATION.md](./MIGRATION.md) for the breaking 0.2 API changes.

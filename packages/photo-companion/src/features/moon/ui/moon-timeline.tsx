@@ -1,13 +1,13 @@
 import { createMemo, For } from "solid-js";
 
-import type { EventName } from "types";
-
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
 import { TimelineEvent } from "~/entities/timeline-event";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { getMoonEvents, getSunEvents } from "~/features/timeline";
 import { ROUTES } from "~/shared/consts";
+
+import type { EventName } from "~/entities/timeline-event/types";
 
 const TIMELINE_EVENT_SET = new Set<EventName>([
 	"SUNRISE_START",

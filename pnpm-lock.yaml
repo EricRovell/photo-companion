@@ -92,16 +92,13 @@ importers:
 
   packages/moon-sun-calc:
     dependencies:
-      esbuild:
-        specifier: ^0.19.11
-        version: 0.19.11
       utils:
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      types:
-        specifier: workspace:*
-        version: link:../types
+      esbuild:
+        specifier: ^0.19.11
+        version: 0.19.11
 
   packages/photo-companion:
     dependencies:

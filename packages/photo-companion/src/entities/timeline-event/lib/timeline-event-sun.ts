@@ -1,10 +1,9 @@
 import { template } from "utils/formatters";
 
-import type { SunEvent, SunEventName } from "types";
-
 import { Sun } from "~/entities/sun";
 
-import type { EventComponent } from "../types";
+import type { EventComponent, SunEvent } from "../types";
+import type { SunEventName } from "~/entities/sun/types";
 import type { Translation } from "~/features/translation";
 
 export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {

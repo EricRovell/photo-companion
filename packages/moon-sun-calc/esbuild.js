@@ -1,11 +1,11 @@
 import { build } from "esbuild";
 
 await build({
-	entryPoints: [
-		"./src/index.ts"
-	],
-	format: "esm",
 	bundle: true,
-	minify: true,
-	outdir: "./dist"
+	entryPoints: [ "./src/index.ts" ],
+	format: "esm",
+	minify: false,
+	outdir: "./dist",
+	platform: "neutral",
+	target: "es2022"
 });

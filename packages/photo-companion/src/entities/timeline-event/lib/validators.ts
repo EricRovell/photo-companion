@@ -1,10 +1,13 @@
 import type {
 	BridgeEvent,
-	LightsEvent,
+	LightsEvent
+} from "types";
+
+import type {
 	MoonEvent,
 	SunEvent,
 	TimelineEvent
-} from "types";
+} from "../types";
 
 export function isBridgeEvent(event: TimelineEvent): event is BridgeEvent {
 	return event.type === "BRIDGE";

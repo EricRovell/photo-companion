@@ -1,37 +1,58 @@
-import { getMoonIllumination, getMoonPhases, getMoonPosition, getMoonTimes, getMoonZenithAngle } from "moon-sun-calc";
+import { getMoonEvents, getMoonIllumination, getMoonPosition, getMoonZenithAngle, getNextMoonPhases } from "moon-sun-calc";
 import { createMemo } from "solid-js";
-import { calcDuration } from "utils/date";
+import { calcDuration, getDayStart, incrementDateByDay } from "utils/date";
 
 import { getMoonRotation, normalizeAngleDegrees } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 
+import { FULL_MOON_NAMES, PHASE_VALUES } from "../consts";
+
 export function createMoonServiceState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
-	const illumination = createMemo(() => getMoonIllumination(getDatetime(), true));
-	const phases = createMemo(() => getMoonPhases(getDatetime()));
-	const position = createMemo(() => getMoonPosition(getDatetime(), settings.latitude, settings.longitude, true));
-	const	times = createMemo(() => getMoonTimes(getDatetime(), settings.latitude, settings.longitude));
+	const observer = () => ({ latitude: settings.latitude, longitude: settings.longitude });
+	const illumination = createMemo(() => getMoonIllumination(getDatetime()));
+
+	const phases = createMemo(() => getNextMoonPhases(getDatetime()).map(event => ({
+		phaseName: event.phase,
+		phaseValue: PHASE_VALUES[event.phase],
+		timestamp: event.time.getTime()
+	})));
+
+	const position = createMemo(() => getMoonPosition({ instant: getDatetime(), observer: observer() }));
+
+	const times = createMemo(() => {
+		const start = getDayStart(getDatetime());
+		return getMoonEvents({
+			interval: { end: incrementDateByDay(start, 1).getTime(), start },
+			observer: observer()
+		});
+	});
+
+	const moonrise = () => times().find(event => event.name === "MOONRISE")?.time ?? null;
+	const moonset = () => times().find(event => event.name === "MOONSET")?.time ?? null;
 	const zenithAngle = createMemo(() => getMoonZenithAngle(illumination().angle, position().parallacticAngle));
 
 	return {
-		altitude: () => position().altitude,
+		altitude: () => position().apparentAltitude,
 		angle: () => illumination().angle,
 		azimuth: () => position().azimuth,
 		distance: () => position().distance,
-		duration: () => calcDuration(times().rise, times().set),
+		duration: () => moonrise() || moonset() ? calcDuration(moonrise(), moonset()) : 0,
 		fraction: () => illumination().fraction * 100,
-		fullMoonName: () => illumination().fullMoonName,
-		moonrise: () => times().rise,
-		moonset: () => times().set,
+		fullMoonName: () => illumination().phase === "FULL_MOON"
+			? FULL_MOON_NAMES[getDatetime().getMonth()]
+			: null,
+		moonrise,
+		moonset,
 		parallacticAngle: () => position().parallacticAngle,
-		phaseName: () => illumination().phase.id,
+		phaseName: () => illumination().phase,
 		phases,
 		phaseValue: () => illumination().phaseValue,
-		rotation: () => getMoonRotation(zenithAngle(), illumination().angle < 0),
-		waxing: () => illumination().angle < 0,
+		rotation: () => getMoonRotation(zenithAngle(), illumination().waxing),
+		waxing: () => illumination().waxing,
 		zenith: () => normalizeAngleDegrees(zenithAngle())
 	};
 }

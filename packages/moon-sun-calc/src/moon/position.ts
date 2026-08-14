@@ -1,47 +1,41 @@
-import { isLatitude, isLongitude } from "utils/validators";
+import {
+	horizontalCoordinates,
+	normalizeDegrees,
+	toTimestamp,
+	validateFiniteDegrees,
+	validateObserver
+} from "../shared";
+import { moonGeocentric } from "./ephemeris";
 
-import { RAD } from "../consts";
-import { altitudeCalc, azimuthCalc, siderealTime, toDays, toDegrees } from "../utils";
-import { calcMoonCoordinates } from "./coordinates";
-import { astroRefraction } from "./utils";
+import type { Degree } from "../types";
+import type { MoonPosition, MoonPositionInput } from "./types";
 
-import type { MoonPosition } from "./types";
-
-/**
- * Calculates moon position for a given date and geoposition.
- * The output angle values are in radians by default.
- */
-export function getMoonPosition(dateValue: DateLike, latitude: number, longitude: number, degrees = false): MoonPosition {
-	if (!isLatitude(latitude)) {
-		throw new Error(`Invalid latitude value: ${latitude}`);
-	}
-
-	if (!isLongitude(longitude)) {
-		throw new Error(`Invalid longitude value: ${longitude}`);
-	}
-
-	if (dateValue instanceof Date) {
-		dateValue = dateValue.valueOf();
-	}
-
-	const lw = RAD * -longitude;
-	const phi = RAD * latitude;
-	const days = toDays(dateValue);
-	const coords = calcMoonCoordinates(days);
-	const H = siderealTime(days, lw) - coords.rightAscension;
-	let altitude = altitudeCalc(H, phi, coords.declination);
-
-	// altitude correction for refraction
-	altitude += astroRefraction(altitude);
-
-	// formula 14.1 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
-	const pa = Math.atan2(Math.sin(H), Math.tan(phi) * Math.cos(coords.declination) - Math.sin(coords.declination) * Math.cos(H));
-	const azimuth = azimuthCalc(H, phi, coords.declination);
+export function getMoonPosition({ instant, observer, options = {} }: MoonPositionInput): MoonPosition {
+	const timestamp = toTimestamp(instant);
+	const location = validateObserver(observer);
+	const coordinates = moonGeocentric(timestamp);
+	const horizontal = horizontalCoordinates({
+		atmosphere: options.atmosphere,
+		coordinates,
+		distance: coordinates.distance,
+		observer: location,
+		timestamp
+	});
 
 	return {
-		altitude: toDegrees(altitude, degrees),
-		azimuth: toDegrees(azimuth, degrees),
-		distance: coords.distance,
-		parallacticAngle: toDegrees(pa, degrees)
+		altitude: horizontal.altitude,
+		apparentAltitude: horizontal.apparentAltitude,
+		azimuth: horizontal.azimuth,
+		declination: horizontal.declination,
+		distance: coordinates.distance,
+		parallacticAngle: horizontal.parallacticAngle,
+		rightAscension: horizontal.rightAscension,
+		zenith: 90 - horizontal.altitude
 	};
+}
+
+export function getMoonZenithAngle(brightLimbAngle: Degree, parallacticAngle: Degree): Degree {
+	validateFiniteDegrees([ brightLimbAngle, parallacticAngle ]);
+
+	return normalizeDegrees(brightLimbAngle - parallacticAngle);
 }
