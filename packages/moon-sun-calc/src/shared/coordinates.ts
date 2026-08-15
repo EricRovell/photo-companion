@@ -101,6 +101,7 @@ export function horizontalCoordinates({
 	let declination = toRadians(coordinates.declination);
 	let rightAscension = coordinates.rightAscension;
 	let hourAngle = toRadians(normalizeSignedDegrees(apparentSiderealTime(timestamp) + observer.longitude - rightAscension));
+	let topocentricDistance: number | undefined;
 
 	if (!isNullable(distance)) {
 		const u = Math.atan(0.99664719 * Math.tan(latitude));
@@ -108,6 +109,15 @@ export function horizontalCoordinates({
 		const rhoSinPhi = 0.99664719 * Math.sin(u) + heightRatio * Math.sin(latitude);
 		const rhoCosPhi = Math.cos(u) + heightRatio * Math.cos(latitude);
 		const parallax = Math.asin(6378.14 / distance);
+		const bodyX = distance * Math.cos(declination) * Math.cos(hourAngle);
+		const bodyY = distance * Math.cos(declination) * Math.sin(hourAngle);
+		const bodyZ = distance * Math.sin(declination);
+
+		topocentricDistance = Math.hypot(
+			bodyX - 6378.14 * rhoCosPhi,
+			bodyY,
+			bodyZ - 6378.14 * rhoSinPhi
+		);
 
 		const deltaRightAscension = Math.atan2(
 			-rhoCosPhi * Math.sin(parallax) * Math.sin(hourAngle),
@@ -149,6 +159,7 @@ export function horizontalCoordinates({
 		declination: declination * RAD_TO_DEG,
 		hourAngle: normalizeSignedDegrees(hourAngle * RAD_TO_DEG),
 		parallacticAngle: parallacticAngle * RAD_TO_DEG,
-		rightAscension
+		rightAscension,
+		topocentricDistance
 	};
 }

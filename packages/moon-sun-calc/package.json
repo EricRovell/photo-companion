@@ -2,11 +2,12 @@
 	"name": "moon-sun-calc",
 	"version": "0.2.0",
 	"private": true,
-	"description": "Typed Meeus-based Sun and Moon positions, phases, and UTC interval events.",
+	"description": "Typed Meeus-based Sun and Moon positions, phases, eclipses, and UTC interval events.",
 	"keywords": [
 		"sun",
 		"moon",
 		"astronomy",
+		"eclipse",
 		"meeus",
 		"sunrise",
 		"sunset",

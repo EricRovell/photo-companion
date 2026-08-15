@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.32.0
+
+- Added a local solar eclipse finder and true-scale Sun-centered eclipse view.
+
 ## 2.31.0
 
 - New moon widget: earthshine probability.

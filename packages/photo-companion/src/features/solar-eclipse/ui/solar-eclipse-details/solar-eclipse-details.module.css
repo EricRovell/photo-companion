@@ -1,0 +1,124 @@
+.summary {
+	border-block-start: 1px solid var(--color-surface-3);
+	font-size: var(--font-size-2);
+}
+
+.event-header {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: var(--space-4);
+	padding: var(--space-3) var(--space-4);
+	border-block-end: 1px solid var(--color-surface-3);
+	background: var(--color-surface-1);
+}
+
+.event-title,
+.event-date {
+	display: grid;
+	gap: var(--space-1);
+}
+
+.event-title span,
+.event-date span,
+.metrics dt {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+}
+
+.event-title strong {
+	font-size: var(--font-size-4);
+	font-weight: 600;
+}
+
+.event-date {
+	justify-items: end;
+	font-variant-numeric: tabular-nums;
+}
+
+.metrics {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	border-block-end: 1px solid var(--color-surface-3);
+}
+
+.metric {
+	display: grid;
+	gap: var(--space-1);
+	padding: var(--space-3) var(--space-4);
+	text-align: center;
+
+	&:not(:last-child) {
+		border-inline-end: 1px solid var(--color-surface-3);
+	}
+}
+
+.metric dd {
+	font-size: var(--font-size-3);
+	font-variant-numeric: tabular-nums;
+}
+
+.contacts-section {
+	padding: var(--space-4);
+}
+
+.contacts-section h3 {
+	margin-block-end: var(--space-4);
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-2);
+	font-weight: 500;
+	text-align: center;
+}
+
+.contacts {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	list-style: none;
+
+	&::before {
+		position: absolute;
+		top: 0.35rem;
+		inset-inline: calc(100% / 6);
+		height: 2px;
+		background: var(--color-surface-4);
+		content: "";
+	}
+}
+
+.empty {
+	padding: var(--space-3) var(--space-4);
+	color: var(--color-text-secondary);
+	text-align: center;
+	text-wrap: balance;
+}
+
+@media screen and (width <= 420px) {
+	.event-header {
+		align-items: start;
+	}
+
+	.metrics {
+		grid-template-columns: 1fr;
+	}
+
+	.metric:not(:last-child) {
+		border-inline-end: none;
+		border-block-end: 1px solid var(--color-surface-3);
+	}
+
+	.contacts-section {
+		padding-inline: var(--space-2);
+	}
+}
+
+@media screen and (width <= 360px) {
+	.event-header {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.event-date {
+		justify-items: start;
+	}
+}

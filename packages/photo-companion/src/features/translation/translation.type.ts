@@ -192,6 +192,31 @@ export interface Translation {
 		MOONRISE: string;
 		MOONSET: string;
 	};
+	SOLAR_ECLIPSE: {
+		ANNULAR: string;
+		BELOW_HORIZON: string;
+		CONTACTS: string;
+		CURRENT_OBSCURATION: string;
+		EVENT_TYPE: string;
+		FIRST_CONTACT: string;
+		FOURTH_CONTACT: string;
+		GRAPH_DESCRIPTION: string;
+		GRAPH_TITLE: string;
+		HORIZON: string;
+		MAXIMUM: string;
+		MAXIMUM_SUN_ALTITUDE: string;
+		MOON_OUTSIDE_VIEW: string;
+		NEXT: string;
+		NO_ECLIPSE: string;
+		PARTIAL: string;
+		PREVIOUS: string;
+		TITLE: string;
+		TOTAL: string;
+		VISIBILITY: string;
+		VISIBILITY_FULL: string;
+		VISIBILITY_NONE: string;
+		VISIBILITY_PARTIAL: string;
+	};
 	SUN_TIMES: {
 		ASTRONOMICAL_DAWN: string;
 		ASTRONOMICAL_DAWN_TITLE: string;

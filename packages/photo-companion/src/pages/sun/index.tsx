@@ -1,3 +1,4 @@
+import { SolarEclipse } from "~/features/solar-eclipse";
 import { SunProvider } from "~/features/sun";
 import { SunAltitude, SunInfo, SunTimeline, SunTimes } from "~/features/sun";
 
@@ -9,6 +10,7 @@ export function PageSun() {
 			<div class={styles.page}>
 				<SunTimes />
 				<SunAltitude />
+				<SolarEclipse />
 				<SunInfo />
 				<SunTimeline />
 			</div>

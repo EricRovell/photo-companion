@@ -4,14 +4,53 @@ import type { Degree, Meter, Millisecond } from "../types";
 import type {
 	MeridianCrossing,
 	MeridianCrossingsInput,
+	RefineMinimumInput,
 	RefineRootInput,
 	RootSearchInput
 } from "./types";
 
-function refineRoot({ fn, left, right }: RefineRootInput): Millisecond {
+const DEFAULT_REFINEMENT_TOLERANCE: Millisecond = 100;
+
+export function refineMinimum({
+	fn,
+	left,
+	right,
+	tolerance = DEFAULT_REFINEMENT_TOLERANCE
+}: RefineMinimumInput): Millisecond {
+	const ratio = (Math.sqrt(5) - 1) / 2;
+	let leftMiddle = right - ratio * (right - left);
+	let rightMiddle = left + ratio * (right - left);
+	let leftValue = fn(leftMiddle);
+	let rightValue = fn(rightMiddle);
+
+	for (let index = 0; index < 100 && right - left > tolerance; index += 1) {
+		if (leftValue <= rightValue) {
+			right = rightMiddle;
+			rightMiddle = leftMiddle;
+			rightValue = leftValue;
+			leftMiddle = right - ratio * (right - left);
+			leftValue = fn(leftMiddle);
+		} else {
+			left = leftMiddle;
+			leftMiddle = rightMiddle;
+			leftValue = rightValue;
+			rightMiddle = left + ratio * (right - left);
+			rightValue = fn(rightMiddle);
+		}
+	}
+
+	return (left + right) / 2;
+}
+
+export function refineRoot({
+	fn,
+	left,
+	right,
+	tolerance = DEFAULT_REFINEMENT_TOLERANCE
+}: RefineRootInput): Millisecond {
 	let leftValue = fn(left);
 
-	for (let index = 0; index < 60 && right - left > 100; index += 1) {
+	for (let index = 0; index < 60 && right - left > tolerance; index += 1) {
 		const middle = (left + right) / 2;
 		const middleValue = fn(middle);
 
@@ -42,7 +81,11 @@ export function roots({
 
 		if ((previousValue === 0 || value === 0 || Math.sign(previousValue) !== Math.sign(value))
 			&& isContinuous(previousValue, value)) {
-			const root = previousValue === 0 ? previousTime : value === 0 ? time : refineRoot({ fn, left: previousTime, right: time });
+			const root = previousValue === 0
+				? previousTime
+				: value === 0
+					? time
+					: refineRoot({ fn, left: previousTime, right: time });
 			if (root >= start && root < end && (result.length === 0 || root - result[result.length - 1] > 1000)) {
 				result.push(root);
 			}
