@@ -7,8 +7,10 @@ Moon model evaluates all 60 longitude/distance terms and all 60 latitude terms
 from Meeus tables 47.A and 47.B, then applies nutation and topocentric parallax.
 
 The supported date range is 1800–2200. This is an accuracy scope, not support
-for navigation, legal sunrise determinations, eclipse prediction, or spacecraft
-operations. Refraction and the physical horizon vary with weather and terrain.
+for navigation, legal sunrise determinations, precision eclipse contact work,
+or spacecraft operations. Refraction and the physical horizon vary with weather
+and terrain. Eclipse calculations use smooth mean limbs and do not account for
+lunar topography.
 
 ## Regression targets
 
@@ -20,13 +22,17 @@ operations. Refraction and the physical horizon vary with weather and terrain.
 | Illuminated fraction | 0.002 absolute |
 | Sun events | 90 seconds |
 | Moon rise/set and principal phases | 2 minutes |
+| Local eclipse contacts and maximum | 2 minutes |
+| Local eclipse obscuration | 0.02 absolute |
 | High-latitude or grazing events | 5 minutes |
 
 Static tests include Meeus's 1992-04-12 lunar-distance example, JPL Horizons
-DE441 topocentric position samples, and USNO 2025 rise/set/transit and principal
-phase samples. The checked position samples differ from JPL by about 0.003°;
-the checked USNO events agree at minute precision. These fixtures are regression
-evidence, not a claim that every point in the full range has been certified.
+DE441 topocentric position samples, USNO 2025 rise/set/transit and principal
+phase samples, and NASA local circumstances for partial, annular, total, and
+horizon-clipped solar eclipses. The checked position samples differ from JPL by
+about 0.003°; the checked USNO and NASA events agree at minute precision. These
+fixtures are regression evidence, not a claim that every point in the full
+range has been certified.
 
 Primary references:
 
@@ -34,3 +40,4 @@ Primary references:
   40, 47–49.
 - [NASA/JPL Horizons](https://ssd.jpl.nasa.gov/horizons/), DE441 observer ephemerides.
 - [U.S. Naval Observatory Astronomical Applications API](https://aa.usno.navy.mil/data/api).
+- [NASA local solar-eclipse circumstances](https://eclipse.gsfc.nasa.gov/SEmono/reference/locircT.html).

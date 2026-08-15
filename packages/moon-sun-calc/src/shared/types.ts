@@ -23,6 +23,7 @@ export interface HorizontalCoordinates extends EquatorialCoordinates {
 	azimuth: Degree;
 	hourAngle: Degree;
 	parallacticAngle: Degree;
+	topocentricDistance?: Kilometer;
 }
 
 export interface Nutation {
@@ -60,10 +61,18 @@ export interface IntegerRangeValidationInput {
 export type RootFunction = (time: Millisecond) => number;
 export type RootContinuityCheck = (left: number, right: number) => boolean;
 
+export interface RefineMinimumInput {
+	fn: RootFunction;
+	left: Millisecond;
+	right: Millisecond;
+	tolerance?: Millisecond;
+}
+
 export interface RefineRootInput {
 	fn: RootFunction;
 	left: Millisecond;
 	right: Millisecond;
+	tolerance?: Millisecond;
 }
 
 export interface RootSearchInput {

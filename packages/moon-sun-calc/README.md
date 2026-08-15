@@ -1,8 +1,9 @@
 # moon-sun-calc
 
 A private workspace TypeScript library for Sun and Moon positions, illumination,
-principal phases, and rise/set/transit events. The numerical model follows the
-higher-order methods in Jean Meeus, *Astronomical Algorithms*, 2nd edition.
+principal phases, local solar eclipses, and rise/set/transit events. The
+numerical model follows the higher-order methods in Jean Meeus,
+*Astronomical Algorithms*, 2nd edition.
 
 ## Design contract
 
@@ -15,6 +16,8 @@ higher-order methods in Jean Meeus, *Astronomical Algorithms*, 2nd edition.
   fabricated.
 - `altitude` is geometric center altitude. `apparentAltitude` additionally
   applies atmospheric refraction.
+- Eclipse geometry uses topocentric positions and smooth mean solar and lunar
+  limbs. It does not model terrain, weather, or the lunar limb profile.
 
 Semantic aliases such as `Degree`, `Radian`, `JulianDay`, `Kilometer`, `Meter`,
 and `Millisecond` document unit contracts while remaining ordinary numbers at
@@ -25,19 +28,21 @@ runtime.
 - `src/sun` owns the solar constants, types, ephemeris, positions, and events.
 - `src/moon` owns the lunar constants, types, series, ephemeris, positions,
   illumination, phases, and events.
+- `src/eclipse` owns local eclipse geometry, circumstances, and searches.
 - `src/shared` contains only genuinely shared coordinate, time, mathematical,
   validation, and root-finding infrastructure, with an internal barrel entry
   point.
 - Each directory keeps its constants in `consts.ts` and its contracts in
   `types.ts`; root `src/types.ts` contains only foundational units and inputs.
 
-The public entry point exports the two domain barrels; internal implementation
+The public entry point exports the domain barrels; internal implementation
 modules are not package subpath exports.
 
 ## Example
 
 ```ts
 import {
+  findNextLocalSolarEclipse,
   findSunAzimuthCrossings,
   getMoonIllumination,
   getMoonPosition,
@@ -63,6 +68,11 @@ const moon = getMoonPosition({ instant: Date.now(), observer });
 const illumination = getMoonIllumination(Date.now());
 const events = getSunEvents({ interval, observer });
 const phases = getNextMoonPhases(Date.now(), 4);
+const nextEclipse = findNextLocalSolarEclipse({
+  instant: Date.now(),
+  observer,
+  visibleOnly: true
+});
 
 // There can be more than one solution in an interval.
 const azimuthSolutions = findSunAzimuthCrossings({
@@ -83,6 +93,11 @@ const azimuthSolutions = findSunAzimuthCrossings({
 - `findSunAltitudeCrossings({ altitude, interval, observer, options? })`
 - `findSunAzimuthCrossings({ azimuth, interval, observer, options? })`
 - `getMoonZenithAngle(brightLimbAngle, parallacticAngle)`
+- `getSolarEclipseState({ instant, observer })`
+- `getLocalSolarEclipse({ instant, observer })`
+- `getNearbyLocalSolarEclipse({ instant, observer, margin })`
+- `findNextLocalSolarEclipse({ instant, observer, visibleOnly })`
+- `findPreviousLocalSolarEclipse({ instant, observer, visibleOnly })`
 
 Position options may specify atmospheric pressure in hPa and temperature in
 degrees Celsius. Event scans default to five-minute brackets and refine roots

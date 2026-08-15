@@ -1,0 +1,15 @@
+.card {
+	--eclipse-grid-color: hsl(210deg 15% 40% / 55%);
+	--eclipse-horizon-color: hsl(32deg 65% 65%);
+	--eclipse-track-color: hsl(180deg 65% 60%);
+
+	overflow: hidden;
+}
+
+.body {
+	display: grid;
+}
+
+.graph-container {
+	position: relative;
+}

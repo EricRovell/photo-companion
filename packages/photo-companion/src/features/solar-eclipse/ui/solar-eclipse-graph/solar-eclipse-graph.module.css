@@ -1,0 +1,109 @@
+.graph {
+	display: block;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	box-shadow: inset 0 0 2rem rgb(0 0 0 / 45%);
+}
+
+.background {
+	fill: var(--color-surface-0);
+}
+
+.grid line {
+	stroke: var(--eclipse-grid-color);
+	stroke-width: 1px;
+	vector-effect: non-scaling-stroke;
+}
+
+.grid .tick {
+	stroke-dasharray: 2 5;
+	stroke-width: 0.5px;
+}
+
+.grid text {
+	fill: var(--color-text-secondary);
+	font-size: 0.075px;
+	font-weight: 500;
+}
+
+.horizon line {
+	stroke: var(--eclipse-horizon-color);
+	stroke-width: 1.5px;
+	vector-effect: non-scaling-stroke;
+}
+
+.horizon {
+	opacity: 0;
+	transform-box: view-box;
+	transition: opacity 0.2s ease-in-out, transform 0.45s ease-in-out;
+}
+
+.horizon[data-visible] {
+	opacity: 1;
+}
+
+.horizon text {
+	fill: var(--eclipse-horizon-color);
+	font-size: 0.075px;
+	font-weight: 600;
+}
+
+.track {
+	fill: none;
+	stroke: var(--eclipse-track-color);
+	stroke-dasharray: 4 4;
+	stroke-linecap: round;
+	stroke-width: 1.5px;
+	animation: eclipse-track-enter 0.45s ease-in-out;
+	vector-effect: non-scaling-stroke;
+}
+
+@keyframes eclipse-track-enter {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.sun {
+	fill: gold;
+	stroke: hsl(45deg 100% 80%);
+	stroke-width: 1.5px;
+	filter: drop-shadow(0 0 3px hsl(45deg 100% 60%));
+	transition: r 0.45s ease-in-out;
+	vector-effect: non-scaling-stroke;
+}
+
+.moon {
+	fill: hsl(210deg 18% 5%);
+	opacity: 0;
+	stroke: hsl(210deg 12% 58%);
+	stroke-width: 1.5px;
+	transition:
+		cx 0.45s ease-in-out,
+		cy 0.45s ease-in-out,
+		r 0.45s ease-in-out,
+		opacity 0.2s ease-in-out;
+	vector-effect: non-scaling-stroke;
+}
+
+.moon[data-visible] {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.horizon,
+	.track,
+	.sun,
+	.moon {
+		transition: none;
+	}
+
+	.track {
+		animation: none;
+	}
+}

@@ -1,0 +1,46 @@
+.contact {
+	position: relative;
+	display: grid;
+	align-content: start;
+	gap: var(--space-1);
+	justify-items: center;
+	padding-inline: var(--space-2);
+	text-align: center;
+}
+
+.marker {
+	position: relative;
+	z-index: 1;
+	width: 0.75rem;
+	aspect-ratio: 1;
+	border: 2px solid var(--color-surface-0);
+	border-radius: 50%;
+	background: var(--color-text-secondary);
+	box-shadow: 0 0 0 2px var(--color-surface-4);
+}
+
+.contact[data-visible] .marker {
+	background: var(--eclipse-track-color);
+}
+
+.contact[data-peak] .marker {
+	background: gold;
+	box-shadow: 0 0 0 2px hsl(45deg 100% 65% / 55%);
+	transform: scale(1.2);
+}
+
+.label {
+	margin-block-start: var(--space-1);
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+}
+
+.contact a {
+	font-size: var(--font-size-3);
+	font-variant-numeric: tabular-nums;
+}
+
+.note {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+}

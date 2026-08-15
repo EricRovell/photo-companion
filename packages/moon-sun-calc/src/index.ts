@@ -1,4 +1,14 @@
 export {
+	findNextLocalSolarEclipse,
+	findPreviousLocalSolarEclipse,
+	getLocalSolarEclipse,
+	getNearbyLocalSolarEclipse,
+	getSolarEclipseState
+} from "./eclipse";
+
+export type * from "./eclipse/types";
+
+export {
 	getMoonEvents,
 	getMoonIllumination,
 	getMoonPosition,
