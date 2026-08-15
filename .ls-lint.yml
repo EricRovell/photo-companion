@@ -1,0 +1,15 @@
+ls:
+  packages/*/{src,test}:
+    .dir: kebab-case
+    .js: kebab-case
+    .ts: kebab-case
+    .test.ts: kebab-case
+    .tsx: kebab-case
+    .css: kebab-case
+    .module.css: kebab-case
+    .md: kebab-case | camelCase | screamingsnakecase
+
+ignore:
+  - .git
+  - node_modules
+  - "**/dist"

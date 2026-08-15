@@ -13,11 +13,12 @@
 		"dev": "pnpm --filter photo-companion run dev",
 		"test:unit": "vitest run",
 		"test:unit:ci": "vitest run --coverage",
-		"lint": "pnpm lint:code && pnpm lint:types && pnpm lint:styles",
+		"lint": "pnpm lint:code && pnpm lint:types && pnpm lint:styles && pnpm lint:ls",
 		"lint:code": "eslint",
 		"lint:code:fix": "eslint --fix",
 		"lint:styles": "npx stylelint packages/**/*.css",
 		"lint:types": "pnpm --parallel run lint:types && tsc -p tsconfig.eslint.json",
+		"lint:ls": "ls-lint",
 		"eslint:inspector": "eslint --inspect-config"
 	},
 	"keywords": [
@@ -27,6 +28,7 @@
 	],
 	"devDependencies": {
 		"@eslint/js": "^9.18.0",
+		"@ls-lint/ls-lint": "^2.3.1",
 		"@stylistic/stylelint-plugin": "^3.1.1",
 		"@types/node": "^22.10.5",
 		"@vitest/coverage-v8": "^4.1.10",
