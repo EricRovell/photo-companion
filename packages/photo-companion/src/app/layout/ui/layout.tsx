@@ -1,12 +1,12 @@
-import { useSearchParams } from "@solidjs/router";
-import { createEffect, type ParentProps } from "solid-js";
-import { isNullable } from "utils/validators";
+import { type ParentProps } from "solid-js";
 
 import { PageMeta } from "~/entities/page-meta";
 import { Bulb } from "~/features/city-lights";
 import { LinkQuery, Navigation } from "~/features/navigation";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
+
+import { useLocationQuery } from "../model";
 
 import styles from "./layout.module.css";
 
@@ -29,17 +29,7 @@ function Header() {
 }
 
 export const Layout = (props: ParentProps) => {
-	const [ searchParams, setSearchParams ] = useSearchParams();
-	const { settings } = useSettings();
-
-	createEffect(() => {
-		if (isNullable(searchParams.latitude) || isNullable(searchParams.longitude)) {
-			setSearchParams({
-				latitude: settings.latitude,
-				longitude: settings.longitude
-			});
-		}
-	});
+	useLocationQuery();
 
 	return (
 		<>

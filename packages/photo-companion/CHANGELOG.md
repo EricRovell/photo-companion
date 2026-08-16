@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.33.0
+
+- Fix inconsistent observer (latitude, longitude) URL query parameters.
+- Observer query parameters are not exposed by default, only by user. Provided data used to set the values into settings and store them for future use.
+
 ## 2.32.0
 
 - Added a local solar eclipse finder and true-scale Sun-centered eclipse view.
