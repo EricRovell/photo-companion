@@ -17,6 +17,7 @@ function createCityLightsState() {
 	const getStateByDate = createMemo(() => getCityLightsProvider().getStateByDate(getDatetime()));
 	const getEventsByDate = createMemo(() => getCityLightsProvider().getEventsByDate(getDatetime()));
 	const getScheduleByDate = createMemo(() => getCityLightsProvider().getScheduleByDate(getDatetime()));
+	const getScheduleForDate = (date: Date) => getCityLightsProvider().getScheduleByDate(date);
 
 	// To specify the date
 	const getEventsByDateInput = createMemo(() => getCityLightsProvider().getEventsByDate);
@@ -26,6 +27,7 @@ function createCityLightsState() {
 		getEventsByDate,
 		getEventsByDateInput,
 		getScheduleByDate,
+		getScheduleForDate,
 		getStateByDate,
 		getYear
 	};

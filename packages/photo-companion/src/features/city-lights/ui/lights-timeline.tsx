@@ -2,11 +2,12 @@ import { For } from "solid-js";
 
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
 import { TimelineEvent } from "~/entities/timeline-event";
-import { useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { getSunEvents } from "~/features/timeline";
 import { ROUTES } from "~/shared/consts";
+
+import { useCityLights } from "../model";
 
 import type { EventName } from "~/entities/timeline-event/types";
 

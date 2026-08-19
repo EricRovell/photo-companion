@@ -141,6 +141,15 @@ export interface Translation {
 		WAXING: string;
 		ZENITH: string;
 	};
+	LIGHTS_COMPARISON: {
+		EARLIER: string;
+		LATER: string;
+		LONGER: string;
+		SHORTER: string;
+		SWITCH_OFF: string;
+		SWITCH_ON: string;
+		THAN_YESTERDAY: string;
+	};
 	LIGHTS_EVENTS: {
 		LIGHTS_END: string;
 		LIGHTS_START: string;

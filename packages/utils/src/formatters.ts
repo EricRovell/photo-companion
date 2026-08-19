@@ -71,6 +71,15 @@ export const metersFormatter = getNumberFormatter({
 });
 
 /**
+ * Formats a numeric value into a compact minutes unit.
+ */
+export const minutesFormatter = getNumberFormatter({
+	style: "unit",
+	unit: "minute",
+	unitDisplay: "short"
+});
+
+/**
  * Formats a numeric value into % unit.
  */
 export const percentFormatter = getNumberFormatter({
