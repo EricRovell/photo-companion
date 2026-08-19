@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.34.0
+
+- City-lights updated info table.
+- City-lights comparison info.
+
 ## 2.33.0
 
 - Fix inconsistent observer (latitude, longitude) URL query parameters.

@@ -1,7 +1,9 @@
 import { GaugeTime } from "~/entities/gauge";
-import { Bulb, useCityLights } from "~/features/city-lights";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
+
+import { useCityLights } from "../model";
+import { Bulb } from "./bulb/bulb";
 
 export function LightGauge() {
 	const { getScheduleByDate, getStateByDate } = useCityLights();

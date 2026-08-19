@@ -143,6 +143,15 @@ export const t = {
 		WAXING: "Растущая",
 		ZENITH: "Зенит"
 	},
+	LIGHTS_COMPARISON: {
+		EARLIER: "раньше",
+		LATER: "позже",
+		LONGER: "дольше",
+		SHORTER: "короче",
+		SWITCH_OFF: "Время выключения",
+		SWITCH_ON: "Время включения",
+		THAN_YESTERDAY: "чем вчера"
+	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "Выключение городского освещения",
 		LIGHTS_START: "Включение городского освещения"

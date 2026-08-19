@@ -143,6 +143,15 @@ export const t = {
 		WAXING: "Waxing",
 		ZENITH: "Zenith"
 	},
+	LIGHTS_COMPARISON: {
+		EARLIER: "earlier",
+		LATER: "later",
+		LONGER: "longer",
+		SHORTER: "shorter",
+		SWITCH_OFF: "Turn-off time",
+		SWITCH_ON: "Turn-on time",
+		THAN_YESTERDAY: "than yesterday"
+	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "City lights switched off",
 		LIGHTS_START: "City Lights switched on"

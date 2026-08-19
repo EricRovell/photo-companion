@@ -5,10 +5,16 @@ import { PropertyList } from "~/shared/ui";
 
 import { useCityLights } from "../model";
 
+interface Props {
+	class?: string;
+	lights: boolean;
+	valueClass?: string;
+}
+
 /**
  * City lights countdown used as card entry.
  */
-export function LightsCountdown(props: { lights: boolean }) {
+export function LightsCountdown(props: Props) {
 	const { format, t } = useTranslation();
 	const { getTimestamp } = useDatetime();
 	const { getStateByDate } = useCityLights();
@@ -22,11 +28,11 @@ export function LightsCountdown(props: { lights: boolean }) {
 	});
 
 	return (
-		<PropertyList.Item>
+		<PropertyList.Item class={props.class}>
 			<PropertyList.Label>
 				{getLabel()}
 			</PropertyList.Label>
-			<PropertyList.Value>
+			<PropertyList.Value class={props.valueClass}>
 				{format().timeDuration(time())}
 			</PropertyList.Value>
 		</PropertyList.Item>
