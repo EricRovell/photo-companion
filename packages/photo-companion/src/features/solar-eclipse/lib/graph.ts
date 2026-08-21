@@ -2,12 +2,7 @@ import { getSolarEclipseState } from "moon-sun-calc";
 
 import type { LocalSolarEclipse, SolarEclipseState } from "moon-sun-calc";
 
-import {
-	TRACK_HALF_SPAN,
-	TRACK_SEGMENTS,
-	VIEW_ALTITUDE_RADIUS,
-	VIEW_AZIMUTH_RADIUS
-} from "../config";
+import { GRAPH_CONFIG } from "../config";
 
 import type { EclipseGraphPoint } from "../model/types";
 
@@ -19,8 +14,8 @@ export function getEclipseGraphPoint(state: SolarEclipseState): EclipseGraphPoin
 }
 
 export function isEclipseGraphPointOutside(point: EclipseGraphPoint, radius: number): boolean {
-	return Math.abs(point.x) - radius > VIEW_AZIMUTH_RADIUS
-		|| Math.abs(point.y) - radius > VIEW_ALTITUDE_RADIUS;
+	return Math.abs(point.x) - radius > GRAPH_CONFIG.viewAzimuthRadius
+		|| Math.abs(point.y) - radius > GRAPH_CONFIG.viewAltitudeRadius;
 }
 
 export function getSolarEclipseTrack(
@@ -29,13 +24,13 @@ export function getSolarEclipseTrack(
 	longitude: number
 ): string {
 	const peak = event.peak.time.getTime();
-	const start = peak - TRACK_HALF_SPAN;
-	const duration = 2 * TRACK_HALF_SPAN;
+	const start = peak - GRAPH_CONFIG.trackHalfSpan;
+	const duration = 2 * GRAPH_CONFIG.trackHalfSpan;
 	const points: string[] = [];
 
-	for (let index = 0; index <= TRACK_SEGMENTS; index += 1) {
+	for (let index = 0; index <= GRAPH_CONFIG.trackSegments; index += 1) {
 		const state = getSolarEclipseState({
-			instant: start + duration * index / TRACK_SEGMENTS,
+			instant: start + duration * index / GRAPH_CONFIG.trackSegments,
 			observer: { latitude, longitude }
 		});
 

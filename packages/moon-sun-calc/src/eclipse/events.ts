@@ -198,11 +198,11 @@ function solveCandidate(newMoon: Millisecond, observer: Required<Observer>): Loc
 	}
 
 	return {
-		kind: state.phase,
 		obscuration: state.obscuration,
 		partialBegin: createContact(begin, observer),
 		partialEnd: createContact(finish, observer),
 		peak: createContact(peak, observer),
+		type: state.phase,
 		visibility: getVisibility(begin, peak, finish, observer)
 	};
 }

@@ -40,6 +40,7 @@
 	font-variant-numeric: tabular-nums;
 }
 
+.detail,
 .note {
 	color: var(--color-text-secondary);
 	font-size: var(--font-size-1);

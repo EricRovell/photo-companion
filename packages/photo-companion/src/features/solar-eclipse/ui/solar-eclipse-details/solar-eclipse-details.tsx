@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import type { SolarEclipseKind, SolarEclipseVisibility } from "moon-sun-calc";
+import type { SolarEclipseType, SolarEclipseVisibility } from "moon-sun-calc";
 
 import { useTranslation } from "~/features/translation";
 
@@ -12,7 +12,7 @@ import styles from "./solar-eclipse-details.module.css";
 
 export function SolarEclipseDetails(props: SolarEclipseDetailsProps) {
 	const { format, t } = useTranslation();
-	const solarEclipseTypeLabel = (kind: SolarEclipseKind) => t().SOLAR_ECLIPSE[kind];
+	const solarEclipseTypeLabel = (type: SolarEclipseType) => t().SOLAR_ECLIPSE[type];
 	const visibilityLabel = (visibility: SolarEclipseVisibility) => t().SOLAR_ECLIPSE[`VISIBILITY_${visibility}`];
 
 	return (
@@ -26,7 +26,7 @@ export function SolarEclipseDetails(props: SolarEclipseDetailsProps) {
 						<div class={styles["event-header"]}>
 							<div class={styles["event-title"]}>
 								<span>{t().SOLAR_ECLIPSE.EVENT_TYPE}</span>
-								<strong>{solarEclipseTypeLabel(event().kind)}</strong>
+								<strong>{solarEclipseTypeLabel(event().type)}</strong>
 							</div>
 							<div class={styles["event-date"]}>
 								<span>{t().LABEL.DATE}</span>

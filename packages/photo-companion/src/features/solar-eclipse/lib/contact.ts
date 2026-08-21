@@ -1,15 +1,10 @@
-import type { SolarEclipseContactPosition } from "../model/types";
+import { getEclipseContactLinkTime } from "~/entities/eclipse";
 
-const SECOND_MS = 1000;
+import type { SolarEclipseContactPosition } from "../model/types";
 
 export function getSolarEclipseContactLinkTime(
 	time: Date,
 	position: SolarEclipseContactPosition
 ): Date {
-	const timestamp = time.getTime();
-	const linkTimestamp = position === "begin"
-		? Math.ceil(timestamp / SECOND_MS) * SECOND_MS
-		: Math.floor(timestamp / SECOND_MS) * SECOND_MS;
-
-	return new Date(linkTimestamp);
+	return getEclipseContactLinkTime(time, position);
 }

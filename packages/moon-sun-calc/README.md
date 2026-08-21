@@ -1,7 +1,7 @@
 # moon-sun-calc
 
 A private workspace TypeScript library for Sun and Moon positions, illumination,
-principal phases, local solar eclipses, and rise/set/transit events. The
+principal phases, local solar and lunar eclipse circumstances, and rise/set/transit events. The
 numerical model follows the higher-order methods in Jean Meeus,
 *Astronomical Algorithms*, 2nd edition.
 
@@ -16,8 +16,10 @@ numerical model follows the higher-order methods in Jean Meeus,
   fabricated.
 - `altitude` is geometric center altitude. `apparentAltitude` additionally
   applies atmospheric refraction.
-- Eclipse geometry uses topocentric positions and smooth mean solar and lunar
-  limbs. It does not model terrain, weather, or the lunar limb profile.
+- Solar eclipse geometry uses topocentric positions and smooth mean limbs.
+  Lunar eclipse geometry uses geocentric Danjon-enlarged Earth shadows and
+  adds observer-specific Moon altitude and azimuth. Neither model includes
+  terrain, weather, or the lunar limb profile.
 
 Semantic aliases such as `Degree`, `Radian`, `JulianDay`, `Kilometer`, `Meter`,
 and `Millisecond` document unit contracts while remaining ordinary numbers at
@@ -42,6 +44,7 @@ modules are not package subpath exports.
 
 ```ts
 import {
+  findNextLocalLunarEclipse,
   findNextLocalSolarEclipse,
   findSunAzimuthCrossings,
   getMoonIllumination,
@@ -68,7 +71,14 @@ const moon = getMoonPosition({ instant: Date.now(), observer });
 const illumination = getMoonIllumination(Date.now());
 const events = getSunEvents({ interval, observer });
 const phases = getNextMoonPhases(Date.now(), 4);
+
 const nextEclipse = findNextLocalSolarEclipse({
+  instant: Date.now(),
+  observer,
+  visibleOnly: true
+});
+
+const nextLunarEclipse = findNextLocalLunarEclipse({
   instant: Date.now(),
   observer,
   visibleOnly: true
@@ -98,6 +108,11 @@ const azimuthSolutions = findSunAzimuthCrossings({
 - `getNearbyLocalSolarEclipse({ instant, observer, margin })`
 - `findNextLocalSolarEclipse({ instant, observer, visibleOnly })`
 - `findPreviousLocalSolarEclipse({ instant, observer, visibleOnly })`
+- `getLunarEclipseState({ instant, observer })`
+- `getLocalLunarEclipse({ instant, observer })`
+- `getNearbyLocalLunarEclipse({ instant, observer, margin })`
+- `findNextLocalLunarEclipse({ instant, observer, visibleOnly })`
+- `findPreviousLocalLunarEclipse({ instant, observer, visibleOnly })`
 
 Position options may specify atmospheric pressure in hPa and temperature in
 degrees Celsius. Event scans default to five-minute brackets and refine roots

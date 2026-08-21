@@ -1,0 +1,75 @@
+.graph {
+	background: hsl(220deg 24% 6%);
+}
+
+.penumbra-inner {
+	stop-color: hsl(8deg 34% 12% / 72%);
+}
+
+.penumbra-middle {
+	stop-color: hsl(12deg 24% 18% / 38%);
+}
+
+.penumbra-outer {
+	stop-color: hsl(220deg 18% 10% / 4%);
+}
+
+.penumbra {
+	stroke: hsl(14deg 40% 45% / 45%);
+	stroke-width: 1px;
+	vector-effect: non-scaling-stroke;
+}
+
+.umbra,
+.umbra-coverage {
+	fill: hsl(2deg 42% 12% / 88%);
+}
+
+.umbra {
+	stroke: hsl(4deg 62% 45% / 70%);
+	stroke-width: 1.5px;
+	vector-effect: non-scaling-stroke;
+}
+
+.moon {
+	fill: lightblue;
+	filter: drop-shadow(0 0 3px hsl(195deg 70% 85% / 50%));
+}
+
+.moon-outline {
+	fill: none;
+	stroke: hsl(195deg 35% 85%);
+	stroke-width: 1.5px;
+	transition: cx 0.45s ease-in-out, cy 0.45s ease-in-out, r 0.45s ease-in-out;
+	vector-effect: non-scaling-stroke;
+}
+
+.track {
+	fill: none;
+	stroke: var(--eclipse-track-color);
+	stroke-dasharray: 4 4;
+	stroke-linecap: round;
+	stroke-width: 1.5px;
+	animation: eclipse-track-enter 0.45s ease-in-out;
+	vector-effect: non-scaling-stroke;
+}
+
+@keyframes eclipse-track-enter {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.moon-outline {
+		transition: none;
+	}
+
+	.track {
+		animation: none;
+	}
+}

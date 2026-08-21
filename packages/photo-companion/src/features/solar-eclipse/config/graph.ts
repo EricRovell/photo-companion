@@ -1,7 +1,8 @@
-export const GRAPH_ASPECT_RATIO = 16 / 9;
-export const VIEW_ALTITUDE_RADIUS = 1;
-export const VIEW_AZIMUTH_RADIUS = VIEW_ALTITUDE_RADIUS * GRAPH_ASPECT_RATIO;
-export const TRACK_HALF_SPAN = 12 * 60 * 60 * 1000;
-export const TRACK_SEGMENTS = 96;
-export const GRAPH_TICKS = [ -0.5, 0.5 ];
-export const GRAPH_VIEW_BOX = `${-VIEW_AZIMUTH_RADIUS} ${-VIEW_ALTITUDE_RADIUS} ${2 * VIEW_AZIMUTH_RADIUS} ${2 * VIEW_ALTITUDE_RADIUS}`;
+export const GRAPH_CONFIG = {
+	altitudeTicks: [ -0.5, 0.5 ],
+	azimuthTicks: [ -1.5, -1, -0.5, 0.5, 1, 1.5 ],
+	trackHalfSpan: 12 * 60 * 60 * 1000,
+	trackSegments: 96,
+	viewAltitudeRadius: 1,
+	viewAzimuthRadius: 16 / 9
+} as const;

@@ -6,13 +6,33 @@ import type {
 	Observer
 } from "../types";
 
-export type SolarEclipseKind = "ANNULAR" | "PARTIAL" | "TOTAL";
-export type SolarEclipsePhase = "NONE" | SolarEclipseKind;
-export type SolarEclipseVisibility = "FULL" | "NONE" | "PARTIAL";
+export type SolarEclipseType = "ANNULAR" | "PARTIAL" | "TOTAL";
+export type SolarEclipsePhase = "NONE" | SolarEclipseType;
+export type EclipseVisibility = "FULL" | "NONE" | "PARTIAL";
+export type SolarEclipseVisibility = EclipseVisibility;
+
+export type LunarEclipseType = "PARTIAL" | "PENUMBRAL" | "TOTAL";
+export type LunarEclipseNoticeability = "CLEAR" | "SUBTLE" | "UNLIKELY";
+export type LunarEclipsePhase = "NONE" | LunarEclipseType;
+export type LunarEclipseVisibility = EclipseVisibility;
 
 export interface SolarEclipseInput {
 	instant: DateLike;
 	observer: Observer;
+}
+
+export interface LunarEclipseInput {
+	instant: DateLike;
+	observer: Observer;
+}
+
+export interface LunarEclipseSearchInput extends LunarEclipseInput {
+	visibleOnly: boolean;
+}
+
+export interface NearbyLunarEclipseInput extends LunarEclipseInput {
+	/** Time before P1 and after P4 in which the lunar eclipse is considered nearby. */
+	margin: Millisecond;
 }
 
 export interface SolarEclipseSearchInput extends SolarEclipseInput {
@@ -29,6 +49,53 @@ export interface SolarEclipseBodyState {
 	angularRadius: Degree;
 	apparentAltitude: Degree;
 	azimuth: Degree;
+}
+
+export interface LunarEclipseMoonState extends SolarEclipseBodyState {
+	offset: {
+		altitude: Degree;
+		azimuth: Degree;
+	};
+}
+
+export interface LunarEclipseShadowState {
+	altitude: Degree;
+	apparentAltitude: Degree;
+	azimuth: Degree;
+	penumbraAngularRadius: Degree;
+	umbraAngularRadius: Degree;
+}
+
+export interface LunarEclipseState {
+	moon: LunarEclipseMoonState;
+	penumbralMagnitude: number;
+	phase: LunarEclipsePhase;
+	separation: Degree;
+	shadow: LunarEclipseShadowState;
+	umbralCoverage: Fraction;
+	umbralMagnitude: number;
+}
+
+export interface LunarEclipseContact {
+	moonAltitude: Degree;
+	moonAzimuth: Degree;
+	time: Date;
+	visible: boolean;
+}
+
+export interface LocalLunarEclipse {
+	noticeability: LunarEclipseNoticeability;
+	partialBegin: LunarEclipseContact | null;
+	partialEnd: LunarEclipseContact | null;
+	peak: LunarEclipseContact;
+	penumbralBegin: LunarEclipseContact;
+	penumbralEnd: LunarEclipseContact;
+	penumbralMagnitude: number;
+	totalBegin: LunarEclipseContact | null;
+	totalEnd: LunarEclipseContact | null;
+	type: LunarEclipseType;
+	umbralMagnitude: number;
+	visibility: LunarEclipseVisibility;
 }
 
 export interface SolarEclipseMoonState extends SolarEclipseBodyState {
@@ -54,10 +121,10 @@ export interface SolarEclipseContact {
 }
 
 export interface LocalSolarEclipse {
-	kind: SolarEclipseKind;
 	obscuration: Fraction;
 	partialBegin: SolarEclipseContact;
 	partialEnd: SolarEclipseContact;
 	peak: SolarEclipseContact;
+	type: SolarEclipseType;
 	visibility: SolarEclipseVisibility;
 }

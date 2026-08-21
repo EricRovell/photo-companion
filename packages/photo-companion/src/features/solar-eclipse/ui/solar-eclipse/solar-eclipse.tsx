@@ -3,7 +3,7 @@ import { useTranslation } from "~/features/translation";
 import { useSolarEclipse } from "../../model";
 import { SolarEclipseDetails } from "../solar-eclipse-details/solar-eclipse-details";
 import { SolarEclipseGraph } from "../solar-eclipse-graph/solar-eclipse-graph";
-import { SolarEclipseNavigation } from "../solar-eclipse-navigation/solar-eclipse-navigation";
+import { SolarEclipseNavigation } from "../solar-eclipse-navigation";
 
 import styles from "./solar-eclipse.module.css";
 
