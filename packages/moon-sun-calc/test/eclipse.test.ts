@@ -11,9 +11,9 @@ import {
 
 import type {
 	SolarEclipseInput,
-	SolarEclipseKind,
 	SolarEclipsePhase,
-	SolarEclipseSearchInput
+	SolarEclipseSearchInput,
+	SolarEclipseType
 } from "../src";
 
 const DALLAS = { latitude: 32.7767, longitude: -96.797 };
@@ -24,12 +24,12 @@ interface LocalEclipseCase {
 	description: string;
 	input: SolarEclipseInput;
 	output: {
-		kind: SolarEclipseKind;
 		obscuration: number;
 		partialBegin: string;
 		partialEnd: string;
 		peak: string;
 		sunAltitude?: number;
+		type: SolarEclipseType;
 	};
 }
 
@@ -66,12 +66,12 @@ describe("Solar eclipses", () => {
 				observer: DALLAS
 			},
 			output: {
-				kind: "TOTAL",
 				obscuration: 1,
 				partialBegin: "2024-04-08T17:23:00Z",
 				partialEnd: "2024-04-08T20:02:00Z",
 				peak: "2024-04-08T18:42:00Z",
-				sunAltitude: 65
+				sunAltitude: 65,
+				type: "TOTAL"
 			}
 		},
 		// NASA/MSFC local circumstances: https://magnetograph.msfc.nasa.gov/outreach/girlscouts/G-605996_TwoEclipses_Jun15_2022.pdf
@@ -82,11 +82,11 @@ describe("Solar eclipses", () => {
 				observer: ALBUQUERQUE
 			},
 			output: {
-				kind: "ANNULAR",
 				obscuration: 0.9,
 				partialBegin: "2023-10-14T15:13:00Z",
 				partialEnd: "2023-10-14T18:09:00Z",
-				peak: "2023-10-14T16:37:00Z"
+				peak: "2023-10-14T16:37:00Z",
+				type: "ANNULAR"
 			}
 		},
 		// NASA major-city circumstances: https://eclipse.gsfc.nasa.gov/SEcirc/SEcircNA/NewYorkNY2.html
@@ -97,11 +97,11 @@ describe("Solar eclipses", () => {
 				observer: NEW_YORK
 			},
 			output: {
-				kind: "PARTIAL",
 				obscuration: 0.9,
 				partialBegin: "2024-04-08T18:10:00Z",
 				partialEnd: "2024-04-08T20:36:00Z",
-				peak: "2024-04-08T19:25:00Z"
+				peak: "2024-04-08T19:25:00Z",
+				type: "PARTIAL"
 			}
 		}
 	])("$description", ({ input, output }) => {
@@ -110,10 +110,10 @@ describe("Solar eclipses", () => {
 		expect(event).not.toBeNull();
 
 		if (isNullable(event)) {
-			throw new Error(`Expected a ${output.kind.toLowerCase()} eclipse`);
+			throw new Error(`Expected a ${output.type.toLowerCase()} eclipse`);
 		}
 
-		expect(event.kind).toBe(output.kind);
+		expect(event.type).toBe(output.type);
 		expect(Math.abs(event.obscuration - output.obscuration)).toBeLessThan(0.02);
 		expect(differenceMinutes(event.partialBegin.time, output.partialBegin)).toBeLessThan(2);
 		expect(differenceMinutes(event.peak.time, output.peak)).toBeLessThan(2);
@@ -131,7 +131,7 @@ describe("Solar eclipses", () => {
 		});
 
 		expect(event).not.toBeNull();
-		expect(event?.kind).toBe("PARTIAL");
+		expect(event?.type).toBe("PARTIAL");
 		expect(event?.visibility).toBe("PARTIAL");
 		expect(event?.partialBegin.visible).toBe(false);
 		expect(event?.partialEnd.visible).toBe(true);
@@ -164,7 +164,7 @@ describe("Solar eclipses", () => {
 			observer: DALLAS
 		});
 
-		expect(event?.kind ?? null).toBe(output);
+		expect(event?.type ?? null).toBe(output);
 	});
 
 	test("keeps the exact local eclipse lookup strict outside C1 to C4", () => {

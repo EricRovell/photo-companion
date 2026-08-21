@@ -1,7 +1,12 @@
 export {
+	findNextLocalLunarEclipse,
 	findNextLocalSolarEclipse,
+	findPreviousLocalLunarEclipse,
 	findPreviousLocalSolarEclipse,
+	getLocalLunarEclipse,
 	getLocalSolarEclipse,
+	getLunarEclipseState,
+	getNearbyLocalLunarEclipse,
 	getNearbyLocalSolarEclipse,
 	getSolarEclipseState
 } from "./eclipse";

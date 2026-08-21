@@ -1,0 +1,1 @@
+export const ECLIPSE_CONTEXT_MARGIN = 12 * 60 * 60 * 1000;

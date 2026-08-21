@@ -24,12 +24,15 @@ lunar topography.
 | Moon rise/set and principal phases | 2 minutes |
 | Local eclipse contacts and maximum | 2 minutes |
 | Local eclipse obscuration | 0.02 absolute |
+| Lunar eclipse contacts and maximum | 2 minutes |
+| Lunar penumbral/umbral magnitude | 0.02 absolute |
 | High-latitude or grazing events | 5 minutes |
 
 Static tests include Meeus's 1992-04-12 lunar-distance example, JPL Horizons
 DE441 topocentric position samples, USNO 2025 rise/set/transit and principal
 phase samples, and NASA local circumstances for partial, annular, total, and
-horizon-clipped solar eclipses. The checked position samples differ from JPL by
+horizon-clipped solar eclipses and NASA total, partial, and penumbral lunar
+eclipse circumstances. The checked position samples differ from JPL by
 about 0.003°; the checked USNO and NASA events agree at minute precision. These
 fixtures are regression evidence, not a claim that every point in the full
 range has been certified.
@@ -41,3 +44,5 @@ Primary references:
 - [NASA/JPL Horizons](https://ssd.jpl.nasa.gov/horizons/), DE441 observer ephemerides.
 - [U.S. Naval Observatory Astronomical Applications API](https://aa.usno.navy.mil/data/api).
 - [NASA local solar-eclipse circumstances](https://eclipse.gsfc.nasa.gov/SEmono/reference/locircT.html).
+- [NASA Five Millennium Catalog of Lunar Eclipses](https://eclipse.gsfc.nasa.gov/LEcat5/catalog.html).
+- [NASA enlargement of Earth's shadows](https://eclipse.gsfc.nasa.gov/LEcat5/shadow.html).
