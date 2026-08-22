@@ -1,5 +1,5 @@
 import { getSunEvents as calculateSunEvents, getSunPosition } from "moon-sun-calc";
-import { getDayStart, incrementDateByDay } from "utils/date";
+import { getDayStart, shiftDate } from "utils/date";
 
 import { useTranslation } from "~/features/translation";
 
@@ -13,7 +13,7 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 
 	const data = calculateSunEvents({
 		interval: {
-			end: incrementDateByDay(start, 1).getTime(),
+			end: shiftDate(start, "day", 1).getTime(),
 			start
 		},
 		observer

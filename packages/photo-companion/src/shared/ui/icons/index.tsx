@@ -30,6 +30,12 @@ export const IconBridge = (props: IconProps) => (
 	</Icon>
 );
 
+export const IconCalendar = (props: IconProps) => (
+	<Icon {...props}>
+		<path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V88H208ZM48,72V48H72v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V72Z" />
+	</Icon>
+);
+
 export const IconChevronDown = (props: IconProps) => (
 	<Icon {...props}>
 		<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z" />

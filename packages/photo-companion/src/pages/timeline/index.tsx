@@ -1,5 +1,5 @@
 import { For, Show } from "solid-js";
-import { incrementDateByDay } from "utils/date";
+import { shiftDate } from "utils/date";
 
 import { Timeline, TimelineGroup } from "~/entities/timeline";
 import { TimelineEvent, TimelineEventEmpty } from "~/entities/timeline-event";
@@ -49,7 +49,7 @@ function EventTimeline() {
 	const disabled = useDisabledTimeline();
 
 	const timeline = () => {
-		const tomorrow = incrementDateByDay(getDatetime(), 1);
+		const tomorrow = shiftDate(getDatetime(), "day", 1);
 
 		return [
 			{

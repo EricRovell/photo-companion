@@ -1,4 +1,4 @@
-import { calcDuration, incrementDateByDay } from "utils/date";
+import { calcDuration, shiftDate } from "utils/date";
 import { isNullable, isValidDate } from "utils/validators";
 
 import type { IlluminationState, LightsCity, LightsEvent, LightsSchedule } from "types";
@@ -80,7 +80,7 @@ export function initLightsProvider(cityName: Nullable<LightsCity>): LightsProvid
 			};
 		}
 
-		const nextDay = incrementDateByDay(input, 1);
+		const nextDay = shiftDate(input, "day", 1);
 		const scheduleNext = getScheduleByDate(nextDay);
 
 		return {

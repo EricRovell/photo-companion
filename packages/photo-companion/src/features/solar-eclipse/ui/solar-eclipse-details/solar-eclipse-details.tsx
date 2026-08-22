@@ -49,7 +49,7 @@ export function SolarEclipseDetails(props: SolarEclipseDetailsProps) {
 							</div>
 						</dl>
 
-						<section class={styles["contacts-section"]}>
+						<section class={styles["contacts-section"]} data-page-swipe="ignore">
 							<h3>{t().SOLAR_ECLIPSE.CONTACTS}</h3>
 							<ol aria-label={t().SOLAR_ECLIPSE.CONTACTS} class={styles.contacts}>
 								<SolarEclipseContact contact={event().partialBegin} label={t().SOLAR_ECLIPSE.FIRST_CONTACT} position="begin" />

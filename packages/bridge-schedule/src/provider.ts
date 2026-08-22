@@ -1,4 +1,4 @@
-import { dateFrom, incrementDateByDay } from "utils/date";
+import { dateFrom, shiftDate } from "utils/date";
 import { isNullable } from "utils/validators";
 
 import { SUPPORTED_BRIDGES_NAME_SET } from "./const";
@@ -51,7 +51,7 @@ export function getBridgeState(name: BridgeName, date: DateLike = Date.now(), ig
 		return {
 			name,
 			open: false,
-			timestamp: incrementDateByDay(new Date(firstOpeningTime), 1).getTime()
+			timestamp: shiftDate(new Date(firstOpeningTime), "day", 1).getTime()
 		};
 	}
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.36.0
+
+- New date-time control.
+- Fixed swiping/scrolling eclipse contacts causing page navigation.
+
 ## 2.35.0
 
 - Added a local lunar eclipse finder with true-scale Earth-shadow geometry, phase contacts, and viewing guidance.

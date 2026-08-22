@@ -6,7 +6,6 @@ export { ErrorMessage } from "./error-message/error-message";
 export { Fieldset, Form } from "./form/form";
 export { Icon, type IconProps } from "./icon/icon";
 export { InputCheckbox } from "./input-checkbox/input-checkbox";
-export { InputDatetime } from "./input-datetime/input-datetime";
 export { InputLocation } from "./input-location/input-location";
 export { InputRadio } from "./input-radio/input-radio";
 export { InputSelect, type InputSelectOption } from "./input-select/input-select";

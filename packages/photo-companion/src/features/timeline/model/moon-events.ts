@@ -1,5 +1,5 @@
 import { getMoonEvents as calculateMoonEvents, getMoonIllumination, getMoonPosition, getMoonZenithAngle } from "moon-sun-calc";
-import { getDayStart, incrementDateByDay } from "utils/date";
+import { getDayStart, shiftDate } from "utils/date";
 import { round } from "utils/math";
 
 import { getMoonRotation } from "~/entities/moon/lib/moon-rotation";
@@ -16,7 +16,7 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 
 	const times = calculateMoonEvents({
 		interval: {
-			end: incrementDateByDay(start, 1).getTime(),
+			end: shiftDate(start, "day", 1).getTime(),
 			start
 		},
 		observer

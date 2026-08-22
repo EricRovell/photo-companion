@@ -1,7 +1,7 @@
 import { getSunEvents, getSunPosition } from "moon-sun-calc";
 import { createContext } from "solid-js";
 import { createMemo } from "solid-js";
-import { calcDuration, getDayStart, incrementDateByDay } from "utils/date";
+import { calcDuration, getDayStart, shiftDate } from "utils/date";
 
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
@@ -17,7 +17,7 @@ function createSunState() {
 		const start = getDayStart(getDatetime());
 
 		return getSunEvents({
-			interval: { end: incrementDateByDay(start, 1).getTime(), start },
+			interval: { end: shiftDate(start, "day", 1).getTime(), start },
 			observer: observer()
 		});
 	});

@@ -1,5 +1,5 @@
-import { incrementDateByDay } from "utils/date";
+import { shiftDate } from "utils/date";
 
 export function getPreviousDate(date: Date): Date {
-	return incrementDateByDay(date, -1);
+	return shiftDate(date, "day", -1);
 }

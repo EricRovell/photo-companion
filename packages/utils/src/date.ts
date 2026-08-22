@@ -74,6 +74,8 @@ interface DateFromOptions {
 	year?: number;
 }
 
+export type DateShiftUnit = "day" | "hour" | "minute" | "month" | "year";
+
 /**
  * Returns a new date from a given date with predefined parameters.
  *
@@ -121,14 +123,37 @@ export function getDayStart(date: DateLike) {
 }
 
 /**
- * Increments the given date by number of days.
+ * Returns a new date shifted by a local calendar unit.
+ * Month and year shifts clamp the day to the last valid day of the target month.
  */
-export function incrementDateByDay(date: DateLike | string, dayCount: number): Date {
-	const currentDate = new Date(date);
-	const nextDate = new Date(currentDate.getTime());
-	nextDate.setDate(nextDate.getDate() + dayCount);
+export function shiftDate(input: DateLike | string, unit: DateShiftUnit, amount: number): Date {
+	const output = new Date(input);
 
-	return nextDate;
+	if (unit === "minute") {
+		output.setMinutes(output.getMinutes() + amount);
+	} else if (unit === "hour") {
+		output.setHours(output.getHours() + amount);
+	} else if (unit === "day") {
+		output.setDate(output.getDate() + amount);
+	} else if (unit === "month") {
+		const day = output.getDate();
+		output.setDate(1);
+		output.setMonth(output.getMonth() + amount);
+		output.setDate(Math.min(day, getDaysInMonth(output.getFullYear(), output.getMonth())));
+	} else {
+		const day = output.getDate();
+		output.setDate(1);
+		output.setFullYear(output.getFullYear() + amount);
+		output.setDate(Math.min(day, getDaysInMonth(output.getFullYear(), output.getMonth())));
+	}
+
+	return output;
+}
+
+function getDaysInMonth(year: number, month: number): number {
+	const date = new Date(0);
+	date.setFullYear(year, month + 1, 0);
+	return date.getDate();
 }
 
 /**
