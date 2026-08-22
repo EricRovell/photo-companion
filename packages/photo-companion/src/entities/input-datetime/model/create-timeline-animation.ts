@@ -16,7 +16,10 @@ interface CreateTimelineAnimationOptions {
 }
 
 function prefersReducedMotion(): boolean {
-	return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	return (
+		!isNullable(globalThis.window) &&
+		window.matchMedia("(prefers-reduced-motion: reduce)").matches
+	);
 }
 
 export function createTimelineAnimation(options: CreateTimelineAnimationOptions) {

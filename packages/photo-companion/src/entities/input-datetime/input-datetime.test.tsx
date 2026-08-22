@@ -1,11 +1,14 @@
-import { fireEvent, render } from "@solidjs/testing-library";
-import { describe, expect, it, vi } from "vitest";
+import { fireEvent, render, waitFor } from "@solidjs/testing-library";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { InputDatetime } from "./index";
 
+afterEach(() => vi.unstubAllGlobals());
+
 describe("InputDatetime", () => {
-	it("uses second precision and preserves seconds when changing the day", () => {
+	it("uses second precision and preserves seconds when changing the day", async () => {
 		const handleDatetimeChange = vi.fn();
+		vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: true })));
 
 		const view = render(() => (
 			<InputDatetime
@@ -23,9 +26,13 @@ describe("InputDatetime", () => {
 		expect(input.step).toBe("1");
 		expect(input.value).toBe("2027-04-05T12:45:36.000");
 
-		fireEvent.click(view.getByTitle("Next day"));
+		fireEvent.keyDown(view.getByRole("slider", { name: "Change date and time" }), {
+			key: "ArrowRight"
+		});
 
-		expect(handleDatetimeChange).toHaveBeenCalledWith("2027-04-06T12:45:36");
+		await waitFor(() => {
+			expect(handleDatetimeChange).toHaveBeenCalledWith("2027-04-06T12:45:36");
+		});
 	});
 
 	it("passes a browser-normalized value to the input adapter", () => {
