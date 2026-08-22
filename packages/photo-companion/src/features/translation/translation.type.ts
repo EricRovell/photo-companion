@@ -84,6 +84,9 @@ export interface Translation {
 		CITY: string;
 		DATE: string;
 		DATETIME: string;
+		DATETIME_STEP: string;
+		DATETIME_TIMELINE: string;
+		DAY: string;
 		DECLINATION: string;
 		DEGREES: string;
 		DISTANCE: string;
@@ -95,6 +98,7 @@ export interface Translation {
 		GEOLOCATION: string;
 		GO_HOME: string;
 		HEIGHT: string;
+		HOUR: string;
 		LANGUAGE: string;
 		LATITUDE: string;
 		LATITUDE_NORTH: string;
@@ -104,7 +108,9 @@ export interface Translation {
 		LONGITUDE_EAST: string;
 		LONGITUDE_WEST: string;
 		MENU: string;
+		MINUTE: string;
 		MINUTES: string;
+		MONTH: string;
 		MOON_ILLUMINATION: string;
 		MOON_PHASE: string;
 		MOONRISE_TIME: string;
@@ -112,12 +118,11 @@ export interface Translation {
 		NAVIGATION: string;
 		NAVIGATION_CLOSED_SHORT: string;
 		NAVIGATION_OPENED_SHORT: string;
-		NEXT_DAY: string;
 		NOW: string;
 		OBJECT_LEVEL: string;
+		OPEN_DATETIME_PICKER: string;
 		PARALLACTIC_ANGLE: string;
 		PEAK_TIME: string;
-		PREVIOUS_DAY: string;
 		PROBABILITY: string;
 		RESET: string;
 		SAVE: string;
@@ -139,6 +144,7 @@ export interface Translation {
 		UPDATE: string;
 		WANING: string;
 		WAXING: string;
+		YEAR: string;
 		ZENITH: string;
 	};
 	LIGHTS_COMPARISON: {

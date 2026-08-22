@@ -1,6 +1,6 @@
 import { getMoonEvents, getMoonIllumination, getMoonPosition, getMoonZenithAngle, getNextMoonPhases } from "moon-sun-calc";
 import { createMemo } from "solid-js";
-import { calcDuration, getDayStart, incrementDateByDay } from "utils/date";
+import { calcDuration, getDayStart, shiftDate } from "utils/date";
 
 import { getMoonRotation, normalizeAngleDegrees } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
@@ -26,7 +26,7 @@ export function createMoonServiceState() {
 	const times = createMemo(() => {
 		const start = getDayStart(getDatetime());
 		return getMoonEvents({
-			interval: { end: incrementDateByDay(start, 1).getTime(), start },
+			interval: { end: shiftDate(start, "day", 1).getTime(), start },
 			observer: observer()
 		});
 	});

@@ -4,6 +4,12 @@ import { useSwipe } from "~/shared/primitives";
 
 import { useNavigationService } from "../model";
 
+function shouldIgnoreSwipe(event: TouchEvent): boolean {
+	return event.composedPath().some(target => (
+		target instanceof HTMLElement && target.dataset.pageSwipe === "ignore"
+	));
+}
+
 export function LayoutSwipe(props: ParentProps) {
 	const [ getRef, setRef ] = createSignal<HTMLDivElement | null>(null);
 	const { createSwiper } = useNavigationService();
@@ -11,7 +17,11 @@ export function LayoutSwipe(props: ParentProps) {
 	const swipe = createSwiper();
 
 	useSwipe(getRef, {
-		onSwipeEnd(_, direction) {
+		onSwipeEnd(event, direction) {
+			if (shouldIgnoreSwipe(event)) {
+				return;
+			}
+
 			if (direction === "LEFT") {
 				swipe(1);
 			} else if (direction === "RIGHT") {

@@ -1,0 +1,55 @@
+.actions {
+	grid-area: actions;
+	justify-self: end;
+	display: flex;
+	height: 100%;
+}
+
+.picker-control {
+	position: relative;
+	display: grid;
+	height: 100%;
+}
+
+.input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	border: 0;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+}
+
+.button {
+	--icon-size: 0.875rem;
+
+	aspect-ratio: auto;
+	width: 2.5rem;
+	min-width: 2.5rem;
+	height: 100%;
+	padding: var(--space-2);
+	border-inline-start: var(--border);
+	border-radius: 0;
+	background-color: var(--color-surface-2);
+
+	&:hover {
+		background-color: var(--color-surface-3);
+	}
+
+	&:active {
+		background-color: var(--color-surface-4);
+	}
+}
+
+@media screen and (width <= 650px) {
+	.button {
+		--icon-size: 1rem;
+
+		min-width: 2.5rem;
+		padding: var(--space-2);
+	}
+}

@@ -75,7 +75,7 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 							</div>
 						</dl>
 
-						<section class={styles["contacts-section"]}>
+						<section class={styles["contacts-section"]} data-page-swipe="ignore">
 							<h3>{t().LUNAR_ECLIPSE.CONTACTS}</h3>
 							<div class={styles["contacts-scroll"]}>
 								<ol

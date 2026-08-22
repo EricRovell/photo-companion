@@ -1,5 +1,5 @@
 import { getMoonIllumination, getMoonPosition, getSunPosition } from "moon-sun-calc";
-import { getDayStart, incrementDateByDay } from "utils/date";
+import { getDayStart, shiftDate } from "utils/date";
 import { clamp, scale } from "utils/math";
 import { isNullable, isWithinRange } from "utils/validators";
 
@@ -40,7 +40,7 @@ export function getEarthshineProbability(
 	longitude: number
 ): EarthshineOpportunity | null {
 	const startOfDay = getDayStart(date);
-	const endOfDay = incrementDateByDay(startOfDay, 1).getTime();
+	const endOfDay = shiftDate(startOfDay, "day", 1).getTime();
 
 	let currentWindowStart: null | number = null;
 	let bestWindowStart = 0;

@@ -1,7 +1,7 @@
 import { fireEvent, render } from "@solidjs/testing-library";
 import { describe, expect, it, vi } from "vitest";
 
-import { InputDatetime } from "./input-datetime";
+import { InputDatetime } from "./index";
 
 describe("InputDatetime", () => {
 	it("uses second precision and preserves seconds when changing the day", () => {
