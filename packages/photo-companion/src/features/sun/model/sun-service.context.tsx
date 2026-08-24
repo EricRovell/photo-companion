@@ -31,6 +31,7 @@ function createSunState() {
 		azimuth: () => position().azimuth,
 		dayDuration: () => sunrise() && sunset() ? calcDuration(sunrise(), sunset()) : 0,
 		declination: () => position().declination,
+		distance: () => position().distance,
 		sunrise,
 		sunset,
 		zenith: () => 90 - position().apparentAltitude

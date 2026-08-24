@@ -20,6 +20,7 @@ export function getSunPosition({ instant, observer, options = {} }: SunPositionI
 		apparentAltitude: horizontal.apparentAltitude,
 		azimuth: horizontal.azimuth,
 		declination: horizontal.declination,
+		distance: coordinates.distance,
 		rightAscension: horizontal.rightAscension,
 		zenith: 90 - horizontal.altitude
 	};

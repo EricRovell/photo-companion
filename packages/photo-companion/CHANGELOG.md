@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.37.0
+
+- Sun-Earth distance calculations info.
+
 ## 2.36.0
 
 - New date-time control.
