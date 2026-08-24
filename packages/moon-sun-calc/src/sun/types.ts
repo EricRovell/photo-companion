@@ -3,6 +3,7 @@ import type {
 	DateLike,
 	Degree,
 	EventOptions,
+	Kilometer,
 	Observer,
 	PositionOptions,
 	UtcInterval
@@ -15,6 +16,8 @@ export interface SunPosition extends EquatorialCoordinates {
 	apparentAltitude: Degree;
 	/** North = 0 degrees, east = 90 degrees. */
 	azimuth: Degree;
+	/** Geocentric distance from Earth to the Sun. */
+	distance: Kilometer;
 	zenith: Degree;
 }
 

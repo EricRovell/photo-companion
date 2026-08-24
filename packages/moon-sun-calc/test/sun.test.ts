@@ -135,6 +135,15 @@ describe("Sun", () => {
 		expect(position.apparentAltitude).toBeGreaterThan(position.altitude);
 	});
 
+	test("matches Meeus chapter 25's solar distance example", () => {
+		const position = getSunPosition({
+			instant: Date.parse("1992-10-13T00:00:00Z"),
+			observer: LONDON
+		});
+
+		expect(position.distance / 149_597_870.7).toBeCloseTo(0.99766, 5);
+	});
+
 	test.each(SUN_EVENT_CASES)("$description", ({ input, output }) => {
 		const events = getSunEvents({ interval: input.interval, observer: input.observer });
 		const event = events.find(item => item.name === input.eventName);

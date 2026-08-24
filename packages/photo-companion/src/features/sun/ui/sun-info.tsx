@@ -7,7 +7,7 @@ import { useSunService } from "../model";
 
 export function SunInfo(props: { title?: string }) {
 	const { format, t } = useTranslation();
-	const { altitude, azimuth, dayDuration, declination, sunrise, sunset, zenith } = useSunService();
+	const { altitude, azimuth, dayDuration, declination, distance, sunrise, sunset, zenith } = useSunService();
 
 	return (
 		<PropertyList>
@@ -45,6 +45,11 @@ export function SunInfo(props: { title?: string }) {
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.DECLINATION}</PropertyList.Label>
 					<PropertyList.Value>{format().degrees(declination())}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.DISTANCE}</PropertyList.Label>
+					<PropertyList.Value>{format().kilometers(distance())}</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
