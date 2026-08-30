@@ -67,13 +67,13 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 
 	const releaseTimeline = (withVelocity: boolean) => {
 		const { fling, ticks } = DATETIME_CONFIG;
-		options.setState("dragging", false);
 		const projectedOffset = options.state.offset + (withVelocity ? velocity * fling.projectionMs : 0);
 		const targetStep = Math.max(
 			-fling.maxSteps,
 			Math.min(fling.maxSteps, getNearestStep(projectedOffset, ticks.width))
 		);
 		options.animateToStep(targetStep, velocity);
+		options.setState("dragging", false);
 	};
 
 	const handlePointerDown: JSX.EventHandlerUnion<HTMLDivElement, PointerEvent> = (event) => {

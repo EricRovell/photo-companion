@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.38.1
+
+- Fix: datetime value reset to initial after continuous drag.
+- Missing item from mobile navigation when other city option selected.
+
 ## 2.38.0
 
 - Sun-elevation based city lights schedule.
