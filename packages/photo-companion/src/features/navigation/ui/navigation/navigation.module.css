@@ -152,8 +152,7 @@
 		width: 100%;
 	}
 
-	.nav-item:nth-last-child(3),
-	.nav-item:nth-last-child(4) {
+	.nav-item:nth-child(-n + 4) {
 		display: inline-flex;
 	}
 
