@@ -2,3 +2,9 @@ export const SUPPORTED_CITY_SET = new Set<string>([
 	"MOSCOW",
 	"SAINT_PETERSBURG"
 ]);
+
+export const CALIBRATION_LATITUDE_CENTER = 57.84505;
+export const CALIBRATION_LATITUDE_RADIUS = 2.08925;
+export const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+export const MILLISECONDS_PER_MINUTE = 60 * 1000;
+export const NEXT_EVENT_SEARCH_DAYS = 370;

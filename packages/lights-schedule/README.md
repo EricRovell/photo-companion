@@ -1,8 +1,8 @@
 # Lights Schedule
 
-City lights schedule provider.
+City lights schedule provider. Official schedule data is used where available; other locations can use an explicitly labelled solar estimate.
 
-Right now these cities are supported:
+Official schedules are bundled for:
 
 - Saint-Petersburg, Russia;
 - Moscow, Russia;
@@ -43,23 +43,33 @@ The main reason is — to save some space. The schedule data varies from city to
 
 ## API
 
-To create a provider, use a constructor function and pass a supported city as the only parameter:
+To create an schedule provider, pass a supported city:
 
 ```ts
 import { initLightsProvider } from "lights-schedule";
 
-const provider = initLightsProvider("moscow");
+const provider = initLightsProvider("MOSCOW");
+```
+
+For another location, pass `OTHER` and its coordinates:
+
+```ts
+const provider = initLightsProvider("OTHER", {
+	latitude: 52.52,
+	longitude: 13.405
+});
 ```
 
 The provider exposes the information and methods to work with schedule data:
 
 ```ts
 interface LightsProvider {
-	city: LightsCity;
+	city: City;
 	getEventsByDate: (input?: Date) => LightsEvent[];
 	getScheduleByDate: (input?: Date) => LightsSchedule;
 	getStateByDate: (input?: Date) => IlluminationState;
-	year: number;
+	source: "SCHEDULE" | "SOLAR_ESTIMATE";
+	year: number | null;
 }
 ```
 
@@ -71,12 +81,15 @@ Returns the lights schedule for a given date.
 import { initLightsProvider } from "lights-schedule";
 
 interface LightsSchedule {
-	duration: number;
-	LIGHTS_START: number;
-	LIGHTS_END: number;
+	duration: number | null;
+	LIGHTS_START: number | null;
+	LIGHTS_END: number | null;
+	source: "SCHEDULE" | "SOLAR_ESTIMATE";
+	status: "SCHEDULED" | "CONTINUOUS_DAYLIGHT" | "CONTINUOUS_DARKNESS" | "UNAVAILABLE";
+	uncertaintyMinutes: number;
 }
 
-const { getScheduleByDate } = initLightsProvider("moscow");
+const { getScheduleByDate } = initLightsProvider("MOSCOW");
 const schedule = getScheduleByDate();
 ```
 
@@ -93,11 +106,11 @@ type LightsEventName =
 
 interface IlluminationState {
 	lights: boolean;
-	event: LightsEventName;
-	timestamp: number;
+	event: LightsEventName | null;
+	timestamp: number | null;
 }
 
-const { getStateByDate } = initLightsProvider("moscow");
+const { getStateByDate } = initLightsProvider("MOSCOW");
 const state = getStateByDate();
 ```
 
@@ -108,9 +121,20 @@ Returns all the lights schedule events for a given date.
 ```ts
 import { initLightsProvider } from "lights-schedule";
 
-const { getEventsByDate } = initLightsProvider("moscow");
+const { getEventsByDate } = initLightsProvider("MOSCOW");
 const events = getEventsByDate();
 ```
+
+## Solar estimate
+
+The estimate switches lights on and off when the Sun crosses event-specific effective altitudes. Those altitudes are calculated from the date and latitude with a compact two-harmonic annual model fitted to the bundled Moscow and Saint Petersburg schedules. The same coordinate/date formula is used for every city; there are no hidden city schedule lookups.
+
+The annual phase is shifted by six months in the Southern Hemisphere, and its effect tapers to zero at the equator. Latitude adjustment is clamped outside the 55.76–59.93° calibration range rather than extrapolating an increasingly unreliable fit. The seasonal model reduced mean error against the two bundled 2024 schedules from about 8.4 to 3.5 minutes for switch-on and from 11.4 to 3.9 minutes for switch-off. This is calibration accuracy, not a guarantee for other cities.
+
+Estimated times have an uncertainty of ±30 minutes, increased to ±60 minutes at absolute latitudes of 63° or more. Actual operation can differ due to local policy, weather sensors, maintenance modes, and energy-saving rules.
+
+When the Sun never crosses the thresholds, the result has a
+`CONTINUOUS_DAYLIGHT` or `CONTINUOUS_DARKNESS` status, `null` event times, and no timeline events. Missing or invalid coordinates produce `UNAVAILABLE` rather than silently falling back to another city's official schedule.
 
 ## Cities
 

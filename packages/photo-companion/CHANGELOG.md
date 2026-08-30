@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.38.0
+
+- Sun-elevation based city lights schedule.
+
 ## 2.37.0
 
 - Sun-Earth distance calculations info.

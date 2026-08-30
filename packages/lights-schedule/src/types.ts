@@ -1,8 +1,10 @@
 import type {
+	City,
 	IlluminationState,
 	LightsCity,
 	LightsEvent,
-	LightsSchedule
+	LightsSchedule,
+	LightsScheduleSource
 } from "types";
 
 export interface CityLightsSchedule {
@@ -13,9 +15,20 @@ export interface CityLightsSchedule {
 }
 
 export interface LightsProvider {
-	city: LightsCity;
+	city: City;
 	getEventsByDate: (input?: Date) => LightsEvent[];
 	getScheduleByDate: (input?: Date) => LightsSchedule;
 	getStateByDate: (input?: Date) => IlluminationState;
-	year: number;
+	source: LightsScheduleSource;
+	year: null | number;
+}
+
+export interface SolarLightsLocation {
+	latitude: number;
+	longitude: number;
+}
+
+export interface SolarAltitudeModel {
+	base: readonly number[];
+	latitudeAdjustment: readonly number[];
 }

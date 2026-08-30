@@ -1,6 +1,7 @@
 import { isSupportedCity } from "lights-schedule";
 import { createContext } from "solid-js";
 import { createStore, reconcile, unwrap } from "solid-js/store";
+import { isLatitude, isLongitude } from "utils/validators";
 import { Storage } from "versioned-local-storage";
 
 import { createProvider } from "~/shared/lib/create-provider";
@@ -34,7 +35,13 @@ export function createSettingsState() {
 		storage.write({ ...unwrap(settings) });
 	};
 
-	const isSupportsCityLights = () => isSupportedCity(settings.city);
+	const isSupportsCityLights = () => (
+		isSupportedCity(settings.city) || (
+			isLatitude(settings.latitude) &&
+			isLongitude(settings.longitude)
+		)
+	);
+
 	const isSupportsBridges = () => settings.city === "SAINT_PETERSBURG";
 
 	return {

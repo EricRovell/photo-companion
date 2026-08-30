@@ -32,16 +32,41 @@ export interface BridgeState {
 	timestamp: number;
 }
 
-export interface LightsSchedule {
+export type LightsScheduleSource =
+	| "SCHEDULE"
+	| "SOLAR_ESTIMATE";
+
+export type LightsScheduleStatus =
+	| "CONTINUOUS_DARKNESS"
+	| "CONTINUOUS_DAYLIGHT"
+	| "SCHEDULED"
+	| "UNAVAILABLE";
+
+interface LightsScheduleMetadata {
+	source: LightsScheduleSource;
+	uncertaintyMinutes: number;
+}
+
+export interface ScheduledLightsSchedule extends LightsScheduleMetadata {
 	duration: number;
 	LIGHTS_END: number;
 	LIGHTS_START: number;
+	status: "SCHEDULED";
 }
 
+export interface UnscheduledLightsSchedule extends LightsScheduleMetadata {
+	duration: null;
+	LIGHTS_END: null;
+	LIGHTS_START: null;
+	status: Exclude<LightsScheduleStatus, "SCHEDULED">;
+}
+
+export type LightsSchedule = ScheduledLightsSchedule | UnscheduledLightsSchedule;
+
 export interface IlluminationState {
-	event: LightsEventName;
+	event: LightsEventName | null;
 	lights: boolean;
-	timestamp: number;
+	timestamp: number | null;
 }
 
 export type City =
@@ -74,7 +99,8 @@ export type BridgeEvent = Event<"BRIDGE", BridgeEventName, {
 }>;
 
 export type LightsEvent = Event<"LIGHTS", LightsEventName, {
-	city: LightsCity
+	city: City;
+	source: LightsScheduleSource;
 }>;
 
 export type Locale = "en" | "ru";

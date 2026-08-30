@@ -23,7 +23,7 @@ export function LightsCountdown(props: Props) {
 		: t().LABEL.TILL_TURNED_ON;
 
 	const time = createCountdown({
-		getTimestampEnd: () => getStateByDate().timestamp,
+		getTimestampEnd: () => getStateByDate().timestamp ?? getTimestamp(),
 		getTimestampStart: () => getTimestamp()
 	});
 

@@ -85,6 +85,10 @@ importers:
         version: link:../utils
 
   packages/lights-schedule:
+    dependencies:
+      moon-sun-calc:
+        specifier: workspace:*
+        version: link:../moon-sun-calc
     devDependencies:
       types:
         specifier: workspace:*
