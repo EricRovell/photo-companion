@@ -1,4 +1,3 @@
-import { isSupportedCity } from "lights-schedule";
 import { Show } from "solid-js";
 
 import { useTranslation } from "~/features/translation";
@@ -24,19 +23,17 @@ export const InputEventFilters = () => {
 					value={settingsStore.events_bridges_spb}
 				/>
 			</Show>
-			<Show when={isSupportedCity(settingsStore.city)}>
-				<InputCheckboxGroup
-					groupLabel={t().LABEL.LIGHTS_CITY}
-					groupValue="lights"
-					name="events_lights"
-					onChange={setSettingsStore}
-					options={LIGHTS_EVENT_NAMES.map(value => ({
-						label: t().LIGHTS_EVENTS[value],
-						value
-					}))}
-					value={settingsStore.events_lights}
-				/>
-			</Show>
+			<InputCheckboxGroup
+				groupLabel={t().LABEL.LIGHTS_CITY}
+				groupValue="lights"
+				name="events_lights"
+				onChange={setSettingsStore}
+				options={LIGHTS_EVENT_NAMES.map(value => ({
+					label: t().LIGHTS_EVENTS[value],
+					value
+				}))}
+				value={settingsStore.events_lights}
+			/>
 			<InputCheckboxGroup
 				groupLabel={t().TITLE.SUN}
 				groupValue="sun"

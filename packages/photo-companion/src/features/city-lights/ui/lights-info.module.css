@@ -69,6 +69,13 @@
 	white-space: nowrap;
 }
 
+.status {
+	display: block;
+	font-size: var(--font-size-1);
+	line-height: 1.25;
+	text-align: center;
+}
+
 @media screen and (width <= 540px) {
 	.body {
 		grid-template-columns: 1fr 1fr;

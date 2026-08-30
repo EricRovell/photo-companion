@@ -13,7 +13,11 @@ export interface LightsScheduleComparison {
 export function getLightsScheduleComparison(
 	current: LightsSchedule,
 	previous: LightsSchedule
-): LightsScheduleComparison {
+): LightsScheduleComparison | null {
+	if (current.status !== "SCHEDULED" || previous.status !== "SCHEDULED") {
+		return null;
+	}
+
 	return {
 		durationMinutes: Math.round((current.duration - previous.duration) / MILLISECONDS_PER_MINUTE),
 		endMinutes: getClockDifference(current.LIGHTS_END, previous.LIGHTS_END),

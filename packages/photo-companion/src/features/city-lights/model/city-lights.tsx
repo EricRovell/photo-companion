@@ -9,8 +9,10 @@ function createCityLightsState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
-	// @ts-expect-error TODO: manage type for fallback
-	const getCityLightsProvider = createMemo(() => initLightsProvider(settings.city));
+	const getCityLightsProvider = createMemo(() => initLightsProvider(settings.city, {
+		latitude: settings.latitude,
+		longitude: settings.longitude
+	}));
 
 	const getYear = () => getCityLightsProvider().year;
 	const getCity = () => getCityLightsProvider().city;

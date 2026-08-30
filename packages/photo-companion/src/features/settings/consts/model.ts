@@ -32,7 +32,7 @@ export const SETTINGS_CITY_PRESETS: Record<SettingsStore["city"], CitySettingsPr
 		city: "OTHER",
 		latitude: 59.844404,
 		longitude: 30.3131,
-		tabs: [ "NOW", "TIMELINE", "SUN", "MOON", "HEIGHT_BY_SHADOW" ]
+		tabs: [ "NOW", "TIMELINE", "LIGHTS", "SUN", "MOON", "HEIGHT_BY_SHADOW" ]
 	},
 	SAINT_PETERSBURG: {
 		city: "SAINT_PETERSBURG",

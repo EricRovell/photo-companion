@@ -1,6 +1,9 @@
 {
 	"author": "Eric Rovell",
 	"description": "City illumination schedule data provider.",
+	"dependencies": {
+		"moon-sun-calc": "workspace:*"
+	},
 	"devDependencies": {
 		"types": "workspace:*",
 		"utils": "workspace:*"

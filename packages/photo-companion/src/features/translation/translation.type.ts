@@ -82,6 +82,7 @@ export interface Translation {
 		BRIDGES_SPB: string;
 		CALCULATE: string;
 		CITY: string;
+		DATA_SOURCE: string;
 		DATE: string;
 		DATETIME: string;
 		DATETIME_STEP: string;
@@ -120,6 +121,7 @@ export interface Translation {
 		NAVIGATION_OPENED_SHORT: string;
 		NOW: string;
 		OBJECT_LEVEL: string;
+		OFFICIAL_SCHEDULE: string;
 		OPEN_DATETIME_PICKER: string;
 		PARALLACTIC_ANGLE: string;
 		PEAK_TIME: string;
@@ -130,6 +132,7 @@ export interface Translation {
 		SHADOW_LENGTH: string;
 		SHADOW_LEVEL: string;
 		SOLAR_AZIMUTH_ANGLE: string;
+		SOLAR_ESTIMATE: string;
 		STATE: string;
 		SUNRISE_TIME: string;
 		SUNSET_TIME: string;
@@ -204,6 +207,9 @@ export interface Translation {
 		EARTHSHINE_NO_WINDOW: string;
 		EARTHSHINE_WEATHER_NOTE: string;
 		EVENTS_ARE_DISABLED: string;
+		LIGHTS_CONTINUOUS_DARKNESS: string;
+		LIGHTS_CONTINUOUS_DAYLIGHT: string;
+		LIGHTS_SCHEDULE_UNAVAILABLE: string;
 		NAVIGATION_ENDS_AT: string;
 		NAVIGATION_STARTS_AT: string;
 		NO_EVENTS: string;

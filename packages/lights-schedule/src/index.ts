@@ -1,2 +1,3 @@
 export { initLightsProvider, isSupportedCity } from "./provider";
-export type { LightsProvider } from "./types";
+export { getLightsAltitude, isSolarLightsLocation } from "./solar-provider";
+export type { LightsProvider, SolarLightsLocation } from "./types";

@@ -14,7 +14,10 @@ function getSchedule(
 	return {
 		duration: duration * MINUTE,
 		LIGHTS_END: new Date(2026, 0, 2, ...end).getTime(),
-		LIGHTS_START: new Date(2026, 0, 2, ...start).getTime()
+		LIGHTS_START: new Date(2026, 0, 2, ...start).getTime(),
+		source: "SCHEDULE",
+		status: "SCHEDULED",
+		uncertaintyMinutes: 0
 	};
 }
 
