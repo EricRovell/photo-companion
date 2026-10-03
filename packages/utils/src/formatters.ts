@@ -35,6 +35,15 @@ export const dateFormatter = getDateTimeFormatter({
 });
 
 /**
+ * Formats a localized numeric date with two-digit month and day values.
+ */
+export const dateShortFormatter = getDateTimeFormatter({
+	day: "2-digit",
+	month: "2-digit",
+	year: "numeric"
+});
+
+/**
  * Formats date-time.
  */
 export const dateTimeFormatter = getDateTimeFormatter({

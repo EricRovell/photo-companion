@@ -251,6 +251,13 @@ export const t = {
 		MOONRISE: "Moonrise",
 		MOONSET: "Moonset"
 	},
+	SEASONS: {
+		EQUINOX_MARCH: "March equinox",
+		EQUINOX_SEPTEMBER: "September equinox",
+		SOLSTICE_DECEMBER: "December solstice",
+		SOLSTICE_JUNE: "June solstice",
+		TITLE: "Equinoxes & Solstices"
+	},
 	SOLAR_ECLIPSE: {
 		ANNULAR: "Annular",
 		BELOW_HORIZON: "Below the horizon",

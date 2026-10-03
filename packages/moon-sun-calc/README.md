@@ -1,7 +1,7 @@
 # moon-sun-calc
 
 A private workspace TypeScript library for Sun and Moon positions, illumination,
-principal phases, local solar and lunar eclipse circumstances, and rise/set/transit events. The
+principal phases, seasons, local solar and lunar eclipse circumstances, and rise/set/transit events. The
 numerical model follows the higher-order methods in Jean Meeus,
 *Astronomical Algorithms*, 2nd edition.
 
@@ -50,6 +50,7 @@ import {
   getMoonIllumination,
   getMoonPosition,
   getNextMoonPhases,
+  getSeasonEvents,
   getSunEvents,
   getSunPosition,
   type Observer,
@@ -71,6 +72,7 @@ const moon = getMoonPosition({ instant: Date.now(), observer });
 const illumination = getMoonIllumination(Date.now());
 const events = getSunEvents({ interval, observer });
 const phases = getNextMoonPhases(Date.now(), 4);
+const seasons = getSeasonEvents(new Date().getUTCFullYear());
 
 const nextEclipse = findNextLocalSolarEclipse({
   instant: Date.now(),
@@ -98,6 +100,7 @@ const azimuthSolutions = findSunAzimuthCrossings({
 - `getMoonPosition({ instant, observer, options? })`
 - `getMoonIllumination(instant)`
 - `getNextMoonPhases(instant, count?)`
+- `getSeasonEvents(year)`
 - `getSunEvents({ interval, observer, options? })`
 - `getMoonEvents({ interval, observer, options? })`
 - `findSunAltitudeCrossings({ altitude, interval, observer, options? })`

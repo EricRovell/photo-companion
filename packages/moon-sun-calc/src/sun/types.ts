@@ -86,4 +86,15 @@ export interface SunEventsInput {
 	options?: EventOptions;
 }
 
+export type SeasonEventName =
+	| "EQUINOX_MARCH"
+	| "EQUINOX_SEPTEMBER"
+	| "SOLSTICE_DECEMBER"
+	| "SOLSTICE_JUNE";
+
+export interface SeasonEvent {
+	name: SeasonEventName;
+	time: Date;
+}
+
 export type SunAltitudeEventDefinition = readonly [Degree, SunEventName, SunEventName];

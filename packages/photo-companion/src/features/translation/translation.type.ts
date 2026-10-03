@@ -249,6 +249,13 @@ export interface Translation {
 		MOONRISE: string;
 		MOONSET: string;
 	};
+	SEASONS: {
+		EQUINOX_MARCH: string;
+		EQUINOX_SEPTEMBER: string;
+		SOLSTICE_DECEMBER: string;
+		SOLSTICE_JUNE: string;
+		TITLE: string;
+	};
 	SOLAR_ECLIPSE: {
 		ANNULAR: string;
 		BELOW_HORIZON: string;

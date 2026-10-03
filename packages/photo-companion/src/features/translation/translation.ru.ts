@@ -251,6 +251,13 @@ export const t = {
 		MOONRISE: "Восход Луны",
 		MOONSET: "Заход Луны"
 	},
+	SEASONS: {
+		EQUINOX_MARCH: "Мартовское равноденствие",
+		EQUINOX_SEPTEMBER: "Сентябрьское равноденствие",
+		SOLSTICE_DECEMBER: "Декабрьское солнцестояние",
+		SOLSTICE_JUNE: "Июньское солнцестояние",
+		TITLE: "Равноденствия и солнцестояния"
+	},
 	SOLAR_ECLIPSE: {
 		ANNULAR: "Кольцеобразное",
 		BELOW_HORIZON: "Под горизонтом",

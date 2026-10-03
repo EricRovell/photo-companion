@@ -22,6 +22,7 @@ lunar topography.
 | Illuminated fraction | 0.002 absolute |
 | Sun events | 90 seconds |
 | Moon rise/set and principal phases | 2 minutes |
+| Equinoxes and solstices | 1 minute |
 | Local eclipse contacts and maximum | 2 minutes |
 | Local eclipse obscuration | 0.02 absolute |
 | Lunar eclipse contacts and maximum | 2 minutes |
@@ -40,7 +41,7 @@ range has been certified.
 Primary references:
 
 - Jean Meeus, *Astronomical Algorithms*, 2nd edition, chapters 10, 22, 25,
-  40, 47–49.
+  27, 40, 47–49.
 - [NASA/JPL Horizons](https://ssd.jpl.nasa.gov/horizons/), DE441 observer ephemerides.
 - [U.S. Naval Observatory Astronomical Applications API](https://aa.usno.navy.mil/data/api).
 - [NASA local solar-eclipse circumstances](https://eclipse.gsfc.nasa.gov/SEmono/reference/locircT.html).

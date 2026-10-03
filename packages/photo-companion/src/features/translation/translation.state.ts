@@ -1,6 +1,7 @@
 import { createEffect, createMemo, createResource } from "solid-js";
 import {
 	dateFormatter,
+	dateShortFormatter,
 	dateTimeFormatter,
 	dayFormatter,
 	degreesFormatter,
@@ -34,6 +35,7 @@ export function createTranslationState() {
 
 	const format = createMemo(() => ({
 		date: dateFormatter(lang()),
+		dateShort: dateShortFormatter(lang()),
 		datetime: dateTimeFormatter(lang()),
 		days: dayFormatter(lang()),
 		degrees: degreesFormatter(lang()),
