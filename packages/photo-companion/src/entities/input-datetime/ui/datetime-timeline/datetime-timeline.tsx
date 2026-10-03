@@ -2,6 +2,7 @@ import { Index } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import { createQueryDate } from "~/shared/lib/query-date";
+import { Text } from "~/shared/ui";
 
 import type { InputDatetimeModel } from "../../model/create-input-datetime-model";
 
@@ -16,9 +17,9 @@ interface DatetimeTimelineProps {
 export function DatetimeTimeline(props: DatetimeTimelineProps) {
 	return (
 		<div class={styles["timeline-control"]}>
-			<time class={styles["selected-value"]} datetime={createQueryDate(props.model.selectedDate())}>
+			<Text as="time" class={styles["selected-value"]} datetime={createQueryDate(props.model.selectedDate())} numeric variant="heading-s">
 				{props.model.selectedValue()}
-			</time>
+			</Text>
 			<div
 				aria-label={props.label}
 				aria-valuenow={props.model.selectedDate().getTime()}
@@ -45,14 +46,17 @@ export function DatetimeTimeline(props: DatetimeTimelineProps) {
 							const selected = () => tick().offset === props.model.selectedStep();
 
 							return (
-								<span
+								<Text
 									class={styles.tick}
+									color={selected() ? "primary" : "secondary"}
 									data-disabled={isNullable(tick().date) ? "" : undefined}
 									data-selected={selected() ? "" : undefined}
 									data-tick-offset={tick().offset}
+									numeric
+									variant={selected() ? "heading-m" : "text-s"}
 								>
 									<span class={styles.primary}>{props.model.formatTickLabel(tick().date)}</span>
-								</span>
+								</Text>
 							);
 						}}
 					</Index>

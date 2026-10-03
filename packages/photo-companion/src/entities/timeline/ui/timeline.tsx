@@ -1,7 +1,7 @@
 import { type JSXElement, type ParentProps, Show } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { Time } from "~/shared/ui";
+import { Text } from "~/shared/ui";
 
 import styles from "./timeline.module.css";
 
@@ -14,9 +14,9 @@ export const TimelineGroup = (props: ParentProps) => (
 export const Timeline = (props: ParentProps<{ date?: JSXElement; }>) => (
 	<article class={styles.timeline}>
 		<Show when={!isNullable(props.date)}>
-			<Time class={styles.datetime}>
+			<Text as="time" class={styles.datetime} numeric variant="text-m">
 				{props.date}
-			</Time>
+			</Text>
 		</Show>
 		<ol class={styles["timeline-entries"]}>
 			{props.children}

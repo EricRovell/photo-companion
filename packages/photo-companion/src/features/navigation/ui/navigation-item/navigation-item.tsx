@@ -4,15 +4,15 @@ import { Dynamic } from "solid-js/web";
 import type { Component } from "solid-js";
 
 import { useTranslation } from "~/features/translation";
+import { type IconProps, Text } from "~/shared/ui";
 
 import { LinkQuery } from "../link-query";
 
 import type { ROUTE_LABEL } from "../../consts";
-import type { IconProps } from "~/shared/ui";
-
 interface NavigationItemProps {
 	classes?: {
 		icon?: string;
+		label?: string;
 		link?: string;
 	};
 	classNameIcon?: string;
@@ -33,7 +33,7 @@ export function NavigationItem(props: NavigationItemProps) {
 			href={props.href}
 		>
 			<Dynamic class={props.classes?.icon} component={props.icon} />
-			<span>{t().TITLE[props.label]}</span>
+			<Text class={props.classes?.label} variant="text-s">{t().TITLE[props.label]}</Text>
 		</LinkQuery>
 	);
 }

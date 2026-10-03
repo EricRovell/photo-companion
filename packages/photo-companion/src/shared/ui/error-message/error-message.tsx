@@ -1,6 +1,8 @@
 import { Show } from "solid-js";
 import { isNonEmptyString } from "utils/validators";
 
+import { Text } from "../text/text";
+
 import styles from "./error-message.module.css";
 
 interface Props {
@@ -14,7 +16,15 @@ export function ErrorMessage(props: Props) {
 	return (
 		<Show when={hasError()}>
 			<aside class={styles.error}>
-				<p>{props.message}</p>
+				<Text
+					align="center"
+					as="p"
+					balance
+					color="danger"
+					variant="text-m"
+				>
+					{props.message}
+				</Text>
 			</aside>
 		</Show>
 	);

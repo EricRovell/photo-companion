@@ -30,13 +30,10 @@
 	}
 
 	dt {
-		color: var(--color-text-secondary);
-		font-size: var(--font-size-1);
 		text-align: center;
 	}
 
 	dd {
-		font-size: var(--font-size-4);
 		justify-self: stretch;
 		margin: 0;
 		text-align: center;
@@ -46,7 +43,6 @@
 .value {
 	display: flex;
 	justify-content: center;
-	text-align: center;
 }
 
 .metric-value {
@@ -56,24 +52,15 @@
 	gap: var(--space-1);
 	margin: 0;
 
-	strong {
-		font-weight: 500;
-	}
 }
 
 .delta {
 	display: block;
-	font-size: var(--font-size-1);
-	line-height: 1.25;
-	text-align: center;
 	white-space: nowrap;
 }
 
 .status {
 	display: block;
-	font-size: var(--font-size-1);
-	line-height: 1.25;
-	text-align: center;
 }
 
 @media screen and (width <= 540px) {

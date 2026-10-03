@@ -17,12 +17,6 @@
 	}
 }
 
-.message {
-	text-align: center;
-	text-wrap: balance;
-	font-size: var(--font-size-4);
-}
-
 .moon {
 	display: grid;
 	grid-template: 1fr / min-content min(100%, 3 * var(--moon-scale)) min-content;

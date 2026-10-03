@@ -1,6 +1,5 @@
 .summary {
 	border-block-start: 1px solid var(--color-surface-3);
-	font-size: var(--font-size-2);
 }
 
 .event-header {
@@ -19,21 +18,8 @@
 	gap: var(--space-1);
 }
 
-.event-title span,
-.event-date span,
-.metrics dt {
-	color: var(--color-text-secondary);
-	font-size: var(--font-size-1);
-}
-
-.event-title strong {
-	font-size: var(--font-size-4);
-	font-weight: 600;
-}
-
 .event-date {
 	justify-items: end;
-	font-variant-numeric: tabular-nums;
 }
 
 .metrics {
@@ -53,21 +39,12 @@
 	}
 }
 
-.metric dd {
-	font-size: var(--font-size-3);
-	font-variant-numeric: tabular-nums;
-}
-
 .contacts-section {
 	padding: var(--space-4);
 }
 
-.contacts-section h3 {
+.contacts-section > h3 {
 	margin-block-end: var(--space-4);
-	color: var(--color-text-secondary);
-	font-size: var(--font-size-2);
-	font-weight: 500;
-	text-align: center;
 }
 
 .contacts {
@@ -88,9 +65,6 @@
 
 .empty {
 	padding: var(--space-3) var(--space-4);
-	color: var(--color-text-secondary);
-	text-align: center;
-	text-wrap: balance;
 }
 
 @media screen and (width <= 420px) {

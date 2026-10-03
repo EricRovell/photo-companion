@@ -7,7 +7,7 @@ import {
 	useCityLights
 } from "~/features/city-lights";
 import { useTranslation } from "~/features/translation";
-import { PropertyList } from "~/shared/ui";
+import { PropertyList, Text } from "~/shared/ui";
 
 export const NowLightsInfo = () => {
 	const { format, t } = useTranslation();
@@ -49,12 +49,12 @@ export const NowLightsInfo = () => {
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.LIGHTS_CITY}</PropertyList.Label>
 					<PropertyList.Value>
-						<span data-text={lights() ? "success" : "danger"}>
+						<Text color={lights() ? "success" : "danger"} variant="text-s">
 							{lights() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
-						</span>
+						</Text>
 						<Show when={statusMessage()}>
 							<br />
-							<small>{statusMessage()}</small>
+							<Text as="small" color="secondary" variant="text-xs">{statusMessage()}</Text>
 						</Show>
 					</PropertyList.Value>
 				</PropertyList.Item>

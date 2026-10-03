@@ -5,8 +5,6 @@
 	gap: var(--space-4);
 
 	& time {
-		font-size: var(--font-size-2);
-		font-variant-numeric: tabular-nums;
 		place-self: center end;
 	}
 
@@ -14,18 +12,6 @@
 		display: grid;
 		gap: var(--space-1);
 		place-self: center start;
-		text-align: left;
-		font-size: var(--font-size-2);
-
-		p {
-			text-align: left;
-			text-wrap: balance;
-		}
-
-		p:nth-of-type(2) {
-			font-size: var(--font-size-1);
-			color: var(--color-text-secondary);
-		}
 	}
 
 	& .icon::before,
@@ -52,14 +38,6 @@
 			--timeline-icon-size: var(--timeline-icon-secondary-size, 2.75rem);
 		}
 
-		& :is(time, p) {
-			color: var(--color-text-secondary);
-		}
-
-		& p {
-			font-size: var(--font-size-1);
-		}
-
 		p:nth-of-type(2) {
 			display: none;
 		}
@@ -68,12 +46,6 @@
 	&[aria-current] {
 		.icon {
 			border-color: var(--event-current-color);
-		}
-
-		article p:first-child,
-		time {
-			font-variation-settings: "wght" 600;
-			color: var(--color-success);
 		}
 	}
 }

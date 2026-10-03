@@ -2,6 +2,7 @@ import { GaugeTime } from "~/entities/gauge";
 import { Sun } from "~/entities/sun";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import { useSunService } from "../model";
 
@@ -15,7 +16,7 @@ export function SunTimes() {
 	return (
 		<section class={"card"} data-label="sun">
 			<header>
-				<h2>{t().TITLE.SUN_TIMES}</h2>
+				<Text as="h2" variant="heading-l">{t().TITLE.SUN_TIMES}</Text>
 			</header>
 			<GaugeTime
 				date={getDatetime()}

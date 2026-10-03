@@ -8,15 +8,9 @@
 	padding: var(--space-2);
 	background-color: var(--color-surface-1);
 	border: 2px solid var(--color-surface-2);
-	font-size: 14px;
 }
 
 .button {
 	color: black;
-	font-size: inherit;
 	padding: var(--space-1) var(--space-2);
-}
-
-.message {
-	color: var(--color-success);
 }

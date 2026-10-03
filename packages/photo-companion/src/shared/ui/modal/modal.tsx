@@ -4,6 +4,7 @@ import { classnames } from "utils";
 import { Button } from "../button/button";
 import { Dialog, type DialogProps } from "../dialog/dialog";
 import { IconClose } from "../icons";
+import { Text } from "../text/text";
 
 import styles from "./modal.module.css";
 
@@ -34,7 +35,7 @@ export function Modal(allProps: Props) {
 			<aside class={styles.modal}>
 				<header class={styles.header}>
 					<Show when={props.title}>
-						<h2>{props.title}</h2>
+						<Text as="h2" variant="heading-xl">{props.title}</Text>
 					</Show>
 					<Button onClick={props.onClose}>
 						<IconClose />

@@ -19,9 +19,6 @@
 	padding: var(--space-4) calc(var(--space-4) + var(--space-2)) var(--space-4);
 	border-block-end: 1px solid rgba(173 216 230 / 10%);
 
-	& h2 {
-		font-size: var(--font-size-5);
-	}
 }
 
 .close {
@@ -39,15 +36,10 @@
 .info {
 	display: grid;
 	justify-content: start;
-	font-size: var(--font-size-2);
 
 	& > div {
 		display: flex;
 		gap: var(--space-2);
-	}
-
-	& dt {
-		color: var(--color-text-secondary);
 	}
 
 	@media screen and (width <= 650px) {
@@ -67,7 +59,6 @@
 .link {
 	gap: var(--space-2);
 	padding: var(--space-2);
-	font-size: var(--font-size-2);
 	font-variant-caps: small-caps;
 
 	&:hover {

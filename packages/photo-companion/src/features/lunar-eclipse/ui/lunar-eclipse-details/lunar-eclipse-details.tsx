@@ -9,6 +9,7 @@ import type {
 } from "moon-sun-calc";
 
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import { getContactStages } from "../../lib";
 import { LunarEclipseContact } from "../lunar-eclipse-contact";
@@ -40,43 +41,43 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 	return (
 		<div aria-live="polite" class={styles.summary}>
 			<Show
-				fallback={<p class={styles.empty}>{t().LUNAR_ECLIPSE.NO_ECLIPSE}</p>}
+				fallback={<Text align="center" as="p" balance class={styles.empty} color="secondary" variant="text-s">{t().LUNAR_ECLIPSE.NO_ECLIPSE}</Text>}
 				when={props.event}
 			>
 				{event => (
 					<>
 						<div class={styles["event-header"]}>
 							<div class={styles["event-title"]}>
-								<span>{t().LUNAR_ECLIPSE.EVENT_TYPE}</span>
-								<strong>{labelType(event().type)}</strong>
+								<Text color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.EVENT_TYPE}</Text>
+								<Text as="strong" variant="heading-l">{labelType(event().type)}</Text>
 							</div>
 							<div class={styles["event-date"]}>
-								<span>{t().LABEL.DATE}</span>
-								<time datetime={event().peak.time.toISOString()}>{format().date(event().peak.time)}</time>
+								<Text color="secondary" variant="text-xs">{t().LABEL.DATE}</Text>
+								<Text as="time" datetime={event().peak.time.toISOString()} numeric variant="text-s">{format().date(event().peak.time)}</Text>
 							</div>
 						</div>
 
 						<dl class={styles.metrics}>
 							<div class={styles.metric}>
-								<dt>{t().LUNAR_ECLIPSE.CURRENT_PHASE}</dt>
-								<dd>{labelPhase(props.state.phase)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.CURRENT_PHASE}</Text>
+								<Text as="dd" numeric variant="text-s">{labelPhase(props.state.phase)}</Text>
 							</div>
 							<div class={styles.metric}>
-								<dt>{t().LUNAR_ECLIPSE.MAXIMUM_MOON_ALTITUDE}</dt>
-								<dd>{format().degrees(event().peak.moonAltitude)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.MAXIMUM_MOON_ALTITUDE}</Text>
+								<Text as="dd" numeric variant="text-s">{format().degrees(event().peak.moonAltitude)}</Text>
 							</div>
 							<div class={styles.metric}>
-								<dt>{t().LUNAR_ECLIPSE.VISIBILITY}</dt>
-								<dd>{labelVisibility(event().visibility)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.VISIBILITY}</Text>
+								<Text as="dd" numeric variant="text-s">{labelVisibility(event().visibility)}</Text>
 							</div>
 							<div class={styles.metric}>
-								<dt>{t().LUNAR_ECLIPSE.NOTICEABILITY}</dt>
-								<dd>{labelNoticeability(event().noticeability)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.NOTICEABILITY}</Text>
+								<Text as="dd" numeric variant="text-s">{labelNoticeability(event().noticeability)}</Text>
 							</div>
 						</dl>
 
 						<section class={styles["contacts-section"]} data-page-swipe="ignore">
-							<h3>{t().LUNAR_ECLIPSE.CONTACTS}</h3>
+							<Text align="center" as="h3" color="secondary" variant="heading-s">{t().LUNAR_ECLIPSE.CONTACTS}</Text>
 							<div class={styles["contacts-scroll"]}>
 								<ol
 									aria-label={t().LUNAR_ECLIPSE.CONTACTS}

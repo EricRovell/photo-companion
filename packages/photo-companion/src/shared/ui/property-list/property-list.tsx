@@ -1,9 +1,13 @@
-import { type ParentProps, splitProps } from "solid-js";
+import { mergeProps, type ParentProps, splitProps } from "solid-js";
 import { classnames } from "utils";
 
 import type { JSX} from "solid-js";
 
+import { Text, type TextProps } from "../text/text";
+
 import styles from "./property-list.module.css";
+
+type PropertyTextProps<T extends "dd" | "dt" | "header"> = Omit<TextProps<T>, "as">;
 
 export const PropertyList = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElement>>) => {
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
@@ -15,13 +19,12 @@ export const PropertyList = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElemen
 	);
 };
 
-export const Header = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElement>>) => {
-	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
+export const Header = (allProps: PropertyTextProps<"header">) => {
+	const mergedProps = mergeProps({ variant: "heading-m" as const }, allProps);
+	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (
-		<header class={classnames(styles.header, props.class)} {...rest}>
-			{props.children}
-		</header>
+		<Text as="header" class={classnames(styles.header, props.class)} {...rest} />
 	);
 };
 
@@ -45,22 +48,20 @@ export const Item = (allProps: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) 
 	);
 };
 
-export const Label = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElement>>) => {
-	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
+export const Label = (allProps: PropertyTextProps<"dt">) => {
+	const mergedProps = mergeProps({ variant: "text-s" as const }, allProps);
+	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (
-		<dt class={classnames(props.class)} {...rest}>
-			{props.children}
-		</dt>
+		<Text as="dt" class={classnames(styles.label, props.class)} {...rest} />
 	);
 };
 
-export const Value = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElement>>) => {
-	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
+export const Value = (allProps: PropertyTextProps<"dd">) => {
+	const mergedProps = mergeProps({ numeric: true, variant: "text-s" as const }, allProps);
+	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (
-		<dd class={classnames(styles.value, props.class)} {...rest}>
-			{props.children}
-		</dd>
+		<Text as="dd" class={classnames(styles.value, props.class)} {...rest} />
 	);
 };

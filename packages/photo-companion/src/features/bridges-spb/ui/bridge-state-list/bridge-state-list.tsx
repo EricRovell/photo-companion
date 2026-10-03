@@ -1,7 +1,7 @@
 import { For, Show } from "solid-js";
 
 import { useTranslation } from "~/features/translation";
-import { PropertyList } from "~/shared/ui";
+import { PropertyList, Text } from "~/shared/ui";
 
 import { useBridges } from "../../model";
 import { BridgesStateAll } from "../bridge-state-all";
@@ -26,7 +26,7 @@ export function BridgeStateList() {
 						<For each={getBridgesState()}>
 							{item => (
 								<Show when={item.open}>
-									<li>{t().BRIDGE_NAME_SPB[item.name]}</li>
+									<Text as="li" variant="text-s">{t().BRIDGE_NAME_SPB[item.name]}</Text>
 								</Show>
 							)}
 						</For>
@@ -42,7 +42,7 @@ export function BridgeStateList() {
 						<For each={getBridgesState()}>
 							{item => (
 								<Show when={!item.open}>
-									<li>{t().BRIDGE_NAME_SPB[item.name]}</li>
+									<Text as="li" variant="text-s">{t().BRIDGE_NAME_SPB[item.name]}</Text>
 								</Show>
 							)}
 						</For>

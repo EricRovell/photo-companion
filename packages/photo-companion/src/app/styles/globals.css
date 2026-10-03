@@ -49,36 +49,6 @@ body {
 	position: relative;
 }
 
-h1 {
-	display: flex;
-	flex-direction: column;
-	font-size: var(--font-size-9);
-	line-height: 1.2;
-	text-align: center;
-	font-variation-settings: "wght" 200;
-}
-
-h2 {
-	font-size: var(--font-size-3);
-	justify-self: center;
-	display: flex;
-	font-variation-settings: "wght" 600;
-}
-
-:is(h1, h2, h3, h4, h5, h6) {
-	text-wrap: balance;
-}
-
-p {
-	font-size: var(--font-size-2);
-	text-align: justify;
-	font-variation-settings: "wght" 300;
-}
-
-strong {
-	font-variation-settings: "wght" 600;
-}
-
 main {
 	display: grid;
 	grid-template-rows: min-content;

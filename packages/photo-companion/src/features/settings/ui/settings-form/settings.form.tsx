@@ -1,5 +1,5 @@
 import { useTranslation } from "~/features/translation";
-import { Button, Fieldset, Form, InputRadio } from "~/shared/ui";
+import { Button, Fieldset, Form, InputRadio, Text } from "~/shared/ui";
 
 import { CITY_OPTIONS, FORM_INPUT_NAME, LANGUAGE_OPTIONS } from "../../consts";
 import { SETTINGS_CITY_PRESETS } from "../../consts";
@@ -16,9 +16,9 @@ export function SettingsForm() {
 
 	return (
 		<div class={styles.page}>
-			<h2 class={styles.title}>
+			<Text as="h2" class={styles.title} variant="heading-xl">
 				{t().TITLE.SETTINGS}
-			</h2>
+			</Text>
 			<Form onChange={handleFormChange}>
 				<Fieldset legend={t().LABEL.LANGUAGE}>
 					<InputRadio

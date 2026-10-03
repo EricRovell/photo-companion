@@ -2,6 +2,7 @@ import { EclipseContact, getEclipseContactLinkTime } from "~/entities/eclipse";
 import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
+import { Text } from "~/shared/ui";
 
 import type { LunarEclipseContactProps } from "../types";
 
@@ -23,7 +24,7 @@ export function LunarEclipseContact(props: LunarEclipseContactProps) {
 			visible={props.contact.visible}
 		>
 			<LinkQuery href="/moon" noScroll query={query()}>
-				<time datetime={props.contact.time.toISOString()}>{format().time(props.contact.time)}</time>
+				<Text as="time" datetime={props.contact.time.toISOString()} numeric variant="text-m">{format().time(props.contact.time)}</Text>
 			</LinkQuery>
 		</EclipseContact>
 	);

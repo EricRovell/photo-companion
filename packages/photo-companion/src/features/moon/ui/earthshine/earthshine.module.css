@@ -39,16 +39,6 @@
 	}
 }
 
-.metrics dt {
-	color: var(--color-text-secondary);
-	font-size: var(--font-size-1);
-}
-
-.metrics dd {
-	font-size: var(--font-size-4);
-	font-variant-numeric: tabular-nums;
-}
-
 .outcome {
 	display: flex;
 	gap: var(--space-2);
@@ -56,27 +46,13 @@
 	justify-content: center;
 }
 
-.outcome strong {
+.rating {
 	color: var(--rating-color);
-	font-weight: 600;
-}
-
-.outcome small {
-	color: var(--color-text-secondary);
-	font-size: var(--font-size-1);
 }
 
 .empty,
 .note {
-	line-height: 1.45;
 	padding: var(--space-3) var(--space-4);
-	text-wrap: balance;
-}
-
-.note {
-	color: var(--color-text-secondary);
-	font-size: var(--font-size-1);
-	text-align: center;
 }
 
 @media screen and (width <= 540px) {

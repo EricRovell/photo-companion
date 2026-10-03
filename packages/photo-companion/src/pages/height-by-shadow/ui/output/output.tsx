@@ -3,6 +3,7 @@ import { For } from "solid-js";
 import { convertDegreesIntoDecimal } from "utils/math";
 
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import type { Model} from "../../height-by-shadow.context";
 
@@ -46,9 +47,9 @@ export function Output(props: Props) {
 		<output class={styles.output}>
 			<For each={props.candidates}>
 				{candidate => (
-					<p>
+					<Text align="end" as="p" balance numeric variant="text-l">
 						{t().LABEL.TIME}: {format().timeShort(candidate.time)} · {t().LABEL.ALTITUDE}: {format().degrees(candidate.altitude)} · {t().LABEL.HEIGHT}: <span class={styles.value}>{format().meters(candidate.height)}</span>
-					</p>
+					</Text>
 				)}
 			</For>
 		</output>

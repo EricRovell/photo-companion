@@ -1,7 +1,7 @@
 import { type ParentProps, Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
-import { Link as Anchor } from "~/shared/ui";
+import { Link as Anchor, Text, type TextVariant } from "~/shared/ui";
 
 import { useDefinition } from "./markdown.context";
 
@@ -36,10 +36,28 @@ export const Definition = (props: DefinitionProps) => {
 /**
  * TODO: wrap with <a href={`#${props.id}`} />
  */
+const HEADING_ELEMENTS = {
+	1: "h1",
+	2: "h2",
+	3: "h3",
+	4: "h4",
+	5: "h5",
+	6: "h6"
+} as const;
+
+const HEADING_VARIANTS: Record<HeadingProps["depth"], TextVariant> = {
+	1: "heading-4xl",
+	2: "heading-3xl",
+	3: "heading-l",
+	4: "heading-m",
+	5: "heading-s",
+	6: "heading-xs"
+};
+
 export const Heading = (props: HeadingProps) => (
-	<Dynamic component={`h${props.depth}`} id={props.id}>
+	<Text align="start" as={HEADING_ELEMENTS[props.depth]} balance color="primary" id={props.id} variant={HEADING_VARIANTS[props.depth]}>
 		{props.children}
-	</Dynamic>
+	</Text>
 );
 
 export const Link = (props: LinkProps) => (
@@ -80,15 +98,15 @@ export const ListItem = (props: ListItemProps) => (
 );
 
 export const Paragraph = (props: ParentProps) => (
-	<p>{props.children}</p>
+	<Text align="start" as="p" variant="text-l">{props.children}</Text>
 );
 
 export const Root = (props: ParentProps) => (
-	<article class={styles.article}>
+	<Text as="article" class={styles.article} variant="text-l">
 		{props.children}
-	</article>
+	</Text>
 );
 
 export const Strong = (props: ParentProps) => (
-	<strong>{props.children}</strong>
+	<Text as="strong" variant="heading-l">{props.children}</Text>
 );

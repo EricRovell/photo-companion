@@ -1,5 +1,7 @@
 import { type JSX, Show } from "solid-js";
 
+import { Text } from "~/shared/ui";
+
 import styles from "./eclipse-contact.module.css";
 
 interface EclipseContactProps {
@@ -19,13 +21,13 @@ export function EclipseContact(props: EclipseContactProps) {
 			data-visible={props.visible ? "" : undefined}
 		>
 			<span aria-hidden="true" class={styles.marker} />
-			<span class={styles.label}>{props.label}</span>
+			<Text class={styles.label} color="secondary" variant="text-xs">{props.label}</Text>
 			{props.children}
 			<Show when={props.detail}>
-				<small class={styles.detail}>{props.detail}</small>
+				<Text as="small" color="secondary" variant="text-xs">{props.detail}</Text>
 			</Show>
 			<Show when={props.note}>
-				<small class={styles.note}>{props.note}</small>
+				<Text as="small" color="secondary" variant="text-xs">{props.note}</Text>
 			</Show>
 		</li>
 	);
