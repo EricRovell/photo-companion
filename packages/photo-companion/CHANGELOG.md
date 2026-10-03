@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.39.0
+
+- Seasons calculations.
+
 ## 2.38.1
 
 - Fix: datetime value reset to initial after continuous drag.

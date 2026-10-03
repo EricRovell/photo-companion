@@ -26,6 +26,7 @@ export type * from "./moon/types";
 export {
 	findSunAltitudeCrossings,
 	findSunAzimuthCrossings,
+	getSeasonEvents,
 	getSunEvents,
 	getSunPosition
 } from "./sun";
