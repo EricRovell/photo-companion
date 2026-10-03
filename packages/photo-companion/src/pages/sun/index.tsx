@@ -1,6 +1,7 @@
 import { SolarEclipse } from "~/features/solar-eclipse";
 import { SunProvider } from "~/features/sun";
-import { SunAltitude, SunInfo, SunSeasons, SunTimeline, SunTimes } from "~/features/sun";
+import { SunAltitude, SunInfo, SunTimeline, SunTimes } from "~/features/sun";
+import { SunSeasons } from "~/features/sun-seasons";
 
 import styles from "./sun.module.css";
 

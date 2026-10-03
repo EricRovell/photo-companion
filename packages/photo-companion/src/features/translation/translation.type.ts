@@ -250,6 +250,8 @@ export interface Translation {
 		MOONSET: string;
 	};
 	SEASONS: {
+		AXIS_DECLINATION: string;
+		AXIS_MONTH: string;
 		EQUINOX_MARCH: string;
 		EQUINOX_SEPTEMBER: string;
 		SOLSTICE_DECEMBER: string;

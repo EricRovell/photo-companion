@@ -1,0 +1,37 @@
+.figure {
+	padding: var(--space-3) var(--space-3) var(--space-4);
+	margin: 0;
+	border-bottom: 1px solid var(--card-border-color, var(--color-surface-3));
+}
+
+.graph {
+	display: block;
+	overflow: visible;
+	width: 100%;
+}
+
+.area {
+	opacity: 0.8;
+}
+
+.area-north {
+	stop-color: hsl(45deg 100% 55% / 28%);
+}
+
+.area-center {
+	stop-color: transparent;
+}
+
+.area-south {
+	stop-color: hsl(195deg 75% 60% / 18%);
+}
+
+.curve {
+	fill: none;
+	stroke: gold;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 2px;
+	filter: drop-shadow(0 0 5px hsl(45deg 100% 55% / 45%));
+	vector-effect: non-scaling-stroke;
+}
