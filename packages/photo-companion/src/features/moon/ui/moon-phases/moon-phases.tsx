@@ -4,7 +4,7 @@ import { Moon } from "~/entities/moon";
 import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
-import { Time } from "~/shared/ui";
+import { Text } from "~/shared/ui";
 
 import { useMoonService } from "../../model";
 
@@ -19,16 +19,16 @@ export function MoonPhases() {
 	return (
 		<section class={`card ${styles.phases}`} data-label="phases-calendar">
 			<header>
-				<h2>{t().TITLE.MOON_PHASE_CALENDAR}</h2>
+				<Text as="h2" variant="heading-l">{t().TITLE.MOON_PHASE_CALENDAR}</Text>
 			</header>
 			<div>
 				<For each={phases()}>
 					{phase => (
 						<LinkQuery href={"/moon"} query={new URLSearchParams({ datetime: createQueryDate(phase.timestamp) })}>
 							<Moon phase={phase.phaseValue} size={MOON_SIZE} />
-							<Time>
+							<Text as="time" class={styles.time} numeric variant="text-s">
 								{format().date(phase.timestamp)}
-							</Time>
+							</Text>
 						</LinkQuery>
 					)}
 				</For>

@@ -4,6 +4,7 @@ import { GaugeTime } from "~/entities/gauge";
 import { Moon } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import { useMoonService } from "../../model";
 
@@ -19,7 +20,7 @@ export function MoonTimes() {
 	return (
 		<section class={classnames("card", styles.root)} data-label="moon">
 			<header>
-				<h2>{t().TITLE.MOON_TIMES}</h2>
+				<Text as="h2" variant="heading-l">{t().TITLE.MOON_TIMES}</Text>
 			</header>
 			<GaugeTime
 				date={getDatetime()}

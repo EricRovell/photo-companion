@@ -3,6 +3,7 @@ import { Show } from "solid-js";
 import { GaugeTime } from "~/entities/gauge";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import { getLightsScheduleStatusMessage } from "../lib";
 import { useCityLights } from "../model";
@@ -18,9 +19,9 @@ export function LightGauge() {
 	return (
 		<section class="card" data-label="lights-schedule">
 			<header>
-				<h2>{t().TITLE.LIGHTS_DATA_BY_DATE}</h2>
+				<Text as="h2" variant="heading-l">{t().TITLE.LIGHTS_DATA_BY_DATE}</Text>
 			</header>
-			<Show when={schedule().status === "SCHEDULED"} fallback={<p>{statusMessage()}</p>}>
+			<Show when={schedule().status === "SCHEDULED"} fallback={<Text as="p" variant="text-s">{statusMessage()}</Text>}>
 				<GaugeTime
 					date={getDatetime()}
 					timeEnd={new Date(schedule().LIGHTS_END ?? 0)}

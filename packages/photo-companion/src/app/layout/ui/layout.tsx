@@ -5,6 +5,7 @@ import { Bulb } from "~/features/city-lights";
 import { LinkQuery, Navigation } from "~/features/navigation";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
+import { Text } from "~/shared/ui";
 
 import { useLocationQuery } from "../model";
 
@@ -18,10 +19,10 @@ function Header() {
 		<header class={styles.header}>
 			<div class={styles.content}>
 				<LinkQuery class={styles["title-link"]} href={getMainTabHref()}>
-					<h1 class={styles.title}>
+					<Text as="h1" class={styles.title} variant="text-l">
 						<Bulb class={styles["title-icon"]} hoverGlow />
 						{TITLE}
-					</h1>
+					</Text>
 				</LinkQuery>
 			</div>
 		</header>

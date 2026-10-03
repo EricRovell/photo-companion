@@ -5,6 +5,7 @@ import type { BridgeName, BridgeState } from "types";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createCountdown } from "~/shared/lib/timer";
+import { Text } from "~/shared/ui";
 import { IconWarning } from "~/shared/ui/icons";
 
 import { useBridges } from "../../model";
@@ -33,15 +34,15 @@ function BridgeTimer(props: BridgeTimerProps) {
 
 	return (
 		<Show when={getNavigationState().navigation}>
-			<footer class={styles.footer}>
-				<p>
+			<footer>
+				<Text align="center" as="p" color="secondary" variant="text-s">
 					<Show fallback={t().MESSAGE.BRIDGE_WILL_OPEN_WITHIN} when={props.state.open}>
 						{t().MESSAGE.BRIDGE_WILL_CLOSE_WITHIN}
 					</Show>
-				</p>
-				<output class={styles.countdown}>
+				</Text>
+				<Text as="output" color="secondary" numeric variant="text-s">
 					{format().timeDuration(getTime())}
-				</output>
+				</Text>
 			</footer>
 		</Show>
 	);
@@ -58,17 +59,17 @@ export function CardBridge(props: CardBridgeProps) {
 	return (
 		<article class={styles.card}>
 			<header>
-				<h2>
+				<Text as="h2" class={styles.title} variant="heading-l">
 					{t().BRIDGE_NAME_SPB[props.name]} {t().LABEL.BRIDGE}
 					<Show when={props.exception}>
 						<IconWarning title={t().MESSAGE.BRIDGE_EXCEPTION} />
 					</Show>
-				</h2>
-				<output class={styles.state} data-text={getState().open ? "danger" : "success"}>
+				</Text>
+				<Text as="output" color={getState().open ? "danger" : "success"} numeric variant="text-s">
 					<Show fallback={t().LABEL.BRIDGE_CLOSED} when={getState().open}>
 						{t().LABEL.BRIDGE_OPENED}
 					</Show>
-				</output>
+				</Text>
 			</header>
 			<BridgeSparkline schedule={getSchedule()} />
 			<BridgeTimer state={getState()} />

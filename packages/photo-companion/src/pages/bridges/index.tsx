@@ -4,6 +4,7 @@ import { For, Show } from "solid-js";
 import { BridgesInfo, BridgesProvider, CardBridge, useBridges } from "~/features/bridges-spb";
 import { useTranslation } from "~/features/translation";
 import { ROUTES } from "~/shared/consts";
+import { Text } from "~/shared/ui";
 
 import styles from "./bridges.module.css";
 
@@ -34,9 +35,9 @@ export function PageBridges() {
 		<Show when={isSupportsBridges()} fallback={<Navigate href={ROUTES.NOT_FOUND} />}>
 			<div class={styles.page}>
 				<div class={styles.wrapper}>
-					<h2 class={styles.title} id="bridge-schedule">
+					<Text as="h2" balance class={styles.title} id="bridge-schedule" variant="heading-2xl">
 						{t().TITLE.BRIDGES_SCHEDULE_SPB}
-					</h2>
+					</Text>
 					<BridgeList />
 				</div>
 				<aside class={styles.info}>

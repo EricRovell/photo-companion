@@ -3,7 +3,7 @@ import { isNullable } from "utils/validators";
 
 import { useTranslation } from "~/features/translation";
 import { ROUTES, VERSION } from "~/shared/consts";
-import { Button, Link } from "~/shared/ui";
+import { Button, Link, Text } from "~/shared/ui";
 import { IconClose } from "~/shared/ui/icons";
 
 import { useNavigationService } from "../../model";
@@ -34,7 +34,7 @@ export function NavigationMenu(props: Props) {
 	return (
 		<>
 			<header class={styles.header}>
-				<h2>{t().LABEL.MENU}</h2>
+				<Text as="h2" variant="heading-xl">{t().LABEL.MENU}</Text>
 				<Button class={styles.close} icon onClick={props.onClose} type="button">
 					<IconClose />
 				</Button>
@@ -53,20 +53,20 @@ export function NavigationMenu(props: Props) {
 			<footer class={styles.footer}>
 				<dl class={styles.info}>
 					<div>
-						<dt>Version:</dt>
-						<dd>
+						<Text as="dt" color="secondary" variant="text-s">Version:</Text>
+						<Text as="dd" variant="text-s">
 							<Link href={ROUTES.CHANGELOG}>
 								v.{VERSION}
 							</Link>
-						</dd>
+						</Text>
 					</div>
 					<div>
-						<dt>Commit:</dt>
-						<dd>
+						<Text as="dt" color="secondary" variant="text-s">Commit:</Text>
+						<Text as="dd" variant="text-s">
 							<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">
 								#__COMMIT_HASH__
 							</Link>
-						</dd>
+						</Text>
 					</div>
 				</dl>
 			</footer>

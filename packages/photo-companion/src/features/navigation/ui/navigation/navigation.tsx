@@ -4,7 +4,7 @@ import { classnames } from "utils";
 
 import { useTranslation } from "~/features/translation";
 import { createToggle } from "~/shared/primitives";
-import { Button, Drawer } from "~/shared/ui";
+import { Button, Drawer, Text } from "~/shared/ui";
 import { IconMenu } from "~/shared/ui/icons";
 
 import { useNavigationService } from "../../model";
@@ -26,7 +26,7 @@ function SideMenu() {
 		<li class={classnames(styles["nav-item"], styles["nav-item-menu"])}>
 			<Button appearance="ghost" class={classnames(styles.link, styles["nav-item-menu-button"])} onClick={handleOpen}>
 				<IconMenu class={styles.icon} />
-				<span>{t().LABEL.MENU}</span>
+				<Text class={styles.label} variant="text-s">{t().LABEL.MENU}</Text>
 			</Button>
 			<Drawer
 				classes={{
@@ -51,6 +51,7 @@ const SettingsLink = () => {
 			<NavigationItem
 				classes={{
 					icon: styles.icon,
+					label: styles.label,
 					link: styles.link
 				}}
 				{...NAVIGATION_TAB_DATA.SETTINGS}
@@ -79,6 +80,7 @@ export function Navigation() {
 							<NavigationItem
 								classes={{
 									icon: styles.icon,
+									label: styles.label,
 									link: styles.link
 								}}
 								{...item}

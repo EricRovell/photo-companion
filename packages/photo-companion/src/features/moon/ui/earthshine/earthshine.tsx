@@ -4,6 +4,7 @@ import { classnames } from "utils";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import { getEarthshineProbability } from "../../model";
 
@@ -23,43 +24,43 @@ export function Earthshine() {
 	return (
 		<article class={classnames("card", styles.root)}>
 			<header>
-				<h2>{t().TITLE.EARTHSHINE}</h2>
+				<Text as="h2" variant="heading-l">{t().TITLE.EARTHSHINE}</Text>
 			</header>
 			<Show
-				fallback={<p class={styles.empty}>{t().MESSAGE.EARTHSHINE_NO_WINDOW}</p>}
+				fallback={<Text as="p" balance class={styles.empty} leading="relaxed" variant="text-s">{t().MESSAGE.EARTHSHINE_NO_WINDOW}</Text>}
 				when={earthshine()}
 			>
 				{value => (
 					<>
 						<dl class={styles.metrics} data-rating={value().rating.toLowerCase()}>
 							<div class={styles.cell}>
-								<dt>{t().LABEL.PROBABILITY}</dt>
-								<dd class={styles.outcome}>
-									<strong>{t().EARTHSHINE_RATING[value().rating]}</strong>
-								</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.PROBABILITY}</Text>
+								<Text as="dd" class={styles.outcome} numeric variant="text-l">
+									<Text as="strong" class={styles.rating} variant="heading-l">{t().EARTHSHINE_RATING[value().rating]}</Text>
+								</Text>
 							</div>
 							<div class={styles.cell}>
-								<dt>{t().LABEL.BEST_WINDOW}</dt>
-								<dd>{format().timeShort(value().dateStart)} – {format().timeShort(value().dateEnd)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.BEST_WINDOW}</Text>
+								<Text as="dd" numeric variant="text-l">{format().timeShort(value().dateStart)} – {format().timeShort(value().dateEnd)}</Text>
 							</div>
 							<div class={styles.cell}>
-								<dt>{t().LABEL.MOON_ILLUMINATION}</dt>
-								<dd>{format().percent(value().peak.illumination * 100)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.MOON_ILLUMINATION}</Text>
+								<Text as="dd" numeric variant="text-l">{format().percent(value().peak.illumination * 100)}</Text>
 							</div>
 							<div class={styles.cell}>
-								<dt>{t().LABEL.PEAK_TIME}</dt>
-								<dd>{format().timeShort(value().peak.time)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.PEAK_TIME}</Text>
+								<Text as="dd" numeric variant="text-l">{format().timeShort(value().peak.time)}</Text>
 							</div>
 							<div class={styles.cell}>
-								<dt>{t().LABEL.ALTITUDE}</dt>
-								<dd>{format().degrees(value().peak.altitude)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.ALTITUDE}</Text>
+								<Text as="dd" numeric variant="text-l">{format().degrees(value().peak.altitude)}</Text>
 							</div>
 							<div class={styles.cell}>
-								<dt>{t().LABEL.AZIMUTH}</dt>
-								<dd>{format().degrees(value().peak.azimuth)}</dd>
+								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.AZIMUTH}</Text>
+								<Text as="dd" numeric variant="text-l">{format().degrees(value().peak.azimuth)}</Text>
 							</div>
 						</dl>
-						<p class={styles.note}>{t().MESSAGE.EARTHSHINE_WEATHER_NOTE}</p>
+						<Text align="center" as="p" balance class={styles.note} color="secondary" leading="relaxed" variant="text-xs">{t().MESSAGE.EARTHSHINE_WEATHER_NOTE}</Text>
 					</>
 				)}
 			</Show>

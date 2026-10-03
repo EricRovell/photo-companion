@@ -1,7 +1,7 @@
 import type { NavigationState as NavigationStateType } from "bridge-schedule";
 
 import { useTranslation } from "~/features/translation";
-import { PropertyList } from "~/shared/ui";
+import { PropertyList, Text } from "~/shared/ui";
 
 /**
  * Renders navigation period related card entries.
@@ -24,9 +24,9 @@ export function NavigationState(props: NavigationStateType) {
 					{t().LABEL.NAVIGATION}
 				</PropertyList.Label>
 				<PropertyList.Value>
-					<span data-text={props.navigation ? "success" : "danger"}>
+					<Text color={props.navigation ? "success" : "danger"} variant="text-s">
 						{getNavigationLabel()}
-					</span>
+					</Text>
 				</PropertyList.Value>
 			</PropertyList.Item>
 			<PropertyList.Item>

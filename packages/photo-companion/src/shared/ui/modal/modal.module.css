@@ -28,10 +28,6 @@
 		padding: var(--space-2);
 	}
 
-	& > h2 {
-		font-size: var(--font-size-5);
-		font-weight: 500;
-	}
 }
 
 .body {
@@ -43,9 +39,4 @@
 	overflow-y: auto;
 	overscroll-behavior: contain;
 
-	/* TODO: move into update modal styles */
-	p {
-		text-align: center;
-		font-size: var(--font-size-4);
-	}
 }

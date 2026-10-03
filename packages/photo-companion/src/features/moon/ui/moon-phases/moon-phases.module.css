@@ -13,7 +13,7 @@
 		grid-column: 1 / -1;
 	}
 
-	& time {
+	& .time.time {
 		font-size: min(2.5vmin, var(--font-size-2));
 	}
 

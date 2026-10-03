@@ -1,16 +1,3 @@
-.success,
-.danger {
-	font-variation-settings: "wght" 500;
-}
-
-[data-text="success"] {
-	color: var(--color-success);
-}
-
-[data-text="danger"] {
-	color: var(--color-danger);
-}
-
 .card {
 	width: 100%;
 	height: fit-content;
@@ -25,10 +12,6 @@
 		width: 100%;
 		border-radius: 10px 10px 0 0;
 		padding: var(--space-2) var(--space-5);
-	}
-
-	h2 {
-		font-size: var(--font-size-4);
 	}
 }
 

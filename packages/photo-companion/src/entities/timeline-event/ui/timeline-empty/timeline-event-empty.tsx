@@ -1,6 +1,7 @@
 import { classnames } from "utils";
 
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import styles from "../timeline-event/timeline-event.module.css";
 
@@ -21,7 +22,7 @@ export function TimelineEventEmpty() {
 				</svg>
 			</div>
 			<article>
-				<p>{t().MESSAGE.NO_EVENTS}</p>
+				<Text align="start" as="p" balance variant="text-s">{t().MESSAGE.NO_EVENTS}</Text>
 			</article>
 		</li>
 	);

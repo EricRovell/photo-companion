@@ -3,6 +3,7 @@ import { unwrap } from "solid-js/store";
 import { isNullable } from "utils/validators";
 
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 import { IconShadow } from "~/shared/ui/icons";
 
 import { FormProvider, useForm } from "./height-by-shadow.context";
@@ -77,9 +78,9 @@ export function PageHeightByShadow() {
 		<FormProvider>
 			<div class={styles.page}>
 				<IconShadow class={styles.icon} />
-				<h1 class={styles.title}>
+				<Text align="center" as="h1" balance class={styles.title} variant="heading-3xl">
 					{t().TITLE.HEIGHT_BY_SHADOW_FULL}
-				</h1>
+				</Text>
 				<Calculator />
 			</div>
 		</FormProvider>

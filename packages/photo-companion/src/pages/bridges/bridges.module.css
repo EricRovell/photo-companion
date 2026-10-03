@@ -25,9 +25,7 @@
 }
 
 .title {
-	font-size: var(--font-size-6);
 	margin-block-end: var(--space-6);
-	text-wrap: balance;
 
 	@media screen and (width <= 780px) {
 		padding-block-start: var(--space-6);

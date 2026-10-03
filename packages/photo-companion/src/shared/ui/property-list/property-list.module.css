@@ -1,17 +1,10 @@
 .card {
 	border-radius: 10px;
 	border: 3px solid var(--card-border-color, var(--color-surface-3));
-	font-size: var(--font-size-2);
 	height: min-content;
-
-	@media screen and (width <= 420px) {
-		font-size: var(--font-size-1);
-	}
 }
 
 .header {
-	font-size: var(--font-size-3);
-	font-weight: 600;
 	border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
 	display: flex;
 	justify-content: center;
@@ -34,6 +27,8 @@
 	}
 }
 
-.value {
-	font-variant-numeric: tabular-nums;
+@media screen and (width <= 420px) {
+	.card :is(.label.label, .value.value) {
+		font-size: var(--font-size-1);
+	}
 }

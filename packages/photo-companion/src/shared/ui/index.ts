@@ -15,4 +15,13 @@ export { Loader } from "./loader/loader";
 export { Markdown } from "./markdown";
 export { Modal } from "./modal/modal";
 export { PropertyList } from "./property-list";
-export { Time } from "./time/time";
+export {
+	type HeadingSize,
+	Text,
+	type TextAlign,
+	type TextColor,
+	type TextLeading,
+	type TextProps,
+	type TextSize,
+	type TextVariant
+} from "./text/text";

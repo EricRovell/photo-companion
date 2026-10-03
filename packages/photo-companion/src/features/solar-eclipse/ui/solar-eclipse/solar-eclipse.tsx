@@ -1,4 +1,5 @@
 import { useTranslation } from "~/features/translation";
+import { Text } from "~/shared/ui";
 
 import { useSolarEclipse } from "../../model";
 import { SolarEclipseDetails } from "../solar-eclipse-details/solar-eclipse-details";
@@ -14,7 +15,7 @@ export function SolarEclipse() {
 	return (
 		<section class={`card ${styles.card}`} data-label="solar-eclipse">
 			<header>
-				<h2>{t().SOLAR_ECLIPSE.TITLE}</h2>
+				<Text as="h2" variant="heading-l">{t().SOLAR_ECLIPSE.TITLE}</Text>
 			</header>
 
 			<div class={styles.body}>

@@ -6,7 +6,7 @@ import { useDatetime } from "~/features/datetime-query";
 import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
-import { Time } from "~/shared/ui";
+import { Text } from "~/shared/ui";
 
 import { buildEventComponent } from "../../lib/build-timeline-event";
 
@@ -38,9 +38,9 @@ export function TimelineEvent(props: TimelineEventProps) {
 			data-event-name={props.event.name}
 			data-secondary={setAttribute(props.secondary)}
 		>
-			<Time>
+			<Text as="time" color={current() ? "success" : props.secondary ? "secondary" : "inherit"} numeric variant={current() ? "heading-s" : "text-s"}>
 				{format().timeShort(props.event.timestamp)}
-			</Time>
+			</Text>
 			<div class={styles.icon} data-event-icon>
 				<LinkQuery
 					class={styles.link}
@@ -54,9 +54,17 @@ export function TimelineEvent(props: TimelineEventProps) {
 				</LinkQuery>
 			</div>
 			<article>
-				<p>{data().title}</p>
+				<Text
+					align="start"
+					as="p"
+					balance
+					color={current() ? "success" : props.secondary ? "secondary" : "inherit"}
+					variant={current() ? "heading-s" : props.secondary ? "text-xs" : "text-s"}
+				>
+					{data().title}
+				</Text>
 				<Show when={data().message}>
-					{message => <p>{message()}</p>}
+					{message => <Text align="start" as="p" balance color="secondary" variant="text-xs">{message()}</Text>}
 				</Show>
 			</article>
 		</li>

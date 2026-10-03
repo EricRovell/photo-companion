@@ -29,10 +29,10 @@ export function LightsCountdown(props: Props) {
 
 	return (
 		<PropertyList.Item class={props.class}>
-			<PropertyList.Label>
+			<PropertyList.Label color="secondary" variant="text-xs">
 				{getLabel()}
 			</PropertyList.Label>
-			<PropertyList.Value class={props.valueClass}>
+			<PropertyList.Value align="center" class={props.valueClass} variant="text-l">
 				{format().timeDuration(time())}
 			</PropertyList.Value>
 		</PropertyList.Item>

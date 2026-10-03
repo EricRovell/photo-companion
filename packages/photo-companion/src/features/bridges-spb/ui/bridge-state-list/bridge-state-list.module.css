@@ -22,6 +22,5 @@
 		background-color: var(--color-surface-2);
 		padding: var(--space-1) var(--space-2);
 		border-radius: var(--radius);
-		font-size: var(--font-size-2);
 	}
 }

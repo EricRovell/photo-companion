@@ -2,7 +2,7 @@ import { createEffect, on } from "solid-js";
 import { toast } from "solid-sonner";
 
 import { useTranslation } from "~/features/translation";
-import { Button } from "~/shared/ui";
+import { Button, Text } from "~/shared/ui";
 
 import { useServiceWorker } from "../../model";
 
@@ -16,9 +16,9 @@ export function ToastUpdate() {
 
 	const Toast = () => (
 		<aside class={styles.toast}>
-			<p class={styles.message}>
+			<Text as="p" color="success" variant="text-m">
 				{t().MESSAGE.UPDATE}
-			</p>
+			</Text>
 			<Button class={styles.button} onClick={handleReload} variant="success">
 				{t().LABEL.UPDATE}
 			</Button>
