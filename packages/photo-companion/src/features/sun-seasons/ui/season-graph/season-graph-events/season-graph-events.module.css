@@ -1,0 +1,25 @@
+.event-guide {
+	stroke: var(--color-surface-5);
+	stroke-width: 1px;
+	vector-effect: non-scaling-stroke;
+}
+
+.event-marker {
+	fill: var(--color-surface-1);
+	stroke-width: 2px;
+	vector-effect: non-scaling-stroke;
+
+	&[data-kind="equinox"] {
+		stroke: hsl(195deg 75% 65%);
+	}
+
+	&[data-kind="solstice"] {
+		stroke: gold;
+	}
+}
+
+.event-label {
+	fill: var(--color-text-secondary);
+	font-size: 11px;
+	text-anchor: middle;
+}

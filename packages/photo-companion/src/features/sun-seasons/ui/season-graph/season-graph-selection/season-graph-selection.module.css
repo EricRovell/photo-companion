@@ -1,0 +1,24 @@
+.selected-guide {
+	stroke: var(--color-link);
+	stroke-dasharray: 3 4;
+	stroke-width: 1.5px;
+	vector-effect: non-scaling-stroke;
+}
+
+.selected-halo {
+	fill: var(--color-link);
+	opacity: 0.15;
+}
+
+.selected-marker {
+	fill: var(--color-link);
+	stroke: var(--color-text);
+	stroke-width: 1.5px;
+	filter: drop-shadow(0 0 5px var(--color-link));
+	vector-effect: non-scaling-stroke;
+}
+
+.selected-label {
+	fill: var(--color-text);
+	font-size: 11px;
+}

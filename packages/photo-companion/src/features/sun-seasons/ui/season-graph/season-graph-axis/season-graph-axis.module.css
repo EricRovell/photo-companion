@@ -1,0 +1,23 @@
+.axis {
+	stroke: var(--color-surface-4);
+	stroke-dasharray: 2 5;
+	stroke-width: 1px;
+	vector-effect: non-scaling-stroke;
+}
+
+.axis-label,
+.axis-title {
+	fill: var(--color-text-secondary);
+	font-size: 11px;
+}
+
+.axis-label {
+	dominant-baseline: middle;
+	text-anchor: end;
+}
+
+.axis-title {
+	dominant-baseline: middle;
+	font-size: 12px;
+	text-anchor: middle;
+}

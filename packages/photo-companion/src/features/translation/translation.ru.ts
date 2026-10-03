@@ -252,6 +252,8 @@ export const t = {
 		MOONSET: "Заход Луны"
 	},
 	SEASONS: {
+		AXIS_DECLINATION: "Склонение Солнца",
+		AXIS_MONTH: "Месяц",
 		EQUINOX_MARCH: "Мартовское равноденствие",
 		EQUINOX_SEPTEMBER: "Сентябрьское равноденствие",
 		SOLSTICE_DECEMBER: "Декабрьское солнцестояние",

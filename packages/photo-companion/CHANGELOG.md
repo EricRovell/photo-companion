@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.40.0
+
+- Season interactive visualization.
+
 ## 2.39.0
 
 - Seasons calculations.
