@@ -1,10 +1,8 @@
-import { classnames } from "utils";
-
 import { GaugeTime } from "~/entities/gauge";
 import { Moon } from "~/entities/moon";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import { useMoonService } from "../../model";
 
@@ -18,10 +16,10 @@ export function MoonTimes() {
 	const { moonrise, moonset, phaseValue, rotation } = useMoonService();
 
 	return (
-		<section class={classnames("card", styles.root)} data-label="moon">
-			<header>
+		<Card class={styles.root} data-label="moon">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().TITLE.MOON_TIMES}</Text>
-			</header>
+			</Card.Header>
 			<GaugeTime
 				date={getDatetime()}
 				timeEnd={moonset()}
@@ -40,6 +38,6 @@ export function MoonTimes() {
 					/>
 				</foreignObject>
 			</GaugeTime>
-		</section>
+		</Card>
 	);
 }

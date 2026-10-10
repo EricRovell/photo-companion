@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.41.0
+
+- Updated card design.
+
 ## 2.40.0
 
 - Season interactive visualization.

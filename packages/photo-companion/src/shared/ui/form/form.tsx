@@ -2,6 +2,8 @@ import { type JSX, splitProps } from "solid-js";
 import { Show } from "solid-js";
 import { classnames } from "utils";
 
+import { Card } from "../card";
+
 import type { Classes } from "../../types";
 
 import styles from "./form.module.css";
@@ -19,16 +21,18 @@ export function Fieldset(allProps: FieldsetProps) {
 	]);
 
 	return (
-		<fieldset class={classnames(styles.fieldset, props.classes?.fieldset)} {...rest}>
-			<Show when={props.legend}>
-				<legend class={props.classes?.legend}>
-					{props.legend}
-				</legend>
-			</Show>
-			<div class={props.classes?.content}>
-				{props.children}
-			</div>
-		</fieldset>
+		<Card>
+			<fieldset class={classnames(styles.fieldset, props.classes?.fieldset)} {...rest}>
+				<Show when={props.legend}>
+					<legend class={props.classes?.legend}>
+						{props.legend}
+					</legend>
+				</Show>
+				<div class={props.classes?.content}>
+					{props.children}
+				</div>
+			</fieldset>
+		</Card>
 	);
 }
 

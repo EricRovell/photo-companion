@@ -1,10 +1,9 @@
 import { createMemo, Show } from "solid-js";
-import { classnames } from "utils";
 
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import { getEarthshineProbability } from "../../model";
 
@@ -22,10 +21,10 @@ export function Earthshine() {
 	));
 
 	return (
-		<article class={classnames("card", styles.root)}>
-			<header>
+		<Card as="article">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().TITLE.EARTHSHINE}</Text>
-			</header>
+			</Card.Header>
 			<Show
 				fallback={<Text as="p" balance class={styles.empty} leading="relaxed" variant="text-s">{t().MESSAGE.EARTHSHINE_NO_WINDOW}</Text>}
 				when={earthshine()}
@@ -64,6 +63,6 @@ export function Earthshine() {
 					</>
 				)}
 			</Show>
-		</article>
+		</Card>
 	);
 }

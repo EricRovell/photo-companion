@@ -3,7 +3,7 @@ import { getMoonPosition, getSunPosition } from "moon-sun-calc";
 import { ElevationGraph } from "~/entities/elevation-graph";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import styles from "./moon-altitude.module.css";
 
@@ -12,10 +12,10 @@ export function MoonAltitude() {
 	const { t } = useTranslation();
 
 	return (
-		<section class="card" data-label="altitude">
-			<header>
+		<Card data-label="altitude">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().TITLE.ELEVATION_MOON}</Text>
-			</header>
+			</Card.Header>
 
 			<ElevationGraph>
 				<ElevationGraph.ZeroAxis />
@@ -43,6 +43,6 @@ export function MoonAltitude() {
 				/>
 				<ElevationGraph.XAxis />
 			</ElevationGraph>
-		</section>
+		</Card>
 	);
 }

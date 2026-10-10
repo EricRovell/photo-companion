@@ -2,18 +2,34 @@
 	--timer-size: 1rem;
 
 	display: grid;
-	gap: var(--space-2);
-	width: 100%;
-	height: fit-content;
-	border-radius: 10px;
-	border: 3px solid var(--card-border-color, var(--color-surface-3));
 
 	header {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
-		padding: var(--space-2) var(--space-3);
-		border-bottom: 3px solid var(--card-border-color, var(--color-surface-3));
+		gap: var(--space-3);
+		padding: var(--space-4) var(--space-5) var(--space-3);
+
+		& > output {
+			display: inline-flex;
+			flex: none;
+			align-items: center;
+			min-height: 1.75rem;
+			padding-inline: var(--space-3);
+			border: 1px solid currentcolor;
+			border-radius: 999px;
+			font-weight: 500;
+			font-variation-settings: "wght" 500;
+		}
+
+		& > output[data-color="success"] {
+			background-color: hsl(153deg 60% 28% / 28%);
+		}
+
+		& > output[data-color="danger"] {
+			background-color: hsl(0deg 65% 38% / 24%);
+		}
 	}
 
 	.title {
@@ -22,18 +38,27 @@
 		display: flex;
 		align-items: center;
 		gap: var(--space-2);
+		min-width: 0;
 	}
 
 	footer {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: var(--space-1);
-		padding: var(--space-2);
-		border-top: 3px solid var(--card-border-color, var(--color-surface-3));
+		gap: var(--space-3);
+		margin-inline: var(--space-5);
+		padding: var(--space-3) 0 var(--space-4);
+		border-top: 1px solid var(--card-divider-color);
 
 		svg {
 			fill: yellow;
+		}
+
+		& > output {
+			color: var(--color-text);
+			font-size: var(--font-size-4);
+			font-weight: 500;
+			font-variation-settings: "wght" 500;
 		}
 	}
 
@@ -43,7 +68,8 @@
 		justify-content: center;
 		align-items: center;
 		gap: var(--space-2);
-		margin-block: var(--space-4);
+		margin-block: var(--space-2) var(--space-5);
+		padding-inline: var(--space-3);
 	}
 
 	time {
@@ -54,6 +80,7 @@
 
 .sparkline {
 	width: 100%;
+	min-width: 0;
 
 	& path {
 		stroke-width: var(--sparkline-stroke-width, 0.5px);

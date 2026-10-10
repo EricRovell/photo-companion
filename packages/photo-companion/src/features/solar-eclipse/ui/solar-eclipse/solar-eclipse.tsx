@@ -1,5 +1,5 @@
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import { useSolarEclipse } from "../../model";
 import { SolarEclipseDetails } from "../solar-eclipse-details/solar-eclipse-details";
@@ -13,10 +13,10 @@ export function SolarEclipse() {
 	const eclipse = useSolarEclipse();
 
 	return (
-		<section class={`card ${styles.card}`} data-label="solar-eclipse">
-			<header>
+		<Card class={styles.card} data-label="solar-eclipse">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().SOLAR_ECLIPSE.TITLE}</Text>
-			</header>
+			</Card.Header>
 
 			<div class={styles.body}>
 				<div class={styles["graph-container"]}>
@@ -36,6 +36,6 @@ export function SolarEclipse() {
 					obscuration={eclipse.state().obscuration}
 				/>
 			</div>
-		</section>
+		</Card>
 	);
 }

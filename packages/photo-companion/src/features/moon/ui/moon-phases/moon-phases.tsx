@@ -4,7 +4,7 @@ import { Moon } from "~/entities/moon";
 import { LinkQuery } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import { useMoonService } from "../../model";
 
@@ -17,10 +17,10 @@ export function MoonPhases() {
 	const { phases } = useMoonService();
 
 	return (
-		<section class={`card ${styles.phases}`} data-label="phases-calendar">
-			<header>
+		<Card class={styles.phases} data-label="phases-calendar">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().TITLE.MOON_PHASE_CALENDAR}</Text>
-			</header>
+			</Card.Header>
 			<div>
 				<For each={phases()}>
 					{phase => (
@@ -33,6 +33,6 @@ export function MoonPhases() {
 					)}
 				</For>
 			</div>
-		</section>
+		</Card>
 	);
 }

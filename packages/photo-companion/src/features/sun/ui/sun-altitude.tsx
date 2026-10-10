@@ -4,17 +4,17 @@ import { getSunPosition } from "moon-sun-calc";
 import { ElevationGraph } from "~/entities/elevation-graph";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 export function SunAltitude() {
 	const { t } = useTranslation();
 	const { getDatetime } = useDatetime();
 
 	return (
-		<section class="card" data-label="altitude">
-			<header>
+		<Card data-label="altitude">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().TITLE.ELEVATION_SUN}</Text>
-			</header>
+			</Card.Header>
 			<ElevationGraph>
 				<ElevationGraph.ZeroAxis />
 				<ElevationGraph.Path
@@ -27,6 +27,6 @@ export function SunAltitude() {
 				/>
 				<ElevationGraph.XAxis />
 			</ElevationGraph>
-		</section>
+		</Card>
 	);
 }

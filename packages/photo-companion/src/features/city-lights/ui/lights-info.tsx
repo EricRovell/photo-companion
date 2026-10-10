@@ -86,7 +86,7 @@ export const LightsInfo = () => {
 	};
 
 	return (
-		<PropertyList class={styles.root}>
+		<PropertyList>
 			<PropertyList.Header>{t().TITLE.LIGHTS_FULL}</PropertyList.Header>
 			<PropertyList.Body class={styles.body}>
 				<PropertyList.Item class={styles.cell}>
