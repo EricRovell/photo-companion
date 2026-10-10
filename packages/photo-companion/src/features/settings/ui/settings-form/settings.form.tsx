@@ -48,10 +48,7 @@ export function SettingsForm() {
 				<Fieldset legend={t().LABEL.EVENT_ALLOW_LIST}>
 					<InputEventFilters />
 				</Fieldset>
-				<Fieldset classes={{
-					content: styles["submit-content"],
-					fieldset: styles.submit
-				}}>
+				<div class={styles.submit}>
 					<Button
 						appearance="outline"
 						color="success"
@@ -66,7 +63,7 @@ export function SettingsForm() {
 					>
 						{t().LABEL.RESET}
 					</Button>
-				</Fieldset>
+				</div>
 			</Form>
 		</div>
 	);

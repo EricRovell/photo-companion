@@ -2,7 +2,7 @@ import { GaugeTime } from "~/entities/gauge";
 import { Sun } from "~/entities/sun";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import { useSunService } from "../model";
 
@@ -14,10 +14,10 @@ export function SunTimes() {
 	const { sunrise, sunset } = useSunService();
 
 	return (
-		<section class={"card"} data-label="sun">
-			<header>
+		<Card data-label="sun">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().TITLE.SUN_TIMES}</Text>
-			</header>
+			</Card.Header>
 			<GaugeTime
 				date={getDatetime()}
 				timeEnd={sunset()}
@@ -30,6 +30,6 @@ export function SunTimes() {
 					y={-SUN_SIZE / 2}
 				/>
 			</GaugeTime>
-		</section>
+		</Card>
 	);
 }

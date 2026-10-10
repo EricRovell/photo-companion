@@ -1,4 +1,5 @@
 export { Button } from "./button/button";
+export { Card, type CardProps } from "./card";
 export { Details } from "./details/details";
 export { Dialog } from "./dialog/dialog";
 export { Drawer } from "./drawer/drawer";

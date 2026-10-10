@@ -5,7 +5,7 @@ import type { BridgeName, BridgeState } from "types";
 import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { createCountdown } from "~/shared/lib/timer";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 import { IconWarning } from "~/shared/ui/icons";
 
 import { useBridges } from "../../model";
@@ -57,8 +57,8 @@ export function CardBridge(props: CardBridgeProps) {
 	const getState = createMemo(() => getBridgeState(props.name, getTimestamp(), true));
 
 	return (
-		<article class={styles.card}>
-			<header>
+		<Card as="article" class={styles.card}>
+			<Card.Header>
 				<Text as="h2" class={styles.title} variant="heading-l">
 					{t().BRIDGE_NAME_SPB[props.name]} {t().LABEL.BRIDGE}
 					<Show when={props.exception}>
@@ -70,9 +70,9 @@ export function CardBridge(props: CardBridgeProps) {
 						{t().LABEL.BRIDGE_OPENED}
 					</Show>
 				</Text>
-			</header>
+			</Card.Header>
 			<BridgeSparkline schedule={getSchedule()} />
 			<BridgeTimer state={getState()} />
-		</article>
+		</Card>
 	);
 }

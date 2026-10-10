@@ -1,6 +1,6 @@
 import { EclipseNavigation } from "~/entities/eclipse";
 import { useTranslation } from "~/features/translation";
-import { Text } from "~/shared/ui";
+import { Card, Text } from "~/shared/ui";
 
 import { useLunarEclipse } from "../../model";
 import { LunarEclipseDetails } from "../lunar-eclipse-details/lunar-eclipse-details";
@@ -13,10 +13,10 @@ export function LunarEclipse() {
 	const eclipse = useLunarEclipse();
 
 	return (
-		<section class={`card ${styles.card}`} data-label="lunar-eclipse">
-			<header>
+		<Card class={styles.card} data-label="lunar-eclipse">
+			<Card.Header>
 				<Text as="h2" variant="heading-l">{t().LUNAR_ECLIPSE.TITLE}</Text>
-			</header>
+			</Card.Header>
 
 			<div class={styles.body}>
 				<div class={styles["graph-container"]}>
@@ -36,6 +36,6 @@ export function LunarEclipse() {
 				</div>
 				<LunarEclipseDetails event={eclipse.event()} state={eclipse.state()} />
 			</div>
-		</section>
+		</Card>
 	);
 }

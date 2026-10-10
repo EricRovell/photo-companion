@@ -3,6 +3,7 @@ import { classnames } from "utils";
 
 import type { JSX} from "solid-js";
 
+import { Card } from "../card";
 import { Text, type TextProps } from "../text/text";
 
 import styles from "./property-list.module.css";
@@ -13,9 +14,9 @@ export const PropertyList = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElemen
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
 
 	return (
-		<article class={classnames(styles.card, props.class)} {...rest}>
+		<Card as="article" class={classnames(styles.card, props.class)} {...rest}>
 			{props.children}
-		</article>
+		</Card>
 	);
 };
 
@@ -24,7 +25,7 @@ export const Header = (allProps: PropertyTextProps<"header">) => {
 	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (
-		<Text as="header" class={classnames(styles.header, props.class)} {...rest} />
+		<Text as="header" class={props.class} {...rest} />
 	);
 };
 

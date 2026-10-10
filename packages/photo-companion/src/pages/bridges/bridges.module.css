@@ -4,6 +4,7 @@
 	grid-template: 1fr / 4fr 2fr;
 	place-items: stretch center;
 	gap: var(--space-8);
+	min-width: 0;
 	width: min(1140px, 100%);
 	margin-block-end: calc(2 * var(--space-9));
 
@@ -14,14 +15,20 @@
 }
 
 .wrapper {
+	min-width: 0;
 	width: 100%;
 }
 
 .bridge-list {
 	display: grid;
 	gap: var(--space-6);
+	min-width: 0;
 	width: 100%;
 	list-style: none;
+
+	& > li {
+		min-width: 0;
+	}
 }
 
 .title {
@@ -39,6 +46,7 @@
 	display: grid;
 	gap: var(--space-6);
 	height: min-content;
+	min-width: 0;
 	width: 100%;
 
 	@media screen and (width <= 780px) {
