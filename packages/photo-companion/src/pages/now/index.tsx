@@ -5,8 +5,7 @@ import { SupportsLights } from "~/features/city-lights";
 import { MoonInfo, MoonProvider } from "~/features/moon";
 import { SunInfo, SunProvider } from "~/features/sun";
 import { useTranslation } from "~/features/translation";
-import { ErrorMessage  } from "~/shared/ui";
-import { Loader } from "~/shared/ui";
+import { ErrorMessage, Loader } from "~/shared/ui";
 
 import styles from "./now.module.css";
 
@@ -41,5 +40,3 @@ export function PageNow() {
 		</div>
 	);
 }
-
-export default PageNow;

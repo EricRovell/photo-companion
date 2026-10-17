@@ -71,7 +71,7 @@ function Calculator() {
 	);
 }
 
-export function PageHeightByShadow() {
+function PageHeightByShadow() {
 	const { t } = useTranslation();
 
 	return (

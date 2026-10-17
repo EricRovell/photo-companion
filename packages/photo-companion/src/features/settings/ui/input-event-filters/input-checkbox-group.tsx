@@ -6,7 +6,7 @@ import { InputCheckbox, type InputSelectOption } from "~/shared/ui";
 import styles from "./input-checkbox-group.module.css";
 
 export type Value = Nullish<string[]>;
-export type ChangeHandler = (name: string, value: Value) => void;
+type ChangeHandler = (name: string, value: Value) => void;
 
 interface Props {
 	disabled?: boolean;

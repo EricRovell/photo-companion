@@ -1,7 +1,7 @@
 import { BridgesInfo, BridgesProvider } from "~/features/bridges-spb";
 import { useTranslation } from "~/features/translation";
 
-export function NowBridges() {
+function NowBridges() {
 	const { t } = useTranslation();
 
 	return (

@@ -2,9 +2,9 @@ import { createContext, createSignal, type ParentProps, useContext } from "solid
 
 import type { DefinitionProps} from "./markdown.types";
 
-export type DefinitionContextValue = Record<string, Pick<DefinitionProps, "label" | "title" | "url">>;
+type DefinitionContextValue = Record<string, Pick<DefinitionProps, "label" | "title" | "url">>;
 
-export function makeDefinitionContext () {
+function makeDefinitionContext() {
 	const [ getDefinitions, setDefinitions ] = createSignal<DefinitionContextValue>({});
 
 	return {

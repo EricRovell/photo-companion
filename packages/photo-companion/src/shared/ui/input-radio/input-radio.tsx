@@ -5,7 +5,7 @@ import type { Classes } from "../../types";
 
 import styles from "./input-radio.module.css";
 
-export interface InputRadioOption {
+interface InputRadioOption {
 	disabled?: boolean,
 	label: string;
 	selected?: boolean;

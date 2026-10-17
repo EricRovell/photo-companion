@@ -5,7 +5,7 @@ import { createEventListener } from "./create-event-listener";
 
 type MaybeAccessor<T> = Accessor<T> | T;
 
-export interface Coords {
+interface Coords {
 	t1: number;
 	t2: number;
 	x1: number;
@@ -14,7 +14,7 @@ export interface Coords {
 	y2: number;
 }
 
-export type SwipeDirection =
+type SwipeDirection =
 	| "DOWN"
 	| "LEFT"
 	| "NONE"

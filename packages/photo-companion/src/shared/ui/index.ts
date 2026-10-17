@@ -1,7 +1,5 @@
 export { Button } from "./button/button";
-export { Card, type CardProps } from "./card";
-export { Details } from "./details/details";
-export { Dialog } from "./dialog/dialog";
+export { Card } from "./card";
 export { Drawer } from "./drawer/drawer";
 export { ErrorMessage } from "./error-message/error-message";
 export { Fieldset, Form } from "./form/form";
@@ -9,20 +7,10 @@ export { Icon, type IconProps } from "./icon/icon";
 export { InputCheckbox } from "./input-checkbox/input-checkbox";
 export { InputLocation } from "./input-location/input-location";
 export { InputRadio } from "./input-radio/input-radio";
-export { InputSelect, type InputSelectOption } from "./input-select/input-select";
+export type { InputSelectOption } from "./input-select/input-select";
 export { Input } from "./input/input";
 export { Link, type LinkProps } from "./link/link";
 export { Loader } from "./loader/loader";
 export { Markdown } from "./markdown";
-export { Modal } from "./modal/modal";
 export { PropertyList } from "./property-list";
-export {
-	type HeadingSize,
-	Text,
-	type TextAlign,
-	type TextColor,
-	type TextLeading,
-	type TextProps,
-	type TextSize,
-	type TextVariant
-} from "./text/text";
+export { Text, type TextVariant } from "./text/text";

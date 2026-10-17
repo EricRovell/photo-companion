@@ -6,7 +6,7 @@ import { useTranslation } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
 import { Card, Text } from "~/shared/ui";
 
-import { useMoonService } from "../../model";
+import { useMoonService } from "../../model/moon.context";
 
 import styles from "./moon-phases.module.css";
 

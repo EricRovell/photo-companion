@@ -4,7 +4,7 @@ import { useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
 import { Card, Text } from "~/shared/ui";
 
-import { useMoonService } from "../../model";
+import { useMoonService } from "../../model/moon.context";
 
 import styles from "./moon-times.module.css";
 

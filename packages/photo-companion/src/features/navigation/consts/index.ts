@@ -26,19 +26,6 @@ export interface NavigationRoute {
 export type ROUTE_LABEL = Exclude<keyof typeof ROUTES, "NOT_FOUND" | "ROOT">;
 export type ROUTE_VALUE = typeof ROUTES[Exclude<keyof typeof ROUTES, "CHANGELOG">];
 
-/**
- * Routes that define an app-feature section.
- */
-export const ROUTES_PRIMARY: ROUTE_PRIMARY_LABEL[] = [
-	"BRIDGES",
-	"LIGHTS",
-	"MOON",
-	"NOW",
-	"SUN",
-	"TIMELINE",
-	"HEIGHT_BY_SHADOW"
-] as const;
-
 export type ROUTE_PRIMARY_LABEL =
 	| "BRIDGES"
 	| "HEIGHT_BY_SHADOW"

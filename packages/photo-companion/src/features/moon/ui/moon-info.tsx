@@ -3,7 +3,7 @@ import { Show } from "solid-js";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
 
-import { useMoonService } from "../model";
+import { useMoonService } from "../model/moon.context";
 
 interface Props {
 	title?: string;

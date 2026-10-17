@@ -5,7 +5,7 @@ import { Link, Text } from "~/shared/ui";
 
 import styles from "./404.module.css";
 
-export const Page404 = () => {
+const Page404 = () => {
 	const { t } = useTranslation();
 
 	return (

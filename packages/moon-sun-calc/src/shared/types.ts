@@ -58,8 +58,8 @@ export interface IntegerRangeValidationInput {
 	value: unknown;
 }
 
-export type RootFunction = (time: Millisecond) => number;
-export type RootContinuityCheck = (left: number, right: number) => boolean;
+type RootFunction = (time: Millisecond) => number;
+type RootContinuityCheck = (left: number, right: number) => boolean;
 
 export interface RefineMinimumInput {
 	fn: RootFunction;

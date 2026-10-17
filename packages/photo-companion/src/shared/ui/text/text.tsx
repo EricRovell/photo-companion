@@ -6,11 +6,11 @@ import type { ComponentProps, JSX, ValidComponent } from "solid-js";
 
 import styles from "./text.module.css";
 
-export type TextAlign = "center" | "end" | "justify" | "start";
-export type TextColor = "danger" | "inherit" | "primary" | "secondary" | "success";
-export type TextLeading = "normal" | "relaxed" | "tight";
-export type TextSize = "l" | "m" | "s" | "xl" | "xs";
-export type HeadingSize = "2xl" | "3xl" | "4xl" | TextSize;
+type TextAlign = "center" | "end" | "justify" | "start";
+type TextColor = "danger" | "inherit" | "primary" | "secondary" | "success";
+type TextLeading = "normal" | "relaxed" | "tight";
+type TextSize = "l" | "m" | "s" | "xl" | "xs";
+type HeadingSize = "2xl" | "3xl" | "4xl" | TextSize;
 export type TextVariant = `heading-${HeadingSize}` | `text-${TextSize}`;
 
 interface TextOwnProps<T extends ValidComponent> {

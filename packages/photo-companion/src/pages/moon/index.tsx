@@ -18,5 +18,3 @@ export function PageMoon() {
 		</MoonProvider>
 	);
 }
-
-export default PageMoon;

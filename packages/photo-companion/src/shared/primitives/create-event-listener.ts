@@ -5,14 +5,14 @@ import type { Accessor} from "solid-js";
 
 type MaybeAccessor<T> = Accessor<T> | T;
 
-export function isAccessor<T>(val?: unknown): val is Accessor<T> {
+function isAccessor<T>(val?: unknown): val is Accessor<T> {
 	return typeof val === "function";
 }
 
 /**
  * Normalizes a value into Accessor.
  */
-export function toAccessor<T>(input: Accessor<Nullable<T>> | Nullable<T>): Accessor<Nullable<T>> {
+function toAccessor<T>(input: Accessor<Nullable<T>> | Nullable<T>): Accessor<Nullable<T>> {
 	if (isNullable(input) || !isAccessor(input)) {
 		const [ getter ] = createSignal(input);
 		return getter;
@@ -24,7 +24,7 @@ export function toAccessor<T>(input: Accessor<Nullable<T>> | Nullable<T>): Acces
 /**
  * Calls `onCleanup()` if it is inside a component lifecycle, if not, do nothing.
  */
-export function tryOnCleanup(func: VoidFn) {
+function tryOnCleanup(func: VoidFn) {
 	if (getOwner()) {
 		onCleanup(func);
 		return true;

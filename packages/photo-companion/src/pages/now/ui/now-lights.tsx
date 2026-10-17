@@ -9,7 +9,7 @@ import {
 import { useTranslation } from "~/features/translation";
 import { PropertyList, Text } from "~/shared/ui";
 
-export const NowLightsInfo = () => {
+const NowLightsInfo = () => {
 	const { format, t } = useTranslation();
 	const { getCity, getScheduleByDate, getStateByDate} = useCityLights();
 
@@ -78,7 +78,7 @@ export const NowLightsInfo = () => {
 	);
 };
 
-export const NowLights = () => (
+const NowLights = () => (
 	<SupportsLights>
 		<NowLightsInfo />
 	</SupportsLights>

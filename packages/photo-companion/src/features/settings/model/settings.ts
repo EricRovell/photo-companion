@@ -14,7 +14,7 @@ import {
 
 import type { SettingsStore } from "../types";
 
-export function createSettingsState() {
+function createSettingsState() {
 	const storage = new Storage(SETTINGS_LOCAL_STORAGE_KEY, {
 		version: SETTINGS_LOCAL_STORAGE_VERSION
 	});
