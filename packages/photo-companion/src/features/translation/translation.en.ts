@@ -54,6 +54,9 @@ export const t = {
 	},
 	ERRORS: {
 		DATE: "Invalid date",
+		DEVICE_HEADING_PERMISSION_DENIED: "Compass access was not allowed",
+		DEVICE_HEADING_TIMEOUT: "No heading data was received. Try again",
+		DEVICE_HEADING_UNAVAILABLE: "Device heading is unavailable",
 		GEOLOCATION_PERMISSION_DENIED: "No permission granted",
 		GEOLOCATION_POSITION_UNAVAILABLE: "Geolocation is unavailable",
 		GEOLOCATION_TIMEOUT: "Timeout error",
@@ -67,6 +70,7 @@ export const t = {
 		SUN_AZIMUTH_NOT_VISIBLE: "The Sun does not reach this azimuth above the horizon on the selected date"
 	},
 	LABEL: {
+		ALIGN_COMPASS: "Align with device",
 		ALL_BRIDGES_LIFTED_DOWN: "All drawbridges are lifted down",
 		ALL_BRIDGES_LIFTED_UP: "All drawbridges are lifted up",
 		ALTITUDE: "Altitude",
@@ -83,6 +87,7 @@ export const t = {
 		BRIDGES_LIFTED_UP: "Lifted up bridges",
 		BRIDGES_SPB: "Saint-Petersburg Drawbridges",
 		CALCULATE: "Calculate",
+		CELESTIAL_BODY: "Celestial body",
 		CITY: "City",
 		DATA_SOURCE: "Data source",
 		DATE: "Date",

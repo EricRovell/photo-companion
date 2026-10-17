@@ -1,0 +1,15 @@
+.content {
+	--azimuth-sun-color: hsl(39deg 94% 61%);
+	--azimuth-moon-color: hsl(207deg 66% 74%);
+
+	display: grid;
+	place-items: center;
+	gap: var(--space-2);
+	padding: 0 var(--space-4) var(--space-5);
+}
+
+.visual {
+	display: grid;
+	gap: var(--space-2);
+	width: min(100%, 25rem);
+}

@@ -52,6 +52,9 @@ export interface Translation {
 	};
 	ERRORS: {
 		DATE: string;
+		DEVICE_HEADING_PERMISSION_DENIED: string;
+		DEVICE_HEADING_TIMEOUT: string;
+		DEVICE_HEADING_UNAVAILABLE: string;
 		GEOLOCATION_PERMISSION_DENIED: string;
 		GEOLOCATION_POSITION_UNAVAILABLE: string;
 		GEOLOCATION_TIMEOUT: string;
@@ -65,6 +68,7 @@ export interface Translation {
 		SUN_AZIMUTH_NOT_VISIBLE: string;
 	},
 	LABEL: {
+		ALIGN_COMPASS: string;
 		ALL_BRIDGES_LIFTED_DOWN: string;
 		ALL_BRIDGES_LIFTED_UP: string;
 		ALTITUDE: string;
@@ -81,6 +85,7 @@ export interface Translation {
 		BRIDGES_LIFTED_UP: string;
 		BRIDGES_SPB: string;
 		CALCULATE: string;
+		CELESTIAL_BODY: string;
 		CITY: string;
 		DATA_SOURCE: string;
 		DATE: string;

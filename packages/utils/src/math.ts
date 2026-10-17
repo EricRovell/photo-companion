@@ -6,6 +6,25 @@ export function clamp(value: number, min: number, max: number): number {
 }
 
 /**
+ * Normalizes an angle in degrees to the [ 0, 360 ) range.
+ */
+export function normalizeDegrees(value: number): number {
+	return ((value % 360) + 360) % 360;
+}
+
+/**
+ * Converts clockwise degrees with north at 0° into Cartesian coordinates.
+ */
+export function polarToCartesian(centerX: number, centerY: number, radius: number, angleInDegrees: number) {
+	const angleInRadians = (angleInDegrees - 90) * Math.PI / 180;
+
+	return {
+		x: centerX + radius * Math.cos(angleInRadians),
+		y: centerY + radius * Math.sin(angleInRadians)
+	};
+}
+
+/**
  * Round the number up to the desired precision.
  */
 export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {

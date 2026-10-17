@@ -1,11 +1,4 @@
-export function polarToCartesian(centerX: number, centerY: number, radius: number, angleInDegrees: number) {
-	const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
-
-	return {
-		x: centerX + (radius * Math.cos(angleInRadians)),
-		y: centerY + (radius * Math.sin(angleInRadians))
-	};
-}
+import { polarToCartesian } from "utils/math";
 
 export function describeArc(x: number, y: number, r1: number, r2: number, angleStart: number, angleEnd: number){
 	if (angleStart === angleEnd) {
