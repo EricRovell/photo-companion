@@ -1,6 +1,6 @@
 import type { ROUTE_VALUE } from "~/features/navigation";
 
-export interface PageMetaData {
+interface PageMetaData {
 	DESCRIPTION: string;
 	KEYWORDS: string[];
 	TITLE: MaybeArray<string>;

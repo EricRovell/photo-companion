@@ -6,7 +6,7 @@ import { Markdown } from "~/shared/ui";
 const PageAboutEn = lazy(() => import("./about.en.md"));
 const PageAboutRu = lazy(() => import("./about.ru.md"));
 
-export function PageAbout() {
+function PageAbout() {
 	const { lang } = useTranslation();
 
 	return (

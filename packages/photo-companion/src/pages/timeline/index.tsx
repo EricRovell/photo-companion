@@ -77,5 +77,3 @@ export const PageTimeline = () => (
 		<EventTimeline />
 	</CityLightsProvider>
 );
-
-export default PageTimeline;

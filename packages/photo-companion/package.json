@@ -35,7 +35,6 @@
 		"@rollup/plugin-replace": "^5.0.7",
 		"@solidjs/testing-library": "^0.8.10",
 		"@testing-library/jest-dom": "^7.0.0",
-		"@testing-library/user-event": "^14.6.1",
 		"esbuild": "^0.23.0",
 		"esbuild-plugin-replace": "^1.4.0",
 		"jsdom": "^30.0.1",

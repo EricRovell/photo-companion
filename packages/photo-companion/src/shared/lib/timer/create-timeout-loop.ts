@@ -18,7 +18,7 @@ type TimeoutSource =
  * @param timer The timer to create: {@link setTimeout} or {@link setInterval}.
  * @returns Function to manually clear the interval.
  */
-export function makeTimer(fn: VoidFn, delay: number, timer: Timer): VoidFn {
+function makeTimer(fn: VoidFn, delay: number, timer: Timer): VoidFn {
 	if (isServer) {
 		return () => void 0;
 	}

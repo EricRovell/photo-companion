@@ -6,7 +6,7 @@ import type { SettingsStore } from "../types";
 import type { Translation } from "~/features/translation";
 import type { InputSelectOption } from "~/shared/ui";
 
-export const cityOptions: City[] = [
+const cityOptions: City[] = [
 	"MOSCOW",
 	"SAINT_PETERSBURG",
 	"OTHER"

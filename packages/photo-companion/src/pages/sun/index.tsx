@@ -19,5 +19,3 @@ export function PageSun() {
 		</SunProvider>
 	);
 }
-
-export default PageSun;

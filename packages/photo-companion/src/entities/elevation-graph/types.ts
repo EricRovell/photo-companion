@@ -1,7 +1,7 @@
 /**
  * Function that calculates the altitude for a given astro-object.
  */
-export interface AltitudeInput {
+interface AltitudeInput {
 	instant: DateLike;
 	observer: {
 		latitude: number;

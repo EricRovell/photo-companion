@@ -8,7 +8,7 @@ import { cubicInOut, type EasingFn } from "utils/easing";
 
 import type { Accessor} from "solid-js";
 
-export interface TweenedProps {
+interface TweenedProps {
 	duration?: number;
 	ease?: EasingFn;
 	interpolate?: InterpolateFn;

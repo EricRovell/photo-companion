@@ -27,7 +27,7 @@ function BridgeList() {
 	);
 }
 
-export function PageBridges() {
+function PageBridges() {
 	const { t } = useTranslation();
 	const { isSupportsBridges } = useBridges();
 

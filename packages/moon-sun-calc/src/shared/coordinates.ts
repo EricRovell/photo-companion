@@ -78,7 +78,7 @@ function apparentSiderealTime(timestamp: Millisecond): Degree {
 	)));
 }
 
-export function atmosphericRefraction(altitude: Degree, atmosphere: Atmosphere = {}): Degree {
+function atmosphericRefraction(altitude: Degree, atmosphere: Atmosphere = {}): Degree {
 	const { pressure, temperature } = validateAtmosphere(atmosphere);
 
 	if (altitude < -1) {

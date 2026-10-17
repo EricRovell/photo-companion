@@ -19,7 +19,7 @@ export interface CircleCommonProps extends JSX.SvgSVGAttributes<SVGCircleElement
 	r: number;
 }
 
-export type CircleProps = JSX.SvgSVGAttributes<SVGCircleElement>;
+type CircleProps = JSX.SvgSVGAttributes<SVGCircleElement>;
 
 
 const DEFAULT_PROPS = {
@@ -29,7 +29,7 @@ const DEFAULT_PROPS = {
 	size: 100
 };
 
-export function createCircle(commonProps: CircleCommonProps) {
+function createCircle(commonProps: CircleCommonProps) {
 	return (props: CircleProps) => (
 		<circle {...commonProps} {...props} />
 	);

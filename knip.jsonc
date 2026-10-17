@@ -1,0 +1,15 @@
+{
+	"$schema": "https://unpkg.com/knip@6/schema.json",
+	"workspaces": {
+		"packages/photo-companion": {
+			"entry": [
+				// This file is passed to esbuild through a computed path in the Vite plugin.
+				"src/features/service-worker/service-worker.ts"
+			],
+			"project": [
+				"src/**/*.{ts,tsx}",
+				"plugins/**/*.ts"
+			]
+		}
+	}
+}

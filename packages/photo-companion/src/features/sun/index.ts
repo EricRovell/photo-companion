@@ -1,2 +1,2 @@
-export { SunProvider, useSunService } from "./model";
+export { SunProvider } from "./model";
 export * from "./ui";

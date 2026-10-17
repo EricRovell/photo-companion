@@ -22,5 +22,3 @@ export function PageLights() {
 		</Show>
 	);
 }
-
-export default PageLights;
