@@ -1,0 +1,105 @@
+.dial {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	overflow: visible;
+}
+
+.horizon {
+	fill: rgb(255 255 255 / 1%);
+	stroke: rgb(255 255 255 / 14%);
+	stroke-width: 1.5;
+}
+
+.guides {
+	stroke: rgb(255 255 255 / 6%);
+	stroke-width: 1;
+}
+
+.center {
+	fill: rgb(255 255 255 / 20%);
+}
+
+.entity {
+	color: var(--azimuth-sun-color);
+}
+
+.entity[data-entity="moon"] {
+	color: var(--azimuth-moon-color);
+}
+
+.track-base,
+.track-above,
+.track-below {
+	fill: none;
+	stroke: currentcolor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 2.5;
+}
+
+.track-base {
+	stroke-opacity: 0.05;
+}
+
+.track-above {
+	stroke-opacity: 0.65;
+	stroke-width: 3.5;
+}
+
+.track-below {
+	stroke-opacity: 0.1;
+	stroke-width: 2.5;
+}
+
+.tick,
+.major {
+	stroke: rgb(255 255 255 / 26%);
+	stroke-linecap: round;
+	stroke-width: 1;
+}
+
+.major {
+	stroke: rgb(255 255 255 / 58%);
+	stroke-width: 1.5;
+}
+
+.cardinal,
+.north {
+	dominant-baseline: middle;
+	fill: var(--color-text-secondary);
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 600;
+	text-anchor: middle;
+}
+
+.north {
+	fill: hsl(8deg 82% 64%);
+}
+
+.marker,
+.marker-below {
+	fill: currentcolor;
+	stroke: var(--card-background);
+	stroke-width: 3;
+	transition: filter 240ms ease, opacity 240ms ease;
+}
+
+.marker {
+	stroke-width: 0;
+	filter: drop-shadow(0 0 5px currentcolor) drop-shadow(0 2px 4px rgb(0 0 0 / 45%));
+}
+
+.marker-below {
+	filter: none;
+	opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.marker,
+	.marker-below {
+		transition: none;
+	}
+}

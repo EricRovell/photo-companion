@@ -54,6 +54,9 @@ export const t = {
 	},
 	ERRORS: {
 		DATE: "Неверное значение даты",
+		DEVICE_HEADING_PERMISSION_DENIED: "Доступ к компасу не разрешён",
+		DEVICE_HEADING_TIMEOUT: "Данные о направлении не получены. Попробуйте ещё раз",
+		DEVICE_HEADING_UNAVAILABLE: "Направление устройства недоступно",
 		GEOLOCATION_PERMISSION_DENIED: "Необходимо выдать разрешение",
 		GEOLOCATION_POSITION_UNAVAILABLE: "Геолокация недоступна",
 		GEOLOCATION_TIMEOUT: "Ошибка времени ожидания",
@@ -67,6 +70,7 @@ export const t = {
 		SUN_AZIMUTH_NOT_VISIBLE: "В выбранный день Солнце не достигает этого азимута над горизонтом"
 	},
 	LABEL: {
+		ALIGN_COMPASS: "Ориентировать по устройству",
 		ALL_BRIDGES_LIFTED_DOWN: "Все мосты cведены",
 		ALL_BRIDGES_LIFTED_UP: "Все мосты разведены",
 		ALTITUDE: "Высота",
@@ -83,6 +87,7 @@ export const t = {
 		BRIDGES_LIFTED_UP: "Разведены мосты",
 		BRIDGES_SPB: "Разводные мосты г.Санкт-Петербург",
 		CALCULATE: "Вычислить",
+		CELESTIAL_BODY: "Небесное тело",
 		CITY: "Город",
 		DATA_SOURCE: "Источник данных",
 		DATE: "Дата",

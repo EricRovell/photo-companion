@@ -1,0 +1,75 @@
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+	padding: var(--space-2) var(--space-3);
+}
+
+.table thead th {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+	font-weight: 500;
+	text-align: right;
+}
+
+.table thead th:first-child,
+.table tbody th {
+	text-align: left;
+}
+
+.table tbody th,
+.table tbody td {
+	border-top: 1px solid var(--card-divider-color);
+	font-size: var(--font-size-2);
+}
+
+.table tbody th {
+	color: var(--color-text);
+	font-weight: 600;
+}
+
+.table tbody td {
+	color: var(--azimuth-sun-color);
+	font-weight: 600;
+	text-align: right;
+}
+
+.table tbody tr[data-entity="moon"] td {
+	color: var(--azimuth-moon-color);
+}
+
+.azimuth-value {
+	display: inline-grid;
+	grid-template-columns: 4ch 2ch;
+	align-items: baseline;
+	column-gap: 0.35em;
+}
+
+.azimuth-value > span {
+	text-align: right;
+}
+
+.azimuth-value small {
+	color: var(--color-text-secondary);
+	font-size: inherit;
+	font-weight: 500;
+	text-align: left;
+}
+
+.dot {
+	display: inline-block;
+	width: 0.55rem;
+	margin-right: var(--space-2);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--azimuth-sun-color);
+	vertical-align: 0.02em;
+}
+
+tr[data-entity="moon"] .dot {
+	background: var(--azimuth-moon-color);
+}

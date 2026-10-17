@@ -1,6 +1,6 @@
 import { type JSX, mergeProps } from "solid-js";
+import { polarToCartesian } from "utils/math";
 
-import { polarToCartesian } from "../../lib";
 import { useGauge } from "../gauge-context";
 
 interface Props extends JSX.SvgSVGAttributes<SVGTextElement> {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.42.0
+
+- Sun and moon azimuth widget.
+
 ## 2.41.0
 
 - Updated card design.
