@@ -52,6 +52,7 @@ export interface Translation {
 	};
 	ERRORS: {
 		DATE: string;
+		DEVICE_HEADING_BLOCKED: string;
 		DEVICE_HEADING_PERMISSION_DENIED: string;
 		DEVICE_HEADING_TIMEOUT: string;
 		DEVICE_HEADING_UNAVAILABLE: string;

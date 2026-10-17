@@ -1,1 +1,1 @@
-export type DeviceHeadingError = "denied" | "timeout" | "unavailable";
+export type DeviceHeadingError = "blocked" | "denied" | "timeout" | "unavailable";

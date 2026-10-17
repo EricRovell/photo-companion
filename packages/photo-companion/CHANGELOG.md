@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.42.1
+
+- Azimuth widget transition and accessible controls.
+
 ## 2.42.0
 
 - Sun and moon azimuth widget.

@@ -15,6 +15,7 @@ export interface AzimuthWidgetEntity {
 
 export interface AzimuthWidgetLabels {
 	align: string;
+	alignBlocked: string;
 	alignDenied: string;
 	alignTimeout: string;
 	alignUnavailable: string;
