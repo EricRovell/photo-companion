@@ -1,4 +1,5 @@
 import { createMemo, Show } from "solid-js";
+import { linear } from "utils/easing";
 import { normalizeDegrees } from "utils/math";
 
 import { circular, createTweened, useDeviceHeading } from "~/shared/primitives";
@@ -43,11 +44,15 @@ export function AzimuthWidget(props: Props) {
 		() => props.entities.find(entity => entity.id === "moon")?.path ?? []
 	);
 
-	const heading = createTweened(() => deviceHeading.heading() ?? 0, {
-		duration: AZIMUTH_WIDGET_CONFIG.animation.headingDuration,
-		interpolate: circular(360),
-		map: normalizeDegrees
-	});
+	const heading = createTweened(
+		() => deviceHeading.status() === "active" ? deviceHeading.heading() ?? 0 : 0,
+		{
+			duration: AZIMUTH_WIDGET_CONFIG.animation.headingDuration,
+			ease: linear,
+			interpolate: circular(360),
+			map: normalizeDegrees
+		}
+	);
 
 	const cardinalLabels = createMemo<CardinalLabels>(() => ({
 		east: getShortLabel(props.labels.east),
@@ -58,11 +63,23 @@ export function AzimuthWidget(props: Props) {
 
 	const getAzimuth = (entity: AzimuthEntity) => entity === "sun" ? sunAzimuth() : moonAzimuth();
 	const getPath = (entity: AzimuthEntity) => entity === "sun" ? sunPath() : moonPath();
+	const toggleDeviceAlignment = () => deviceHeading.status() === "active"
+		? deviceHeading.stopHeading()
+		: deviceHeading.requestHeading();
 
 	return (
 		<Card data-label="azimuth">
-			<Card.Header>
-				<Text as="h2" variant="heading-l">{props.title}</Text>
+			<Card.Header class={styles.header}>
+				<Text as="h2" class={styles.title} variant="heading-l">{props.title}</Text>
+				<Show when={deviceHeading.canAlign()}>
+					<DeviceAlignment
+						active={deviceHeading.status() === "active"}
+						error={deviceHeading.error()}
+						labels={props.labels}
+						onToggle={toggleDeviceAlignment}
+						pending={deviceHeading.status() === "requesting"}
+					/>
+				</Show>
 			</Card.Header>
 
 			<div class={styles.content}>
@@ -81,15 +98,6 @@ export function AzimuthWidget(props: Props) {
 						labels={props.labels}
 					/>
 				</div>
-
-				<Show when={deviceHeading.canRequest() && deviceHeading.status() !== "active"}>
-					<DeviceAlignment
-						error={deviceHeading.error()}
-						labels={props.labels}
-						onRequest={deviceHeading.requestHeading}
-						pending={deviceHeading.status() === "requesting"}
-					/>
-				</Show>
 			</div>
 		</Card>
 	);

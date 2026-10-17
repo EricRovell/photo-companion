@@ -3,7 +3,7 @@ const HORIZON_RADIUS = 116;
 
 export const AZIMUTH_WIDGET_CONFIG = {
 	animation: {
-		headingDuration: 320,
+		headingDuration: 240,
 		transitionDuration: 650
 	},
 	dial: {

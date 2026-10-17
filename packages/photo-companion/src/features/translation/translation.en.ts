@@ -54,7 +54,8 @@ export const t = {
 	},
 	ERRORS: {
 		DATE: "Invalid date",
-		DEVICE_HEADING_PERMISSION_DENIED: "Compass access was not allowed",
+		DEVICE_HEADING_BLOCKED: "Compass access is blocked in this browser context",
+		DEVICE_HEADING_PERMISSION_DENIED: "Compass permission was denied. Allow motion and orientation access in browser settings",
 		DEVICE_HEADING_TIMEOUT: "No heading data was received. Try again",
 		DEVICE_HEADING_UNAVAILABLE: "Device heading is unavailable",
 		GEOLOCATION_PERMISSION_DENIED: "No permission granted",

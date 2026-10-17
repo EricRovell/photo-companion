@@ -31,6 +31,7 @@ export function MoonAzimuth() {
 			]}
 			labels={{
 				align: t().LABEL.ALIGN_COMPASS,
+				alignBlocked: t().ERRORS.DEVICE_HEADING_BLOCKED,
 				alignDenied: t().ERRORS.DEVICE_HEADING_PERMISSION_DENIED,
 				alignTimeout: t().ERRORS.DEVICE_HEADING_TIMEOUT,
 				alignUnavailable: t().ERRORS.DEVICE_HEADING_UNAVAILABLE,
