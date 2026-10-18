@@ -9,7 +9,7 @@ export function MoonAzimuth() {
 	const sun = useSunService();
 	const moonAzimuthPath = useMoonAzimuthPath();
 	const sunAzimuthPath = useSunAzimuthPath();
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	return (
 		<AzimuthWidget
@@ -43,7 +43,11 @@ export function MoonAzimuth() {
 				south: t().LABEL.LATITUDE_SOUTH,
 				west: t().LABEL.LONGITUDE_WEST
 			}}
-			title={`${t().TITLE.SUN} / ${t().TITLE.MOON} · ${t().LABEL.AZIMUTH}`}
+			title={format().message(t().TITLE.AZIMUTH_SUN_MOON, {
+				azimuth: t().LABEL.AZIMUTH,
+				moon: t().TITLE.MOON,
+				sun: t().TITLE.SUN
+			})}
 		/>
 	);
 }

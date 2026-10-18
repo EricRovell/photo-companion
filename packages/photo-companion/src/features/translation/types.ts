@@ -248,6 +248,7 @@ export interface Translation {
 		FIRST_CONTACT: string;
 		FOURTH_CONTACT: string;
 		GRAPH_DESCRIPTION: string;
+		GRAPH_DESCRIPTION_WITH_NOTE: `${string}{description}${string}` & `${string}{note}${string}`;
 		GRAPH_TITLE: string;
 		MAXIMUM_SUN_ALTITUDE: string;
 		MOON_OUTSIDE_VIEW: string;
@@ -304,6 +305,8 @@ export interface Translation {
 	};
 	TITLE: {
 		ABOUT: string;
+		AZIMUTH_SUN: `${string}{azimuth}${string}` & `${string}{sun}${string}`;
+		AZIMUTH_SUN_MOON: `${string}{azimuth}${string}` & `${string}{moon}${string}` & `${string}{sun}${string}`;
 		BRIDGES: string;
 		BRIDGES_FULL: string;
 		BRIDGES_SCHEDULE_SPB: string;

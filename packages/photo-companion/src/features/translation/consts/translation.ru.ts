@@ -247,6 +247,7 @@ export const t = {
 		FIRST_CONTACT: "Первый контакт (C1)",
 		FOURTH_CONTACT: "Четвёртый контакт (C4)",
 		GRAPH_DESCRIPTION: "Угловое поле в истинном масштабе с Солнцем в центре. Азимут возрастает вправо, высота — вверх.",
+		GRAPH_DESCRIPTION_WITH_NOTE: "{description} {note}",
 		GRAPH_TITLE: "Текущая геометрия солнечного затмения",
 		MAXIMUM_SUN_ALTITUDE: "Высота Солнца в максимуме",
 		MOON_OUTSIDE_VIEW: "Луна находится за пределами видимого поля.",
@@ -303,6 +304,8 @@ export const t = {
 	},
 	TITLE: {
 		ABOUT: "Справка",
+		AZIMUTH_SUN: "{sun} · {azimuth}",
+		AZIMUTH_SUN_MOON: "{sun} / {moon} · {azimuth}",
 		BRIDGES: "Мосты",
 		BRIDGES_FULL: "Разводные мосты г.Санкт-Петербург",
 		BRIDGES_SCHEDULE_SPB: "Расписание разведения мостов г. Санкт-Петербург",

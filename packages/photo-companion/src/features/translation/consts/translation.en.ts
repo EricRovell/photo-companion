@@ -247,6 +247,7 @@ export const t = {
 		FIRST_CONTACT: "First contact (C1)",
 		FOURTH_CONTACT: "Fourth contact (C4)",
 		GRAPH_DESCRIPTION: "A true-scale Sun-centered angular view. Azimuth increases to the right and altitude increases upward.",
+		GRAPH_DESCRIPTION_WITH_NOTE: "{description} {note}",
 		GRAPH_TITLE: "Current local solar eclipse geometry",
 		MAXIMUM_SUN_ALTITUDE: "Sun altitude at maximum",
 		MOON_OUTSIDE_VIEW: "The Moon is outside the visible field.",
@@ -303,6 +304,8 @@ export const t = {
 	},
 	TITLE: {
 		ABOUT: "FAQ",
+		AZIMUTH_SUN: "{sun} · {azimuth}",
+		AZIMUTH_SUN_MOON: "{sun} / {moon} · {azimuth}",
 		BRIDGES: "Bridges",
 		BRIDGES_FULL: "Saint-Petersburg Drawbridges",
 		BRIDGES_SCHEDULE_SPB: "Saint-Petersburg drawbridges schedule",

@@ -6,7 +6,7 @@ import { useSunAzimuthPath, useSunService } from "../model";
 export function SunAzimuth() {
 	const { altitude, azimuth } = useSunService();
 	const azimuthPath = useSunAzimuthPath();
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	return (
 		<AzimuthWidget
@@ -33,7 +33,10 @@ export function SunAzimuth() {
 				south: t().LABEL.LATITUDE_SOUTH,
 				west: t().LABEL.LONGITUDE_WEST
 			}}
-			title={`${t().TITLE.SUN} · ${t().LABEL.AZIMUTH}`}
+			title={format().message(t().TITLE.AZIMUTH_SUN, {
+				azimuth: t().LABEL.AZIMUTH,
+				sun: t().TITLE.SUN
+			})}
 		/>
 	);
 }
