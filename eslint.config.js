@@ -41,6 +41,7 @@ export default tseslint.config(
 					"./tsconfig.eslint.json",
 					"./tsconfig.node.json",
 					"./packages/**/tsconfig.json",
+					"./packages/**/.storybook/tsconfig.json",
 					"./packages/**/tsconfig.test.json",
 				],
 				tsconfigRootDir: import.meta.dirname,
@@ -71,6 +72,7 @@ export default tseslint.config(
 					"./tsconfig.base.json",
 					"./tsconfig.node.json",
 					"./packages/**/tsconfig.json",
+					"./packages/**/.storybook/tsconfig.json",
 					"./packages/**/tsconfig.test.json"
 				]
 			},

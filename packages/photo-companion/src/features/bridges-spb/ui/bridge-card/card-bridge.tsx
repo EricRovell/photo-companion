@@ -1,5 +1,6 @@
 import { createMemo, Show } from "solid-js";
 
+import type { BridgeScheduleEntry } from "bridge-schedule";
 import type { BridgeName, BridgeState } from "types";
 
 import { useDatetime } from "~/features/datetime-query";
@@ -16,6 +17,8 @@ import styles from "./card-bridge.module.css";
 interface CardBridgeProps {
 	exception?: boolean;
 	name: BridgeName;
+	open?: boolean;
+	schedule?: BridgeScheduleEntry;
 }
 
 interface BridgeTimerProps {
@@ -53,8 +56,15 @@ export function CardBridge(props: CardBridgeProps) {
 	const { getTimestamp } = useDatetime();
 	const { getBridgeScheduleEntry, getBridgeState } = useBridges();
 
-	const getSchedule = () => getBridgeScheduleEntry(props.name);
-	const getState = createMemo(() => getBridgeState(props.name, getTimestamp(), true));
+	const getSchedule = () => props.schedule ?? getBridgeScheduleEntry(props.name);
+	const getState = createMemo(() => {
+		const state = getBridgeState(props.name, getTimestamp(), true);
+
+		return {
+			...state,
+			open: props.open ?? state.open
+		};
+	});
 
 	return (
 		<Card as="article" class={styles.card}>

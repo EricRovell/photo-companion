@@ -10,9 +10,11 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
+		"build:storybook": "storybook build --output-dir ../../dist/storybook",
 		"preview": "vite preview",
+		"storybook": "storybook dev -p 6006",
 		"test": "vitest",
-		"lint:types": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json"
+		"lint:types": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json && tsc --noEmit -p .storybook/tsconfig.json"
 	},
 	"keywords": [
 		"photography",
@@ -33,12 +35,16 @@
 	},
 	"devDependencies": {
 		"@rollup/plugin-replace": "^5.0.7",
+		"@storybook/addon-a11y": "^10.6.1",
+		"@storybook/addon-docs": "^10.6.1",
 		"@solidjs/testing-library": "^0.8.10",
 		"@testing-library/jest-dom": "^7.0.0",
 		"esbuild": "^0.23.0",
 		"esbuild-plugin-replace": "^1.4.0",
 		"jsdom": "^30.0.1",
 		"solid-marked": "^0.6.3",
+		"storybook": "^10.6.1",
+		"storybook-solidjs-vite": "^10.7.2",
 		"typescript": "catalog:default",
 		"vite": "catalog:default",
 		"vite-plugin-solid-marked": "^0.6.3"

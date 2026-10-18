@@ -4,11 +4,14 @@
 		"packages/photo-companion": {
 			"entry": [
 				// This file is passed to esbuild through a computed path in the Vite plugin.
-				"src/features/service-worker/service-worker.ts"
+				"src/features/service-worker/service-worker.ts",
+				"src/**/*.stories.{ts,tsx}",
+				".storybook/*.{ts,tsx}"
 			],
 			"project": [
-				"src/**/*.{ts,tsx}",
-				"plugins/**/*.ts"
+				"src/**/*.{mdx,ts,tsx}",
+				"plugins/**/*.ts",
+				".storybook/*.{ts,tsx}"
 			]
 		}
 	}
