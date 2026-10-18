@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 
 import { Timeline, useTimelineProvider } from "~/entities/timeline";
-import { TimelineEvent } from "~/entities/timeline-event";
+import { TimelineEvent } from "~/entities/timeline-event/ui/timeline-event/timeline-event";
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { getSunEvents } from "~/features/timeline";

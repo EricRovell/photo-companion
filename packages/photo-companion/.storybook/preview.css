@@ -1,0 +1,28 @@
+.storybook-canvas {
+	display: grid;
+	grid-auto-rows: min-content;
+	justify-items: center;
+	gap: var(--space-6);
+	width: min(100%, 60rem);
+	min-height: 10rem;
+	margin-inline: auto;
+}
+
+.storybook-canvas > * {
+	min-width: 0;
+}
+
+.storybook-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-4);
+	width: 100%;
+}
+
+.storybook-stack {
+	display: grid;
+	gap: var(--space-4);
+	width: var(--content-width);
+}

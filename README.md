@@ -35,6 +35,13 @@ pnpm i -r
 
 Use `pnpm dev` command to start project locally and `pnpm build` to build the project.
 
+### Storybook
+
+Run `pnpm storybook` to browse shared UI components and page widgets at
+[http://localhost:6006](http://localhost:6006).
+
+Use `pnpm build:storybook` to create a static Storybook build in `dist/storybook`.
+
 ## Contributing
 
 ### Linting

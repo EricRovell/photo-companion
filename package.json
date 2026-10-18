@@ -8,7 +8,9 @@
 	"homepage": "https://github.com/EricRovell/photo-companion#readme",
 	"scripts": {
 		"build": "pnpm --filter ./packages/photo-companion run build",
+		"build:storybook": "pnpm --filter photo-companion run build:storybook",
 		"preview": "pnpm --filter ./packages/photo-companion run preview",
+		"storybook": "pnpm --filter photo-companion run storybook",
 		"clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
 		"dev": "pnpm --filter photo-companion run dev",
 		"knip": "knip",
