@@ -13,7 +13,9 @@ import styles from "./solar-eclipse-details.module.css";
 
 export function SolarEclipseDetails(props: SolarEclipseDetailsProps) {
 	const { format, t } = useTranslation();
-	const solarEclipseTypeLabel = (type: SolarEclipseType) => t().SOLAR_ECLIPSE[type];
+	const solarEclipseTypeLabel = (type: SolarEclipseType) => type === "ANNULAR"
+		? t().SOLAR_ECLIPSE.ANNULAR
+		: t().ECLIPSE[type];
 	const visibilityLabel = (visibility: SolarEclipseVisibility) => t().SOLAR_ECLIPSE[`VISIBILITY_${visibility}`];
 
 	return (
@@ -26,7 +28,7 @@ export function SolarEclipseDetails(props: SolarEclipseDetailsProps) {
 					<>
 						<div class={styles["event-header"]}>
 							<div class={styles["event-title"]}>
-								<Text color="secondary" variant="text-xs">{t().SOLAR_ECLIPSE.EVENT_TYPE}</Text>
+								<Text color="secondary" variant="text-xs">{t().ECLIPSE.EVENT_TYPE}</Text>
 								<Text as="strong" variant="heading-l">{solarEclipseTypeLabel(event().type)}</Text>
 							</div>
 							<div class={styles["event-date"]}>
@@ -45,16 +47,16 @@ export function SolarEclipseDetails(props: SolarEclipseDetailsProps) {
 								<Text as="dd" numeric variant="text-m">{format().degrees(event().peak.sunAltitude)}</Text>
 							</div>
 							<div class={styles.metric}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().SOLAR_ECLIPSE.VISIBILITY}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">{t().ECLIPSE.VISIBILITY}</Text>
 								<Text as="dd" numeric variant="text-m">{visibilityLabel(event().visibility)}</Text>
 							</div>
 						</dl>
 
 						<section class={styles["contacts-section"]} data-page-swipe="ignore">
-							<Text align="center" as="h3" color="secondary" variant="heading-s">{t().SOLAR_ECLIPSE.CONTACTS}</Text>
-							<ol aria-label={t().SOLAR_ECLIPSE.CONTACTS} class={styles.contacts}>
+							<Text align="center" as="h3" color="secondary" variant="heading-s">{t().ECLIPSE.CONTACTS}</Text>
+							<ol aria-label={t().ECLIPSE.CONTACTS} class={styles.contacts}>
 								<SolarEclipseContact contact={event().partialBegin} label={t().SOLAR_ECLIPSE.FIRST_CONTACT} position="begin" />
-								<SolarEclipseContact contact={event().peak} label={t().SOLAR_ECLIPSE.MAXIMUM} position="peak" />
+								<SolarEclipseContact contact={event().peak} label={t().ECLIPSE.MAXIMUM} position="peak" />
 								<SolarEclipseContact contact={event().partialEnd} label={t().SOLAR_ECLIPSE.FOURTH_CONTACT} position="end" />
 							</ol>
 						</section>

@@ -29,7 +29,7 @@ export function LunarEclipseGraph(props: LunarEclipseGraphProps) {
 			centerAltitude={props.state.shadow.altitude}
 			class={styles.graph}
 			description={t().LUNAR_ECLIPSE.GRAPH_DESCRIPTION}
-			horizonLabel={t().LUNAR_ECLIPSE.HORIZON}
+			horizonLabel={t().ECLIPSE.HORIZON}
 			title={t().LUNAR_ECLIPSE.GRAPH_TITLE}
 			viewAltitudeRadius={GRAPH_CONFIG.viewAltitudeRadius}
 			viewAzimuthRadius={GRAPH_CONFIG.viewAzimuthRadius}

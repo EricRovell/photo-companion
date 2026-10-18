@@ -28,6 +28,16 @@ export interface Translation {
 		GOOD: string;
 		LOW: string;
 	};
+	ECLIPSE: {
+		BELOW_HORIZON: string;
+		CONTACTS: string;
+		EVENT_TYPE: string;
+		HORIZON: string;
+		MAXIMUM: string;
+		PARTIAL: string;
+		TOTAL: string;
+		VISIBILITY: string;
+	};
 	ERRORS: {
 		DATE: string;
 		DEVICE_HEADING_BLOCKED: string;
@@ -147,14 +157,9 @@ export interface Translation {
 		SOLAR_ESTIMATE_UNCERTAIN: `${string}{duration}${string}`;
 	};
 	LUNAR_ECLIPSE: {
-		BELOW_HORIZON: string;
-		CONTACTS: string;
 		CURRENT_PHASE: string;
-		EVENT_TYPE: string;
 		GRAPH_DESCRIPTION: string;
 		GRAPH_TITLE: string;
-		HORIZON: string;
-		MAXIMUM: string;
 		MAXIMUM_MOON_ALTITUDE: string;
 		NEXT: string;
 		NO_ECLIPSE: string;
@@ -162,7 +167,6 @@ export interface Translation {
 		NOTICEABILITY_CLEAR: string;
 		NOTICEABILITY_SUBTLE: string;
 		NOTICEABILITY_UNLIKELY: string;
-		PARTIAL: string;
 		PARTIAL_BEGIN: string;
 		PARTIAL_END: string;
 		PENUMBRAL: string;
@@ -174,10 +178,8 @@ export interface Translation {
 		PHASE_TOTAL: string;
 		PREVIOUS: string;
 		TITLE: string;
-		TOTAL: string;
 		TOTAL_BEGIN: string;
 		TOTAL_END: string;
-		VISIBILITY: string;
 		VISIBILITY_FULL: string;
 		VISIBILITY_NONE: string;
 		VISIBILITY_PARTIAL: string;
@@ -238,25 +240,17 @@ export interface Translation {
 	};
 	SOLAR_ECLIPSE: {
 		ANNULAR: string;
-		BELOW_HORIZON: string;
-		CONTACTS: string;
 		CURRENT_OBSCURATION: string;
-		EVENT_TYPE: string;
 		FIRST_CONTACT: string;
 		FOURTH_CONTACT: string;
 		GRAPH_DESCRIPTION: string;
 		GRAPH_TITLE: string;
-		HORIZON: string;
-		MAXIMUM: string;
 		MAXIMUM_SUN_ALTITUDE: string;
 		MOON_OUTSIDE_VIEW: string;
 		NEXT: string;
 		NO_ECLIPSE: string;
-		PARTIAL: string;
 		PREVIOUS: string;
 		TITLE: string;
-		TOTAL: string;
-		VISIBILITY: string;
 		VISIBILITY_FULL: string;
 		VISIBILITY_NONE: string;
 		VISIBILITY_PARTIAL: string;

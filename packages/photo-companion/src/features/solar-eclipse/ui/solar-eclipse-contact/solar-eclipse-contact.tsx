@@ -17,7 +17,7 @@ export function SolarEclipseContact(props: SolarEclipseContactProps) {
 	return (
 		<EclipseContact
 			label={props.label}
-			note={props.contact.visible ? undefined : t().SOLAR_ECLIPSE.BELOW_HORIZON}
+			note={props.contact.visible ? undefined : t().ECLIPSE.BELOW_HORIZON}
 			peak={props.position === "peak"}
 			visible={props.contact.visible}
 		>

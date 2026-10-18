@@ -19,7 +19,7 @@ export function LunarEclipseContact(props: LunarEclipseContactProps) {
 		<EclipseContact
 			detail={altitude()}
 			label={props.code === undefined ? props.label : `${props.label} (${props.code})`}
-			note={props.contact.visible ? undefined : t().LUNAR_ECLIPSE.BELOW_HORIZON}
+			note={props.contact.visible ? undefined : t().ECLIPSE.BELOW_HORIZON}
 			peak={props.position === "peak"}
 			visible={props.contact.visible}
 		>

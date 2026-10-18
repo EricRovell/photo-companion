@@ -34,7 +34,7 @@ export function SolarEclipseGraph(props: SolarEclipseGraphProps) {
 			centerAltitude={props.state.sun.altitude}
 			class={styles.graph}
 			description={`${t().SOLAR_ECLIPSE.GRAPH_DESCRIPTION}${moonOutside() ? ` ${t().SOLAR_ECLIPSE.MOON_OUTSIDE_VIEW}` : ""}`}
-			horizonLabel={t().SOLAR_ECLIPSE.HORIZON}
+			horizonLabel={t().ECLIPSE.HORIZON}
 			title={t().SOLAR_ECLIPSE.GRAPH_TITLE}
 			viewAltitudeRadius={GRAPH_CONFIG.viewAltitudeRadius}
 			viewAzimuthRadius={GRAPH_CONFIG.viewAzimuthRadius}

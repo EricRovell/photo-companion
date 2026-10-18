@@ -21,7 +21,9 @@ import styles from "./lunar-eclipse-details.module.css";
 export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 	const { format, t } = useTranslation();
 
-	const labelType = (type: LunarEclipseType) => t().LUNAR_ECLIPSE[type];
+	const labelType = (type: LunarEclipseType) => type === "PENUMBRAL"
+		? t().LUNAR_ECLIPSE.PENUMBRAL
+		: t().ECLIPSE[type];
 	const labelPhase = (phase: LunarEclipsePhase) => t().LUNAR_ECLIPSE[`PHASE_${phase}`];
 	const labelVisibility = (visibility: LunarEclipseVisibility) => t().LUNAR_ECLIPSE[`VISIBILITY_${visibility}`];
 
@@ -35,7 +37,7 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 			return [];
 		}
 
-		return getContactStages(event, t().LUNAR_ECLIPSE);
+		return getContactStages(event, t().LUNAR_ECLIPSE, t().ECLIPSE.MAXIMUM);
 	});
 
 	return (
@@ -48,7 +50,7 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 					<>
 						<div class={styles["event-header"]}>
 							<div class={styles["event-title"]}>
-								<Text color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.EVENT_TYPE}</Text>
+								<Text color="secondary" variant="text-xs">{t().ECLIPSE.EVENT_TYPE}</Text>
 								<Text as="strong" variant="heading-l">{labelType(event().type)}</Text>
 							</div>
 							<div class={styles["event-date"]}>
@@ -67,7 +69,7 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 								<Text as="dd" numeric variant="text-s">{format().degrees(event().peak.moonAltitude)}</Text>
 							</div>
 							<div class={styles.metric}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.VISIBILITY}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">{t().ECLIPSE.VISIBILITY}</Text>
 								<Text as="dd" numeric variant="text-s">{labelVisibility(event().visibility)}</Text>
 							</div>
 							<div class={styles.metric}>
@@ -77,10 +79,10 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 						</dl>
 
 						<section class={styles["contacts-section"]} data-page-swipe="ignore">
-							<Text align="center" as="h3" color="secondary" variant="heading-s">{t().LUNAR_ECLIPSE.CONTACTS}</Text>
+							<Text align="center" as="h3" color="secondary" variant="heading-s">{t().ECLIPSE.CONTACTS}</Text>
 							<div class={styles["contacts-scroll"]}>
 								<ol
-									aria-label={t().LUNAR_ECLIPSE.CONTACTS}
+									aria-label={t().ECLIPSE.CONTACTS}
 									class={styles.contacts}
 									style={{ "--contact-count": contacts().length }}
 								>
