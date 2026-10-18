@@ -98,6 +98,7 @@ const azimuthSolutions = findSunAzimuthCrossings({
 
 - `getSunPosition({ instant, observer, options? })`
 - `getMoonPosition({ instant, observer, options? })`
+- `getMoonAge(instant)`
 - `getMoonIllumination(instant)`
 - `getNextMoonPhases(instant, count?)`
 - `getSeasonEvents(year)`

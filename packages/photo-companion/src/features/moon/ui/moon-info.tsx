@@ -3,6 +3,7 @@ import { Show } from "solid-js";
 import { useTranslation } from "~/features/translation";
 import { PropertyList } from "~/shared/ui";
 
+import { getMoonAgeParts } from "../lib";
 import { useMoonService } from "../model/moon.context";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 export function MoonInfo(props: Props) {
 	const { format, t } = useTranslation();
 	const {
+		age,
 		altitude,
 		azimuth,
 		distance,
@@ -35,6 +37,13 @@ export function MoonInfo(props: Props) {
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.MOON_PHASE}</PropertyList.Label>
 					<PropertyList.Value>{t().MOON_PHASE[phaseName()]}</PropertyList.Value>
+				</PropertyList.Item>
+
+				<PropertyList.Item>
+					<PropertyList.Label>{t().LABEL.MOON_AGE}</PropertyList.Label>
+					<PropertyList.Value>
+						{format().message(t().MESSAGE.MOON_AGE, getMoonAgeParts(age()))}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<Show when={fullMoonName()}>

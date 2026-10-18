@@ -1,4 +1,4 @@
-import { getMoonEvents, getMoonIllumination, getMoonPosition, getMoonZenithAngle, getNextMoonPhases } from "moon-sun-calc";
+import { getMoonAge, getMoonEvents, getMoonIllumination, getMoonPosition, getMoonZenithAngle, getNextMoonPhases } from "moon-sun-calc";
 import { createMemo } from "solid-js";
 import { calcDuration, getDayStart, shiftDate } from "utils/date";
 
@@ -13,6 +13,7 @@ export function createMoonServiceState() {
 	const { getDatetime } = useDatetime();
 
 	const observer = () => ({ latitude: settings.latitude, longitude: settings.longitude });
+	const age = createMemo(() => getMoonAge(getDatetime()));
 	const illumination = createMemo(() => getMoonIllumination(getDatetime()));
 
 	const phases = createMemo(() => getNextMoonPhases(getDatetime()).map(event => ({
@@ -36,6 +37,7 @@ export function createMoonServiceState() {
 	const zenithAngle = createMemo(() => getMoonZenithAngle(illumination().angle, position().parallacticAngle));
 
 	return {
+		age,
 		altitude: () => position().apparentAltitude,
 		angle: () => illumination().angle,
 		azimuth: () => position().azimuth,

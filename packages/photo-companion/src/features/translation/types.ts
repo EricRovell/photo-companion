@@ -114,6 +114,7 @@ export interface Translation {
 		MINUTE: string;
 		MINUTES: string;
 		MONTH: string;
+		MOON_AGE: string;
 		MOON_ILLUMINATION: string;
 		MOON_PHASE: string;
 		MOONRISE_TIME: string;
@@ -204,6 +205,7 @@ export interface Translation {
 		LIGHTS_CONTINUOUS_DARKNESS: string;
 		LIGHTS_CONTINUOUS_DAYLIGHT: string;
 		LIGHTS_SCHEDULE_UNAVAILABLE: string;
+		MOON_AGE: `${string}{days}${string}` & `${string}{hours}${string}` & `${string}{minutes}${string}`;
 		NAVIGATION_ENDS_AT: string;
 		NAVIGATION_STARTS_AT: string;
 		NO_EVENTS: string;
