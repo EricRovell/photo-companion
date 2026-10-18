@@ -6,6 +6,9 @@ import type { SettingsStore } from "../types";
 import type { Translation } from "~/features/translation";
 import type { InputSelectOption } from "~/shared/ui";
 
+type BridgeEventMessage = Translation["BRIDGE_SPB_EVENT"][keyof Translation["BRIDGE_SPB_EVENT"]];
+type BridgeEventMessageFormatter = (input: BridgeEventMessage, values: { bridge: string }) => string;
+
 const cityOptions: City[] = [
 	"MOSCOW",
 	"SAINT_PETERSBURG",
@@ -30,16 +33,23 @@ export const LANGUAGE_OPTIONS: InputSelectOption[] = [
 	}
 ];
 
-export const BRIDGES_EVENTS_OPTIONS = (t: Translation): InputSelectOption[] => {
+export const BRIDGES_EVENTS_OPTIONS = (
+	t: Translation,
+	message: BridgeEventMessageFormatter
+): InputSelectOption[] => {
 	return Array
 		.from(SUPPORTED_BRIDGES_NAME_SET)
 		.flatMap(item => [
 			{
-				label: t.BRIDGE_SPB_EVENTS[`${item}_OPEN`],
+				label: message(t.BRIDGE_SPB_EVENT.OPEN, {
+					bridge: t.BRIDGE_NAME_SPB[item]
+				}),
 				value: `${item}_OPEN`
 			},
 			{
-				label: t.BRIDGE_SPB_EVENTS[`${item}_CLOSE`],
+				label: message(t.BRIDGE_SPB_EVENT.CLOSE, {
+					bridge: t.BRIDGE_NAME_SPB[item]
+				}),
 				value: `${item}_CLOSE`
 			}
 		]);

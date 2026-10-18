@@ -9,7 +9,15 @@ export function MoonAzimuth() {
 	const sun = useSunService();
 	const moonAzimuthPath = useMoonAzimuthPath();
 	const sunAzimuthPath = useSunAzimuthPath();
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
+
+	const formatters = {
+		ariaEntity: (label: string, azimuth: number) => format().message(t().AZIMUTH.ARIA_ENTITY, {
+			azimuth: format().degrees(azimuth),
+			label
+		}),
+		list: (values: string[]) => format().list(values)
+	};
 
 	return (
 		<AzimuthWidget
@@ -29,6 +37,7 @@ export function MoonAzimuth() {
 					path: moonAzimuthPath()
 				}
 			]}
+			formatters={formatters}
 			labels={{
 				align: t().LABEL.ALIGN_COMPASS,
 				alignBlocked: t().ERRORS.DEVICE_HEADING_BLOCKED,
@@ -43,7 +52,11 @@ export function MoonAzimuth() {
 				south: t().LABEL.LATITUDE_SOUTH,
 				west: t().LABEL.LONGITUDE_WEST
 			}}
-			title={`${t().TITLE.SUN} / ${t().TITLE.MOON} · ${t().LABEL.AZIMUTH}`}
+			title={format().message(t().AZIMUTH.TITLE_SUN_MOON, {
+				azimuth: t().LABEL.AZIMUTH,
+				moon: t().TITLE.MOON,
+				sun: t().TITLE.SUN
+			})}
 		/>
 	);
 }

@@ -6,7 +6,15 @@ import { useSunAzimuthPath, useSunService } from "../model";
 export function SunAzimuth() {
 	const { altitude, azimuth } = useSunService();
 	const azimuthPath = useSunAzimuthPath();
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
+
+	const formatters = {
+		ariaEntity: (label: string, azimuth: number) => format().message(t().AZIMUTH.ARIA_ENTITY, {
+			azimuth: format().degrees(azimuth),
+			label
+		}),
+		list: (values: string[]) => format().list(values)
+	};
 
 	return (
 		<AzimuthWidget
@@ -19,6 +27,7 @@ export function SunAzimuth() {
 					path: azimuthPath()
 				}
 			]}
+			formatters={formatters}
 			labels={{
 				align: t().LABEL.ALIGN_COMPASS,
 				alignBlocked: t().ERRORS.DEVICE_HEADING_BLOCKED,
@@ -33,7 +42,10 @@ export function SunAzimuth() {
 				south: t().LABEL.LATITUDE_SOUTH,
 				west: t().LABEL.LONGITUDE_WEST
 			}}
-			title={`${t().TITLE.SUN} · ${t().LABEL.AZIMUTH}`}
+			title={format().message(t().AZIMUTH.TITLE_SUN, {
+				azimuth: t().LABEL.AZIMUTH,
+				sun: t().TITLE.SUN
+			})}
 		/>
 	);
 }

@@ -60,7 +60,7 @@ export function CardBridge(props: CardBridgeProps) {
 		<Card as="article" class={styles.card}>
 			<Card.Header>
 				<Text as="h2" class={styles.title} variant="heading-l">
-					{t().BRIDGE_NAME_SPB[props.name]} {t().LABEL.BRIDGE}
+					{t().BRIDGE_NAME_SPB[props.name]}
 					<Show when={props.exception}>
 						<IconWarning title={t().MESSAGE.BRIDGE_EXCEPTION} />
 					</Show>

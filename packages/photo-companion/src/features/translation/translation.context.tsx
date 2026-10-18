@@ -5,8 +5,8 @@ import type { Accessor} from "solid-js";
 
 import { createTranslationState } from "./translation.state";
 
-import type { t as tEn } from "./translation.en";
-import type { t as tRu } from "./translation.ru";
+import type { t as tEn } from "./consts/translation.en";
+import type { t as tRu } from "./consts/translation.ru";
 
 interface TranslationContextType extends Omit<ReturnType<typeof createTranslationState>, "t"> {
 	t: Accessor<typeof tEn | typeof tRu>;

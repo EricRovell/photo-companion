@@ -8,10 +8,12 @@ import { LunarEclipseGraph } from "./lunar-eclipse-graph";
 vi.mock("~/features/translation", () => ({
 	useTranslation: () => ({
 		t: () => ({
+			ECLIPSE: {
+				HORIZON: "Horizon"
+			},
 			LUNAR_ECLIPSE: {
 				GRAPH_DESCRIPTION: "Description",
-				GRAPH_TITLE: "Title",
-				HORIZON: "Horizon"
+				GRAPH_TITLE: "Title"
 			}
 		})
 	})

@@ -1,4 +1,9 @@
 export interface Translation {
+	AZIMUTH: {
+		ARIA_ENTITY: `${string}{azimuth}${string}` & `${string}{label}${string}`;
+		TITLE_SUN: `${string}{azimuth}${string}` & `${string}{sun}${string}`;
+		TITLE_SUN_MOON: `${string}{azimuth}${string}` & `${string}{moon}${string}` & `${string}{sun}${string}`;
+	};
 	BRIDGE_NAME_SPB: {
 		ALEXANDER_NEVSKY: string;
 		ANNUNCIATION: string;
@@ -13,31 +18,9 @@ export interface Translation {
 		TUCHKOV: string;
 		VOLODARSKY: string;
 	};
-	BRIDGE_SPB_EVENTS: {
-		ALEXANDER_NEVSKY_CLOSE: string;
-		ALEXANDER_NEVSKY_OPEN: string;
-		ANNUNCIATION_CLOSE: string;
-		ANNUNCIATION_OPEN: string;
-		BOLSHEOKHTINSKY_CLOSE: string;
-		BOLSHEOKHTINSKY_OPEN: string;
-		EXCHANGE_CLOSE: string;
-		EXCHANGE_OPEN: string;
-		GRENADERSKY_CLOSE: string;
-		GRENADERSKY_OPEN: string;
-		KANTEMIROVSKY_CLOSE: string;
-		KANTEMIROVSKY_OPEN: string;
-		LITEYNY_CLOSE: string;
-		LITEYNY_OPEN: string;
-		PALACE_CLOSE: string;
-		PALACE_OPEN: string;
-		SAMPSONIEVSKY_CLOSE: string;
-		SAMPSONIEVSKY_OPEN: string;
-		TRINITY_CLOSE: string;
-		TRINITY_OPEN: string;
-		TUCHKOV_CLOSE: string;
-		TUCHKOV_OPEN: string;
-		VOLODARSKY_CLOSE: string;
-		VOLODARSKY_OPEN: string;
+	BRIDGE_SPB_EVENT: {
+		CLOSE: `${string}{bridge}${string}`;
+		OPEN: `${string}{bridge}${string}`;
 	};
 	CITIES: {
 		MOSCOW: string;
@@ -49,6 +32,17 @@ export interface Translation {
 		FAIR: string;
 		GOOD: string;
 		LOW: string;
+	};
+	ECLIPSE: {
+		BELOW_HORIZON: string;
+		CONTACT_WITH_CODE: `${string}{code}${string}` & `${string}{contact}${string}`;
+		CONTACTS: string;
+		EVENT_TYPE: string;
+		HORIZON: string;
+		MAXIMUM: string;
+		PARTIAL: string;
+		TOTAL: string;
+		VISIBILITY: string;
 	};
 	ERRORS: {
 		DATE: string;
@@ -68,16 +62,20 @@ export interface Translation {
 		SOLAR_AZIMUTH_ANGLE: string;
 		SUN_AZIMUTH_NOT_VISIBLE: string;
 	},
+	HEIGHT_BY_SHADOW: {
+		RESULT: `${string}{altitude}${string}`
+			& `${string}{height}${string}`
+			& `${string}{time}${string}`
+			& `${string}<value>${string}</value>${string}`;
+	};
 	LABEL: {
 		ALIGN_COMPASS: string;
 		ALL_BRIDGES_LIFTED_DOWN: string;
 		ALL_BRIDGES_LIFTED_UP: string;
 		ALTITUDE: string;
-		ALWAYS: string;
 		ASK_DEVICE_GEOLOCATION: string;
 		AZIMUTH: string;
 		BEST_WINDOW: string;
-		BRIDGE: string;
 		BRIDGE_CLOSED: string;
 		BRIDGE_CLOSING: string;
 		BRIDGE_OPENED: string;
@@ -99,12 +97,10 @@ export interface Translation {
 		DISTANCE: string;
 		DURATION_DAYLIGHT: string;
 		DURATION_LIGHTS: string;
-		DURATION_MOONLIGHT: string;
 		EVENT_ALLOW_LIST: string;
 		FULL_MOON_NAME: string;
 		GEOLOCATION: string;
 		GO_HOME: string;
-		HEIGHT: string;
 		HOUR: string;
 		LANGUAGE: string;
 		LATITUDE: string;
@@ -138,14 +134,12 @@ export interface Translation {
 		SHADOW_LENGTH: string;
 		SHADOW_LEVEL: string;
 		SOLAR_AZIMUTH_ANGLE: string;
-		SOLAR_ESTIMATE: string;
 		STATE: string;
 		SUNRISE_TIME: string;
 		SUNSET_TIME: string;
 		TABS: string;
 		TILL_TURNED_OFF: string;
 		TILL_TURNED_ON: string;
-		TIME: string;
 		TIME_OFF: string;
 		TIME_ON: string;
 		TURNED_OFF: string;
@@ -157,27 +151,25 @@ export interface Translation {
 		ZENITH: string;
 	};
 	LIGHTS_COMPARISON: {
-		EARLIER: string;
-		LATER: string;
-		LONGER: string;
-		SHORTER: string;
+		EARLIER: `${string}{duration}${string}`;
+		LATER: `${string}{duration}${string}`;
+		LONGER: `${string}{duration}${string}`;
+		SHORTER: `${string}{duration}${string}`;
 		SWITCH_OFF: string;
 		SWITCH_ON: string;
-		THAN_YESTERDAY: string;
 	};
 	LIGHTS_EVENTS: {
 		LIGHTS_END: string;
 		LIGHTS_START: string;
 	};
+	LIGHTS_SOURCE: {
+		SOLAR_ESTIMATE: string;
+		SOLAR_ESTIMATE_UNCERTAIN: `${string}{duration}${string}`;
+	};
 	LUNAR_ECLIPSE: {
-		BELOW_HORIZON: string;
-		CONTACTS: string;
 		CURRENT_PHASE: string;
-		EVENT_TYPE: string;
 		GRAPH_DESCRIPTION: string;
 		GRAPH_TITLE: string;
-		HORIZON: string;
-		MAXIMUM: string;
 		MAXIMUM_MOON_ALTITUDE: string;
 		NEXT: string;
 		NO_ECLIPSE: string;
@@ -185,7 +177,6 @@ export interface Translation {
 		NOTICEABILITY_CLEAR: string;
 		NOTICEABILITY_SUBTLE: string;
 		NOTICEABILITY_UNLIKELY: string;
-		PARTIAL: string;
 		PARTIAL_BEGIN: string;
 		PARTIAL_END: string;
 		PENUMBRAL: string;
@@ -197,10 +188,8 @@ export interface Translation {
 		PHASE_TOTAL: string;
 		PREVIOUS: string;
 		TITLE: string;
-		TOTAL: string;
 		TOTAL_BEGIN: string;
 		TOTAL_END: string;
-		VISIBILITY: string;
 		VISIBILITY_FULL: string;
 		VISIBILITY_NONE: string;
 		VISIBILITY_PARTIAL: string;
@@ -209,7 +198,6 @@ export interface Translation {
 		BRIDGE_EXCEPTION: string;
 		BRIDGE_WILL_CLOSE_WITHIN: string;
 		BRIDGE_WILL_OPEN_WITHIN: string;
-		CHECK_DATE_INPUT: string;
 		EARTHSHINE_NO_WINDOW: string;
 		EARTHSHINE_WEATHER_NOTE: string;
 		EVENTS_ARE_DISABLED: string;
@@ -220,12 +208,8 @@ export interface Translation {
 		NAVIGATION_STARTS_AT: string;
 		NO_EVENTS: string;
 		PAGE_404: string;
-		SET_CURRENT_DATE_ADVICE: string;
-		SET_CURRENT_DATETIME: string;
 		TAB_LIMITS: string;
 		UPDATE: string;
-		WRONG_DATE: string;
-		WRONG_DATE_URL: string;
 	};
 	MOON_NAME: {
 		BEAVER: string;
@@ -266,25 +250,18 @@ export interface Translation {
 	};
 	SOLAR_ECLIPSE: {
 		ANNULAR: string;
-		BELOW_HORIZON: string;
-		CONTACTS: string;
 		CURRENT_OBSCURATION: string;
-		EVENT_TYPE: string;
 		FIRST_CONTACT: string;
 		FOURTH_CONTACT: string;
 		GRAPH_DESCRIPTION: string;
+		GRAPH_DESCRIPTION_WITH_NOTE: `${string}{description}${string}` & `${string}{note}${string}`;
 		GRAPH_TITLE: string;
-		HORIZON: string;
-		MAXIMUM: string;
 		MAXIMUM_SUN_ALTITUDE: string;
 		MOON_OUTSIDE_VIEW: string;
 		NEXT: string;
 		NO_ECLIPSE: string;
-		PARTIAL: string;
 		PREVIOUS: string;
 		TITLE: string;
-		TOTAL: string;
-		VISIBILITY: string;
 		VISIBILITY_FULL: string;
 		VISIBILITY_NONE: string;
 		VISIBILITY_PARTIAL: string;
@@ -294,7 +271,6 @@ export interface Translation {
 		ASTRONOMICAL_DAWN_TITLE: string;
 		ASTRONOMICAL_DUSK: string;
 		ASTRONOMICAL_DUSK_TITLE: string;
-		BLUE_HOUR: string;
 		BLUE_HOUR_END_DAWN: string;
 		BLUE_HOUR_END_DAWN_TITLE: string;
 		BLUE_HOUR_END_DUSK: string;
@@ -305,7 +281,6 @@ export interface Translation {
 		CIVIL_DAWN_TITLE: string;
 		CIVIL_DUSK: string;
 		CIVIL_DUSK_TITLE: string;
-		GOLDEN_HOUR: string;
 		GOLDEN_HOUR_END_DAWN: string;
 		GOLDEN_HOUR_END_DAWN_TITLE: string;
 		GOLDEN_HOUR_END_DUSK: string;
@@ -330,6 +305,11 @@ export interface Translation {
 		SUNSET_START: string;
 		SUNSET_START_TITLE: string;
 	};
+	TIMELINE_EVENT: {
+		LINK_TITLE: `${string}{datetime}${string}` & `${string}{event}${string}`;
+		MOON_DESCRIPTION: `${string}{type}${string}{fraction}${string}{azimuth}${string}`;
+		SUN_DESCRIPTION: `${string}{event}${string}{azimuth}${string}`;
+	};
 	TITLE: {
 		ABOUT: string;
 		BRIDGES: string;
@@ -348,13 +328,10 @@ export interface Translation {
 		MOON: string;
 		MOON_PHASE_CALENDAR: string;
 		MOON_TIMES: string;
-		NAVIGATION_CLOSED: string;
-		NAVIGATION_OPENED: string;
 		NOW: string;
 		SETTINGS: string;
 		SUN: string;
 		SUN_TIMES: string;
-		THE_CLOSEST_EVENT: string;
 		TIMELINE: string;
 	};
 }

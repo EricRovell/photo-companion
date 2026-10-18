@@ -1,45 +1,28 @@
-import type { Translation } from "./translation.type";
+import type { Translation } from "../types";
 
 export const t = {
-	BRIDGE_NAME_SPB: {
-		ALEXANDER_NEVSKY: "Александра Невского",
-		ANNUNCIATION: "Благовещенский",
-		BOLSHEOKHTINSKY: "Большеохтинский",
-		EXCHANGE: "Биржевой",
-		GRENADERSKY: "Гренадерский",
-		KANTEMIROVSKY: "Кантемировский",
-		LITEYNY: "Литейный",
-		PALACE: "Дворцовый",
-		SAMPSONIEVSKY: "Сампсониевский",
-		TRINITY: "Троицкий",
-		TUCHKOV: "Тучков",
-		VOLODARSKY: "Володарский"
+	AZIMUTH: {
+		ARIA_ENTITY: "{label}: {azimuth}",
+		TITLE_SUN: "{sun} · {azimuth}",
+		TITLE_SUN_MOON: "{sun} / {moon} · {azimuth}"
 	},
-	BRIDGE_SPB_EVENTS: {
-		ALEXANDER_NEVSKY_CLOSE: "Сведение моста Александра Невского",
-		ALEXANDER_NEVSKY_OPEN: "Развод моста Александра Невского",
-		ANNUNCIATION_CLOSE: "Сведение Благовещенского моста",
-		ANNUNCIATION_OPEN: "Развод Благовещенского моста",
-		BOLSHEOKHTINSKY_CLOSE: "Сведение Большеохтинского моста",
-		BOLSHEOKHTINSKY_OPEN: "Развод Большеохтинского моста",
-		EXCHANGE_CLOSE: "Сведение Биржевого моста",
-		EXCHANGE_OPEN: "Развод Биржевого моста",
-		GRENADERSKY_CLOSE: "Сведение Гренадёрского моста",
-		GRENADERSKY_OPEN: "Развод Гренадёрского моста",
-		KANTEMIROVSKY_CLOSE: "Сведение Кантемировского моста",
-		KANTEMIROVSKY_OPEN: "Развод Кантемировского моста",
-		LITEYNY_CLOSE: "Сведение Литейного моста",
-		LITEYNY_OPEN: "Развод Литейного моста",
-		PALACE_CLOSE: "Сведение Дворцового моста",
-		PALACE_OPEN: "Развод Дворцового моста",
-		SAMPSONIEVSKY_CLOSE: "Сведение Сампсониевского моста",
-		SAMPSONIEVSKY_OPEN: "Развод Сампсониевского моста",
-		TRINITY_CLOSE: "Сведение Троицкого моста",
-		TRINITY_OPEN: "Развод Троицкого моста",
-		TUCHKOV_CLOSE: "Сведение Тучкова моста",
-		TUCHKOV_OPEN: "Развод Тучкова моста",
-		VOLODARSKY_CLOSE: "Сведение Володарского моста",
-		VOLODARSKY_OPEN: "Развод Володарского моста"
+	BRIDGE_NAME_SPB: {
+		ALEXANDER_NEVSKY: "мост Александра Невского",
+		ANNUNCIATION: "Благовещенский мост",
+		BOLSHEOKHTINSKY: "Большеохтинский мост",
+		EXCHANGE: "Биржевой мост",
+		GRENADERSKY: "Гренадерский мост",
+		KANTEMIROVSKY: "Кантемировский мост",
+		LITEYNY: "Литейный мост",
+		PALACE: "Дворцовый мост",
+		SAMPSONIEVSKY: "Сампсониевский мост",
+		TRINITY: "Троицкий мост",
+		TUCHKOV: "Тучков мост",
+		VOLODARSKY: "Володарский мост"
+	},
+	BRIDGE_SPB_EVENT: {
+		CLOSE: "Сведение: {bridge}",
+		OPEN: "Развод: {bridge}"
 	},
 	CITIES: {
 		MOSCOW: "г. Москва",
@@ -51,6 +34,17 @@ export const t = {
 		FAIR: "Удовлетворительная",
 		GOOD: "Хорошая",
 		LOW: "Низкая"
+	},
+	ECLIPSE: {
+		BELOW_HORIZON: "Под горизонтом",
+		CONTACT_WITH_CODE: "{contact} ({code})",
+		CONTACTS: "Ход затмения",
+		EVENT_TYPE: "Тип затмения",
+		HORIZON: "Горизонт",
+		MAXIMUM: "Максимум затмения",
+		PARTIAL: "Частное",
+		TOTAL: "Полное",
+		VISIBILITY: "Местная видимость"
 	},
 	ERRORS: {
 		DATE: "Неверное значение даты",
@@ -70,16 +64,17 @@ export const t = {
 		SOLAR_AZIMUTH_ANGLE: "Угол азимута Солнца должен быть в диапазоне от 0 до 359 градусов",
 		SUN_AZIMUTH_NOT_VISIBLE: "В выбранный день Солнце не достигает этого азимута над горизонтом"
 	},
+	HEIGHT_BY_SHADOW: {
+		RESULT: "Время: {time} · Высота Солнца: {altitude} · Высота объекта: <value>{height}</value>"
+	},
 	LABEL: {
 		ALIGN_COMPASS: "Ориентировать по устройству",
 		ALL_BRIDGES_LIFTED_DOWN: "Все мосты cведены",
 		ALL_BRIDGES_LIFTED_UP: "Все мосты разведены",
 		ALTITUDE: "Высота",
-		ALWAYS: "Всегда",
 		ASK_DEVICE_GEOLOCATION: "Запросить данные с устройства",
 		AZIMUTH: "Азимут",
 		BEST_WINDOW: "Лучшее время наблюдения",
-		BRIDGE: "мост",
 		BRIDGE_CLOSED: "Сведён",
 		BRIDGE_CLOSING: "Сведение моста",
 		BRIDGE_OPENED: "Разведён",
@@ -101,12 +96,10 @@ export const t = {
 		DISTANCE: "Расстояние",
 		DURATION_DAYLIGHT: "Длительность солнечного дня",
 		DURATION_LIGHTS: "Длительность освещения",
-		DURATION_MOONLIGHT: "Длительность лунного дня",
 		EVENT_ALLOW_LIST: "Фильтры событий",
 		FULL_MOON_NAME: "Имя полнолуния",
 		GEOLOCATION: "Геолокация",
 		GO_HOME: "На главную",
-		HEIGHT: "Высота",
 		HOUR: "Час",
 		LANGUAGE: "Язык",
 		LATITUDE: "Широта",
@@ -140,14 +133,12 @@ export const t = {
 		SHADOW_LENGTH: "Длина тени, м",
 		SHADOW_LEVEL: "Уровень тени, м",
 		SOLAR_AZIMUTH_ANGLE: "Угол азимута Солнца, °",
-		SOLAR_ESTIMATE: "Расчёт по Солнцу",
 		STATE: "Состояние",
 		SUNRISE_TIME: "Время восхода",
 		SUNSET_TIME: "Время заката",
 		TABS: "Разделы приложения",
 		TILL_TURNED_OFF: "До отключения",
 		TILL_TURNED_ON: "До включения",
-		TIME: "Время",
 		TIME_OFF: "Время отключения",
 		TIME_ON: "Время включения",
 		TURNED_OFF: "Отключено",
@@ -159,27 +150,25 @@ export const t = {
 		ZENITH: "Зенит"
 	},
 	LIGHTS_COMPARISON: {
-		EARLIER: "раньше",
-		LATER: "позже",
-		LONGER: "дольше",
-		SHORTER: "короче",
+		EARLIER: "на {duration} раньше, чем вчера",
+		LATER: "на {duration} позже, чем вчера",
+		LONGER: "на {duration} дольше, чем вчера",
+		SHORTER: "на {duration} короче, чем вчера",
 		SWITCH_OFF: "Время выключения",
-		SWITCH_ON: "Время включения",
-		THAN_YESTERDAY: "чем вчера"
+		SWITCH_ON: "Время включения"
 	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "Выключение городского освещения",
 		LIGHTS_START: "Включение городского освещения"
 	},
+	LIGHTS_SOURCE: {
+		SOLAR_ESTIMATE: "Расчёт по Солнцу",
+		SOLAR_ESTIMATE_UNCERTAIN: "Расчёт по Солнцу (±{duration})"
+	},
 	LUNAR_ECLIPSE: {
-		BELOW_HORIZON: "Под горизонтом",
-		CONTACTS: "Ход затмения",
 		CURRENT_PHASE: "Текущая фаза",
-		EVENT_TYPE: "Тип затмения",
 		GRAPH_DESCRIPTION: "Угловое поле в истинном масштабе с земной тенью в центре. Азимут возрастает вправо, высота — вверх.",
 		GRAPH_TITLE: "Текущая геометрия лунного затмения",
-		HORIZON: "Горизонт",
-		MAXIMUM: "Максимум затмения",
 		MAXIMUM_MOON_ALTITUDE: "Высота Луны в максимуме",
 		NEXT: "Следующее видимое затмение",
 		NO_ECLIPSE: "Рядом с выбранным временем лунного затмения нет.",
@@ -187,7 +176,6 @@ export const t = {
 		NOTICEABILITY_CLEAR: "Хорошо заметно",
 		NOTICEABILITY_SUBTLE: "Слабое затенение",
 		NOTICEABILITY_UNLIKELY: "Скорее всего незаметно",
-		PARTIAL: "Частное",
 		PARTIAL_BEGIN: "Начало частной фазы",
 		PARTIAL_END: "Конец частной фазы",
 		PENUMBRAL: "Полутеневое",
@@ -199,10 +187,8 @@ export const t = {
 		PHASE_TOTAL: "Полная",
 		PREVIOUS: "Предыдущее видимое затмение",
 		TITLE: "Лунное затмение",
-		TOTAL: "Полное",
 		TOTAL_BEGIN: "Начало полной фазы",
 		TOTAL_END: "Конец полной фазы",
-		VISIBILITY: "Местная видимость",
 		VISIBILITY_FULL: "Всё затмение над горизонтом",
 		VISIBILITY_NONE: "Всё затмение под горизонтом",
 		VISIBILITY_PARTIAL: "Восход или заход Луны во время затмения"
@@ -211,7 +197,6 @@ export const t = {
 		BRIDGE_EXCEPTION: "Разводка этого моста производится по предварительной заявке за 2 суток.",
 		BRIDGE_WILL_CLOSE_WITHIN: "Мост будет сведён через",
 		BRIDGE_WILL_OPEN_WITHIN: "Мост будет разведён через",
-		CHECK_DATE_INPUT: "Проверьте поле ввода даты у нижнего края экрана, выберите верное значение",
 		EARTHSHINE_NO_WINDOW: "В этот день нет подходящего астрономического окна для пепельного света.",
 		EARTHSHINE_WEATHER_NOTE: "Только астрономическая оценка. Облака, дымка и городская засветка могут ухудшить видимость.",
 		EVENTS_ARE_DISABLED: "Все типы событий отключены",
@@ -222,12 +207,8 @@ export const t = {
 		NAVIGATION_STARTS_AT: "До начала навигации",
 		NO_EVENTS: "Никаких событий на сегодня",
 		PAGE_404: "К сожалению, данная страница не существует...",
-		SET_CURRENT_DATE_ADVICE: "Либо установите текущее значение даты и времени с помощью кнопки ниже",
-		SET_CURRENT_DATETIME: "Установить текущие время и дату",
 		TAB_LIMITS: "Выберите хотя бы 1 активный раздел",
-		UPDATE: "Обновление готово к установке.",
-		WRONG_DATE: "Выбрана неверная дата. Для решения проблемы",
-		WRONG_DATE_URL: "Проверьте адресную строку, дата должна соответствовать формату"
+		UPDATE: "Обновление готово к установке."
 	},
 	MOON_NAME: {
 		BEAVER: "Бобровая",
@@ -268,25 +249,18 @@ export const t = {
 	},
 	SOLAR_ECLIPSE: {
 		ANNULAR: "Кольцеобразное",
-		BELOW_HORIZON: "Под горизонтом",
-		CONTACTS: "Ход затмения",
 		CURRENT_OBSCURATION: "Текущее покрытие",
-		EVENT_TYPE: "Тип затмения",
 		FIRST_CONTACT: "Первый контакт (C1)",
 		FOURTH_CONTACT: "Четвёртый контакт (C4)",
 		GRAPH_DESCRIPTION: "Угловое поле в истинном масштабе с Солнцем в центре. Азимут возрастает вправо, высота — вверх.",
+		GRAPH_DESCRIPTION_WITH_NOTE: "{description} {note}",
 		GRAPH_TITLE: "Текущая геометрия солнечного затмения",
-		HORIZON: "Горизонт",
-		MAXIMUM: "Максимум затмения",
 		MAXIMUM_SUN_ALTITUDE: "Высота Солнца в максимуме",
 		MOON_OUTSIDE_VIEW: "Луна находится за пределами видимого поля.",
 		NEXT: "Следующее затмение",
 		NO_ECLIPSE: "В выбранное время солнечного затмения нет.",
-		PARTIAL: "Частное",
 		PREVIOUS: "Предыдущее затмение",
 		TITLE: "Солнечное затмение",
-		TOTAL: "Полное",
-		VISIBILITY: "Местная видимость",
 		VISIBILITY_FULL: "Полностью над горизонтом",
 		VISIBILITY_NONE: "Под горизонтом",
 		VISIBILITY_PARTIAL: "Частично прерывается горизонтом"
@@ -296,7 +270,6 @@ export const t = {
 		ASTRONOMICAL_DAWN_TITLE: "Ночь подходит к концу",
 		ASTRONOMICAL_DUSK: "Начало ночи",
 		ASTRONOMICAL_DUSK_TITLE: "Астрономические сумерки подходят к концу",
-		BLUE_HOUR: "Синий час",
 		BLUE_HOUR_END_DAWN: "Утренний синий час",
 		BLUE_HOUR_END_DAWN_TITLE: "Утренний синий час подходит к концу",
 		BLUE_HOUR_END_DUSK: "Вечерний синий час подходит к концу",
@@ -307,7 +280,6 @@ export const t = {
 		CIVIL_DAWN_TITLE: "Навигационные сумерки подходят к концу",
 		CIVIL_DUSK: "Гражданские сумерки",
 		CIVIL_DUSK_TITLE: "Гражданские сумерки подходят к концу",
-		GOLDEN_HOUR: "Золотой час",
 		GOLDEN_HOUR_END_DAWN: "Утренний золотой час подходит к концу",
 		GOLDEN_HOUR_END_DAWN_TITLE: "Начало солнечного дня",
 		GOLDEN_HOUR_END_DUSK: "Гражданские сумерки",
@@ -332,6 +304,11 @@ export const t = {
 		SUNSET_START: "Закат Солнца",
 		SUNSET_START_TITLE: "Солнечный диск касается горизонта"
 	},
+	TIMELINE_EVENT: {
+		LINK_TITLE: "{event}: {datetime}",
+		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",
+		SUN_DESCRIPTION: "{event}, {azimuth}"
+	},
 	TITLE: {
 		ABOUT: "Справка",
 		BRIDGES: "Мосты",
@@ -350,13 +327,10 @@ export const t = {
 		MOON: "Луна",
 		MOON_PHASE_CALENDAR: "Календарь Лунных фаз",
 		MOON_TIMES: "Времена восхода и захода Луны",
-		NAVIGATION_CLOSED: "Навигация закрыта",
-		NAVIGATION_OPENED: "Навигация открыта",
 		NOW: "Сейчас",
 		SETTINGS: "Настройки",
 		SUN: "Солнце",
 		SUN_TIMES: "Времена восхода и захода Солнца",
-		THE_CLOSEST_EVENT: "Ближайшее событие",
 		TIMELINE: "События"
 	}
 } as const satisfies Translation;

@@ -24,7 +24,13 @@ export function NextBridgeCountdown() {
 
 	const property = () => {
 		const { name, open } = getNextEvent();
-		return t().BRIDGE_SPB_EVENTS[`${name}_${open ? "CLOSE" : "OPEN"}`];
+		const event = open
+			? t().BRIDGE_SPB_EVENT.CLOSE
+			: t().BRIDGE_SPB_EVENT.OPEN;
+
+		return format().message(event, {
+			bridge: t().BRIDGE_NAME_SPB[name]
+		});
 	};
 
 	return (

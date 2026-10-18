@@ -1,33 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { template } from "../src/formatters";
+import { listFormatter } from "../src/formatters";
 
 describe("Project's core utilities", () => {
-	describe("template", () => {
-		it("Format the string", () => {
-			expect(template("Hello, {name}!", {
-				name: "Peter"
-			})).toBe("Hello, Peter!");
-			expect(template("My name is {name}. I am {age} years old", {
-				age: 5,name: "Peter"
-			})).toBe("My name is Peter. I am 5 years old");
-			expect(template("My name is {name}. I am {age} years old and I am {name} too!", {
-				age: 5,name: "Peter"
-			})).toBe("My name is Peter. I am 5 years old and I am Peter too!");
-		});
-		it("Leaves the capture in place if no value is provided to replace", () => {
-			expect(template("Hello, {name}!", {})).toBe("Hello, name!");
-			expect(template("Hello, {name}! Take an {fruit}", {
-				fruit: "apple"
-			})).toBe("Hello, name! Take an apple");
-		});
-		it("Allows to change the capturing schema", () => {
-			expect(template("Hello, [name]!", {
-				name: "Peter"
-			}, /\[(.*?)\]/g)).toBe("Hello, Peter!");
-			expect(template("Hello, {{name}}!", {
-				name: "Peter"
-			}, /\{\{(.*?)\}\}/g)).toBe("Hello, Peter!");
+	describe("listFormatter", () => {
+		it("formats conjunctions for the selected locale", () => {
+			expect(listFormatter("en")([ "Sun", "Moon" ])).toBe("Sun and Moon");
+			expect(listFormatter("ru")([ "Солнце", "Луна" ])).toBe("Солнце и Луна");
 		});
 	});
 });

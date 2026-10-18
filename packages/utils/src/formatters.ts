@@ -1,4 +1,4 @@
-import { isNullable, isValidDate } from "./validators";
+import { isValidDate } from "./validators";
 
 export const getNumberFormatter = (options?: Intl.NumberFormatOptions) => (locale = "en") => {
 	const formatter = new Intl.NumberFormat(locale, options);
@@ -14,6 +14,15 @@ export const getDateTimeFormatter = (options?: Intl.DateTimeFormatOptions) => (l
 			? formatter.format(value)
 			: "";
 	};
+};
+
+export const listFormatter = (locale = "en") => {
+	const formatter = new Intl.ListFormat(locale, {
+		style: "long",
+		type: "conjunction"
+	});
+
+	return (values: string[]) => formatter.format(values);
 };
 
 // formatters
@@ -133,29 +142,4 @@ export const timeShortFormatter = getDateTimeFormatter({
 export function timeShortDurationFormatter(locale?: string) {
 	const formatter = timeShortFormatter(locale);
 	return (start: DateLike, end: DateLike) => `${formatter(start)} — ${formatter(end)}}`;
-}
-
-/**
- * Replaces the entries within the string in curly braces (can be specified via regex parameter)
- * with values in object.
- *
- * template("Hello, {name}!", { name: "Peter" }) -> "Hello, Peter!"
- *
- * In case no replacement is provided, the capture leaves as it is, just curly braces are removed.
- *
- * template("Hello, {name}!", {}) -> "Hello, name!"
- */
-export function template(input: string, dict: Record<string, number | string>, regex = /{(.*?)}/g): string {
-	const replacer = (_match: string, capture: string) => {
-		const trimmedCapture = capture.trim();
-		const replaceValue = dict[trimmedCapture];
-
-		if (isNullable(replaceValue)) {
-			return trimmedCapture;
-		}
-
-		return dict[trimmedCapture].toString();
-	};
-
-	return input.replace(regex, replacer);
 }

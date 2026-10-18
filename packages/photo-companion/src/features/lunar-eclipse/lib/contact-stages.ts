@@ -14,7 +14,6 @@ export interface LunarEclipseContactStage {
 
 type LunarEclipseContactStageLabels = Pick<
 	Translation["LUNAR_ECLIPSE"],
-	| "MAXIMUM"
 	| "PARTIAL_BEGIN"
 	| "PARTIAL_END"
 	| "PENUMBRAL_BEGIN"
@@ -25,7 +24,8 @@ type LunarEclipseContactStageLabels = Pick<
 
 export function getContactStages(
 	event: LocalLunarEclipse,
-	labels: LunarEclipseContactStageLabels
+	labels: LunarEclipseContactStageLabels,
+	maximumLabel: string
 ): LunarEclipseContactStage[] {
 	const stages: LunarEclipseContactStage[] = [
 		{ code: "P1", contact: event.penumbralBegin, label: labels.PENUMBRAL_BEGIN, position: "begin" }
@@ -53,7 +53,7 @@ export function getContactStages(
 		contact:
 		event.peak,
 		label:
-		labels.MAXIMUM,
+		maximumLabel,
 		position: "peak"
 	});
 

@@ -48,7 +48,12 @@ export function Output(props: Props) {
 			<For each={props.candidates}>
 				{candidate => (
 					<Text align="end" as="p" balance numeric variant="text-l">
-						{t().LABEL.TIME}: {format().timeShort(candidate.time)} · {t().LABEL.ALTITUDE}: {format().degrees(candidate.altitude)} · {t().LABEL.HEIGHT}: <span class={styles.value}>{format().meters(candidate.height)}</span>
+						{format().message(t().HEIGHT_BY_SHADOW.RESULT, {
+							altitude: format().degrees(candidate.altitude),
+							height: format().meters(candidate.height),
+							time: format().timeShort(candidate.time),
+							value: children => <span class={styles.value}>{children}</span>
+						})}
 					</Text>
 				)}
 			</For>

@@ -16,7 +16,7 @@ import type { SolarEclipseGraphProps } from "../../model";
 import styles from "./solar-eclipse-graph.module.css";
 
 export function SolarEclipseGraph(props: SolarEclipseGraphProps) {
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
 	const moonPoint = createMemo(() => getEclipseGraphPoint(props.state));
 	const moonOutside = createMemo(() => isEclipseGraphPointOutside(
 		moonPoint(),
@@ -27,14 +27,21 @@ export function SolarEclipseGraph(props: SolarEclipseGraphProps) {
 		? null
 		: getSolarEclipseTrack(props.event, props.latitude, props.longitude));
 
+	const description = () => moonOutside()
+		? format().message(t().SOLAR_ECLIPSE.GRAPH_DESCRIPTION_WITH_NOTE, {
+			description: t().SOLAR_ECLIPSE.GRAPH_DESCRIPTION,
+			note: t().SOLAR_ECLIPSE.MOON_OUTSIDE_VIEW
+		})
+		: t().SOLAR_ECLIPSE.GRAPH_DESCRIPTION;
+
 	return (
 		<EclipseGraphFrame
 			altitudeTicks={GRAPH_CONFIG.altitudeTicks}
 			azimuthTicks={GRAPH_CONFIG.azimuthTicks}
 			centerAltitude={props.state.sun.altitude}
 			class={styles.graph}
-			description={`${t().SOLAR_ECLIPSE.GRAPH_DESCRIPTION}${moonOutside() ? ` ${t().SOLAR_ECLIPSE.MOON_OUTSIDE_VIEW}` : ""}`}
-			horizonLabel={t().SOLAR_ECLIPSE.HORIZON}
+			description={description()}
+			horizonLabel={t().ECLIPSE.HORIZON}
 			title={t().SOLAR_ECLIPSE.GRAPH_TITLE}
 			viewAltitudeRadius={GRAPH_CONFIG.viewAltitudeRadius}
 			viewAzimuthRadius={GRAPH_CONFIG.viewAzimuthRadius}

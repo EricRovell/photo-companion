@@ -1,45 +1,28 @@
-import type { Translation } from "./translation.type";
+import type { Translation } from "../types";
 
 export const t = {
-	BRIDGE_NAME_SPB: {
-		ALEXANDER_NEVSKY: "Alexander Nevsky",
-		ANNUNCIATION: "Annunciation",
-		BOLSHEOKHTINSKY: "Bolsheokhtinsky",
-		EXCHANGE: "Exchange",
-		GRENADERSKY: "Grenadersky",
-		KANTEMIROVSKY: "Kantemirovsky",
-		LITEYNY: "Liteyny",
-		PALACE: "Palace",
-		SAMPSONIEVSKY: "Sampsonievsky",
-		TRINITY: "Trinity",
-		TUCHKOV: "Tuchkov",
-		VOLODARSKY: "Volodarsky"
+	AZIMUTH: {
+		ARIA_ENTITY: "{label}: {azimuth}",
+		TITLE_SUN: "{sun} · {azimuth}",
+		TITLE_SUN_MOON: "{sun} / {moon} · {azimuth}"
 	},
-	BRIDGE_SPB_EVENTS: {
-		ALEXANDER_NEVSKY_CLOSE: "Lifting down the Alexander Nevskiy bridge",
-		ALEXANDER_NEVSKY_OPEN: "Lifting up the Alexander Nevskiy bridge",
-		ANNUNCIATION_CLOSE: "Lifting down the Annunciation bridge",
-		ANNUNCIATION_OPEN: "Lifting up the Annunciation bridge",
-		BOLSHEOKHTINSKY_CLOSE: "Lifting down the Bolsheokhtinsky bridge",
-		BOLSHEOKHTINSKY_OPEN: "Lifting up the Bolsheokhtinsky bridge",
-		EXCHANGE_CLOSE: "Lifting down the Exchange bridge",
-		EXCHANGE_OPEN: "Lifting up the Exchange bridge",
-		GRENADERSKY_CLOSE: "Lifting down the Grenadersky bridge",
-		GRENADERSKY_OPEN: "Lifting up the Grenadersky bridge",
-		KANTEMIROVSKY_CLOSE: "Lifting down the Kantemirovsky bridge",
-		KANTEMIROVSKY_OPEN: "Lifting up the Kantemirovsky bridge",
-		LITEYNY_CLOSE: "Lifting down the Liteyny bridge",
-		LITEYNY_OPEN: "Lifting up the Liteyny bridge",
-		PALACE_CLOSE: "Lifting down the Palace bridge",
-		PALACE_OPEN: "Lifting up the Palace bridge",
-		SAMPSONIEVSKY_CLOSE: "Lifting down the Sampsonievsky bridge",
-		SAMPSONIEVSKY_OPEN: "Lifting up the Sampsonievsky bridge",
-		TRINITY_CLOSE: "Lifting down the Trinity bridge",
-		TRINITY_OPEN: "Lifting up the Trinity bridge",
-		TUCHKOV_CLOSE: "Lifting down the Tuchkov bridge",
-		TUCHKOV_OPEN: "Lifting up the Tuchkov bridge",
-		VOLODARSKY_CLOSE: "Lifting down the Volodarsky bridge",
-		VOLODARSKY_OPEN: "Lifting up the Volodarsky bridge"
+	BRIDGE_NAME_SPB: {
+		ALEXANDER_NEVSKY: "Alexander Nevsky Bridge",
+		ANNUNCIATION: "Annunciation Bridge",
+		BOLSHEOKHTINSKY: "Bolsheokhtinsky Bridge",
+		EXCHANGE: "Exchange Bridge",
+		GRENADERSKY: "Grenadersky Bridge",
+		KANTEMIROVSKY: "Kantemirovsky Bridge",
+		LITEYNY: "Liteyny Bridge",
+		PALACE: "Palace Bridge",
+		SAMPSONIEVSKY: "Sampsonievsky Bridge",
+		TRINITY: "Trinity Bridge",
+		TUCHKOV: "Tuchkov Bridge",
+		VOLODARSKY: "Volodarsky Bridge"
+	},
+	BRIDGE_SPB_EVENT: {
+		CLOSE: "Lifting down: {bridge}",
+		OPEN: "Lifting up: {bridge}"
 	},
 	CITIES: {
 		MOSCOW: "Moscow, Russia",
@@ -51,6 +34,17 @@ export const t = {
 		FAIR: "Fair",
 		GOOD: "Good",
 		LOW: "Low"
+	},
+	ECLIPSE: {
+		BELOW_HORIZON: "Below the horizon",
+		CONTACT_WITH_CODE: "{contact} ({code})",
+		CONTACTS: "Eclipse timeline",
+		EVENT_TYPE: "Eclipse type",
+		HORIZON: "Horizon",
+		MAXIMUM: "Maximum eclipse",
+		PARTIAL: "Partial",
+		TOTAL: "Total",
+		VISIBILITY: "Local visibility"
 	},
 	ERRORS: {
 		DATE: "Invalid date",
@@ -70,16 +64,17 @@ export const t = {
 		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle should be in 0 ... 359 degrees range",
 		SUN_AZIMUTH_NOT_VISIBLE: "The Sun does not reach this azimuth above the horizon on the selected date"
 	},
+	HEIGHT_BY_SHADOW: {
+		RESULT: "Time: {time} · Altitude: {altitude} · Height: <value>{height}</value>"
+	},
 	LABEL: {
 		ALIGN_COMPASS: "Align with device",
 		ALL_BRIDGES_LIFTED_DOWN: "All drawbridges are lifted down",
 		ALL_BRIDGES_LIFTED_UP: "All drawbridges are lifted up",
 		ALTITUDE: "Altitude",
-		ALWAYS: "Always",
 		ASK_DEVICE_GEOLOCATION: "Ask device for geolocation",
 		AZIMUTH: "Azimuth",
 		BEST_WINDOW: "Best viewing window",
-		BRIDGE: "Bridge",
 		BRIDGE_CLOSED: "Lifted down",
 		BRIDGE_CLOSING: "Lifting down",
 		BRIDGE_OPENED: "Lifted up",
@@ -101,12 +96,10 @@ export const t = {
 		DISTANCE: "Distance",
 		DURATION_DAYLIGHT: "Daylight duration",
 		DURATION_LIGHTS: "Lights duration",
-		DURATION_MOONLIGHT: "Moonlight duration",
 		EVENT_ALLOW_LIST: "Event allow list",
 		FULL_MOON_NAME: "Full Moon Name",
 		GEOLOCATION: "Geolocation",
 		GO_HOME: "Go Home",
-		HEIGHT: "Height",
 		HOUR: "Hour",
 		LANGUAGE: "Language",
 		LATITUDE: "Latitude",
@@ -140,14 +133,12 @@ export const t = {
 		SHADOW_LENGTH: "Shadow length, m",
 		SHADOW_LEVEL: "Shadow level, m",
 		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle, deg",
-		SOLAR_ESTIMATE: "Solar estimate",
 		STATE: "State",
 		SUNRISE_TIME: "Sunrise time",
 		SUNSET_TIME: "Sunset time",
 		TABS: "Tabs",
 		TILL_TURNED_OFF: "Till turning off",
 		TILL_TURNED_ON: "Till turning on",
-		TIME: "Time",
 		TIME_OFF: "Shutdown time",
 		TIME_ON: "On time",
 		TURNED_OFF: "Turned off",
@@ -159,27 +150,25 @@ export const t = {
 		ZENITH: "Zenith"
 	},
 	LIGHTS_COMPARISON: {
-		EARLIER: "earlier",
-		LATER: "later",
-		LONGER: "longer",
-		SHORTER: "shorter",
+		EARLIER: "{duration} earlier than yesterday",
+		LATER: "{duration} later than yesterday",
+		LONGER: "{duration} longer than yesterday",
+		SHORTER: "{duration} shorter than yesterday",
 		SWITCH_OFF: "Turn-off time",
-		SWITCH_ON: "Turn-on time",
-		THAN_YESTERDAY: "than yesterday"
+		SWITCH_ON: "Turn-on time"
 	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "City lights switched off",
 		LIGHTS_START: "City Lights switched on"
 	},
+	LIGHTS_SOURCE: {
+		SOLAR_ESTIMATE: "Solar estimate",
+		SOLAR_ESTIMATE_UNCERTAIN: "Solar estimate (±{duration})"
+	},
 	LUNAR_ECLIPSE: {
-		BELOW_HORIZON: "Below the horizon",
-		CONTACTS: "Eclipse timeline",
 		CURRENT_PHASE: "Current phase",
-		EVENT_TYPE: "Eclipse type",
 		GRAPH_DESCRIPTION: "A true-scale Earth-shadow-centered angular view. Azimuth increases to the right and altitude increases upward.",
 		GRAPH_TITLE: "Current local lunar eclipse geometry",
-		HORIZON: "Horizon",
-		MAXIMUM: "Maximum eclipse",
 		MAXIMUM_MOON_ALTITUDE: "Moon altitude at maximum",
 		NEXT: "Next visible eclipse",
 		NO_ECLIPSE: "No lunar eclipse near the selected time.",
@@ -187,7 +176,6 @@ export const t = {
 		NOTICEABILITY_CLEAR: "Clearly noticeable",
 		NOTICEABILITY_SUBTLE: "Subtle shading",
 		NOTICEABILITY_UNLIKELY: "Unlikely to notice",
-		PARTIAL: "Partial",
 		PARTIAL_BEGIN: "Partial phase begins",
 		PARTIAL_END: "Partial phase ends",
 		PENUMBRAL: "Penumbral",
@@ -199,10 +187,8 @@ export const t = {
 		PHASE_TOTAL: "Total",
 		PREVIOUS: "Previous visible eclipse",
 		TITLE: "Lunar Eclipse",
-		TOTAL: "Total",
 		TOTAL_BEGIN: "Totality begins",
 		TOTAL_END: "Totality ends",
-		VISIBILITY: "Local visibility",
 		VISIBILITY_FULL: "Entire eclipse above horizon",
 		VISIBILITY_NONE: "Entire eclipse below horizon",
 		VISIBILITY_PARTIAL: "Moonrise or moonset during eclipse"
@@ -211,7 +197,6 @@ export const t = {
 		BRIDGE_EXCEPTION: "Lifting up this bridge is carried out upon prior request 2 days in advance.",
 		BRIDGE_WILL_CLOSE_WITHIN: "The bridge will be lifted down within",
 		BRIDGE_WILL_OPEN_WITHIN: "The bridge will be lifted up within",
-		CHECK_DATE_INPUT: "Please, check out the date-time input and choose it right",
 		EARTHSHINE_NO_WINDOW: "No suitable astronomical earthshine window on this date.",
 		EARTHSHINE_WEATHER_NOTE: "Astronomical estimate only. Clouds, haze and light pollution can reduce visibility.",
 		EVENTS_ARE_DISABLED: "All events are disabled",
@@ -222,12 +207,8 @@ export const t = {
 		NAVIGATION_STARTS_AT: "Navigation starts after",
 		NO_EVENTS: "No more events for this date",
 		PAGE_404: "Unfortunately, such page does not exist...",
-		SET_CURRENT_DATE_ADVICE: "Set the current date and time using the button below",
-		SET_CURRENT_DATETIME: "Set the current date and time",
 		TAB_LIMITS: "Select at least 1 tab",
-		UPDATE: "Update is ready to be installed.",
-		WRONG_DATE: "Error: incorrect date-time value.",
-		WRONG_DATE_URL: "Please, check the URL for correct date-time format"
+		UPDATE: "Update is ready to be installed."
 	},
 	MOON_NAME: {
 		BEAVER: "Beaver",
@@ -268,25 +249,18 @@ export const t = {
 	},
 	SOLAR_ECLIPSE: {
 		ANNULAR: "Annular",
-		BELOW_HORIZON: "Below the horizon",
-		CONTACTS: "Eclipse timeline",
 		CURRENT_OBSCURATION: "Current obscuration",
-		EVENT_TYPE: "Eclipse type",
 		FIRST_CONTACT: "First contact (C1)",
 		FOURTH_CONTACT: "Fourth contact (C4)",
 		GRAPH_DESCRIPTION: "A true-scale Sun-centered angular view. Azimuth increases to the right and altitude increases upward.",
+		GRAPH_DESCRIPTION_WITH_NOTE: "{description} {note}",
 		GRAPH_TITLE: "Current local solar eclipse geometry",
-		HORIZON: "Horizon",
-		MAXIMUM: "Maximum eclipse",
 		MAXIMUM_SUN_ALTITUDE: "Sun altitude at maximum",
 		MOON_OUTSIDE_VIEW: "The Moon is outside the visible field.",
 		NEXT: "Next eclipse",
 		NO_ECLIPSE: "No solar eclipse at the selected time.",
-		PARTIAL: "Partial",
 		PREVIOUS: "Previous eclipse",
 		TITLE: "Solar Eclipse",
-		TOTAL: "Total",
-		VISIBILITY: "Local visibility",
 		VISIBILITY_FULL: "Fully above the horizon",
 		VISIBILITY_NONE: "Below the horizon",
 		VISIBILITY_PARTIAL: "Partly interrupted by the horizon"
@@ -296,7 +270,6 @@ export const t = {
 		ASTRONOMICAL_DAWN_TITLE: "The night ends",
 		ASTRONOMICAL_DUSK: "Night begins",
 		ASTRONOMICAL_DUSK_TITLE: "Astronomical dusk ends",
-		BLUE_HOUR: "Blue hour",
 		BLUE_HOUR_END_DAWN: "Dawn blue hour",
 		BLUE_HOUR_END_DAWN_TITLE: "Dawn blue hour ends",
 		BLUE_HOUR_END_DUSK: "Dusk blue hour ends",
@@ -307,7 +280,6 @@ export const t = {
 		CIVIL_DAWN_TITLE: "Nautical dawn ends",
 		CIVIL_DUSK: "Civil dusk",
 		CIVIL_DUSK_TITLE: "Civil dusk ends",
-		GOLDEN_HOUR: "Golden hour",
 		GOLDEN_HOUR_END_DAWN: "Dawn golden hour ends",
 		GOLDEN_HOUR_END_DAWN_TITLE: "The daytime begins",
 		GOLDEN_HOUR_END_DUSK: "Civil twilight",
@@ -332,6 +304,11 @@ export const t = {
 		SUNSET_START: "Sunset starts",
 		SUNSET_START_TITLE: "The Sun disk touches the horizon"
 	},
+	TIMELINE_EVENT: {
+		LINK_TITLE: "{event}: {datetime}",
+		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",
+		SUN_DESCRIPTION: "{event}, {azimuth}"
+	},
 	TITLE: {
 		ABOUT: "FAQ",
 		BRIDGES: "Bridges",
@@ -350,13 +327,10 @@ export const t = {
 		MOON: "The Moon",
 		MOON_PHASE_CALENDAR: "The Moon Phases Calendar",
 		MOON_TIMES: "The Moon Times",
-		NAVIGATION_CLOSED: "The navigation is closed",
-		NAVIGATION_OPENED: "The navigation is opened",
 		NOW: "Now",
 		SETTINGS: "Settings",
 		SUN: "The Sun",
 		SUN_TIMES: "The Sun Times",
-		THE_CLOSEST_EVENT: "The closest event",
 		TIMELINE: "Timeline"
 	}
 } as const satisfies Translation;

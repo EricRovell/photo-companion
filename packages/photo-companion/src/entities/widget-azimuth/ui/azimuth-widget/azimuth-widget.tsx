@@ -11,12 +11,13 @@ import { AzimuthDial } from "../azimuth-dial/azimuth-dial";
 import { AzimuthLegend } from "../azimuth-legend/azimuth-legend";
 import { DeviceAlignment } from "../device-alignment/device-alignment";
 
-import type { AzimuthEntity, AzimuthWidgetEntity, AzimuthWidgetLabels, CardinalLabels } from "../../types";
+import type { AzimuthEntity, AzimuthWidgetEntity, AzimuthWidgetFormatters, AzimuthWidgetLabels, CardinalLabels } from "../../types";
 
 import styles from "./azimuth-widget.module.css";
 
 interface Props {
 	entities: AzimuthWidgetEntity[];
+	formatters: AzimuthWidgetFormatters;
 	labels: AzimuthWidgetLabels;
 	title: string;
 }
@@ -87,6 +88,7 @@ export function AzimuthWidget(props: Props) {
 					<AzimuthDial
 						cardinalLabels={cardinalLabels()}
 						entities={props.entities}
+						formatters={props.formatters}
 						getAzimuth={getAzimuth}
 						getPath={getPath}
 						heading={heading()}
