@@ -16,6 +16,15 @@ export const getDateTimeFormatter = (options?: Intl.DateTimeFormatOptions) => (l
 	};
 };
 
+export const listFormatter = (locale = "en") => {
+	const formatter = new Intl.ListFormat(locale, {
+		style: "long",
+		type: "conjunction"
+	});
+
+	return (values: string[]) => formatter.format(values);
+};
+
 // formatters
 
 /**

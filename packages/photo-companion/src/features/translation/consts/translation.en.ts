@@ -1,6 +1,11 @@
 import type { Translation } from "../types";
 
 export const t = {
+	AZIMUTH: {
+		ARIA_ENTITY: "{label}: {azimuth}",
+		TITLE_SUN: "{sun} · {azimuth}",
+		TITLE_SUN_MOON: "{sun} / {moon} · {azimuth}"
+	},
 	BRIDGE_NAME_SPB: {
 		ALEXANDER_NEVSKY: "Alexander Nevsky Bridge",
 		ANNUNCIATION: "Annunciation Bridge",
@@ -32,6 +37,7 @@ export const t = {
 	},
 	ECLIPSE: {
 		BELOW_HORIZON: "Below the horizon",
+		CONTACT_WITH_CODE: "{contact} ({code})",
 		CONTACTS: "Eclipse timeline",
 		EVENT_TYPE: "Eclipse type",
 		HORIZON: "Horizon",
@@ -299,13 +305,12 @@ export const t = {
 		SUNSET_START_TITLE: "The Sun disk touches the horizon"
 	},
 	TIMELINE_EVENT: {
+		LINK_TITLE: "{event}: {datetime}",
 		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",
 		SUN_DESCRIPTION: "{event}, {azimuth}"
 	},
 	TITLE: {
 		ABOUT: "FAQ",
-		AZIMUTH_SUN: "{sun} · {azimuth}",
-		AZIMUTH_SUN_MOON: "{sun} / {moon} · {azimuth}",
 		BRIDGES: "Bridges",
 		BRIDGES_FULL: "Saint-Petersburg Drawbridges",
 		BRIDGES_SCHEDULE_SPB: "Saint-Petersburg drawbridges schedule",

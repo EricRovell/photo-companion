@@ -5,7 +5,7 @@ import { AZIMUTH_WIDGET_CONFIG } from "../../config";
 import { AZIMUTH_TICKS, CARDINAL_POINTS } from "../../consts";
 import { buildHorizonTrackPath } from "../../lib";
 
-import type { AzimuthEntity, AzimuthPathPoint, AzimuthWidgetEntity, CardinalLabels } from "../../types";
+import type { AzimuthEntity, AzimuthPathPoint, AzimuthWidgetEntity, AzimuthWidgetFormatters, CardinalLabels } from "../../types";
 
 import styles from "./azimuth-dial.module.css";
 
@@ -21,6 +21,7 @@ const getDialPoint = (angle: number, radius: number) => polarToCartesian(
 interface Props {
 	cardinalLabels: CardinalLabels;
 	entities: AzimuthWidgetEntity[];
+	formatters: AzimuthWidgetFormatters;
 	getAzimuth: (entity: AzimuthEntity) => number;
 	getPath: (entity: AzimuthEntity) => AzimuthPathPoint[];
 	heading: number;
@@ -33,12 +34,14 @@ export function AzimuthDial(props: Props) {
 	);
 
 	const ariaLabel = () => props.entities
-		.map(entity => `${entity.label}: ${Math.round(props.getAzimuth(entity.id)) % 360}°`)
-		.join(", ");
+		.map(entity => props.formatters.ariaEntity(
+			entity.label,
+			Math.round(props.getAzimuth(entity.id)) % 360
+		));
 
 	return (
 		<svg
-			aria-label={ariaLabel()}
+			aria-label={props.formatters.list(ariaLabel())}
 			class={styles.dial}
 			role="img"
 			viewBox={`0 0 ${DIAL_CONFIG.viewBoxSize} ${DIAL_CONFIG.viewBoxSize}`}

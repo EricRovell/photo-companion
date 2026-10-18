@@ -8,6 +8,14 @@ export function SunAzimuth() {
 	const azimuthPath = useSunAzimuthPath();
 	const { format, t } = useTranslation();
 
+	const formatters = {
+		ariaEntity: (label: string, azimuth: number) => format().message(t().AZIMUTH.ARIA_ENTITY, {
+			azimuth: format().degrees(azimuth),
+			label
+		}),
+		list: (values: string[]) => format().list(values)
+	};
+
 	return (
 		<AzimuthWidget
 			entities={[
@@ -19,6 +27,7 @@ export function SunAzimuth() {
 					path: azimuthPath()
 				}
 			]}
+			formatters={formatters}
 			labels={{
 				align: t().LABEL.ALIGN_COMPASS,
 				alignBlocked: t().ERRORS.DEVICE_HEADING_BLOCKED,
@@ -33,7 +42,7 @@ export function SunAzimuth() {
 				south: t().LABEL.LATITUDE_SOUTH,
 				west: t().LABEL.LONGITUDE_WEST
 			}}
-			title={format().message(t().TITLE.AZIMUTH_SUN, {
+			title={format().message(t().AZIMUTH.TITLE_SUN, {
 				azimuth: t().LABEL.AZIMUTH,
 				sun: t().TITLE.SUN
 			})}

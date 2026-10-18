@@ -11,6 +11,13 @@ export function LunarEclipseContact(props: LunarEclipseContactProps) {
 
 	const altitude = () => format().degrees(props.contact.moonAltitude);
 
+	const label = () => props.code === undefined
+		? props.label
+		: format().message(t().ECLIPSE.CONTACT_WITH_CODE, {
+			code: props.code,
+			contact: props.label
+		});
+
 	const query = () => new URLSearchParams({
 		datetime: createQueryDate(getEclipseContactLinkTime(props.contact.time, props.position))
 	});
@@ -18,7 +25,7 @@ export function LunarEclipseContact(props: LunarEclipseContactProps) {
 	return (
 		<EclipseContact
 			detail={altitude()}
-			label={props.code === undefined ? props.label : `${props.label} (${props.code})`}
+			label={label()}
 			note={props.contact.visible ? undefined : t().ECLIPSE.BELOW_HORIZON}
 			peak={props.position === "peak"}
 			visible={props.contact.visible}

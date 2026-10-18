@@ -1,6 +1,11 @@
 import type { Translation } from "../types";
 
 export const t = {
+	AZIMUTH: {
+		ARIA_ENTITY: "{label}: {azimuth}",
+		TITLE_SUN: "{sun} · {azimuth}",
+		TITLE_SUN_MOON: "{sun} / {moon} · {azimuth}"
+	},
 	BRIDGE_NAME_SPB: {
 		ALEXANDER_NEVSKY: "мост Александра Невского",
 		ANNUNCIATION: "Благовещенский мост",
@@ -32,6 +37,7 @@ export const t = {
 	},
 	ECLIPSE: {
 		BELOW_HORIZON: "Под горизонтом",
+		CONTACT_WITH_CODE: "{contact} ({code})",
 		CONTACTS: "Ход затмения",
 		EVENT_TYPE: "Тип затмения",
 		HORIZON: "Горизонт",
@@ -299,13 +305,12 @@ export const t = {
 		SUNSET_START_TITLE: "Солнечный диск касается горизонта"
 	},
 	TIMELINE_EVENT: {
+		LINK_TITLE: "{event}: {datetime}",
 		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",
 		SUN_DESCRIPTION: "{event}, {azimuth}"
 	},
 	TITLE: {
 		ABOUT: "Справка",
-		AZIMUTH_SUN: "{sun} · {azimuth}",
-		AZIMUTH_SUN_MOON: "{sun} / {moon} · {azimuth}",
 		BRIDGES: "Мосты",
 		BRIDGES_FULL: "Разводные мосты г.Санкт-Петербург",
 		BRIDGES_SCHEDULE_SPB: "Расписание разведения мостов г. Санкт-Петербург",

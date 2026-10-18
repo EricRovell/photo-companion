@@ -1,5 +1,10 @@
 export type AzimuthEntity = "moon" | "sun";
 
+export interface AzimuthWidgetFormatters {
+	ariaEntity: (label: string, azimuth: number) => string;
+	list: (values: string[]) => string;
+}
+
 export interface AzimuthPathPoint {
 	altitude: number;
 	azimuth: number;

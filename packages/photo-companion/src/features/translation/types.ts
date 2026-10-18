@@ -1,4 +1,9 @@
 export interface Translation {
+	AZIMUTH: {
+		ARIA_ENTITY: `${string}{azimuth}${string}` & `${string}{label}${string}`;
+		TITLE_SUN: `${string}{azimuth}${string}` & `${string}{sun}${string}`;
+		TITLE_SUN_MOON: `${string}{azimuth}${string}` & `${string}{moon}${string}` & `${string}{sun}${string}`;
+	};
 	BRIDGE_NAME_SPB: {
 		ALEXANDER_NEVSKY: string;
 		ANNUNCIATION: string;
@@ -30,6 +35,7 @@ export interface Translation {
 	};
 	ECLIPSE: {
 		BELOW_HORIZON: string;
+		CONTACT_WITH_CODE: `${string}{code}${string}` & `${string}{contact}${string}`;
 		CONTACTS: string;
 		EVENT_TYPE: string;
 		HORIZON: string;
@@ -300,13 +306,12 @@ export interface Translation {
 		SUNSET_START_TITLE: string;
 	};
 	TIMELINE_EVENT: {
+		LINK_TITLE: `${string}{datetime}${string}` & `${string}{event}${string}`;
 		MOON_DESCRIPTION: `${string}{type}${string}{fraction}${string}{azimuth}${string}`;
 		SUN_DESCRIPTION: `${string}{event}${string}{azimuth}${string}`;
 	};
 	TITLE: {
 		ABOUT: string;
-		AZIMUTH_SUN: `${string}{azimuth}${string}` & `${string}{sun}${string}`;
-		AZIMUTH_SUN_MOON: `${string}{azimuth}${string}` & `${string}{moon}${string}` & `${string}{sun}${string}`;
 		BRIDGES: string;
 		BRIDGES_FULL: string;
 		BRIDGES_SCHEDULE_SPB: string;
