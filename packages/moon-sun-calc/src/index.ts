@@ -14,6 +14,7 @@ export {
 export type * from "./eclipse/types";
 
 export {
+	getMoonAge,
 	getMoonEvents,
 	getMoonIllumination,
 	getMoonPosition,

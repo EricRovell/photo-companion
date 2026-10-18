@@ -1,11 +1,13 @@
 import {
 	angularDifference,
+	DAY_MS,
 	normalizeDegrees,
 	toTimestamp,
 	validateIntegerRange
 } from "../shared";
 import { getSunGeocentricCoords } from "../sun/ephemeris";
 import {
+	MAX_MOON_AGE_SEARCH_DURATION,
 	MAX_PHASE_COUNT,
 	MAX_PHASE_SEARCH_DURATION,
 	MIN_PHASE_COUNT,
@@ -38,6 +40,32 @@ function refinePhase({ left, right, target }: RefinePhaseInput): Millisecond {
 	}
 
 	return (left + right) / 2;
+}
+
+/** Returns the elapsed days since the previous geocentric new Moon. */
+export function getMoonAge(input: DateLike): number {
+	const timestamp = toTimestamp(input);
+	let right = timestamp;
+	let rightElongation = elongation(right);
+
+	for (
+		let left = right - PHASE_SEARCH_STEP;
+		timestamp - left <= MAX_MOON_AGE_SEARCH_DURATION;
+		left -= PHASE_SEARCH_STEP
+	) {
+		const leftElongation = elongation(left);
+
+		if (leftElongation > 180 && rightElongation < 180) {
+			const newMoon = refinePhase({ left, right, target: 0 });
+
+			return (timestamp - newMoon) / DAY_MS;
+		}
+
+		right = left;
+		rightElongation = leftElongation;
+	}
+
+	throw new Error("Moon age search failed to converge");
 }
 
 /** Returns the next principal phases strictly after the supplied UTC instant. */

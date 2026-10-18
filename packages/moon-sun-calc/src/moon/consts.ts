@@ -70,6 +70,7 @@ export const PRINCIPAL_MOON_PHASES: readonly PrincipalMoonPhaseName[] = [
 ];
 
 export const PHASE_SEARCH_STEP: Millisecond = 3 * 60 * 60 * 1000;
+export const MAX_MOON_AGE_SEARCH_DURATION: Millisecond = 32 * 24 * 60 * 60 * 1000;
 export const MAX_PHASE_SEARCH_DURATION: Millisecond = 800 * 24 * 60 * 60 * 1000;
 export const MAX_PHASE_COUNT = 100;
 export const MIN_PHASE_COUNT = 1;

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.43.0
+
+- Moon age info.
+
 ## 2.42.1
 
 - Azimuth widget transition and accessible controls.

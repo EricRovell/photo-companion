@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 
 import {
+	getMoonAge,
 	getMoonEvents,
 	getMoonIllumination,
 	getMoonPosition,
@@ -142,6 +143,16 @@ describe("Moon", () => {
 		expect(illumination.fraction).toBeCloseTo(0.4912, 3);
 		expect(illumination.phase).toBe("THIRD_QUARTER");
 		expect(illumination.waxing).toBe(false);
+	});
+
+	test("reports age as elapsed time since the previous new Moon", () => {
+		expect(getMoonAge(Date.parse("2025-01-30T12:36:00Z"))).toBeCloseTo(1, 2);
+	});
+
+	test("reports the October 2026 lunar age to the minute", () => {
+		const age = getMoonAge(Date.parse("2026-10-18T21:19:40Z"));
+
+		expect(Math.round(age * 24 * 60)).toBe((8 * 24 + 5) * 60 + 30);
 	});
 
 	test.each(MOON_PHASE_CASES)("$description", ({ input, output }) => {
