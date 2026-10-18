@@ -1,45 +1,23 @@
-import type { Translation } from "./translation.type";
+import type { Translation } from "../types";
 
 export const t = {
 	BRIDGE_NAME_SPB: {
-		ALEXANDER_NEVSKY: "Alexander Nevsky",
-		ANNUNCIATION: "Annunciation",
-		BOLSHEOKHTINSKY: "Bolsheokhtinsky",
-		EXCHANGE: "Exchange",
-		GRENADERSKY: "Grenadersky",
-		KANTEMIROVSKY: "Kantemirovsky",
-		LITEYNY: "Liteyny",
-		PALACE: "Palace",
-		SAMPSONIEVSKY: "Sampsonievsky",
-		TRINITY: "Trinity",
-		TUCHKOV: "Tuchkov",
-		VOLODARSKY: "Volodarsky"
+		ALEXANDER_NEVSKY: "Alexander Nevsky Bridge",
+		ANNUNCIATION: "Annunciation Bridge",
+		BOLSHEOKHTINSKY: "Bolsheokhtinsky Bridge",
+		EXCHANGE: "Exchange Bridge",
+		GRENADERSKY: "Grenadersky Bridge",
+		KANTEMIROVSKY: "Kantemirovsky Bridge",
+		LITEYNY: "Liteyny Bridge",
+		PALACE: "Palace Bridge",
+		SAMPSONIEVSKY: "Sampsonievsky Bridge",
+		TRINITY: "Trinity Bridge",
+		TUCHKOV: "Tuchkov Bridge",
+		VOLODARSKY: "Volodarsky Bridge"
 	},
-	BRIDGE_SPB_EVENTS: {
-		ALEXANDER_NEVSKY_CLOSE: "Lifting down the Alexander Nevskiy bridge",
-		ALEXANDER_NEVSKY_OPEN: "Lifting up the Alexander Nevskiy bridge",
-		ANNUNCIATION_CLOSE: "Lifting down the Annunciation bridge",
-		ANNUNCIATION_OPEN: "Lifting up the Annunciation bridge",
-		BOLSHEOKHTINSKY_CLOSE: "Lifting down the Bolsheokhtinsky bridge",
-		BOLSHEOKHTINSKY_OPEN: "Lifting up the Bolsheokhtinsky bridge",
-		EXCHANGE_CLOSE: "Lifting down the Exchange bridge",
-		EXCHANGE_OPEN: "Lifting up the Exchange bridge",
-		GRENADERSKY_CLOSE: "Lifting down the Grenadersky bridge",
-		GRENADERSKY_OPEN: "Lifting up the Grenadersky bridge",
-		KANTEMIROVSKY_CLOSE: "Lifting down the Kantemirovsky bridge",
-		KANTEMIROVSKY_OPEN: "Lifting up the Kantemirovsky bridge",
-		LITEYNY_CLOSE: "Lifting down the Liteyny bridge",
-		LITEYNY_OPEN: "Lifting up the Liteyny bridge",
-		PALACE_CLOSE: "Lifting down the Palace bridge",
-		PALACE_OPEN: "Lifting up the Palace bridge",
-		SAMPSONIEVSKY_CLOSE: "Lifting down the Sampsonievsky bridge",
-		SAMPSONIEVSKY_OPEN: "Lifting up the Sampsonievsky bridge",
-		TRINITY_CLOSE: "Lifting down the Trinity bridge",
-		TRINITY_OPEN: "Lifting up the Trinity bridge",
-		TUCHKOV_CLOSE: "Lifting down the Tuchkov bridge",
-		TUCHKOV_OPEN: "Lifting up the Tuchkov bridge",
-		VOLODARSKY_CLOSE: "Lifting down the Volodarsky bridge",
-		VOLODARSKY_OPEN: "Lifting up the Volodarsky bridge"
+	BRIDGE_SPB_EVENT: {
+		CLOSE: "Lifting down: {bridge}",
+		OPEN: "Lifting up: {bridge}"
 	},
 	CITIES: {
 		MOSCOW: "Moscow, Russia",
@@ -75,11 +53,9 @@ export const t = {
 		ALL_BRIDGES_LIFTED_DOWN: "All drawbridges are lifted down",
 		ALL_BRIDGES_LIFTED_UP: "All drawbridges are lifted up",
 		ALTITUDE: "Altitude",
-		ALWAYS: "Always",
 		ASK_DEVICE_GEOLOCATION: "Ask device for geolocation",
 		AZIMUTH: "Azimuth",
 		BEST_WINDOW: "Best viewing window",
-		BRIDGE: "Bridge",
 		BRIDGE_CLOSED: "Lifted down",
 		BRIDGE_CLOSING: "Lifting down",
 		BRIDGE_OPENED: "Lifted up",
@@ -101,7 +77,6 @@ export const t = {
 		DISTANCE: "Distance",
 		DURATION_DAYLIGHT: "Daylight duration",
 		DURATION_LIGHTS: "Lights duration",
-		DURATION_MOONLIGHT: "Moonlight duration",
 		EVENT_ALLOW_LIST: "Event allow list",
 		FULL_MOON_NAME: "Full Moon Name",
 		GEOLOCATION: "Geolocation",
@@ -211,7 +186,6 @@ export const t = {
 		BRIDGE_EXCEPTION: "Lifting up this bridge is carried out upon prior request 2 days in advance.",
 		BRIDGE_WILL_CLOSE_WITHIN: "The bridge will be lifted down within",
 		BRIDGE_WILL_OPEN_WITHIN: "The bridge will be lifted up within",
-		CHECK_DATE_INPUT: "Please, check out the date-time input and choose it right",
 		EARTHSHINE_NO_WINDOW: "No suitable astronomical earthshine window on this date.",
 		EARTHSHINE_WEATHER_NOTE: "Astronomical estimate only. Clouds, haze and light pollution can reduce visibility.",
 		EVENTS_ARE_DISABLED: "All events are disabled",
@@ -222,12 +196,8 @@ export const t = {
 		NAVIGATION_STARTS_AT: "Navigation starts after",
 		NO_EVENTS: "No more events for this date",
 		PAGE_404: "Unfortunately, such page does not exist...",
-		SET_CURRENT_DATE_ADVICE: "Set the current date and time using the button below",
-		SET_CURRENT_DATETIME: "Set the current date and time",
 		TAB_LIMITS: "Select at least 1 tab",
-		UPDATE: "Update is ready to be installed.",
-		WRONG_DATE: "Error: incorrect date-time value.",
-		WRONG_DATE_URL: "Please, check the URL for correct date-time format"
+		UPDATE: "Update is ready to be installed."
 	},
 	MOON_NAME: {
 		BEAVER: "Beaver",
@@ -296,7 +266,6 @@ export const t = {
 		ASTRONOMICAL_DAWN_TITLE: "The night ends",
 		ASTRONOMICAL_DUSK: "Night begins",
 		ASTRONOMICAL_DUSK_TITLE: "Astronomical dusk ends",
-		BLUE_HOUR: "Blue hour",
 		BLUE_HOUR_END_DAWN: "Dawn blue hour",
 		BLUE_HOUR_END_DAWN_TITLE: "Dawn blue hour ends",
 		BLUE_HOUR_END_DUSK: "Dusk blue hour ends",
@@ -307,7 +276,6 @@ export const t = {
 		CIVIL_DAWN_TITLE: "Nautical dawn ends",
 		CIVIL_DUSK: "Civil dusk",
 		CIVIL_DUSK_TITLE: "Civil dusk ends",
-		GOLDEN_HOUR: "Golden hour",
 		GOLDEN_HOUR_END_DAWN: "Dawn golden hour ends",
 		GOLDEN_HOUR_END_DAWN_TITLE: "The daytime begins",
 		GOLDEN_HOUR_END_DUSK: "Civil twilight",
@@ -350,13 +318,10 @@ export const t = {
 		MOON: "The Moon",
 		MOON_PHASE_CALENDAR: "The Moon Phases Calendar",
 		MOON_TIMES: "The Moon Times",
-		NAVIGATION_CLOSED: "The navigation is closed",
-		NAVIGATION_OPENED: "The navigation is opened",
 		NOW: "Now",
 		SETTINGS: "Settings",
 		SUN: "The Sun",
 		SUN_TIMES: "The Sun Times",
-		THE_CLOSEST_EVENT: "The closest event",
 		TIMELINE: "Timeline"
 	}
 } as const satisfies Translation;

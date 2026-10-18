@@ -13,31 +13,9 @@ export interface Translation {
 		TUCHKOV: string;
 		VOLODARSKY: string;
 	};
-	BRIDGE_SPB_EVENTS: {
-		ALEXANDER_NEVSKY_CLOSE: string;
-		ALEXANDER_NEVSKY_OPEN: string;
-		ANNUNCIATION_CLOSE: string;
-		ANNUNCIATION_OPEN: string;
-		BOLSHEOKHTINSKY_CLOSE: string;
-		BOLSHEOKHTINSKY_OPEN: string;
-		EXCHANGE_CLOSE: string;
-		EXCHANGE_OPEN: string;
-		GRENADERSKY_CLOSE: string;
-		GRENADERSKY_OPEN: string;
-		KANTEMIROVSKY_CLOSE: string;
-		KANTEMIROVSKY_OPEN: string;
-		LITEYNY_CLOSE: string;
-		LITEYNY_OPEN: string;
-		PALACE_CLOSE: string;
-		PALACE_OPEN: string;
-		SAMPSONIEVSKY_CLOSE: string;
-		SAMPSONIEVSKY_OPEN: string;
-		TRINITY_CLOSE: string;
-		TRINITY_OPEN: string;
-		TUCHKOV_CLOSE: string;
-		TUCHKOV_OPEN: string;
-		VOLODARSKY_CLOSE: string;
-		VOLODARSKY_OPEN: string;
+	BRIDGE_SPB_EVENT: {
+		CLOSE: `${string}{bridge}${string}`;
+		OPEN: `${string}{bridge}${string}`;
 	};
 	CITIES: {
 		MOSCOW: string;
@@ -73,11 +51,9 @@ export interface Translation {
 		ALL_BRIDGES_LIFTED_DOWN: string;
 		ALL_BRIDGES_LIFTED_UP: string;
 		ALTITUDE: string;
-		ALWAYS: string;
 		ASK_DEVICE_GEOLOCATION: string;
 		AZIMUTH: string;
 		BEST_WINDOW: string;
-		BRIDGE: string;
 		BRIDGE_CLOSED: string;
 		BRIDGE_CLOSING: string;
 		BRIDGE_OPENED: string;
@@ -99,7 +75,6 @@ export interface Translation {
 		DISTANCE: string;
 		DURATION_DAYLIGHT: string;
 		DURATION_LIGHTS: string;
-		DURATION_MOONLIGHT: string;
 		EVENT_ALLOW_LIST: string;
 		FULL_MOON_NAME: string;
 		GEOLOCATION: string;
@@ -209,7 +184,6 @@ export interface Translation {
 		BRIDGE_EXCEPTION: string;
 		BRIDGE_WILL_CLOSE_WITHIN: string;
 		BRIDGE_WILL_OPEN_WITHIN: string;
-		CHECK_DATE_INPUT: string;
 		EARTHSHINE_NO_WINDOW: string;
 		EARTHSHINE_WEATHER_NOTE: string;
 		EVENTS_ARE_DISABLED: string;
@@ -220,12 +194,8 @@ export interface Translation {
 		NAVIGATION_STARTS_AT: string;
 		NO_EVENTS: string;
 		PAGE_404: string;
-		SET_CURRENT_DATE_ADVICE: string;
-		SET_CURRENT_DATETIME: string;
 		TAB_LIMITS: string;
 		UPDATE: string;
-		WRONG_DATE: string;
-		WRONG_DATE_URL: string;
 	};
 	MOON_NAME: {
 		BEAVER: string;
@@ -294,7 +264,6 @@ export interface Translation {
 		ASTRONOMICAL_DAWN_TITLE: string;
 		ASTRONOMICAL_DUSK: string;
 		ASTRONOMICAL_DUSK_TITLE: string;
-		BLUE_HOUR: string;
 		BLUE_HOUR_END_DAWN: string;
 		BLUE_HOUR_END_DAWN_TITLE: string;
 		BLUE_HOUR_END_DUSK: string;
@@ -305,7 +274,6 @@ export interface Translation {
 		CIVIL_DAWN_TITLE: string;
 		CIVIL_DUSK: string;
 		CIVIL_DUSK_TITLE: string;
-		GOLDEN_HOUR: string;
 		GOLDEN_HOUR_END_DAWN: string;
 		GOLDEN_HOUR_END_DAWN_TITLE: string;
 		GOLDEN_HOUR_END_DUSK: string;
@@ -348,13 +316,10 @@ export interface Translation {
 		MOON: string;
 		MOON_PHASE_CALENDAR: string;
 		MOON_TIMES: string;
-		NAVIGATION_CLOSED: string;
-		NAVIGATION_OPENED: string;
 		NOW: string;
 		SETTINGS: string;
 		SUN: string;
 		SUN_TIMES: string;
-		THE_CLOSEST_EVENT: string;
 		TIMELINE: string;
 	};
 }

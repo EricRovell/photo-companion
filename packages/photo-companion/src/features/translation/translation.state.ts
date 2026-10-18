@@ -18,9 +18,11 @@ import { isNullable } from "utils/validators";
 
 import { useSettings } from "~/features/settings";
 
+import { formatMessage } from "./lib/format-message";
+
 const TRANSLATIONS = {
-	"en": () => import("./translation.en"),
-	"ru": () => import("./translation.ru")
+	"en": () => import("./consts/translation.en"),
+	"ru": () => import("./consts/translation.ru")
 };
 
 export function createTranslationState() {
@@ -40,6 +42,7 @@ export function createTranslationState() {
 		days: dayFormatter(lang()),
 		degrees: degreesFormatter(lang()),
 		kilometers: kilometersFormatter(lang()),
+		message: formatMessage,
 		meters: metersFormatter(lang()),
 		minutes: minutesFormatter(lang()),
 		percent: percentFormatter(lang()),

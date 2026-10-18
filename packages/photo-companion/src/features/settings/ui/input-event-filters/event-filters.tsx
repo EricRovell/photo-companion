@@ -8,7 +8,7 @@ import { InputCheckboxGroup } from "./input-checkbox-group";
 import { LIGHTS_EVENT_NAMES, MOON_EVENT_NAMES, SUN_EVENT_NAMES } from "./input-event-filters.consts";
 
 export const InputEventFilters = () => {
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
 	const { setSettingsStore, settingsStore } = useSettingsForm();
 
 	return (
@@ -19,7 +19,7 @@ export const InputEventFilters = () => {
 					groupValue="bridges"
 					name="events_bridges_spb"
 					onChange={setSettingsStore}
-					options={BRIDGES_EVENTS_OPTIONS(t())}
+					options={BRIDGES_EVENTS_OPTIONS(t(), format().message)}
 					value={settingsStore.events_bridges_spb}
 				/>
 			</Show>

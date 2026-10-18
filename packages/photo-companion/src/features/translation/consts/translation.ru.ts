@@ -1,45 +1,23 @@
-import type { Translation } from "./translation.type";
+import type { Translation } from "../types";
 
 export const t = {
 	BRIDGE_NAME_SPB: {
-		ALEXANDER_NEVSKY: "Александра Невского",
-		ANNUNCIATION: "Благовещенский",
-		BOLSHEOKHTINSKY: "Большеохтинский",
-		EXCHANGE: "Биржевой",
-		GRENADERSKY: "Гренадерский",
-		KANTEMIROVSKY: "Кантемировский",
-		LITEYNY: "Литейный",
-		PALACE: "Дворцовый",
-		SAMPSONIEVSKY: "Сампсониевский",
-		TRINITY: "Троицкий",
-		TUCHKOV: "Тучков",
-		VOLODARSKY: "Володарский"
+		ALEXANDER_NEVSKY: "мост Александра Невского",
+		ANNUNCIATION: "Благовещенский мост",
+		BOLSHEOKHTINSKY: "Большеохтинский мост",
+		EXCHANGE: "Биржевой мост",
+		GRENADERSKY: "Гренадерский мост",
+		KANTEMIROVSKY: "Кантемировский мост",
+		LITEYNY: "Литейный мост",
+		PALACE: "Дворцовый мост",
+		SAMPSONIEVSKY: "Сампсониевский мост",
+		TRINITY: "Троицкий мост",
+		TUCHKOV: "Тучков мост",
+		VOLODARSKY: "Володарский мост"
 	},
-	BRIDGE_SPB_EVENTS: {
-		ALEXANDER_NEVSKY_CLOSE: "Сведение моста Александра Невского",
-		ALEXANDER_NEVSKY_OPEN: "Развод моста Александра Невского",
-		ANNUNCIATION_CLOSE: "Сведение Благовещенского моста",
-		ANNUNCIATION_OPEN: "Развод Благовещенского моста",
-		BOLSHEOKHTINSKY_CLOSE: "Сведение Большеохтинского моста",
-		BOLSHEOKHTINSKY_OPEN: "Развод Большеохтинского моста",
-		EXCHANGE_CLOSE: "Сведение Биржевого моста",
-		EXCHANGE_OPEN: "Развод Биржевого моста",
-		GRENADERSKY_CLOSE: "Сведение Гренадёрского моста",
-		GRENADERSKY_OPEN: "Развод Гренадёрского моста",
-		KANTEMIROVSKY_CLOSE: "Сведение Кантемировского моста",
-		KANTEMIROVSKY_OPEN: "Развод Кантемировского моста",
-		LITEYNY_CLOSE: "Сведение Литейного моста",
-		LITEYNY_OPEN: "Развод Литейного моста",
-		PALACE_CLOSE: "Сведение Дворцового моста",
-		PALACE_OPEN: "Развод Дворцового моста",
-		SAMPSONIEVSKY_CLOSE: "Сведение Сампсониевского моста",
-		SAMPSONIEVSKY_OPEN: "Развод Сампсониевского моста",
-		TRINITY_CLOSE: "Сведение Троицкого моста",
-		TRINITY_OPEN: "Развод Троицкого моста",
-		TUCHKOV_CLOSE: "Сведение Тучкова моста",
-		TUCHKOV_OPEN: "Развод Тучкова моста",
-		VOLODARSKY_CLOSE: "Сведение Володарского моста",
-		VOLODARSKY_OPEN: "Развод Володарского моста"
+	BRIDGE_SPB_EVENT: {
+		CLOSE: "Сведение: {bridge}",
+		OPEN: "Развод: {bridge}"
 	},
 	CITIES: {
 		MOSCOW: "г. Москва",
@@ -75,11 +53,9 @@ export const t = {
 		ALL_BRIDGES_LIFTED_DOWN: "Все мосты cведены",
 		ALL_BRIDGES_LIFTED_UP: "Все мосты разведены",
 		ALTITUDE: "Высота",
-		ALWAYS: "Всегда",
 		ASK_DEVICE_GEOLOCATION: "Запросить данные с устройства",
 		AZIMUTH: "Азимут",
 		BEST_WINDOW: "Лучшее время наблюдения",
-		BRIDGE: "мост",
 		BRIDGE_CLOSED: "Сведён",
 		BRIDGE_CLOSING: "Сведение моста",
 		BRIDGE_OPENED: "Разведён",
@@ -101,7 +77,6 @@ export const t = {
 		DISTANCE: "Расстояние",
 		DURATION_DAYLIGHT: "Длительность солнечного дня",
 		DURATION_LIGHTS: "Длительность освещения",
-		DURATION_MOONLIGHT: "Длительность лунного дня",
 		EVENT_ALLOW_LIST: "Фильтры событий",
 		FULL_MOON_NAME: "Имя полнолуния",
 		GEOLOCATION: "Геолокация",
@@ -211,7 +186,6 @@ export const t = {
 		BRIDGE_EXCEPTION: "Разводка этого моста производится по предварительной заявке за 2 суток.",
 		BRIDGE_WILL_CLOSE_WITHIN: "Мост будет сведён через",
 		BRIDGE_WILL_OPEN_WITHIN: "Мост будет разведён через",
-		CHECK_DATE_INPUT: "Проверьте поле ввода даты у нижнего края экрана, выберите верное значение",
 		EARTHSHINE_NO_WINDOW: "В этот день нет подходящего астрономического окна для пепельного света.",
 		EARTHSHINE_WEATHER_NOTE: "Только астрономическая оценка. Облака, дымка и городская засветка могут ухудшить видимость.",
 		EVENTS_ARE_DISABLED: "Все типы событий отключены",
@@ -222,12 +196,8 @@ export const t = {
 		NAVIGATION_STARTS_AT: "До начала навигации",
 		NO_EVENTS: "Никаких событий на сегодня",
 		PAGE_404: "К сожалению, данная страница не существует...",
-		SET_CURRENT_DATE_ADVICE: "Либо установите текущее значение даты и времени с помощью кнопки ниже",
-		SET_CURRENT_DATETIME: "Установить текущие время и дату",
 		TAB_LIMITS: "Выберите хотя бы 1 активный раздел",
-		UPDATE: "Обновление готово к установке.",
-		WRONG_DATE: "Выбрана неверная дата. Для решения проблемы",
-		WRONG_DATE_URL: "Проверьте адресную строку, дата должна соответствовать формату"
+		UPDATE: "Обновление готово к установке."
 	},
 	MOON_NAME: {
 		BEAVER: "Бобровая",
@@ -296,7 +266,6 @@ export const t = {
 		ASTRONOMICAL_DAWN_TITLE: "Ночь подходит к концу",
 		ASTRONOMICAL_DUSK: "Начало ночи",
 		ASTRONOMICAL_DUSK_TITLE: "Астрономические сумерки подходят к концу",
-		BLUE_HOUR: "Синий час",
 		BLUE_HOUR_END_DAWN: "Утренний синий час",
 		BLUE_HOUR_END_DAWN_TITLE: "Утренний синий час подходит к концу",
 		BLUE_HOUR_END_DUSK: "Вечерний синий час подходит к концу",
@@ -307,7 +276,6 @@ export const t = {
 		CIVIL_DAWN_TITLE: "Навигационные сумерки подходят к концу",
 		CIVIL_DUSK: "Гражданские сумерки",
 		CIVIL_DUSK_TITLE: "Гражданские сумерки подходят к концу",
-		GOLDEN_HOUR: "Золотой час",
 		GOLDEN_HOUR_END_DAWN: "Утренний золотой час подходит к концу",
 		GOLDEN_HOUR_END_DAWN_TITLE: "Начало солнечного дня",
 		GOLDEN_HOUR_END_DUSK: "Гражданские сумерки",
@@ -350,13 +318,10 @@ export const t = {
 		MOON: "Луна",
 		MOON_PHASE_CALENDAR: "Календарь Лунных фаз",
 		MOON_TIMES: "Времена восхода и захода Луны",
-		NAVIGATION_CLOSED: "Навигация закрыта",
-		NAVIGATION_OPENED: "Навигация открыта",
 		NOW: "Сейчас",
 		SETTINGS: "Настройки",
 		SUN: "Солнце",
 		SUN_TIMES: "Времена восхода и захода Солнца",
-		THE_CLOSEST_EVENT: "Ближайшее событие",
 		TIMELINE: "События"
 	}
 } as const satisfies Translation;
