@@ -115,7 +115,6 @@ export const t = {
 		SHADOW_LENGTH: "Shadow length, m",
 		SHADOW_LEVEL: "Shadow level, m",
 		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle, deg",
-		SOLAR_ESTIMATE: "Solar estimate",
 		STATE: "State",
 		SUNRISE_TIME: "Sunrise time",
 		SUNSET_TIME: "Sunset time",
@@ -134,17 +133,20 @@ export const t = {
 		ZENITH: "Zenith"
 	},
 	LIGHTS_COMPARISON: {
-		EARLIER: "earlier",
-		LATER: "later",
-		LONGER: "longer",
-		SHORTER: "shorter",
+		EARLIER: "{duration} earlier than yesterday",
+		LATER: "{duration} later than yesterday",
+		LONGER: "{duration} longer than yesterday",
+		SHORTER: "{duration} shorter than yesterday",
 		SWITCH_OFF: "Turn-off time",
-		SWITCH_ON: "Turn-on time",
-		THAN_YESTERDAY: "than yesterday"
+		SWITCH_ON: "Turn-on time"
 	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "City lights switched off",
 		LIGHTS_START: "City Lights switched on"
+	},
+	LIGHTS_SOURCE: {
+		SOLAR_ESTIMATE: "Solar estimate",
+		SOLAR_ESTIMATE_UNCERTAIN: "Solar estimate (±{duration})"
 	},
 	LUNAR_ECLIPSE: {
 		BELOW_HORIZON: "Below the horizon",
@@ -299,6 +301,10 @@ export const t = {
 		SUNSET_END_TITLE: "The Sun disk is below the horizon",
 		SUNSET_START: "Sunset starts",
 		SUNSET_START_TITLE: "The Sun disk touches the horizon"
+	},
+	TIMELINE_EVENT: {
+		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",
+		SUN_DESCRIPTION: "{event}, {azimuth}"
 	},
 	TITLE: {
 		ABOUT: "FAQ",

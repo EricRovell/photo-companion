@@ -113,7 +113,6 @@ export interface Translation {
 		SHADOW_LENGTH: string;
 		SHADOW_LEVEL: string;
 		SOLAR_AZIMUTH_ANGLE: string;
-		SOLAR_ESTIMATE: string;
 		STATE: string;
 		SUNRISE_TIME: string;
 		SUNSET_TIME: string;
@@ -132,17 +131,20 @@ export interface Translation {
 		ZENITH: string;
 	};
 	LIGHTS_COMPARISON: {
-		EARLIER: string;
-		LATER: string;
-		LONGER: string;
-		SHORTER: string;
+		EARLIER: `${string}{duration}${string}`;
+		LATER: `${string}{duration}${string}`;
+		LONGER: `${string}{duration}${string}`;
+		SHORTER: `${string}{duration}${string}`;
 		SWITCH_OFF: string;
 		SWITCH_ON: string;
-		THAN_YESTERDAY: string;
 	};
 	LIGHTS_EVENTS: {
 		LIGHTS_END: string;
 		LIGHTS_START: string;
+	};
+	LIGHTS_SOURCE: {
+		SOLAR_ESTIMATE: string;
+		SOLAR_ESTIMATE_UNCERTAIN: `${string}{duration}${string}`;
 	};
 	LUNAR_ECLIPSE: {
 		BELOW_HORIZON: string;
@@ -297,6 +299,10 @@ export interface Translation {
 		SUNSET_END_TITLE: string;
 		SUNSET_START: string;
 		SUNSET_START_TITLE: string;
+	};
+	TIMELINE_EVENT: {
+		MOON_DESCRIPTION: `${string}{type}${string}{fraction}${string}{azimuth}${string}`;
+		SUN_DESCRIPTION: `${string}{event}${string}{azimuth}${string}`;
 	};
 	TITLE: {
 		ABOUT: string;

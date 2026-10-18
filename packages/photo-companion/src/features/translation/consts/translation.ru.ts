@@ -115,7 +115,6 @@ export const t = {
 		SHADOW_LENGTH: "Длина тени, м",
 		SHADOW_LEVEL: "Уровень тени, м",
 		SOLAR_AZIMUTH_ANGLE: "Угол азимута Солнца, °",
-		SOLAR_ESTIMATE: "Расчёт по Солнцу",
 		STATE: "Состояние",
 		SUNRISE_TIME: "Время восхода",
 		SUNSET_TIME: "Время заката",
@@ -134,17 +133,20 @@ export const t = {
 		ZENITH: "Зенит"
 	},
 	LIGHTS_COMPARISON: {
-		EARLIER: "раньше",
-		LATER: "позже",
-		LONGER: "дольше",
-		SHORTER: "короче",
+		EARLIER: "на {duration} раньше, чем вчера",
+		LATER: "на {duration} позже, чем вчера",
+		LONGER: "на {duration} дольше, чем вчера",
+		SHORTER: "на {duration} короче, чем вчера",
 		SWITCH_OFF: "Время выключения",
-		SWITCH_ON: "Время включения",
-		THAN_YESTERDAY: "чем вчера"
+		SWITCH_ON: "Время включения"
 	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "Выключение городского освещения",
 		LIGHTS_START: "Включение городского освещения"
+	},
+	LIGHTS_SOURCE: {
+		SOLAR_ESTIMATE: "Расчёт по Солнцу",
+		SOLAR_ESTIMATE_UNCERTAIN: "Расчёт по Солнцу (±{duration})"
 	},
 	LUNAR_ECLIPSE: {
 		BELOW_HORIZON: "Под горизонтом",
@@ -299,6 +301,10 @@ export const t = {
 		SUNSET_END_TITLE: "Солнечный диск ушёл за горизонт",
 		SUNSET_START: "Закат Солнца",
 		SUNSET_START_TITLE: "Солнечный диск касается горизонта"
+	},
+	TIMELINE_EVENT: {
+		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",
+		SUN_DESCRIPTION: "{event}, {azimuth}"
 	},
 	TITLE: {
 		ABOUT: "Справка",

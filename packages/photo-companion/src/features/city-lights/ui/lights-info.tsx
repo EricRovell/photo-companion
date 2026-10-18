@@ -42,30 +42,36 @@ export const LightsInfo = () => {
 		}
 
 		return schedule.uncertaintyMinutes > 0
-			? `${t().LABEL.SOLAR_ESTIMATE} (±${format().minutes(schedule.uncertaintyMinutes)})`
-			: t().LABEL.SOLAR_ESTIMATE;
+			? format().message(t().LIGHTS_SOURCE.SOLAR_ESTIMATE_UNCERTAIN, {
+				duration: format().minutes(schedule.uncertaintyMinutes)
+			})
+			: t().LIGHTS_SOURCE.SOLAR_ESTIMATE;
 	};
 
 	const formatClockDifference = (minutes: number) => {
-		const direction = minutes < 0
+		const message = minutes < 0
 			? t().LIGHTS_COMPARISON.EARLIER
 			: t().LIGHTS_COMPARISON.LATER;
 		const tone: "danger" | "success" = minutes < 0 ? "danger" : "success";
 
 		return {
-			text: `${format().minutes(Math.abs(minutes))} ${direction} ${t().LIGHTS_COMPARISON.THAN_YESTERDAY}`,
+			text: format().message(message, {
+				duration: format().minutes(Math.abs(minutes))
+			}),
 			tone
 		};
 	};
 
 	const formatDurationDifference = (minutes: number) => {
-		const direction = minutes < 0
+		const message = minutes < 0
 			? t().LIGHTS_COMPARISON.SHORTER
 			: t().LIGHTS_COMPARISON.LONGER;
 		const tone: "danger" | "success" = minutes < 0 ? "danger" : "success";
 
 		return {
-			text: `${format().minutes(Math.abs(minutes))} ${direction} ${t().LIGHTS_COMPARISON.THAN_YESTERDAY}`,
+			text: format().message(message, {
+				duration: format().minutes(Math.abs(minutes))
+			}),
 			tone
 		};
 	};

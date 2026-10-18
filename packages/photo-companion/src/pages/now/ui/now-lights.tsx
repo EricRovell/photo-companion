@@ -26,8 +26,10 @@ const NowLightsInfo = () => {
 		}
 
 		return getSchedule().uncertaintyMinutes > 0
-			? `${t().LABEL.SOLAR_ESTIMATE} (±${format().minutes(getSchedule().uncertaintyMinutes)})`
-			: t().LABEL.SOLAR_ESTIMATE;
+			? format().message(t().LIGHTS_SOURCE.SOLAR_ESTIMATE_UNCERTAIN, {
+				duration: format().minutes(getSchedule().uncertaintyMinutes)
+			})
+			: t().LIGHTS_SOURCE.SOLAR_ESTIMATE;
 	};
 
 	const statusMessage = () => getLightsScheduleStatusMessage(getSchedule().status, t());

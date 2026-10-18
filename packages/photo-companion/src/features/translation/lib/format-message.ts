@@ -2,6 +2,12 @@ import { isNullable } from "utils/validators";
 
 import type { JSX } from "solid-js";
 
+import {
+	MESSAGE_PLACEHOLDER_PATTERN,
+	MESSAGE_RICH_TAG_PATTERN,
+	MESSAGE_TOKEN_PATTERN
+} from "../consts/message-template";
+
 type PlaceholderNames<Input extends string> = string extends Input
 	? string
 	: Input extends `${string}{${infer Name}}${infer Rest}`
@@ -29,9 +35,7 @@ type MessageResult<Values> = [Values[keyof Values]] extends [MessagePrimitive]
 	? string
 	: JSX.Element;
 
-const PLACEHOLDER_PATTERN = /{([A-Za-z][A-Za-z0-9_]*)}/g;
-const RICH_TAG_PATTERN = /<\/?[A-Za-z][A-Za-z0-9_]*>/;
-const RICH_TOKEN_PATTERN = /{([A-Za-z][A-Za-z0-9_]*)}|<(\/)?([A-Za-z][A-Za-z0-9_]*)>/g;
+export type MessageFormatter = typeof formatMessage;
 
 function missingValue(name: string): never {
 	throw new Error(`Missing translation template value: ${name}`);
@@ -41,7 +45,7 @@ function formatPlainMessage(
 	input: string,
 	replacements: Partial<Record<string, MessageValue>>
 ): string {
-	return input.replace(PLACEHOLDER_PATTERN, (_match, name: string) => {
+	return input.replace(MESSAGE_PLACEHOLDER_PATTERN, (_match, name: string) => {
 		const replacement = replacements[name];
 
 		if (typeof replacement !== "number" && typeof replacement !== "string") {
@@ -70,7 +74,7 @@ function formatRichMessage(
 	const frames: RichFrame[] = [ { children: [] } ];
 	let textIndex = 0;
 
-	for (const match of input.matchAll(RICH_TOKEN_PATTERN)) {
+	for (const match of input.matchAll(MESSAGE_TOKEN_PATTERN)) {
 		const matchIndex = match.index;
 		const frame = frames[frames.length - 1];
 
@@ -136,7 +140,7 @@ export function formatMessage(
 	input: string,
 	values: Record<string, MessageValue>
 ): JSX.Element | string {
-	const rich = RICH_TAG_PATTERN.test(input) || Object.values(values).some(value => (
+	const rich = MESSAGE_RICH_TAG_PATTERN.test(input) || Object.values(values).some(value => (
 		typeof value !== "number" && typeof value !== "string"
 	));
 

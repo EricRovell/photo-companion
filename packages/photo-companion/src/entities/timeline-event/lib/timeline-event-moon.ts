@@ -1,14 +1,16 @@
-import { template } from "utils/formatters";
-
 import { Moon } from "~/entities/moon";
 
 import type { EventComponent, MoonEvent } from "../types";
-import type { Translation } from "~/features/translation";
+import type { MessageFormatter, Translation } from "~/features/translation";
 
-export function moonEventComponent(event: MoonEvent, t: Translation): EventComponent<{ phase: number, rotation: number }> {
+export function moonEventComponent(
+	event: MoonEvent,
+	t: Translation,
+	messageFormatter: MessageFormatter
+): EventComponent<{ phase: number, rotation: number }> {
 	const { azimuth, fraction, phase, rotation, waxing } = event.data;
 
-	const message = template("{type} {fraction}, {azimuth}", {
+	const message = messageFormatter(t.TIMELINE_EVENT.MOON_DESCRIPTION, {
 		azimuth,
 		fraction,
 		type: waxing ? t.LABEL.WAXING : t.LABEL.WANING

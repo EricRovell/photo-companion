@@ -1,12 +1,14 @@
-import { template } from "utils/formatters";
-
 import { Sun } from "~/entities/sun";
 
 import type { EventComponent, SunEvent } from "../types";
 import type { SunEventName } from "~/entities/sun/types";
-import type { Translation } from "~/features/translation";
+import type { MessageFormatter, Translation } from "~/features/translation";
 
-export function sunEventComponent(event: SunEvent, t: Translation): EventComponent<{ event: SunEventName }> {
+export function sunEventComponent(
+	event: SunEvent,
+	t: Translation,
+	messageFormatter: MessageFormatter
+): EventComponent<{ event: SunEventName }> {
 	let message: Undefinable<string> = undefined;
 
 	switch (event.name) {
@@ -14,7 +16,7 @@ export function sunEventComponent(event: SunEvent, t: Translation): EventCompone
 		case "SUNRISE_END":
 		case "SUNSET_START":
 		case "SUNSET_END":
-			message = template("{event}, {azimuth}", {
+			message = messageFormatter(t.TIMELINE_EVENT.SUN_DESCRIPTION, {
 				azimuth: event.data.azimuth,
 				event: t.SUN_TIMES[`${event.name}_TITLE`]
 			});

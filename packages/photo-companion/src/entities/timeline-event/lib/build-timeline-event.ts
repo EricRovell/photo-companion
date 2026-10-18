@@ -9,7 +9,7 @@ import { isBridgeEvent, isLightsEvent, isMoonEvent, isSunEvent } from "./validat
 import type { TimelineEvent } from "../types";
 
 export function buildEventComponent(event: TimelineEvent) {
-	const { t } = useTranslation();
+	const { format, t } = useTranslation();
 
 	if (isBridgeEvent(event)) {
 		return bridgeEventComponent(event, t());
@@ -20,11 +20,11 @@ export function buildEventComponent(event: TimelineEvent) {
 	}
 
 	if (isMoonEvent(event)) {
-		return moonEventComponent(event, t());
+		return moonEventComponent(event, t(), format().message);
 	}
 
 	if (isSunEvent(event)) {
-		return sunEventComponent(event, t());
+		return sunEventComponent(event, t(), format().message);
 	}
 
 	throw new Error(`Unknown event is provided: ${JSON.stringify(event)}`);
