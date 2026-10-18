@@ -56,6 +56,12 @@ export interface Translation {
 		SOLAR_AZIMUTH_ANGLE: string;
 		SUN_AZIMUTH_NOT_VISIBLE: string;
 	},
+	HEIGHT_BY_SHADOW: {
+		RESULT: `${string}{altitude}${string}`
+			& `${string}{height}${string}`
+			& `${string}{time}${string}`
+			& `${string}<value>${string}</value>${string}`;
+	};
 	LABEL: {
 		ALIGN_COMPASS: string;
 		ALL_BRIDGES_LIFTED_DOWN: string;
@@ -89,7 +95,6 @@ export interface Translation {
 		FULL_MOON_NAME: string;
 		GEOLOCATION: string;
 		GO_HOME: string;
-		HEIGHT: string;
 		HOUR: string;
 		LANGUAGE: string;
 		LATITUDE: string;
@@ -129,7 +134,6 @@ export interface Translation {
 		TABS: string;
 		TILL_TURNED_OFF: string;
 		TILL_TURNED_ON: string;
-		TIME: string;
 		TIME_OFF: string;
 		TIME_ON: string;
 		TURNED_OFF: string;

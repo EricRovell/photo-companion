@@ -58,6 +58,9 @@ export const t = {
 		SOLAR_AZIMUTH_ANGLE: "Угол азимута Солнца должен быть в диапазоне от 0 до 359 градусов",
 		SUN_AZIMUTH_NOT_VISIBLE: "В выбранный день Солнце не достигает этого азимута над горизонтом"
 	},
+	HEIGHT_BY_SHADOW: {
+		RESULT: "Время: {time} · Высота Солнца: {altitude} · Высота объекта: <value>{height}</value>"
+	},
 	LABEL: {
 		ALIGN_COMPASS: "Ориентировать по устройству",
 		ALL_BRIDGES_LIFTED_DOWN: "Все мосты cведены",
@@ -91,7 +94,6 @@ export const t = {
 		FULL_MOON_NAME: "Имя полнолуния",
 		GEOLOCATION: "Геолокация",
 		GO_HOME: "На главную",
-		HEIGHT: "Высота",
 		HOUR: "Час",
 		LANGUAGE: "Язык",
 		LATITUDE: "Широта",
@@ -131,7 +133,6 @@ export const t = {
 		TABS: "Разделы приложения",
 		TILL_TURNED_OFF: "До отключения",
 		TILL_TURNED_ON: "До включения",
-		TIME: "Время",
 		TIME_OFF: "Время отключения",
 		TIME_ON: "Время включения",
 		TURNED_OFF: "Отключено",

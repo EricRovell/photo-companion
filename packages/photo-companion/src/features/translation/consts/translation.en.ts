@@ -58,6 +58,9 @@ export const t = {
 		SOLAR_AZIMUTH_ANGLE: "Solar azimuth angle should be in 0 ... 359 degrees range",
 		SUN_AZIMUTH_NOT_VISIBLE: "The Sun does not reach this azimuth above the horizon on the selected date"
 	},
+	HEIGHT_BY_SHADOW: {
+		RESULT: "Time: {time} · Altitude: {altitude} · Height: <value>{height}</value>"
+	},
 	LABEL: {
 		ALIGN_COMPASS: "Align with device",
 		ALL_BRIDGES_LIFTED_DOWN: "All drawbridges are lifted down",
@@ -91,7 +94,6 @@ export const t = {
 		FULL_MOON_NAME: "Full Moon Name",
 		GEOLOCATION: "Geolocation",
 		GO_HOME: "Go Home",
-		HEIGHT: "Height",
 		HOUR: "Hour",
 		LANGUAGE: "Language",
 		LATITUDE: "Latitude",
@@ -131,7 +133,6 @@ export const t = {
 		TABS: "Tabs",
 		TILL_TURNED_OFF: "Till turning off",
 		TILL_TURNED_ON: "Till turning on",
-		TIME: "Time",
 		TIME_OFF: "Shutdown time",
 		TIME_ON: "On time",
 		TURNED_OFF: "Turned off",
