@@ -35,17 +35,17 @@
 	},
 	"devDependencies": {
 		"@rollup/plugin-replace": "^5.0.7",
-		"@storybook/addon-a11y": "^10.6.1",
-		"@storybook/addon-docs": "^10.6.1",
+		"@storybook/addon-a11y": "catalog:storybook",
+		"@storybook/addon-docs": "catalog:storybook",
 		"@solidjs/testing-library": "^0.8.10",
 		"@testing-library/jest-dom": "^7.0.0",
-		"esbuild": "^0.28.2",
+		"esbuild": "catalog:build",
 		"jsdom": "^30.0.1",
 		"solid-marked": "^0.8.0",
-		"storybook": "^10.6.1",
-		"storybook-solidjs-vite": "^10.7.2",
-		"typescript": "catalog:default",
-		"vite": "catalog:default",
+		"storybook": "catalog:storybook",
+		"storybook-solidjs-vite": "catalog:storybook",
+		"typescript": "catalog:typescript",
+		"vite": "catalog:build",
 		"vite-plugin-solid-marked": "^0.8.0"
 	}
 }
