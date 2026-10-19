@@ -32,9 +32,9 @@ export function createTweenedAzimuthPath(target: Accessor<AzimuthPathPoint[]>) {
 	const [ path, setPath ] = createSignal(target());
 
 	createEffect(on(target, (targetPath) => {
-		const startPath = path();
+		const initialPath = path();
 
-		if (startPath.length !== targetPath.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		if (initialPath.length !== targetPath.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 			setPath(targetPath);
 			return;
 		}
@@ -46,7 +46,7 @@ export function createTweenedAzimuthPath(target: Accessor<AzimuthPathPoint[]>) {
 			const elapsed = time - start;
 			const progress = Math.min(elapsed / AZIMUTH_WIDGET_CONFIG.animation.transitionDuration, 1);
 
-			setPath(interpolatePath(startPath, targetPath, cubicInOut(progress)));
+			setPath(interpolatePath(initialPath, targetPath, cubicInOut(progress)));
 
 			if (progress < 1) {
 				frameId = requestAnimationFrame(tick);

@@ -39,14 +39,13 @@
 		"@storybook/addon-docs": "^10.6.1",
 		"@solidjs/testing-library": "^0.8.10",
 		"@testing-library/jest-dom": "^7.0.0",
-		"esbuild": "^0.23.0",
-		"esbuild-plugin-replace": "^1.4.0",
+		"esbuild": "^0.28.2",
 		"jsdom": "^30.0.1",
-		"solid-marked": "^0.6.3",
+		"solid-marked": "^0.8.0",
 		"storybook": "^10.6.1",
 		"storybook-solidjs-vite": "^10.7.2",
 		"typescript": "catalog:default",
 		"vite": "catalog:default",
-		"vite-plugin-solid-marked": "^0.6.3"
+		"vite-plugin-solid-marked": "^0.8.0"
 	}
 }

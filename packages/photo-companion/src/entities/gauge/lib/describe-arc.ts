@@ -10,13 +10,11 @@ export function describeArc(x: number, y: number, r1: number, r2: number, angleS
 	const outerStart = polarToCartesian(x, y, r2, angleEnd);
 	const outerEnd = polarToCartesian(x, y, r2, angleStart);
 
-	let largeArcFlag = "0";
+	const arcAngle = angleEnd >= angleStart
+		? angleEnd - angleStart
+		: (angleEnd + 360) - angleStart;
 
-	if (angleEnd >= angleStart) {
-		largeArcFlag = angleEnd - angleStart <= 180 ? "0" : "1";
-	} else {
-		largeArcFlag = (angleEnd + 360.0) - angleStart <= 180 ? "0" : "1";
-	}
+	const largeArcFlag = arcAngle <= 180 ? "0" : "1";
 
 	return [
 		"M", outerStart.x, outerStart.y,

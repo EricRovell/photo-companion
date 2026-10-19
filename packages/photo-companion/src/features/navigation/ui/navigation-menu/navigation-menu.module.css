@@ -17,7 +17,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: var(--space-4) calc(var(--space-4) + var(--space-2)) var(--space-4);
-	border-block-end: 1px solid rgba(173 216 230 / 10%);
+	border-block-end: 1px solid rgb(173 216 230 / 10%);
 
 }
 
@@ -53,7 +53,7 @@
 
 .section {
 	padding-block: var(--space-2);
-	border-block-end: 1px solid rgba(173 216 230 / 10%);
+	border-block-end: 1px solid rgb(173 216 230 / 10%);
 }
 
 .link {
