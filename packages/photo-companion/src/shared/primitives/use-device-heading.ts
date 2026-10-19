@@ -114,7 +114,7 @@ export function useDeviceHeading(options: DeviceHeadingOptions = {}) {
 			return;
 		}
 
-		const nextHeading = getOrientationHeading(event as DeviceOrientationEventWithCompass);
+		const nextHeading = getOrientationHeading(event);
 
 		if (!isNullable(nextHeading)) {
 			clearHeadingTimeout();

@@ -3,6 +3,10 @@ import { describe, expect, it } from "vitest";
 
 import { formatMessage } from "./format-message";
 
+function asRuntimeTemplate(template: string): string {
+	return template;
+}
+
 describe("translation message formatting", () => {
 	it("formats named primitive values", () => {
 		expect(formatMessage("Hello, {name}. You have {count} photos.", {
@@ -12,7 +16,9 @@ describe("translation message formatting", () => {
 	});
 
 	it("fails visibly when a runtime value is missing", () => {
-		expect(() => formatMessage("Hello, {name}." as string, {}))
+		const message = asRuntimeTemplate("Hello, {name}.");
+
+		expect(() => formatMessage(message, {}))
 			.toThrow("Missing translation template value: name");
 	});
 
@@ -48,7 +54,9 @@ describe("translation message formatting", () => {
 	});
 
 	it("rejects mismatched rich-text tags", () => {
-		expect(() => formatMessage("<link>Guide</strong>" as string, {
+		const message = asRuntimeTemplate("<link>Guide</strong>");
+
+		expect(() => formatMessage(message, {
 			link: children => <a href="/guide">{children}</a>,
 			strong: children => <strong>{children}</strong>
 		})).toThrow("Mismatched translation template tag: strong");

@@ -7,7 +7,7 @@ import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import solidMarkedPlugin from "vite-plugin-solid-marked";
 
-import { compileServiceWorker } from "./plugins/compile-service-worker";
+import { compileServiceWorker } from "./plugins/compile-service-worker.ts";
 
 /**
  * Returns the hash of the latest git commit
@@ -41,7 +41,7 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
-			"~": resolve(__dirname, "./src")
+			"~": resolve(import.meta.dirname, "./src")
 		}
 	}
 });

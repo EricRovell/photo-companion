@@ -1,6 +1,5 @@
 
 import { build } from "esbuild";
-import { replace } from "esbuild-plugin-replace";
 import { randomUUID } from "node:crypto";
 import { join } from "node:path";
 
@@ -22,17 +21,13 @@ export const compileServiceWorker: PluginOption = {
 	transformIndexHtml() {
 		void build({
 			bundle: true,
+			define: {
+				"__SERVICE_WORKER_ASSETS__": JSON.stringify(bundles),
+				"__VERSION_HASH__": JSON.stringify(randomUUID())
+			},
 			entryPoints: [ join(process.cwd(), "src", "features", "service-worker", "service-worker.js") ],
 			minify: true,
 			outfile: join(process.cwd(), "dist", "service-worker.js"),
-			plugins: [
-				replace({
-					values: {
-						"__SERVICE_WORKER_ASSETS__": () => JSON.stringify(bundles),
-						"__VERSION_HASH__": () => JSON.stringify(randomUUID())
-					}
-				})
-			],
 			target: "es2022"
 		});
 	}

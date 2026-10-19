@@ -40,7 +40,7 @@ export function useTimelineProvider(options: Options) {
 	const {
 		comparator = DEFAULT_EVENT_COMPARATOR,
 		predicate = null,
-		providers = []
+		providers
 	} = options;
 
 	function getTimeline(date = new Date(), latitude: number, longitude: number) {

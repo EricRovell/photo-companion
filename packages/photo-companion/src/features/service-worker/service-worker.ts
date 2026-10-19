@@ -33,11 +33,9 @@ self.addEventListener("activate", event => {
 
 	const removePromiseList = async () => {
 		const cacheKeys = await caches.keys();
-		const cachePromiseList = cacheKeys.map((cacheName) => {
-			if (cacheName !== VERSION_HASH) {
-				return caches.delete(cacheName);
-			}
-		});
+		const cachePromiseList = cacheKeys
+			.filter(cacheName => cacheName !== VERSION_HASH)
+			.map(cacheName => caches.delete(cacheName));
 
 		await Promise.all(cachePromiseList);
 	};

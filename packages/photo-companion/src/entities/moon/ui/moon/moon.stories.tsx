@@ -13,7 +13,7 @@ const meta = {
 		}
 	},
 	component: Moon,
-	render: args => <Moon {...args} height={100} width={100} />,
+	render: args => <Moon height={100} phase={args.phase} width={100} />,
 	title: "Moon/Entity"
 } satisfies Meta<typeof Moon>;
 

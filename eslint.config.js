@@ -15,6 +15,7 @@ export default tseslint.config(
 	...tseslint.configs.stylisticTypeChecked,
 	{
 		ignores: [
+			"**/coverage/**",
 			"**/.vercel/**",
 			"**/dist/*",
 			"**/node_modules/*",
@@ -89,25 +90,32 @@ export default tseslint.config(
 					order: "asc",
 					groups: [
 						[ "builtin", "external" ],
-						[ "builtin-type", "external-type" ],
+						[ "type-builtin", "type-external" ],
 						[ "internal" ],
 						[ "parent", "sibling" ],
 						[ "side-effect" ],
-						[ "internal-type", "parent-type", "sibling-type", "index-type" ],
+						[ "type-internal", "type-parent", "type-sibling", "type-index" ],
 						[ "side-effect-style" ],
 						[ "style" ],
 						"unknown"
 					],
-					newlinesBetween: "always",
+					newlinesBetween: 1,
 					internalPattern: [
 						"^~/.*"
 					]
 				}
 			],
 			"perfectionist/sort-interfaces": "error",
-			"perfectionist/sort-jsx-props": [ "error", {
-				ignorePattern: [ "Meta", "Show" ],
-			}],
+			"perfectionist/sort-jsx-props": [
+				"error",
+				{
+					type: "unsorted",
+					useConfigurationIf: {
+						tagMatchesPattern: "^(?:Meta|Show)$"
+					}
+				},
+				{ type: "alphabetical" }
+			],
 			"perfectionist/sort-maps": "error",
 			"perfectionist/sort-named-imports": "error",
 			"perfectionist/sort-named-exports": "error",

@@ -62,7 +62,7 @@ export function convertIntoDegrees(value: number): Degrees {
 }
 
 export function convertDegreesIntoDecimal(values: Degrees): number {
-	const [ degrees = 0, minutes = 0, seconds = 0 ] = values;
+	const [ degrees, minutes, seconds ] = values;
 
 	if ([ degrees, minutes, seconds ].some(Number.isNaN)) {
 		return 0;

@@ -3,7 +3,7 @@ import { isNonNegativeInteger, isNullable } from "utils/validators";
 const LOCAL_STORAGE_ERROR = "localStorage is not accessible";
 
 export function get(key: string): Nullish<string> {
-	let value = null;
+	let value: null | string;
 
 	try {
 		value = globalThis.localStorage.getItem(key);

@@ -34,6 +34,6 @@
 		"utils": "workspace:*"
 	},
 	"devDependencies": {
-		"esbuild": "^0.19.11"
+		"esbuild": "catalog:build"
 	}
 }
