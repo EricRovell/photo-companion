@@ -85,6 +85,7 @@ export const t = {
 		CALCULATE: "Calculate",
 		CELESTIAL_BODY: "Celestial body",
 		CITY: "City",
+		COMPASS_ALIGNED: "Aligned",
 		DATA_SOURCE: "Data source",
 		DATE: "Date",
 		DATETIME: "Date and time",
