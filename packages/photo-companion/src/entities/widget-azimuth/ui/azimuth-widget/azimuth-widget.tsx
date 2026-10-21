@@ -9,7 +9,7 @@ import { AZIMUTH_WIDGET_CONFIG } from "../../config";
 import { createTweenedAzimuthPath } from "../../model";
 import { AzimuthDial } from "../azimuth-dial/azimuth-dial";
 import { AzimuthLegend } from "../azimuth-legend/azimuth-legend";
-import { DeviceAlignment } from "../device-alignment/device-alignment";
+import { DeviceHeadingToggle } from "../device-heading-toggle/device-heading-toggle";
 
 import type { AzimuthEntity, AzimuthWidgetEntity, AzimuthWidgetFormatters, AzimuthWidgetLabels, CardinalLabels } from "../../types";
 
@@ -24,8 +24,12 @@ interface Props {
 
 const getShortLabel = (label: string) => label.slice(0, 1).toLocaleUpperCase();
 
-export function AzimuthWidget(props: Props) {
-	const deviceHeading = useDeviceHeading();
+interface ViewProps extends Props {
+	deviceHeading: ReturnType<typeof useDeviceHeading>;
+}
+
+export function AzimuthWidgetView(props: ViewProps) {
+	const deviceHeading = () => props.deviceHeading;
 
 	const sunAzimuth = createTweened(
 		() => normalizeDegrees(props.entities.find(entity => entity.id === "sun")?.azimuth ?? 0),
@@ -46,7 +50,7 @@ export function AzimuthWidget(props: Props) {
 	);
 
 	const heading = createTweened(
-		() => deviceHeading.status() === "active" ? deviceHeading.heading() ?? 0 : 0,
+		() => deviceHeading().status() === "active" ? deviceHeading().heading() ?? 0 : 0,
 		{
 			duration: AZIMUTH_WIDGET_CONFIG.animation.headingDuration,
 			ease: linear,
@@ -64,21 +68,21 @@ export function AzimuthWidget(props: Props) {
 
 	const getAzimuth = (entity: AzimuthEntity) => entity === "sun" ? sunAzimuth() : moonAzimuth();
 	const getPath = (entity: AzimuthEntity) => entity === "sun" ? sunPath() : moonPath();
-	const toggleDeviceAlignment = () => deviceHeading.status() === "active"
-		? deviceHeading.stopHeading()
-		: deviceHeading.requestHeading();
+	const toggleDeviceHeading = () => deviceHeading().status() === "active"
+		? deviceHeading().stopHeading()
+		: deviceHeading().requestHeading();
 
 	return (
 		<Card data-label="azimuth">
 			<Card.Header class={styles.header}>
-				<Text as="h2" class={styles.title} variant="heading-l">{props.title}</Text>
-				<Show when={deviceHeading.canAlign()}>
-					<DeviceAlignment
-						active={deviceHeading.status() === "active"}
-						error={deviceHeading.error()}
+				<Text align="start" as="h2" class={styles.title} variant="heading-l">{props.title}</Text>
+				<Show when={deviceHeading().canAlign()}>
+					<DeviceHeadingToggle
+						active={deviceHeading().status() === "active"}
+						error={deviceHeading().error()}
 						labels={props.labels}
-						onToggle={toggleDeviceAlignment}
-						pending={deviceHeading.status() === "requesting"}
+						onToggle={toggleDeviceHeading}
+						pending={deviceHeading().status() === "requesting"}
 					/>
 				</Show>
 			</Card.Header>
@@ -103,4 +107,10 @@ export function AzimuthWidget(props: Props) {
 			</div>
 		</Card>
 	);
+}
+
+export function AzimuthWidget(props: Props) {
+	const deviceHeading = useDeviceHeading();
+
+	return <AzimuthWidgetView {...props} deviceHeading={deviceHeading} />;
 }

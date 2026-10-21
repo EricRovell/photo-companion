@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.44.0
+
+- Azimuth widget title alignment fix.
+- Azimuth widget updated alignment toggle UI/UX.
+
 ## 2.43.0
 
 - Moon age info.

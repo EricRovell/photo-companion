@@ -86,6 +86,7 @@ export interface Translation {
 		CALCULATE: string;
 		CELESTIAL_BODY: string;
 		CITY: string;
+		COMPASS_ALIGNED: string;
 		DATA_SOURCE: string;
 		DATE: string;
 		DATETIME: string;

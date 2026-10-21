@@ -85,6 +85,7 @@ export const t = {
 		CALCULATE: "Вычислить",
 		CELESTIAL_BODY: "Небесное тело",
 		CITY: "Город",
+		COMPASS_ALIGNED: "Ориентирован",
 		DATA_SOURCE: "Источник данных",
 		DATE: "Дата",
 		DATETIME: "Дата и время",
