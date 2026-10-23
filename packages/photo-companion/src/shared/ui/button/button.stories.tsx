@@ -7,6 +7,7 @@ const meta = {
 		children: "Calculate"
 	},
 	component: Button,
+	globals: { language: "en" },
 	title: "Shared UI/Button"
 } satisfies Meta<typeof Button>;
 

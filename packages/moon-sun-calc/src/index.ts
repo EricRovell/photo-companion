@@ -14,6 +14,7 @@ export {
 export type * from "./eclipse/types";
 
 export {
+	findMoonRiseSetIntervals,
 	getMoonAge,
 	getMoonEvents,
 	getMoonIllumination,
@@ -24,9 +25,14 @@ export {
 
 export type * from "./moon/types";
 
+export type { RiseSetInterval, RiseSetSearchInput } from "./rise-set/types";
+
+export { MAX_SUPPORTED_YEAR, MIN_SUPPORTED_YEAR } from "./shared/consts";
+
 export {
 	findSunAltitudeCrossings,
 	findSunAzimuthCrossings,
+	findSunRiseSetIntervals,
 	getSeasonEvents,
 	getSunEvents,
 	getSunPosition

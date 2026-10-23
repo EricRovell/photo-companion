@@ -14,6 +14,7 @@ const meta = {
 		value: [ 59, 50, 40 ]
 	},
 	component: InputLocation,
+	globals: { language: "en" },
 	title: "Shared UI/Input Location"
 } satisfies Meta<typeof InputLocation>;
 

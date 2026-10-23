@@ -26,6 +26,7 @@ function DialogDemo() {
 
 const meta = {
 	component: Dialog,
+	globals: { language: "en" },
 	title: "Shared UI/Dialog"
 } satisfies Meta<typeof Dialog>;
 

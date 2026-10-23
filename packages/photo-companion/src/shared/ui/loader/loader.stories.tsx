@@ -4,6 +4,7 @@ import { Loader } from "./loader";
 
 const meta = {
 	component: Loader,
+	globals: { language: "en" },
 	title: "Shared UI/Loader"
 } satisfies Meta<typeof Loader>;
 

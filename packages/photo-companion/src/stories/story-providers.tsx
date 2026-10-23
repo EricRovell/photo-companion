@@ -1,12 +1,11 @@
 import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
-import { createEffect, Suspense } from "solid-js";
+import { createEffect } from "solid-js";
 
 import type { MemoryHistory } from "@solidjs/router";
 import type { JSXElement } from "solid-js";
 
 import { useLocationQuery } from "~/app/layout/model";
 import { SettingsProvider } from "~/features/settings";
-import { TranslationProvider } from "~/features/translation";
 import { createQueryDate } from "~/shared/lib/query-date";
 
 import {
@@ -14,6 +13,7 @@ import {
 	DEFAULT_STORY_LATITUDE,
 	DEFAULT_STORY_LONGITUDE
 } from "./story-controls";
+import { StoryTranslationProvider } from "./story-language";
 
 import type { StoryEnvironmentArgs } from "./story-controls";
 
@@ -64,13 +64,11 @@ export function withStoryProviders(content: () => JSXElement, options: StoryEnvi
 					<StoryQuerySync history={history} options={options}>
 						<SettingsProvider>
 							<StoryLocationQuery>
-								<Suspense>
-									<TranslationProvider>
-										<div class="storybook-canvas">
-											{content()}
-										</div>
-									</TranslationProvider>
-								</Suspense>
+								<StoryTranslationProvider>
+									<div class="storybook-canvas">
+										{content()}
+									</div>
+								</StoryTranslationProvider>
 							</StoryLocationQuery>
 						</SettingsProvider>
 					</StoryQuerySync>

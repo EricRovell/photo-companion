@@ -1,12 +1,11 @@
 import {
-	horizonDip,
 	horizontalCoordinates,
 	meridianCrossings,
-	roots,
 	validateEventStep,
 	validateInterval,
 	validateObserver
 } from "../shared";
+import { findMoonHorizonCrossings } from "./crossings";
 import { moonGeocentric } from "./ephemeris";
 
 import type { Millisecond } from "../types";
@@ -17,24 +16,9 @@ export function getMoonEvents({ interval, observer, options = {} }: MoonEventsIn
 	const location = validateObserver(observer);
 	const step = validateEventStep(options);
 
-	const moonAltitude = (time: Millisecond) => {
-		const moon = moonGeocentric(time);
-		const semidiameter = 0.2725 * Math.asin(6378.14 / moon.distance) * 180 / Math.PI;
-		const standardAltitude = -0.5667 - semidiameter - horizonDip(location.elevation);
-		return horizontalCoordinates({
-			atmosphere: options.atmosphere,
-			coordinates: moon,
-			distance: moon.distance,
-			observer: location,
-			timestamp: time
-		}).altitude - standardAltitude;
-	};
-
-	const events: MoonEvent[] = roots({ end, fn: moonAltitude, start, step }).map(time => ({
-		name: moonAltitude(Math.min(time + 1000, end - 1)) >= moonAltitude(Math.max(time - 1000, start))
-			? "MOONRISE" as const
-			: "MOONSET" as const,
-		time: new Date(time)
+	const events: MoonEvent[] = findMoonHorizonCrossings({ interval: { end, start }, observer: location, options }).map(crossing => ({
+		name: crossing.direction === "rising" ? "MOONRISE" : "MOONSET",
+		time: crossing.time
 	}));
 
 	const hourAngle = (time: Millisecond) => {

@@ -8,6 +8,7 @@ const meta = {
 		variant: "text-m"
 	},
 	component: Text,
+	globals: { language: "en" },
 	title: "Shared UI/Text"
 } satisfies Meta<typeof Text>;
 

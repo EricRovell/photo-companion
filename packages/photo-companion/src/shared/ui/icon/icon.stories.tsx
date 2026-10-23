@@ -25,6 +25,7 @@ import { Icon } from "./icon";
 
 const meta = {
 	component: Icon,
+	globals: { language: "en" },
 	title: "Shared UI/Icons"
 } satisfies Meta<typeof Icon>;
 

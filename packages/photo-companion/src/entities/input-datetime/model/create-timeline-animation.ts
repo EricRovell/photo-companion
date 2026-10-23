@@ -3,6 +3,8 @@ import { isNullable } from "utils/validators";
 
 import type { SetStoreFunction, Store } from "solid-js/store";
 
+import { createMediaQuery } from "~/shared/primitives";
+
 import { getNearestStep } from "../lib/get-nearest-step";
 import { shiftTimelineDate } from "../lib/shift-timeline-date";
 import { DATETIME_CONFIG } from "./config";
@@ -15,14 +17,8 @@ interface CreateTimelineAnimationOptions {
 	state: Store<TimelineState>;
 }
 
-function prefersReducedMotion(): boolean {
-	return (
-		!isNullable(globalThis.window) &&
-		window.matchMedia("(prefers-reduced-motion: reduce)").matches
-	);
-}
-
 export function createTimelineAnimation(options: CreateTimelineAnimationOptions) {
+	const prefersReducedMotion = createMediaQuery("(prefers-reduced-motion: reduce)");
 	let animationFrame = 0;
 
 	const cancel = () => {
@@ -93,7 +89,7 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 				Math.abs(springVelocity) <= spring.settleVelocity
 			);
 
-			if (!settled && time - start < spring.maxDuration) {
+			if (!prefersReducedMotion() && !settled && time - start < spring.maxDuration) {
 				animationFrame = requestAnimationFrame(tick);
 				return;
 			}

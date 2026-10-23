@@ -241,6 +241,18 @@ export const t = {
 		MOONRISE: "Восход Луны",
 		MOONSET: "Заход Луны"
 	},
+	RISE_SET: {
+		ABOVE_WITHOUT_EVENTS: "Над горизонтом. Ближайшие восход и заход не найдены.",
+		BELOW_WITHOUT_EVENTS: "Под горизонтом. Ближайшие восход и заход не найдены.",
+		DURATION: "Длительность",
+		MIDNIGHT: "Полночь",
+		NEXT_DAY: "Следующий день",
+		PREVIOUS_DAY: "Предыдущий день",
+		RISE_UNAVAILABLE: "Время восхода не найдено; прогресс недоступен.",
+		SET_UNAVAILABLE: "Время захода не найдено; прогресс недоступен.",
+		SUNRISE: "Восход",
+		SUNSET: "Закат"
+	},
 	SEASONS: {
 		AXIS_DECLINATION: "Склонение Солнца",
 		AXIS_MONTH: "Месяц",

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.45.0
+
+- Updated the Sun and the Moon rise and set widgets.
+
 ## 2.44.0
 
 - Azimuth widget title alignment fix.

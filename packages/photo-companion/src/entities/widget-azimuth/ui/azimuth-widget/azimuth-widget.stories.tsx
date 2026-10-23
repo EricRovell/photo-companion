@@ -2,6 +2,9 @@ import { createEffect, createSignal, untrack } from "solid-js";
 
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
+import { useTranslation } from "~/features/translation";
+import { StoryTranslations } from "~/stories/story-language";
+
 import { AzimuthWidgetView } from "./azimuth-widget";
 
 import type { AzimuthWidgetEntity, AzimuthWidgetLabels } from "../../types";
@@ -13,22 +16,6 @@ interface StoryArgs {
 	supported: boolean;
 	width: number;
 }
-
-const labels: AzimuthWidgetLabels = {
-	align: "Align with device",
-	alignBlocked: "Compass access is blocked in this browser context",
-	alignDenied: "Compass permission was denied",
-	aligned: "Aligned",
-	alignTimeout: "No heading data was received. Try again",
-	alignUnavailable: "Device heading is unavailable",
-	altitude: "Altitude",
-	azimuth: "Azimuth",
-	celestialBody: "Celestial body",
-	east: "East",
-	north: "North",
-	south: "South",
-	west: "West"
-};
 
 const entities: AzimuthWidgetEntity[] = [
 	{
@@ -52,6 +39,64 @@ const entities: AzimuthWidgetEntity[] = [
 		}))
 	}
 ];
+
+function AzimuthPreview(args: StoryArgs) {
+	const [ aligned, setAligned ] = createSignal(untrack(() => args.aligned));
+	const { format, t } = useTranslation();
+
+	const labels = (): AzimuthWidgetLabels => ({
+		align: t().LABEL.ALIGN_COMPASS,
+		alignBlocked: t().ERRORS.DEVICE_HEADING_BLOCKED,
+		alignDenied: t().ERRORS.DEVICE_HEADING_PERMISSION_DENIED,
+		aligned: t().LABEL.COMPASS_ALIGNED,
+		alignTimeout: t().ERRORS.DEVICE_HEADING_TIMEOUT,
+		alignUnavailable: t().ERRORS.DEVICE_HEADING_UNAVAILABLE,
+		altitude: t().LABEL.ALTITUDE,
+		azimuth: t().LABEL.AZIMUTH,
+		celestialBody: t().LABEL.CELESTIAL_BODY,
+		east: t().LABEL.LONGITUDE_EAST,
+		north: t().LABEL.LATITUDE_NORTH,
+		south: t().LABEL.LATITUDE_SOUTH,
+		west: t().LABEL.LONGITUDE_WEST
+	});
+
+	createEffect(() => setAligned(args.aligned));
+
+	return (
+		<div style={{ "max-width": "100%", "text-align": "center", width: `${args.width}px` }}>
+			<AzimuthWidgetView
+				deviceHeading={{
+					canAlign: () => args.supported,
+					error: () => null,
+					heading: () => args.heading,
+					requestHeading: () => {
+						setAligned(true);
+						return Promise.resolve();
+					},
+					status: () => args.pending ? "requesting" : aligned() ? "active" : "idle",
+					stopHeading: () => { setAligned(false); }
+				}}
+				entities={entities.map(entity => ({
+					...entity,
+					label: entity.id === "sun"
+						? t().TITLE.SUN
+						: t().TITLE.MOON
+				}))}
+				formatters={{
+					ariaEntity: (label, azimuth) => format().message(t().AZIMUTH.ARIA_ENTITY, {
+						azimuth: format().degrees(azimuth), label
+					}),
+					list: values => format().list(values)
+				}}
+				labels={labels()}
+				title={format().message(t().AZIMUTH.TITLE_SUN_MOON, {
+					azimuth: t().LABEL.AZIMUTH,
+					moon: t().TITLE.MOON, sun: t().TITLE.SUN
+				})}
+			/>
+		</div>
+	);
+}
 
 const meta = {
 	args: {
@@ -97,36 +142,7 @@ const meta = {
 			}
 		}
 	},
-	render: args => {
-		const [ aligned, setAligned ] = createSignal(untrack(() => args.aligned));
-
-		createEffect(() => setAligned(args.aligned));
-
-		return (
-			<div style={{ "max-width": "100%", "text-align": "center", width: `${args.width}px` }}>
-				<AzimuthWidgetView
-					deviceHeading={{
-						canAlign: () => args.supported,
-						error: () => null,
-						heading: () => args.heading,
-						requestHeading: () => {
-							setAligned(true);
-							return Promise.resolve();
-						},
-						status: () => args.pending ? "requesting" : aligned() ? "active" : "idle",
-						stopHeading: () => { setAligned(false); }
-					}}
-					entities={entities}
-					formatters={{
-						ariaEntity: (label, azimuth) => `${label}: ${azimuth}°`,
-						list: values => values.join(", ")
-					}}
-					labels={labels}
-					title="Sun / Moon · Azimuth"
-				/>
-			</div>
-		);
-	},
+	render: args => <StoryTranslations><AzimuthPreview {...args} /></StoryTranslations>,
 	title: "Widgets/Azimuth"
 } satisfies Meta<StoryArgs>;
 

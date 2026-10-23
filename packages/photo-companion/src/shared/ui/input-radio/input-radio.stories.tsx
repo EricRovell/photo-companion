@@ -15,6 +15,7 @@ const meta = {
 		value: "N"
 	},
 	component: InputRadio,
+	globals: { language: "en" },
 	title: "Shared UI/Input Radio"
 } satisfies Meta<typeof InputRadio>;
 

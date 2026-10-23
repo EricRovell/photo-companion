@@ -6,6 +6,7 @@ import { Fieldset, Form } from "./form";
 
 const meta = {
 	component: Form,
+	globals: { language: "en" },
 	title: "Shared UI/Form"
 } satisfies Meta<typeof Form>;
 

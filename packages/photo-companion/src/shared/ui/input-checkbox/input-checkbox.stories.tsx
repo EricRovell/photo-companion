@@ -8,6 +8,7 @@ const meta = {
 		name: "golden-hour"
 	},
 	component: InputCheckbox,
+	globals: { language: "en" },
 	title: "Shared UI/Input Checkbox"
 } satisfies Meta<typeof InputCheckbox>;
 

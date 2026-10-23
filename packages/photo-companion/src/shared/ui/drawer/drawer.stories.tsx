@@ -25,6 +25,7 @@ function DrawerDemo() {
 
 const meta = {
 	component: Drawer,
+	globals: { language: "en" },
 	title: "Shared UI/Drawer"
 } satisfies Meta<typeof Drawer>;
 

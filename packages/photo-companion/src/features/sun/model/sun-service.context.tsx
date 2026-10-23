@@ -1,30 +1,23 @@
-import { getSunEvents, getSunPosition } from "moon-sun-calc";
-import { createContext } from "solid-js";
-import { createMemo } from "solid-js";
-import { calcDuration, getDayStart, shiftDate } from "utils/date";
+import { findSunRiseSetIntervals, getSunPosition } from "moon-sun-calc";
+import { createContext, createMemo } from "solid-js";
+import { calcDuration } from "utils/date";
 
 import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { createProvider } from "~/shared/lib/create-provider";
+import { createRiseSetEvents } from "~/shared/lib/rise-set";
 
 function createSunState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
 	const observer = () => ({ latitude: settings.latitude, longitude: settings.longitude });
-
-	const times = createMemo(() => {
-		const start = getDayStart(getDatetime());
-
-		return getSunEvents({
-			interval: { end: shiftDate(start, "day", 1).getTime(), start },
-			observer: observer()
-		});
+	const { rise: sunrise, riseSetTimes, set: sunset } = createRiseSetEvents({
+		date: getDatetime,
+		findIntervals: findSunRiseSetIntervals,
+		observer
 	});
-
 	const position = createMemo(() => getSunPosition({ instant: getDatetime(), observer: observer() }));
-	const sunrise = () => times().find(event => event.name === "SUNRISE_START")?.time ?? null;
-	const sunset = () => times().find(event => event.name === "SUNSET_END")?.time ?? null;
 
 	return {
 		altitude: () => position().apparentAltitude,
@@ -32,6 +25,7 @@ function createSunState() {
 		dayDuration: () => sunrise() && sunset() ? calcDuration(sunrise(), sunset()) : 0,
 		declination: () => position().declination,
 		distance: () => position().distance,
+		riseSetTimes,
 		sunrise,
 		sunset,
 		zenith: () => 90 - position().apparentAltitude

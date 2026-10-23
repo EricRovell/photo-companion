@@ -8,6 +8,7 @@ const meta = {
 		href: "/sun"
 	},
 	component: Link,
+	globals: { language: "en" },
 	title: "Shared UI/Link"
 } satisfies Meta<typeof Link>;
 

@@ -10,6 +10,7 @@ const meta = {
 		value: "2026-06-21"
 	},
 	component: Input,
+	globals: { language: "en" },
 	title: "Shared UI/Input"
 } satisfies Meta<typeof Input>;
 

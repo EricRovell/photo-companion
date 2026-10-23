@@ -7,6 +7,7 @@ const meta = {
 		message: "The selected location is outside the supported range."
 	},
 	component: ErrorMessage,
+	globals: { language: "en" },
 	title: "Shared UI/Error Message"
 } satisfies Meta<typeof ErrorMessage>;
 

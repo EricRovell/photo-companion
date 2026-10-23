@@ -5,6 +5,7 @@ import { Card } from "./index";
 
 const meta = {
 	component: Card,
+	globals: { language: "en" },
 	title: "Shared UI/Card"
 } satisfies Meta<typeof Card>;
 
