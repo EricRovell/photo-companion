@@ -1,0 +1,67 @@
+.diagram {
+	position: relative;
+}
+
+.dial {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+}
+
+.horizon {
+	fill: rgb(255 255 255 / 1%);
+	stroke: rgb(255 255 255 / 14%);
+	stroke-width: 1.5;
+}
+
+.guides {
+	stroke: rgb(255 255 255 / 6%);
+	stroke-width: 1;
+}
+
+.track,
+.progress {
+	fill: none;
+	stroke: currentcolor;
+	stroke-linecap: round;
+	stroke-width: var(--rise-set-track-width);
+	stroke-opacity: var(--rise-set-track-opacity);
+}
+
+.progress {
+	stroke-width: var(--rise-set-progress-width);
+	stroke-opacity: var(--rise-set-progress-opacity);
+}
+
+.marker {
+	fill: currentcolor;
+	filter:
+		drop-shadow(0 0 var(--rise-set-marker-glow) currentcolor)
+		drop-shadow(0 calc(var(--rise-set-marker-glow) * 0.4) calc(var(--rise-set-marker-glow) * 0.8) rgb(0 0 0 / 45%));
+}
+
+.body {
+	position: absolute;
+	top: var(--rise-set-body-top);
+	left: 50%;
+	display: grid;
+	place-items: center;
+	transform: translate(-50%, -50%) scale(var(--rise-set-body-scale));
+	pointer-events: none;
+	transition: opacity var(--rise-set-body-duration) ease;
+}
+
+.body[data-below-horizon] {
+	opacity: var(--rise-set-body-opacity);
+}
+
+.body[data-below-horizon] > svg {
+	filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.body {
+		transition: none;
+	}
+}

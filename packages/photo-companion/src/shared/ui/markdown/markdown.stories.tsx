@@ -5,6 +5,7 @@ import Example from "./markdown.stories.fixture.md";
 
 const meta = {
 	component: Markdown,
+	globals: { language: "en" },
 	title: "Shared UI/Markdown"
 } satisfies Meta<typeof Markdown>;
 

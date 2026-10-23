@@ -1,35 +1,31 @@
-import { GaugeTime } from "~/entities/gauge";
 import { Sun } from "~/entities/sun";
+import { RiseSetWidget } from "~/entities/widget-rise-set";
 import { useDatetime } from "~/features/datetime-query";
-import { useTranslation } from "~/features/translation";
-import { Card, Text } from "~/shared/ui";
+import { LinkQuery } from "~/features/navigation";
+import { createQueryDate } from "~/shared/lib/query-date";
 
 import { useSunService } from "../model";
 
-const SUN_SIZE = 30;
+const SUN_SIZE = 64;
 
 export function SunTimes() {
-	const { t } = useTranslation();
 	const { getDatetime } = useDatetime();
-	const { sunrise, sunset } = useSunService();
+	const { altitude, riseSetTimes } = useSunService();
 
 	return (
-		<Card data-label="sun">
-			<Card.Header>
-				<Text as="h2" variant="heading-l">{t().TITLE.SUN_TIMES}</Text>
-			</Card.Header>
-			<GaugeTime
-				date={getDatetime()}
-				timeEnd={sunset()}
-				timeStart={sunrise()}
-			>
-				<Sun
-					height={SUN_SIZE}
-					width={SUN_SIZE}
-					x={-SUN_SIZE / 2}
-					y={-SUN_SIZE / 2}
-				/>
-			</GaugeTime>
-		</Card>
+		<RiseSetWidget
+			aboveHorizon={altitude() >= 0}
+			date={getDatetime()}
+			entity="sun"
+			renderTime={(date, children, label) => (
+				<LinkQuery aria-label={label} href="/sun" noScroll query={new URLSearchParams({ datetime: createQueryDate(date) })}>
+					{children}
+				</LinkQuery>
+			)}
+			rise={riseSetTimes().rise}
+			set={riseSetTimes().set}
+		>
+			<Sun height={SUN_SIZE} width={SUN_SIZE} />
+		</RiseSetWidget>
 	);
 }

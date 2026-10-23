@@ -5,7 +5,7 @@ import { normalizeDegrees } from "utils/math";
 
 import type { Accessor } from "solid-js";
 
-import { circular } from "~/shared/primitives";
+import { circular, createMediaQuery } from "~/shared/primitives";
 
 import { AZIMUTH_WIDGET_CONFIG } from "../config";
 
@@ -29,12 +29,13 @@ export function createTweenedAzimuthPath(target: Accessor<AzimuthPathPoint[]>) {
 		return target;
 	}
 
+	const prefersReducedMotion = createMediaQuery("(prefers-reduced-motion: reduce)");
 	const [ path, setPath ] = createSignal(target());
 
-	createEffect(on(target, (targetPath) => {
+	createEffect(on([ target, prefersReducedMotion ], ([ targetPath, reducedMotion ]) => {
 		const initialPath = path();
 
-		if (initialPath.length !== targetPath.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		if (initialPath.length !== targetPath.length || reducedMotion) {
 			setPath(targetPath);
 			return;
 		}

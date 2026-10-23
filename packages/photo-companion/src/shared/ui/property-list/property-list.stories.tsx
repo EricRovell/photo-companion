@@ -5,6 +5,7 @@ import { PropertyList } from "./index";
 
 const meta = {
 	component: PropertyList,
+	globals: { language: "en" },
 	title: "Shared UI/Property List"
 } satisfies Meta<typeof PropertyList>;
 

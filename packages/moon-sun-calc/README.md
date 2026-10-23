@@ -8,10 +8,11 @@ numerical model follows the higher-order methods in Jean Meeus,
 ## Design contract
 
 - Supported UTC instants: `1800-01-01` through `2200-12-31`.
+  `MIN_SUPPORTED_YEAR` and `MAX_SUPPORTED_YEAR` expose these bounds for callers
+  that pad event searches around a selected date.
 - Every public angle is in degrees. Azimuth is clockwise from north.
 - Event searches use explicit half-open UTC intervals: `[start, end)`.
-- An interval may be at most 48 hours. The caller owns civil-time-zone and
-  calendar-day conversion.
+- Individual event scans accept at most 48 hours. Rise/set interval searches accept wider explicit bounds and scan them in chunks. The caller owns civil-time-zone and calendar-day conversion.
 - Missing polar or grazing events are omitted; invalid dates are never
   fabricated.
 - `altitude` is geometric center altitude. `apparentAltitude` additionally
@@ -31,6 +32,7 @@ runtime.
 - `src/moon` owns the lunar constants, types, series, ephemeris, positions,
   illumination, phases, and events.
 - `src/eclipse` owns local eclipse geometry, circumstances, and searches.
+- `src/rise-set` owns shared bounded crossing searches and interval pairing.
 - `src/shared` contains only genuinely shared coordinate, time, mathematical,
   validation, and root-finding infrastructure, with an internal barrel entry
   point.
@@ -104,6 +106,8 @@ const azimuthSolutions = findSunAzimuthCrossings({
 - `getSeasonEvents(year)`
 - `getSunEvents({ interval, observer, options? })`
 - `getMoonEvents({ interval, observer, options? })`
+- `findSunRiseSetIntervals({ interval, observer, options? })`
+- `findMoonRiseSetIntervals({ interval, observer, options? })`
 - `findSunAltitudeCrossings({ altitude, interval, observer, options? })`
 - `findSunAzimuthCrossings({ azimuth, interval, observer, options? })`
 - `getMoonZenithAngle(brightLimbAngle, parallacticAngle)`
@@ -121,6 +125,28 @@ const azimuthSolutions = findSunAzimuthCrossings({
 Position options may specify atmospheric pressure in hPa and temperature in
 degrees Celsius. Event scans default to five-minute brackets and refine roots
 to about 100 milliseconds; `options.step` can tune the bracket size.
+
+Rise/set searches return chronological `RiseSetInterval[]` values, pairing each
+rise with its following set across UTC midnight and scan boundaries. Solar
+intervals use `SUNRISE_START` and `SUNSET_END`; lunar intervals use `MOONRISE`
+and `MOONSET`. An endpoint outside the supplied search bounds or unavailable
+within them is `null`. No crossings produces an empty array, which does not
+by itself distinguish continuously above from continuously below the horizon.
+These methods do not extend the search automatically or choose a display cycle.
+Search cost grows with the supplied interval; use only the bounds you need.
+
+```ts
+import { findMoonRiseSetIntervals } from "moon-sun-calc";
+
+const intervals = findMoonRiseSetIntervals({
+  observer,
+  interval: {
+    start: new Date("2026-10-20T00:00:00Z"),
+    end: new Date("2026-10-23T00:00:00Z")
+  }
+});
+// [{ rise: Date | null, set: Date | null }, ...]
+```
 
 See [ACCURACY.md](./ACCURACY.md) for model scope and fixtures, and
 [MIGRATION.md](./MIGRATION.md) for the breaking 0.2 API changes.

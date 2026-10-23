@@ -8,6 +8,8 @@ import { cubicInOut, type EasingFn } from "utils/easing";
 
 import type { Accessor} from "solid-js";
 
+import { createMediaQuery } from "./create-media-query";
+
 interface TweenedProps {
 	duration?: number;
 	ease?: EasingFn;
@@ -66,6 +68,7 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 		return () => map(target());
 	}
 
+	const prefersReducedMotion = createMediaQuery("(prefers-reduced-motion: reduce)");
 	const [ value, setValue ] = createSignal(target());
 
 	let endValue: number;
@@ -84,7 +87,12 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 		}
 	}
 
-	createEffect(on(target, (targetValue) => {
+	createEffect(on([ target, prefersReducedMotion ], ([ targetValue, reducedMotion ]) => {
+		if (duration <= 0 || reducedMotion) {
+			setValue(targetValue);
+			return;
+		}
+
 		endValue = targetValue;
 		start = performance.now();
 		startValue = value();

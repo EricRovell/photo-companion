@@ -1,0 +1,57 @@
+.legend {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--space-3);
+	padding-top: var(--space-3);
+	border-top: 1px solid var(--card-divider-color);
+	font-variant-numeric: tabular-nums;
+}
+
+.event {
+	display: grid;
+	align-content: start;
+	gap: var(--space-1);
+	font-size: var(--font-size-2);
+	font-weight: 600;
+	text-align: left;
+}
+
+.event:last-child {
+	text-align: right;
+}
+
+.value {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-1);
+	align-items: baseline;
+}
+
+.event:last-child .value {
+	flex-direction: row-reverse;
+}
+
+.event a {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+	text-underline-offset: 0.2em;
+}
+
+.event a:hover {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+}
+
+.event a:focus-visible {
+	color: inherit;
+	outline-color: currentcolor;
+}
+
+.label,
+.day {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+	font-weight: 500;
+}

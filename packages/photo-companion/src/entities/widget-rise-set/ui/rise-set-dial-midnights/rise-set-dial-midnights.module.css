@@ -1,0 +1,10 @@
+.midnights {
+	color: var(--color-text-secondary);
+}
+
+.midnights line {
+	stroke: currentcolor;
+	stroke-width: var(--midnight-tick-width);
+	stroke-linecap: round;
+}
+

@@ -11,6 +11,7 @@ export default defineConfig({
 		conditions: [ "development", "browser" ]
 	},
 	test: {
+		env: { TZ: "UTC" },
 		environment: "jsdom",
 		server: {
 			deps: {

@@ -8,7 +8,7 @@ afterEach(() => vi.unstubAllGlobals());
 describe("InputDatetime", () => {
 	it("uses second precision and preserves seconds when changing the day", async () => {
 		const handleDatetimeChange = vi.fn();
-		vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: true })));
+		vi.stubGlobal("matchMedia", vi.fn(() => Object.assign(new EventTarget(), { matches: true })));
 
 		const view = render(() => (
 			<InputDatetime
@@ -51,7 +51,7 @@ describe("InputDatetime", () => {
 
 	it("commits a dragged date when the pointer is released", () => {
 		const handleDatetimeChange = vi.fn();
-		vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: true })));
+		vi.stubGlobal("matchMedia", vi.fn(() => Object.assign(new EventTarget(), { matches: true })));
 
 		const view = render(() => (
 			<InputDatetime

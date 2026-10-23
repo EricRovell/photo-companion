@@ -1,5 +1,7 @@
 import type { SunAltitudeEventDefinition } from "./types";
 
+export const SUNRISE_ALTITUDE = -0.833;
+
 export const SUN_ALTITUDE_EVENTS: readonly SunAltitudeEventDefinition[] = [
 	[-18, "ASTRONOMICAL_DAWN", "ASTRONOMICAL_DUSK"],
 	[-12, "NAUTICAL_DAWN", "NAUTICAL_DUSK"],
@@ -7,7 +9,7 @@ export const SUN_ALTITUDE_EVENTS: readonly SunAltitudeEventDefinition[] = [
 	[-6, "CIVIL_DAWN", "CIVIL_DUSK"],
 	[-4, "BLUE_HOUR_END_DAWN", "BLUE_HOUR_START_DUSK"],
 	[-1, "GOLDEN_HOUR_START_DAWN", "GOLDEN_HOUR_END_DUSK"],
-	[-0.833, "SUNRISE_START", "SUNSET_END"],
+	[SUNRISE_ALTITUDE, "SUNRISE_START", "SUNSET_END"],
 	[-0.3, "SUNRISE_END", "SUNSET_START"],
 	[6, "GOLDEN_HOUR_END_DAWN", "GOLDEN_HOUR_START_DUSK"]
 ];
