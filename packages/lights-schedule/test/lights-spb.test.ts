@@ -48,6 +48,11 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				const minutesOff = data.schedule[index + 3];
 
 				const output = getScheduleByDate(date);
+
+				if (output.status !== "SCHEDULED") {
+					throw new Error("Expected an official schedule");
+				}
+
 				const start = new Date(output.LIGHTS_START);
 				const end = new Date(output.LIGHTS_END);
 

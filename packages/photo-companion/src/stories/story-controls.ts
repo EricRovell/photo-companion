@@ -1,3 +1,7 @@
+import type { City } from "types";
+
+import { CITY_OPTIONS } from "~/shared/consts";
+
 export interface StoryDatetimeArgs {
 	datetime?: number;
 }
@@ -7,7 +11,9 @@ interface StoryLocationArgs {
 	longitude?: number;
 }
 
-export interface StoryEnvironmentArgs extends StoryDatetimeArgs, StoryLocationArgs {}
+export interface StoryEnvironmentArgs extends StoryDatetimeArgs, StoryLocationArgs {
+	city?: City;
+}
 
 export const DEFAULT_STORY_DATETIME = new Date(2026, 5, 21, 12).getTime();
 export const DEFAULT_STORY_LATITUDE = 59.844404;
@@ -49,6 +55,11 @@ export const storyEnvironmentConfig = {
 	},
 	argTypes: {
 		...storyDatetimeConfig.argTypes,
-		...storyLocationConfig.argTypes
+		...storyLocationConfig.argTypes,
+		city: {
+			control: "select",
+			description: "City lights source: official schedule or a solar estimate for another location",
+			options: CITY_OPTIONS
+		}
 	}
 } as const;

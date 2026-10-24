@@ -167,6 +167,16 @@ export const t = {
 		SOLAR_ESTIMATE: "Solar estimate",
 		SOLAR_ESTIMATE_UNCERTAIN: "Solar estimate (±{duration})"
 	},
+	LIGHTS_WIDGET: {
+		EXPECTED_OFF: "Lights expected off",
+		EXPECTED_ON: "Lights expected on",
+		NIGHT_SCHEDULE: "City lights, noon to noon",
+		SCHEDULED_OFF: "Lights scheduled off",
+		SCHEDULED_ON: "Lights scheduled on",
+		SELECTED_TIME: "Selected time",
+		SWITCHING_WINDOW: "Shaded bands: ±{duration} at each switch",
+		WITHIN_WINDOW: "Within the estimated switching window"
+	},
 	LUNAR_ECLIPSE: {
 		CURRENT_PHASE: "Current phase",
 		GRAPH_DESCRIPTION: "A true-scale Earth-shadow-centered angular view. Azimuth increases to the right and altitude increases upward.",
@@ -345,7 +355,7 @@ export const t = {
 		HEIGHT_BY_SHADOW: "Height by shadow",
 		HEIGHT_BY_SHADOW_FULL: "Height by shadow length calculator",
 		LIGHTS: "City Lights",
-		LIGHTS_DATA_BY_DATE: "City Lights Schedule by Date",
+		LIGHTS_DATA_BY_DATE: "City Lights Schedule",
 		LIGHTS_FULL: "City Lights",
 		MOON: "The Moon",
 		MOON_PHASE_CALENDAR: "The Moon Phases Calendar",

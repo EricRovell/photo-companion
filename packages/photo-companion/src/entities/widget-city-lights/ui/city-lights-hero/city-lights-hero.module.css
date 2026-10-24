@@ -1,0 +1,38 @@
+.hero {
+	display: grid;
+	justify-items: center;
+	gap: var(--space-2);
+	margin-bottom: var(--space-5);
+	text-align: center;
+}
+
+.lamp {
+	--bulb-size: 4.5rem;
+	--bulb-glow-size: 5px;
+
+	display: grid;
+	place-items: center;
+	width: 7rem;
+	height: 6rem;
+	border-radius: 50%;
+	background: radial-gradient(ellipse, hsl(39deg 94% 61% / 0%), transparent 70%);
+	transition: opacity 240ms ease-in-out;
+}
+
+.lamp[data-on] {
+	background: radial-gradient(ellipse, hsl(39deg 94% 61% / 8%), transparent 70%);
+}
+
+.lamp[data-uncertain] {
+	opacity: 0.7;
+}
+
+.state {
+	color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lamp {
+		transition: none;
+	}
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.47.0
+
+- New city lights schedule widget.
+
 ## 2.46.0
 
 - Update rise and set widget info and layout.

@@ -1,6 +1,6 @@
 import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 
-import type { City } from "types";
+import { CITY_OPTIONS as CITIES } from "~/shared/consts";
 
 import type { SettingsStore } from "../types";
 import type { Translation } from "~/features/translation";
@@ -9,14 +9,8 @@ import type { InputSelectOption } from "~/shared/ui";
 type BridgeEventMessage = Translation["BRIDGE_SPB_EVENT"][keyof Translation["BRIDGE_SPB_EVENT"]];
 type BridgeEventMessageFormatter = (input: BridgeEventMessage, values: { bridge: string }) => string;
 
-const cityOptions: City[] = [
-	"MOSCOW",
-	"SAINT_PETERSBURG",
-	"OTHER"
-];
-
 export const CITY_OPTIONS = (t: Translation): InputSelectOption[] => {
-	return cityOptions.map(item => ({
+	return CITIES.map(item => ({
 		label: t.CITIES[item],
 		value: item
 	}));

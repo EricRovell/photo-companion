@@ -1,5 +1,4 @@
 .page {
-	--gauge-color: gold;
 	--timeline-icon-size: 4.5rem;
 	--timeline-icon-secondary-size: 2.75rem;
 	--timeline-wire-width: 3px;
@@ -10,11 +9,6 @@
 	grid-auto-rows: min-content;
 	gap: var(--space-6);
 	width: var(--content-width);
-
-	section[data-label="lights-schedule"] {
-		display: grid;
-		justify-items: center;
-	}
 
 	section[data-label="timeline"] {
 		margin-block: var(--space-6);

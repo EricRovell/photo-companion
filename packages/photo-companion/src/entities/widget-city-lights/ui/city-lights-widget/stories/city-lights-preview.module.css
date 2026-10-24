@@ -1,0 +1,36 @@
+.preview {
+	width: min(100%, var(--lights-story-width));
+	margin-inline: auto;
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: center;
+	gap: var(--space-5);
+	width: 100%;
+	margin-inline: auto;
+}
+
+.scenario {
+	display: grid;
+	flex: 0 1 var(--lights-story-width);
+	grid-template-rows: auto auto 1fr;
+	gap: var(--space-3);
+	min-width: 0;
+	max-width: 100%;
+	text-align: center;
+}
+
+.heading {
+	margin: 0;
+	font-size: var(--font-size-3);
+}
+
+.description {
+	margin: 0;
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+	line-height: 1.5;
+}

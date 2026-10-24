@@ -5,7 +5,7 @@ import type { MemoryHistory } from "@solidjs/router";
 import type { JSXElement } from "solid-js";
 
 import { useLocationQuery } from "~/app/layout/model";
-import { SettingsProvider } from "~/features/settings";
+import { SettingsProvider, useSettings } from "~/features/settings";
 import { createQueryDate } from "~/shared/lib/query-date";
 
 import {
@@ -17,8 +17,15 @@ import { StoryTranslationProvider } from "./story-language";
 
 import type { StoryEnvironmentArgs } from "./story-controls";
 
-function StoryLocationQuery(props: { children: JSXElement }) {
+function StoryLocationQuery(props: { children: JSXElement; options: StoryEnvironmentArgs }) {
 	useLocationQuery();
+	const { setSettings } = useSettings();
+
+	createEffect(() => {
+		if (props.options.city) {
+			setSettings("city", props.options.city);
+		}
+	});
 
 	return <>{props.children}</>;
 }
@@ -63,7 +70,7 @@ export function withStoryProviders(content: () => JSXElement, options: StoryEnvi
 				component={() => (
 					<StoryQuerySync history={history} options={options}>
 						<SettingsProvider>
-							<StoryLocationQuery>
+							<StoryLocationQuery options={options}>
 								<StoryTranslationProvider>
 									<div class="storybook-canvas">
 										{content()}

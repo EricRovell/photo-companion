@@ -167,6 +167,16 @@ export const t = {
 		SOLAR_ESTIMATE: "Расчёт по Солнцу",
 		SOLAR_ESTIMATE_UNCERTAIN: "Расчёт по Солнцу (±{duration})"
 	},
+	LIGHTS_WIDGET: {
+		EXPECTED_OFF: "Вероятно выключено",
+		EXPECTED_ON: "Вероятно включено",
+		NIGHT_SCHEDULE: "Городское освещение, от полудня до полудня",
+		SCHEDULED_OFF: "Выключено по расписанию",
+		SCHEDULED_ON: "Включено по расписанию",
+		SELECTED_TIME: "Выбранное время",
+		SWITCHING_WINDOW: "Штриховка: ±{duration} у каждого переключения",
+		WITHIN_WINDOW: "В пределах расчётного окна переключения"
+	},
 	LUNAR_ECLIPSE: {
 		CURRENT_PHASE: "Текущая фаза",
 		GRAPH_DESCRIPTION: "Угловое поле в истинном масштабе с земной тенью в центре. Азимут возрастает вправо, высота — вверх.",
@@ -345,7 +355,7 @@ export const t = {
 		HEIGHT_BY_SHADOW: "Расчёт высоты",
 		HEIGHT_BY_SHADOW_FULL: "Калькулятор высоты объекта по его тени",
 		LIGHTS: "Освещение",
-		LIGHTS_DATA_BY_DATE: "Данные об освещении по датам",
+		LIGHTS_DATA_BY_DATE: "Расписание освещения",
 		LIGHTS_FULL: "Городское освещение",
 		MOON: "Луна",
 		MOON_PHASE_CALENDAR: "Календарь Лунных фаз",

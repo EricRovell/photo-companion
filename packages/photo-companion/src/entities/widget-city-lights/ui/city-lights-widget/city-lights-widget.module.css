@@ -1,0 +1,21 @@
+.content {
+	display: grid;
+	place-items: center;
+	padding: 0 var(--space-4) var(--space-5);
+	color: var(--lights-color);
+}
+
+.visual {
+	container-type: inline-size;
+	width: min(100%, var(--lights-max-width));
+}
+
+.description {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip-path: inset(50%);
+}
