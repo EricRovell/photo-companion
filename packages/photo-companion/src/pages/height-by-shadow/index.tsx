@@ -78,7 +78,13 @@ function PageHeightByShadow() {
 		<FormProvider>
 			<div class={styles.page}>
 				<IconShadow class={styles.icon} />
-				<Text align="center" as="h1" balance class={styles.title} variant="heading-3xl">
+				<Text
+					align="center"
+					as="h1"
+					balance
+					class={styles.title}
+					variant="heading-3xl"
+				>
 					{t().TITLE.HEIGHT_BY_SHADOW_FULL}
 				</Text>
 				<Calculator />

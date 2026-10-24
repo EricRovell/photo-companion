@@ -41,7 +41,11 @@ export function LunarEclipseGraph(props: LunarEclipseGraphProps) {
 					<stop class={styles["penumbra-outer"]} offset="100%" />
 				</radialGradient>
 				<clipPath id={moonClipId}>
-					<circle cx={moonPoint().x} cy={moonPoint().y} r={props.state.moon.angularRadius} />
+					<circle
+						cx={moonPoint().x}
+						cy={moonPoint().y}
+						r={props.state.moon.angularRadius}
+					/>
 				</clipPath>
 			</defs>
 
@@ -57,7 +61,12 @@ export function LunarEclipseGraph(props: LunarEclipseGraphProps) {
 				r={props.state.shadow.umbraAngularRadius}
 			/>
 			<Show keyed when={track()}>
-				{path => <path aria-hidden="true" class={styles.track} d={path} data-eclipse-track />}
+				{path => <path
+					aria-hidden="true"
+					class={styles.track}
+					d={path}
+					data-eclipse-track
+				/>}
 			</Show>
 			<circle
 				aria-hidden="true"
@@ -67,8 +76,14 @@ export function LunarEclipseGraph(props: LunarEclipseGraphProps) {
 				r={props.state.moon.angularRadius}
 			/>
 			<g aria-hidden="true" clip-path={`url(#${moonClipId})`}>
-				<circle fill={`url(#${gradientId})`} r={props.state.shadow.penumbraAngularRadius} />
-				<circle class={styles["umbra-coverage"]} r={props.state.shadow.umbraAngularRadius} />
+				<circle
+					fill={`url(#${gradientId})`}
+					r={props.state.shadow.penumbraAngularRadius}
+				/>
+				<circle
+					class={styles["umbra-coverage"]}
+					r={props.state.shadow.umbraAngularRadius}
+				/>
 			</g>
 			<circle
 				aria-hidden="true"

@@ -93,23 +93,43 @@ export const LightsInfo = () => {
 
 	return (
 		<PropertyList>
-			<PropertyList.Header>{t().TITLE.LIGHTS_FULL}</PropertyList.Header>
+			<PropertyList.Header>
+				{t().TITLE.LIGHTS_FULL}
+			</PropertyList.Header>
 			<PropertyList.Body class={styles.body}>
 				<PropertyList.Item class={styles.cell}>
-					<PropertyList.Label color="secondary" variant="text-xs">{t().LABEL.CITY}</PropertyList.Label>
+					<PropertyList.Label color="secondary" variant="text-xs">
+						{t().LABEL.CITY}
+					</PropertyList.Label>
 					<PropertyList.Value class={styles["metric-value"]}>
 						<Text variant="text-l">{t().CITIES[getCity()]}</Text>
-						<Text align="center" as="small" class={styles.status} variant="text-xs">{getSource()}</Text>
+						<Text
+							align="center"
+							as="small"
+							class={styles.status}
+							variant="text-xs"
+						>
+							{getSource()}
+						</Text>
 					</PropertyList.Value>
 				</PropertyList.Item>
 				<PropertyList.Item class={styles.cell}>
-					<PropertyList.Label color="secondary" variant="text-xs">{t().LABEL.LIGHTS_CITY}</PropertyList.Label>
+					<PropertyList.Label color="secondary" variant="text-xs">
+						{t().LABEL.LIGHTS_CITY}
+					</PropertyList.Label>
 					<PropertyList.Value class={styles["metric-value"]}>
 						<Text color={lightsOn() ? "success" : "danger"} variant="text-l">
 							{lightsOn() ? t().LABEL.TURNED_ON : t().LABEL.TURNED_OFF}
 						</Text>
 						<Show when={getStatusMessage()}>
-							{message => <Text align="center" as="small" class={styles.status} variant="text-xs">{message()}</Text>}
+							{message => <Text
+								align="center"
+								as="small"
+								class={styles.status}
+								variant="text-xs"
+							>
+								{message()}
+							</Text>}
 						</Show>
 					</PropertyList.Value>
 				</PropertyList.Item>
@@ -126,10 +146,18 @@ export const LightsInfo = () => {
 									{t().LIGHTS_COMPARISON.SWITCH_ON}
 								</PropertyList.Label>
 								<PropertyList.Value class={styles["metric-value"]}>
-									<Text as="strong" numeric variant="heading-l">{format().timeShort(schedule().LIGHTS_START)}</Text>
+									<Text as="strong" numeric variant="heading-l">
+										{format().timeShort(schedule().LIGHTS_START)}
+									</Text>
 									<Show when={getStartDifference()}>
 										{difference => (
-											<Text align="center" as="small" class={styles.delta} color={difference().tone} variant="text-xs">
+											<Text
+												align="center"
+												as="small"
+												class={styles.delta}
+												color={difference().tone}
+												variant="text-xs"
+											>
 												{difference().text}
 											</Text>
 										)}
@@ -141,10 +169,18 @@ export const LightsInfo = () => {
 									{t().LIGHTS_COMPARISON.SWITCH_OFF}
 								</PropertyList.Label>
 								<PropertyList.Value class={styles["metric-value"]}>
-									<Text as="strong" numeric variant="heading-l">{format().timeShort(schedule().LIGHTS_END)}</Text>
+									<Text as="strong" numeric variant="heading-l">
+										{format().timeShort(schedule().LIGHTS_END)}
+									</Text>
 									<Show when={getEndDifference()}>
 										{difference => (
-											<Text align="center" as="small" class={styles.delta} color={difference().tone} variant="text-xs">
+											<Text
+												align="center"
+												as="small"
+												class={styles.delta}
+												color={difference().tone}
+												variant="text-xs"
+											>
 												{difference().text}
 											</Text>
 										)}
@@ -156,10 +192,18 @@ export const LightsInfo = () => {
 									{t().LABEL.DURATION_LIGHTS}
 								</PropertyList.Label>
 								<PropertyList.Value class={styles["metric-value"]}>
-									<Text as="strong" numeric variant="heading-l">{format().timeDuration(schedule().duration)}</Text>
+									<Text as="strong" numeric variant="heading-l">
+										{format().timeDuration(schedule().duration)}
+									</Text>
 									<Show when={getDurationDifference()}>
 										{difference => (
-											<Text align="center" as="small" class={styles.delta} color={difference().tone} variant="text-xs">
+											<Text
+												align="center"
+												as="small"
+												class={styles.delta}
+												color={difference().tone}
+												variant="text-xs"
+											>
 												{difference().text}
 											</Text>
 										)}

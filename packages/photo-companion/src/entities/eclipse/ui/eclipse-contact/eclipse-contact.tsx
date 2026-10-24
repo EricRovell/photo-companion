@@ -21,13 +21,19 @@ export function EclipseContact(props: EclipseContactProps) {
 			data-visible={props.visible ? "" : undefined}
 		>
 			<span aria-hidden="true" class={styles.marker} />
-			<Text class={styles.label} color="secondary" variant="text-xs">{props.label}</Text>
+			<Text class={styles.label} color="secondary" variant="text-xs">
+				{props.label}
+			</Text>
 			{props.children}
 			<Show when={props.detail}>
-				<Text as="small" color="secondary" variant="text-xs">{props.detail}</Text>
+				<Text as="small" color="secondary" variant="text-xs">
+					{props.detail}
+				</Text>
 			</Show>
 			<Show when={props.note}>
-				<Text as="small" color="secondary" variant="text-xs">{props.note}</Text>
+				<Text as="small" color="secondary" variant="text-xs">
+					{props.note}
+				</Text>
 			</Show>
 		</li>
 	);

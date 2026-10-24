@@ -75,7 +75,14 @@ export function AzimuthWidgetView(props: ViewProps) {
 	return (
 		<Card data-label="azimuth">
 			<Card.Header class={styles.header}>
-				<Text align="start" as="h2" class={styles.title} variant="heading-l">{props.title}</Text>
+				<Text
+					align="start"
+					as="h2"
+					class={styles.title}
+					variant="heading-l"
+				>
+					{props.title}
+				</Text>
 				<Show when={deviceHeading().canAlign()}>
 					<DeviceHeadingToggle
 						active={deviceHeading().status() === "active"}

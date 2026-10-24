@@ -22,7 +22,14 @@ export function SolarEclipseContact(props: SolarEclipseContactProps) {
 			visible={props.contact.visible}
 		>
 			<LinkQuery href="/sun" noScroll query={query()}>
-				<Text as="time" datetime={props.contact.time.toISOString()} numeric variant="text-m">{format().time(props.contact.time)}</Text>
+				<Text
+					as="time"
+					datetime={props.contact.time.toISOString()}
+					numeric
+					variant="text-m"
+				>
+					{format().time(props.contact.time)}
+				</Text>
 			</LinkQuery>
 		</EclipseContact>
 	);

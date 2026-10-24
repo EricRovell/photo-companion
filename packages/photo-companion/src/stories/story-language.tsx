@@ -39,7 +39,9 @@ export function StoryTranslationProvider(props: ParentProps) {
 export function StoryTranslations(props: ParentProps) {
 	return (
 		<SettingsProvider>
-			<StoryTranslationProvider>{props.children}</StoryTranslationProvider>
+			<StoryTranslationProvider>
+				{props.children}
+			</StoryTranslationProvider>
 		</SettingsProvider>
 	);
 }

@@ -16,7 +16,10 @@ export function BridgeStateList() {
 	const { getBridgesState, isSomeBridgeLiftedUp } = useBridges();
 
 	return (
-		<Show fallback={<BridgesStateAll />} when={isSomeBridgeLiftedUp()}>
+		<Show
+			fallback={<BridgesStateAll />}
+			when={isSomeBridgeLiftedUp()}
+		>
 			<PropertyList.Item class={styles["entry-list"]}>
 				<PropertyList.Label>
 					{t().LABEL.BRIDGES_LIFTED_UP}
@@ -26,7 +29,9 @@ export function BridgeStateList() {
 						<For each={getBridgesState()}>
 							{item => (
 								<Show when={item.open}>
-									<Text as="li" variant="text-s">{t().BRIDGE_NAME_SPB[item.name]}</Text>
+									<Text as="li" variant="text-s">
+										{t().BRIDGE_NAME_SPB[item.name]}
+									</Text>
 								</Show>
 							)}
 						</For>
@@ -42,7 +47,9 @@ export function BridgeStateList() {
 						<For each={getBridgesState()}>
 							{item => (
 								<Show when={!item.open}>
-									<Text as="li" variant="text-s">{t().BRIDGE_NAME_SPB[item.name]}</Text>
+									<Text as="li" variant="text-s">
+										{t().BRIDGE_NAME_SPB[item.name]}
+									</Text>
 								</Show>
 							)}
 						</For>

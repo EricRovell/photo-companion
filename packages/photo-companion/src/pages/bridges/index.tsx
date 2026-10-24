@@ -32,10 +32,19 @@ function PageBridges() {
 	const { isSupportsBridges } = useBridges();
 
 	return (
-		<Show when={isSupportsBridges()} fallback={<Navigate href={ROUTES.NOT_FOUND} />}>
+		<Show
+			when={isSupportsBridges()}
+			fallback={<Navigate href={ROUTES.NOT_FOUND} />}
+		>
 			<div class={styles.page}>
 				<div class={styles.wrapper}>
-					<Text as="h2" balance class={styles.title} id="bridge-schedule" variant="heading-2xl">
+					<Text
+						as="h2"
+						balance
+						class={styles.title}
+						id="bridge-schedule"
+						variant="heading-2xl"
+					>
 						{t().TITLE.BRIDGES_SCHEDULE_SPB}
 					</Text>
 					<BridgeList />

@@ -16,8 +16,14 @@ export function PageMeta() {
 			<Meta name="og:title" content={formatTitle(getMeta().TITLE)} />
 			<Meta name="og:locale" content={lang()} />
 			<Meta name="og:description" content={getMeta().DESCRIPTION} />
-			<Meta name="twitter:title" content={formatTitle(getMeta().TITLE)} />
-			<Meta name="twitter:description" content={getMeta().DESCRIPTION} />
+			<Meta
+				name="twitter:title"
+				content={formatTitle(getMeta().TITLE)}
+			/>
+			<Meta
+				name="twitter:description"
+				content={getMeta().DESCRIPTION}
+			/>
 		</>
 	);
 }

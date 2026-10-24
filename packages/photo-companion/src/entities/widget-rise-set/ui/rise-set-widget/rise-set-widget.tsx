@@ -54,7 +54,11 @@ export function RiseSetWidget(props: ParentProps<RiseSetWidgetProps>) {
 						status={model.status()}
 						statusId={statusId}
 					/>
-					<RiseSetLegend renderTime={props.renderTime} rise={model.rise()} set={model.set()} />
+					<RiseSetLegend
+						renderTime={props.renderTime}
+						rise={model.rise()}
+						set={model.set()}
+					/>
 				</div>
 			</div>
 		</Card>

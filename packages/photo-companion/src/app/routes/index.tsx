@@ -33,7 +33,9 @@ const WITH_DATE_ROUTES = [
 export function Routes() {
 	return (
 		<Router root={Layout}>
-			<Suspense fallback={<Loader style={{ "--loader-size": "2rem" }} />}>
+			<Suspense
+				fallback={<Loader style={{ "--loader-size": "2rem" }} />}
+			>
 				<Route component={PageRoot} path={ROUTES.ROOT} />
 				<Route component={LayoutSwipe} path={WITH_DATE_ROUTES}>
 					<Route component={LayoutDatetime} path={WITH_DATE_ROUTES}>
@@ -44,7 +46,10 @@ export function Routes() {
 						<Route component={PageNow} path={ROUTES.NOW} />
 						<Route component={PageBridges} path={ROUTES.BRIDGES} />
 					</Route>
-					<Route component={PageHeightByShadow} path={ROUTES.HEIGHT_BY_SHADOW} />
+					<Route
+						component={PageHeightByShadow}
+						path={ROUTES.HEIGHT_BY_SHADOW}
+					/>
 				</Route>
 				<Route component={PageSettings} path={ROUTES.SETTINGS} />
 				<Route component={PageAbout} path={ROUTES.ABOUT} />

@@ -17,7 +17,13 @@ interface DatetimeTimelineProps {
 export function DatetimeTimeline(props: DatetimeTimelineProps) {
 	return (
 		<div class={styles["timeline-control"]}>
-			<Text as="time" class={styles["selected-value"]} datetime={createQueryDate(props.model.selectedDate())} numeric variant="heading-s">
+			<Text
+				as="time"
+				class={styles["selected-value"]}
+				datetime={createQueryDate(props.model.selectedDate())}
+				numeric
+				variant="heading-s"
+			>
 				{props.model.selectedValue()}
 			</Text>
 			<div
@@ -55,7 +61,9 @@ export function DatetimeTimeline(props: DatetimeTimelineProps) {
 									numeric
 									variant={selected() ? "heading-m" : "text-s"}
 								>
-									<span class={styles.primary}>{props.model.formatTickLabel(tick().date)}</span>
+									<span class={styles.primary}>
+										{props.model.formatTickLabel(tick().date)}
+									</span>
 								</Text>
 							);
 						}}

@@ -19,7 +19,11 @@ export function ToastUpdate() {
 			<Text as="p" color="success" variant="text-m">
 				{t().MESSAGE.UPDATE}
 			</Text>
-			<Button class={styles.button} onClick={handleReload} variant="success">
+			<Button
+				class={styles.button}
+				onClick={handleReload}
+				variant="success"
+			>
 				{t().LABEL.UPDATE}
 			</Button>
 		</aside>

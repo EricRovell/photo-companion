@@ -29,11 +29,15 @@ export function AzimuthLegend(props: Props) {
 				<For each={props.entities}>
 					{entity => (
 						<tr data-entity={entity.id}>
-							<th scope="row"><span aria-hidden="true" class={styles.dot} />{entity.label}</th>
+							<th scope="row">
+								<span aria-hidden="true" class={styles.dot} />{entity.label}
+							</th>
 							<td>
 								<span class={styles["azimuth-value"]}>
 									<span>{getRoundedAzimuth(entity.id)}°</span>
-									<small>{getCardinalDirection(props.getAzimuth(entity.id), props.cardinalLabels)}</small>
+									<small>
+										{getCardinalDirection(props.getAzimuth(entity.id), props.cardinalLabels)}
+									</small>
 								</span>
 							</td>
 							<td>{Math.round(entity.altitude)}°</td>

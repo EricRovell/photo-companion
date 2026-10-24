@@ -12,7 +12,10 @@ import styles from "./city-lights-preview.module.css";
 export function LightsPlayground(props: StoryArgs) {
 	return (
 		<StoryTranslations>
-			<div class={styles.preview} style={{ "--lights-story-width": `${props.width}px` }}>
+			<div
+				class={styles.preview}
+				style={{ "--lights-story-width": `${props.width}px` }}
+			>
 				<CityLightsWidget {...createScenario(props)} />
 			</div>
 		</StoryTranslations>
@@ -22,7 +25,10 @@ export function LightsPlayground(props: StoryArgs) {
 export function LightsEdgeCases(props: { width: number }) {
 	return (
 		<StoryTranslations>
-			<div class={styles.gallery} style={{ "--lights-story-width": `${props.width}px` }}>
+			<div
+				class={styles.gallery}
+				style={{ "--lights-story-width": `${props.width}px` }}
+			>
 				<For each={edgeScenarios}>
 					{scenario => (
 						<section class={styles.scenario}>

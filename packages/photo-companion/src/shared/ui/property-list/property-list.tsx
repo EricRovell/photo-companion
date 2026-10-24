@@ -14,7 +14,11 @@ export const PropertyList = (allProps: ParentProps<JSX.HTMLAttributes<HTMLElemen
 	const [ props, rest ] = splitProps(allProps, [ "class", "children" ]);
 
 	return (
-		<Card as="article" class={classnames(styles.card, props.class)} {...rest}>
+		<Card
+			as="article"
+			class={classnames(styles.card, props.class)}
+			{...rest}
+		>
 			{props.children}
 		</Card>
 	);
@@ -54,7 +58,11 @@ export const Label = (allProps: PropertyTextProps<"dt">) => {
 	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (
-		<Text as="dt" class={classnames(styles.label, props.class)} {...rest} />
+		<Text
+			as="dt"
+			class={classnames(styles.label, props.class)}
+			{...rest}
+		/>
 	);
 };
 
@@ -63,6 +71,10 @@ export const Value = (allProps: PropertyTextProps<"dd">) => {
 	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (
-		<Text as="dd" class={classnames(styles.value, props.class)} {...rest} />
+		<Text
+			as="dd"
+			class={classnames(styles.value, props.class)}
+			{...rest}
+		/>
 	);
 };

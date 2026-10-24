@@ -73,7 +73,13 @@ export const MoonEdgeCases: Story = {
 			}
 		}
 	},
-	render: args => <ScenarioGallery entity="moon" scenarios={visualScenarios} width={args.width} />
+	render: args => (
+		<ScenarioGallery
+			entity="moon"
+			scenarios={visualScenarios}
+			width={args.width}
+		/>
+	)
 };
 
 export const SunEdgeCases: Story = {
@@ -86,7 +92,13 @@ export const SunEdgeCases: Story = {
 			}
 		}
 	},
-	render: args => <ScenarioGallery entity="sun" scenarios={visualScenarios} width={args.width} />
+	render: args => (
+		<ScenarioGallery
+			entity="sun"
+			scenarios={visualScenarios}
+			width={args.width}
+		/>
+	)
 };
 
 export const IntervalSelection: Story = {
@@ -99,5 +111,11 @@ export const IntervalSelection: Story = {
 			}
 		}
 	},
-	render: args => <IntervalSelectionGallery entity={args.entity} scenarios={selectionScenarios} width={args.width} />
+	render: args => (
+		<IntervalSelectionGallery
+			entity={args.entity}
+			scenarios={selectionScenarios}
+			width={args.width}
+		/>
+	)
 };

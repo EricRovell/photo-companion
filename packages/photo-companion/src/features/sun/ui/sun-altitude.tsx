@@ -13,7 +13,9 @@ export function SunAltitude() {
 	return (
 		<Card data-label="altitude">
 			<Card.Header>
-				<Text as="h2" variant="heading-l">{t().TITLE.ELEVATION_SUN}</Text>
+				<Text as="h2" variant="heading-l">
+					{t().TITLE.ELEVATION_SUN}
+				</Text>
 			</Card.Header>
 			<ElevationGraph>
 				<ElevationGraph.ZeroAxis />

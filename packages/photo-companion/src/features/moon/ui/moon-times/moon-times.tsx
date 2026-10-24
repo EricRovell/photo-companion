@@ -20,14 +20,25 @@ export function MoonTimes() {
 			entity="moon"
 			nextRise={nextRise()}
 			renderTime={(date, children, label) => (
-				<LinkQuery aria-label={label} href="/moon" noScroll query={new URLSearchParams({ datetime: createQueryDate(date) })}>
+				<LinkQuery
+					aria-label={label}
+					href="/moon"
+					noScroll
+					query={new URLSearchParams({ datetime: createQueryDate(date) })}
+				>
 					{children}
 				</LinkQuery>
 			)}
 			rise={riseSetTimes().rise}
 			set={riseSetTimes().set}
 		>
-			<Moon height={MOON_SIZE} phase={phaseValue()} rotation={rotation()} size={MOON_SIZE} width={MOON_SIZE} />
+			<Moon
+				height={MOON_SIZE}
+				phase={phaseValue()}
+				rotation={rotation()}
+				size={MOON_SIZE}
+				width={MOON_SIZE}
+			/>
 		</RiseSetWidget>
 	);
 }

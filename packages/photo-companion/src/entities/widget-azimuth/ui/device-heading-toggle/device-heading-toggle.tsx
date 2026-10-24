@@ -52,9 +52,26 @@ export function DeviceHeadingToggle(props: Props) {
 				pending={props.pending}
 			>
 				<Icon aria-hidden="true" class={styles.icon} viewBox="0 0 24 24">
-					<circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="1.5" />
-					<Show when={props.active} fallback={<path d="m16.5 7.5-3 6-6 3 3-6 6-3Zm-5 4-1 2 2-1 1-2-2 1Z" />}>
-						<path d="m8 12 2.5 2.5L16 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" />
+					<circle
+						cx="12"
+						cy="12"
+						fill="none"
+						r="9"
+						stroke="currentColor"
+						stroke-width="1.5"
+					/>
+					<Show
+						when={props.active}
+						fallback={<path d="m16.5 7.5-3 6-6 3 3-6 6-3Zm-5 4-1 2 2-1 1-2-2 1Z" />}
+					>
+						<path
+							d="m8 12 2.5 2.5L16 9"
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.75"
+						/>
 					</Show>
 				</Icon>
 				{props.active ? props.labels.aligned : props.labels.align}

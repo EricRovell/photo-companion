@@ -22,7 +22,9 @@ export function CityLightsSource(props: Props) {
 				{props.label}
 			</Text>
 			<Show when={props.uncertainty}>
-				<Text color="secondary" variant="text-xs">{props.uncertainty}</Text>
+				<Text color="secondary" variant="text-xs">
+					{props.uncertainty}
+				</Text>
 			</Show>
 		</div>
 	);

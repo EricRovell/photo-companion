@@ -63,7 +63,9 @@ function AzimuthPreview(args: StoryArgs) {
 	createEffect(() => setAligned(args.aligned));
 
 	return (
-		<div style={{ "max-width": "100%", "text-align": "center", width: `${args.width}px` }}>
+		<div
+			style={{ "max-width": "100%", "text-align": "center", width: `${args.width}px` }}
+		>
 			<AzimuthWidgetView
 				deviceHeading={{
 					canAlign: () => args.supported,
@@ -142,7 +144,11 @@ const meta = {
 			}
 		}
 	},
-	render: args => <StoryTranslations><AzimuthPreview {...args} /></StoryTranslations>,
+	render: args => (
+		<StoryTranslations>
+			<AzimuthPreview {...args} />
+		</StoryTranslations>
+	),
 	title: "Widgets/Azimuth"
 } satisfies Meta<StoryArgs>;
 

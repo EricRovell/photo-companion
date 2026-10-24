@@ -29,7 +29,10 @@ export function BridgesInfo(props: Props) {
 				<Show when={getNavigationState().navigation}>
 					<NextBridgeCountdown />
 				</Show>
-				<Show fallback={<BridgesStateAll allLiftedDown />} when={!isAllBridgesLiftedDown()}>
+				<Show
+					fallback={<BridgesStateAll allLiftedDown />}
+					when={!isAllBridgesLiftedDown()}
+				>
 					<BridgeStateList />
 				</Show>
 			</PropertyList.Body>

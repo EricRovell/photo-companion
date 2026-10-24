@@ -43,43 +43,89 @@ export function LunarEclipseDetails(props: LunarEclipseDetailsProps) {
 	return (
 		<div aria-live="polite" class={styles.summary}>
 			<Show
-				fallback={<Text align="center" as="p" balance class={styles.empty} color="secondary" variant="text-s">{t().LUNAR_ECLIPSE.NO_ECLIPSE}</Text>}
+				fallback={<Text
+					align="center"
+					as="p"
+					balance
+					class={styles.empty}
+					color="secondary"
+					variant="text-s"
+				>
+					{t().LUNAR_ECLIPSE.NO_ECLIPSE}
+				</Text>}
 				when={props.event}
 			>
 				{event => (
 					<>
 						<div class={styles["event-header"]}>
 							<div class={styles["event-title"]}>
-								<Text color="secondary" variant="text-xs">{t().ECLIPSE.EVENT_TYPE}</Text>
-								<Text as="strong" variant="heading-l">{labelType(event().type)}</Text>
+								<Text color="secondary" variant="text-xs">
+									{t().ECLIPSE.EVENT_TYPE}
+								</Text>
+								<Text as="strong" variant="heading-l">
+									{labelType(event().type)}
+								</Text>
 							</div>
 							<div class={styles["event-date"]}>
 								<Text color="secondary" variant="text-xs">{t().LABEL.DATE}</Text>
-								<Text as="time" datetime={event().peak.time.toISOString()} numeric variant="text-s">{format().date(event().peak.time)}</Text>
+								<Text
+									as="time"
+									datetime={event().peak.time.toISOString()}
+									numeric
+									variant="text-s"
+								>
+									{format().date(event().peak.time)}
+								</Text>
 							</div>
 						</div>
 
 						<dl class={styles.metrics}>
 							<div class={styles.metric}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.CURRENT_PHASE}</Text>
-								<Text as="dd" numeric variant="text-s">{labelPhase(props.state.phase)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LUNAR_ECLIPSE.CURRENT_PHASE}
+								</Text>
+								<Text as="dd" numeric variant="text-s">
+									{labelPhase(props.state.phase)}
+								</Text>
 							</div>
 							<div class={styles.metric}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.MAXIMUM_MOON_ALTITUDE}</Text>
-								<Text as="dd" numeric variant="text-s">{format().degrees(event().peak.moonAltitude)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LUNAR_ECLIPSE.MAXIMUM_MOON_ALTITUDE}
+								</Text>
+								<Text as="dd" numeric variant="text-s">
+									{format().degrees(event().peak.moonAltitude)}
+								</Text>
 							</div>
 							<div class={styles.metric}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().ECLIPSE.VISIBILITY}</Text>
-								<Text as="dd" numeric variant="text-s">{labelVisibility(event().visibility)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().ECLIPSE.VISIBILITY}
+								</Text>
+								<Text as="dd" numeric variant="text-s">
+									{labelVisibility(event().visibility)}
+								</Text>
 							</div>
 							<div class={styles.metric}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LUNAR_ECLIPSE.NOTICEABILITY}</Text>
-								<Text as="dd" numeric variant="text-s">{labelNoticeability(event().noticeability)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LUNAR_ECLIPSE.NOTICEABILITY}
+								</Text>
+								<Text as="dd" numeric variant="text-s">
+									{labelNoticeability(event().noticeability)}
+								</Text>
 							</div>
 						</dl>
 
-						<section class={styles["contacts-section"]} data-page-swipe="ignore">
-							<Text align="center" as="h3" color="secondary" variant="heading-s">{t().ECLIPSE.CONTACTS}</Text>
+						<section
+							class={styles["contacts-section"]}
+							data-page-swipe="ignore"
+						>
+							<Text
+								align="center"
+								as="h3"
+								color="secondary"
+								variant="heading-s"
+							>
+								{t().ECLIPSE.CONTACTS}
+							</Text>
 							<div class={styles["contacts-scroll"]}>
 								<ol
 									aria-label={t().ECLIPSE.CONTACTS}

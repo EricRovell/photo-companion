@@ -49,7 +49,10 @@ function renderTimes() {
 	history.set({ value: "/sun?latitude=0&longitude=0&source=test" });
 	return render(() => (
 		<MemoryRouter history={history}>
-			<Route component={() => <SunProvider><SunTimes /></SunProvider>} path="/sun" />
+			<Route
+				component={() => <SunProvider><SunTimes /></SunProvider>}
+				path="/sun"
+			/>
 		</MemoryRouter>
 	));
 }

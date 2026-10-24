@@ -45,7 +45,12 @@ export function SeasonGraphSelection(props: Props) {
 			/>
 			<g transform={`translate(0 ${props.point.y})`}>
 				<circle class={styles["selected-halo"]} cx="0" cy="0" r="11" />
-				<circle class={styles["selected-marker"]} cx="0" cy="0" r="5.5" />
+				<circle
+					class={styles["selected-marker"]}
+					cx="0"
+					cy="0"
+					r="5.5"
+				/>
 			</g>
 			<text
 				class={styles["selected-label"]}

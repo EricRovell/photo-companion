@@ -35,7 +35,10 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 	});
 
 	return (
-		<form class={classnames(styles.form, props.class)} onSubmit={event => event.preventDefault()}>
+		<form
+			class={classnames(styles.form, props.class)}
+			onSubmit={event => event.preventDefault()}
+		>
 			<DatetimeStepSelect
 				disabled={Boolean(props.disabled)}
 				labels={labels()}

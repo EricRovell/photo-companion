@@ -39,7 +39,10 @@ function BridgeTimer(props: BridgeTimerProps) {
 		<Show when={getNavigationState().navigation}>
 			<footer>
 				<Text align="center" as="p" color="secondary" variant="text-s">
-					<Show fallback={t().MESSAGE.BRIDGE_WILL_OPEN_WITHIN} when={props.state.open}>
+					<Show
+						fallback={t().MESSAGE.BRIDGE_WILL_OPEN_WITHIN}
+						when={props.state.open}
+					>
 						{t().MESSAGE.BRIDGE_WILL_CLOSE_WITHIN}
 					</Show>
 				</Text>
@@ -75,7 +78,12 @@ export function CardBridge(props: CardBridgeProps) {
 						<IconWarning title={t().MESSAGE.BRIDGE_EXCEPTION} />
 					</Show>
 				</Text>
-				<Text as="output" color={getState().open ? "danger" : "success"} numeric variant="text-s">
+				<Text
+					as="output"
+					color={getState().open ? "danger" : "success"}
+					numeric
+					variant="text-s"
+				>
 					<Show fallback={t().LABEL.BRIDGE_CLOSED} when={getState().open}>
 						{t().LABEL.BRIDGE_OPENED}
 					</Show>

@@ -32,9 +32,18 @@ export function RiseSetSummary(props: Props) {
 
 	return (
 		<div class={styles.summary}>
-			<dl aria-describedby={describedBy()} class={styles.stats} title={props.status ?? undefined}>
+			<dl
+				aria-describedby={describedBy()}
+				class={styles.stats}
+				title={props.status ?? undefined}
+			>
 				<div class={styles.stat} data-rise-set-duration>
-					<Text as="dt" color="secondary" leading="relaxed" variant="text-xs">
+					<Text
+						as="dt"
+						color="secondary"
+						leading="relaxed"
+						variant="text-xs"
+					>
 						{durationLabel()}
 					</Text>
 					<Text as="dd" color="secondary" numeric variant="text-m">
@@ -42,11 +51,19 @@ export function RiseSetSummary(props: Props) {
 					</Text>
 				</div>
 				<div class={styles.stat} data-rise-set-countdown>
-					<Text as="dt" color="secondary" leading="relaxed" variant="text-xs">
+					<Text
+						as="dt"
+						color="secondary"
+						leading="relaxed"
+						variant="text-xs"
+					>
 						{countdownLabel()}
 					</Text>
 					<Text as="dd" color="primary" numeric variant="heading-l">
-						<RiseSetCountdown date={props.date} event={summary().nextEvent} />
+						<RiseSetCountdown
+							date={props.date}
+							event={summary().nextEvent}
+						/>
 					</Text>
 				</div>
 			</dl>

@@ -100,7 +100,10 @@ export function RiseSetDial(props: ParentProps<Props>) {
 					/>
 				</Show>
 				<Show when={midnights().length}>
-					<RiseSetDialMidnights descriptionId={midnightDescriptionId} midnights={midnights()} />
+					<RiseSetDialMidnights
+						descriptionId={midnightDescriptionId}
+						midnights={midnights()}
+					/>
 				</Show>
 				<Show when={markerVisible()}>
 					<circle

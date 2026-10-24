@@ -9,7 +9,9 @@ export function NoEvents() {
 
 	return (
 		<article class={styles.warning}>
-			<Text align="center" as="h2" balance variant="heading-m">{t().MESSAGE.EVENTS_ARE_DISABLED}</Text>
+			<Text align="center" as="h2" balance variant="heading-m">
+				{t().MESSAGE.EVENTS_ARE_DISABLED}
+			</Text>
 			<IconWarning />
 		</article>
 	);

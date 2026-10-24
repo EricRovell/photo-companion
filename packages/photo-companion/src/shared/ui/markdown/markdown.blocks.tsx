@@ -55,7 +55,14 @@ const HEADING_VARIANTS: Record<HeadingProps["depth"], TextVariant> = {
 };
 
 export const Heading = (props: HeadingProps) => (
-	<Text align="start" as={HEADING_ELEMENTS[props.depth]} balance color="primary" id={props.id} variant={HEADING_VARIANTS[props.depth]}>
+	<Text
+		align="start"
+		as={HEADING_ELEMENTS[props.depth]}
+		balance
+		color="primary"
+		id={props.id}
+		variant={HEADING_VARIANTS[props.depth]}
+	>
 		{props.children}
 	</Text>
 );
@@ -98,7 +105,9 @@ export const ListItem = (props: ListItemProps) => (
 );
 
 export const Paragraph = (props: ParentProps) => (
-	<Text align="start" as="p" variant="text-l">{props.children}</Text>
+	<Text align="start" as="p" variant="text-l">
+		{props.children}
+	</Text>
 );
 
 export const Root = (props: ParentProps) => (

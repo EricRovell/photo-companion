@@ -36,7 +36,9 @@ export function MoonInfo(props: Props) {
 			<PropertyList.Body>
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.MOON_PHASE}</PropertyList.Label>
-					<PropertyList.Value>{t().MOON_PHASE[phaseName()]}</PropertyList.Value>
+					<PropertyList.Value>
+						{t().MOON_PHASE[phaseName()]}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
@@ -49,14 +51,18 @@ export function MoonInfo(props: Props) {
 				<Show when={fullMoonName()}>
 					{name => (
 						<PropertyList.Item>
-							<PropertyList.Label>{t().LABEL.FULL_MOON_NAME}</PropertyList.Label>
+							<PropertyList.Label>
+								{t().LABEL.FULL_MOON_NAME}
+							</PropertyList.Label>
 							<PropertyList.Value>{t().MOON_NAME[name()]}</PropertyList.Value>
 						</PropertyList.Item>
 					)}
 				</Show>
 
 				<PropertyList.Item>
-					<PropertyList.Label>{t().LABEL.MOONRISE_TIME}</PropertyList.Label>
+					<PropertyList.Label>
+						{t().LABEL.MOONRISE_TIME}
+					</PropertyList.Label>
 					<PropertyList.Value>
 						<Show fallback="—" when={moonrise()}>
 							{value => format().timeShort(value())}
@@ -74,33 +80,49 @@ export function MoonInfo(props: Props) {
 				</PropertyList.Item>
 
 				<PropertyList.Item>
-					<PropertyList.Label>{t().LABEL.MOON_ILLUMINATION}</PropertyList.Label>
-					<PropertyList.Value>{format().percent(fraction())}</PropertyList.Value>
+					<PropertyList.Label>
+						{t().LABEL.MOON_ILLUMINATION}
+					</PropertyList.Label>
+					<PropertyList.Value>
+						{format().percent(fraction())}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.ZENITH}</PropertyList.Label>
-					<PropertyList.Value>{format().degrees(zenith())}</PropertyList.Value>
+					<PropertyList.Value>
+						{format().degrees(zenith())}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.ALTITUDE}</PropertyList.Label>
-					<PropertyList.Value>{format().degrees(altitude())}</PropertyList.Value>
+					<PropertyList.Value>
+						{format().degrees(altitude())}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.AZIMUTH}</PropertyList.Label>
-					<PropertyList.Value>{format().degrees(azimuth())}</PropertyList.Value>
+					<PropertyList.Value>
+						{format().degrees(azimuth())}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
 					<PropertyList.Label>{t().LABEL.DISTANCE}</PropertyList.Label>
-					<PropertyList.Value>{format().kilometers(distance())}</PropertyList.Value>
+					<PropertyList.Value>
+						{format().kilometers(distance())}
+					</PropertyList.Value>
 				</PropertyList.Item>
 
 				<PropertyList.Item>
-					<PropertyList.Label>{t().LABEL.PARALLACTIC_ANGLE}</PropertyList.Label>
-					<PropertyList.Value>{format().degrees(parallacticAngle())}</PropertyList.Value>
+					<PropertyList.Label>
+						{t().LABEL.PARALLACTIC_ANGLE}
+					</PropertyList.Label>
+					<PropertyList.Value>
+						{format().degrees(parallacticAngle())}
+					</PropertyList.Value>
 				</PropertyList.Item>
 			</PropertyList.Body>
 		</PropertyList>

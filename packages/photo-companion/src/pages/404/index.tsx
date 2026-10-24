@@ -10,7 +10,9 @@ const Page404 = () => {
 
 	return (
 		<aside class={styles.page}>
-			<Text align="center" as="p" balance variant="text-l">{t().MESSAGE.PAGE_404}</Text>
+			<Text align="center" as="p" balance variant="text-l">
+				{t().MESSAGE.PAGE_404}
+			</Text>
 			<div class={styles.moon}>
 				<span class={styles.digit}>4</span>
 				<Moon

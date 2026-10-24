@@ -40,7 +40,14 @@ export const Custom: Story = {
 	},
 	render: args => (
 		<Icon {...args}>
-			<circle cx="128" cy="128" fill="none" r="88" stroke="currentColor" stroke-width="16" />
+			<circle
+				cx="128"
+				cy="128"
+				fill="none"
+				r="88"
+				stroke="currentColor"
+				stroke-width="16"
+			/>
 			<circle cx="128" cy="128" r="32" />
 		</Icon>
 	)

@@ -14,9 +14,14 @@ function DialogDemo() {
 		<>
 			<Button onClick={() => setOpen(true)}>Open dialog</Button>
 			<Dialog onClose={() => setOpen(false)} open={open()}>
-				<Card class="storybook-stack" style={{ padding: "var(--space-5)" }}>
+				<Card
+					class="storybook-stack"
+					style={{ padding: "var(--space-5)" }}
+				>
 					<Text as="h2" variant="heading-l">Choose a location</Text>
-					<Text as="p">The dialog uses the native top layer and supports light dismiss.</Text>
+					<Text as="p">
+						The dialog uses the native top layer and supports light dismiss.
+					</Text>
 					<Button onClick={() => setOpen(false)}>Close</Button>
 				</Card>
 			</Dialog>

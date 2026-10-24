@@ -16,17 +16,19 @@ import { DefinitionProvider } from "./markdown.context";
 
 export const Markdown = (props: ParentProps) => (
 	<DefinitionProvider>
-		<MDXProvider builtins={{
-			Definition,
-			Heading,
-			Link,
-			LinkReference,
-			List,
-			ListItem,
-			Paragraph,
-			Root,
-			Strong
-		}}>
+		<MDXProvider
+			builtins={{
+				Definition,
+				Heading,
+				Link,
+				LinkReference,
+				List,
+				ListItem,
+				Paragraph,
+				Root,
+				Strong
+			}}
+		>
 			{props.children}
 		</MDXProvider>
 	</DefinitionProvider>
