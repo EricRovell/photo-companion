@@ -125,6 +125,21 @@ const { getEventsByDate } = initLightsProvider("MOSCOW");
 const events = getEventsByDate();
 ```
 
+### `getLightsNight(date: Date, getSchedule: (date: Date) => LightsSchedule): LightsNight`
+
+Combines adjacent daily schedules into the local noon-to-noon night containing `date`. Each switch uses its own calendar day's schedule, including the morning after midnight. The bounds follow local calendar days across daylight-saving changes.
+
+```ts
+import { getLightsNight, initLightsProvider } from "lights-schedule";
+
+const provider = initLightsProvider("MOSCOW");
+const night = getLightsNight(new Date(), provider.getScheduleByDate);
+```
+
+The result includes the bounds, switching events, lights-on intervals, overlapping uncertainty windows, and the lights-on duration within those bounds in milliseconds. Event timestamps and uncertainty bounds are Unix milliseconds; uncertainty windows retain their full bounds even when they cross noon. Intervals reference their original start and end events. An interval's end is `null` when the following switch-off is unavailable, and its duration is counted up to the night's ending noon.
+
+Graph positions, clipping, ticks, and localized labels are handled by consumers.
+
 ## Solar estimate
 
 The estimate switches lights on and off when the Sun crosses event-specific effective altitudes. Those altitudes are calculated from the date and latitude with a compact two-harmonic annual model fitted to the bundled Moscow and Saint Petersburg schedules. The same coordinate/date formula is used for every city; there are no hidden city schedule lookups.

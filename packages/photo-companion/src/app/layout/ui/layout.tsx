@@ -1,7 +1,7 @@
 import { type ParentProps } from "solid-js";
 
+import { Bulb } from "~/entities/city-lights";
 import { PageMeta } from "~/entities/page-meta";
-import { Bulb } from "~/features/city-lights";
 import { LinkQuery, Navigation } from "~/features/navigation";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";

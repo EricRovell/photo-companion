@@ -1,3 +1,4 @@
+export { getLightsNight } from "./get-lights-night";
 export { initLightsProvider, isSupportedCity } from "./provider";
 export { getLightsAltitude, isSolarLightsLocation } from "./solar-provider";
-export type { LightsProvider, SolarLightsLocation } from "./types";
+export type { LightsNight, LightsNightEvent, LightsNightInterval, LightsProvider, SolarLightsLocation } from "./types";

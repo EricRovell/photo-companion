@@ -1,0 +1,12 @@
+.window {
+	position: absolute;
+	top: 0.25rem;
+	height: 1.2rem;
+	border: 1px dashed hsl(39deg 94% 61% / 70%);
+	border-radius: 0.15rem;
+	background: repeating-linear-gradient(
+		135deg,
+		hsl(39deg 94% 61% / 35%) 0 1px,
+		hsl(39deg 94% 61% / 5%) 1px 4px
+	);
+}

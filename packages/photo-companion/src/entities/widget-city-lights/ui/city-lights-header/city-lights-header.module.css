@@ -1,0 +1,16 @@
+.header.header {
+	align-items: baseline;
+	flex-wrap: nowrap;
+	gap: var(--space-2) var(--space-4);
+}
+
+.title {
+	flex: 1 1 10rem;
+	min-width: 0;
+}
+
+.city {
+	max-width: 100%;
+	margin-inline-start: auto;
+	overflow-wrap: anywhere;
+}

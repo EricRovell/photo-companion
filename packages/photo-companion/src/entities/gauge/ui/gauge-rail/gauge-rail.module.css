@@ -1,5 +1,0 @@
-.rail {
-	fill: none;
-	stroke: var(--gauge-background, hsl(0deg 50% 100% / 50%));
-	opacity: 0.5;
-}

@@ -1,0 +1,29 @@
+.events {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--space-3);
+	margin: 0;
+	padding-top: var(--space-3);
+	border-top: 1px solid var(--card-divider-color);
+	font-variant-numeric: tabular-nums;
+}
+
+.event {
+	display: grid;
+	align-content: start;
+	gap: var(--space-1);
+	min-width: 0;
+	text-align: start;
+}
+
+.event[data-event="LIGHTS_END"] {
+	text-align: end;
+}
+
+.event dd {
+	margin: 0;
+}
+
+.range {
+	color: var(--lights-color);
+}

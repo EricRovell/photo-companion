@@ -1,0 +1,21 @@
+.schedule {
+	min-width: 0;
+}
+
+.schedule:focus-visible {
+	--lights-selected-time-visibility: visible;
+
+	border-radius: var(--radius);
+	outline: 2px solid var(--focus-ring-color);
+	outline-offset: var(--space-2);
+}
+
+.plot {
+	position: relative;
+	height: 3.5rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.plot[data-staggered] {
+	height: 5rem;
+}

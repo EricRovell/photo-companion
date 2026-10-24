@@ -1,6 +1,6 @@
 import type { LightsEvent } from "types";
 
-import { Bulb } from "~/features/city-lights";
+import { Bulb } from "~/entities/city-lights";
 
 import type { EventComponent } from "../types";
 import type { Translation } from "~/features/translation";

@@ -1,0 +1,50 @@
+.selected {
+	position: absolute;
+	top: 0.85rem;
+	width: 1rem;
+	height: 1rem;
+	cursor: help;
+	transform: translate(-50%, -50%);
+}
+
+.selected::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0.8rem;
+	height: 0.8rem;
+	border: 2px solid var(--card-background);
+	border-radius: 50%;
+	background: var(--lights-color);
+	box-shadow: 0 0 5px hsl(39deg 94% 61% / 40%);
+	content: "";
+	transform: translate(-50%, -50%);
+}
+
+.selected span {
+	position: absolute;
+	z-index: 1;
+	bottom: calc(100% + var(--space-1));
+	left: 50%;
+	visibility: var(--lights-selected-time-visibility, hidden);
+	padding: var(--space-1) var(--space-2);
+	border: 1px solid var(--card-border-color);
+	border-radius: var(--radius);
+	background: var(--card-background);
+	color: var(--color-text);
+	font-size: var(--font-size-2);
+	font-weight: 500;
+	transform: translateX(-50%);
+}
+
+.selected:hover span {
+	visibility: visible;
+}
+
+.selected[data-edge="start"] span {
+	transform: none;
+}
+
+.selected[data-edge="end"] span {
+	transform: translateX(-100%);
+}

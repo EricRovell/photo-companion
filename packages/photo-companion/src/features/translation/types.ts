@@ -168,6 +168,16 @@ export interface Translation {
 		SOLAR_ESTIMATE: string;
 		SOLAR_ESTIMATE_UNCERTAIN: `${string}{duration}${string}`;
 	};
+	LIGHTS_WIDGET: {
+		EXPECTED_OFF: string;
+		EXPECTED_ON: string;
+		NIGHT_SCHEDULE: string;
+		SCHEDULED_OFF: string;
+		SCHEDULED_ON: string;
+		SELECTED_TIME: string;
+		SWITCHING_WINDOW: `${string}{duration}${string}`;
+		WITHIN_WINDOW: string;
+	};
 	LUNAR_ECLIPSE: {
 		CURRENT_PHASE: string;
 		GRAPH_DESCRIPTION: string;
