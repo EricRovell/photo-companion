@@ -25,7 +25,7 @@ export function createMoonServiceState() {
 
 	const position = createMemo(() => getMoonPosition({ instant: getDatetime(), observer: observer() }));
 
-	const { rise: moonrise, riseSetTimes, set: moonset } = createRiseSetEvents({
+	const { belowHorizonInterval, nextRise, rise: moonrise, riseSetTimes, set: moonset } = createRiseSetEvents({
 		date: getDatetime,
 		findIntervals: findMoonRiseSetIntervals,
 		observer
@@ -38,6 +38,7 @@ export function createMoonServiceState() {
 		altitude: () => position().apparentAltitude,
 		angle: () => illumination().angle,
 		azimuth: () => position().azimuth,
+		belowHorizonInterval,
 		distance: () => position().distance,
 		duration: () => moonrise() || moonset() ? calcDuration(moonrise(), moonset()) : 0,
 		fraction: () => illumination().fraction * 100,
@@ -46,6 +47,7 @@ export function createMoonServiceState() {
 			: null,
 		moonrise,
 		moonset,
+		nextRise,
 		parallacticAngle: () => position().parallacticAngle,
 		phaseName: () => illumination().phase,
 		phases,

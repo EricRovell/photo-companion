@@ -1,5 +1,3 @@
-import { Show } from "solid-js";
-
 import { useTranslation } from "~/features/translation";
 import { Text } from "~/shared/ui";
 
@@ -26,18 +24,14 @@ function RiseSetEvent(props: EventProps) {
 			<span class={styles.label}>
 				{props.event.label}
 			</span>
-			<div class={styles.value}>
-				<Text as="time" dateTime={props.event.date?.toISOString()} numeric title={fullDate()} variant="heading-s">
-					{props.event.date && props.renderTime
-						? props.renderTime(props.event.date, props.event.time, `${props.event.label}: ${props.event.time}, ${fullDate()}`)
-						: props.event.time}
-				</Text>
-				<Show when={props.event.day}>
-					<span class={styles.day} data-event-day>
-						({props.event.day})
-					</span>
-				</Show>
-			</div>
+			<Text as="time" dateTime={props.event.date?.toISOString()} numeric title={fullDate()} variant="heading-s">
+				{props.event.date && props.renderTime
+					? props.renderTime(props.event.date, props.event.time, `${props.event.label}: ${props.event.time}, ${fullDate()}`)
+					: props.event.time}
+			</Text>
+			<span class={styles.day} data-event-day title={fullDate()}>
+				{props.event.day}
+			</span>
 		</div>
 	);
 }

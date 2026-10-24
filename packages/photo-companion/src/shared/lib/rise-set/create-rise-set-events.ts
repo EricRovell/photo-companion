@@ -5,6 +5,7 @@ import { getDayStart, isSameDay, shiftDate } from "utils/date";
 import type { Observer, RiseSetInterval, RiseSetSearchInput } from "moon-sun-calc";
 import type { Accessor } from "solid-js";
 
+import { selectRiseSetContext } from "./select-rise-set-context";
 import { selectRiseSetInterval } from "./select-rise-set-interval";
 
 interface Options {
@@ -30,8 +31,11 @@ export function createRiseSetEvents(options: Options) {
 	const rise = () => intervals().find(({ rise }) => rise && isSameDay(rise, dayStart()))?.rise ?? null;
 	const set = () => intervals().find(({ set }) => set && isSameDay(set, dayStart()))?.set ?? null;
 	const riseSetTimes = createMemo(() => selectRiseSetInterval(options.date(), intervals()));
+	const context = createMemo(() => selectRiseSetContext(options.date(), intervals(), riseSetTimes()));
 
 	return {
+		belowHorizonInterval: () => context().belowHorizonInterval,
+		nextRise: () => context().nextRise,
 		rise,
 		riseSetTimes,
 		set

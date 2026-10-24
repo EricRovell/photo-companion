@@ -9,14 +9,3 @@
 	container-type: inline-size;
 	width: min(100%, var(--rise-set-max-width));
 }
-
-.summary {
-	position: relative;
-	margin: calc(-1 * var(--space-2)) 0 var(--space-3);
-}
-
-@container (width <= 18rem) {
-	.summary {
-		margin-top: var(--space-3);
-	}
-}

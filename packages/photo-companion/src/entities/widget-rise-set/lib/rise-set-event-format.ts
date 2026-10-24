@@ -9,14 +9,18 @@ interface EventFormatOptions {
 	date: Date;
 	formatDate: (date: Date) => string;
 	formatTime: (date: Nullish<Date>) => string;
-	labels: Pick<Translation["RISE_SET"], "NEXT_DAY" | "PREVIOUS_DAY">;
+	labels: Pick<Translation["RISE_SET"], "NEXT_DAY" | "PREVIOUS_DAY" | "TODAY" | "UNAVAILABLE">;
 }
 
 type StatusOptions = Pick<RiseSetWidgetProps, "aboveHorizon" | "rise" | "set">;
 
 function formatRiseSetDayLabel(date: Nullish<Date>, options: EventFormatOptions): string {
-	if (isNullable(date) || isSameDay(date, options.date)) {
-		return "";
+	if (isNullable(date)) {
+		return options.labels.UNAVAILABLE;
+	}
+
+	if (isSameDay(date, options.date)) {
+		return options.labels.TODAY;
 	}
 
 	if (isSameDay(date, shiftDate(options.date, "day", -1))) {
@@ -81,4 +85,13 @@ export function formatRiseSetDuration(rise: Nullish<Date>, set: Nullish<Date>, l
 		hours ? format(hours, "hour") : "",
 		minutes || !hours ? format(minutes, "minute") : ""
 	].filter(Boolean).join(" ");
+}
+
+export function formatRiseSetCountdown(milliseconds: number): string {
+	const seconds = Math.ceil(Math.max(0, milliseconds) / 1000);
+	return [
+		Math.floor(seconds / 3600),
+		Math.floor(seconds / 60) % 60,
+		seconds % 60
+	].map(value => String(value).padStart(2, "0")).join(":");
 }

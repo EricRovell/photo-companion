@@ -12,19 +12,23 @@ function createSunState() {
 	const { getDatetime } = useDatetime();
 
 	const observer = () => ({ latitude: settings.latitude, longitude: settings.longitude });
-	const { rise: sunrise, riseSetTimes, set: sunset } = createRiseSetEvents({
+
+	const { belowHorizonInterval, nextRise, rise: sunrise, riseSetTimes, set: sunset } = createRiseSetEvents({
 		date: getDatetime,
 		findIntervals: findSunRiseSetIntervals,
 		observer
 	});
+
 	const position = createMemo(() => getSunPosition({ instant: getDatetime(), observer: observer() }));
 
 	return {
 		altitude: () => position().apparentAltitude,
 		azimuth: () => position().azimuth,
+		belowHorizonInterval,
 		dayDuration: () => sunrise() && sunset() ? calcDuration(sunrise(), sunset()) : 0,
 		declination: () => position().declination,
 		distance: () => position().distance,
+		nextRise,
 		riseSetTimes,
 		sunrise,
 		sunset,

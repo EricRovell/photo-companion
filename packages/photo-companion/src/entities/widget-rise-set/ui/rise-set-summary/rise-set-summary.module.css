@@ -1,0 +1,43 @@
+.summary {
+	position: relative;
+	margin: calc(-1 * var(--space-2)) 0 var(--space-4);
+}
+
+.stats {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--space-4);
+	margin: 0;
+}
+
+.stat {
+	display: grid;
+	align-content: start;
+	gap: var(--space-1);
+	min-width: 0;
+	text-align: start;
+}
+
+.stat:last-child {
+	text-align: end;
+}
+
+.stat dd {
+	white-space: nowrap;
+}
+
+.description {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip-path: inset(50%);
+}
+
+@container (width <= 18rem) {
+	.summary {
+		margin-top: var(--space-3);
+	}
+}

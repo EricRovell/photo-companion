@@ -1,10 +1,12 @@
-import { For } from "solid-js";
+import { createMemo, For } from "solid-js";
+
+import type { RiseSetInterval } from "moon-sun-calc";
 
 import { Moon } from "~/entities/moon";
 import { Sun } from "~/entities/sun";
 import { LinkQuery } from "~/features/navigation";
 import { createQueryDate } from "~/shared/lib/query-date";
-import { selectRiseSetInterval } from "~/shared/lib/rise-set";
+import { selectRiseSetContext, selectRiseSetInterval } from "~/shared/lib/rise-set";
 import { StoryTranslations } from "~/stories/story-language";
 
 import { RiseSetWidget } from "../rise-set-widget";
@@ -29,12 +31,24 @@ interface GalleryProps {
 	width: number;
 }
 
-function RiseSetPreview(props: { phase?: number } & RiseSetWidgetProps) {
+interface PreviewProps extends RiseSetWidgetProps {
+	intervals?: readonly RiseSetInterval[];
+	phase?: number;
+}
+
+function RiseSetPreview(props: PreviewProps) {
+	const context = createMemo(() => selectRiseSetContext(props.date, props.intervals ?? [], {
+		rise: props.rise ?? null,
+		set: props.set ?? null
+	}));
+
 	return (
 		<RiseSetWidget
 			aboveHorizon={props.aboveHorizon}
+			belowHorizonInterval={context().belowHorizonInterval}
 			date={props.date}
 			entity={props.entity}
+			nextRise={context().nextRise}
 			renderTime={(date, children, label) => (
 				<LinkQuery aria-label={label} href={`/${props.entity}`} noScroll query={new URLSearchParams({ datetime: createQueryDate(date) })}>
 					{children}
@@ -60,6 +74,10 @@ export function RiseSetPlayground(props: StoryArgs) {
 					aboveHorizon={props.aboveHorizon}
 					date={date(props.hour)}
 					entity={props.entity}
+					intervals={[ -1, 0, 1 ].map(offset => ({
+						rise: props.missingEvents === "both" || props.missingEvents === "rise" ? null : date(props.riseHour + offset * 24),
+						set: props.missingEvents === "both" || props.missingEvents === "set" ? null : date(props.setHour + offset * 24)
+					}))}
 					rise={props.missingEvents === "both" || props.missingEvents === "rise" ? null : date(props.riseHour)}
 					set={props.missingEvents === "both" || props.missingEvents === "set" ? null : date(props.setHour)}
 				/>

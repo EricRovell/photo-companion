@@ -243,9 +243,11 @@ export interface Translation {
 		MOONSET: string;
 	};
 	RISE_SET: {
+		ABOVE_HORIZON: string;
 		ABOVE_WITHOUT_EVENTS: string;
+		BELOW_HORIZON: string;
 		BELOW_WITHOUT_EVENTS: string;
-		DURATION: string;
+		DAYLIGHT: string;
 		MIDNIGHT: string;
 		NEXT_DAY: string;
 		PREVIOUS_DAY: string;
@@ -253,6 +255,12 @@ export interface Translation {
 		SET_UNAVAILABLE: string;
 		SUNRISE: string;
 		SUNSET: string;
+		TODAY: string;
+		UNAVAILABLE: string;
+		UNTIL_MOONRISE: string;
+		UNTIL_MOONSET: string;
+		UNTIL_SUNRISE: string;
+		UNTIL_SUNSET: string;
 	};
 	SEASONS: {
 		AXIS_DECLINATION: string;
