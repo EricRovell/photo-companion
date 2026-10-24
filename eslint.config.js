@@ -6,6 +6,7 @@ import solid from "eslint-plugin-solid";
 import perfectionist from "eslint-plugin-perfectionist";
 
 import relativeImportsWithinSlices from "./tooling/eslint/fsd-relative-imports.js";
+import jsxWrapProps from "./tooling/eslint/rules/jsx-wrap-props.js";
 
 export default tseslint.config(
 	{
@@ -156,5 +157,19 @@ export default tseslint.config(
 			"curly": "error"
 		}
 	},
-	...relativeImportsWithinSlices
+	...relativeImportsWithinSlices,
+	{
+		files: [ "**/*.tsx" ],
+		name: "jsx/formatting",
+		plugins: {
+			jsx: {
+				rules: {
+					"wrap-props": jsxWrapProps
+				}
+			}
+		},
+		rules: {
+			"jsx/wrap-props": [ "error", { maxWidth: 65, tabWidth: 2 } ]
+		}
+	}
 );

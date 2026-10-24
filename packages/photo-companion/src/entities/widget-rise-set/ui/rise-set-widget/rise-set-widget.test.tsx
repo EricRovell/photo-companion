@@ -58,7 +58,14 @@ describe("RiseSetWidget countdown", () => {
 	});
 
 	it.each([ "moon", "sun" ] as const)("shows total duration and time until %s set above the horizon", (entity) => {
-		const view = render(() => <RiseSetWidget {...defaults} aboveHorizon date={new Date("2026-10-21T12:57:57Z")} entity={entity} />);
+		const view = render(() => (
+			<RiseSetWidget
+				{...defaults}
+				aboveHorizon
+				date={new Date("2026-10-21T12:57:57Z")}
+				entity={entity}
+			/>
+		));
 
 		expect(view.getByText(entity === "moon" ? "Above horizon" : "Daylight")).toBeInTheDocument();
 		expect(view.getByText("12h")).toBeInTheDocument();
@@ -76,14 +83,24 @@ describe("RiseSetWidget countdown", () => {
 	});
 
 	it("shows a set countdown even when the rise is missing", () => {
-		const view = render(() => <RiseSetWidget {...defaults} aboveHorizon date={new Date("2026-10-21T12:00:00Z")} rise={null} />);
+		const view = render(() => (
+			<RiseSetWidget
+				{...defaults}
+				aboveHorizon
+				date={new Date("2026-10-21T12:00:00Z")}
+				rise={null}
+			/>)
+		);
 
 		expect(view.getByText("06:00:00")).toBeInTheDocument();
 		expect(view.getByRole("img")).toHaveAccessibleDescription("Rise time unavailable; progress cannot be shown.");
 	});
 
 	it("stops at zero without restarting or showing a negative time", () => {
-		const view = render(() => <RiseSetWidget {...defaults} date={new Date("2026-10-21T05:59:59Z")} />);
+		const view = render(() => <RiseSetWidget
+			{...defaults}
+			date={new Date("2026-10-21T05:59:59Z")}
+		/>);
 
 		vi.advanceTimersByTime(1000);
 		expect(view.getByText("00:00:00")).toBeInTheDocument();
@@ -96,7 +113,14 @@ describe("RiseSetWidget countdown", () => {
 		[ "2026-10-21T18:00:00Z", followingNight, "13h", "13:00:00" ],
 		[ "2026-10-21T20:00:00Z", followingNight, "13h", "11:00:00" ]
 	] as const)("keeps duration and counts down to the actual next rise at %s", (date, belowHorizonInterval, duration, countdown) => {
-		const view = render(() => <RiseSetWidget {...defaults} belowHorizonInterval={belowHorizonInterval} date={new Date(date)} nextRise={nextRise} />);
+		const view = render(() => (
+			<RiseSetWidget
+				{...defaults}
+				belowHorizonInterval={belowHorizonInterval}
+				date={new Date(date)}
+				nextRise={nextRise}
+			/>)
+		);
 
 		expect(view.getByText("Below horizon")).toBeInTheDocument();
 		expect(view.getByText(duration)).toBeInTheDocument();

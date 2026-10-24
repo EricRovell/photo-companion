@@ -25,7 +25,11 @@ export function SeasonGraphEvents(props: { events: SeasonGraphEventPoint[] }) {
 						data-kind={event.name.startsWith("EQUINOX") ? "equinox" : "solstice"}
 						r="5"
 					/>
-					<text class={styles["event-label"]} x={point.x} y={SEASON_GRAPH.HEIGHT - SEASON_GRAPH.BOTTOM + 24}>
+					<text
+						class={styles["event-label"]}
+						x={point.x}
+						y={SEASON_GRAPH.HEIGHT - SEASON_GRAPH.BOTTOM + 24}
+					>
 						{String(event.time.getMonth() + 1).padStart(2, "0")}
 					</text>
 				</g>

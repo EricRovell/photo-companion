@@ -15,12 +15,48 @@ export function SeasonGraphAxis(props: Props) {
 
 	return (
 		<g aria-hidden="true">
-			<line class={styles.axis} x1={SEASON_GRAPH.LEFT} x2={right} y1={SEASON_GRAPH.TOP} y2={SEASON_GRAPH.TOP} />
-			<line class={styles.axis} x1={SEASON_GRAPH.LEFT} x2={right} y1={props.centerY} y2={props.centerY} />
-			<line class={styles.axis} x1={SEASON_GRAPH.LEFT} x2={right} y1={bottom} y2={bottom} />
-			<text class={styles["axis-label"]} x={SEASON_GRAPH.LEFT - 6} y={SEASON_GRAPH.TOP}>+23.4°</text>
-			<text class={styles["axis-label"]} x={SEASON_GRAPH.LEFT - 6} y={props.centerY}>0°</text>
-			<text class={styles["axis-label"]} x={SEASON_GRAPH.LEFT - 6} y={bottom}>−23.4°</text>
+			<line
+				class={styles.axis}
+				x1={SEASON_GRAPH.LEFT}
+				x2={right}
+				y1={SEASON_GRAPH.TOP}
+				y2={SEASON_GRAPH.TOP}
+			/>
+			<line
+				class={styles.axis}
+				x1={SEASON_GRAPH.LEFT}
+				x2={right}
+				y1={props.centerY}
+				y2={props.centerY}
+			/>
+			<line
+				class={styles.axis}
+				x1={SEASON_GRAPH.LEFT}
+				x2={right}
+				y1={bottom}
+				y2={bottom}
+			/>
+			<text
+				class={styles["axis-label"]}
+				x={SEASON_GRAPH.LEFT - 6}
+				y={SEASON_GRAPH.TOP}
+			>
+				+23.4°
+			</text>
+			<text
+				class={styles["axis-label"]}
+				x={SEASON_GRAPH.LEFT - 6}
+				y={props.centerY}
+			>
+				0°
+			</text>
+			<text
+				class={styles["axis-label"]}
+				x={SEASON_GRAPH.LEFT - 6}
+				y={bottom}
+			>
+				−23.4°
+			</text>
 			<text
 				class={styles["axis-title"]}
 				transform={`rotate(-90 ${declinationLabelX} ${props.centerY})`}

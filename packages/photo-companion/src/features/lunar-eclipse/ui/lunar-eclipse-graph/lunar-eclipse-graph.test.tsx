@@ -45,8 +45,18 @@ describe("LunarEclipseGraph", () => {
 	test("uses unique gradient and Moon clip identifiers for every graph", () => {
 		const view = render(() => (
 			<>
-				<LunarEclipseGraph event={null} latitude={0} longitude={0} state={STATE} />
-				<LunarEclipseGraph event={null} latitude={0} longitude={0} state={STATE} />
+				<LunarEclipseGraph
+					event={null}
+					latitude={0}
+					longitude={0}
+					state={STATE}
+				/>
+				<LunarEclipseGraph
+					event={null}
+					latitude={0}
+					longitude={0}
+					state={STATE}
+				/>
 			</>
 		));
 		const gradientIds = [ ...view.container.querySelectorAll("radialGradient") ]

@@ -8,7 +8,6 @@
 	"files.associations": {
 		"*.mdx": "markdown"
 	},
-	"eslint.useFlatConfig": true,
 	"eslint.workingDirectories": [
 		"."
 	],

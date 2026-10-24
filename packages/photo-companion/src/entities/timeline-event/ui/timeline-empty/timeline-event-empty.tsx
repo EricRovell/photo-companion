@@ -22,7 +22,9 @@ export function TimelineEventEmpty() {
 				</svg>
 			</div>
 			<article>
-				<Text align="start" as="p" balance variant="text-s">{t().MESSAGE.NO_EVENTS}</Text>
+				<Text align="start" as="p" balance variant="text-s">
+					{t().MESSAGE.NO_EVENTS}
+				</Text>
 			</article>
 		</li>
 	);

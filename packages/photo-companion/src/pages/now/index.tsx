@@ -23,14 +23,22 @@ export function PageNow() {
 			<MoonProvider>
 				<MoonInfo title={t().TITLE.MOON} />
 			</MoonProvider>
-			<ErrorBoundary fallback={<ErrorMessage message="Something is wrong, could not load City Lights module" />}>
+			<ErrorBoundary
+				fallback={<ErrorMessage
+					message="Something is wrong, could not load City Lights module"
+				/>}
+			>
 				<Suspense fallback={<Loader />}>
 					<SupportsLights>
 						<NowLights />
 					</SupportsLights>
 				</Suspense>
 			</ErrorBoundary>
-			<ErrorBoundary fallback={<ErrorMessage message="Something is wrong, could not load Bridges module" />}>
+			<ErrorBoundary
+				fallback={<ErrorMessage
+					message="Something is wrong, could not load Bridges module"
+				/>}
+			>
 				<Suspense fallback={<Loader />}>
 					<SupportsBridges>
 						<NowBridges />

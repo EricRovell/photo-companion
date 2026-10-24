@@ -20,7 +20,12 @@ export function SunTimes() {
 			entity="sun"
 			nextRise={nextRise()}
 			renderTime={(date, children, label) => (
-				<LinkQuery aria-label={label} href="/sun" noScroll query={new URLSearchParams({ datetime: createQueryDate(date) })}>
+				<LinkQuery
+					aria-label={label}
+					href="/sun"
+					noScroll
+					query={new URLSearchParams({ datetime: createQueryDate(date) })}
+				>
 					{children}
 				</LinkQuery>
 			)}

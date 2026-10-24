@@ -29,18 +29,20 @@ export const CalculatorForm: Story = {
 export const Result: Story = {
 	render: () => withStoryProviders(() => (
 		<div class={styles.page}>
-			<Output candidates={[
-				{
-					altitude: 42.35,
-					height: 4.56,
-					time: new Date(2026, 5, 21, 9, 30)
-				},
-				{
-					altitude: 31.18,
-					height: 3.03,
-					time: new Date(2026, 5, 21, 18, 45)
-				}
-			]} />
+			<Output
+				candidates={[
+					{
+						altitude: 42.35,
+						height: 4.56,
+						time: new Date(2026, 5, 21, 9, 30)
+					},
+					{
+						altitude: 31.18,
+						height: 3.03,
+						time: new Date(2026, 5, 21, 18, 45)
+					}
+				]}
+			/>
 		</div>
 	))
 };

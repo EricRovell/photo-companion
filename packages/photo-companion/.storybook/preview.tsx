@@ -14,7 +14,9 @@ import "./preview.css";
 const preview: Preview = {
 	decorators: [
 		createJSXDecorator((Story, context) => (
-			<StoryLanguageProvider language={context.globals.language === "ru" ? "ru" : "en"}>
+			<StoryLanguageProvider
+				language={context.globals.language === "ru" ? "ru" : "en"}
+			>
 				<Story />
 			</StoryLanguageProvider>
 		))

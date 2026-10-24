@@ -26,16 +26,25 @@ export function SunSeasons() {
 				<For each={events()}>
 					{event => (
 						<PropertyList.Item>
-							<PropertyList.Label>{t().SEASONS[event.name]}</PropertyList.Label>
+							<PropertyList.Label>
+								{t().SEASONS[event.name]}
+							</PropertyList.Label>
 							<PropertyList.Value>
 								<LinkQuery
 									href="/sun"
 									noScroll
 									query={new URLSearchParams({ datetime: createQueryDate(event.time) })}
 								>
-									<Text as="time" class={styles.datetime} datetime={event.time.toISOString()} numeric>
+									<Text
+										as="time"
+										class={styles.datetime}
+										datetime={event.time.toISOString()}
+										numeric
+									>
 										<Text variant="text-s">{format().dateShort(event.time)}</Text>
-										<Text color="secondary" variant="text-xs">{format().timeShort(event.time)}</Text>
+										<Text color="secondary" variant="text-xs">
+											{format().timeShort(event.time)}
+										</Text>
 									</Text>
 								</LinkQuery>
 							</PropertyList.Value>

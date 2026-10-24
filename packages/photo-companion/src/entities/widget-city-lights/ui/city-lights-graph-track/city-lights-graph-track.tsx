@@ -33,7 +33,10 @@ export function CityLightsGraphTrack(props: Props) {
 			<For each={props.ticks}>
 				{tick => (
 					<Show when={tick.time.getHours() === 0}>
-						<div class={styles.midnight} style={{ left: `${tick.position}%` }} />
+						<div
+							class={styles.midnight}
+							style={{ left: `${tick.position}%` }}
+						/>
 					</Show>
 				)}
 			</For>

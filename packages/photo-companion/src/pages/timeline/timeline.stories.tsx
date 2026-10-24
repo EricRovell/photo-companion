@@ -29,7 +29,9 @@ function ExampleTimeline(props: StoryEnvironmentArgs) {
 	return (
 		<div class={styles.page}>
 			<TimelineGroup>
-				<Timeline date={datetime().toLocaleDateString("en", { dateStyle: "long" })}>
+				<Timeline
+					date={datetime().toLocaleDateString("en", { dateStyle: "long" })}
+				>
 					<For each={events().slice(0, 6)}>
 						{event => <TimelineEvent event={event} href="/sun" />}
 					</For>

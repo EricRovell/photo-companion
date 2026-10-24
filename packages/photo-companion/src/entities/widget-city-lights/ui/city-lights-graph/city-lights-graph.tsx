@@ -32,11 +32,21 @@ export function CityLightsGraph(props: Props) {
 			tabIndex={0}
 			title={`${t().LIGHTS_WIDGET.SELECTED_TIME}: ${format().datetime(props.date)}`}
 		>
-			<div aria-hidden="true" class={styles.plot} data-staggered={staggered() || undefined}>
-				<CityLightsGraphTrack intervals={props.night.intervals} ticks={props.night.ticks} />
+			<div
+				aria-hidden="true"
+				class={styles.plot}
+				data-staggered={staggered() || undefined}
+			>
+				<CityLightsGraphTrack
+					intervals={props.night.intervals}
+					ticks={props.night.ticks}
+				/>
 				<CityLightsGraphWindows windows={props.night.windows} />
 				<CityLightsGraphSwitches labels={labels()} />
-				<CityLightsGraphSelection date={props.date} position={props.night.position} />
+				<CityLightsGraphSelection
+					date={props.date}
+					position={props.night.position}
+				/>
 			</div>
 		</div>
 	);

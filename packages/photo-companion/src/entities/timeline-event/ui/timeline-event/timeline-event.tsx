@@ -42,7 +42,12 @@ export function TimelineEvent(props: TimelineEventProps) {
 			data-event-name={props.event.name}
 			data-secondary={setAttribute(props.secondary)}
 		>
-			<Text as="time" color={current() ? "success" : props.secondary ? "secondary" : "inherit"} numeric variant={current() ? "heading-s" : "text-s"}>
+			<Text
+				as="time"
+				color={current() ? "success" : props.secondary ? "secondary" : "inherit"}
+				numeric
+				variant={current() ? "heading-s" : "text-s"}
+			>
 				{format().timeShort(props.event.timestamp)}
 			</Text>
 			<div class={styles.icon} data-event-icon>
@@ -68,7 +73,15 @@ export function TimelineEvent(props: TimelineEventProps) {
 					{data().title}
 				</Text>
 				<Show when={data().message}>
-					{message => <Text align="start" as="p" balance color="secondary" variant="text-xs">{message()}</Text>}
+					{message => <Text
+						align="start"
+						as="p"
+						balance
+						color="secondary"
+						variant="text-xs"
+					>
+						{message()}
+					</Text>}
 				</Show>
 			</article>
 		</li>

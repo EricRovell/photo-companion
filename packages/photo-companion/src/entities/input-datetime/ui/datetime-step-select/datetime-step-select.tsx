@@ -18,7 +18,9 @@ interface DatetimeStepSelectProps {
 export function DatetimeStepSelect(props: DatetimeStepSelectProps) {
 	return (
 		<label class={styles["step-control"]}>
-			<span class={styles["visually-hidden"]}>{props.labels.DATETIME_STEP}</span>
+			<span class={styles["visually-hidden"]}>
+				{props.labels.DATETIME_STEP}
+			</span>
 			<select
 				aria-label={props.labels.DATETIME_STEP}
 				class={styles.select}

@@ -51,7 +51,11 @@ export function InputLocation(allProps: Props) {
 	};
 
 	return (
-		<fieldset class={styles.fieldset} onChange={handleChange} {...rest}>
+		<fieldset
+			class={styles.fieldset}
+			onChange={handleChange}
+			{...rest}
+		>
 			<Show when={props.legend}>
 				<legend class={styles.legend}>
 					{props.legend}

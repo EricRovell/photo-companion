@@ -27,7 +27,9 @@ export function CityLightsLegend(props: Props) {
 							{event.day}
 						</Text>
 						<Show when={event.range}>
-							<Text as="dd" class={styles.range} numeric variant="text-xs">{event.range}</Text>
+							<Text as="dd" class={styles.range} numeric variant="text-xs">
+								{event.range}
+							</Text>
 						</Show>
 					</div>
 				)}

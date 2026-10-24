@@ -24,7 +24,10 @@ export function NavigationState(props: NavigationStateType) {
 					{t().LABEL.NAVIGATION}
 				</PropertyList.Label>
 				<PropertyList.Value>
-					<Text color={props.navigation ? "success" : "danger"} variant="text-s">
+					<Text
+						color={props.navigation ? "success" : "danger"}
+						variant="text-s"
+					>
 						{getNavigationLabel()}
 					</Text>
 				</PropertyList.Value>

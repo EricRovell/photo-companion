@@ -53,8 +53,18 @@ export function AzimuthDial(props: Props) {
 				r={DIAL_CONFIG.horizonRadius}
 			/>
 			<g class={styles.guides}>
-				<line x1={DIAL_CONFIG.guideStart} x2={DIAL_CONFIG.guideEnd} y1={DIAL_CONFIG.center} y2={DIAL_CONFIG.center} />
-				<line x1={DIAL_CONFIG.center} x2={DIAL_CONFIG.center} y1={DIAL_CONFIG.guideStart} y2={DIAL_CONFIG.guideEnd} />
+				<line
+					x1={DIAL_CONFIG.guideStart}
+					x2={DIAL_CONFIG.guideEnd}
+					y1={DIAL_CONFIG.center}
+					y2={DIAL_CONFIG.center}
+				/>
+				<line
+					x1={DIAL_CONFIG.center}
+					x2={DIAL_CONFIG.center}
+					y1={DIAL_CONFIG.guideStart}
+					y2={DIAL_CONFIG.guideEnd}
+				/>
 			</g>
 			<circle
 				class={styles.center}

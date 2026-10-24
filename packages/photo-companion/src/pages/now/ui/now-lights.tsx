@@ -56,22 +56,32 @@ const NowLightsInfo = () => {
 						</Text>
 						<Show when={statusMessage()}>
 							<br />
-							<Text as="small" color="secondary" variant="text-xs">{statusMessage()}</Text>
+							<Text as="small" color="secondary" variant="text-xs">
+								{statusMessage()}
+							</Text>
 						</Show>
 					</PropertyList.Value>
 				</PropertyList.Item>
 				<Show when={getSchedule().status === "SCHEDULED"}>
 					<PropertyList.Item>
 						<PropertyList.Label>{t().LABEL.TIME_OFF}</PropertyList.Label>
-						<PropertyList.Value>{format().time(getTimeOff())}</PropertyList.Value>
+						<PropertyList.Value>
+							{format().time(getTimeOff())}
+						</PropertyList.Value>
 					</PropertyList.Item>
 					<PropertyList.Item>
 						<PropertyList.Label>{t().LABEL.TIME_ON}</PropertyList.Label>
-						<PropertyList.Value>{format().time(getTimeOn())}</PropertyList.Value>
+						<PropertyList.Value>
+							{format().time(getTimeOn())}
+						</PropertyList.Value>
 					</PropertyList.Item>
 					<PropertyList.Item>
-						<PropertyList.Label>{t().LABEL.DURATION_LIGHTS}</PropertyList.Label>
-						<PropertyList.Value>{format().timeDuration(duration())}</PropertyList.Value>
+						<PropertyList.Label>
+							{t().LABEL.DURATION_LIGHTS}
+						</PropertyList.Label>
+						<PropertyList.Value>
+							{format().timeDuration(duration())}
+						</PropertyList.Value>
 					</PropertyList.Item>
 					<LightsCountdown lights={lights()} />
 				</Show>

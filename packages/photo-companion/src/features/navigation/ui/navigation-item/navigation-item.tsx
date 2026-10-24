@@ -33,7 +33,9 @@ export function NavigationItem(props: NavigationItemProps) {
 			href={props.href}
 		>
 			<Dynamic class={props.classes?.icon} component={props.icon} />
-			<Text class={props.classes?.label} variant="text-s">{t().TITLE[props.label]}</Text>
+			<Text class={props.classes?.label} variant="text-s">
+				{t().TITLE[props.label]}
+			</Text>
 		</LinkQuery>
 	);
 }

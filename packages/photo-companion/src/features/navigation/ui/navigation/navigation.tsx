@@ -23,10 +23,18 @@ function SideMenu() {
 	useBeforeLeave(handleClose);
 
 	return (
-		<li class={classnames(styles["nav-item"], styles["nav-item-menu"])}>
-			<Button appearance="ghost" class={classnames(styles.link, styles["nav-item-menu-button"])} onClick={handleOpen}>
+		<li
+			class={classnames(styles["nav-item"], styles["nav-item-menu"])}
+		>
+			<Button
+				appearance="ghost"
+				class={classnames(styles.link, styles["nav-item-menu-button"])}
+				onClick={handleOpen}
+			>
 				<IconMenu class={styles.icon} />
-				<Text class={styles.label} variant="text-s">{t().LABEL.MENU}</Text>
+				<Text class={styles.label} variant="text-s">
+					{t().LABEL.MENU}
+				</Text>
 			</Button>
 			<Drawer
 				classes={{
@@ -47,7 +55,9 @@ const SettingsLink = () => {
 	const { NAVIGATION_TAB_DATA } = useNavigationService();
 
 	return (
-		<li class={classnames(styles["nav-item"], styles["nav-item-settings"])}>
+		<li
+			class={classnames(styles["nav-item"], styles["nav-item-settings"])}
+		>
 			<NavigationItem
 				classes={{
 					icon: styles.icon,

@@ -14,7 +14,9 @@ export function MoonAltitude() {
 	return (
 		<Card data-label="altitude">
 			<Card.Header>
-				<Text as="h2" variant="heading-l">{t().TITLE.ELEVATION_MOON}</Text>
+				<Text as="h2" variant="heading-l">
+					{t().TITLE.ELEVATION_MOON}
+				</Text>
 			</Card.Header>
 
 			<ElevationGraph>

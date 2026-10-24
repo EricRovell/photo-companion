@@ -37,7 +37,9 @@ export function InputRadio(allProps: InputRadioProps) {
 						value={item().value}
 						{...rest}
 					/>
-					<span class={classnames(styles.indicator, props.classes?.indicator)} />
+					<span
+						class={classnames(styles.indicator, props.classes?.indicator)}
+					/>
 					<span class={classnames(styles.label, props.classes?.label)}>
 						{item().label}
 					</span>

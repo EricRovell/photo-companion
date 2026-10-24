@@ -47,19 +47,47 @@ export function EclipseGraphFrame(props: EclipseGraphFrameProps) {
 				y={-props.viewAltitudeRadius}
 			/>
 			<g aria-hidden="true" class={styles.grid}>
-				<line x1={-props.viewAzimuthRadius} x2={props.viewAzimuthRadius} y1="0" y2="0" />
-				<line x1="0" x2="0" y1={-props.viewAltitudeRadius} y2={props.viewAltitudeRadius} />
+				<line
+					x1={-props.viewAzimuthRadius}
+					x2={props.viewAzimuthRadius}
+					y1="0"
+					y2="0"
+				/>
+				<line
+					x1="0"
+					x2="0"
+					y1={-props.viewAltitudeRadius}
+					y2={props.viewAltitudeRadius}
+				/>
 				<For each={props.azimuthTicks}>
 					{tick => (
-						<line class={styles.tick} x1={tick} x2={tick} y1={-props.viewAltitudeRadius} y2={props.viewAltitudeRadius} />
+						<line
+							class={styles.tick}
+							x1={tick}
+							x2={tick}
+							y1={-props.viewAltitudeRadius}
+							y2={props.viewAltitudeRadius}
+						/>
 					)}
 				</For>
 				<For each={props.altitudeTicks}>
 					{tick => (
-						<line class={styles.tick} x1={-props.viewAzimuthRadius} x2={props.viewAzimuthRadius} y1={tick} y2={tick} />
+						<line
+							class={styles.tick}
+							x1={-props.viewAzimuthRadius}
+							x2={props.viewAzimuthRadius}
+							y1={tick}
+							y2={tick}
+						/>
 					)}
 				</For>
-				<text text-anchor="end" x={props.viewAzimuthRadius - 0.06} y="-0.04">+Az</text>
+				<text
+					text-anchor="end"
+					x={props.viewAzimuthRadius - 0.06}
+					y="-0.04"
+				>
+					+Az
+				</text>
 				<text x="0.04" y={-props.viewAltitudeRadius + 0.09}>+Alt</text>
 			</g>
 
@@ -70,7 +98,12 @@ export function EclipseGraphFrame(props: EclipseGraphFrameProps) {
 					data-eclipse-horizon
 					style={{ transform: `translateY(${horizonTranslation()}%)` }}
 				>
-					<line x1={-props.viewAzimuthRadius} x2={props.viewAzimuthRadius} y1="0" y2="0" />
+					<line
+						x1={-props.viewAzimuthRadius}
+						x2={props.viewAzimuthRadius}
+						y1="0"
+						y2="0"
+					/>
 					<text
 						x={-props.viewAzimuthRadius + 0.06}
 						y={props.centerAltitude < -0.85 * props.viewAltitudeRadius ? 0.1 : -0.04}

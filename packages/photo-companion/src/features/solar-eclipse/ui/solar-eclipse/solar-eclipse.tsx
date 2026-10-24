@@ -15,7 +15,9 @@ export function SolarEclipse() {
 	return (
 		<Card class={styles.card} data-label="solar-eclipse">
 			<Card.Header>
-				<Text as="h2" variant="heading-l">{t().SOLAR_ECLIPSE.TITLE}</Text>
+				<Text as="h2" variant="heading-l">
+					{t().SOLAR_ECLIPSE.TITLE}
+				</Text>
 			</Card.Header>
 
 			<div class={styles.body}>

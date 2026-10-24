@@ -50,7 +50,12 @@ function RiseSetPreview(props: PreviewProps) {
 			entity={props.entity}
 			nextRise={context().nextRise}
 			renderTime={(date, children, label) => (
-				<LinkQuery aria-label={label} href={`/${props.entity}`} noScroll query={new URLSearchParams({ datetime: createQueryDate(date) })}>
+				<LinkQuery
+					aria-label={label}
+					href={`/${props.entity}`}
+					noScroll
+					query={new URLSearchParams({ datetime: createQueryDate(date) })}
+				>
 					{children}
 				</LinkQuery>
 			)}
@@ -58,7 +63,15 @@ function RiseSetPreview(props: PreviewProps) {
 			set={props.set}
 		>
 			{props.entity === "moon"
-				? <Moon height={72} phase={props.phase ?? 0.35} rotation={-25} size={72} width={72} />
+				? (
+					<Moon
+						height={72}
+						phase={props.phase ?? 0.35}
+						rotation={-25}
+						size={72}
+						width={72}
+					/>
+				)
 				: <Sun height={64} width={64} />}
 		</RiseSetWidget>
 	);
@@ -69,7 +82,9 @@ export function RiseSetPlayground(props: StoryArgs) {
 
 	return (
 		<StoryTranslations>
-			<div style={{ "max-width": "100%", "text-align": "center", width: `${props.width}px` }}>
+			<div
+				style={{ "max-width": "100%", "text-align": "center", width: `${props.width}px` }}
+			>
 				<RiseSetPreview
 					aboveHorizon={props.aboveHorizon}
 					date={date(props.hour)}
@@ -97,24 +112,40 @@ const scenarioDateFormatter = new Intl.DateTimeFormat("en-GB", {
 export function ScenarioGallery(props: GalleryProps) {
 	return (
 		<StoryTranslations>
-			<div style={{
-				"display": "grid",
-				"gap": "var(--space-5)",
-				"grid-template-columns": `repeat(auto-fit, minmax(min(100%, ${props.width}px), 1fr))`,
-				"max-width": "100%",
-				"width": "calc(100vw - 2rem)"
-			}}>
+			<div
+				style={{
+					"display": "grid",
+					"gap": "var(--space-5)",
+					"grid-template-columns": `repeat(auto-fit, minmax(min(100%, ${props.width}px), 1fr))`,
+					"max-width": "100%",
+					"width": "calc(100vw - 2rem)"
+				}}
+			>
 				<For each={props.scenarios}>
 					{scenario => (
-						<section style={{ display: "grid", gap: "var(--space-3)", "grid-template-rows": "auto auto 1fr", "min-width": "0" }}>
+						<section
+							style={{ display: "grid", gap: "var(--space-3)", "grid-template-rows": "auto auto 1fr", "min-width": "0" }}
+						>
 							<div>
-								<h3 style={{ "font-size": "var(--font-size-3)", margin: "0 0 var(--space-2)" }}>{scenario.title}</h3>
-								<p style={{ color: "var(--color-text-secondary)", "font-size": "var(--font-size-1)", margin: "0" }}>
-									Selected: <time dateTime={scenario.date.toISOString()}>{scenarioDateFormatter.format(scenario.date)}</time>
+								<h3
+									style={{ "font-size": "var(--font-size-3)", margin: "0 0 var(--space-2)" }}
+								>
+									{scenario.title}
+								</h3>
+								<p
+									style={{ color: "var(--color-text-secondary)", "font-size": "var(--font-size-1)", margin: "0" }}
+								>
+									Selected: <time dateTime={scenario.date.toISOString()}>
+										{scenarioDateFormatter.format(scenario.date)}
+									</time>
 								</p>
 							</div>
 							<RiseSetPreview {...scenario} entity={props.entity} />
-							<p style={{ color: "var(--color-text-secondary)", "font-size": "var(--font-size-1)", "line-height": "1.5", margin: "0" }}>{scenario.description}</p>
+							<p
+								style={{ color: "var(--color-text-secondary)", "font-size": "var(--font-size-1)", "line-height": "1.5", margin: "0" }}
+							>
+								{scenario.description}
+							</p>
 						</section>
 					)}
 				</For>

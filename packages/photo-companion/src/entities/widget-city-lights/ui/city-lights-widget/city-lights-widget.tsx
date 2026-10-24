@@ -23,19 +23,47 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 
 	return (
 		<Card data-label="lights-schedule">
-			<CityLightsHeader city={model.cityName()} title={model.title()} />
-			<div class={styles.content} style={{ "--lights-color": CITY_LIGHTS_WIDGET_CONFIG.color, "--lights-max-width": CITY_LIGHTS_WIDGET_CONFIG.layout.maxWidth }}>
+			<CityLightsHeader
+				city={model.cityName()}
+				title={model.title()}
+			/>
+			<div
+				class={styles.content}
+				style={{ "--lights-color": CITY_LIGHTS_WIDGET_CONFIG.color, "--lights-max-width": CITY_LIGHTS_WIDGET_CONFIG.layout.maxWidth }}
+			>
 				<div class={styles.visual}>
-					<CityLightsHero lights={model.lightsOn()} state={model.stateLabel()} status={model.status()} switchingWindowLabel={model.switchingWindowLabel()} withinWindow={model.withinWindow()} />
+					<CityLightsHero
+						lights={model.lightsOn()}
+						state={model.stateLabel()}
+						status={model.status()}
+						switchingWindowLabel={model.switchingWindowLabel()}
+						withinWindow={model.withinWindow()}
+					/>
 					<Show when={model.night()}>
 						{night => <>
-							<CityLightsGraph date={props.date} describedBy={`${descriptionId} ${selectionId} ${sourceId}`} night={night()} />
-							<CityLightsSummary countdown={model.countdown()} countdownLabel={model.countdownLabel()} duration={model.duration()} durationLabel={model.durationLabel()} estimated={model.estimated()} />
+							<CityLightsGraph
+								date={props.date}
+								describedBy={`${descriptionId} ${selectionId} ${sourceId}`}
+								night={night()}
+							/>
+							<CityLightsSummary
+								countdown={model.countdown()}
+								countdownLabel={model.countdownLabel()}
+								duration={model.duration()}
+								durationLabel={model.durationLabel()}
+								estimated={model.estimated()}
+							/>
 							<CityLightsLegend events={model.events()} id={descriptionId} />
-							<p class={styles.description} id={selectionId}>{model.selectedTime()}</p>
+							<p class={styles.description} id={selectionId}>
+								{model.selectedTime()}
+							</p>
 						</>}
 					</Show>
-					<CityLightsSource id={sourceId} label={model.source()} uncertainty={model.uncertaintyLabel()} />
+					<CityLightsSource
+						id={sourceId}
+						label={model.source()}
+						uncertainty={model.uncertaintyLabel()}
+					/>
 				</div>
 			</div>
 		</Card>

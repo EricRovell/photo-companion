@@ -19,12 +19,17 @@ export function MoonPhases() {
 	return (
 		<Card class={styles.phases} data-label="phases-calendar">
 			<Card.Header>
-				<Text as="h2" variant="heading-l">{t().TITLE.MOON_PHASE_CALENDAR}</Text>
+				<Text as="h2" variant="heading-l">
+					{t().TITLE.MOON_PHASE_CALENDAR}
+				</Text>
 			</Card.Header>
 			<div>
 				<For each={phases()}>
 					{phase => (
-						<LinkQuery href={"/moon"} query={new URLSearchParams({ datetime: createQueryDate(phase.timestamp) })}>
+						<LinkQuery
+							href={"/moon"}
+							query={new URLSearchParams({ datetime: createQueryDate(phase.timestamp) })}
+						>
 							<Moon phase={phase.phaseValue} size={MOON_SIZE} />
 							<Text as="time" class={styles.time} numeric variant="text-s">
 								{format().date(phase.timestamp)}

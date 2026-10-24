@@ -35,7 +35,12 @@ export function NavigationMenu(props: Props) {
 		<>
 			<header class={styles.header}>
 				<Text as="h2" variant="heading-xl">{t().LABEL.MENU}</Text>
-				<Button class={styles.close} icon onClick={props.onClose} type="button">
+				<Button
+					class={styles.close}
+					icon
+					onClick={props.onClose}
+					type="button"
+				>
 					<IconClose />
 				</Button>
 			</header>
@@ -63,7 +68,9 @@ export function NavigationMenu(props: Props) {
 					<div>
 						<Text as="dt" color="secondary" variant="text-s">Commit:</Text>
 						<Text as="dd" variant="text-s">
-							<Link href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__">
+							<Link
+								href="https://github.com/ericrovell/photo-companion/commit/__COMMIT_HASH__"
+							>
 								#__COMMIT_HASH__
 							</Link>
 						</Text>

@@ -47,7 +47,12 @@ export function SolarEclipseGraph(props: SolarEclipseGraphProps) {
 			viewAzimuthRadius={GRAPH_CONFIG.viewAzimuthRadius}
 		>
 			<Show keyed when={track()}>
-				{path => <path aria-hidden="true" class={styles.track} d={path} data-eclipse-track />}
+				{path => <path
+					aria-hidden="true"
+					class={styles.track}
+					d={path}
+					data-eclipse-track
+				/>}
 			</Show>
 
 			<circle

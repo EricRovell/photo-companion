@@ -24,7 +24,13 @@ function RiseSetEvent(props: EventProps) {
 			<span class={styles.label}>
 				{props.event.label}
 			</span>
-			<Text as="time" dateTime={props.event.date?.toISOString()} numeric title={fullDate()} variant="heading-s">
+			<Text
+				as="time"
+				dateTime={props.event.date?.toISOString()}
+				numeric
+				title={fullDate()}
+				variant="heading-s"
+			>
 				{props.event.date && props.renderTime
 					? props.renderTime(props.event.date, props.event.time, `${props.event.label}: ${props.event.time}, ${fullDate()}`)
 					: props.event.time}

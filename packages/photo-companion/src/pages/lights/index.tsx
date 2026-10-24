@@ -11,7 +11,10 @@ export function PageLights() {
 	const { isSupportsCityLights } = useSettings();
 
 	return (
-		<Show when={isSupportsCityLights()} fallback={<Navigate href={ROUTES.NOT_FOUND} />}>
+		<Show
+			when={isSupportsCityLights()}
+			fallback={<Navigate href={ROUTES.NOT_FOUND} />}
+		>
 			<SupportsLights>
 				<div class={styles.page}>
 					<LightsSchedule />

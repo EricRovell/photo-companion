@@ -26,40 +26,85 @@ export function Earthshine() {
 				<Text as="h2" variant="heading-l">{t().TITLE.EARTHSHINE}</Text>
 			</Card.Header>
 			<Show
-				fallback={<Text as="p" balance class={styles.empty} leading="relaxed" variant="text-s">{t().MESSAGE.EARTHSHINE_NO_WINDOW}</Text>}
+				fallback={<Text
+					as="p"
+					balance
+					class={styles.empty}
+					leading="relaxed"
+					variant="text-s"
+				>
+					{t().MESSAGE.EARTHSHINE_NO_WINDOW}
+				</Text>}
 				when={earthshine()}
 			>
 				{value => (
 					<>
-						<dl class={styles.metrics} data-rating={value().rating.toLowerCase()}>
+						<dl
+							class={styles.metrics}
+							data-rating={value().rating.toLowerCase()}
+						>
 							<div class={styles.cell}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.PROBABILITY}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LABEL.PROBABILITY}
+								</Text>
 								<Text as="dd" class={styles.outcome} numeric variant="text-l">
-									<Text as="strong" class={styles.rating} variant="heading-l">{t().EARTHSHINE_RATING[value().rating]}</Text>
+									<Text as="strong" class={styles.rating} variant="heading-l">
+										{t().EARTHSHINE_RATING[value().rating]}
+									</Text>
 								</Text>
 							</div>
 							<div class={styles.cell}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.BEST_WINDOW}</Text>
-								<Text as="dd" numeric variant="text-l">{format().timeShort(value().dateStart)} – {format().timeShort(value().dateEnd)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LABEL.BEST_WINDOW}
+								</Text>
+								<Text as="dd" numeric variant="text-l">
+									{format().timeShort(value().dateStart)} – {format().timeShort(value().dateEnd)}
+								</Text>
 							</div>
 							<div class={styles.cell}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.MOON_ILLUMINATION}</Text>
-								<Text as="dd" numeric variant="text-l">{format().percent(value().peak.illumination * 100)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LABEL.MOON_ILLUMINATION}
+								</Text>
+								<Text as="dd" numeric variant="text-l">
+									{format().percent(value().peak.illumination * 100)}
+								</Text>
 							</div>
 							<div class={styles.cell}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.PEAK_TIME}</Text>
-								<Text as="dd" numeric variant="text-l">{format().timeShort(value().peak.time)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LABEL.PEAK_TIME}
+								</Text>
+								<Text as="dd" numeric variant="text-l">
+									{format().timeShort(value().peak.time)}
+								</Text>
 							</div>
 							<div class={styles.cell}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.ALTITUDE}</Text>
-								<Text as="dd" numeric variant="text-l">{format().degrees(value().peak.altitude)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LABEL.ALTITUDE}
+								</Text>
+								<Text as="dd" numeric variant="text-l">
+									{format().degrees(value().peak.altitude)}
+								</Text>
 							</div>
 							<div class={styles.cell}>
-								<Text as="dt" color="secondary" variant="text-xs">{t().LABEL.AZIMUTH}</Text>
-								<Text as="dd" numeric variant="text-l">{format().degrees(value().peak.azimuth)}</Text>
+								<Text as="dt" color="secondary" variant="text-xs">
+									{t().LABEL.AZIMUTH}
+								</Text>
+								<Text as="dd" numeric variant="text-l">
+									{format().degrees(value().peak.azimuth)}
+								</Text>
 							</div>
 						</dl>
-						<Text align="center" as="p" balance class={styles.note} color="secondary" leading="relaxed" variant="text-xs">{t().MESSAGE.EARTHSHINE_WEATHER_NOTE}</Text>
+						<Text
+							align="center"
+							as="p"
+							balance
+							class={styles.note}
+							color="secondary"
+							leading="relaxed"
+							variant="text-xs"
+						>
+							{t().MESSAGE.EARTHSHINE_WEATHER_NOTE}
+						</Text>
 					</>
 				)}
 			</Show>

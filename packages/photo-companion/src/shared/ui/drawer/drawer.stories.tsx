@@ -13,9 +13,14 @@ function DrawerDemo() {
 		<>
 			<Button onClick={() => setOpen(true)}>Open drawer</Button>
 			<Drawer onClose={() => setOpen(false)} open={open()}>
-				<div class="storybook-stack" style={{ padding: "var(--space-5)" }}>
+				<div
+					class="storybook-stack"
+					style={{ padding: "var(--space-5)" }}
+				>
 					<Text as="h2" variant="heading-l">Photography tools</Text>
-					<Text as="p">Sun, moon, lights, bridges, and shadow height.</Text>
+					<Text as="p">
+						Sun, moon, lights, bridges, and shadow height.
+					</Text>
 					<Button onClick={() => setOpen(false)}>Close</Button>
 				</div>
 			</Drawer>

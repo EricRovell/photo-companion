@@ -22,7 +22,10 @@ export function Fieldset(allProps: FieldsetProps) {
 
 	return (
 		<Card>
-			<fieldset class={classnames(styles.fieldset, props.classes?.fieldset)} {...rest}>
+			<fieldset
+				class={classnames(styles.fieldset, props.classes?.fieldset)}
+				{...rest}
+			>
 				<Show when={props.legend}>
 					<legend class={props.classes?.legend}>
 						{props.legend}

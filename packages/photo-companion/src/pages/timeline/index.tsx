@@ -33,7 +33,10 @@ function Events(props: EventsProps) {
 				{({ date, items }) => (
 					<Timeline date={format().date(date)}>
 						<For each={items} fallback={<TimelineEventEmpty />}>
-							{event => <TimelineEvent event={event} href={createEventLink(event.type)} />}
+							{event => <TimelineEvent
+								event={event}
+								href={createEventLink(event.type)}
+							/>}
 						</For>
 					</Timeline>
 				)}

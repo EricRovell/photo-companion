@@ -58,8 +58,18 @@ export function SeasonGraph(props: SeasonGraphProps) {
 					declinationLabel={t().SEASONS.AXIS_DECLINATION}
 					monthLabel={t().SEASONS.AXIS_MONTH}
 				/>
-				<path aria-hidden="true" class={styles.area} d={areaPath()} fill={`url(#${gradientId})`} />
-				<path aria-hidden="true" class={styles.curve} d={curvePath()} data-season-curve />
+				<path
+					aria-hidden="true"
+					class={styles.area}
+					d={areaPath()}
+					fill={`url(#${gradientId})`}
+				/>
+				<path
+					aria-hidden="true"
+					class={styles.curve}
+					d={curvePath()}
+					data-season-curve
+				/>
 				<SeasonGraphEvents events={eventPoints()} />
 				<SeasonGraphSelection
 					dateLabel={format().dateShort(props.datetime)}

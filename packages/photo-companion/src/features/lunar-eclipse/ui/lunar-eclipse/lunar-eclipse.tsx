@@ -15,7 +15,9 @@ export function LunarEclipse() {
 	return (
 		<Card class={styles.card} data-label="lunar-eclipse">
 			<Card.Header>
-				<Text as="h2" variant="heading-l">{t().LUNAR_ECLIPSE.TITLE}</Text>
+				<Text as="h2" variant="heading-l">
+					{t().LUNAR_ECLIPSE.TITLE}
+				</Text>
 			</Card.Header>
 
 			<div class={styles.body}>
@@ -34,7 +36,10 @@ export function LunarEclipse() {
 						previousLabel={t().LUNAR_ECLIPSE.PREVIOUS}
 					/>
 				</div>
-				<LunarEclipseDetails event={eclipse.event()} state={eclipse.state()} />
+				<LunarEclipseDetails
+					event={eclipse.event()}
+					state={eclipse.state()}
+				/>
 			</div>
 		</Card>
 	);
