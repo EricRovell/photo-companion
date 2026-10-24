@@ -6,9 +6,7 @@ import { PropertyList } from "~/shared/ui";
 import { useCityLights } from "../model";
 
 interface Props {
-	class?: string;
 	lights: boolean;
-	valueClass?: string;
 }
 
 /**
@@ -28,15 +26,11 @@ export function LightsCountdown(props: Props) {
 	});
 
 	return (
-		<PropertyList.Item class={props.class}>
-			<PropertyList.Label color="secondary" variant="text-xs">
+		<PropertyList.Item>
+			<PropertyList.Label>
 				{getLabel()}
 			</PropertyList.Label>
-			<PropertyList.Value
-				align="center"
-				class={props.valueClass}
-				variant="text-l"
-			>
+			<PropertyList.Value>
 				{format().timeDuration(time())}
 			</PropertyList.Value>
 		</PropertyList.Item>

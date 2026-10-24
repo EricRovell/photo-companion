@@ -151,14 +151,6 @@ export const t = {
 		YEAR: "Год",
 		ZENITH: "Зенит"
 	},
-	LIGHTS_COMPARISON: {
-		EARLIER: "на {duration} раньше, чем вчера",
-		LATER: "на {duration} позже, чем вчера",
-		LONGER: "на {duration} дольше, чем вчера",
-		SHORTER: "на {duration} короче, чем вчера",
-		SWITCH_OFF: "Время выключения",
-		SWITCH_ON: "Время включения"
-	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "Выключение городского освещения",
 		LIGHTS_START: "Включение городского освещения"
@@ -174,6 +166,8 @@ export const t = {
 		SCHEDULED_OFF: "Выключено по расписанию",
 		SCHEDULED_ON: "Включено по расписанию",
 		SELECTED_TIME: "Выбранное время",
+		SWITCH_OFF: "Время выключения",
+		SWITCH_ON: "Время включения",
 		SWITCHING_WINDOW: "Штриховка: ±{duration} у каждого переключения",
 		WITHIN_WINDOW: "В пределах расчётного окна переключения"
 	},

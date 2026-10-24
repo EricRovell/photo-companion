@@ -48,7 +48,7 @@ export function createCityLightsWidgetModel(props: CityLightsWidgetProps) {
 		nightSchedule()?.events.find(event => event.name === name), name, {
 			formatDay: dayLabel,
 			formatTime: format().timeShort,
-			label: name === "LIGHTS_START" ? t().LIGHTS_COMPARISON.SWITCH_ON : t().LIGHTS_COMPARISON.SWITCH_OFF,
+			label: name === "LIGHTS_START" ? t().LIGHTS_WIDGET.SWITCH_ON : t().LIGHTS_WIDGET.SWITCH_OFF,
 			unavailable: t().RISE_SET.UNAVAILABLE
 		}
 	)));

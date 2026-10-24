@@ -151,14 +151,6 @@ export const t = {
 		YEAR: "Year",
 		ZENITH: "Zenith"
 	},
-	LIGHTS_COMPARISON: {
-		EARLIER: "{duration} earlier than yesterday",
-		LATER: "{duration} later than yesterday",
-		LONGER: "{duration} longer than yesterday",
-		SHORTER: "{duration} shorter than yesterday",
-		SWITCH_OFF: "Turn-off time",
-		SWITCH_ON: "Turn-on time"
-	},
 	LIGHTS_EVENTS: {
 		LIGHTS_END: "City lights switched off",
 		LIGHTS_START: "City Lights switched on"
@@ -174,6 +166,8 @@ export const t = {
 		SCHEDULED_OFF: "Lights scheduled off",
 		SCHEDULED_ON: "Lights scheduled on",
 		SELECTED_TIME: "Selected time",
+		SWITCH_OFF: "Turn-off time",
+		SWITCH_ON: "Turn-on time",
 		SWITCHING_WINDOW: "Shaded bands: ±{duration} at each switch",
 		WITHIN_WINDOW: "Within the estimated switching window"
 	},

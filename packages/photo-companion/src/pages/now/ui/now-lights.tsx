@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 
+import { getLightsScheduleStatusMessage } from "~/entities/city-lights";
 import {
-	getLightsScheduleStatusMessage,
 	LightsCountdown,
 	SupportsLights,
 	useCityLights

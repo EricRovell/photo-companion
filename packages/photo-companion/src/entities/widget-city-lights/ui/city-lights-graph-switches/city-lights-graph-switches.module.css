@@ -1,13 +1,24 @@
 .switch {
 	position: absolute;
 	top: 0.85rem;
-	width: 2px;
-	height: 0.65rem;
-	background: var(--lights-color);
+	width: 1rem;
+	height: 1.5rem;
+	cursor: help;
 	transform: translate(-50%, -50%);
 }
 
-.switch[data-estimated] {
+.switch::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 2px;
+	height: 0.65rem;
+	background: var(--lights-color);
+	content: "";
+	transform: translate(-50%, -50%);
+}
+
+.switch[data-estimated]::before {
 	width: 0;
 	border-left: 2px dashed var(--lights-color);
 	background: transparent;
@@ -15,15 +26,29 @@
 
 .switch-time {
 	position: absolute;
-	top: 1.1rem;
+	z-index: 1;
+	bottom: calc(50% + var(--space-2));
 	left: 50%;
+	visibility: hidden;
+	padding: var(--space-1) var(--space-2);
+	border: 1px solid var(--card-border-color);
+	border-radius: var(--radius);
+	background: var(--card-background);
 	font-size: var(--font-size-2);
 	font-weight: 500;
 	transform: translateX(-50%);
 }
 
-.switch-time[data-row="1"] {
-	top: 2.6rem;
+.switch[data-switch="LIGHTS_START"] .switch-time {
+	visibility: var(--lights-start-time-visibility, hidden);
+}
+
+.switch[data-switch="LIGHTS_END"] .switch-time {
+	visibility: var(--lights-end-time-visibility, hidden);
+}
+
+.switch:hover .switch-time {
+	visibility: visible;
 }
 
 .switch-time[data-edge="start"] {
@@ -32,26 +57,4 @@
 
 .switch-time[data-edge="end"] {
 	transform: translateX(-100%);
-}
-
-.switch-time::before {
-	position: absolute;
-	bottom: calc(100% + 0.15rem);
-	left: 50%;
-	height: 0.45rem;
-	border-left: 1px solid var(--lights-color);
-	content: "";
-	opacity: 0.35;
-}
-
-.switch-time[data-row="1"]::before {
-	height: 1.95rem;
-}
-
-.switch-time[data-edge="start"]::before {
-	left: 0;
-}
-
-.switch-time[data-edge="end"]::before {
-	left: 100%;
 }

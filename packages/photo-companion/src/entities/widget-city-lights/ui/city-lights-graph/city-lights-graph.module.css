@@ -12,10 +12,6 @@
 
 .plot {
 	position: relative;
-	height: 3.5rem;
+	height: 2rem;
 	font-variant-numeric: tabular-nums;
-}
-
-.plot[data-staggered] {
-	height: 5rem;
 }

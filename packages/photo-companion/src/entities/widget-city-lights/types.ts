@@ -1,23 +1,22 @@
 import type { LightsNightEvent } from "lights-schedule";
+import type { JSX } from "solid-js";
 import type { City, IlluminationState, LightsEventName, LightsSchedule } from "types";
 
 export interface CityLightsWidgetProps {
 	city: City;
 	date: Date;
 	getScheduleForDate: (date: Date) => LightsSchedule;
+	renderTime?: CityLightsTimeRenderer;
 	schedule: LightsSchedule;
 	state: IlluminationState;
 }
+
+export type CityLightsTimeRenderer = (date: Date, children: JSX.Element, label: string) => JSX.Element;
 
 export interface CityLightsNightEvent extends Pick<LightsNightEvent, "name" | "timestamp" | "uncertaintyMinutes"> {
 	position: number;
 	windowEnd: number;
 	windowStart: number;
-}
-
-export interface CityLightsGraphLabel extends CityLightsNightEvent {
-	edge?: "end" | "start";
-	row: number;
 }
 
 interface CityLightsNightInterval {
@@ -41,6 +40,7 @@ export interface CityLightsNight {
 }
 
 export interface CityLightsEventData {
+	date: Date | null;
 	day: string;
 	label: string;
 	name: LightsEventName;

@@ -1,8 +1,5 @@
-import { createMemo } from "solid-js";
-
 import { useTranslation } from "~/features/translation";
 
-import { getCityLightsGraphLabels } from "../../lib";
 import { CityLightsGraphSelection } from "../city-lights-graph-selection/city-lights-graph-selection";
 import { CityLightsGraphSwitches } from "../city-lights-graph-switches/city-lights-graph-switches";
 import { CityLightsGraphTrack } from "../city-lights-graph-track/city-lights-graph-track";
@@ -20,8 +17,6 @@ interface Props {
 
 export function CityLightsGraph(props: Props) {
 	const { format, t } = useTranslation();
-	const labels = createMemo(() => getCityLightsGraphLabels(props.night.events));
-	const staggered = () => labels().some(event => event.row === 1);
 
 	return (
 		<div
@@ -35,14 +30,13 @@ export function CityLightsGraph(props: Props) {
 			<div
 				aria-hidden="true"
 				class={styles.plot}
-				data-staggered={staggered() || undefined}
 			>
 				<CityLightsGraphTrack
 					intervals={props.night.intervals}
 					ticks={props.night.ticks}
 				/>
 				<CityLightsGraphWindows windows={props.night.windows} />
-				<CityLightsGraphSwitches labels={labels()} />
+				<CityLightsGraphSwitches events={props.night.events} />
 				<CityLightsGraphSelection
 					date={props.date}
 					position={props.night.position}
