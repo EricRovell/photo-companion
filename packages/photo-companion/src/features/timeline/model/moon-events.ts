@@ -12,7 +12,11 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 
 	const events: MoonEvent[] = [];
 	const start = getDayStart(date);
-	const observer = { latitude, longitude };
+
+	const observer = {
+		latitude,
+		longitude
+	};
 
 	const times = calculateMoonEvents({
 		interval: {
@@ -25,7 +29,10 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 	for (const event of times) {
 		if (event.name !== "MOONRISE" && event.name !== "MOONSET") {continue;}
 		const illumination = getMoonIllumination(event.time);
-		const position = getMoonPosition({ instant: event.time, observer });
+		const position = getMoonPosition({
+			instant: event.time,
+			observer
+		});
 		const zenithAngle = getMoonZenithAngle(illumination.angle, position.parallacticAngle);
 
 		events.push({

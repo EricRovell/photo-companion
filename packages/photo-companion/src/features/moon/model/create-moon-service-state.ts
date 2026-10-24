@@ -13,7 +13,11 @@ export function createMoonServiceState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
-	const observer = () => ({ latitude: settings.latitude, longitude: settings.longitude });
+	const observer = () => ({
+		latitude: settings.latitude,
+		longitude: settings.longitude
+	});
+
 	const age = createMemo(() => getMoonAge(getDatetime()));
 	const illumination = createMemo(() => getMoonIllumination(getDatetime()));
 
@@ -23,7 +27,10 @@ export function createMoonServiceState() {
 		timestamp: event.time.getTime()
 	})));
 
-	const position = createMemo(() => getMoonPosition({ instant: getDatetime(), observer: observer() }));
+	const position = createMemo(() => getMoonPosition({
+		instant: getDatetime(),
+		observer: observer()
+	}));
 
 	const { belowHorizonInterval, nextRise, rise: moonrise, riseSetTimes, set: moonset } = createRiseSetEvents({
 		date: getDatetime,

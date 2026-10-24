@@ -29,7 +29,10 @@ export function getBridgeEvents(date = new Date()): BridgeEvent[] {
 					open: true
 				},
 				name: `${name}_OPEN`,
-				timestamp: dateFrom(date, { hours: hs, minutes: ms }).getTime(),
+				timestamp: dateFrom(date, {
+					hours: hs,
+					minutes: ms
+				}).getTime(),
 				type: "BRIDGE"
 			});
 
@@ -39,7 +42,10 @@ export function getBridgeEvents(date = new Date()): BridgeEvent[] {
 					open: false
 				},
 				name: `${name}_CLOSE`,
-				timestamp: dateFrom(date, { hours: he, minutes: me }).getTime(),
+				timestamp: dateFrom(date, {
+					hours: he,
+					minutes: me
+				}).getTime(),
 				type: "BRIDGE"
 			});
 		}

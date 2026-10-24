@@ -83,7 +83,10 @@ export function validateAtmosphere(atmosphere: Atmosphere = {}): Required<Atmosp
 		throw new RangeError("atmosphere must contain positive pressure and a temperature above absolute zero");
 	}
 
-	return { pressure, temperature };
+	return {
+		pressure,
+		temperature
+	};
 }
 
 export function validateAzimuth(azimuth: Degree): Degree {
@@ -135,7 +138,10 @@ export function validateInterval(interval: UtcInterval): ValidatedInterval {
 		throw new RangeError("interval must not be longer than 48 hours");
 	}
 
-	return { end, start };
+	return {
+		end,
+		start
+	};
 }
 
 export function validateObserver(observer: Observer): Required<Observer> {
@@ -155,5 +161,8 @@ export function validateObserver(observer: Observer): Required<Observer> {
 		throw new RangeError(`observer.elevation must be a finite number from ${MIN_OBSERVER_ELEVATION} to ${MAX_OBSERVER_ELEVATION} meters`);
 	}
 
-	return { ...observer, elevation };
+	return {
+		...observer,
+		elevation
+	};
 }

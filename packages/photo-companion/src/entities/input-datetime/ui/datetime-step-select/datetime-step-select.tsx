@@ -11,7 +11,8 @@ import styles from "./datetime-step-select.module.css";
 interface DatetimeStepSelectProps {
 	disabled: boolean;
 	labels: InputDatetimeLabels;
-	onChange: (event: { currentTarget: HTMLSelectElement; target: Element } & Event) => void;
+	onChange: (event: { currentTarget: HTMLSelectElement;
+target: Element } & Event) => void;
 	step: DateTimeStep;
 }
 

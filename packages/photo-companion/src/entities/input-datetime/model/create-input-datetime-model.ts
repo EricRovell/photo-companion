@@ -85,7 +85,11 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 		setState("offset", 0);
 	};
 
-	const animation = createTimelineAnimation({ commitDate, setState, state });
+	const animation = createTimelineAnimation({
+		commitDate,
+		setState,
+		state
+	});
 
 	const moveBy = (amount: number) => {
 		const currentDate = selectedDate();

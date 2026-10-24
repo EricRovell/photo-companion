@@ -8,7 +8,12 @@ const meta = {
 	},
 	argTypes: {
 		phase: {
-			control: { max: 1, min: 0, step: 0.01, type: "number" },
+			control: {
+				max: 1,
+				min: 0,
+				step: 0.01,
+				type: "number"
+			},
 			description: "Lunar phase from 0 (new moon) through 0.5 (full moon) to 1"
 		}
 	},

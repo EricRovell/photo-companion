@@ -64,7 +64,11 @@ function AzimuthPreview(args: StoryArgs) {
 
 	return (
 		<div
-			style={{ "max-width": "100%", "text-align": "center", width: `${args.width}px` }}
+			style={{
+				"max-width": "100%",
+				"text-align": "center",
+				"width": `${args.width}px`
+			}}
 		>
 			<AzimuthWidgetView
 				deviceHeading={{
@@ -86,14 +90,16 @@ function AzimuthPreview(args: StoryArgs) {
 				}))}
 				formatters={{
 					ariaEntity: (label, azimuth) => format().message(t().AZIMUTH.ARIA_ENTITY, {
-						azimuth: format().degrees(azimuth), label
+						azimuth: format().degrees(azimuth),
+						label
 					}),
 					list: values => format().list(values)
 				}}
 				labels={labels()}
 				title={format().message(t().AZIMUTH.TITLE_SUN_MOON, {
 					azimuth: t().LABEL.AZIMUTH,
-					moon: t().TITLE.MOON, sun: t().TITLE.SUN
+					moon: t().TITLE.MOON,
+					sun: t().TITLE.SUN
 				})}
 			/>
 		</div>
@@ -174,5 +180,8 @@ export const Mobile: Story = {
 };
 
 export const MobileAligned: Story = {
-	args: { aligned: true, width: 320 }
+	args: {
+		aligned: true,
+		width: 320
+	}
 };

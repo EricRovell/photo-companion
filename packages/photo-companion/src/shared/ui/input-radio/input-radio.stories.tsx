@@ -3,9 +3,19 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { InputRadio } from "./input-radio";
 
 const OPTIONS = [
-	{ label: "North", value: "N" },
-	{ label: "South", value: "S" },
-	{ disabled: true, label: "Unavailable", value: "disabled" }
+	{
+		label: "North",
+		value: "N"
+	},
+	{
+		label: "South",
+		value: "S"
+	},
+	{
+		disabled: true,
+		label: "Unavailable",
+		value: "disabled"
+	}
 ];
 
 const meta = {

@@ -31,7 +31,14 @@ let selected = () => new Date(2026, 9, 24, 20, 40);
 
 function getSchedule(date: Date): LightsSchedule {
 	if (status !== "SCHEDULED") {
-		return { duration: null, LIGHTS_END: null, LIGHTS_START: null, source: uncertainty ? "SOLAR_ESTIMATE" : "SCHEDULE", status, uncertaintyMinutes: uncertainty };
+		return {
+			duration: null,
+			LIGHTS_END: null,
+			LIGHTS_START: null,
+			source: uncertainty ? "SOLAR_ESTIMATE" : "SCHEDULE",
+			status,
+			uncertaintyMinutes: uncertainty
+		};
 	}
 
 	const start = new Date(date);
@@ -54,7 +61,11 @@ function getState(date: Date): IlluminationState {
 	const schedule = getSchedule(date);
 
 	if (schedule.status !== "SCHEDULED") {
-		return { event: null, lights: schedule.status === "CONTINUOUS_DARKNESS", timestamp: null };
+		return {
+			event: null,
+			lights: schedule.status === "CONTINUOUS_DARKNESS",
+			timestamp: null
+		};
 	}
 
 	const lights = date.getTime() < schedule.LIGHTS_END || date.getTime() > schedule.LIGHTS_START;
@@ -112,12 +123,36 @@ describe("CityLightsWidget", () => {
 	});
 
 	it.each([
-		{ date: new Date(2026, 9, 24, 20), label: "tomorrow", locale: "en" },
-		{ date: new Date(2026, 9, 25, 4), label: "yesterday", locale: "en" },
-		{ date: new Date(2026, 9, 24, 20), label: "завтра", locale: "ru" },
-		{ date: new Date(2026, 9, 25, 4), label: "вчера", locale: "ru" },
-		{ date: new Date(2026, 11, 31, 23), label: "tomorrow", locale: "en" },
-		{ date: new Date(2027, 0, 1, 4), label: "yesterday", locale: "en" }
+		{
+			date: new Date(2026, 9, 24, 20),
+			label: "tomorrow",
+			locale: "en"
+		},
+		{
+			date: new Date(2026, 9, 25, 4),
+			label: "yesterday",
+			locale: "en"
+		},
+		{
+			date: new Date(2026, 9, 24, 20),
+			label: "завтра",
+			locale: "ru"
+		},
+		{
+			date: new Date(2026, 9, 25, 4),
+			label: "вчера",
+			locale: "ru"
+		},
+		{
+			date: new Date(2026, 11, 31, 23),
+			label: "tomorrow",
+			locale: "en"
+		},
+		{
+			date: new Date(2027, 0, 1, 4),
+			label: "yesterday",
+			locale: "en"
+		}
 	])("labels adjacent calendar days as $label in $locale", ({ date, label, locale }) => {
 		language = locale;
 		selected = () => date;

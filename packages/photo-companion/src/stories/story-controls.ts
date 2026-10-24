@@ -38,11 +38,21 @@ export const storyLocationConfig = {
 	},
 	argTypes: {
 		latitude: {
-			control: { max: 90, min: -90, step: 0.000001, type: "number" },
+			control: {
+				max: 90,
+				min: -90,
+				step: 0.000001,
+				type: "number"
+			},
 			description: "Observer latitude in decimal degrees"
 		},
 		longitude: {
-			control: { max: 180, min: -180, step: 0.000001, type: "number" },
+			control: {
+				max: 180,
+				min: -180,
+				step: 0.000001,
+				type: "number"
+			},
 			description: "Observer longitude in decimal degrees"
 		}
 	}

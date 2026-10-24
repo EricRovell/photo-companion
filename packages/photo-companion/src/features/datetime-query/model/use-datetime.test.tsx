@@ -18,7 +18,11 @@ function createLocation(pathname: string, params: [ string, string ][]): string 
 function renderDatetimeHook(location: string) {
 	const history = createMemoryHistory();
 
-	history.set({ replace: true, scroll: false, value: location });
+	history.set({
+		replace: true,
+		scroll: false,
+		value: location
+	});
 
 	const wrapper = (props: ParentProps) => (
 		<MemoryRouter history={history}>
@@ -28,7 +32,10 @@ function renderDatetimeHook(location: string) {
 
 	const hook = renderHook(useDatetime, { wrapper });
 
-	return { history, ...hook };
+	return {
+		history,
+		...hook
+	};
 }
 
 describe("useDatetime", () => {

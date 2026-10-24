@@ -9,48 +9,107 @@ import {
 	getNextMoonPhases
 } from "../src";
 
-const LONDON = { latitude: 51.5, longitude: -0.1 };
+const LONDON = {
+	latitude: 51.5,
+	longitude: -0.1
+};
 
 const MOON_PHASE_CASES = [
 	{
 		description: "matches the 2025-01-06 USNO first-quarter fixture",
-		input: { count: 8, index: 0, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "FIRST_QUARTER", time: Date.parse("2025-01-06T23:56:00Z") }
+		input: {
+			count: 8,
+			index: 0,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "FIRST_QUARTER",
+			time: Date.parse("2025-01-06T23:56:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-01-13 USNO full-Moon fixture",
-		input: { count: 8, index: 1, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "FULL_MOON", time: Date.parse("2025-01-13T22:27:00Z") }
+		input: {
+			count: 8,
+			index: 1,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "FULL_MOON",
+			time: Date.parse("2025-01-13T22:27:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-01-21 USNO third-quarter fixture",
-		input: { count: 8, index: 2, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "THIRD_QUARTER", time: Date.parse("2025-01-21T20:31:00Z") }
+		input: {
+			count: 8,
+			index: 2,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "THIRD_QUARTER",
+			time: Date.parse("2025-01-21T20:31:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-01-29 USNO new-Moon fixture",
-		input: { count: 8, index: 3, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "NEW_MOON", time: Date.parse("2025-01-29T12:36:00Z") }
+		input: {
+			count: 8,
+			index: 3,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "NEW_MOON",
+			time: Date.parse("2025-01-29T12:36:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-02-05 USNO first-quarter fixture",
-		input: { count: 8, index: 4, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "FIRST_QUARTER", time: Date.parse("2025-02-05T08:02:00Z") }
+		input: {
+			count: 8,
+			index: 4,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "FIRST_QUARTER",
+			time: Date.parse("2025-02-05T08:02:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-02-12 USNO full-Moon fixture",
-		input: { count: 8, index: 5, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "FULL_MOON", time: Date.parse("2025-02-12T13:53:00Z") }
+		input: {
+			count: 8,
+			index: 5,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "FULL_MOON",
+			time: Date.parse("2025-02-12T13:53:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-02-20 USNO third-quarter fixture",
-		input: { count: 8, index: 6, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "THIRD_QUARTER", time: Date.parse("2025-02-20T17:32:00Z") }
+		input: {
+			count: 8,
+			index: 6,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "THIRD_QUARTER",
+			time: Date.parse("2025-02-20T17:32:00Z")
+		}
 	},
 	{
 		description: "matches the 2025-02-28 USNO new-Moon fixture",
-		input: { count: 8, index: 7, instant: Date.parse("2025-01-01T00:00:00Z") },
-		output: { phase: "NEW_MOON", time: Date.parse("2025-02-28T00:45:00Z") }
+		input: {
+			count: 8,
+			index: 7,
+			instant: Date.parse("2025-01-01T00:00:00Z")
+		},
+		output: {
+			phase: "NEW_MOON",
+			time: Date.parse("2025-02-28T00:45:00Z")
+		}
 	}
 ];
 
@@ -131,7 +190,10 @@ describe("Moon", () => {
 	test("matches Meeus chapter 47's lunar distance example", () => {
 		const position = getMoonPosition({
 			instant: Date.parse("1992-04-12T00:00:00Z"),
-			observer: { latitude: 0, longitude: 0 }
+			observer: {
+				latitude: 0,
+				longitude: 0
+			}
 		});
 
 		expect(position.distance).toBeCloseTo(368_409.7, -1);
@@ -185,7 +247,10 @@ describe("Moon", () => {
 	});
 
 	test.each(MOON_BOUNDARY_CASES)("$description", ({ input, output }) => {
-		const position = getMoonPosition({ instant: input, observer: LONDON });
+		const position = getMoonPosition({
+			instant: input,
+			observer: LONDON
+		});
 		const illumination = getMoonIllumination(input);
 
 		expect(Object.values(position).every(Number.isFinite)).toBe(output);

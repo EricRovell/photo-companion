@@ -56,7 +56,11 @@ export function getMoonAge(input: DateLike): number {
 		const leftElongation = elongation(left);
 
 		if (leftElongation > 180 && rightElongation < 180) {
-			const newMoon = refinePhase({ left, right, target: 0 });
+			const newMoon = refinePhase({
+				left,
+				right,
+				target: 0
+			});
 
 			return (timestamp - newMoon) / DAY_MS;
 		}
@@ -91,7 +95,11 @@ export function getNextMoonPhases(input: DateLike, count = 4): MoonPhaseEvent[] 
 
 		while (unwrapped >= nextTarget && events.length < phaseCount) {
 			const target = normalizeDegrees(nextTarget);
-			const refined = refinePhase({ left: previousTime, right: time, target });
+			const refined = refinePhase({
+				left: previousTime,
+				right: time,
+				target
+			});
 			events.push({
 				phase: PRINCIPAL_MOON_PHASES[(Math.round(nextTarget / 90) % 4 + 4) % 4],
 				time: new Date(refined)

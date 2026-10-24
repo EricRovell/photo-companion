@@ -126,7 +126,11 @@ export function calculateLunarEclipseState(
 			penumbraAngularRadius,
 			umbraAngularRadius
 		},
-		umbralCoverage: clamp({ maximum: 1, minimum: 0, value: umbralCoverage }),
+		umbralCoverage: clamp({
+			maximum: 1,
+			minimum: 0,
+			value: umbralCoverage
+		}),
 		umbralMagnitude: getMagnitude(umbraAngularRadius, moonAngularRadius, separation)
 	};
 }

@@ -31,7 +31,10 @@ export function getSolarEclipseTrack(
 	for (let index = 0; index <= GRAPH_CONFIG.trackSegments; index += 1) {
 		const state = getSolarEclipseState({
 			instant: start + duration * index / GRAPH_CONFIG.trackSegments,
-			observer: { latitude, longitude }
+			observer: {
+				latitude,
+				longitude
+			}
 		});
 
 		const point = getEclipseGraphPoint(state);

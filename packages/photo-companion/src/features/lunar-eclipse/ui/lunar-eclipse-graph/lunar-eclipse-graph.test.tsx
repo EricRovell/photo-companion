@@ -25,7 +25,10 @@ const STATE: LunarEclipseState = {
 		angularRadius: 0.25,
 		apparentAltitude: 30,
 		azimuth: 180,
-		offset: { altitude: 0.1, azimuth: -0.2 }
+		offset: {
+			altitude: 0.1,
+			azimuth: -0.2
+		}
 	},
 	penumbralMagnitude: 1,
 	phase: "PARTIAL",

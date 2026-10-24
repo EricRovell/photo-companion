@@ -20,9 +20,17 @@ export function useSolarEclipse() {
 
 	const latitude = () => settings.latitude;
 	const longitude = () => settings.longitude;
-	const observer = () => ({ latitude: latitude(), longitude: longitude() });
 
-	const state = createMemo(() => getSolarEclipseState({ instant: getDatetime(), observer: observer() }));
+	const observer = () => ({
+		latitude: latitude(),
+		longitude: longitude()
+	});
+
+	const state = createMemo(() => getSolarEclipseState({
+		instant: getDatetime(),
+		observer: observer()
+	}));
+
 	const event = createMemo(() => getNearbyLocalSolarEclipse({
 		instant: getDatetime(),
 		margin: ECLIPSE_CONTEXT_MARGIN,

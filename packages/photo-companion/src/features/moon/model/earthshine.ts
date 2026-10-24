@@ -50,9 +50,21 @@ export function getEarthshineProbability(
 	for (let timestamp = startOfDay; timestamp < endOfDay; timestamp += SAMPLE_INTERVAL) {
 		const time = new Date(timestamp);
 		const illumination = getMoonIllumination(time);
-		const observer = { latitude, longitude };
-		const moon = getMoonPosition({ instant: time, observer });
-		const sun = getSunPosition({ instant: time, observer });
+
+		const observer = {
+			latitude,
+			longitude
+		};
+
+		const moon = getMoonPosition({
+			instant: time,
+			observer
+		});
+
+		const sun = getSunPosition({
+			instant: time,
+			observer
+		});
 
 		if (
 			!isWithinRange(illumination.fraction, MIN_ILLUMINATION, MAX_ILLUMINATION) ||

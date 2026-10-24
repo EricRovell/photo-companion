@@ -12,7 +12,10 @@ import type {
 } from "../types";
 
 export function getDeclination(timestamp: number): number {
-	return getSunPosition({ instant: timestamp, observer: EQUATOR_OBSERVER }).declination;
+	return getSunPosition({
+		instant: timestamp,
+		observer: EQUATOR_OBSERVER
+	}).declination;
 }
 
 export function getSeasonGraphY(declination: number): number {

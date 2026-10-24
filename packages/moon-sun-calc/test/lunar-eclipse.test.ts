@@ -16,9 +16,20 @@ import type {
 	Observer
 } from "../src";
 
-const DALLAS = { latitude: 32.7767, longitude: -96.797 };
-const LONDON = { latitude: 51.5072, longitude: -0.1276 };
-const MOSCOW = { latitude: 55.7558, longitude: 37.6173 };
+const DALLAS = {
+	latitude: 32.7767,
+	longitude: -96.797
+};
+
+const LONDON = {
+	latitude: 51.5072,
+	longitude: -0.1276
+};
+
+const MOSCOW = {
+	latitude: 55.7558,
+	longitude: 37.6173
+};
 
 interface LunarEclipseCase {
 	description: string;
@@ -55,7 +66,10 @@ function expectContact(actual: Date | undefined, expected: string | undefined): 
 }
 
 function getEvent(instant: string, observer: Observer = DALLAS): LocalLunarEclipse {
-	const event = getLocalLunarEclipse({ instant: Date.parse(instant), observer });
+	const event = getLocalLunarEclipse({
+		instant: Date.parse(instant),
+		observer
+	});
 
 	if (isNullable(event)) {
 		throw new Error(`Expected a lunar eclipse near ${instant}`);
@@ -124,9 +138,18 @@ describe("Lunar eclipses", () => {
 	});
 
 	test.each([
-		{ expected: "FULL", observer: DALLAS },
-		{ expected: "PARTIAL", observer: LONDON },
-		{ expected: "NONE", observer: MOSCOW }
+		{
+			expected: "FULL",
+			observer: DALLAS
+		},
+		{
+			expected: "PARTIAL",
+			observer: LONDON
+		},
+		{
+			expected: "NONE",
+			observer: MOSCOW
+		}
 	] as const)("classifies 2025 March visibility as $expected", ({ expected, observer }) => {
 		const event = getEvent("2025-03-14T06:58:43Z", observer);
 
@@ -138,24 +161,43 @@ describe("Lunar eclipses", () => {
 		expect(getEvent("2027-07-18T16:03:00Z").noticeability).toBe("UNLIKELY");
 	});
 
-	test.each<{ expected: LunarEclipsePhase; instant: string }>([
-		{ expected: "NONE", instant: "2025-01-01T12:00:00Z" },
-		{ expected: "PENUMBRAL", instant: "2025-03-14T04:30:00Z" },
-		{ expected: "PARTIAL", instant: "2025-03-14T05:30:00Z" },
-		{ expected: "TOTAL", instant: "2025-03-14T06:58:43Z" }
-	])("returns the $expected current phase", ({ expected, instant }) => {
-		const state = getLunarEclipseState({ instant: Date.parse(instant), observer: DALLAS });
-
-		expect(state.phase).toBe(expected);
-		expect(Number.isFinite(state.moon.offset.altitude)).toBe(true);
-		expect(Number.isFinite(state.moon.offset.azimuth)).toBe(true);
+	test.each<{ expected: LunarEclipsePhase;
+instant: string }>([
+	{
+		expected: "NONE",
+		instant: "2025-01-01T12:00:00Z"
+	},
+	{
+		expected: "PENUMBRAL",
+		instant: "2025-03-14T04:30:00Z"
+	},
+	{
+		expected: "PARTIAL",
+		instant: "2025-03-14T05:30:00Z"
+	},
+	{
+		expected: "TOTAL",
+		instant: "2025-03-14T06:58:43Z"
+	}
+])("returns the $expected current phase", ({ expected, instant }) => {
+	const state = getLunarEclipseState({
+		instant: Date.parse(instant),
+		observer: DALLAS
 	});
+
+	expect(state.phase).toBe(expected);
+	expect(Number.isFinite(state.moon.offset.altitude)).toBe(true);
+	expect(Number.isFinite(state.moon.offset.azimuth)).toBe(true);
+});
 
 	test("supports nearby context without weakening exact lookup", () => {
 		const instant = Date.parse("2025-03-13T20:00:00Z");
 		const observer = DALLAS;
 
-		expect(getLocalLunarEclipse({ instant, observer })).toBeNull();
+		expect(getLocalLunarEclipse({
+			instant,
+			observer
+		})).toBeNull();
 		expect(getNearbyLocalLunarEclipse({
 			instant,
 			margin: 12 * 60 * 60 * 1000,
@@ -165,8 +207,16 @@ describe("Lunar eclipses", () => {
 
 	test("finds eclipses in both directions and skips the same peak", () => {
 		const atPeak = Date.parse("2025-03-14T06:58:43Z");
-		const previous = findPreviousLocalLunarEclipse({ instant: atPeak, observer: DALLAS, visibleOnly: true });
-		const next = findNextLocalLunarEclipse({ instant: atPeak, observer: DALLAS, visibleOnly: true });
+		const previous = findPreviousLocalLunarEclipse({
+			instant: atPeak,
+			observer: DALLAS,
+			visibleOnly: true
+		});
+		const next = findNextLocalLunarEclipse({
+			instant: atPeak,
+			observer: DALLAS,
+			visibleOnly: true
+		});
 
 		expect(previous?.peak.time.getTime()).toBeLessThan(atPeak);
 		expect(next?.peak.time.getTime()).toBeGreaterThan(atPeak);

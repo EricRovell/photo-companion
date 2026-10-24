@@ -175,7 +175,11 @@ export function useDeviceHeading(options: DeviceHeadingOptions = {}) {
 					}
 				}
 			},
-			{ enableHighAccuracy: true, maximumAge: 2_000, timeout }
+			{
+				enableHighAccuracy: true,
+				maximumAge: 2_000,
+				timeout
+			}
 		);
 	}
 

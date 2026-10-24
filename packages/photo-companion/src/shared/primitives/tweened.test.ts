@@ -14,7 +14,12 @@ describe("createTweened", () => {
 		const requestFrame = vi.spyOn(window, "requestAnimationFrame");
 		const state = createRoot(dispose => {
 			const [ target, setTarget ] = createSignal(0);
-			return { dispose, setTarget, value: createTweened(target) };
+
+			return {
+				dispose,
+				setTarget,
+				value: createTweened(target)
+			};
 		});
 
 		try {
@@ -33,7 +38,12 @@ describe("createTweened", () => {
 		const cancelFrame = vi.spyOn(window, "cancelAnimationFrame");
 		const state = createRoot(dispose => {
 			const [ target, setTarget ] = createSignal(0);
-			return { dispose, setTarget, value: createTweened(target) };
+
+			return {
+				dispose,
+				setTarget,
+				value: createTweened(target)
+			};
 		});
 
 		try {

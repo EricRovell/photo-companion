@@ -20,7 +20,12 @@ export function TranslationProvider(props: ParentProps) {
 	return (
 		<Show when={t()}>
 			{(t) => (
-				<TranslationContext.Provider value={{ t, ...rest }}>
+				<TranslationContext.Provider
+					value={{
+						t,
+						...rest
+					}}
+				>
 					{props.children}
 				</TranslationContext.Provider>
 			)}

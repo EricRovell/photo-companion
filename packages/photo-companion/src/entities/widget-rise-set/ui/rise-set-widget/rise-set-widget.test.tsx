@@ -34,7 +34,11 @@ const defaults: RiseSetWidgetProps = {
 };
 
 const nextRise = new Date("2026-10-22T07:00:00Z");
-const followingNight = { end: nextRise, start: new Date("2026-10-21T18:00:00Z") };
+
+const followingNight = {
+	end: nextRise,
+	start: new Date("2026-10-21T18:00:00Z")
+};
 
 describe("RiseSetWidget countdown", () => {
 	beforeEach(() => {
@@ -133,14 +137,24 @@ describe("RiseSetWidget countdown", () => {
 		const view = render(() => <RiseSetWidget {...props()} />);
 
 		vi.advanceTimersByTime(3000);
-		setProps({ ...defaults, date: new Date("2026-10-21T05:00:00Z") });
+		setProps({
+			...defaults,
+			date: new Date("2026-10-21T05:00:00Z")
+		});
 		expect(view.getByText("01:00:00")).toBeInTheDocument();
 
-		setProps({ ...defaults, aboveHorizon: true, date: new Date("2026-10-21T12:00:00Z") });
+		setProps({
+			...defaults,
+			aboveHorizon: true,
+			date: new Date("2026-10-21T12:00:00Z")
+		});
 		expect(view.getByText("06:00:00")).toBeInTheDocument();
 		expect(view.queryByText("Until sunrise")).toBeNull();
 
-		setProps(value => ({ ...value, set: new Date("2026-10-22T18:00:00Z") }));
+		setProps(value => ({
+			...value,
+			set: new Date("2026-10-22T18:00:00Z")
+		}));
 		expect(view.getByText("30:00:00")).toBeInTheDocument();
 		vi.advanceTimersByTime(1000);
 		expect(view.getByText("29:59:59")).toBeInTheDocument();
@@ -157,7 +171,10 @@ describe("RiseSetWidget countdown", () => {
 	it.each([
 		{ rise: null },
 		{ date: new Date("2026-10-21T20:00:00Z") },
-		{ aboveHorizon: true, set: null }
+		{
+			aboveHorizon: true,
+			set: null
+		}
 	])("keeps an unavailable value without an upcoming event: %o", (overrides) => {
 		const view = render(() => <RiseSetWidget {...defaults} {...overrides} nextRise={null} />);
 

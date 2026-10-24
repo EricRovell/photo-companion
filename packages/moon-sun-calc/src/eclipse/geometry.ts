@@ -36,7 +36,11 @@ export function angularRadius(radius: number, distance?: number): Degree {
 		throw new Error("Topocentric distance is required for eclipse calculations");
 	}
 
-	return toDegrees(Math.asin(clamp({ maximum: 1, minimum: -1, value: radius / distance })));
+	return toDegrees(Math.asin(clamp({
+		maximum: 1,
+		minimum: -1,
+		value: radius / distance
+	})));
 }
 
 export function angularSeparation(
@@ -51,7 +55,11 @@ export function angularSeparation(
 	const cosine = Math.sin(leftLatitudeRadians) * Math.sin(rightLatitudeRadians)
 		+ Math.cos(leftLatitudeRadians) * Math.cos(rightLatitudeRadians) * Math.cos(longitudeDifference);
 
-	return toDegrees(Math.acos(clamp({ maximum: 1, minimum: -1, value: cosine })));
+	return toDegrees(Math.acos(clamp({
+		maximum: 1,
+		minimum: -1,
+		value: cosine
+	})));
 }
 
 export function circleOverlapArea(leftRadius: Degree, rightRadius: Degree, separation: Degree): number {
@@ -90,7 +98,8 @@ export function getHorizontalOffsets(
 	centerAltitude: Degree,
 	targetAzimuth: Degree,
 	targetAltitude: Degree
-): { altitude: Degree; azimuth: Degree } {
+): { altitude: Degree;
+azimuth: Degree } {
 	const centerAzimuthRadians = toRadians(centerAzimuth);
 	const centerAltitudeRadians = toRadians(centerAltitude);
 	const center = horizontalVector(centerAzimuth, centerAltitude);

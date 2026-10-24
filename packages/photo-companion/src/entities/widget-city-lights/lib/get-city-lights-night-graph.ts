@@ -31,7 +31,10 @@ export function getCityLightsNightGraph(night: LightsNight, date: Date): CityLig
 		const time = new Date(night.start);
 		time.setHours(time.getHours() + hours);
 
-		return { position: position(time.getTime()), time };
+		return {
+			position: position(time.getTime()),
+			time
+		};
 	});
 
 	return {

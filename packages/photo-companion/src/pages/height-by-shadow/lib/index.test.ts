@@ -19,6 +19,9 @@ const VALID_MODEL: Model = {
 describe("height-by-shadow validation", () => {
 	it("validates longitude independently from latitude", () => {
 		expect(validate(VALID_MODEL).longitude).toBe(false);
-		expect(validate({ ...VALID_MODEL, longitude: [ 181, 0, 0 ] }).longitude).toBe(true);
+		expect(validate({
+			...VALID_MODEL,
+			longitude: [ 181, 0, 0 ]
+		}).longitude).toBe(true);
 	});
 });

@@ -37,7 +37,11 @@ export function getSunGeocentricCoords(timestamp: Millisecond): GeocentricCoordi
 	const obliquity = meanObliquity(T) + 0.00256 * Math.cos(omega);
 
 	return {
-		...eclipticToEquatorial({ latitude: 0, longitude: apparentLongitude, obliquity }),
+		...eclipticToEquatorial({
+			latitude: 0,
+			longitude: apparentLongitude,
+			obliquity
+		}),
 		distance: distanceAu * 149_597_870.7,
 		eclipticLatitude: 0,
 		eclipticLongitude: apparentLongitude

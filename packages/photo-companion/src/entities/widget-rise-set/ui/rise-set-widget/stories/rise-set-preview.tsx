@@ -83,7 +83,11 @@ export function RiseSetPlayground(props: StoryArgs) {
 	return (
 		<StoryTranslations>
 			<div
-				style={{ "max-width": "100%", "text-align": "center", width: `${props.width}px` }}
+				style={{
+					"max-width": "100%",
+					"text-align": "center",
+					"width": `${props.width}px`
+				}}
 			>
 				<RiseSetPreview
 					aboveHorizon={props.aboveHorizon}
@@ -124,16 +128,28 @@ export function ScenarioGallery(props: GalleryProps) {
 				<For each={props.scenarios}>
 					{scenario => (
 						<section
-							style={{ display: "grid", gap: "var(--space-3)", "grid-template-rows": "auto auto 1fr", "min-width": "0" }}
+							style={{
+								"display": "grid",
+								"gap": "var(--space-3)",
+								"grid-template-rows": "auto auto 1fr",
+								"min-width": "0"
+							}}
 						>
 							<div>
 								<h3
-									style={{ "font-size": "var(--font-size-3)", margin: "0 0 var(--space-2)" }}
+									style={{
+										"font-size": "var(--font-size-3)",
+										"margin": "0 0 var(--space-2)"
+									}}
 								>
 									{scenario.title}
 								</h3>
 								<p
-									style={{ color: "var(--color-text-secondary)", "font-size": "var(--font-size-1)", margin: "0" }}
+									style={{
+										"color": "var(--color-text-secondary)",
+										"font-size": "var(--font-size-1)",
+										"margin": "0"
+									}}
 								>
 									Selected: <time dateTime={scenario.date.toISOString()}>
 										{scenarioDateFormatter.format(scenario.date)}
@@ -142,7 +158,12 @@ export function ScenarioGallery(props: GalleryProps) {
 							</div>
 							<RiseSetPreview {...scenario} entity={props.entity} />
 							<p
-								style={{ color: "var(--color-text-secondary)", "font-size": "var(--font-size-1)", "line-height": "1.5", margin: "0" }}
+								style={{
+									"color": "var(--color-text-secondary)",
+									"font-size": "var(--font-size-1)",
+									"line-height": "1.5",
+									"margin": "0"
+								}}
 							>
 								{scenario.description}
 							</p>
@@ -158,7 +179,10 @@ export function IntervalSelectionGallery(props: { scenarios: readonly RiseSetSel
 	return (
 		<ScenarioGallery
 			entity={props.entity}
-			scenarios={props.scenarios.map(scenario => ({ ...scenario, ...selectRiseSetInterval(scenario.date, scenario.intervals) }))}
+			scenarios={props.scenarios.map(scenario => ({
+				...scenario,
+				...selectRiseSetInterval(scenario.date, scenario.intervals)
+			}))}
 			width={props.width}
 		/>
 	);

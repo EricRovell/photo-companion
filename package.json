@@ -33,6 +33,7 @@
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@ls-lint/ls-lint": "^2.3.1",
+		"@stylistic/eslint-plugin": "^5.10.0",
 		"@stylistic/stylelint-plugin": "^5.3.1",
 		"@typescript/native": "catalog:typescript",
 		"@types/node": "^22.18.13",

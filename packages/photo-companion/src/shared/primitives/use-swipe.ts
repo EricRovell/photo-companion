@@ -92,7 +92,13 @@ export function useSwipe(target: MaybeAccessor<Nullable<HTMLElement>>, options: 
 
 		const [ x, y ] = getTouchCoords(event);
 
-		setCoords({ t1: Date.now(), x1: x, x2: x, y1: y, y2: y });
+		setCoords({
+			t1: Date.now(),
+			x1: x,
+			x2: x,
+			y1: y,
+			y2: y
+		});
 		onSwipeStart?.(event);
 	};
 
@@ -103,7 +109,10 @@ export function useSwipe(target: MaybeAccessor<Nullable<HTMLElement>>, options: 
 
 		const [ x, y ] = getTouchCoords(event);
 
-		setCoords({ x2: x, y2: y });
+		setCoords({
+			x2: x,
+			y2: y
+		});
 	};
 
 	const handleTouchEnd = (event: TouchEvent) => {

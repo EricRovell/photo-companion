@@ -17,7 +17,10 @@ export const createPathBuilder = (getAltitude: AltitudeGetter) => (date: DateLik
 	for (let i = 0; i <= STEP_COUNT; i++) {
 		const { apparentAltitude } = getAltitude({
 			instant: timestamp,
-			observer: { latitude, longitude }
+			observer: {
+				latitude,
+				longitude
+			}
 		});
 		const y = round(apparentAltitude, 2);
 

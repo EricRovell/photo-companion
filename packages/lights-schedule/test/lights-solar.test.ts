@@ -3,9 +3,20 @@ import { describe, expect, it } from "vitest";
 
 import { getLightsAltitude, initLightsProvider } from "../src";
 
-const BERLIN_LOCATION = { latitude: 52.52, longitude: 13.405 };
-const LONGYEARBYEN = { latitude: 78.2232, longitude: 15.6469 };
-const SAINT_PETERSBURG_LOCATION = { latitude: 59.9343, longitude: 30.3351 };
+const BERLIN_LOCATION = {
+	latitude: 52.52,
+	longitude: 13.405
+};
+
+const LONGYEARBYEN = {
+	latitude: 78.2232,
+	longitude: 15.6469
+};
+
+const SAINT_PETERSBURG_LOCATION = {
+	latitude: 59.9343,
+	longitude: 30.3351
+};
 
 describe("Solar illumination estimate", () => {
 	it("derives switch times from solar altitude crossings", () => {
@@ -48,11 +59,17 @@ describe("Solar illumination estimate", () => {
 
 		expect(provider.getEventsByDate(new Date(2026, 2, 20))).toEqual([
 			expect.objectContaining({
-				data: { city: "OTHER", source: "SOLAR_ESTIMATE" },
+				data: {
+					city: "OTHER",
+					source: "SOLAR_ESTIMATE"
+				},
 				name: "LIGHTS_START"
 			}),
 			expect.objectContaining({
-				data: { city: "OTHER", source: "SOLAR_ESTIMATE" },
+				data: {
+					city: "OTHER",
+					source: "SOLAR_ESTIMATE"
+				},
 				name: "LIGHTS_END"
 			})
 		]);

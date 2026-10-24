@@ -85,7 +85,11 @@ export function roots({
 				? previousTime
 				: value === 0
 					? time
-					: refineRoot({ fn, left: previousTime, right: time });
+					: refineRoot({
+						fn,
+						left: previousTime,
+						right: time
+					});
 			if (root >= start && root < end && (result.length === 0 || root - result[result.length - 1] > 1000)) {
 				result.push(root);
 			}
@@ -119,7 +123,10 @@ export function meridianCrossings({
 		start,
 		step
 	})
-		.map(time => ({ kind: "transit" as const, time }));
+		.map(time => ({
+			kind: "transit" as const,
+			time
+		}));
 
 	const antiValue = (time: Millisecond) => normalizeSignedDegrees(hourAngle(time) - 180);
 
@@ -130,7 +137,10 @@ export function meridianCrossings({
 		start,
 		step
 	})
-		.map(time => ({ kind: "anti" as const, time }));
+		.map(time => ({
+			kind: "anti" as const,
+			time
+		}));
 
 	return [ ...transit, ...anti ].sort((left, right) => left.time - right.time);
 }

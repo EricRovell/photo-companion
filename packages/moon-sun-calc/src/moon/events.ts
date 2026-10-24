@@ -16,7 +16,14 @@ export function getMoonEvents({ interval, observer, options = {} }: MoonEventsIn
 	const location = validateObserver(observer);
 	const step = validateEventStep(options);
 
-	const events: MoonEvent[] = findMoonHorizonCrossings({ interval: { end, start }, observer: location, options }).map(crossing => ({
+	const events: MoonEvent[] = findMoonHorizonCrossings({
+		interval: {
+			end,
+			start
+		},
+		observer: location,
+		options
+	}).map(crossing => ({
 		name: crossing.direction === "rising" ? "MOONRISE" : "MOONSET",
 		time: crossing.time
 	}));
@@ -32,8 +39,16 @@ export function getMoonEvents({ interval, observer, options = {} }: MoonEventsIn
 		}).hourAngle;
 	};
 
-	for (const event of meridianCrossings({ end, hourAngle, start, step })) {
-		events.push({ name: event.kind === "transit" ? "MOON_TRANSIT" : "MOON_ANTITRANSIT", time: new Date(event.time) });
+	for (const event of meridianCrossings({
+		end,
+		hourAngle,
+		start,
+		step
+	})) {
+		events.push({
+			name: event.kind === "transit" ? "MOON_TRANSIT" : "MOON_ANTITRANSIT",
+			time: new Date(event.time)
+		});
 	}
 
 	return events.sort((left, right) => left.time.getTime() - right.time.getTime());

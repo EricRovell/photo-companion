@@ -21,6 +21,9 @@ export function useLocationQuery() {
 			return;
 		}
 
-		setSettings({ latitude, longitude });
+		setSettings({
+			latitude,
+			longitude
+		});
 	});
 }

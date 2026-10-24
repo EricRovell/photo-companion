@@ -7,7 +7,10 @@ export function moonEventComponent(
 	event: MoonEvent,
 	t: Translation,
 	messageFormatter: MessageFormatter
-): EventComponent<{ phase: number, rotation: number }> {
+): EventComponent<{
+	phase: number,
+	rotation: number
+}> {
 	const { azimuth, fraction, phase, rotation, waxing } = event.data;
 
 	const message = messageFormatter(t.TIMELINE_EVENT.MOON_DESCRIPTION, {

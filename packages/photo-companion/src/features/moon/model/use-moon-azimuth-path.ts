@@ -13,10 +13,17 @@ export function useMoonAzimuthPath() {
 
 	const path = createMemo(() => {
 		const date = new Date(dayStart());
-		const observer = { latitude: settings.latitude, longitude: settings.longitude };
+
+		const observer = {
+			latitude: settings.latitude,
+			longitude: settings.longitude
+		};
 
 		return createAzimuthPath(date, instant => {
-			const position = getMoonPosition({ instant, observer });
+			const position = getMoonPosition({
+				instant,
+				observer
+			});
 
 			return {
 				altitude: position.apparentAltitude,

@@ -95,7 +95,10 @@ function formatRichMessage(
 
 			frame.children.push(replacement);
 		} else if (tagName && !closingTag) {
-			frames.push({ children: [], name: tagName });
+			frames.push({
+				children: [],
+				name: tagName
+			});
 		} else if (tagName) {
 			if (frames.length < 2 || frames[frames.length - 1].name !== tagName) {
 				throw new Error(`Mismatched translation template tag: ${tagName}`);

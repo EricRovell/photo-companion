@@ -1,6 +1,7 @@
 // @ts-check
 
 import eslint from "@eslint/js";
+import stylistic from "@stylistic/eslint-plugin";
 import tseslint from "typescript-eslint";
 import solid from "eslint-plugin-solid";
 import perfectionist from "eslint-plugin-perfectionist";
@@ -64,6 +65,7 @@ export default tseslint.config(
 	{
 		files: [ "**/*.{ts,tsx}" ],
 		plugins: {
+			"@stylistic": stylistic,
 			"@typescript-eslint": tseslint.plugin,
 			perfectionist: perfectionist
 		},
@@ -143,6 +145,14 @@ export default tseslint.config(
 			"@typescript-eslint/no-unsafe-return": "off",
 			"@typescript-eslint/restrict-plus-operands": "off",
 			"@typescript-eslint/prefer-for-of": "off",
+			"@stylistic/object-curly-newline": [ "error", {
+				ObjectExpression: {
+					minProperties: 2,
+					multiline: true,
+					consistent: true
+				}
+			}],
+			"@stylistic/object-property-newline": "error",
 			"comma-dangle": ["error", {
 				"arrays": "never",
 				"objects": "never",

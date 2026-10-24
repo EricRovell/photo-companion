@@ -40,7 +40,14 @@ describe("getCityLightsNightGraph", () => {
 			start.setHours(12, 10, 0, 0);
 			const end = new Date(date);
 			end.setHours(11, 40, 0, 0);
-			return { ...getSchedule(date), LIGHTS_END: end.getTime(), LIGHTS_START: start.getTime(), source: "SOLAR_ESTIMATE", uncertaintyMinutes: 60 };
+
+			return {
+				...getSchedule(date),
+				LIGHTS_END: end.getTime(),
+				LIGHTS_START: start.getTime(),
+				source: "SOLAR_ESTIMATE",
+				uncertaintyMinutes: 60
+			};
 		});
 		const graph = getCityLightsNightGraph(night, date);
 		const on = graph.events.find(event => event.name === "LIGHTS_START");
@@ -59,7 +66,14 @@ describe("getCityLightsNightGraph", () => {
 			start.setHours(23, 50, 0, 0);
 			const end = new Date(date);
 			end.setHours(0, 10, 0, 0);
-			return { ...getSchedule(date), LIGHTS_END: end.getTime(), LIGHTS_START: start.getTime(), source: "SOLAR_ESTIMATE", uncertaintyMinutes: 60 };
+
+			return {
+				...getSchedule(date),
+				LIGHTS_END: end.getTime(),
+				LIGHTS_START: start.getTime(),
+				source: "SOLAR_ESTIMATE",
+				uncertaintyMinutes: 60
+			};
 		});
 		const graph = getCityLightsNightGraph(night, date);
 		expect(graph.intervals).toHaveLength(1);

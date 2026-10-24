@@ -27,7 +27,13 @@ const preview: Preview = {
 			toolbar: {
 				dynamicTitle: true,
 				icon: "globe",
-				items: [ { title: "English", value: "en" }, { title: "Русский", value: "ru" } ],
+				items: [{
+					title: "English",
+					value: "en"
+				}, {
+					title: "Русский",
+					value: "ru"
+				}],
 				title: "Language"
 			}
 		}

@@ -17,7 +17,10 @@ describe("getMoonRotation", () => {
 		const illumination = getMoonIllumination(date);
 		const position = getMoonPosition({
 			instant: date,
-			observer: { latitude: 59.844404, longitude: 30.3131 }
+			observer: {
+				latitude: 59.844404,
+				longitude: 30.3131
+			}
 		});
 		const zenithAngle = getMoonZenithAngle(illumination.angle, position.parallacticAngle);
 

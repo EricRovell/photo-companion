@@ -79,7 +79,11 @@ const translations = {
 };
 
 const templateCases = Object.entries(translations).flatMap(([ locale, messages ]) => (
-	Array.from(messages, ([ path, message ]) => ({ locale, message, path }))
+	Array.from(messages, ([ path, message ]) => ({
+		locale,
+		message,
+		path
+	}))
 ));
 
 const parityCases = Array.from(translations.en, ([ path, message ]) => ({
