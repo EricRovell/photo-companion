@@ -56,7 +56,10 @@ describe("getLightsNight", () => {
 	});
 
 	it("keeps official boundaries exact without inventing an uncertainty window", () => {
-		const night = getLightsNight(new Date(2026, 9, 24, 20), date => ({ ...getSchedule(date), uncertaintyMinutes: 30 }));
+		const night = getLightsNight(new Date(2026, 9, 24, 20), date => ({
+			...getSchedule(date),
+			uncertaintyMinutes: 30
+		}));
 		for (const event of night.events) {
 			expect(event.windowStart).toBe(event.timestamp);
 			expect(event.windowEnd).toBe(event.timestamp);
@@ -75,7 +78,11 @@ describe("getLightsNight", () => {
 			const schedule = getSchedule(date, 60);
 			const start = new Date(date);
 			start.setHours(12, 10, 0, 0);
-			return { ...schedule, LIGHTS_START: start.getTime() };
+
+			return {
+				...schedule,
+				LIGHTS_START: start.getTime()
+			};
 		});
 		expect(night.events[0].windowStart).toBe(new Date(2026, 9, 24, 11, 10).getTime());
 		expect(night.events[0].windowEnd).toBe(new Date(2026, 9, 24, 13, 10).getTime());
@@ -101,7 +108,10 @@ describe("getLightsNight", () => {
 			const schedule = getSchedule(date, 60);
 			const end = new Date(date);
 			end.setHours(11, 40, 0, 0);
-			return { ...schedule, LIGHTS_END: end.getTime() };
+			return {
+				...schedule,
+				LIGHTS_END: end.getTime()
+			};
 		});
 		const window = night.windows.find(event => event.timestamp === new Date(2026, 9, 24, 11, 40).getTime());
 		expect(window?.windowStart).toBe(new Date(2026, 9, 24, 10, 40).getTime());
@@ -111,7 +121,14 @@ describe("getLightsNight", () => {
 
 	it("keeps an interval open when the following switch-off is unavailable", () => {
 		const night = getLightsNight(new Date(2026, 9, 24, 20), date => date.getDate() === 25
-			? { duration: null, LIGHTS_END: null, LIGHTS_START: null, source: "SOLAR_ESTIMATE", status: "UNAVAILABLE", uncertaintyMinutes: 30 }
+			? {
+				duration: null,
+				LIGHTS_END: null,
+				LIGHTS_START: null,
+				source: "SOLAR_ESTIMATE",
+				status: "UNAVAILABLE",
+				uncertaintyMinutes: 30
+			}
 			: getSchedule(date));
 		expect(night.intervals).toHaveLength(1);
 		expect(night.intervals[0].end).toBeNull();
@@ -120,8 +137,18 @@ describe("getLightsNight", () => {
 	});
 
 	it.each([
-		{ day: 28, hours: 23, lightsMinutes: 11 * 60, month: 2 },
-		{ day: 24, hours: 25, lightsMinutes: 12 * 60 + 50, month: 9 }
+		{
+			day: 28,
+			hours: 23,
+			lightsMinutes: 11 * 60,
+			month: 2
+		},
+		{
+			day: 24,
+			hours: 25,
+			lightsMinutes: 12 * 60 + 50,
+			month: 9
+		}
 	])("uses elapsed time across a $hours-hour daylight-saving night", ({ day, hours, lightsMinutes, month }) => {
 		vi.stubEnv("TZ", "Europe/Berlin");
 		const night = getLightsNight(new Date(2026, month, day, 20), getSchedule);

@@ -26,5 +26,8 @@ export function useParsedSearchParams<Params extends Record<string, unknown>>(
 		});
 	}
 
-	return { searchParams, setSearchParams };
+	return {
+		searchParams,
+		setSearchParams
+	};
 }

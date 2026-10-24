@@ -26,7 +26,10 @@ function createBridgesState() {
 
 	const bridgesState = createMemo(() => {
 		const currentState = getBridgesState(getDatetime());
-		const output: { name: BridgeName, open: boolean }[] = [];
+		const output: {
+			name: BridgeName,
+			open: boolean
+		}[] = [];
 
 		for (const [ name, state ] of objectEntries(currentState)) {
 			output.push({

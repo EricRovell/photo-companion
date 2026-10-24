@@ -11,7 +11,10 @@ import { SunTimes } from "../../ui/sun-times";
 
 const state = vi.hoisted(() => ({
 	date: new Date("2026-10-21T12:00:00Z"),
-	settings: { latitude: 0, longitude: 0 }
+	settings: {
+		latitude: 0,
+		longitude: 0
+	}
 }));
 
 vi.mock("~/features/datetime-query", () => ({
@@ -38,8 +41,12 @@ vi.mock("~/features/translation", async () => {
 
 function getDayEvents(date: DateLike) {
 	const start = getDayStart(date);
+
 	return getSunEvents({
-		interval: { end: shiftDate(start, "day", 1).getTime(), start },
+		interval: {
+			end: shiftDate(start, "day", 1).getTime(),
+			start
+		},
 		observer: state.settings
 	}).filter(event => event.name === "SUNRISE_START" || event.name === "SUNSET_END");
 }
@@ -59,7 +66,10 @@ function renderTimes() {
 
 beforeEach(() => {
 	state.date = new Date("2026-10-21T12:00:00Z");
-	state.settings = { latitude: 0, longitude: 0 };
+	state.settings = {
+		latitude: 0,
+		longitude: 0
+	};
 });
 
 describe("SunTimes", () => {
@@ -120,7 +130,10 @@ describe("SunTimes", () => {
 		[ 11, true ]
 	] as const)("uses altitude independently of missing crossings during polar conditions in month %i", (month, belowHorizon) => {
 		state.date = new Date(2026, month, 21, 12);
-		state.settings = { latitude: 78.2232, longitude: 15.6469 };
+		state.settings = {
+			latitude: 78.2232,
+			longitude: 15.6469
+		};
 		const view = renderTimes();
 
 		expect(view.getAllByText("—")).toHaveLength(4);

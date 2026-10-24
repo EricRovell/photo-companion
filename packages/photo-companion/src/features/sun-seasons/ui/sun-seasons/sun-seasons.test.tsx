@@ -33,7 +33,13 @@ vi.mock("~/features/translation", () => ({
 describe("SunSeasons", () => {
 	it("renders the four events for the selected datetime's local year", () => {
 		const history = createMemoryHistory();
-		history.set({ replace: true, scroll: false, value: "/sun?source=test" });
+
+		history.set({
+			replace: true,
+			scroll: false,
+			value: "/sun?source=test"
+		});
+
 		const view = render(() => (
 			<MemoryRouter history={history}>
 				<Route component={SunSeasons} path="/sun" />

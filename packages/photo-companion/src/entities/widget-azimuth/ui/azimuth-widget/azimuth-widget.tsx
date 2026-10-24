@@ -33,12 +33,20 @@ export function AzimuthWidgetView(props: ViewProps) {
 
 	const sunAzimuth = createTweened(
 		() => normalizeDegrees(props.entities.find(entity => entity.id === "sun")?.azimuth ?? 0),
-		{ duration: AZIMUTH_WIDGET_CONFIG.animation.transitionDuration, interpolate: circular(360), map: normalizeDegrees }
+		{
+			duration: AZIMUTH_WIDGET_CONFIG.animation.transitionDuration,
+			interpolate: circular(360),
+			map: normalizeDegrees
+		}
 	);
 
 	const moonAzimuth = createTweened(
 		() => normalizeDegrees(props.entities.find(entity => entity.id === "moon")?.azimuth ?? 0),
-		{ duration: AZIMUTH_WIDGET_CONFIG.animation.transitionDuration, interpolate: circular(360), map: normalizeDegrees }
+		{
+			duration: AZIMUTH_WIDGET_CONFIG.animation.transitionDuration,
+			interpolate: circular(360),
+			map: normalizeDegrees
+		}
 	);
 
 	const sunPath = createTweenedAzimuthPath(

@@ -11,7 +11,10 @@ import { MoonTimes } from "../../ui/moon-times/moon-times";
 
 const state = vi.hoisted(() => ({
 	date: new Date("2026-10-21T00:00:00Z"),
-	settings: { latitude: 0, longitude: 0 }
+	settings: {
+		latitude: 0,
+		longitude: 0
+	}
 }));
 
 vi.mock("~/features/datetime-query", () => ({
@@ -39,7 +42,10 @@ vi.mock("~/features/translation", async () => {
 function getDayEvents(date: DateLike) {
 	const start = getDayStart(date);
 	return getMoonEvents({
-		interval: { end: shiftDate(start, "day", 1).getTime(), start },
+		interval: {
+			end: shiftDate(start, "day", 1).getTime(),
+			start
+		},
 		observer: state.settings
 	}).filter(event => event.name === "MOONRISE" || event.name === "MOONSET");
 }
@@ -59,7 +65,10 @@ function renderTimes() {
 
 beforeEach(() => {
 	state.date = new Date("2026-10-21T00:00:00Z");
-	state.settings = { latitude: 0, longitude: 0 };
+	state.settings = {
+		latitude: 0,
+		longitude: 0
+	};
 });
 
 describe("MoonTimes", () => {
@@ -68,8 +77,14 @@ describe("MoonTimes", () => {
 		const events = [ -1, 0, 1 ].flatMap(offset => {
 			const start = shiftDate(day, "day", offset).getTime();
 			return getMoonEvents({
-				interval: { end: shiftDate(start, "day", 1).getTime(), start },
-				observer: { latitude: 0, longitude: 0 }
+				interval: {
+					end: shiftDate(start, "day", 1).getTime(),
+					start
+				},
+				observer: {
+					latitude: 0,
+					longitude: 0
+				}
 			});
 		});
 		const rise = events.find(event => event.name === "MOONRISE" && event.time.getTime() < day);
@@ -133,7 +148,10 @@ describe("MoonTimes", () => {
 		[ 15, true ]
 	] as const)("uses altitude independently of missing crossings at high latitude on January %i", (day, belowHorizon) => {
 		state.date = new Date(2026, 0, day, 12);
-		state.settings = { latitude: 78.2232, longitude: 15.6469 };
+		state.settings = {
+			latitude: 78.2232,
+			longitude: 15.6469
+		};
 		const view = renderTimes();
 
 		expect(view.getAllByText("—")).toHaveLength(4);

@@ -57,14 +57,20 @@ export function getLightsNight(date: Date, getSchedule: (date: Date) => LightsSc
 			activeStart = event;
 		} else if (activeStart) {
 			if (event.timestamp > startTimestamp && activeStart.timestamp < endTimestamp) {
-				intervals.push({ end: event, start: activeStart });
+				intervals.push({
+					end: event,
+					start: activeStart
+				});
 			}
 			activeStart = null;
 		}
 	}
 
 	if (activeStart && activeStart.timestamp < endTimestamp) {
-		intervals.push({ end: null, start: activeStart });
+		intervals.push({
+			end: null,
+			start: activeStart
+		});
 	}
 
 	const duration = intervals.reduce((total, interval) => total

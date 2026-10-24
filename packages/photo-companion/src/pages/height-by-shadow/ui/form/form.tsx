@@ -69,8 +69,14 @@ export function Form(props: JSX.FormHTMLAttributes<HTMLFormElement> & ParentProp
 					name={FORM_NAME.LATITUDE_DIRECTION}
 					onChange={handleChange}
 					options={[
-						{ label: t().LABEL.LATITUDE_NORTH, value: "N" },
-						{ label: t().LABEL.LATITUDE_SOUTH, value: "S" }
+						{
+							label: t().LABEL.LATITUDE_NORTH,
+							value: "N"
+						},
+						{
+							label: t().LABEL.LATITUDE_SOUTH,
+							value: "S"
+						}
 					]}
 					value={model.latitude_direction}
 				/>
@@ -97,8 +103,14 @@ export function Form(props: JSX.FormHTMLAttributes<HTMLFormElement> & ParentProp
 					name={FORM_NAME.LONGITUDE_DIRECTION}
 					onChange={handleChange}
 					options={[
-						{ label: t().LABEL.LONGITUDE_EAST, value: "E" },
-						{ label: t().LABEL.LONGITUDE_WEST, value: "W" }
+						{
+							label: t().LABEL.LONGITUDE_EAST,
+							value: "E"
+						},
+						{
+							label: t().LABEL.LONGITUDE_WEST,
+							value: "W"
+						}
 					]}
 					value={model.longitude_direction}
 				/>

@@ -94,7 +94,12 @@ export function createEventListener<E>(input: Input<E>): VoidFn {
 		}
 
 		cleanupList.push(
-			register({ event, listener, options, target })
+			register({
+				event,
+				listener,
+				options,
+				target
+			})
 		);
 	}));
 

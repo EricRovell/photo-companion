@@ -32,7 +32,10 @@ export function selectRiseSetContext(date: Date, intervals: readonly RiseSetInte
 		}
 	}
 
-	const belowHorizonInterval: BelowHorizonInterval = { end, start };
+	const belowHorizonInterval: BelowHorizonInterval = {
+		end,
+		start
+	};
 
 	return {
 		belowHorizonInterval,

@@ -49,7 +49,7 @@ export function initLightsProvider(
 				uncertaintyMinutes: 0
 			};
 		}
-	
+
 		const year = input.getFullYear();
 		const month = input.getMonth();
 		const date = input.getDate();
@@ -82,7 +82,11 @@ export function initLightsProvider(
 		const timestamp = input.getTime();
 
 		if (schedule.status !== "SCHEDULED") {
-			return { event: null, lights: false, timestamp: null };
+			return {
+				event: null,
+				lights: false,
+				timestamp: null
+			};
 		}
 
 		if (timestamp < schedule.LIGHTS_END) {
@@ -105,7 +109,11 @@ export function initLightsProvider(
 		const scheduleNext = getScheduleByDate(nextDay);
 
 		if (scheduleNext.status !== "SCHEDULED") {
-			return { event: null, lights: true, timestamp: null };
+			return {
+				event: null,
+				lights: true,
+				timestamp: null
+			};
 		}
 
 		return {

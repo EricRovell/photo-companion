@@ -11,7 +11,10 @@ function createSunState() {
 	const { settings } = useSettings();
 	const { getDatetime } = useDatetime();
 
-	const observer = () => ({ latitude: settings.latitude, longitude: settings.longitude });
+	const observer = () => ({
+		latitude: settings.latitude,
+		longitude: settings.longitude
+	});
 
 	const { belowHorizonInterval, nextRise, rise: sunrise, riseSetTimes, set: sunset } = createRiseSetEvents({
 		date: getDatetime,
@@ -19,7 +22,10 @@ function createSunState() {
 		observer
 	});
 
-	const position = createMemo(() => getSunPosition({ instant: getDatetime(), observer: observer() }));
+	const position = createMemo(() => getSunPosition({
+		instant: getDatetime(),
+		observer: observer()
+	}));
 
 	return {
 		altitude: () => position().apparentAltitude,

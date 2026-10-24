@@ -10,4 +10,7 @@ export const SEASON_GRAPH = {
 	WIDTH: 600
 } as const;
 
-export const EQUATOR_OBSERVER = { latitude: 0, longitude: 0 } as const;
+export const EQUATOR_OBSERVER = {
+	latitude: 0,
+	longitude: 0
+} as const;

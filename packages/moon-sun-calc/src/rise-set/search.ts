@@ -18,7 +18,10 @@ export function searchRiseSetIntervals(
 	const crossings: RiseSetCrossing[] = [];
 
 	for (let cursor = start; cursor < end; cursor += DAY_MS) {
-		crossings.push(...getCrossings({ end: Math.min(cursor + DAY_MS, end), start: cursor }));
+		crossings.push(...getCrossings({
+			end: Math.min(cursor + DAY_MS, end),
+			start: cursor
+		}));
 	}
 
 	crossings.sort((left, right) => left.time.getTime() - right.time.getTime());
@@ -38,18 +41,27 @@ export function searchRiseSetIntervals(
 
 		if (crossing.direction === "rising") {
 			if (rise) {
-				intervals.push({ rise, set: null });
+				intervals.push({
+					rise,
+					set: null
+				});
 			}
 
 			rise = crossing.time;
 		} else {
-			intervals.push({ rise, set: crossing.time });
+			intervals.push({
+				rise,
+				set: crossing.time
+			});
 			rise = null;
 		}
 	}
 
 	if (rise) {
-		intervals.push({ rise, set: null });
+		intervals.push({
+			rise,
+			set: null
+		});
 	}
 
 	return intervals;

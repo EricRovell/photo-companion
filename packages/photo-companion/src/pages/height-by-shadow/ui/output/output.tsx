@@ -25,8 +25,14 @@ export function calcOutput(model: Model) {
 
 	const crossings = findSunAzimuthCrossings({
 		azimuth: model.solar_azimuth_angle,
-		interval: { end, start },
-		observer: { latitude, longitude }
+		interval: {
+			end,
+			start
+		},
+		observer: {
+			latitude,
+			longitude
+		}
 	});
 
 	const diff = (model.level_shadow ?? 0) - (model.level_object ?? 0);

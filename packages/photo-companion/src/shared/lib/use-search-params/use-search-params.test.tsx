@@ -9,7 +9,11 @@ import { useParsedSearchParams } from "./use-search-params";
 function renderSearchParamsHook(location: string) {
 	const history = createMemoryHistory();
 
-	history.set({ replace: true, scroll: false, value: location });
+	history.set({
+		replace: true,
+		scroll: false,
+		value: location
+	});
 
 	const wrapper = (props: ParentProps) => (
 		<MemoryRouter history={history}>
@@ -22,7 +26,10 @@ function renderSearchParamsHook(location: string) {
 		label: value => typeof value === "string" ? value.toUpperCase() : "DEFAULT"
 	}), { wrapper });
 
-	return { history, ...hook };
+	return {
+		history,
+		...hook
+	};
 }
 
 describe("useParsedSearchParams", () => {

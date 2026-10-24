@@ -18,18 +18,36 @@ export const at = (day: number, hour: number, minute = 0) => new Date(2026, 9, d
 
 const daytime = {
 	intervals: [
-		{ rise: at(20, 6), set: at(20, 18) },
-		{ rise: at(21, 6), set: at(21, 18) },
-		{ rise: at(22, 7), set: at(22, 19) }
+		{
+			rise: at(20, 6),
+			set: at(20, 18)
+		},
+		{
+			rise: at(21, 6),
+			set: at(21, 18)
+		},
+		{
+			rise: at(22, 7),
+			set: at(22, 19)
+		}
 	],
 	rise: at(21, 6),
 	set: at(21, 18)
 };
 const overnight = {
 	intervals: [
-		{ rise: at(20, 19), set: at(21, 7) },
-		{ rise: at(21, 20), set: at(22, 8) },
-		{ rise: at(22, 21), set: at(23, 9) }
+		{
+			rise: at(20, 19),
+			set: at(21, 7)
+		},
+		{
+			rise: at(21, 20),
+			set: at(22, 8)
+		},
+		{
+			rise: at(22, 21),
+			set: at(23, 9)
+		}
 	],
 	rise: at(21, 20),
 	set: at(22, 8)
@@ -144,13 +162,25 @@ export const visualScenarios: RiseSetScenario[] = [
 ];
 
 const overnightCycles = [
-	{ rise: at(20, 20), set: at(21, 8) },
-	{ rise: at(21, 21), set: at(22, 9) }
+	{
+		rise: at(20, 20),
+		set: at(21, 8)
+	},
+	{
+		rise: at(21, 21),
+		set: at(22, 9)
+	}
 ];
 
 const twoSunrises = [
-	{ rise: new Date(2026, 3, 17, 0, 7), set: new Date(2026, 3, 17, 22, 12) },
-	{ rise: new Date(2026, 3, 17, 23, 38), set: null }
+	{
+		rise: new Date(2026, 3, 17, 0, 7),
+		set: new Date(2026, 3, 17, 22, 12)
+	},
+	{
+		rise: new Date(2026, 3, 17, 23, 38),
+		set: null
+	}
 ];
 
 export const selectionScenarios: RiseSetSelectionScenario[] = [
@@ -165,7 +195,10 @@ export const selectionScenarios: RiseSetSelectionScenario[] = [
 		aboveHorizon: false,
 		date: at(21, 12),
 		description: "With no rise today, keep the completed cycle containing today's set.",
-		intervals: [ overnightCycles[0], { rise: at(22, 0, 15), set: at(22, 12) } ],
+		intervals: [ overnightCycles[0], {
+			rise: at(22, 0, 15),
+			set: at(22, 12)
+		} ],
 		title: "Only a set today"
 	},
 	{

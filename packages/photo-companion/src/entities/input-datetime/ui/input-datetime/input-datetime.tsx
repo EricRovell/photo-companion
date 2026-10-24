@@ -24,7 +24,10 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 		"value"
 	]);
 
-	const labels = createMemo(() => ({ ...DATETIME_CONFIG.defaultLabels, ...props.labels }));
+	const labels = createMemo(() => ({
+		...DATETIME_CONFIG.defaultLabels,
+		...props.labels
+	}));
 
 	const model = createInputDatetimeModel({
 		disabled: () => Boolean(props.disabled),

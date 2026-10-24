@@ -48,5 +48,8 @@ export function selectRiseSetInterval(date: Date, intervals: readonly RiseSetInt
 
 	return intervals.find(({ set }) => {
 		return set && set.getTime() >= dayStart && set.getTime() < dayEnd;
-	}) ?? { rise: null, set: null };
+	}) ?? {
+		rise: null,
+		set: null
+	};
 }

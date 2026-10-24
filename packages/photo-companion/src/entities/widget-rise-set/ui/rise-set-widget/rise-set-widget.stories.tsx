@@ -28,21 +28,38 @@ const meta = {
 			options: [ "sun", "moon" ]
 		},
 		hour: {
-			control: { max: 24, min: 0, step: 0.25, type: "range" }
+			control: {
+				max: 24,
+				min: 0,
+				step: 0.25,
+				type: "range"
+			}
 		},
 		missingEvents: {
 			control: "select",
 			options: [ "none", "rise", "set", "both" ]
 		},
 		riseHour: {
-			control: { max: 23, min: 0, type: "number" }
+			control: {
+				max: 23,
+				min: 0,
+				type: "number"
+			}
 		},
 		setHour: {
-			control: { max: 47, min: 0, type: "number" },
+			control: {
+				max: 47,
+				min: 0,
+				type: "number"
+			},
 			description: "Hours above 23 set on the following day."
 		},
 		width: {
-			control: { max: 960, min: 280, type: "number" }
+			control: {
+				max: 960,
+				min: 280,
+				type: "number"
+			}
 		}
 	},
 	// Async providers stay inside the previews so Story runs during the initial render.
@@ -102,7 +119,10 @@ export const SunEdgeCases: Story = {
 };
 
 export const IntervalSelection: Story = {
-	args: { entity: "sun", width: 340 },
+	args: {
+		entity: "sun",
+		width: 340
+	},
 	parameters: {
 		controls: { include: [ "entity", "width" ] },
 		docs: {

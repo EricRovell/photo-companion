@@ -17,11 +17,19 @@ import type { LunarEclipseDirection } from "../types";
 export function useLunarEclipse() {
 	const { getDatetime, setDatetimeQuery } = useDatetime();
 	const { settings } = useSettings();
+
 	const latitude = () => settings.latitude;
 	const longitude = () => settings.longitude;
-	const observer = () => ({ latitude: latitude(), longitude: longitude() });
 
-	const state = createMemo(() => getLunarEclipseState({ instant: getDatetime(), observer: observer() }));
+	const observer = () => ({
+		latitude: latitude(),
+		longitude: longitude()
+	});
+
+	const state = createMemo(() => getLunarEclipseState({
+		instant: getDatetime(),
+		observer: observer()
+	}));
 
 	const event = createMemo(() => getNearbyLocalLunarEclipse({
 		instant: getDatetime(),

@@ -7,7 +7,10 @@ import {
 	getSunPosition
 } from "../src";
 
-const LONDON = { latitude: 51.5, longitude: -0.1 };
+const LONDON = {
+	latitude: 51.5,
+	longitude: -0.1
+};
 
 const NEW_YEAR_2025 = {
 	end: Date.parse("2025-01-02T00:00:00Z"),
@@ -17,27 +20,47 @@ const NEW_YEAR_2025 = {
 const SUN_EVENT_CASES = [
 	{
 		description: "matches the USNO civil-dawn minute fixture",
-		input: { eventName: "CIVIL_DAWN", interval: NEW_YEAR_2025, observer: LONDON },
+		input: {
+			eventName: "CIVIL_DAWN",
+			interval: NEW_YEAR_2025,
+			observer: LONDON
+		},
 		output: "07:26"
 	},
 	{
 		description: "matches the USNO civil-dusk minute fixture",
-		input: { eventName: "CIVIL_DUSK", interval: NEW_YEAR_2025, observer: LONDON },
+		input: {
+			eventName: "CIVIL_DUSK",
+			interval: NEW_YEAR_2025,
+			observer: LONDON
+		},
 		output: "16:42"
 	},
 	{
 		description: "matches the USNO solar-noon minute fixture",
-		input: { eventName: "SOLAR_NOON", interval: NEW_YEAR_2025, observer: LONDON },
+		input: {
+			eventName: "SOLAR_NOON",
+			interval: NEW_YEAR_2025,
+			observer: LONDON
+		},
 		output: "12:04"
 	},
 	{
 		description: "matches the USNO sunrise minute fixture",
-		input: { eventName: "SUNRISE_START", interval: NEW_YEAR_2025, observer: LONDON },
+		input: {
+			eventName: "SUNRISE_START",
+			interval: NEW_YEAR_2025,
+			observer: LONDON
+		},
 		output: "08:06"
 	},
 	{
 		description: "matches the USNO sunset minute fixture",
-		input: { eventName: "SUNSET_END", interval: NEW_YEAR_2025, observer: LONDON },
+		input: {
+			eventName: "SUNSET_END",
+			interval: NEW_YEAR_2025,
+			observer: LONDON
+		},
 		output: "16:02"
 	}
 ];
@@ -48,7 +71,10 @@ const SUN_VALIDATION_CASES = [
 		input: () => {
 			getSunPosition({
 				instant: Date.parse("2025-01-01T12:00:00Z"),
-				observer: { latitude: 91, longitude: 0 }
+				observer: {
+					latitude: 91,
+					longitude: 0
+				}
 			});
 		},
 		output: RangeError
@@ -57,7 +83,10 @@ const SUN_VALIDATION_CASES = [
 		description: "rejects a reversed interval",
 		input: () => {
 			getSunEvents({
-				interval: { end: NEW_YEAR_2025.start, start: NEW_YEAR_2025.end },
+				interval: {
+					end: NEW_YEAR_2025.start,
+					start: NEW_YEAR_2025.end
+				},
 				observer: LONDON
 			});
 		},
@@ -112,12 +141,18 @@ const SUN_VALIDATION_CASES = [
 const SUN_BOUNDARY_CASES = [
 	{
 		description: "keeps the minimum supported instant finite",
-		input: { instant: Date.parse("1800-01-01T00:00:00Z"), observer: LONDON },
+		input: {
+			instant: Date.parse("1800-01-01T00:00:00Z"),
+			observer: LONDON
+		},
 		output: true
 	},
 	{
 		description: "keeps the maximum supported instant finite",
-		input: { instant: Date.parse("2200-12-31T23:59:59Z"), observer: LONDON },
+		input: {
+			instant: Date.parse("2200-12-31T23:59:59Z"),
+			observer: LONDON
+		},
 		output: true
 	}
 ];
@@ -145,7 +180,10 @@ describe("Sun", () => {
 	});
 
 	test.each(SUN_EVENT_CASES)("$description", ({ input, output }) => {
-		const events = getSunEvents({ interval: input.interval, observer: input.observer });
+		const events = getSunEvents({
+			interval: input.interval,
+			observer: input.observer
+		});
 		const event = events.find(item => item.name === input.eventName);
 
 		expect(event?.time.toISOString().slice(11, 16)).toBe(output);
@@ -162,12 +200,18 @@ describe("Sun", () => {
 		expect(crossings.map(crossing => crossing.direction)).toEqual([ "rising", "setting" ]);
 
 		for (const crossing of crossings) {
-			expect(getSunPosition({ instant: crossing.time, observer: LONDON }).altitude).toBeCloseTo(6, 3);
+			expect(getSunPosition({
+				instant: crossing.time,
+				observer: LONDON
+			}).altitude).toBeCloseTo(6, 3);
 		}
 	});
 
 	test("solves azimuth across the north wrap instead of assuming monotonicity", () => {
-		const sydney = { latitude: -33.8688, longitude: 151.2093 };
+		const sydney = {
+			latitude: -33.8688,
+			longitude: 151.2093
+		};
 		const crossings = findSunAzimuthCrossings({
 			azimuth: 90,
 			interval: NEW_YEAR_2025,
@@ -176,14 +220,20 @@ describe("Sun", () => {
 
 		expect(crossings.length).toBeGreaterThan(0);
 		for (const crossing of crossings) {
-			expect(getSunPosition({ instant: crossing.time, observer: sydney }).azimuth).toBeCloseTo(90, 3);
+			expect(getSunPosition({
+				instant: crossing.time,
+				observer: sydney
+			}).azimuth).toBeCloseTo(90, 3);
 		}
 	});
 
 	test("returns no fabricated polar events", () => {
 		const polar = getSunEvents({
 			interval: NEW_YEAR_2025,
-			observer: { latitude: 89, longitude: 0 }
+			observer: {
+				latitude: 89,
+				longitude: 0
+			}
 		});
 
 		expect(polar.some(event => event.name === "SUNRISE_START" || event.name === "SUNSET_END")).toBe(false);

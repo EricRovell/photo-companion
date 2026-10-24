@@ -29,7 +29,10 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 			/>
 			<div
 				class={styles.content}
-				style={{ "--lights-color": CITY_LIGHTS_WIDGET_CONFIG.color, "--lights-max-width": CITY_LIGHTS_WIDGET_CONFIG.layout.maxWidth }}
+				style={{
+					"--lights-color": CITY_LIGHTS_WIDGET_CONFIG.color,
+					"--lights-max-width": CITY_LIGHTS_WIDGET_CONFIG.layout.maxWidth
+				}}
 			>
 				<div class={styles.visual}>
 					<CityLightsHero

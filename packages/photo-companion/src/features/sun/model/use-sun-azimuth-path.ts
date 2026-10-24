@@ -13,10 +13,16 @@ export function useSunAzimuthPath() {
 
 	const path = createMemo(() => {
 		const date = new Date(dayStart());
-		const observer = { latitude: settings.latitude, longitude: settings.longitude };
+		const observer = {
+			latitude: settings.latitude,
+			longitude: settings.longitude
+		};
 
 		return createAzimuthPath(date, instant => {
-			const position = getSunPosition({ instant, observer });
+			const position = getSunPosition({
+				instant,
+				observer
+			});
 
 			return {
 				altitude: position.apparentAltitude,

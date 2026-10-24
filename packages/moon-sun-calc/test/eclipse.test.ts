@@ -16,9 +16,20 @@ import type {
 	SolarEclipseType
 } from "../src";
 
-const DALLAS = { latitude: 32.7767, longitude: -96.797 };
-const ALBUQUERQUE = { latitude: 35.0844, longitude: -106.6504 };
-const NEW_YORK = { latitude: 40.7128, longitude: -74.006 };
+const DALLAS = {
+	latitude: 32.7767,
+	longitude: -96.797
+};
+
+const ALBUQUERQUE = {
+	latitude: 35.0844,
+	longitude: -106.6504
+};
+
+const NEW_YORK = {
+	latitude: 40.7128,
+	longitude: -74.006
+};
 
 interface LocalEclipseCase {
 	description: string;
@@ -140,22 +151,34 @@ describe("Solar eclipses", () => {
 	test.each([
 		{
 			description: "includes the local eclipse shortly before C1",
-			input: { instant: Date.parse("2024-04-08T17:00:00Z"), margin: 30 * 60 * 1000 },
+			input: {
+				instant: Date.parse("2024-04-08T17:00:00Z"),
+				margin: 30 * 60 * 1000
+			},
 			output: "TOTAL"
 		},
 		{
 			description: "includes the local eclipse shortly after C4",
-			input: { instant: Date.parse("2024-04-08T20:25:00Z"), margin: 30 * 60 * 1000 },
+			input: {
+				instant: Date.parse("2024-04-08T20:25:00Z"),
+				margin: 30 * 60 * 1000
+			},
 			output: "TOTAL"
 		},
 		{
 			description: "excludes the local eclipse before the context window",
-			input: { instant: Date.parse("2024-04-08T16:50:00Z"), margin: 30 * 60 * 1000 },
+			input: {
+				instant: Date.parse("2024-04-08T16:50:00Z"),
+				margin: 30 * 60 * 1000
+			},
 			output: null
 		},
 		{
 			description: "excludes the local eclipse after the context window",
-			input: { instant: Date.parse("2024-04-08T20:35:00Z"), margin: 30 * 60 * 1000 },
+			input: {
+				instant: Date.parse("2024-04-08T20:35:00Z"),
+				margin: 30 * 60 * 1000
+			},
 			output: null
 		}
 	])("$description", ({ input, output }) => {
@@ -183,7 +206,10 @@ describe("Solar eclipses", () => {
 				instant: Date.parse("2025-01-01T12:00:00Z"),
 				observer: NEW_YORK
 			},
-			output: { obscuration: 0, phase: "NONE" }
+			output: {
+				obscuration: 0,
+				phase: "NONE"
+			}
 		},
 		{
 			description: "keeps the Moon outside the eclipse view near opposition",
@@ -191,7 +217,11 @@ describe("Solar eclipses", () => {
 				instant: Date.parse("2025-01-13T22:27:00Z"),
 				observer: NEW_YORK
 			},
-			output: { minimumOffsetFromCenter: 1, obscuration: 0, phase: "NONE" }
+			output: {
+				minimumOffsetFromCenter: 1,
+				obscuration: 0,
+				phase: "NONE"
+			}
 		}
 	])("$description", ({ input, output }) => {
 		const state = getSolarEclipseState(input);
@@ -211,8 +241,16 @@ describe("Solar eclipses", () => {
 
 	test("finds eclipses in both directions and skips the same peak", () => {
 		const atPeak = Date.parse("2024-04-08T18:42:28Z");
-		const previous = findPreviousLocalSolarEclipse({ instant: atPeak, observer: DALLAS, visibleOnly: true });
-		const next = findNextLocalSolarEclipse({ instant: atPeak, observer: DALLAS, visibleOnly: true });
+		const previous = findPreviousLocalSolarEclipse({
+			instant: atPeak,
+			observer: DALLAS,
+			visibleOnly: true
+		});
+		const next = findNextLocalSolarEclipse({
+			instant: atPeak,
+			observer: DALLAS,
+			visibleOnly: true
+		});
 
 		expect(previous?.peak.time.getTime()).toBeLessThan(atPeak);
 		expect(next?.peak.time.getTime()).toBeGreaterThan(atPeak);

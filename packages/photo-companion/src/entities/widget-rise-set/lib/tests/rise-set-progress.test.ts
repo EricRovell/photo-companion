@@ -37,7 +37,10 @@ describe("calculateRiseSetProgress", () => {
 	});
 
 	it.each([ [ 5, 0 ], [ 19, 1 ] ])("clamps the arc and hides the marker outside the interval at hour %i", (hour, arc) => {
-		expect(calculateRiseSetProgress(at(21, hour), at(21, 6), at(21, 18))).toEqual({ arc, position: null });
+		expect(calculateRiseSetProgress(at(21, hour), at(21, 6), at(21, 18))).toEqual({
+			arc,
+			position: null
+		});
 	});
 
 	it.each([
@@ -46,6 +49,9 @@ describe("calculateRiseSetProgress", () => {
 		[ "zero-length interval", at(21, 12), at(21, 6), at(21, 6) ],
 		[ "invalid date", new Date(NaN), at(21, 6), at(21, 18) ]
 	])("hides progress for %s", (_scenario, date, rise, set) => {
-		expect(calculateRiseSetProgress(date, rise, set)).toEqual({ arc: 0, position: null });
+		expect(calculateRiseSetProgress(date, rise, set)).toEqual({
+			arc: 0,
+			position: null
+		});
 	});
 });

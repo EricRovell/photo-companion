@@ -9,7 +9,11 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	const { format } = useTranslation();
 
 	const start = getDayStart(date);
-	const observer = { latitude: lat, longitude: lon };
+
+	const observer = {
+		latitude: lat,
+		longitude: lon
+	};
 
 	const data = calculateSunEvents({
 		interval: {
@@ -24,7 +28,10 @@ export const getSunEvents = (date: Date = new Date(), lat: number, lon: number):
 	for (const event of data) {
 		sunEvents.push({
 			data: {
-				azimuth: format().degrees(getSunPosition({ instant: event.time, observer }).azimuth)
+				azimuth: format().degrees(getSunPosition({
+					instant: event.time,
+					observer
+				}).azimuth)
 			},
 			name: event.name,
 			timestamp: event.time.getTime(),

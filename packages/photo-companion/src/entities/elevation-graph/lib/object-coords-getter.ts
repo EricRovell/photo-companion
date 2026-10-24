@@ -12,7 +12,10 @@ export const createObjectCoordsGetter = (getAltitude: AltitudeGetter) => (date: 
 
 	const { apparentAltitude } = getAltitude({
 		instant: date,
-		observer: { latitude, longitude }
+		observer: {
+			latitude,
+			longitude
+		}
 	});
 
 	const timeStart = getDayStart(date);

@@ -6,8 +6,20 @@ export const AZIMUTH_TICKS = Array.from({ length: AZIMUTH_WIDGET_CONFIG.dial.tic
 }));
 
 export const CARDINAL_POINTS = [
-	{ angle: 0, key: "north" },
-	{ angle: 90, key: "east" },
-	{ angle: 180, key: "south" },
-	{ angle: 270, key: "west" }
+	{
+		angle: 0,
+		key: "north"
+	},
+	{
+		angle: 90,
+		key: "east"
+	},
+	{
+		angle: 180,
+		key: "south"
+	},
+	{
+		angle: 270,
+		key: "west"
+	}
 ] as const;

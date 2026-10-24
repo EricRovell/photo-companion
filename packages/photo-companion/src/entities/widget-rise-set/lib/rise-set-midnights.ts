@@ -15,13 +15,17 @@ export function getRiseSetMidnights(rise: Nullish<Date>, set: Nullish<Date>) {
 		return [];
 	}
 
-	const midnights: { date: Date; progress: number }[] = [];
+	const midnights: { date: Date;
+progress: number }[] = [];
 
 	const midnight = new Date(start);
 	midnight.setHours(24, 0, 0, 0);
 
 	while (midnight.getTime() < end) {
-		midnights.push({ date: new Date(midnight), progress: (midnight.getTime() - start) / (end - start) });
+		midnights.push({
+			date: new Date(midnight),
+			progress: (midnight.getTime() - start) / (end - start)
+		});
 		midnight.setHours(24, 0, 0, 0);
 	}
 

@@ -67,7 +67,11 @@ export const Label = (allProps: PropertyTextProps<"dt">) => {
 };
 
 export const Value = (allProps: PropertyTextProps<"dd">) => {
-	const mergedProps = mergeProps({ numeric: true, variant: "text-s" as const }, allProps);
+	const mergedProps = mergeProps({
+		numeric: true,
+		variant: "text-s" as const
+	}, allProps);
+
 	const [ props, rest ] = splitProps(mergedProps, [ "class" ]);
 
 	return (

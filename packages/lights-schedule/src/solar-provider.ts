@@ -111,7 +111,11 @@ export function initUnavailableSolarLightsProvider(): LightsProvider {
 		city: "OTHER",
 		getEventsByDate: () => [],
 		getScheduleByDate: () => schedule,
-		getStateByDate: () => ({ event: null, lights: false, timestamp: null }),
+		getStateByDate: () => ({
+			event: null,
+			lights: false,
+			timestamp: null
+		}),
 		source: "SOLAR_ESTIMATE",
 		year: null
 	};
@@ -145,7 +149,10 @@ export function initSolarLightsProvider(location: SolarLightsLocation): LightsPr
 
 		const start = getDayStart(input);
 		const end = shiftDate(start, "day", 1);
-		const interval = { end, start };
+		const interval = {
+			end,
+			start
+		};
 		const lightsEndAltitude = getLightsAltitude(input, location.latitude, "LIGHTS_END");
 		const lightsStartAltitude = getLightsAltitude(input, location.latitude, "LIGHTS_START");
 
@@ -183,7 +190,10 @@ export function initSolarLightsProvider(location: SolarLightsLocation): LightsPr
 		for (let timestamp = start; timestamp < end.getTime(); timestamp += step) {
 			maximumAltitude = Math.max(
 				maximumAltitude,
-				getSunPosition({ instant: timestamp, observer }).altitude
+				getSunPosition({
+					instant: timestamp,
+					observer
+				}).altitude
 			);
 		}
 
@@ -219,21 +229,37 @@ export function initSolarLightsProvider(location: SolarLightsLocation): LightsPr
 		const schedule = getScheduleByDate(input);
 
 		if (schedule.status === "CONTINUOUS_DARKNESS") {
-			return { event: null, lights: true, timestamp: null };
+			return {
+				event: null,
+				lights: true,
+				timestamp: null
+			};
 		}
 
 		if (schedule.status !== "SCHEDULED") {
-			return { event: null, lights: false, timestamp: null };
+			return {
+				event: null,
+				lights: false,
+				timestamp: null
+			};
 		}
 
 		const timestamp = input.getTime();
 
 		if (timestamp < schedule.LIGHTS_END) {
-			return { event: "LIGHTS_END", lights: true, timestamp: schedule.LIGHTS_END };
+			return {
+				event: "LIGHTS_END",
+				lights: true,
+				timestamp: schedule.LIGHTS_END
+			};
 		}
 
 		if (timestamp <= schedule.LIGHTS_START) {
-			return { event: "LIGHTS_START", lights: false, timestamp: schedule.LIGHTS_START };
+			return {
+				event: "LIGHTS_START",
+				lights: false,
+				timestamp: schedule.LIGHTS_START
+			};
 		}
 
 		return {
@@ -252,13 +278,19 @@ export function initSolarLightsProvider(location: SolarLightsLocation): LightsPr
 
 		return [
 			{
-				data: { city, source },
+				data: {
+					city,
+					source
+				},
 				name: "LIGHTS_START",
 				timestamp: schedule.LIGHTS_START,
 				type: "LIGHTS"
 			},
 			{
-				data: { city, source },
+				data: {
+					city,
+					source
+				},
 				name: "LIGHTS_END",
 				timestamp: schedule.LIGHTS_END,
 				type: "LIGHTS"

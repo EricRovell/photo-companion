@@ -24,7 +24,12 @@ export function findMoonHorizonCrossings({ interval, observer, options = {} }: M
 		}).altitude - standardAltitude;
 	};
 
-	return roots({ end, fn: moonAltitude, start, step }).map(time => ({
+	return roots({
+		end,
+		fn: moonAltitude,
+		start,
+		step
+	}).map(time => ({
 		direction: moonAltitude(Math.min(time + 1000, end - 1)) >= moonAltitude(Math.max(time - 1000, start))
 			? "rising"
 			: "setting",

@@ -79,7 +79,11 @@ export function calculateSolarEclipseState(timestamp: Millisecond, observer: Req
 			...moon,
 			offset: getHorizontalOffsets(sun.azimuth, sun.altitude, moon.azimuth, moon.altitude)
 		},
-		obscuration: clamp({ maximum: 1, minimum: 0, value: obscuration }),
+		obscuration: clamp({
+			maximum: 1,
+			minimum: 0,
+			value: obscuration
+		}),
 		phase: phase(sun.angularRadius, moon.angularRadius, separation),
 		separation,
 		sun

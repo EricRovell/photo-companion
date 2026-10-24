@@ -41,7 +41,12 @@ export function findSunAltitudeCrossings({
 		timestamp: time
 	}).altitude - target;
 
-	return roots({ end, fn: value, start, step: validateEventStep(options) }).map(time => ({
+	return roots({
+		end,
+		fn: value,
+		start,
+		step: validateEventStep(options)
+	}).map(time => ({
 		direction: value(Math.min(time + 1000, end - 1)) >= value(Math.max(time - 1000, start)) ? "rising" : "setting",
 		time: new Date(time)
 	}));
@@ -91,11 +96,18 @@ export function getSunEvents({ interval, observer, options = {} }: SunEventsInpu
 	for (const [ altitude, riseName, setName ] of SUN_ALTITUDE_EVENTS) {
 		for (const crossing of findSunAltitudeCrossings({
 			altitude,
-			interval: { end, start },
+			interval: {
+				end,
+				start
+			},
 			observer: location,
 			options
 		})) {
-			events.push({ altitude, name: crossing.direction === "rising" ? riseName : setName, time: crossing.time });
+			events.push({
+				altitude,
+				name: crossing.direction === "rising" ? riseName : setName,
+				time: crossing.time
+			});
 		}
 	}
 
@@ -107,8 +119,16 @@ export function getSunEvents({ interval, observer, options = {} }: SunEventsInpu
 		timestamp: time
 	}).hourAngle;
 
-	for (const event of meridianCrossings({ end, hourAngle, start, step })) {
-		events.push({ name: event.kind === "transit" ? "SOLAR_NOON" : "NADIR", time: new Date(event.time) });
+	for (const event of meridianCrossings({
+		end,
+		hourAngle,
+		start,
+		step
+	})) {
+		events.push({
+			name: event.kind === "transit" ? "SOLAR_NOON" : "NADIR",
+			time: new Date(event.time)
+		});
 	}
 
 	return events.sort((left, right) => left.time.getTime() - right.time.getTime());

@@ -110,5 +110,8 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 
 	onCleanup(cancel);
 
-	return { animateToStep, cancel };
+	return {
+		animateToStep,
+		cancel
+	};
 }

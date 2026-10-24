@@ -16,7 +16,11 @@ const STORED_COORDINATES = {
 function renderLocationQueryHook(location: string) {
 	const history = createMemoryHistory();
 
-	history.set({ replace: true, scroll: false, value: location });
+	history.set({
+		replace: true,
+		scroll: false,
+		value: location
+	});
 
 	const wrapper = (props: ParentProps) => (
 		<SettingsProvider>
@@ -31,7 +35,10 @@ function renderLocationQueryHook(location: string) {
 		return useSettings();
 	}, { wrapper });
 
-	return { history, ...hook };
+	return {
+		history,
+		...hook
+	};
 }
 
 function storeSettings() {

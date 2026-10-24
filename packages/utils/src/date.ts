@@ -13,13 +13,21 @@ export function calcDuration(from: Nullish<DateLike> = null, to: Nullish<DateLik
 	}
 
 	if (isNullable(from) && !isNullable(to)) {
-		from = dateFrom(to, { hours: 0, minutes: 0, seconds: 0 });
+		from = dateFrom(to, {
+			hours: 0,
+			minutes: 0,
+			seconds: 0
+		});
 
 		return new Date(to).getTime() - from.getTime();
 	}
 
 	if (!isNullable(from) && isNullable(to)) {
-		to = dateFrom(from, { hours: 24, minutes: 0, seconds: 0 });
+		to = dateFrom(from, {
+			hours: 24,
+			minutes: 0,
+			seconds: 0
+		});
 
 		return to.getTime() - new Date(from).getTime();
 	}

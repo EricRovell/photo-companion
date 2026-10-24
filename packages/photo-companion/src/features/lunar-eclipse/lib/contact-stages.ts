@@ -28,7 +28,12 @@ export function getContactStages(
 	maximumLabel: string
 ): LunarEclipseContactStage[] {
 	const stages: LunarEclipseContactStage[] = [
-		{ code: "P1", contact: event.penumbralBegin, label: labels.PENUMBRAL_BEGIN, position: "begin" }
+		{
+			code: "P1",
+			contact: event.penumbralBegin,
+			label: labels.PENUMBRAL_BEGIN,
+			position: "begin"
+		}
 	];
 
 	if (!isNullable(event.partialBegin)) {

@@ -17,7 +17,10 @@ import { StoryTranslationProvider } from "./story-language";
 
 import type { StoryEnvironmentArgs } from "./story-controls";
 
-function StoryLocationQuery(props: { children: JSXElement; options: StoryEnvironmentArgs }) {
+function StoryLocationQuery(props: {
+	children: JSXElement;
+	options: StoryEnvironmentArgs
+}) {
 	useLocationQuery();
 	const { setSettings } = useSettings();
 

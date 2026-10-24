@@ -18,11 +18,17 @@ export function InputTabsSelect(props: InputTabsSelectProps) {
 	const { setSettingsStore, settingsStore } = useSettingsForm();
 
 	const state = createMemo(() => {
-		const output = settingsStore.tabs.map(tab => ({ active: true, tab }));
+		const output = settingsStore.tabs.map(tab => ({
+			active: true,
+			tab
+		}));
 
 		for (const tab of props.tabs) {
 			if (!settingsStore.tabs.includes(tab)) {
-				output.push({ active: false, tab });
+				output.push({
+					active: false,
+					tab
+				});
 			}
 		}
 
