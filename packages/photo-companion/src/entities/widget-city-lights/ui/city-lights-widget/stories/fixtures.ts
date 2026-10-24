@@ -140,7 +140,7 @@ title: string }[] = [
 		title: "Just before noon"
 	},
 	{
-		description: "Nearby switch labels use separate rows without shifting their time positions.",
+		description: "Nearby switch ticks stay at their time positions; exact times appear on hover or link focus.",
 		options: {
 			hour: 24,
 			offHour: 0.25,
@@ -149,7 +149,7 @@ title: string }[] = [
 		title: "Thirty-minute night"
 	},
 	{
-		description: "Boundaries close to the plot edges retain readable labels.",
+		description: "Switch ticks remain visible near the plot edges, and their tooltips stay inside the card.",
 		options: {
 			hour: 24,
 			offHour: 11.9,

@@ -152,14 +152,6 @@ export interface Translation {
 		YEAR: string;
 		ZENITH: string;
 	};
-	LIGHTS_COMPARISON: {
-		EARLIER: `${string}{duration}${string}`;
-		LATER: `${string}{duration}${string}`;
-		LONGER: `${string}{duration}${string}`;
-		SHORTER: `${string}{duration}${string}`;
-		SWITCH_OFF: string;
-		SWITCH_ON: string;
-	};
 	LIGHTS_EVENTS: {
 		LIGHTS_END: string;
 		LIGHTS_START: string;
@@ -175,6 +167,8 @@ export interface Translation {
 		SCHEDULED_OFF: string;
 		SCHEDULED_ON: string;
 		SELECTED_TIME: string;
+		SWITCH_OFF: string;
+		SWITCH_ON: string;
 		SWITCHING_WINDOW: `${string}{duration}${string}`;
 		WITHIN_WINDOW: string;
 	};

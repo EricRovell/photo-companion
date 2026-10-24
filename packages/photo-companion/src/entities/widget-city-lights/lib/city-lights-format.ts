@@ -43,6 +43,7 @@ export function formatCityLightsEvent(event: LightsNightEvent | undefined, name:
 	}
 
 	return {
+		date: event ? new Date(event.timestamp) : null,
 		day: event ? options.formatDay(event.timestamp) : options.unavailable,
 		label: options.label,
 		name,

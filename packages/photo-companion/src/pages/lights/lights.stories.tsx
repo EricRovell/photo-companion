@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
-import { LightsInfo, LightsSchedule, LightsTimeline, SupportsLights } from "~/features/city-lights";
+import { LightsSchedule, LightsTimeline, SupportsLights } from "~/features/city-lights";
 import { storyEnvironmentConfig } from "~/stories/story-controls";
 import { withStoryProviders } from "~/stories/story-providers";
 
@@ -31,18 +31,6 @@ export const Schedule: Story = {
 	), args)
 };
 
-export const Information: Story = {
-	args: {
-		datetime: 1776762000000
-	},
-
-	render: args => withStoryProviders(() => (
-		<SupportsLights>
-			<div class={styles.page}><LightsInfo /></div>
-		</SupportsLights>
-	), args)
-};
-
 export const Timeline: Story = {
 	render: args => withStoryProviders(() => (
 		<SupportsLights>
@@ -56,7 +44,6 @@ export const AllWidgets: Story = {
 		<SupportsLights>
 			<div class={styles.page}>
 				<LightsSchedule />
-				<LightsInfo />
 				<LightsTimeline />
 			</div>
 		</SupportsLights>

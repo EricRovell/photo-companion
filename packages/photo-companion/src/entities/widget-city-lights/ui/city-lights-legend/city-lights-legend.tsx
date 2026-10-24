@@ -1,17 +1,22 @@
 import { For, Show } from "solid-js";
 
+import { useTranslation } from "~/features/translation";
 import { Text } from "~/shared/ui";
 
-import type { CityLightsEventData } from "../../types";
+import type { CityLightsEventData, CityLightsTimeRenderer } from "../../types";
 
 import styles from "./city-lights-legend.module.css";
 
 interface Props {
 	events: CityLightsEventData[];
 	id: string;
+	renderTime?: CityLightsTimeRenderer;
 }
 
 export function CityLightsLegend(props: Props) {
+	const { format } = useTranslation();
+	const fullDate = (event: CityLightsEventData) => event.date ? format().dateShort(event.date) : undefined;
+
 	return (
 		<dl class={styles.events} id={props.id}>
 			<For each={props.events}>
@@ -21,7 +26,14 @@ export function CityLightsLegend(props: Props) {
 							{event.label}
 						</Text>
 						<Text as="dd" numeric variant="heading-s">
-							{event.time}
+							<time
+								dateTime={event.date?.toISOString()}
+								title={fullDate(event)}
+							>
+								{event.date && props.renderTime
+									? props.renderTime(event.date, event.time, `${event.label}: ${event.time}, ${fullDate(event)}`)
+									: event.time}
+							</time>
 						</Text>
 						<Text as="dd" color="secondary" variant="text-xs">
 							{event.day}

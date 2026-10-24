@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.48.0
+
+- Remove city lights table with duplicating data.
+- Fixed city lights countdown font-size.
+- Removed duplicated labels in new city lights schedule widget.
+
 ## 2.47.0
 
 - New city lights schedule widget.

@@ -56,7 +56,11 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 								durationLabel={model.durationLabel()}
 								estimated={model.estimated()}
 							/>
-							<CityLightsLegend events={model.events()} id={descriptionId} />
+							<CityLightsLegend
+								events={model.events()}
+								id={descriptionId}
+								renderTime={props.renderTime}
+							/>
 							<p class={styles.description} id={selectionId}>
 								{model.selectedTime()}
 							</p>

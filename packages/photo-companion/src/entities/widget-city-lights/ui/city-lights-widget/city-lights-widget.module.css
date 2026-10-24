@@ -10,6 +10,14 @@
 	width: min(100%, var(--lights-max-width));
 }
 
+.visual:has([data-event="LIGHTS_START"] a:focus-visible) {
+	--lights-start-time-visibility: visible;
+}
+
+.visual:has([data-event="LIGHTS_END"] a:focus-visible) {
+	--lights-end-time-visibility: visible;
+}
+
 .description {
 	position: absolute;
 	width: 1px;
