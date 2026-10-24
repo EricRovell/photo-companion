@@ -242,16 +242,24 @@ export const t = {
 		MOONSET: "Moonset"
 	},
 	RISE_SET: {
+		ABOVE_HORIZON: "Above horizon",
 		ABOVE_WITHOUT_EVENTS: "Above horizon. No rise or set times nearby.",
+		BELOW_HORIZON: "Below horizon",
 		BELOW_WITHOUT_EVENTS: "Below horizon. No rise or set times nearby.",
-		DURATION: "Duration",
+		DAYLIGHT: "Daylight",
 		MIDNIGHT: "Midnight",
 		NEXT_DAY: "Next day",
 		PREVIOUS_DAY: "Previous day",
 		RISE_UNAVAILABLE: "Rise time unavailable; progress cannot be shown.",
 		SET_UNAVAILABLE: "Set time unavailable; progress cannot be shown.",
 		SUNRISE: "Sunrise",
-		SUNSET: "Sunset"
+		SUNSET: "Sunset",
+		TODAY: "Today",
+		UNAVAILABLE: "Unavailable",
+		UNTIL_MOONRISE: "Until moonrise",
+		UNTIL_MOONSET: "Until moonset",
+		UNTIL_SUNRISE: "Until sunrise",
+		UNTIL_SUNSET: "Until sunset"
 	},
 	SEASONS: {
 		AXIS_DECLINATION: "Solar declination",

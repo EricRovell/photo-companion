@@ -94,6 +94,24 @@ describe("SunTimes", () => {
 		expect(view.container.querySelector("[data-position-marker]")).toBeInTheDocument();
 	});
 
+	it.each([ "SUNRISE_START", "SUNSET_END" ])("keeps below-horizon duration and the next rise countdown at a %s link", (name) => {
+		const event = getDayEvents(state.date).find(event => event.name === name);
+
+		if (!event) {
+			throw new Error(`Expected ${name} at the equator`);
+		}
+
+		state.date = new Date(Math.floor(event.time.getTime() / 1000) * 1000);
+
+		const view = renderTimes();
+		const countdown = view.container.querySelector("[data-rise-set-countdown] dd")?.textContent ?? "";
+
+		expect(view.getByText("Below horizon")).toBeInTheDocument();
+		expect(view.getByText("Until sunrise")).toBeInTheDocument();
+		expect(view.container.querySelector("[data-rise-set-duration] dd")).not.toHaveTextContent("—");
+		expect(Number(countdown.split(":")[0])).toBeGreaterThan(1);
+	});
+
 	it.each([
 		[ 5, false ],
 		[ 11, true ]
@@ -102,7 +120,7 @@ describe("SunTimes", () => {
 		state.settings = { latitude: 78.2232, longitude: 15.6469 };
 		const view = renderTimes();
 
-		expect(view.getAllByText("—")).toHaveLength(2);
+		expect(view.getAllByText("—")).toHaveLength(4);
 		expect(view.queryAllByRole("link")).toHaveLength(0);
 		expect(view.container.querySelector("[data-position-marker]")).toBeNull();
 		expect(view.container.querySelector("[data-rise-set-progress]")).toBeNull();

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.46.0
+
+- Update rise and set widget info and layout.
+
 ## 2.45.0
 
 - Updated the Sun and the Moon rise and set widgets.

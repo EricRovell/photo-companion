@@ -20,17 +20,6 @@
 	text-align: right;
 }
 
-.value {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--space-1);
-	align-items: baseline;
-}
-
-.event:last-child .value {
-	flex-direction: row-reverse;
-}
-
 .event a {
 	color: inherit;
 	font-weight: inherit;
@@ -54,4 +43,10 @@
 	color: var(--color-text-secondary);
 	font-size: var(--font-size-1);
 	font-weight: 500;
+}
+
+.day {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

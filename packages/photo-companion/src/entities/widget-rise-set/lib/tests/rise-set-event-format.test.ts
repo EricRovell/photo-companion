@@ -1,6 +1,18 @@
 import { describe, expect, it } from "vitest";
 
-import { formatRiseSetDuration } from "../rise-set-event-format";
+import { formatRiseSetCountdown, formatRiseSetDuration } from "../rise-set-event-format";
+
+describe("formatRiseSetCountdown", () => {
+	it.each([
+		[ 0, "00:00:00" ],
+		[ -1000, "00:00:00" ],
+		[ 1, "00:00:01" ],
+		[ 3_723_000, "01:02:03" ],
+		[ 93_784_000, "26:03:04" ]
+	])("formats %i milliseconds as %s", (milliseconds, expected) => {
+		expect(formatRiseSetCountdown(milliseconds)).toBe(expected);
+	});
+});
 
 describe("formatRiseSetDuration", () => {
 	it.each([

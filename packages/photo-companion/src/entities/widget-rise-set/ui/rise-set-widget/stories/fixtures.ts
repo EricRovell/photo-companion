@@ -4,6 +4,7 @@ import type { RiseSetWidgetProps } from "../../../types";
 
 export interface RiseSetScenario extends Pick<RiseSetWidgetProps, "aboveHorizon" | "date" | "rise" | "set"> {
 	description: string;
+	intervals?: readonly RiseSetInterval[];
 	phase?: number;
 	title: string;
 }
@@ -15,8 +16,24 @@ export interface RiseSetSelectionScenario extends Omit<RiseSetScenario, "rise" |
 // Local fixtures keep the visual states the same in every browser timezone.
 export const at = (day: number, hour: number, minute = 0) => new Date(2026, 9, day, hour, minute);
 
-const daytime = { rise: at(21, 6), set: at(21, 18) };
-const overnight = { rise: at(21, 20), set: at(22, 8) };
+const daytime = {
+	intervals: [
+		{ rise: at(20, 6), set: at(20, 18) },
+		{ rise: at(21, 6), set: at(21, 18) },
+		{ rise: at(22, 7), set: at(22, 19) }
+	],
+	rise: at(21, 6),
+	set: at(21, 18)
+};
+const overnight = {
+	intervals: [
+		{ rise: at(20, 19), set: at(21, 7) },
+		{ rise: at(21, 20), set: at(22, 8) },
+		{ rise: at(22, 21), set: at(23, 9) }
+	],
+	rise: at(21, 20),
+	set: at(22, 8)
+};
 
 export const visualScenarios: RiseSetScenario[] = [
 	{
