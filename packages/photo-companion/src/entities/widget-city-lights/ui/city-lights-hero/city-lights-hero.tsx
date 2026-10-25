@@ -27,11 +27,15 @@ export function CityLightsHero(props: Props) {
 			<Text as="p" class={styles.state} variant="heading-s">
 				{props.state}
 			</Text>
-			<Show when={props.withinWindow}>
-				<Text as="p" color="secondary" variant="text-xs">
-					{props.switchingWindowLabel}
-				</Text>
-			</Show>
+			<Text
+				aria-hidden={!props.withinWindow}
+				as="p"
+				class={styles.window}
+				color="secondary"
+				variant="text-xs"
+			>
+				{props.switchingWindowLabel}
+			</Text>
 			<Show when={props.status}>
 				<Text align="center" as="p" color="secondary" variant="text-s">
 					{props.status}

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.49.0
+
+- Update city lights widget visuals.
+
 ## 2.48.0
 
 - Remove city lights table with duplicating data.

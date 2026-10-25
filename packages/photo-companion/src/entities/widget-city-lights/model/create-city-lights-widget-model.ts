@@ -8,7 +8,7 @@ import { formatCityLightsDuration, formatCityLightsEvent, getCityLightsDayOffset
 
 import type { CityLightsWidgetProps } from "../types";
 
-export function createCityLightsWidgetModel(props: CityLightsWidgetProps) {
+export function createCityLightsWidgetModel(props: Omit<CityLightsWidgetProps, "solar">) {
 	const { format, lang, t } = useTranslation();
 	const relativeDay = createMemo(() => new Intl.RelativeTimeFormat(lang(), { numeric: "auto" }));
 	const estimated = () => props.schedule.source === "SOLAR_ESTIMATE";

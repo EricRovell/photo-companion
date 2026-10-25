@@ -1,24 +1,37 @@
 .selected {
 	position: absolute;
-	top: 0.85rem;
-	width: 1rem;
-	height: 1rem;
+	z-index: 2;
+	top: 0;
+	width: 1.75rem;
+	height: 2rem;
 	cursor: help;
-	transform: translate(-50%, -50%);
+	transform: translateX(-50%);
+	transition: left 650ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.selected::after {
+.selected::before {
 	position: absolute;
-	top: 50%;
+	top: 1.5rem;
 	left: 50%;
-	width: 0.8rem;
-	height: 0.8rem;
-	border: 2px solid var(--card-background);
-	border-radius: 50%;
+	width: 1px;
+	height: calc(var(--lights-track-position) - 1.5rem);
 	background: var(--lights-color);
-	box-shadow: 0 0 5px hsl(39deg 94% 61% / 40%);
 	content: "";
-	transform: translate(-50%, -50%);
+	transform: translateX(-50%);
+}
+
+.bulb {
+	--bulb-size: 1.5rem;
+	--bulb-glow-size: 2px;
+
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.bulb:not([data-glow]) {
+	filter: brightness(1.5);
 }
 
 .selected span {
@@ -47,4 +60,12 @@
 
 .selected[data-edge="end"] span {
 	transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.selected,
+	.selected .bulb,
+	.selected .bulb path {
+		transition: none;
+	}
 }

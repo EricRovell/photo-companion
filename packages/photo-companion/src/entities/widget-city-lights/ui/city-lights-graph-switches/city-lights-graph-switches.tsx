@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { Index } from "solid-js";
 
 import { useTranslation } from "~/features/translation";
 
@@ -16,26 +16,26 @@ export function CityLightsGraphSwitches(props: Props) {
 	const { format } = useTranslation();
 
 	return (
-		<For each={props.events}>
+		<Index each={props.events}>
 			{event => (
 				<div
 					class={styles.switch}
-					data-estimated={event.uncertaintyMinutes > 0 || undefined}
-					data-switch={event.name}
-					style={{ left: `${event.position}%` }}
-					title={format().datetime(event.timestamp)}
+					data-estimated={event().uncertaintyMinutes > 0 || undefined}
+					data-switch={event().name}
+					style={{ left: `${event().position}%` }}
+					title={format().datetime(event().timestamp)}
 				>
 					<time
 						class={styles["switch-time"]}
-						data-edge={getCityLightsLabelEdge(event.position)}
-						data-graph-event={event.name}
-						dateTime={new Date(event.timestamp).toISOString()}
-						title={format().datetime(event.timestamp)}
+						data-edge={getCityLightsLabelEdge(event().position)}
+						data-graph-event={event().name}
+						dateTime={new Date(event().timestamp).toISOString()}
+						title={format().datetime(event().timestamp)}
 					>
-						{format().timeShort(event.timestamp)}
+						{format().timeShort(event().timestamp)}
 					</time>
 				</div>
 			)}
-		</For>
+		</Index>
 	);
 }

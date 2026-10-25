@@ -21,6 +21,15 @@ function createCityLightsState() {
 	const getScheduleByDate = createMemo(() => getCityLightsProvider().getScheduleByDate(getDatetime()));
 	const getScheduleForDate = (date: Date) => getCityLightsProvider().getScheduleByDate(date);
 
+	const getSolarProvider = createMemo(() => initLightsProvider("OTHER", {
+		latitude: settings.latitude,
+		longitude: settings.longitude
+	}));
+
+	const getSolarSchedule = createMemo(() => getSolarProvider().getScheduleByDate(getDatetime()));
+	const getSolarState = createMemo(() => getSolarProvider().getStateByDate(getDatetime()));
+	const getSolarScheduleForDate = (date: Date) => getSolarProvider().getScheduleByDate(date);
+
 	// To specify the date
 	const getEventsByDateInput = createMemo(() => getCityLightsProvider().getEventsByDate);
 
@@ -30,6 +39,9 @@ function createCityLightsState() {
 		getEventsByDateInput,
 		getScheduleByDate,
 		getScheduleForDate,
+		getSolarSchedule,
+		getSolarScheduleForDate,
+		getSolarState,
 		getStateByDate,
 		getYear
 	};

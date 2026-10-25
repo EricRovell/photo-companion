@@ -35,7 +35,7 @@ function at(date: Date, hour: number) {
 	return result;
 }
 
-export function createScenario(options: ScenarioOptions = {}): CityLightsWidgetProps {
+function createScheduleScenario(options: ScenarioOptions): Omit<CityLightsWidgetProps, "solar"> {
 	const args = {
 		...defaults,
 		...options
@@ -103,6 +103,16 @@ export function createScenario(options: ScenarioOptions = {}): CityLightsWidgetP
 			lights: morning || evening,
 			timestamp: options.missingNextEvent ? null : timestamp
 		}
+	};
+}
+
+export function createScenario(options: ScenarioOptions = {}): CityLightsWidgetProps {
+	return {
+		...createScheduleScenario(options),
+		solar: createScheduleScenario({
+			...options,
+			source: "SOLAR_ESTIMATE"
+		})
 	};
 }
 

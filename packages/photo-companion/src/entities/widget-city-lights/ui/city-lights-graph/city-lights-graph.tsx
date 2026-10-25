@@ -12,7 +12,9 @@ import styles from "./city-lights-graph.module.css";
 interface Props {
 	date: Date;
 	describedBy: string;
+	lights: boolean;
 	night: CityLightsNight;
+	source: string;
 }
 
 export function CityLightsGraph(props: Props) {
@@ -21,7 +23,7 @@ export function CityLightsGraph(props: Props) {
 	return (
 		<div
 			aria-describedby={props.describedBy}
-			aria-label={t().LIGHTS_WIDGET.NIGHT_SCHEDULE}
+			aria-label={`${t().LIGHTS_WIDGET.NIGHT_SCHEDULE}, ${props.source}`}
 			class={styles.schedule}
 			role="img"
 			tabIndex={0}
@@ -39,6 +41,7 @@ export function CityLightsGraph(props: Props) {
 				<CityLightsGraphSwitches events={props.night.events} />
 				<CityLightsGraphSelection
 					date={props.date}
+					lights={props.lights}
 					position={props.night.position}
 				/>
 			</div>
