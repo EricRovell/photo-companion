@@ -55,7 +55,7 @@ export function CityLightsLegend(props: Props) {
 								<span>
 									<span>{event.day}</span>
 									<Show when={event.range}>
-									<span> · </span>
+										<span> · </span>
 										<span class={styles.range}>{event.range}</span>
 									</Show>
 								</span>
