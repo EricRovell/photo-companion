@@ -79,4 +79,15 @@ describe("LightsSchedule links", () => {
 			expect(view.getByRole("img")).toHaveAttribute("title", "Selected time: 2026-10-25T06:59:00.000Z");
 		});
 	});
+
+	it("switches to solar times for the selected location", () => {
+		const { view } = renderSchedule("2026-10-24T20:40:00");
+		const officialLink = view.getByRole("link", { name: /^Turn-on time:/ }).getAttribute("href");
+		fireEvent.click(view.getByRole("radio", { name: "Solar estimate" }));
+		expect(view.getByRole("radio", { name: "Official schedule" })).not.toBeChecked();
+		expect(view.getByRole("radio", { name: "Solar estimate" })).toBeChecked();
+		expect(view.getByRole("img")).toHaveAccessibleName(/Solar estimate/);
+		expect(view.getByRole("link", { name: /^Turn-on time:/ }).getAttribute("href")).not.toBe(officialLink);
+		expect(view.container.querySelectorAll("[data-uncertainty-minutes=\"30\"]")).toHaveLength(2);
+	});
 });

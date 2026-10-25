@@ -31,6 +31,10 @@
 	color: var(--color-text);
 }
 
+.window[aria-hidden="true"] {
+	visibility: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.lamp {
 		transition: none;

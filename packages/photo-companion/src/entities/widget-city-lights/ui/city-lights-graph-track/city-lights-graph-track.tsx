@@ -1,4 +1,4 @@
-import { For, Show } from "solid-js";
+import { Index, Show } from "solid-js";
 
 import type { CityLightsNight } from "../../types";
 
@@ -10,36 +10,36 @@ export function CityLightsGraphTrack(props: Props) {
 	return (
 		<>
 			<div class={styles.rail} />
-			<For each={props.intervals}>
+			<Index each={props.intervals}>
 				{interval => (
 					<>
 						<div
 							class={styles.interval}
 							style={{
-								left: `${interval.start}%`,
-								width: `${interval.end - interval.start}%`
+								left: `${interval().start}%`,
+								width: `${interval().end - interval().start}%`
 							}}
 						/>
 						<div
 							class={styles.core}
 							style={{
-								left: `${interval.innerStart}%`,
-								width: `${interval.innerEnd - interval.innerStart}%`
+								left: `${interval().innerStart}%`,
+								width: `${interval().innerEnd - interval().innerStart}%`
 							}}
 						/>
 					</>
 				)}
-			</For>
-			<For each={props.ticks}>
+			</Index>
+			<Index each={props.ticks}>
 				{tick => (
-					<Show when={tick.time.getHours() === 0}>
+					<Show when={tick().time.getHours() === 0}>
 						<div
 							class={styles.midnight}
-							style={{ left: `${tick.position}%` }}
+							style={{ left: `${tick().position}%` }}
 						/>
 					</Show>
 				)}
-			</For>
+			</Index>
 		</>
 	);
 }

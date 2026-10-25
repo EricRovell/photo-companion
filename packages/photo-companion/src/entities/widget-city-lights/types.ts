@@ -2,13 +2,17 @@ import type { LightsNightEvent } from "lights-schedule";
 import type { JSX } from "solid-js";
 import type { City, IlluminationState, LightsEventName, LightsSchedule } from "types";
 
-export interface CityLightsWidgetProps {
-	city: City;
-	date: Date;
+interface CityLightsScheduleData {
 	getScheduleForDate: (date: Date) => LightsSchedule;
-	renderTime?: CityLightsTimeRenderer;
 	schedule: LightsSchedule;
 	state: IlluminationState;
+}
+
+export interface CityLightsWidgetProps extends CityLightsScheduleData {
+	city: City;
+	date: Date;
+	renderTime?: CityLightsTimeRenderer;
+	solar: CityLightsScheduleData;
 }
 
 export type CityLightsTimeRenderer = (date: Date, children: JSX.Element, label: string) => JSX.Element;

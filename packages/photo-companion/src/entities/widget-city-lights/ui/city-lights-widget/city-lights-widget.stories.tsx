@@ -74,18 +74,37 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const OfficialSchedule: Story = {};
+
 export const SaintPetersburg: Story = {
 	args: {
 		city: "SAINT_PETERSBURG",
 		width: 340
 	}
 };
+
 export const SolarEstimate: Story = {
 	args: {
 		city: "OTHER",
 		source: "SOLAR_ESTIMATE"
 	}
 };
+
+export const EstimateAtSwitchOn: Story = {
+	args: {
+		city: "OTHER",
+		hour: defaults.onHour,
+		source: "SOLAR_ESTIMATE"
+	}
+};
+
+export const EstimateAtSwitchOff: Story = {
+	args: {
+		city: "OTHER",
+		hour: 24 + defaults.offHour,
+		source: "SOLAR_ESTIMATE"
+	}
+};
+
 export const WiderEstimate: Story = {
 	args: {
 		city: "OTHER",
@@ -93,6 +112,7 @@ export const WiderEstimate: Story = {
 		uncertaintyMinutes: 60
 	}
 };
+
 export const Narrow: Story = {
 	args: {
 		city: "OTHER",

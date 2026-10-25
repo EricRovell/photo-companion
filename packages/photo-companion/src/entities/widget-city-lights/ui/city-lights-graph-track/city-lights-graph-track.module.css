@@ -2,7 +2,7 @@
 .interval,
 .core {
 	position: absolute;
-	top: 0.75rem;
+	top: calc(var(--lights-track-position) - 0.1rem);
 	height: 0.2rem;
 	border-radius: 1rem;
 }
@@ -16,6 +16,11 @@
 	background: hsl(39deg 94% 61% / 20%);
 }
 
+.interval,
+.core {
+	transition: left 650ms cubic-bezier(0.65, 0, 0.35, 1), width 650ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
 .core {
 	background: var(--lights-color);
 	opacity: 0.65;
@@ -23,8 +28,15 @@
 
 .midnight {
 	position: absolute;
-	top: 0.2rem;
+	top: calc(var(--lights-track-position) - 0.65rem);
 	width: 1px;
 	height: 1.3rem;
 	border-left: 1px dashed var(--card-border-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.interval,
+	.core {
+		transition: none;
+	}
 }

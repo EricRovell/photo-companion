@@ -1,23 +1,60 @@
 .source {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
+	display: grid;
 	gap: var(--space-2);
 	margin-top: var(--space-4);
 	text-align: center;
 }
 
-.sample {
-	width: 1rem;
-	height: 0.15rem;
-	border-radius: 1rem;
-	background: var(--lights-color);
+.options {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--space-2);
 }
 
-.sample[data-estimated] {
-	height: 0.65rem;
-	border: 1px dashed hsl(39deg 94% 61% / 70%);
-	border-radius: 0.15rem;
-	background: repeating-linear-gradient(135deg, hsl(39deg 94% 61% / 35%) 0 1px, hsl(39deg 94% 61% / 5%) 1px 4px);
+.uncertainty[aria-hidden="true"] {
+	visibility: hidden;
+}
+
+.option {
+	position: relative;
+	justify-content: center;
+	min-height: 2.25rem;
+	padding: var(--space-2) var(--space-3);
+	border: 1px solid var(--card-border-color);
+	border-radius: var(--radius);
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+}
+
+.option:has(:checked) {
+	border-color: color-mix(in srgb, var(--lights-color) 50%, transparent);
+	background: color-mix(in srgb, var(--lights-color) 8%, transparent);
+	color: var(--lights-color);
+}
+
+.option:has(:disabled) {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.option:has(:focus-visible) {
+	outline: 2px solid var(--focus-ring-color);
+	outline-offset: 2px;
+}
+
+.option .indicator {
+	display: none;
+}
+
+.option .input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	white-space: nowrap;
+	clip-path: inset(50%);
 }

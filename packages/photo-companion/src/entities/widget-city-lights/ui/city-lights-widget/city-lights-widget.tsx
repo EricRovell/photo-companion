@@ -1,4 +1,7 @@
-import { createUniqueId, Show } from "solid-js";
+import { isSupportedCity } from "lights-schedule";
+import { createSignal, createUniqueId, mergeProps, Show, untrack } from "solid-js";
+
+import type { LightsScheduleSource } from "types";
 
 import { Card } from "~/shared/ui";
 
@@ -16,7 +19,16 @@ import type { CityLightsWidgetProps } from "../../types";
 import styles from "./city-lights-widget.module.css";
 
 export function CityLightsWidget(props: CityLightsWidgetProps) {
-	const model = createCityLightsWidgetModel(props);
+	const [ source, setSource ] = createSignal<LightsScheduleSource>(untrack(() => props.schedule.source));
+	const officialAvailable = () => isSupportedCity(props.city);
+	const selectedSource = () => officialAvailable() ? source() : "SOLAR_ESTIMATE";
+	const officialModel = createCityLightsWidgetModel(props);
+	const solarModel = createCityLightsWidgetModel(mergeProps(props, {
+		get getScheduleForDate() { return props.solar.getScheduleForDate; },
+		get schedule() { return props.solar.schedule; },
+		get state() { return props.solar.state; }
+	}));
+	const model = () => selectedSource() === "SCHEDULE" ? officialModel : solarModel;
 	const descriptionId = createUniqueId();
 	const sourceId = createUniqueId();
 	const selectionId = createUniqueId();
@@ -24,8 +36,8 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 	return (
 		<Card data-label="lights-schedule">
 			<CityLightsHeader
-				city={model.cityName()}
-				title={model.title()}
+				city={model().cityName()}
+				title={model().title()}
 			/>
 			<div
 				class={styles.content}
@@ -36,40 +48,46 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 			>
 				<div class={styles.visual}>
 					<CityLightsHero
-						lights={model.lightsOn()}
-						state={model.stateLabel()}
-						status={model.status()}
-						switchingWindowLabel={model.switchingWindowLabel()}
-						withinWindow={model.withinWindow()}
+						lights={model().lightsOn()}
+						state={model().stateLabel()}
+						status={model().status()}
+						switchingWindowLabel={model().switchingWindowLabel()}
+						withinWindow={model().withinWindow()}
 					/>
-					<Show when={model.night()}>
+					<Show when={model().night()}>
 						{night => <>
 							<CityLightsGraph
 								date={props.date}
 								describedBy={`${descriptionId} ${selectionId} ${sourceId}`}
+								lights={model().lightsOn()}
 								night={night()}
-							/>
-							<CityLightsSummary
-								countdown={model.countdown()}
-								countdownLabel={model.countdownLabel()}
-								duration={model.duration()}
-								durationLabel={model.durationLabel()}
-								estimated={model.estimated()}
+								source={model().source()}
 							/>
 							<CityLightsLegend
-								events={model.events()}
+								events={model().events()}
 								id={descriptionId}
 								renderTime={props.renderTime}
+								reservedEvents={solarModel.events()}
+							/>
+							<CityLightsSummary
+								countdown={model().countdown()}
+								countdownLabel={model().countdownLabel()}
+								duration={model().duration()}
+								durationLabel={model().durationLabel()}
+								estimated={model().estimated()}
 							/>
 							<p class={styles.description} id={selectionId}>
-								{model.selectedTime()}
+								{model().selectedTime()}
 							</p>
 						</>}
 					</Show>
 					<CityLightsSource
 						id={sourceId}
-						label={model.source()}
-						uncertainty={model.uncertaintyLabel()}
+						officialAvailable={officialAvailable()}
+						onChange={setSource}
+						reservedUncertainty={solarModel.uncertaintyLabel()}
+						selected={selectedSource()}
+						uncertainty={model().uncertaintyLabel()}
 					/>
 				</div>
 			</div>

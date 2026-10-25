@@ -1,10 +1,12 @@
 .switch {
 	position: absolute;
-	top: 0.85rem;
+	z-index: 1;
+	top: var(--lights-track-position);
 	width: 1rem;
 	height: 1.5rem;
 	cursor: help;
 	transform: translate(-50%, -50%);
+	transition: left 650ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .switch::before {
@@ -27,7 +29,7 @@
 .switch-time {
 	position: absolute;
 	z-index: 1;
-	bottom: calc(50% + var(--space-2));
+	bottom: calc(50% + var(--lights-track-position) + var(--space-1));
 	left: 50%;
 	visibility: hidden;
 	padding: var(--space-1) var(--space-2);
@@ -57,4 +59,10 @@
 
 .switch-time[data-edge="end"] {
 	transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.switch {
+		transition: none;
+	}
 }

@@ -11,7 +11,9 @@
 }
 
 .plot {
+	--lights-track-position: 1.75rem;
+
 	position: relative;
-	height: 2rem;
+	height: 3.5rem;
 	font-variant-numeric: tabular-nums;
 }

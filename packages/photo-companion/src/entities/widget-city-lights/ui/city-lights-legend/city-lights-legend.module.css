@@ -6,9 +6,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: var(--space-3);
-	margin: 0;
-	padding-top: var(--space-3);
-	border-top: 1px solid var(--card-divider-color);
+	margin: 0 0 var(--space-3);
 	font-variant-numeric: tabular-nums;
 }
 
@@ -26,6 +24,18 @@
 
 .event dd {
 	margin: 0;
+}
+
+.details {
+	display: grid;
+}
+
+.details > span {
+	grid-area: 1 / 1;
+}
+
+.measure {
+	visibility: hidden;
 }
 
 .range {

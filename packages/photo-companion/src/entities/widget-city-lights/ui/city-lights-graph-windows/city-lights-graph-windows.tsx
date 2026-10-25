@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { Index } from "solid-js";
 
 import type { CityLightsNightEvent } from "../../types";
 
@@ -10,17 +10,17 @@ interface Props {
 
 export function CityLightsGraphWindows(props: Props) {
 	return (
-		<For each={props.windows}>
+		<Index each={props.windows}>
 			{event => (
 				<div
 					class={styles.window}
-					data-uncertainty-minutes={event.uncertaintyMinutes}
+					data-uncertainty-minutes={event().uncertaintyMinutes}
 					style={{
-						left: `${event.windowStart}%`,
-						width: `${event.windowEnd - event.windowStart}%`
+						left: `${event().windowStart}%`,
+						width: `${event().windowEnd - event().windowStart}%`
 					}}
 				/>
 			)}
-		</For>
+		</Index>
 	);
 }

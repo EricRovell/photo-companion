@@ -7,7 +7,7 @@ import { createQueryDate } from "~/shared/lib/query-date";
 import { useCityLights } from "../model";
 
 export function LightsSchedule() {
-	const { getCity, getScheduleByDate, getScheduleForDate, getStateByDate } = useCityLights();
+	const { getCity, getScheduleByDate, getScheduleForDate, getSolarSchedule, getSolarScheduleForDate, getSolarState, getStateByDate } = useCityLights();
 	const { getDatetime } = useDatetime();
 
 	return (
@@ -26,6 +26,11 @@ export function LightsSchedule() {
 				</LinkQuery>
 			)}
 			schedule={getScheduleByDate()}
+			solar={{
+				getScheduleForDate: getSolarScheduleForDate,
+				schedule: getSolarSchedule(),
+				state: getSolarState()
+			}}
 			state={getStateByDate()}
 		/>
 	);
