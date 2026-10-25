@@ -2,7 +2,7 @@ import type { LightsNightEvent } from "lights-schedule";
 import type { JSX } from "solid-js";
 import type { City, IlluminationState, LightsEventName, LightsSchedule } from "types";
 
-export interface CityLightsScheduleData {
+interface CityLightsScheduleData {
 	getScheduleForDate: (date: Date) => LightsSchedule;
 	schedule: LightsSchedule;
 	state: IlluminationState;
