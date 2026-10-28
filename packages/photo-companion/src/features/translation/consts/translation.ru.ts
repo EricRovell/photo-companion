@@ -1,6 +1,14 @@
 import type { Translation } from "../types";
 
 export const t = {
+	ALTITUDE: {
+		AXIS_ALTITUDE: "Высота (°)",
+		AXIS_TIME: "Время (ч)",
+		DAILY_PEAK: "Максимум за день",
+		HORIZON: "Горизонт",
+		KEEP_ONE_SELECTED: "Выберите хотя бы одно небесное тело.",
+		SELECTED_TIME: "Выбранное время"
+	},
 	AZIMUTH: {
 		ARIA_ENTITY: "{label}: {azimuth}",
 		TITLE_SUN: "{sun} · {azimuth}",

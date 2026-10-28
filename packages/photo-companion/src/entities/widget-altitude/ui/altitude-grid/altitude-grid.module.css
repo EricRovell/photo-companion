@@ -1,0 +1,24 @@
+.sky {
+	fill: rgb(255 255 255 / 1%);
+}
+
+.guide {
+	stroke: rgb(255 255 255 / 6%);
+	stroke-width: 1;
+}
+
+.horizon {
+	stroke: rgb(255 255 255 / 30%);
+	stroke-width: 1.5;
+}
+
+.label {
+	dominant-baseline: middle;
+}
+
+@container (width < 25rem) {
+	.label {
+		--font-size-1: 18px;
+		--font-size-2: 21px;
+	}
+}

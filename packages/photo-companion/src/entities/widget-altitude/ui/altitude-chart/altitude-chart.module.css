@@ -1,0 +1,8 @@
+.chart {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+	font-family: inherit;
+	font-variant-numeric: tabular-nums;
+}

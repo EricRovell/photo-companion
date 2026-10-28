@@ -1,4 +1,12 @@
 export interface Translation {
+	ALTITUDE: {
+		AXIS_ALTITUDE: string;
+		AXIS_TIME: string;
+		DAILY_PEAK: string;
+		HORIZON: string;
+		KEEP_ONE_SELECTED: string;
+		SELECTED_TIME: string;
+	};
 	AZIMUTH: {
 		ARIA_ENTITY: `${string}{azimuth}${string}` & `${string}{label}${string}`;
 		TITLE_SUN: `${string}{azimuth}${string}` & `${string}{sun}${string}`;
