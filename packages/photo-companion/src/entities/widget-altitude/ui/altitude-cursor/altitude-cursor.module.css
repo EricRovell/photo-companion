@@ -1,0 +1,24 @@
+.cursor {
+	stroke: rgb(255 255 255 / 40%);
+	stroke-dasharray: 3 5;
+	stroke-width: 1;
+}
+
+.entity {
+	color: var(--altitude-color);
+}
+
+.marker-halo {
+	fill: currentcolor;
+	fill-opacity: 0.1;
+}
+
+.marker {
+	fill: currentcolor;
+	stroke: var(--card-background);
+	stroke-width: 2.5;
+}
+
+.marker[data-above="true"] {
+	filter: drop-shadow(0 0 5px currentcolor);
+}

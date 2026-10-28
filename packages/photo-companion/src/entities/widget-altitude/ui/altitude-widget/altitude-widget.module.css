@@ -1,0 +1,7 @@
+.root [data-entity="sun"] {
+	--altitude-color: var(--altitude-sun-color);
+}
+
+.root [data-entity="moon"] {
+	--altitude-color: var(--altitude-moon-color);
+}

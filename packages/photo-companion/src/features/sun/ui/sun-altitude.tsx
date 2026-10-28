@@ -1,34 +1,36 @@
-
 import { getSunPosition } from "moon-sun-calc";
 
-import { ElevationGraph } from "~/entities/elevation-graph";
+import { AltitudeWidget } from "~/entities/widget-altitude";
 import { useDatetime } from "~/features/datetime-query";
+import { useSettings } from "~/features/settings";
 import { useTranslation } from "~/features/translation";
-import { Card, Text } from "~/shared/ui";
 
 export function SunAltitude() {
 	const { t } = useTranslation();
 	const { getDatetime } = useDatetime();
+	const { settings } = useSettings();
 
 	return (
-		<Card data-label="altitude">
-			<Card.Header>
-				<Text as="h2" variant="heading-l">
-					{t().TITLE.ELEVATION_SUN}
-				</Text>
-			</Card.Header>
-			<ElevationGraph>
-				<ElevationGraph.ZeroAxis />
-				<ElevationGraph.Path
-					date={getDatetime()}
-					getAltitude={getSunPosition}
-				/>
-				<ElevationGraph.Pointer
-					date={getDatetime()}
-					getAltitude={getSunPosition}
-				/>
-				<ElevationGraph.XAxis />
-			</ElevationGraph>
-		</Card>
+		<AltitudeWidget
+			date={getDatetime()}
+			entities={[ {
+				getPosition: getSunPosition,
+				id: "sun",
+				label: t().TITLE.SUN
+			} ]}
+			latitude={settings.latitude}
+			longitude={settings.longitude}
+			title={t().TITLE.ELEVATION_SUN}
+		>
+			<AltitudeWidget.Header />
+			<AltitudeWidget.Content>
+				<AltitudeWidget.Chart>
+					<AltitudeWidget.Grid />
+					<AltitudeWidget.Path />
+					<AltitudeWidget.Cursor />
+				</AltitudeWidget.Chart>
+				<AltitudeWidget.Legend />
+			</AltitudeWidget.Content>
+		</AltitudeWidget>
 	);
 }

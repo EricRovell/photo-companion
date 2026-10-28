@@ -1,0 +1,51 @@
+.toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	min-height: 2rem;
+	cursor: inherit;
+	user-select: none;
+}
+
+.input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.symbol {
+	width: 0.75rem;
+	height: 0.75rem;
+	flex-shrink: 0;
+	border: 1px solid currentcolor;
+	border-radius: 50%;
+	background: currentcolor;
+	box-shadow: var(--altitude-marker-ring, none);
+	transition:
+		var(--transition-bg),
+		border-color 0.125s linear,
+		box-shadow 0.125s linear,
+		opacity 0.125s linear;
+}
+
+.input:not(:checked) ~ .symbol {
+	border-color: var(--card-divider-color);
+	background: transparent;
+	opacity: 0.5;
+}
+
+.input:not(:checked) ~ .label {
+	opacity: 0.6;
+}
+
+.input:focus-visible ~ .symbol {
+	outline: 2px solid var(--focus-ring-color);
+	outline-offset: 3px;
+}
+

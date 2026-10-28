@@ -1,0 +1,22 @@
+.entity {
+	color: var(--altitude-color);
+}
+
+.path-above,
+.path-below {
+	fill: none;
+	stroke: currentcolor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 2.5;
+}
+
+.path-above {
+	stroke-opacity: 0.85;
+}
+
+.path-below {
+	stroke-dasharray: 4 5;
+	stroke-opacity: 0.3;
+	stroke-width: 2;
+}

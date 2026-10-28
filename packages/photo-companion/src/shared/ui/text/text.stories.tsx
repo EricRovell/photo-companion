@@ -40,3 +40,31 @@ export const Colors: Story = {
 		</div>
 	)
 };
+
+export const Svg: Story = {
+	render: () => (
+		<svg viewBox="0 0 320 80">
+			<Text
+				align="center"
+				as="text"
+				color="primary"
+				variant="heading-l"
+				x={160}
+				y={30}
+			>
+				Altitude
+			</Text>
+			<Text
+				align="center"
+				as="text"
+				color="secondary"
+				numeric
+				variant="text-s"
+				x={160}
+				y={60}
+			>
+				45° above the horizon
+			</Text>
+		</svg>
+	)
+};

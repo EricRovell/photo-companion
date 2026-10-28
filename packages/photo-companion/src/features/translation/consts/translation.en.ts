@@ -1,6 +1,14 @@
 import type { Translation } from "../types";
 
 export const t = {
+	ALTITUDE: {
+		AXIS_ALTITUDE: "Altitude (°)",
+		AXIS_TIME: "Time (h)",
+		DAILY_PEAK: "Daily peak",
+		HORIZON: "Horizon",
+		KEEP_ONE_SELECTED: "Keep at least one celestial body selected.",
+		SELECTED_TIME: "Selected time"
+	},
 	AZIMUTH: {
 		ARIA_ENTITY: "{label}: {azimuth}",
 		TITLE_SUN: "{sun} · {azimuth}",

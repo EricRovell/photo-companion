@@ -6,6 +6,10 @@
 	line-height: inherit;
 }
 
+.text:where(text, tspan, textPath) {
+	fill: currentcolor;
+}
+
 .text[data-variant^="text-"] {
 	font-weight: 300;
 	font-variation-settings: "wght" 300;
@@ -97,14 +101,17 @@
 
 .text[data-align="start"] {
 	text-align: start;
+	text-anchor: start;
 }
 
 .text[data-align="center"] {
 	text-align: center;
+	text-anchor: middle;
 }
 
 .text[data-align="end"] {
 	text-align: end;
+	text-anchor: end;
 }
 
 .text[data-align="justify"] {

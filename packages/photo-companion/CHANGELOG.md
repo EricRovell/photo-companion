@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.50.0
+
+- Updated altitude widget.
+
 ## 2.49.0
 
 - Update city lights widget visuals.

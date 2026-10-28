@@ -1,0 +1,70 @@
+.legend {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: right;
+}
+
+.legend th,
+.legend td {
+	padding: var(--space-3) var(--space-2);
+}
+
+.legend thead th {
+	padding-top: 0;
+}
+
+.legend th:first-child {
+	text-align: left;
+}
+
+.legend tbody th,
+.legend tbody td {
+	border-top: 1px solid var(--card-divider-color);
+}
+
+.entity {
+	color: var(--altitude-color);
+	cursor: pointer;
+	transition: var(--transition-bg);
+}
+
+.entity > * {
+	transition: opacity 0.125s linear;
+}
+
+.entity:has(input:disabled) {
+	cursor: default;
+}
+
+.entity:not(:has(input:disabled)):hover,
+.entity:has(input:focus-visible) {
+	--altitude-marker-ring: 0 0 0 3px color-mix(in srgb, var(--altitude-color) 20%, transparent);
+
+	background-color: color-mix(in srgb, var(--altitude-color) 10%, transparent);
+}
+
+.entity:not(:has(input:disabled)):active {
+	background-color: color-mix(in srgb, var(--altitude-color) 18%, transparent);
+}
+
+.entity:has(input:focus-visible) {
+	outline: 2px solid var(--focus-ring-color);
+	outline-offset: -2px;
+}
+
+.entity[data-selected="false"] td {
+	opacity: var(--altitude-inactive-opacity);
+}
+
+.entity[data-selected="false"]:is(:hover, :focus-within) td {
+	opacity: 0.75;
+}
+
+.value {
+	display: block;
+}
+
+.detail {
+	display: block;
+	margin-top: var(--space-1);
+}
