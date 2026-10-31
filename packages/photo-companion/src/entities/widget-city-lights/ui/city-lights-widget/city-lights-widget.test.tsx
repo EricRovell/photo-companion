@@ -2,6 +2,7 @@ import { fireEvent, render } from "@solidjs/testing-library";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import type { Accessor } from "solid-js";
 import type { City, IlluminationState, LightsSchedule, LightsScheduleStatus } from "types";
 
 import { CityLightsWidget } from "./city-lights-widget";
@@ -90,12 +91,16 @@ function getSolarSchedule(date: Date): LightsSchedule {
 	};
 }
 
-function TestWidget(props: { city?: City }) {
+function TestWidget(props: {
+	city?: City;
+	getTimerTimestamp?: Accessor<number>;
+}) {
 	return (
 		<CityLightsWidget
 			city={props.city ?? (uncertainty ? "OTHER" : "MOSCOW")}
 			date={selected()}
 			getScheduleForDate={getSchedule}
+			getTimerTimestamp={props.getTimerTimestamp}
 			schedule={getSchedule(selected())}
 			solar={{
 				getScheduleForDate: getSolarSchedule,
@@ -254,6 +259,17 @@ describe("CityLightsWidget", () => {
 		expect(view.getByText("00:00:01")).toBeInTheDocument();
 		vi.advanceTimersByTime(5000);
 		expect(view.getByText("00:00:00")).toBeInTheDocument();
+	});
+
+	it("preserves shared timer progress when switching schedules", () => {
+		const [ getTimerTimestamp, setTimerTimestamp ] = createSignal(selected().getTime() + 3000);
+		const view = render(() => <TestWidget getTimerTimestamp={getTimerTimestamp} />);
+
+		expect(view.getByText("09:29:57")).toBeInTheDocument();
+		setTimerTimestamp(selected().getTime() + 4000);
+		expect(view.getByText("09:29:56")).toBeInTheDocument();
+		fireEvent.click(view.getByRole("radio", { name: "Solar estimate" }));
+		expect(view.getByText("≈ 09:29:56")).toBeInTheDocument();
 	});
 
 	it.each([ "CONTINUOUS_DAYLIGHT", "CONTINUOUS_DARKNESS", "UNAVAILABLE" ] as const)("does not invent times or show a countdown for %s", (value) => {

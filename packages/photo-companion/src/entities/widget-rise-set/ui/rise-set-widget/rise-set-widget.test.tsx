@@ -168,6 +168,30 @@ describe("RiseSetWidget countdown", () => {
 		expect(view.getByText("01:01:32")).toBeInTheDocument();
 	});
 
+	it("keeps shared timer progress through remounts without advancing the selected date", () => {
+		const [ getTimerTimestamp, setTimerTimestamp ] = createSignal(defaults.date.getTime() + 30_000);
+
+		const view = render(() => <RiseSetWidget
+			{...defaults}
+			getTimerTimestamp={getTimerTimestamp}
+		/>);
+
+		expect(view.getByText("01:01:33")).toBeInTheDocument();
+		vi.advanceTimersByTime(1000);
+		expect(view.getByText("01:01:33")).toBeInTheDocument();
+		setTimerTimestamp(defaults.date.getTime() + 31_000);
+		expect(view.getByText("01:01:32")).toBeInTheDocument();
+
+		view.unmount();
+
+		const remounted = render(() => <RiseSetWidget
+			{...defaults}
+			getTimerTimestamp={getTimerTimestamp}
+		/>);
+
+		expect(remounted.getByText("01:01:32")).toBeInTheDocument();
+	});
+
 	it.each([
 		{ rise: null },
 		{ date: new Date("2026-10-21T20:00:00Z") },

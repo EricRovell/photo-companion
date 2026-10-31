@@ -3,9 +3,8 @@ import { createMemo, Show } from "solid-js";
 import type { BridgeScheduleEntry } from "bridge-schedule";
 import type { BridgeName, BridgeState } from "types";
 
-import { useDatetime } from "~/features/datetime-query";
+import { useCountdown, useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { createCountdown } from "~/shared/lib/timer";
 import { Card, Text } from "~/shared/ui";
 import { IconWarning } from "~/shared/ui/icons";
 
@@ -27,13 +26,9 @@ interface BridgeTimerProps {
 
 function BridgeTimer(props: BridgeTimerProps) {
 	const { format, t } = useTranslation();
-	const { getTimestamp } = useDatetime();
 	const { getNavigationState } = useBridges();
 
-	const getTime = createCountdown({
-		getTimestampEnd: () => props.state.timestamp,
-		getTimestampStart: () => getTimestamp()
-	});
+	const getTime = useCountdown(() => props.state.timestamp);
 
 	return (
 		<Show when={getNavigationState().navigation}>

@@ -10,7 +10,7 @@ import type { RiseSetWidgetProps } from "../../types";
 
 import styles from "./rise-set-summary.module.css";
 
-interface Props extends Pick<RiseSetWidgetProps, "aboveHorizon" | "belowHorizonInterval" | "date" | "entity" | "nextRise" | "rise" | "set"> {
+interface Props extends Pick<RiseSetWidgetProps, "aboveHorizon" | "belowHorizonInterval" | "date" | "entity" | "getTimerTimestamp" | "nextRise" | "rise" | "set"> {
 	status: Nullable<string>;
 	statusId: string;
 }
@@ -63,6 +63,7 @@ export function RiseSetSummary(props: Props) {
 						<RiseSetCountdown
 							date={props.date}
 							event={summary().nextEvent}
+							getTimerTimestamp={props.getTimerTimestamp}
 						/>
 					</Text>
 				</div>

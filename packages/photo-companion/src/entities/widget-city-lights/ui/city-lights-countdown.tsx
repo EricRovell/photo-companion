@@ -1,22 +1,21 @@
-import { createSignal, untrack } from "solid-js";
+import type { Accessor } from "solid-js";
 
-import { createTimeoutLoop } from "~/shared/lib/timer";
+import { createCountdown } from "~/shared/lib/timer";
 
 import { formatCityLightsCountdown } from "../lib";
 
-export function CityLightsCountdown(props: { duration: number }) {
-	const initialDuration = untrack(() => props.duration);
-	const startedAt = Date.now();
-	const [ remaining, setRemaining ] = createSignal(initialDuration);
+interface Props {
+	duration: number;
+	getTimerTimestamp?: Accessor<number>;
+	timestamp: number;
+}
 
-	const updateRemaining = () => {
-		const elapsed = Date.now() - startedAt;
-		setRemaining(Math.max(0, initialDuration - elapsed));
-	};
-
-	const getTickDelay = (): false | number => remaining() > 0 ? 1000 : false;
-
-	createTimeoutLoop(updateRemaining, getTickDelay);
+export function CityLightsCountdown(props: Props) {
+	const remaining = createCountdown({
+		getTimestampCurrent: () => props.getTimerTimestamp?.(),
+		getTimestampEnd: () => props.timestamp,
+		getTimestampStart: () => props.timestamp - props.duration
+	});
 
 	return (
 		<>

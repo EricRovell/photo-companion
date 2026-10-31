@@ -1,5 +1,5 @@
 import type { LightsNightEvent } from "lights-schedule";
-import type { JSX } from "solid-js";
+import type { Accessor, JSX } from "solid-js";
 import type { City, IlluminationState, LightsEventName, LightsSchedule } from "types";
 
 interface CityLightsScheduleData {
@@ -11,6 +11,7 @@ interface CityLightsScheduleData {
 export interface CityLightsWidgetProps extends CityLightsScheduleData {
 	city: City;
 	date: Date;
+	getTimerTimestamp?: Accessor<number>;
 	renderTime?: CityLightsTimeRenderer;
 	solar: CityLightsScheduleData;
 }

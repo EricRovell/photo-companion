@@ -8,13 +8,14 @@ import { useCityLights } from "../model";
 
 export function LightsSchedule() {
 	const { getCity, getScheduleByDate, getScheduleForDate, getSolarSchedule, getSolarScheduleForDate, getSolarState, getStateByDate } = useCityLights();
-	const { getDatetime } = useDatetime();
+	const { getDatetime, getTimerTimestamp } = useDatetime();
 
 	return (
 		<CityLightsWidget
 			city={getCity()}
 			date={getDatetime()}
 			getScheduleForDate={getScheduleForDate}
+			getTimerTimestamp={getTimerTimestamp}
 			renderTime={(date, children, label) => (
 				<LinkQuery
 					aria-label={label}

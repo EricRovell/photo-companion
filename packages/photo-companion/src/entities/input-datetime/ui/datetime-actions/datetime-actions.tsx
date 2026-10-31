@@ -1,3 +1,5 @@
+import { createMemo, createSignal } from "solid-js";
+
 import type { JSX } from "solid-js";
 
 import { Button } from "~/shared/ui";
@@ -17,6 +19,13 @@ interface DatetimeActionsProps {
 }
 
 export function DatetimeActions(props: DatetimeActionsProps) {
+	const [ editing, setEditing ] = createSignal(false);
+
+	// Keep live value updates from replacing the native picker's uncommitted draft.
+	const inputValue = createMemo<string | undefined>(previous => editing()
+		? previous
+		: typeof props.value === "string" ? props.value : undefined);
+
 	return (
 		<div class={styles.actions}>
 			<div class={styles["picker-control"]}>
@@ -25,12 +34,14 @@ export function DatetimeActions(props: DatetimeActionsProps) {
 					aria-label={props.labels.DATETIME}
 					class={styles.input}
 					disabled={props.disabled}
+					onBlur={() => setEditing(false)}
 					onChange={event => props.model.handlePickerChange(event)}
+					onFocus={() => setEditing(true)}
 					ref={props.model.setInputRef}
 					step={1}
 					tabIndex={-1}
 					type="datetime-local"
-					value={typeof props.value === "string" ? props.value : undefined}
+					value={inputValue()}
 				/>
 				<Button
 					aria-label={props.labels.OPEN_DATETIME_PICKER}

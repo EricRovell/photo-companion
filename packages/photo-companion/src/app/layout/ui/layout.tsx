@@ -2,6 +2,7 @@ import { type ParentProps } from "solid-js";
 
 import { Bulb } from "~/entities/city-lights";
 import { PageMeta } from "~/entities/page-meta";
+import { DatetimeProvider } from "~/features/datetime-query";
 import { LinkQuery, Navigation } from "~/features/navigation";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
@@ -33,13 +34,13 @@ export const Layout = (props: ParentProps) => {
 	useLocationQuery();
 
 	return (
-		<>
+		<DatetimeProvider>
 			<PageMeta />
 			<Header />
 			<Navigation />
 			<main>
 				{props.children}
 			</main>
-		</>
+		</DatetimeProvider>
 	);
 };

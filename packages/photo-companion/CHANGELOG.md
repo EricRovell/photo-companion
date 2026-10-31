@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.52.0
+
+- Datetime now is a live value if not specific datetime selected.
+
 ## 2.51.0
 
 - Sunlight widget.

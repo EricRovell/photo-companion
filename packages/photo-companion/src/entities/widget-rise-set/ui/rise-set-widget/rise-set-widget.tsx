@@ -48,6 +48,7 @@ export function RiseSetWidget(props: ParentProps<RiseSetWidgetProps>) {
 						belowHorizonInterval={props.belowHorizonInterval}
 						date={props.date}
 						entity={props.entity}
+						getTimerTimestamp={props.getTimerTimestamp}
 						nextRise={props.nextRise}
 						rise={props.rise}
 						set={props.set}

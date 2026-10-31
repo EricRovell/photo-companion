@@ -1,58 +1,38 @@
-import { type Accessor, createEffect, createSignal, on } from "solid-js";
+import { type Accessor, createMemo } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import { useDocumentVisibility } from "../../primitives/use-document-visibility";
-import { createTimeoutLoop } from "./create-timeout-loop";
+import { useClock } from "./clock";
 
 interface Options {
+	getTimestampCurrent?: Accessor<Nullable<number>>;
 	getTimestampEnd: Accessor<number>;
 	getTimestampStart?: Accessor<number>;
-	step?: number;
 }
 
-const getCurrentTimestamp = () => Date.now();
-
 /**
- * Creates a countdown timer between two timestamps.
+ * Uses a live timestamp when supplied, otherwise advances from the selected start.
+ * In standalone mode, changing the start resets the elapsed-time anchor.
  */
-export function createCountdown({ getTimestampEnd, getTimestampStart = getCurrentTimestamp, step = 1000 }: Options) {
-	const [ getTime, setTime ] = createSignal(0);
-	const getVisibility = useDocumentVisibility();
-	let previousDuration: Nullish<number> = null;
-	let wasVisible = getVisibility();
+export function createCountdown(options: Options) {
+	const { getTimestampCurrent, getTimestampEnd, getTimestampStart = Date.now } = options;
 
-	const handleIncrement = () => setTime(value => value - step);
+	const clock = useClock();
 
-	createTimeoutLoop(handleIncrement, step);
-
-	/**
-	 * Syncs countdown on Accessors' change
-	 * and when page "wakens up".
-	 */
-	createEffect(() => {
-		const duration = getTimestampEnd() - getTimestampStart();
-		const visible = getVisibility();
-
-		if (visible) {
-			setTime(time => {
-				if (isNullable(previousDuration) || !wasVisible) {
-					return duration;
-				}
-
-				// calc difference
-				return time + duration - previousDuration;
-			});
-		}
-
-		previousDuration = duration;
-		wasVisible = visible;
-	});
-
-	createEffect(on(getTime, time => {
-		if (time < 0) {
-			setTime(getTimestampEnd() - getTimestampStart());
-		}
+	const getAnchor = createMemo(() => ({
+		startedAt: Date.now(),
+		timestamp: getTimestampStart()
 	}));
 
-	return getTime;
+	return createMemo(() => {
+		const current = getTimestampCurrent?.();
+
+		if (!isNullable(current)) {
+			return Math.max(0, getTimestampEnd() - current);
+		}
+
+		const anchor = getAnchor();
+		const elapsed = Math.max(0, clock.getTimestamp() - anchor.startedAt);
+
+		return Math.max(0, getTimestampEnd() - anchor.timestamp - elapsed);
+	});
 }

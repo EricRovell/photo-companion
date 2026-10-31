@@ -5,6 +5,7 @@ import type { MemoryHistory } from "@solidjs/router";
 import type { JSXElement } from "solid-js";
 
 import { useLocationQuery } from "~/app/layout/model";
+import { DatetimeProvider } from "~/features/datetime-query";
 import { SettingsProvider, useSettings } from "~/features/settings";
 import { createQueryDate } from "~/shared/lib/query-date";
 
@@ -72,15 +73,17 @@ export function withStoryProviders(content: () => JSXElement, options: StoryEnvi
 			<Route
 				component={() => (
 					<StoryQuerySync history={history} options={options}>
-						<SettingsProvider>
-							<StoryLocationQuery options={options}>
-								<StoryTranslationProvider>
-									<div class="storybook-canvas">
-										{content()}
-									</div>
-								</StoryTranslationProvider>
-							</StoryLocationQuery>
-						</SettingsProvider>
+						<DatetimeProvider>
+							<SettingsProvider>
+								<StoryLocationQuery options={options}>
+									<StoryTranslationProvider>
+										<div class="storybook-canvas">
+											{content()}
+										</div>
+									</StoryTranslationProvider>
+								</StoryLocationQuery>
+							</SettingsProvider>
+						</DatetimeProvider>
 					</StoryQuerySync>
 				)}
 				path="*"

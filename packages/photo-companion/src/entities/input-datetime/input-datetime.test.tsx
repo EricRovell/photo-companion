@@ -1,4 +1,5 @@
 import { createEvent, fireEvent, render, waitFor } from "@solidjs/testing-library";
+import { createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { InputDatetime } from "./index";
@@ -6,6 +7,59 @@ import { InputDatetime } from "./index";
 afterEach(() => vi.unstubAllGlobals());
 
 describe("InputDatetime", () => {
+	it.each([ "focus", "picker" ])("preserves an uncommitted edit during live updates after %s", (interaction) => {
+		const [ value, setValue ] = createSignal("2026-08-02T10:30:47");
+
+		const handleDatetimeChange = vi.fn();
+
+		const view = render(() => <InputDatetime
+			onDatetimeChange={handleDatetimeChange}
+			value={value()}
+		/>);
+		const input = view.getByLabelText<HTMLInputElement>("Date and time");
+
+		if (interaction === "picker") {
+			const showPicker = vi.fn();
+			Object.defineProperty(input, "showPicker", { value: showPicker });
+			fireEvent.click(view.getByRole("button", { name: "Open date and time picker" }));
+			expect(showPicker).toHaveBeenCalledOnce();
+		} else {
+			input.focus();
+		}
+
+		fireEvent.input(input, { target: { value: "2027-04-05T12:45:36" } });
+		setValue("2026-08-02T10:30:48");
+		setValue("2026-08-02T10:30:49");
+
+		expect(input.value).toBe("2027-04-05T12:45:36.000");
+		expect(handleDatetimeChange).not.toHaveBeenCalled();
+		fireEvent.change(input);
+		expect(handleDatetimeChange).toHaveBeenCalledWith("2027-04-05T12:45:36.000");
+	});
+
+	it("resumes live input updates when an edit is abandoned", () => {
+		const [ value, setValue ] = createSignal("2026-08-02T10:30:47");
+
+		const handleDatetimeChange = vi.fn();
+
+		const view = render(() => <InputDatetime
+			onDatetimeChange={handleDatetimeChange}
+			value={value()}
+		/>);
+
+		const input = view.getByLabelText<HTMLInputElement>("Date and time");
+
+		input.focus();
+		fireEvent.input(input, { target: { value: "2027-04-05T12:45:36" } });
+		setValue("2026-08-02T10:30:48");
+		input.blur();
+
+		expect(input.value).toBe("2026-08-02T10:30:48.000");
+		setValue("2026-08-02T10:30:49");
+		expect(input.value).toBe("2026-08-02T10:30:49.000");
+		expect(handleDatetimeChange).not.toHaveBeenCalled();
+	});
+
 	it("uses second precision and preserves seconds when changing the day", async () => {
 		const handleDatetimeChange = vi.fn();
 		vi.stubGlobal("matchMedia", vi.fn(() => Object.assign(new EventTarget(), { matches: true })));

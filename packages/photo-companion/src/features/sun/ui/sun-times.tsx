@@ -9,7 +9,7 @@ import { useSunService } from "../model";
 const SUN_SIZE = 64;
 
 export function SunTimes() {
-	const { getDatetime } = useDatetime();
+	const { getDatetime, getTimerTimestamp } = useDatetime();
 	const { altitude, belowHorizonInterval, nextRise, riseSetTimes } = useSunService();
 
 	return (
@@ -18,6 +18,7 @@ export function SunTimes() {
 			belowHorizonInterval={belowHorizonInterval()}
 			date={getDatetime()}
 			entity="sun"
+			getTimerTimestamp={getTimerTimestamp}
 			nextRise={nextRise()}
 			renderTime={(date, children, label) => (
 				<LinkQuery
