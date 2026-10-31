@@ -1,6 +1,5 @@
-import { useDatetime } from "~/features/datetime-query";
+import { useCountdown } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { createCountdown } from "~/shared/lib/timer";
 import { PropertyList } from "~/shared/ui";
 
 import { useCityLights } from "../model";
@@ -14,16 +13,12 @@ interface Props {
  */
 export function LightsCountdown(props: Props) {
 	const { format, t } = useTranslation();
-	const { getTimestamp } = useDatetime();
 	const { getStateByDate } = useCityLights();
 	const getLabel = () => props.lights
 		? t().LABEL.TILL_TURNED_OFF
 		: t().LABEL.TILL_TURNED_ON;
 
-	const time = createCountdown({
-		getTimestampEnd: () => getStateByDate().timestamp ?? getTimestamp(),
-		getTimestampStart: () => getTimestamp()
-	});
+	const time = useCountdown(() => getStateByDate().timestamp);
 
 	return (
 		<PropertyList.Item>

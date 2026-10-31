@@ -9,7 +9,7 @@ import { useMoonService } from "../../model/moon.context";
 const MOON_SIZE = 72;
 
 export function MoonTimes() {
-	const { getDatetime } = useDatetime();
+	const { getDatetime, getTimerTimestamp } = useDatetime();
 	const { altitude, belowHorizonInterval, nextRise, phaseValue, riseSetTimes, rotation } = useMoonService();
 
 	return (
@@ -18,6 +18,7 @@ export function MoonTimes() {
 			belowHorizonInterval={belowHorizonInterval()}
 			date={getDatetime()}
 			entity="moon"
+			getTimerTimestamp={getTimerTimestamp}
 			nextRise={nextRise()}
 			renderTime={(date, children, label) => (
 				<LinkQuery

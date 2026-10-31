@@ -1,3 +1,5 @@
+import type { Accessor } from "solid-js";
+
 export type SunlightPhase = "astronomical" | "blue" | "civil" | "daylight" | "golden" | "nautical" | "night";
 
 export interface SunlightInterval {
@@ -36,6 +38,7 @@ export interface SunlightDay {
 
 export interface SunlightWidgetProps {
 	date: Date;
+	getTimerTimestamp?: Accessor<number>;
 	latitude: number;
 	longitude: number;
 }

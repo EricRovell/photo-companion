@@ -37,10 +37,12 @@ export function createNativeDatetimePicker(options: CreateNativeDatetimePickerOp
 			return;
 		}
 
+		// showPicker() does not necessarily focus the input itself.
+		inputRef.focus({ preventScroll: true });
+
 		try {
 			inputRef.showPicker();
 		} catch {
-			inputRef.focus({ preventScroll: true });
 			inputRef.click();
 		}
 	};

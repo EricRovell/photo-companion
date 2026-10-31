@@ -36,7 +36,10 @@ export function createCityLightsWidgetModel(props: Omit<CityLightsWidgetProps, "
 	const withinWindow = () => nightSchedule()?.windows.some(event => props.date.getTime() >= event.windowStart && props.date.getTime() <= event.windowEnd) ?? false;
 
 	const countdown = createMemo(() => scheduled() && props.state.timestamp !== null
-		? { duration: Math.max(0, props.state.timestamp - props.date.getTime()) }
+		? {
+			duration: Math.max(0, props.state.timestamp - props.date.getTime()),
+			timestamp: props.state.timestamp
+		}
 		: null);
 
 	const dayLabel = (timestamp: number) => {

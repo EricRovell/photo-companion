@@ -1,8 +1,7 @@
 import { createMemo } from "solid-js";
 
-import { useDatetime } from "~/features/datetime-query";
+import { useCountdown, useDatetime } from "~/features/datetime-query";
 import { useTranslation } from "~/features/translation";
-import { createCountdown } from "~/shared/lib/timer";
 import { PropertyList } from "~/shared/ui";
 
 import { useBridges } from "../model";
@@ -17,10 +16,7 @@ export function NextBridgeCountdown() {
 
 	const getNextEvent = createMemo(() => getNextBridgeEvent(getTimestamp()));
 
-	const time = createCountdown({
-		getTimestampEnd: () => getNextEvent().timestamp,
-		getTimestampStart: () => getTimestamp()
-	});
+	const time = useCountdown(() => getNextEvent().timestamp);
 
 	const property = () => {
 		const { name, open } = getNextEvent();

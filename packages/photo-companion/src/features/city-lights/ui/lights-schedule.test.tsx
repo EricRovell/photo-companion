@@ -2,6 +2,8 @@ import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
 import { cleanup, fireEvent, render, waitFor } from "@solidjs/testing-library";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+import { DatetimeProvider } from "~/features/datetime-query";
+
 import { CityLightsProvider } from "../model";
 import { LightsSchedule } from "./lights-schedule";
 
@@ -38,7 +40,11 @@ function renderSchedule(datetime: string) {
 	const view = render(() => (
 		<MemoryRouter history={history}>
 			<Route
-				component={() => <CityLightsProvider><LightsSchedule /></CityLightsProvider>}
+				component={() => (
+					<DatetimeProvider>
+						<CityLightsProvider><LightsSchedule /></CityLightsProvider>
+					</DatetimeProvider>
+				)}
 				path="/lights"
 			/>
 		</MemoryRouter>

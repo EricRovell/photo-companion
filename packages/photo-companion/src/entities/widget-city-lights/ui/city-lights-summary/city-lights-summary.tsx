@@ -1,5 +1,7 @@
 import { Show } from "solid-js";
 
+import type { Accessor } from "solid-js";
+
 import { Text } from "~/shared/ui";
 
 import { CityLightsCountdown } from "../city-lights-countdown";
@@ -7,11 +9,15 @@ import { CityLightsCountdown } from "../city-lights-countdown";
 import styles from "./city-lights-summary.module.css";
 
 interface Props {
-	countdown: { duration: number } | null;
+	countdown: {
+		duration: number;
+		timestamp: number;
+	} | null;
 	countdownLabel: string;
 	duration: string;
 	durationLabel: string;
 	estimated: boolean;
+	getTimerTimestamp?: Accessor<number>;
 }
 
 export function CityLightsSummary(props: Props) {
@@ -52,7 +58,11 @@ export function CityLightsSummary(props: Props) {
 				>
 					{props.estimated && props.countdown ? "≈ " : ""}
 					<Show when={props.countdown} fallback="—" keyed>
-						{value => <CityLightsCountdown duration={value.duration} />}
+						{value => <CityLightsCountdown
+							duration={value.duration}
+							getTimerTimestamp={props.getTimerTimestamp}
+							timestamp={value.timestamp}
+						/>}
 					</Show>
 				</Text>
 			</div>

@@ -75,6 +75,7 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 								duration={model().duration()}
 								durationLabel={model().durationLabel()}
 								estimated={model().estimated()}
+								getTimerTimestamp={props.getTimerTimestamp}
 							/>
 							<p class={styles.description} id={selectionId}>
 								{model().selectedTime()}

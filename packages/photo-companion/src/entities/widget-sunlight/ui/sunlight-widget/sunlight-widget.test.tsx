@@ -40,6 +40,31 @@ describe("SunlightWidget", () => {
 		expect(view.getByText("Golden hour in 2 min")).toBeInTheDocument();
 	});
 
+	it("updates the countdown from the shared clock while keeping the selected phase fixed", () => {
+		const day = createSunlightDay(new Date("2026-09-21T12:00:00Z"), {
+			latitude: 51.5,
+			longitude: 0
+		});
+
+		const daylight = day.intervals.find(interval => interval.phase === "daylight");
+		assert.isDefined(daylight);
+
+		const date = new Date(daylight.end - 61_000);
+		const [ getTimerTimestamp, setTimerTimestamp ] = createSignal(date.getTime());
+
+		const view = render(() => <SunlightWidget
+			date={date}
+			getTimerTimestamp={getTimerTimestamp}
+			latitude={51.5}
+			longitude={0}
+		/>);
+
+		expect(view.getByText("Golden hour in 2 min")).toBeInTheDocument();
+		setTimerTimestamp(date.getTime() + 1000);
+		expect(view.getByText("Golden hour in 1 min")).toBeInTheDocument();
+		expect(view.container.querySelector("tr[data-active=true]")).toHaveTextContent("Daylight");
+	});
+
 	it("updates the current phase and legend from the selected time", () => {
 		const [ date, setDate ] = createSignal(new Date("2026-09-21T12:00:00Z"));
 		const view = render(() => <SunlightWidget date={date()} latitude={51.5} longitude={0} />);

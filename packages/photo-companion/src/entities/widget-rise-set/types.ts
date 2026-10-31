@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js";
+import type { Accessor, JSX } from "solid-js";
 
 import type { BelowHorizonInterval } from "~/shared/lib/rise-set";
 
@@ -16,6 +16,7 @@ export interface RiseSetWidgetProps {
 	belowHorizonInterval?: BelowHorizonInterval;
 	date: Date;
 	entity: "moon" | "sun";
+	getTimerTimestamp?: Accessor<number>;
 	nextRise?: Nullish<Date>;
 	renderTime?: RiseSetTimeRenderer;
 	rise: Nullish<Date>;

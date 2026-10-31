@@ -4,6 +4,7 @@ import { hoursMinutesFormatter } from "utils/formatters";
 import { isNullable } from "utils/validators";
 
 import { useTranslation } from "~/features/translation";
+import { createCountdown } from "~/shared/lib/timer";
 
 import { createSunlightDay, getFollowingSunlightChange } from "../lib";
 
@@ -45,6 +46,12 @@ export function createSunlightModel(props: SunlightWidgetProps) {
 		} : followingChange();
 	});
 
+	const remaining = createCountdown({
+		getTimestampCurrent: () => props.getTimerTimestamp?.(),
+		getTimestampEnd: () => nextChange()?.timestamp ?? 0,
+		getTimestampStart: () => props.date.getTime()
+	});
+
 	const nextPhase = createMemo(() => {
 		const next = nextChange();
 
@@ -52,10 +59,7 @@ export function createSunlightModel(props: SunlightWidgetProps) {
 			return t().SUNLIGHT.NO_CHANGE_TODAY;
 		}
 
-		const minutes = Math.max(
-			0,
-			Math.ceil((next.timestamp - props.date.getTime()) / 60_000)
-		);
+		const minutes = Math.ceil(remaining() / 60_000);
 
 		return format().message(t().SUNLIGHT.NEXT_PHASE_IN, {
 			duration: formatDuration()(minutes),
