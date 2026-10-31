@@ -1,0 +1,21 @@
+.tick,
+.major {
+	stroke: rgb(255 255 255 / 26%);
+	stroke-linecap: round;
+	stroke-width: 1;
+}
+
+.major {
+	stroke: rgb(255 255 255 / 58%);
+	stroke-width: 1.5;
+}
+
+.label {
+	dominant-baseline: middle;
+	fill: var(--color-text-secondary);
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	text-anchor: middle;
+}

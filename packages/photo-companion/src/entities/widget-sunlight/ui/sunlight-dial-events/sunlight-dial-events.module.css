@@ -1,0 +1,5 @@
+.event {
+	stroke: var(--color-text);
+	stroke-linecap: round;
+	stroke-width: 1.5;
+}

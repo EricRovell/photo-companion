@@ -339,6 +339,23 @@ export const t = {
 		SUNSET_START: "Закат Солнца",
 		SUNSET_START_TITLE: "Солнечный диск касается горизонта"
 	},
+	SUNLIGHT: {
+		ALL_DAY: "Весь день",
+		ARIA_DIAL: "Солнечный свет в течение суток. {time}: {phase}. Восход и закат отмечены на кольце. Интервалы указаны ниже.",
+		ASTRONOMICAL_TWILIGHT: "Астрономические сумерки",
+		BLUE_HOUR: "Синий час",
+		CIVIL_TWILIGHT: "Гражданские сумерки",
+		DAYLIGHT: "Дневной свет",
+		EVENING: "Вечер",
+		GOLDEN_HOUR: "Золотой час",
+		LIGHT: "Свет",
+		MORNING: "Утро",
+		NAUTICAL_TWILIGHT: "Навигационные сумерки",
+		NEXT_PHASE_IN: "{phase} через {duration}",
+		NIGHT: "Ночь",
+		NO_CHANGE_TODAY: "Без смены света сегодня",
+		TITLE: "Солнечный свет"
+	},
 	TIMELINE_EVENT: {
 		LINK_TITLE: "{event}: {datetime}",
 		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",

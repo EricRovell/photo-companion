@@ -1,0 +1,7 @@
+.marker {
+	fill: var(--sunlight-phase-text-color, var(--sunlight-phase-color));
+	stroke: var(--card-background);
+	stroke-linejoin: round;
+	stroke-width: 2;
+	paint-order: stroke fill;
+}

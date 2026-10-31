@@ -1,0 +1,13 @@
+.dial {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	overflow: visible;
+}
+
+.horizon {
+	fill: rgb(255 255 255 / 1%);
+	stroke: rgb(255 255 255 / 14%);
+	stroke-width: 1.5;
+}

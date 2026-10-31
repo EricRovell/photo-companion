@@ -1,0 +1,18 @@
+.segment {
+	fill: none;
+	stroke: var(--sunlight-phase-color);
+	stroke-linecap: butt;
+	stroke-linejoin: round;
+	stroke-width: 3.5;
+}
+
+.night-outline {
+	fill: none;
+	stroke: rgb(255 255 255 / 16%);
+	stroke-width: 5.5;
+}
+
+.segment-divider {
+	stroke: var(--card-background);
+	stroke-width: 1;
+}

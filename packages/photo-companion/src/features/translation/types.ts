@@ -340,6 +340,23 @@ export interface Translation {
 		SUNSET_START: string;
 		SUNSET_START_TITLE: string;
 	};
+	SUNLIGHT: {
+		ALL_DAY: string;
+		ARIA_DIAL: `${string}{phase}${string}` & `${string}{time}${string}`;
+		ASTRONOMICAL_TWILIGHT: string;
+		BLUE_HOUR: string;
+		CIVIL_TWILIGHT: string;
+		DAYLIGHT: string;
+		EVENING: string;
+		GOLDEN_HOUR: string;
+		LIGHT: string;
+		MORNING: string;
+		NAUTICAL_TWILIGHT: string;
+		NEXT_PHASE_IN: `${string}{duration}${string}` & `${string}{phase}${string}`;
+		NIGHT: string;
+		NO_CHANGE_TODAY: string;
+		TITLE: string;
+	};
 	TIMELINE_EVENT: {
 		LINK_TITLE: `${string}{datetime}${string}` & `${string}{event}${string}`;
 		MOON_DESCRIPTION: `${string}{type}${string}{fraction}${string}{azimuth}${string}`;

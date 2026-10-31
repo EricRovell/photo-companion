@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.51.0
+
+- Sunlight widget.
+
 ## 2.50.0
 
 - Updated altitude widget.

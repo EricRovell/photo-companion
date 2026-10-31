@@ -71,6 +71,32 @@ export const degreesFormatter = getNumberFormatter({
 });
 
 /**
+ * Formats a whole number of minutes as localized hours and minutes.
+ * Callers choose how to round partial minutes.
+ */
+export const hoursMinutesFormatter = (locale = "en", unitDisplay: Intl.NumberFormatOptions["unitDisplay"] = "short") => {
+	const formatUnit = (unit: "hour" | "minute") => getNumberFormatter({
+		style: "unit",
+		unit,
+		unitDisplay
+	})(locale);
+
+	const hour = formatUnit("hour");
+	const minute = formatUnit("minute");
+
+	return (totalMinutes: number) => {
+		const hours = Math.floor(totalMinutes / 60);
+		const minutes = totalMinutes % 60;
+
+		if (!hours) {
+			return minute(minutes);
+		}
+
+		return minutes ? `${hour(hours)} ${minute(minutes)}` : hour(hours);
+	};
+};
+
+/**
  * Formats a numeric value into kilometers unit.
  */
 export const kilometersFormatter = getNumberFormatter({

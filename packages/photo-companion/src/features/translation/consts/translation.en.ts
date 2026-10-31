@@ -339,6 +339,23 @@ export const t = {
 		SUNSET_START: "Sunset starts",
 		SUNSET_START_TITLE: "The Sun disk touches the horizon"
 	},
+	SUNLIGHT: {
+		ALL_DAY: "All day",
+		ARIA_DIAL: "Daily sunlight. {time}: {phase}. Sunrise and sunset are marked on the ring. Time spans are listed below.",
+		ASTRONOMICAL_TWILIGHT: "Astronomical twilight",
+		BLUE_HOUR: "Blue hour",
+		CIVIL_TWILIGHT: "Civil twilight",
+		DAYLIGHT: "Daylight",
+		EVENING: "Evening",
+		GOLDEN_HOUR: "Golden hour",
+		LIGHT: "Light",
+		MORNING: "Morning",
+		NAUTICAL_TWILIGHT: "Nautical twilight",
+		NEXT_PHASE_IN: "{phase} in {duration}",
+		NIGHT: "Night",
+		NO_CHANGE_TODAY: "No change today",
+		TITLE: "Sunlight"
+	},
 	TIMELINE_EVENT: {
 		LINK_TITLE: "{event}: {datetime}",
 		MOON_DESCRIPTION: "{type} {fraction}, {azimuth}",

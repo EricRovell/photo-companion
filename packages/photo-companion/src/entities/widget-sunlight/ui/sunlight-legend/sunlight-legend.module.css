@@ -1,0 +1,123 @@
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+	padding: var(--space-2);
+}
+
+.table thead th {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-1);
+	font-weight: 500;
+	text-align: right;
+}
+
+.table thead th:first-child,
+.table tbody th {
+	text-align: left;
+}
+
+.table tbody th,
+.table tbody td {
+	border-top: 1px solid var(--card-divider-color);
+	font-size: var(--font-size-2);
+	vertical-align: top;
+}
+
+.table tbody th {
+	font-weight: 500;
+}
+
+.table tbody td {
+	color: var(--color-text-secondary);
+	font-weight: 500;
+	text-align: right;
+}
+
+.table tr[data-active="true"] .swatch {
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--sunlight-phase-text-color, var(--sunlight-phase-color)) 25%, transparent);
+}
+
+.table tr[data-phase="night"] .swatch {
+	outline: 1px solid rgb(255 255 255 / 16%);
+}
+
+.table tr[data-active="true"] th {
+	color: var(--sunlight-phase-text-color, var(--sunlight-phase-color));
+	font-weight: 600;
+}
+
+.table tr[data-active="true"] td {
+	color: var(--color-text);
+}
+
+.name {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.swatch {
+	flex: 0 0 0.55rem;
+	height: 0.55rem;
+	border-radius: 50%;
+	background: var(--sunlight-phase-color);
+}
+
+.label {
+	min-width: 0;
+	hyphens: auto;
+	overflow-wrap: anywhere;
+}
+
+.range {
+	display: block;
+	white-space: nowrap;
+}
+
+.range + .range {
+	margin-top: var(--space-1);
+}
+
+@container (width < 22rem) {
+	.table,
+	.table thead,
+	.table tbody {
+		display: block;
+	}
+
+	.table tr {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.table th,
+	.table td {
+		padding: var(--space-2);
+	}
+
+	.table thead th:first-child {
+		display: none;
+	}
+
+	.table tbody tr {
+		gap: var(--space-1) 0;
+		padding: var(--space-2);
+		border-top: 1px solid var(--card-divider-color);
+	}
+
+	.table tbody th,
+	.table tbody td {
+		padding: 0;
+		border-top: 0;
+	}
+
+	.table tbody th,
+	.table tbody td[colspan] {
+		grid-column: 1 / -1;
+	}
+}
