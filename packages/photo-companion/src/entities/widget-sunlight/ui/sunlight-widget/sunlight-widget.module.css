@@ -1,0 +1,75 @@
+.widget {
+	--sunlight-daylight-color: hsl(53deg 100% 64%);
+	--sunlight-golden-color: hsl(28deg 100% 50%);
+	--sunlight-blue-color: hsl(190deg 100% 50%);
+	--sunlight-civil-color: hsl(345deg 100% 70%);
+	--sunlight-nautical-color: hsl(285deg 100% 77%);
+	--sunlight-astronomical-color: hsl(230deg 100% 63%);
+	--sunlight-night-color: hsl(220deg 20% 5%);
+}
+
+.widget [data-phase="daylight"] {
+	--sunlight-phase-color: var(--sunlight-daylight-color);
+}
+
+.widget [data-phase="golden"] {
+	--sunlight-phase-color: var(--sunlight-golden-color);
+}
+
+.widget [data-phase="blue"] {
+	--sunlight-phase-color: var(--sunlight-blue-color);
+}
+
+.widget [data-phase="civil"] {
+	--sunlight-phase-color: var(--sunlight-civil-color);
+}
+
+.widget [data-phase="nautical"] {
+	--sunlight-phase-color: var(--sunlight-nautical-color);
+}
+
+.widget [data-phase="astronomical"] {
+	--sunlight-phase-color: var(--sunlight-astronomical-color);
+	--sunlight-phase-text-color: hsl(230deg 100% 80%);
+}
+
+.widget [data-phase="night"] {
+	--sunlight-phase-color: var(--sunlight-night-color);
+	--sunlight-phase-text-color: hsl(210deg 15% 78%);
+}
+
+.content {
+	display: grid;
+	place-items: center;
+	padding: 0 var(--space-4) var(--space-5);
+}
+
+.visual {
+	container-type: inline-size;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--space-3);
+	width: min(100%, 25rem);
+}
+
+.diagram {
+	position: relative;
+}
+
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: grid;
+	gap: var(--space-2);
+	width: 50%;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+.center .phase {
+	color: var(--color-text);
+	font-size: clamp(var(--font-size-2), 5cqi, var(--font-size-6));
+}
+

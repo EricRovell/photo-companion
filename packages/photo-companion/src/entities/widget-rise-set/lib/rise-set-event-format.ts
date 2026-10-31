@@ -1,5 +1,5 @@
 import { isSameDay, shiftDate } from "utils/date";
-import { getNumberFormatter } from "utils/formatters";
+import { hoursMinutesFormatter } from "utils/formatters";
 import { isNullable } from "utils/validators";
 
 import type { RiseSetEventData, RiseSetWidgetProps } from "../types";
@@ -67,24 +67,16 @@ export function formatRiseSetDuration(rise: Nullish<Date>, set: Nullish<Date>, l
 	if (!rise || !set) {
 		return "";
 	}
+
 	const duration = set.getTime() - rise.getTime();
+
 	if (!Number.isFinite(duration) || duration <= 0) {
 		return "";
 	}
+
 	const totalMinutes = Math.round(duration / 60_000);
-	const hours = Math.floor(totalMinutes / 60);
-	const minutes = totalMinutes % 60;
 
-	const format = (value: number, unit: "hour" | "minute") => getNumberFormatter({
-		style: "unit",
-		unit,
-		unitDisplay: "narrow"
-	})(locale)(value);
-
-	return [
-		hours ? format(hours, "hour") : "",
-		minutes || !hours ? format(minutes, "minute") : ""
-	].filter(Boolean).join(" ");
+	return hoursMinutesFormatter(locale, "narrow")(totalMinutes);
 }
 
 export function formatRiseSetCountdown(milliseconds: number): string {

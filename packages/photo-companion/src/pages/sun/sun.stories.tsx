@@ -2,7 +2,7 @@ import type { JSXElement } from "solid-js";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { SolarEclipse } from "~/features/solar-eclipse";
-import { SunAltitude, SunAzimuth, SunInfo, SunProvider, SunTimeline, SunTimes } from "~/features/sun";
+import { SunAltitude, SunAzimuth, SunInfo, SunLight, SunProvider, SunTimeline, SunTimes } from "~/features/sun";
 import { SunSeasons } from "~/features/sun-seasons";
 import { storyDatetimeConfig, storyLocationConfig } from "~/stories/story-controls";
 import { withStoryProviders } from "~/stories/story-providers";
@@ -36,6 +36,11 @@ export const Times: Story = {
 export const Azimuth: Story = {
 	...storyLocationConfig,
 	render: args => withStoryProviders(() => <Widget><SunAzimuth /></Widget>, args)
+};
+
+export const Sunlight: Story = {
+	...storyLocationConfig,
+	render: args => withStoryProviders(() => <Widget><SunLight /></Widget>, args)
 };
 
 export const Altitude: Story = {
@@ -72,6 +77,7 @@ export const AllWidgets: Story = {
 			<SolarEclipse />
 			<SunInfo />
 			<SunSeasons />
+			<SunLight />
 			<SunTimeline />
 		</Widget>
 	), args)
