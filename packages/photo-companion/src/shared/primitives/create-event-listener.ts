@@ -1,13 +1,11 @@
 import { createEffect, createSignal, getOwner, on, onCleanup } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { Accessor} from "solid-js";
+import type { Accessor } from "solid-js";
+
+import { isAccessor } from "./is-accessor";
 
 type MaybeAccessor<T> = Accessor<T> | T;
-
-function isAccessor<T>(val?: unknown): val is Accessor<T> {
-	return typeof val === "function";
-}
 
 /**
  * Normalizes a value into Accessor.

@@ -1,11 +1,11 @@
 import { MetaProvider } from "@solidjs/meta";
 import { Suspense } from "solid-js";
-import { Toaster } from "solid-sonner";
 
 import { NavigationServiceProvider } from "~/features/navigation";
-import { ServiceWorkerProvider, ToastUpdate } from "~/features/service-worker";
+import { ServiceWorkerProvider } from "~/features/service-worker";
 import { SettingsProvider } from "~/features/settings";
 import { TranslationProvider } from "~/features/translation";
+import { Notifications, notifications } from "~/shared/ui/notifications";
 
 import { Routes } from "../routes";
 
@@ -22,8 +22,7 @@ export const App = () => (
 					<Suspense>
 						<TranslationProvider>
 							<Routes />
-							<ToastUpdate />
-							<Toaster position="bottom-center" richColors theme="dark" />
+							<Notifications center={notifications} position="bottom-center" />
 						</TranslationProvider>
 					</Suspense>
 				</NavigationServiceProvider>

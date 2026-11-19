@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.53.0
+
+- Update notifications implementation and design.
+
 ## 2.52.0
 
 - Datetime now is a live value if not specific datetime selected.
