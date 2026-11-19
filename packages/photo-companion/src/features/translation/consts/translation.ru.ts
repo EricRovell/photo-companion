@@ -57,7 +57,8 @@ export const t = {
 	ERRORS: {
 		DATE: "Неверное значение даты",
 		DEVICE_HEADING_BLOCKED: "Доступ к компасу заблокирован в этом контексте браузера",
-		DEVICE_HEADING_PERMISSION_DENIED: "Доступ к компасу отклонён. Разрешите доступ к движению и ориентации в настройках браузера",
+		DEVICE_HEADING_PERMISSION_DENIED: "Доступ к компасу отклонён",
+		DEVICE_HEADING_PERMISSION_DENIED_REASON: "Разрешите доступ к движению и ориентации в настройках браузера.",
 		DEVICE_HEADING_TIMEOUT: "Данные о направлении не получены. Попробуйте ещё раз",
 		DEVICE_HEADING_UNAVAILABLE: "Направление устройства недоступно",
 		GEOLOCATION_PERMISSION_DENIED: "Необходимо выдать разрешение",

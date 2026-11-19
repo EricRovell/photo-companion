@@ -48,6 +48,7 @@ function AzimuthPreview(args: StoryArgs) {
 		align: t().LABEL.ALIGN_COMPASS,
 		alignBlocked: t().ERRORS.DEVICE_HEADING_BLOCKED,
 		alignDenied: t().ERRORS.DEVICE_HEADING_PERMISSION_DENIED,
+		alignDeniedReason: t().ERRORS.DEVICE_HEADING_PERMISSION_DENIED_REASON,
 		aligned: t().LABEL.COMPASS_ALIGNED,
 		alignTimeout: t().ERRORS.DEVICE_HEADING_TIMEOUT,
 		alignUnavailable: t().ERRORS.DEVICE_HEADING_UNAVAILABLE,

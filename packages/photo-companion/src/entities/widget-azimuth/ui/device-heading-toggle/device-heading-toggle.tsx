@@ -1,7 +1,7 @@
-import { createEffect, createUniqueId, on, Show } from "solid-js";
-import { toast } from "solid-sonner";
+import { Show } from "solid-js";
 
 import { Button, Icon } from "~/shared/ui";
+import { createNotification } from "~/shared/ui/notifications";
 
 import type { DeviceHeadingError } from "../../../../shared/types/device-heading";
 import type { AzimuthWidgetLabels } from "../../types";
@@ -11,14 +11,12 @@ import styles from "./device-heading-toggle.module.css";
 interface Props {
 	active: boolean;
 	error: DeviceHeadingError | null;
-	labels: Pick<AzimuthWidgetLabels, "align" | "alignBlocked" | "alignDenied" | "aligned" | "alignTimeout" | "alignUnavailable">;
+	labels: Pick<AzimuthWidgetLabels, "align" | "alignBlocked" | "alignDenied" | "alignDeniedReason" | "aligned" | "alignTimeout" | "alignUnavailable">;
 	onToggle: () => Promise<void> | void;
 	pending: boolean;
 }
 
 export function DeviceHeadingToggle(props: Props) {
-	const notificationId = createUniqueId();
-
 	const getErrorMessage = (error: DeviceHeadingError | null) => {
 		switch (error) {
 			case "blocked": return props.labels.alignBlocked;
@@ -29,15 +27,16 @@ export function DeviceHeadingToggle(props: Props) {
 		}
 	};
 
-	createEffect(on(() => props.error, error => {
-		const message = getErrorMessage(error);
+	createNotification(() => {
+		const message = getErrorMessage(props.error);
 
-		if (message) {
-			toast.error(message, { id: notificationId });
-		} else {
-			toast.dismiss(notificationId);
-		}
-	}));
+		return message ? {
+			description: props.error === "denied" ? props.labels.alignDeniedReason : undefined,
+			duration: 5000,
+			title: message,
+			variant: "error"
+		} : null;
+	});
 
 	return (
 		<div class={styles.controls}>

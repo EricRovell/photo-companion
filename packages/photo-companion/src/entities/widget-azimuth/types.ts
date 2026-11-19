@@ -22,6 +22,7 @@ export interface AzimuthWidgetLabels {
 	align: string;
 	alignBlocked: string;
 	alignDenied: string;
+	alignDeniedReason: string;
 	aligned: string;
 	alignTimeout: string;
 	alignUnavailable: string;

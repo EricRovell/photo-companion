@@ -4,6 +4,7 @@ import { Bulb } from "~/entities/city-lights";
 import { PageMeta } from "~/entities/page-meta";
 import { DatetimeProvider } from "~/features/datetime-query";
 import { LinkQuery, Navigation } from "~/features/navigation";
+import { useUpdateNotification } from "~/features/service-worker";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
 import { Text } from "~/shared/ui";
@@ -32,6 +33,7 @@ function Header() {
 
 export const Layout = (props: ParentProps) => {
 	useLocationQuery();
+	useUpdateNotification();
 
 	return (
 		<DatetimeProvider>
