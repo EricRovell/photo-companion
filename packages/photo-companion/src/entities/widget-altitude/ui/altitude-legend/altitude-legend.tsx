@@ -1,6 +1,6 @@
 import { For } from "solid-js";
 
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 import { useTranslation } from "~/features/translation";
 import { Text } from "~/shared/ui";
@@ -71,7 +71,7 @@ export function Legend() {
 							<tr
 								class={styles.entity}
 								data-entity={entity.id}
-								data-selected={isSelected(entity.id)}
+								data-selected={String(isSelected(entity.id))}
 								onClick={handleRowClick}
 								title={isSelectionLocked(entity.id) ? t().ALTITUDE.KEEP_ONE_SELECTED : undefined}
 							>

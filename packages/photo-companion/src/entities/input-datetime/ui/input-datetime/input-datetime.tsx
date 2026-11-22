@@ -1,5 +1,4 @@
-import { createMemo, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { createMemo, omit } from "solid-js";
 
 import { DATETIME_CONFIG } from "../../model/config";
 import { createInputDatetimeModel } from "../../model/create-input-datetime-model";
@@ -11,9 +10,8 @@ import type { InputDatetimeProps } from "../../types";
 
 import styles from "./input-datetime.module.css";
 
-export function InputDatetime(allProps: InputDatetimeProps) {
-	const [ props, rest ] = splitProps(allProps, [
-		"class",
+export function InputDatetime(props: InputDatetimeProps) {
+	const rest = omit(props, "class",
 		"children",
 		"disabled",
 		"labels",
@@ -21,8 +19,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 		"onChange",
 		"onDatetimeChange",
 		"onReset",
-		"value"
-	]);
+		"value");
 
 	const labels = createMemo(() => ({
 		...DATETIME_CONFIG.defaultLabels,
@@ -39,7 +36,7 @@ export function InputDatetime(allProps: InputDatetimeProps) {
 
 	return (
 		<form
-			class={classnames(styles.form, props.class)}
+			class={[ styles.form, props.class ]}
 			onSubmit={event => event.preventDefault()}
 		>
 			<DatetimeStepSelect

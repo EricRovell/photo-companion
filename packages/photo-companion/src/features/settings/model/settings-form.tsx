@@ -1,5 +1,5 @@
-import { createContext, type ParentProps, startTransition, useContext } from "solid-js";
-import { createStore, reconcile, unwrap } from "solid-js/store";
+import { createContext, type ParentProps, useContext } from "solid-js";
+import { createStore, reconcile, snapshot } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import type { City } from "types";
@@ -14,24 +14,22 @@ import type { SettingsStore } from "../types";
 function createSettingsFormState() {
 	const { resetSettings, setSettings, settings } = useSettings();
 
-	const [ settingsStore, setSettingsStore ] = createStore({ ...unwrap(settings) });
+	const [ settingsStore, setSettingsStore ] = createStore({ ...snapshot(settings) });
 
 	const handleReset = () => {
-		void startTransition(() => {
-			setSettingsStore(SETTINGS_DEFAULT);
-			resetSettings();
-		});
+		setSettingsStore(reconcile(SETTINGS_DEFAULT));
+		resetSettings();
 	};
 
 	const handleSubmit = () => {
-		void startTransition(() => {
-			setSettings(reconcile({ ...unwrap(settingsStore) }));
-		});
+		setSettings(reconcile(snapshot(settingsStore)));
 	};
 
 	const handleCityChange = (city: City) => {
 		const preset = SETTINGS_CITY_PRESETS[city];
-		setSettingsStore({ ...preset });
+		setSettingsStore((draft) => {
+			Object.assign(draft, preset);
+		});
 	};
 
 	/**
@@ -47,12 +45,16 @@ function createSettingsFormState() {
 				break;
 			}
 			case FORM_INPUT_NAME.LANGUAGE: {
-				setSettingsStore({ [name]: value });
+				setSettingsStore((draft) => {
+					draft.language = value as SettingsStore["language"];
+				});
 				break;
 			}
 			case FORM_INPUT_NAME.LATITUDE:
 			case FORM_INPUT_NAME.LONGITUDE: {
-				setSettingsStore({ [name]: Number(value) });
+				setSettingsStore((draft) => {
+					draft[name] = Number(value);
+				});
 				break;
 			}
 		}
@@ -63,7 +65,9 @@ function createSettingsFormState() {
 	 * because we can't catch event on `<form />` change event.
 	 */
 	const handleChange = <T extends keyof SettingsStore>(name: T, value: SettingsStore[T]) => {
-		setSettingsStore(name, value);
+		setSettingsStore((draft) => {
+			draft[name] = value;
+		});
 	};
 
 	return {
@@ -82,9 +86,9 @@ export function SettingsFormProvider(props: ParentProps) {
 	const state = createSettingsFormState();
 
 	return (
-		<SettingsFormContext.Provider value={state}>
+		<SettingsFormContext value={state}>
 			{props.children}
-		</SettingsFormContext.Provider>
+		</SettingsFormContext>
 	);
 }
 

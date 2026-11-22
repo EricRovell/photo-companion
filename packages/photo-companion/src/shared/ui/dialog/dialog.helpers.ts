@@ -11,7 +11,7 @@ export function preventPageScroll(condition = false) {
 	const element = document.body;
 	const isLocked = element.hasAttribute("data-locked");
 
-	if (isLocked && condition) {
+	if (isLocked === condition) {
 		return;
 	}
 

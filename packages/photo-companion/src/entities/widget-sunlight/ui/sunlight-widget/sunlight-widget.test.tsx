@@ -1,4 +1,5 @@
 import { render, within } from "@solidjs/testing-library";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { assert, describe, expect, it, vi } from "vitest";
 
@@ -37,6 +38,7 @@ describe("SunlightWidget", () => {
 		expect(view.getByText("Golden hour in 1 hr")).toBeInTheDocument();
 
 		setDate(new Date(daylight.end - 61_000));
+		flush();
 		expect(view.getByText("Golden hour in 2 min")).toBeInTheDocument();
 	});
 
@@ -61,6 +63,7 @@ describe("SunlightWidget", () => {
 
 		expect(view.getByText("Golden hour in 2 min")).toBeInTheDocument();
 		setTimerTimestamp(date.getTime() + 1000);
+		flush();
 		expect(view.getByText("Golden hour in 1 min")).toBeInTheDocument();
 		expect(view.container.querySelector("tr[data-active=true]")).toHaveTextContent("Daylight");
 	});
@@ -81,18 +84,22 @@ describe("SunlightWidget", () => {
 		expect(view.queryByText("Sunset", { exact: true })).not.toBeInTheDocument();
 
 		setDate(new Date("2026-09-21T18:30:00Z"));
+		flush();
 		expect(view.getByRole("img")).toHaveAccessibleName(expect.stringContaining("18:30: Blue hour"));
 		expect(view.container.querySelector("tr[data-active=true]")).toHaveTextContent("Blue hour");
 		expect(view.container.querySelector("[data-marker=current]")).toHaveAttribute("data-phase", "blue");
 		expect(view.getByText("Nautical twilight in 18 min")).toBeInTheDocument();
 
 		setDate(new Date("2026-09-21T18:31:00Z"));
+		flush();
 		expect(view.getByText("Nautical twilight in 17 min")).toBeInTheDocument();
 
 		setDate(new Date("2026-09-21T23:30:00Z"));
+		flush();
 		expect(view.getByText(/^Astronomical twilight in \d+ hr/)).toBeInTheDocument();
 
 		setDate(new Date("2026-09-22T12:00:00Z"));
+		flush();
 		expect(view.container.querySelector("tr[data-active=true]")).toHaveTextContent("Daylight");
 		expect(view.container.querySelector("tbody time")).toHaveAttribute("datetime", expect.stringContaining("2026-09-22"));
 	});

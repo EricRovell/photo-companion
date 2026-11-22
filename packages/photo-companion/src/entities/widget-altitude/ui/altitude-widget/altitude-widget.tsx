@@ -13,7 +13,7 @@ export function Root(props: ParentProps<AltitudeWidgetProps>) {
 	const context = createAltitudeContext(props);
 
 	return (
-		<AltitudeContext.Provider value={context}>
+		<AltitudeContext value={context}>
 			<Card
 				aria-labelledby={`${context.id}-title`}
 				class={styles.root}
@@ -27,6 +27,6 @@ export function Root(props: ParentProps<AltitudeWidgetProps>) {
 			>
 				{props.children}
 			</Card>
-		</AltitudeContext.Provider>
+		</AltitudeContext>
 	);
 }

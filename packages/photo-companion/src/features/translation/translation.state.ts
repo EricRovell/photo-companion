@@ -1,4 +1,4 @@
-import { createEffect, createMemo, createResource } from "solid-js";
+import { createEffect, createMemo } from "solid-js";
 import {
 	dateFormatter,
 	dateShortFormatter,
@@ -31,7 +31,7 @@ export function createTranslationState() {
 
 	const lang = () => settings.language;
 
-	const [ t ] = createResource(lang, async () => {
+	const t = createMemo(async () => {
 		const dict = await TRANSLATIONS[lang()]();
 		return dict.t;
 	});
@@ -54,9 +54,9 @@ export function createTranslationState() {
 		timeShortDuration: timeShortDurationFormatter(lang())
 	}));
 
-	createEffect(() => {
+	createEffect(lang, (language) => {
 		if (!isNullable(globalThis.window)) {
-			document.documentElement.setAttribute("lang", lang());
+			document.documentElement.setAttribute("lang", language);
 		}
 	});
 

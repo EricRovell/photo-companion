@@ -1,4 +1,4 @@
-import { ErrorBoundary, lazy, Suspense } from "solid-js";
+import { Errored, lazy, Loading } from "solid-js";
 
 import { SupportsBridges } from "~/features/bridges-spb";
 import { SupportsLights } from "~/features/city-lights";
@@ -23,28 +23,28 @@ export function PageNow() {
 			<MoonProvider>
 				<MoonInfo title={t().TITLE.MOON} />
 			</MoonProvider>
-			<ErrorBoundary
+			<Errored
 				fallback={<ErrorMessage
 					message="Something is wrong, could not load City Lights module"
 				/>}
 			>
-				<Suspense fallback={<Loader />}>
+				<Loading fallback={<Loader />}>
 					<SupportsLights>
 						<NowLights />
 					</SupportsLights>
-				</Suspense>
-			</ErrorBoundary>
-			<ErrorBoundary
+				</Loading>
+			</Errored>
+			<Errored
 				fallback={<ErrorMessage
 					message="Something is wrong, could not load Bridges module"
 				/>}
 			>
-				<Suspense fallback={<Loader />}>
+				<Loading fallback={<Loader />}>
 					<SupportsBridges>
 						<NowBridges />
 					</SupportsBridges>
-				</Suspense>
-			</ErrorBoundary>
+				</Loading>
+			</Errored>
 		</div>
 	);
 }

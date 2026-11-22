@@ -32,7 +32,7 @@ export function SunSeasons() {
 							<PropertyList.Value>
 								<LinkQuery
 									href="/sun"
-									noScroll
+									noscroll
 									query={new URLSearchParams({ datetime: createQueryDate(event.time) })}
 								>
 									<Text

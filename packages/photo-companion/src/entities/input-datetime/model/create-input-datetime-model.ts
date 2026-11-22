@@ -1,8 +1,8 @@
-import { type Accessor, createEffect, createMemo } from "solid-js";
-import { createStore } from "solid-js/store";
+import { type Accessor, createEffect, createMemo, flush, untrack } from "solid-js";
+import { createStore } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 import { createQueryDate } from "~/shared/lib/query-date";
 
@@ -32,7 +32,8 @@ interface CreateInputDatetimeModelOptions {
 }
 
 export function createInputDatetimeModel(options: CreateInputDatetimeModelOptions) {
-	const initialDate = parseDatetimeValue(options.value()) ?? new Date();
+	let syncedValue = untrack(options.value);
+	const initialDate = parseDatetimeValue(syncedValue) ?? new Date();
 
 	const [ state, setState ] = createStore<TimelineState>({
 		anchorDate: initialDate,
@@ -81,8 +82,10 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 	};
 
 	const setDate = (date: Date) => {
-		setState("anchorDate", date);
-		setState("offset", 0);
+		setState((draft) => {
+			draft.anchorDate = date;
+			draft.offset = 0;
+		});
 	};
 
 	const animation = createTimelineAnimation({
@@ -100,7 +103,7 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 		}
 
 		animation.cancel();
-		setDate(currentDate);
+		flush(() => setDate(currentDate));
 		animation.animateToStep(amount);
 	};
 
@@ -140,7 +143,9 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 		const currentDate = selectedDate();
 		cancelInteraction();
 		setDate(currentDate);
-		setState("step", event.currentTarget.value as DateTimeStep);
+		setState((draft) => {
+			draft.step = event.currentTarget.value as DateTimeStep;
+		});
 	};
 
 	const handleReset = () => {
@@ -158,20 +163,29 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 		commitDate(date);
 	};
 
-	createEffect(() => {
-		const value = options.value();
-
-		if (typeof value !== "string" || state.dragging || state.animating) {
+	createEffect(() => ({
+		animating: state.animating,
+		dragging: state.dragging,
+		value: options.value()
+	}), ({ animating, dragging, value }) => {
+		if (dragging || animating) {
 			return;
 		}
 
 		if (!isNullable(pendingValue)) {
 			if (pendingValue === value) {
 				pendingValue = null;
+				syncedValue = value;
 			}
 			return;
 		}
 
+		// A local interruption can leave the timeline on a different date while the prop stays the same.
+		if (syncedValue === value) {
+			return;
+		}
+
+		syncedValue = value;
 		const date = parseDatetimeValue(value);
 
 		if (!isNullable(date)) {

@@ -1,4 +1,4 @@
-import { Index } from "solid-js";
+import { For } from "solid-js";
 
 import type { CityLightsNightEvent } from "../../types";
 
@@ -10,7 +10,7 @@ interface Props {
 
 export function CityLightsGraphWindows(props: Props) {
 	return (
-		<Index each={props.windows}>
+		<For each={props.windows} keyed={false}>
 			{event => (
 				<div
 					class={styles.window}
@@ -21,6 +21,6 @@ export function CityLightsGraphWindows(props: Props) {
 					}}
 				/>
 			)}
-		</Index>
+		</For>
 	);
 }

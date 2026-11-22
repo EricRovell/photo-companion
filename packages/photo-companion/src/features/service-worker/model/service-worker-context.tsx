@@ -1,4 +1,4 @@
-import { createContext, DEV, onMount, type ParentProps, useContext } from "solid-js";
+import { createContext, DEV, onSettled, type ParentProps, useContext } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import { createContextState } from "./service-worker-model";
@@ -8,16 +8,16 @@ const ServiceWorkerContext = createContext<ReturnType<typeof createContextState>
 export function ServiceWorkerProvider(props: ParentProps) {
 	const state = createContextState();
 
-	onMount(() => {
+	onSettled(() => {
 		if (!DEV) {
 			void state.initServiceWorker();
 		}
 	});
 
 	return (
-		<ServiceWorkerContext.Provider value={state}>
+		<ServiceWorkerContext value={state}>
 			{props.children}
-		</ServiceWorkerContext.Provider>
+		</ServiceWorkerContext>
 	);
 }
 

@@ -1,13 +1,13 @@
 import { useLocation } from "@solidjs/router";
-import { createMemo, splitProps } from "solid-js";
+import { createMemo, omit } from "solid-js";
 
 import { Link, type LinkProps } from "~/shared/ui";
 
 /**
  * Wrapper over the `<Link />` that sync the query params.
  */
-export function LinkQuery(allProps: LinkProps) {
-	const [ props, rest ] = splitProps(allProps, [ "children", "query" ]);
+export function LinkQuery(props: LinkProps) {
+	const rest = omit(props, "children", "query");
 	const location = useLocation();
 	const search = createMemo(() => location.search);
 

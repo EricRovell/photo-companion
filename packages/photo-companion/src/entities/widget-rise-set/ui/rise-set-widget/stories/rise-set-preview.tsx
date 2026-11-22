@@ -53,7 +53,7 @@ function RiseSetPreview(props: PreviewProps) {
 				<LinkQuery
 					aria-label={label}
 					href={`/${props.entity}`}
-					noScroll
+					noscroll
 					query={new URLSearchParams({ datetime: createQueryDate(date) })}
 				>
 					{children}
@@ -151,7 +151,7 @@ export function ScenarioGallery(props: GalleryProps) {
 										"margin": "0"
 									}}
 								>
-									Selected: <time dateTime={scenario.date.toISOString()}>
+									Selected: <time datetime={scenario.date.toISOString()}>
 										{scenarioDateFormatter.format(scenario.date)}
 									</time>
 								</p>

@@ -1,4 +1,4 @@
-import { For, mergeProps } from "solid-js";
+import { For, merge } from "solid-js";
 import { round } from "utils/math";
 
 import { useTranslation } from "~/features/translation";
@@ -81,7 +81,7 @@ function SparklineEntry(props: ScheduleEntry) {
 }
 
 export function BridgeSparkline(allProps: BridgeSparklineProps) {
-	const props = mergeProps(DEFAULT_PROPS_SPARKLINE, allProps);
+	const props = merge(DEFAULT_PROPS_SPARKLINE, allProps);
 
 	const dx = () => round(props.length * Math.cos(props.angle), 2);
 	const dy = () => round(props.length * Math.sin(props.angle));

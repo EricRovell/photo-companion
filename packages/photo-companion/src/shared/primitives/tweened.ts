@@ -2,11 +2,11 @@
  * reference: https://github.com/solidjs-community/solid-primitives/blob/main/packages/tween/src/index.ts
  */
 
-import { createEffect, createMemo, createSignal, on, onCleanup } from "solid-js";
-import { isServer } from "solid-js/web";
+import { isServer } from "@solidjs/web";
+import { createEffect, createMemo, createSignal, untrack } from "solid-js";
 import { cubicInOut, type EasingFn } from "utils/easing";
 
-import type { Accessor} from "solid-js";
+import type { Accessor } from "solid-js";
 
 import { createMediaQuery } from "./create-media-query";
 
@@ -69,7 +69,7 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 	}
 
 	const prefersReducedMotion = createMediaQuery("(prefers-reduced-motion: reduce)");
-	const [ value, setValue ] = createSignal(target());
+	const [ value, setValue ] = createSignal(untrack(target));
 
 	let endValue: number;
 	let frameId: number;
@@ -87,7 +87,7 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 		}
 	}
 
-	createEffect(on([ target, prefersReducedMotion ], ([ targetValue, reducedMotion ]) => {
+	createEffect(() => [ target(), prefersReducedMotion() ] as const, ([ targetValue, reducedMotion ]) => {
 		if (duration <= 0 || reducedMotion) {
 			setValue(targetValue);
 			return;
@@ -95,13 +95,11 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 
 		endValue = targetValue;
 		start = performance.now();
-		startValue = value();
+		startValue = untrack(value);
 		frameId = requestAnimationFrame(tick);
 
-		onCleanup(() => {
-			cancelAnimationFrame(frameId);
-		});
-	}, { defer: true }));
+		return () => cancelAnimationFrame(frameId);
+	}, { defer: true });
 
 	const mappedValue = createMemo(() => map(value()));
 

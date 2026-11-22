@@ -21,7 +21,7 @@ export function SolarEclipseContact(props: SolarEclipseContactProps) {
 			peak={props.position === "peak"}
 			visible={props.contact.visible}
 		>
-			<LinkQuery href="/sun" noScroll query={query()}>
+			<LinkQuery href="/sun" noscroll query={query()}>
 				<Text
 					as="time"
 					datetime={props.contact.time.toISOString()}

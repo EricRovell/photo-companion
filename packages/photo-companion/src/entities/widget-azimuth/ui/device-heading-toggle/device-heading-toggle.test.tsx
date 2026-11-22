@@ -1,4 +1,5 @@
 import { cleanup, render, within } from "@solidjs/testing-library";
+import { flush } from "solid-js";
 import { createSignal, Show } from "solid-js";
 import { afterEach, describe, expect, it } from "vitest";
 
@@ -48,16 +49,20 @@ describe("device heading notifications", () => {
 		expect(view.getByRole("button", { name: `Dismiss: ${labels.alignDenied}` })).toBeInTheDocument();
 		expect(view.getByRole("listitem")).toHaveAttribute("data-variant", "error");
 		setError("timeout");
+		flush();
 		expect(list.getByText(labels.alignTimeout)).toBeInTheDocument();
 		expect(list.queryByText(labels.alignDenied)).not.toBeInTheDocument();
 		expect(list.queryByText(labels.alignDeniedReason)).not.toBeInTheDocument();
 		expect(view.getAllByRole("listitem")).toHaveLength(1);
 
 		setError(null);
+		flush();
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 		setError("blocked");
+		flush();
 		expect(list.getByText(labels.alignBlocked)).toBeInTheDocument();
 		setMounted(false);
+		flush();
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 	});
 });

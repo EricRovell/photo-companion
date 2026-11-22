@@ -26,7 +26,7 @@ function RiseSetEvent(props: EventProps) {
 			</span>
 			<Text
 				as="time"
-				dateTime={props.event.date?.toISOString()}
+				datetime={props.event.date?.toISOString()}
 				numeric
 				title={fullDate()}
 				variant="heading-s"

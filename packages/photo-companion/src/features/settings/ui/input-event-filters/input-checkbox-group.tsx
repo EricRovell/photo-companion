@@ -1,21 +1,20 @@
-import { createEffect, createSignal, For, mergeProps } from "solid-js";
+import { createSignal, For, merge } from "solid-js";
 import { setAttribute } from "utils";
 
 import { InputCheckbox, type InputSelectOption } from "~/shared/ui";
 
 import styles from "./input-checkbox-group.module.css";
 
-export type Value = Nullish<string[]>;
-type ChangeHandler = (name: string, value: Value) => void;
+type Value<T extends string> = Nullish<T[]>;
 
-interface Props {
+interface Props<Name extends string, T extends string> {
 	disabled?: boolean;
 	groupLabel: string;
 	groupValue: string;
-	name: string;
-	onChange?: ChangeHandler;
-	options: InputSelectOption[];
-	value: Value;
+	name: Name;
+	onChange?: (name: Name, value: Value<T>) => void;
+	options: InputSelectOption<T>[];
+	value: Value<T>;
 }
 
 const DEFAULT_PROPS = {
@@ -30,7 +29,7 @@ const DiscloseIcon = () => (
 	</svg>
 );
 
-const CheckboxList = (props: Props) => (
+const CheckboxList = <Name extends string, T extends string>(props: Props<Name, T>) => (
 	<ul>
 		<For each={props.options}>
 			{(option) => (
@@ -52,7 +51,7 @@ const CheckboxList = (props: Props) => (
 	</ul>
 );
 
-function RootCheckbox(props: Props) {
+function RootCheckbox<Name extends string, T extends string>(props: Props<Name, T>) {
 	const indeterminate = () => (
 		props.value &&
 		props.value.length !== 0 &&
@@ -83,48 +82,40 @@ function RootCheckbox(props: Props) {
  * knowing which events are NOT allowed makes code easier,
  * as for allow list we should not all possible events ahead.
  */
-export function InputCheckboxGroup(allProps: Props) {
-	const props = mergeProps(DEFAULT_PROPS, allProps);
+export function InputCheckboxGroup<Name extends string, T extends string>(allProps: Props<Name, T>) {
+	const props = merge(DEFAULT_PROPS, allProps);
 
-	// eslint-disable-next-line solid/reactivity
-	const [ getValue, setValue ] = createSignal<Value>(props.value);
-
-	createEffect(() => {
-		setValue(props.value);
-	});
+	const [ getValue, setValue ] = createSignal<Value<T>>(() => props.value);
 
 	const handleChange = (event: Event) => {
-		const target = event.target as HTMLInputElement;
-		const isRoot = target.hasAttribute("data-root");
+		const target = event.target;
 
-		if (isRoot) {
-			setValue(target.checked ? null : []);
-			props.onChange?.(props.name, getValue());
-
+		if (!(target instanceof HTMLInputElement)) {
 			return;
 		}
 
-		if (target.checked && !getValue()) {
-			setValue([]);
-		}
+		const isRoot = target.hasAttribute("data-root");
 
-		if (!target.checked && !getValue()) {
-			setValue(props.options.map(option => option.value));
-		}
+		let next: Value<T>;
 
-		if (target.checked) {
-			// @ts-expect-error: value is set above
-			setValue(value => [ ...value, target.value ]);
+		if (isRoot) {
+			next = target.checked ? null : [];
 		} else {
-			// @ts-expect-error: value is set above
-			setValue(value => value.filter(item => item !== target.value));
-		}
+			const option = props.options.find(item => item.value === target.value);
 
-		if (Array.isArray(getValue()) && getValue()?.length === props.options.length) {
-			setValue(null);
-		}
+			if (!option) {
+				return;
+			}
 
-		props.onChange?.(props.name, getValue());
+			const current = getValue() ?? (target.checked ? [] : props.options.map(option => option.value));
+			next = target.checked ? [ ...current, option.value ] : current.filter(item => item !== option.value);
+
+			if (next.length === props.options.length) {
+				next = null;
+			}
+		}
+		setValue(next);
+		props.onChange?.(props.name, next);
 	};
 
 	return (

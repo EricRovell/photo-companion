@@ -1,7 +1,7 @@
-import { Navigate } from "@solidjs/router";
 import { For, Show } from "solid-js";
 
 import { BridgesInfo, BridgesProvider, CardBridge, useBridges } from "~/features/bridges-spb";
+import { Redirect } from "~/features/navigation";
 import { useTranslation } from "~/features/translation";
 import { ROUTES } from "~/shared/consts";
 import { Text } from "~/shared/ui";
@@ -34,7 +34,7 @@ function PageBridges() {
 	return (
 		<Show
 			when={isSupportsBridges()}
-			fallback={<Navigate href={ROUTES.NOT_FOUND} />}
+			fallback={<Redirect href={ROUTES.NOT_FOUND} />}
 		>
 			<div class={styles.page}>
 				<div class={styles.wrapper}>

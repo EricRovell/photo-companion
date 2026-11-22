@@ -1,5 +1,7 @@
-import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
-import { cleanup, fireEvent, renderHook } from "@solidjs/testing-library";
+import { createRouter, memoryHistory } from "@solidjs/router";
+import { cleanup, fireEvent } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -22,7 +24,7 @@ function renderDatetimeHook(location: string, options: {
 	autoplayInterval?: number;
 	getCountdownEnd?: Accessor<Nullable<number>>;
 } = {}) {
-	const history = createMemoryHistory();
+	const history = memoryHistory();
 
 	history.set({
 		replace: true,
@@ -30,21 +32,18 @@ function renderDatetimeHook(location: string, options: {
 		value: location
 	});
 	vi.advanceTimersByTime(0);
+	flush();
 
+	const Router = createRouter({
+		history,
+		routes: [{ path: [ "/moon", "/sun" ] }]
+	});
 	const wrapper = (props: ParentProps) => (
-		<MemoryRouter
-			history={history}
-			root={rootProps => (
-				<DatetimeProvider autoplayInterval={options.autoplayInterval}>
-					{rootProps.children}
-				</DatetimeProvider>
-			)}
-		>
-			<Route
-				component={() => props.children}
-				path={[ "/moon", "/sun" ]}
-			/>
-		</MemoryRouter>
+		<Router>{() => (
+			<DatetimeProvider autoplayInterval={options.autoplayInterval}>
+				{props.children}
+			</DatetimeProvider>
+		)}</Router>
 	);
 
 	const hook = renderHook(() => {
@@ -94,15 +93,18 @@ describe("useDatetime", () => {
 		expect(vi.getTimerCount()).toBe(1);
 
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(result.countdown()).toBe(59_000);
 		expect(result.getTimerTimestamp()).toBe(NOW.getTime() + 1000);
 		expect(result.getTimerDatetime().getTime()).toBe(NOW.getTime() + 1000);
 		expect(result.getDatetime()).toBe(initialDate);
 
 		vi.advanceTimersByTime(13_999);
+		flush();
 		expect(result.getDatetime()).toBe(initialDate);
 
 		vi.advanceTimersByTime(1);
+		flush();
 		expect(result.getTimestamp()).toBe(NOW.getTime() + 15_000);
 		expect(result.getTimerTimestamp()).toBe(NOW.getTime() + 15_000);
 		expect(result.countdown()).toBe(45_000);
@@ -113,9 +115,11 @@ describe("useDatetime", () => {
 		const { result } = renderDatetimeHook("/moon", { autoplayInterval: 5000 });
 
 		vi.advanceTimersByTime(4999);
+		flush();
 		expect(result.getTimestamp()).toBe(NOW.getTime());
 
 		vi.advanceTimersByTime(1);
+		flush();
 		expect(result.getTimestamp()).toBe(NOW.getTime() + 5000);
 	});
 
@@ -127,6 +131,7 @@ describe("useDatetime", () => {
 		expect(vi.getTimerCount()).toBe(1);
 
 		vi.advanceTimersByTime(18_000);
+		flush();
 
 		expect(result.getDatetimeQuery()).toBe("2027-04-05T12:45:36");
 		expect(result.getTimestamp()).toBe(SELECTED_DATETIME.getTime());
@@ -138,11 +143,13 @@ describe("useDatetime", () => {
 
 		expect(result.countdown()).toBe(90_000);
 		vi.advanceTimersByTime(18_000);
+		flush();
 		expect(result.countdown()).toBe(72_000);
 		expect(result.getTimestamp()).toBe(NOW.getTime() - 30_000);
 		expect(vi.getTimerCount()).toBe(1);
 
 		result.setDatetimeQuery();
+		flush();
 		await vi.advanceTimersByTimeAsync(0);
 		expect(result.countdown()).toBe(42_000);
 	});
@@ -153,11 +160,15 @@ describe("useDatetime", () => {
 
 		expect(result.countdown()).toBe(0);
 		vi.advanceTimersByTime(1000);
+		flush();
 		setCountdownEnd(NOW.getTime() + 60_000);
+		flush();
 		expect(result.countdown()).toBe(59_000);
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(result.countdown()).toBe(58_000);
 		setCountdownEnd(undefined);
+		flush();
 		expect(result.countdown()).toBe(0);
 	});
 
@@ -165,6 +176,7 @@ describe("useDatetime", () => {
 		const { history, result } = renderDatetimeHook("/moon?param=1");
 
 		result.setDatetimeQuery(SELECTED_DATETIME);
+		flush();
 		await vi.advanceTimersByTimeAsync(0);
 
 		expect(result.getDatetimeQuery()).toBe("2027-04-05T12:45:36");
@@ -176,6 +188,7 @@ describe("useDatetime", () => {
 		expect(result.isAutoplay()).toBe(false);
 
 		vi.advanceTimersByTime(15_000);
+		flush();
 		expect(result.getTimestamp()).toBe(SELECTED_DATETIME.getTime());
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 15_000);
 	});
@@ -191,6 +204,7 @@ describe("useDatetime", () => {
 		vi.setSystemTime(RESET_NOW);
 
 		result.setDatetimeQuery();
+		flush();
 		await vi.advanceTimersByTimeAsync(0);
 
 		expect(result.getDatetimeQuery()).toBe("2026-08-02T11:15:29");
@@ -201,6 +215,7 @@ describe("useDatetime", () => {
 		expect(result.getTimerTimestamp()).toBe(RESET_NOW.getTime());
 
 		vi.advanceTimersByTime(15_000);
+		flush();
 
 		expect(result.getTimestamp()).toBe(RESET_NOW.getTime() + 15_000);
 		expect(result.getTimerTimestamp()).toBe(RESET_NOW.getTime() + 15_000);
@@ -209,6 +224,7 @@ describe("useDatetime", () => {
 	it("retains timer progress when unrelated query parameters change", async () => {
 		const { history, result } = renderDatetimeHook("/moon?datetime=2027-04-05T12:45:36");
 		vi.advanceTimersByTime(3000);
+		flush();
 
 		history.set({ value: "/moon?datetime=2027-04-05T12:45:36&param=2" });
 		await vi.advanceTimersByTimeAsync(0);
@@ -217,6 +233,7 @@ describe("useDatetime", () => {
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 3000);
 
 		vi.advanceTimersByTime(1000);
+		flush();
 
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 4000);
 	});
@@ -224,8 +241,10 @@ describe("useDatetime", () => {
 	it("resets the timer anchor when another explicit date is selected", async () => {
 		const { result } = renderDatetimeHook("/moon?datetime=2025-01-02T03:04:05");
 		vi.advanceTimersByTime(3000);
+		flush();
 
 		result.setDatetimeQuery(SELECTED_DATETIME);
+		flush();
 
 		await vi.advanceTimersByTimeAsync(0);
 
@@ -233,6 +252,7 @@ describe("useDatetime", () => {
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime());
 
 		vi.advanceTimersByTime(1000);
+		flush();
 
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 1000);
 	});
@@ -240,23 +260,27 @@ describe("useDatetime", () => {
 	it("preserves the selected timer when navigating to another page", async () => {
 		const { history, result } = renderDatetimeHook("/moon?datetime=2027-04-05T12:45:36");
 		vi.advanceTimersByTime(3000);
+		flush();
 		history.set({ value: "/sun?datetime=2027-04-05T12:45:36" });
 		await vi.advanceTimersByTimeAsync(0);
 
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 3000);
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 4000);
 	});
 
 	it("resumes autoplay when navigation removes the explicit date", async () => {
 		const { history, result } = renderDatetimeHook("/moon?datetime=2027-04-05T12:45:36");
 		vi.advanceTimersByTime(3000);
+		flush();
 		history.set({ value: "/moon?param=1" });
 		await vi.advanceTimersByTimeAsync(0);
 
 		expect(result.isAutoplay()).toBe(true);
 		expect(result.getTimestamp()).toBe(NOW.getTime() + 3000);
 		vi.advanceTimersByTime(15_000);
+		flush();
 		expect(result.getTimestamp()).toBe(NOW.getTime() + 18_000);
 	});
 
@@ -267,9 +291,11 @@ describe("useDatetime", () => {
 
 		visibility = "hidden";
 		fireEvent(document, new Event("visibilitychange"));
+		flush();
 		vi.setSystemTime(NOW.getTime() + 90_000);
 		visibility = "visible";
 		fireEvent(document, new Event("visibilitychange"));
+		flush();
 
 		expect(result.getTimestamp()).toBe(selected ? SELECTED_DATETIME.getTime() : NOW.getTime() + 90_000);
 		expect(result.getTimerTimestamp()).toBe((selected ? SELECTED_DATETIME : NOW).getTime() + 90_000);
@@ -279,10 +305,12 @@ describe("useDatetime", () => {
 		const { cleanup, result } = renderDatetimeHook("/moon");
 		vi.setSystemTime(NOW.getTime() + 60_000);
 		vi.advanceTimersByTime(1000);
+		flush();
 
 		expect(result.getTimestamp()).toBe(NOW.getTime() + 61_000);
 		expect(result.getTimerTimestamp()).toBe(NOW.getTime() + 61_000);
 		vi.advanceTimersByTime(15_000);
+		flush();
 
 		expect(result.getTimestamp()).toBe(NOW.getTime() + 76_000);
 		expect(result.getTimerTimestamp()).toBe(NOW.getTime() + 76_000);

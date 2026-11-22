@@ -1,3 +1,4 @@
+import { flush } from "solid-js";
 import { createRoot, createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -24,6 +25,7 @@ describe("createTweened", () => {
 
 		try {
 			state.setTarget(1);
+			flush();
 			expect(state.value()).toBe(1);
 			expect(requestFrame).not.toHaveBeenCalled();
 		} finally {
@@ -48,9 +50,11 @@ describe("createTweened", () => {
 
 		try {
 			state.setTarget(1);
+			flush();
 			expect(state.value()).toBe(0);
 			media.matches = true;
 			media.dispatchEvent(new Event("change"));
+			flush();
 			expect(state.value()).toBe(1);
 			expect(cancelFrame).toHaveBeenCalledWith(123);
 		} finally {

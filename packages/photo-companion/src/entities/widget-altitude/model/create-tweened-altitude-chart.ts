@@ -1,5 +1,5 @@
-import { createComputed, createMemo, createSignal, on } from "solid-js";
-import { isServer } from "solid-js/web";
+import { isServer } from "@solidjs/web";
+import { createEffect, createMemo, createSignal, untrack } from "solid-js";
 import { clamp } from "utils/math";
 
 import type { Accessor } from "solid-js";
@@ -35,7 +35,7 @@ export function createTweenedAltitudeChart(target: Accessor<AltitudeChartFrame>)
 		return target;
 	}
 
-	const initial = target();
+	const initial = untrack(target);
 	let revision = 0;
 
 	const [ transition, setTransition ] = createSignal({
@@ -64,7 +64,7 @@ export function createTweenedAltitudeChart(target: Accessor<AltitudeChartFrame>)
 		return progress === 1 ? to : interpolateChart(from, to, progress);
 	});
 
-	createComputed(on(target, (next, previous) => {
+	createEffect(target, (next, previous) => {
 		if (next.day.start === (previous?.day.start ?? initial.day.start)) {
 			setTransition({
 				end: revision,
@@ -78,11 +78,11 @@ export function createTweenedAltitudeChart(target: Accessor<AltitudeChartFrame>)
 		// A new revision retargets from the displayed frame, even after rapid date changes.
 		setTransition({
 			end: ++revision,
-			from: chart(),
-			start: position(),
+			from: untrack(chart),
+			start: untrack(position),
 			to: next
 		});
-	}, { defer: true }));
+	}, { defer: true });
 
 	return chart;
 }

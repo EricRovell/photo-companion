@@ -1,6 +1,7 @@
-import { type JSX, splitProps } from "solid-js";
+import { omit } from "solid-js";
 import { Show } from "solid-js";
-import { classnames } from "utils";
+
+import type { JSX } from "@solidjs/web";
 
 import { Card } from "../card";
 
@@ -13,17 +14,16 @@ interface FieldsetProps extends Omit<JSX.HTMLAttributes<HTMLFieldSetElement>, "c
 	legend?: string;
 }
 
-export function Fieldset(allProps: FieldsetProps) {
-	const [ props, rest ] = splitProps(allProps, [
-		"children",
+export function Fieldset(props: FieldsetProps) {
+	const rest = omit(props, "children",
 		"classes",
 		"legend"
-	]);
+	);
 
 	return (
 		<Card>
 			<fieldset
-				class={classnames(styles.fieldset, props.classes?.fieldset)}
+				class={[ styles.fieldset, props.classes?.fieldset ]}
 				{...rest}
 			>
 				<Show when={props.legend}>
@@ -39,11 +39,11 @@ export function Fieldset(allProps: FieldsetProps) {
 	);
 }
 
-export function Form(allProps: JSX.HTMLAttributes<HTMLFormElement>) {
-	const [ props, rest ] = splitProps(allProps, [ "children", "class" ]);
+export function Form(props: JSX.HTMLAttributes<HTMLFormElement>) {
+	const rest = omit(props, "children", "class");
 
 	return (
-		<form class={classnames(styles.form, props.class)} {...rest}>
+		<form class={[ styles.form, props.class ]} {...rest}>
 			{props.children}
 		</form>
 	);

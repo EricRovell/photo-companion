@@ -3,7 +3,6 @@ import { createContext, createEffect, createMemo, createSignal, untrack, useCont
 import type { ParentProps } from "solid-js";
 
 import { useDocumentVisibility } from "../../primitives/use-document-visibility";
-import { createTimeoutLoop } from "./create-timeout-loop";
 
 function createClock(throttleInterval = 15_000) {
 	const initialTimestamp = Date.now();
@@ -17,13 +16,13 @@ function createClock(throttleInterval = 15_000) {
 
 	const getTimestamp = createMemo(() => getTick().timestamp);
 
-	const getThrottledTimestamp = createMemo<number>(previous => {
+	const getThrottledTimestamp = createMemo<number>((previous = initialTimestamp) => {
 		const { immediate, timestamp } = getTick();
 
 		return immediate || timestamp < previous || timestamp - previous >= throttleInterval
 			? timestamp
 			: previous;
-	}, initialTimestamp);
+	});
 
 	// Explicit updates and tab wake-up also update throttled consumers immediately.
 	const setNow = () => setTick({
@@ -31,14 +30,16 @@ function createClock(throttleInterval = 15_000) {
 		timestamp: Date.now()
 	});
 
-	createEffect(() => {
-		if (isVisible()) {
+	createEffect(isVisible, (visible) => {
+		if (visible) {
 			setNow();
 
-			createTimeoutLoop(() => setTick({
+			const interval = setInterval(() => setTick({
 				immediate: false,
 				timestamp: Date.now()
 			}), 1000);
+
+			return () => clearInterval(interval);
 		}
 	});
 
@@ -50,15 +51,15 @@ function createClock(throttleInterval = 15_000) {
 	};
 }
 
-const ClockContext = createContext<ReturnType<typeof createClock>>();
+const ClockContext = createContext<null | ReturnType<typeof createClock>>(null);
 
 export function ClockProvider(props: ParentProps<{ throttleInterval?: number }>) {
 	const clock = createClock(untrack(() => props.throttleInterval));
 
 	return (
-		<ClockContext.Provider value={clock}>
+		<ClockContext value={clock}>
 			{props.children}
-		</ClockContext.Provider>
+		</ClockContext>
 	);
 }
 

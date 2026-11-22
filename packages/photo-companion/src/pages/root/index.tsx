@@ -1,11 +1,11 @@
-import { onMount } from "solid-js";
+import { onSettled } from "solid-js";
 
 import { useNavigationService } from "~/features/navigation";
 
 export function PageRoot() {
 	const { navigateHome } = useNavigationService();
 
-	onMount(() => navigateHome());
+	onSettled(() => navigateHome());
 
 	return null;
 }

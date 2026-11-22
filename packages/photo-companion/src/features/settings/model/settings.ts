@@ -1,6 +1,6 @@
 import { isSupportedCity } from "lights-schedule";
 import { createContext } from "solid-js";
-import { createStore, reconcile, unwrap } from "solid-js/store";
+import { createStore, reconcile, snapshot } from "solid-js";
 import { isLatitude, isLongitude } from "utils/validators";
 import { Storage } from "versioned-local-storage";
 
@@ -19,21 +19,20 @@ function createSettingsState() {
 		version: SETTINGS_LOCAL_STORAGE_VERSION
 	});
 
-	const [ settings, setSettings ] = createStore<SettingsStore>({
+	const [ settings, setSettingsStore ] = createStore<SettingsStore>({
 		...SETTINGS_DEFAULT,
 		...storage.read() ?? {}
 	});
 
-	const resetSettings = () => {
-		setSettings(reconcile(SETTINGS_DEFAULT));
-		storage.write({ ...unwrap(settings) });
+	const setSettings: typeof setSettingsStore = (update) => {
+		setSettingsStore((draft) => {
+			const replacement = update(draft);
+			storage.write(snapshot(replacement ?? draft));
+			return replacement;
+		});
 	};
 
-	const setSettingsWithEffect: typeof setSettings = (...args: unknown[]) => {
-		// @ts-expect-error: types are fine
-		setSettings(...args);
-		storage.write({ ...unwrap(settings) });
-	};
+	const resetSettings = () => setSettings(reconcile(SETTINGS_DEFAULT));
 
 	const isSupportsCityLights = () => (
 		isSupportedCity(settings.city) || (
@@ -48,7 +47,7 @@ function createSettingsState() {
 		isSupportsBridges,
 		isSupportsCityLights,
 		resetSettings,
-		setSettings: setSettingsWithEffect,
+		setSettings,
 		settings
 	};
 }

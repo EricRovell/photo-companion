@@ -1,5 +1,6 @@
-import { Index, type JSX, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { For, omit } from "solid-js";
+
+import type { JSX } from "@solidjs/web";
 
 import type { Classes } from "../../types";
 
@@ -17,34 +18,33 @@ export interface InputRadioProps extends Omit<JSX.InputHTMLAttributes<HTMLInputE
 	options: InputRadioOption[];
 }
 
-export function InputRadio(allProps: InputRadioProps) {
-	const [ props, rest ] = splitProps(allProps, [
-		"classes",
+export function InputRadio(props: InputRadioProps) {
+	const rest = omit(props, "classes",
 		"children",
 		"options",
 		"value"
-	]);
+	);
 
 	return (
-		<Index each={props.options}>
+		<For each={props.options} keyed={false}>
 			{item => (
-				<label class={classnames(styles.root, props.classes?.root)}>
+				<label class={[ styles.root, props.classes?.root ]}>
 					<input
 						checked={props.value === item().value}
-						class={classnames(styles.radio, props.classes?.input)}
+						class={[ styles.radio, props.classes?.input ]}
 						disabled={item().disabled}
 						type="radio"
 						value={item().value}
 						{...rest}
 					/>
 					<span
-						class={classnames(styles.indicator, props.classes?.indicator)}
+						class={[ styles.indicator, props.classes?.indicator ]}
 					/>
-					<span class={classnames(styles.label, props.classes?.label)}>
+					<span class={[ styles.label, props.classes?.label ]}>
 						{item().label}
 					</span>
 				</label>
 			)}
-		</Index>
+		</For>
 	);
 }

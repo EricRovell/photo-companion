@@ -1,5 +1,4 @@
-import { type ParentProps, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { omit, type ParentProps } from "solid-js";
 
 import { Dialog } from "../dialog/dialog";
 
@@ -16,18 +15,18 @@ interface DrawerProps extends ParentProps {
 	preventPageScroll?: boolean;
 }
 
-export const Drawer = (allProps: DrawerProps) => {
-	const [ props, rest ] = splitProps(allProps, [ "classes", "children" ]);
+export const Drawer = (props: DrawerProps) => {
+	const rest = omit(props, "classes", "children");
 
 	return (
 		<Dialog
 			classes={{
-				backdrop: classnames(styles.backdrop, props.classes?.backdrop),
-				dialog: classnames(styles.dialog, props.classes?.dialog)
+				backdrop: [ styles.backdrop, props.classes?.backdrop ],
+				dialog: [ styles.dialog, props.classes?.dialog ]
 			}}
 			{...rest}
 		>
-			<aside class={classnames(styles.drawer, props.classes?.drawer)}>
+			<aside class={[ styles.drawer, props.classes?.drawer ]}>
 				{props.children}
 			</aside>
 		</Dialog>

@@ -1,4 +1,6 @@
-import { cleanup, fireEvent, render, renderHook, within } from "@solidjs/testing-library";
+import { cleanup, fireEvent, render, within } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -53,15 +55,19 @@ describe("service worker update notification", () => {
 		const view = setup();
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 		view.setSuggestUpdate(true);
+		flush();
 		vi.advanceTimersByTime(60000);
+		flush();
 		expect(view.getByRole("listitem")).toHaveTextContent("Update is ready to be installed.");
 
 		fireEvent.click(view.getByRole("button", { name: "Update" }));
+		flush();
 		expect(view.handleReload).toHaveBeenCalledOnce();
 		expect(view.suggestUpdate()).toBe(true);
 		expect(view.getByRole("listitem")).toBeInTheDocument();
 
 		fireEvent.click(view.getByRole("button", { name: "Dismiss: Update is ready to be installed." }));
+		flush();
 		expect(view.suggestUpdate()).toBe(false);
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 	});
@@ -69,26 +75,32 @@ describe("service worker update notification", () => {
 	it("refreshes translated text in place and dismisses when the update suggestion is withdrawn", () => {
 		const view = setup();
 		view.setSuggestUpdate(true);
+		flush();
 		view.setDictionary({
 			LABEL: { UPDATE: "Обновить" },
 			MESSAGE: { UPDATE: "Обновление готово к установке." }
 		});
+		flush();
 		expect(view.getAllByRole("listitem")).toHaveLength(1);
 		expect(within(view.getByRole("list")).getByText("Обновление готово к установке.")).toBeInTheDocument();
 		expect(view.getByRole("button", { name: "Обновить" })).toBeInTheDocument();
 
 		view.setSuggestUpdate(false);
+		flush();
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 	});
 
 	it("removes its notification when its owner is disposed and stops reacting", () => {
 		const view = setup();
 		view.setSuggestUpdate(true);
+		flush();
 		expect(view.getByRole("listitem")).toBeInTheDocument();
 		view.dispose();
+		flush();
 		expect(view.suggestUpdate()).toBe(false);
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 		view.setSuggestUpdate(true);
+		flush();
 		expect(view.queryByRole("listitem")).not.toBeInTheDocument();
 	});
 });

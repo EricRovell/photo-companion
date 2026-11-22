@@ -1,4 +1,4 @@
-import type { JSXElement } from "solid-js";
+import type { Element } from "solid-js";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { LunarEclipse } from "~/features/lunar-eclipse";
@@ -22,7 +22,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<StoryEnvironmentArgs>;
 
-const Widget = (props: { children: JSXElement }) => (
+const Widget = (props: { children: Element }) => (
 	<SunProvider>
 		<MoonProvider>
 			<div class={styles.page}>{props.children}</div>

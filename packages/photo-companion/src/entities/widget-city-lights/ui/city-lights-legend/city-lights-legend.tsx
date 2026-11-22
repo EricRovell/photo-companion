@@ -34,7 +34,7 @@ export function CityLightsLegend(props: Props) {
 							</Text>
 							<Text as="dd" numeric variant="heading-s">
 								<time
-									dateTime={event.date?.toISOString()}
+									datetime={event.date?.toISOString()}
 									title={fullDate(event)}
 								>
 									{event.date && props.renderTime

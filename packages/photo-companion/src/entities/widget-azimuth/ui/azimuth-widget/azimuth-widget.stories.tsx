@@ -61,7 +61,9 @@ function AzimuthPreview(args: StoryArgs) {
 		west: t().LABEL.LONGITUDE_WEST
 	});
 
-	createEffect(() => setAligned(args.aligned));
+	createEffect(() => args.aligned, value => {
+		setAligned(value);
+	});
 
 	return (
 		<div

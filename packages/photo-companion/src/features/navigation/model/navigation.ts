@@ -9,11 +9,12 @@ import { NAVIGATION_TAB_DATA } from "../consts";
 export function createNavigationService() {
 	const { isSupportsBridges, isSupportsCityLights, settings } = useSettings();
 
+	const navigate = useNavigate();
+	const location = useLocation();
+
 	const getTabNames = createMemo(() => settings.tabs);
 
 	const navigateHome = () => {
-		const navigate = useNavigate();
-		const location = useLocation();
 		const tab = settings.tabs[0] ?? "NOW";
 		const route = `/${tab.toLowerCase()}${location.search}`;
 
@@ -40,8 +41,6 @@ export function createNavigationService() {
 	]);
 
 	const createSwiper = () => {
-		const navigate = useNavigate();
-		const location = useLocation();
 		const pathname = createMemo(() => location.pathname);
 
 		const index = createMemo(() => getNavigationTabs().findIndex(tab => tab.href === pathname()));

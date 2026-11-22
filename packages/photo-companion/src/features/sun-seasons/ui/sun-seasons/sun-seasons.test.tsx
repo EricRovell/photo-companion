@@ -1,4 +1,4 @@
-import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
+import { createRouter, memoryHistory } from "@solidjs/router";
 import { render } from "@solidjs/testing-library";
 import { describe, expect, it, vi } from "vitest";
 
@@ -32,7 +32,7 @@ vi.mock("~/features/translation", () => ({
 
 describe("SunSeasons", () => {
 	it("renders the four events for the selected datetime's local year", () => {
-		const history = createMemoryHistory();
+		const history = memoryHistory();
 
 		history.set({
 			replace: true,
@@ -40,10 +40,15 @@ describe("SunSeasons", () => {
 			value: "/sun?source=test"
 		});
 
+		const Router = createRouter({
+			history,
+			routes: [{
+				component: SunSeasons,
+				path: "/sun"
+			}]
+		});
 		const view = render(() => (
-			<MemoryRouter history={history}>
-				<Route component={SunSeasons} path="/sun" />
-			</MemoryRouter>
+			<Router />
 		));
 		const times = view.container.querySelectorAll("time");
 		const graph = view.getByRole("img", { name: /Equinoxes & Solstices/ });

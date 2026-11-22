@@ -22,8 +22,9 @@
 		"web-application"
 	],
 	"dependencies": {
-		"@solidjs/meta": "^0.29.4",
-		"@solidjs/router": "^0.15.2",
+		"@solidjs/meta": "2.0.0",
+		"@solidjs/router": "2.0.0",
+		"@solidjs/web": "2.0.3",
 		"bridge-schedule": "workspace:*",
 		"lights-schedule": "workspace:*",
 		"moon-sun-calc": "workspace:*",
@@ -36,15 +37,17 @@
 		"@rollup/plugin-replace": "^5.0.7",
 		"@storybook/addon-a11y": "catalog:storybook",
 		"@storybook/addon-docs": "catalog:storybook",
-		"@solidjs/testing-library": "^0.8.10",
+		"@solidjs/testing-library": "1.0.0-rc.2",
 		"@testing-library/jest-dom": "^7.0.0",
 		"esbuild": "catalog:build",
 		"jsdom": "^30.0.1",
-		"solid-marked": "^0.8.0",
+		"solid-marked": "1.0.0",
 		"storybook": "catalog:storybook",
 		"storybook-solidjs-vite": "catalog:storybook",
 		"typescript": "catalog:typescript",
 		"vite": "catalog:build",
-		"vite-plugin-solid-marked": "^0.8.0"
+		"unplugin-solid-marked": "1.0.0",
+		"vite-plugin-solid": "npm:@solidjs/vite-plugin@3.0.1",
+		"@testing-library/dom": "^10.4.2"
 	}
 }

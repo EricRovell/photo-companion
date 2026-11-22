@@ -1,7 +1,7 @@
 import { createContext, type ParentProps, Show, useContext } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { Accessor} from "solid-js";
+import type { Accessor } from "solid-js";
 
 import { createTranslationState } from "./translation.state";
 
@@ -20,14 +20,14 @@ export function TranslationProvider(props: ParentProps) {
 	return (
 		<Show when={t()}>
 			{(t) => (
-				<TranslationContext.Provider
+				<TranslationContext
 					value={{
 						t,
 						...rest
 					}}
 				>
 					{props.children}
-				</TranslationContext.Provider>
+				</TranslationContext>
 			)}
 		</Show>
 	);

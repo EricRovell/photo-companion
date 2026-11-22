@@ -65,7 +65,7 @@ export function MoonInfo(props: Props) {
 					</PropertyList.Label>
 					<PropertyList.Value>
 						<Show fallback="—" when={moonrise()}>
-							{value => format().timeShort(value())}
+							{value => <>{format().timeShort(value())}</>}
 						</Show>
 					</PropertyList.Value>
 				</PropertyList.Item>
@@ -74,7 +74,7 @@ export function MoonInfo(props: Props) {
 					<PropertyList.Label>{t().LABEL.MOONSET_TIME}</PropertyList.Label>
 					<PropertyList.Value>
 						<Show fallback="—" when={moonset()}>
-							{value => format().timeShort(value())}
+							{value => <>{format().timeShort(value())}</>}
 						</Show>
 					</PropertyList.Value>
 				</PropertyList.Item>

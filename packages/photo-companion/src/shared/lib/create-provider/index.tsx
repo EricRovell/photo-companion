@@ -1,7 +1,7 @@
 import { useContext } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { Context, ParentProps} from "solid-js";
+import type { Context, ParentProps } from "solid-js";
 
 interface Options<T> {
 	consumerName?: `use${Capitalize<string>}`;
@@ -15,9 +15,9 @@ export function createProvider<T>(options: Options<T>) {
 
 	function Provider(props: ParentProps) {
 		return (
-			<Context.Provider value={getValue()}>
+			<Context value={getValue()}>
 				{props.children}
-			</Context.Provider>
+			</Context>
 		);
 	}
 

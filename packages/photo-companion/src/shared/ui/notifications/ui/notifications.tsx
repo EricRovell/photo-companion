@@ -1,4 +1,4 @@
-import { onCleanup, onMount } from "solid-js";
+import { onSettled } from "solid-js";
 
 import { mountNotifications } from "../lib";
 
@@ -10,11 +10,10 @@ export interface NotificationsProps extends NotificationViewportOptions {
 
 export function Notifications(props: NotificationsProps) {
 	let host: HTMLDivElement | undefined;
-	let dispose: (() => void) | undefined;
 
-	onMount(() => {
+	onSettled(() => {
 		if (host) {
-			dispose = mountNotifications({
+			return mountNotifications({
 				center: props.center,
 				host,
 				viewportOptions: props
@@ -22,7 +21,6 @@ export function Notifications(props: NotificationsProps) {
 		}
 	});
 
-	onCleanup(() => dispose?.());
 
 	return (
 		<div ref={element => { host = element; }} />

@@ -26,11 +26,11 @@ function Ranges(props: RangesProps) {
 			<For each={props.intervals}>
 				{interval => (
 					<span class={styles.range}>
-						<time dateTime={new Date(interval.start).toISOString()}>
+						<time datetime={new Date(interval.start).toISOString()}>
 							{props.formatTime(interval.start)}
 						</time>
 						<span>–</span>
-						<time dateTime={new Date(interval.end).toISOString()}>
+						<time datetime={new Date(interval.end).toISOString()}>
 							{props.formatTime(interval.end)}
 						</time>
 					</span>
@@ -61,7 +61,7 @@ export function SunlightLegend(props: Props) {
 				<For each={SUNLIGHT_WIDGET_CONFIG.phases}>
 					{phase => (
 						<tr
-							data-active={props.currentPhase === phase}
+							data-active={String(props.currentPhase === phase)}
 							data-phase={phase}
 						>
 							<th scope="row">
@@ -83,7 +83,7 @@ export function SunlightLegend(props: Props) {
 									</For>
 								)}
 							>
-								<td colSpan={2}>
+								<td colspan={2}>
 									<Show
 										when={allDay(phase)}
 										fallback={(

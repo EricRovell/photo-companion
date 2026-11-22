@@ -1,6 +1,5 @@
 import { useBeforeLeave } from "@solidjs/router";
 import { For } from "solid-js";
-import { classnames } from "utils";
 
 import { useTranslation } from "~/features/translation";
 import { createToggle } from "~/shared/primitives";
@@ -24,11 +23,11 @@ function SideMenu() {
 
 	return (
 		<li
-			class={classnames(styles["nav-item"], styles["nav-item-menu"])}
+			class={[ styles["nav-item"], styles["nav-item-menu"] ]}
 		>
 			<Button
 				appearance="ghost"
-				class={classnames(styles.link, styles["nav-item-menu-button"])}
+				class={[ styles.link, styles["nav-item-menu-button"] ]}
 				onClick={handleOpen}
 			>
 				<IconMenu class={styles.icon} />
@@ -40,7 +39,7 @@ function SideMenu() {
 				classes={{
 					backdrop: styles.backdrop,
 					dialog: styles.dialog,
-					drawer: classnames(styles.drawer, "custom-scrollbar")
+					drawer: [ styles.drawer, "custom-scrollbar" ]
 				}}
 				onClose={handleClose}
 				open={getShowMenu()}
@@ -56,7 +55,7 @@ const SettingsLink = () => {
 
 	return (
 		<li
-			class={classnames(styles["nav-item"], styles["nav-item-settings"])}
+			class={[ styles["nav-item"], styles["nav-item-settings"] ]}
 		>
 			<NavigationItem
 				classes={{

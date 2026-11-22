@@ -47,7 +47,7 @@ export function CityLightsSource(props: Props) {
 			</div>
 			<Show when={props.uncertainty ?? props.reservedUncertainty}>
 				<Text
-					aria-hidden={!props.uncertainty}
+					aria-hidden={!props.uncertainty ? "true" : "false"}
 					class={styles.uncertainty}
 					color="secondary"
 					variant="text-xs"

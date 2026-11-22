@@ -1,4 +1,6 @@
-import { fireEvent, renderHook } from "@solidjs/testing-library";
+import { fireEvent } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -30,9 +32,11 @@ describe("createCountdown", () => {
 		expect(result()).toBe(60_000);
 
 		vi.advanceTimersByTime(15_000);
+		flush();
 		expect(result()).toBe(45_000);
 
 		setEnd(120_000);
+		flush();
 		expect(result()).toBe(105_000);
 	});
 
@@ -45,15 +49,20 @@ describe("createCountdown", () => {
 		}));
 
 		vi.advanceTimersByTime(15_000);
+		flush();
 		expect(result()).toBe(45_000);
 
 		visibilityState = "hidden";
 		fireEvent(document, new Event("visibilitychange"));
+		flush();
 		setEnd(120_000);
+		flush();
 		vi.advanceTimersByTime(30_000);
+		flush();
 
 		visibilityState = "visible";
 		fireEvent(document, new Event("visibilitychange"));
+		flush();
 
 		expect(result()).toBe(75_000);
 	});
@@ -66,10 +75,13 @@ describe("createCountdown", () => {
 		}));
 
 		vi.advanceTimersByTime(15_000);
+		flush();
 		expect(result()).toBe(45_000);
 		setStart(15_000);
+		flush();
 		expect(result()).toBe(45_000);
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(result()).toBe(44_000);
 	});
 
@@ -82,8 +94,10 @@ describe("createCountdown", () => {
 
 		vi.setSystemTime(startedAt + 30_000);
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(result()).toBe(29_000);
 		vi.advanceTimersByTime(60_000);
+		flush();
 		expect(result()).toBe(0);
 	});
 });

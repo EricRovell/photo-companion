@@ -1,4 +1,3 @@
-import { classnames } from "utils";
 
 import { useTranslation } from "~/features/translation";
 import { Text } from "~/shared/ui";
@@ -10,7 +9,7 @@ export function TimelineEventEmpty() {
 
 	return (
 		<li
-			class={classnames(styles.event, styles.empty)}
+			class={[ styles.event, styles.empty ]}
 			data-event-name="empty"
 		>
 			<div class={styles.icon} data-event-icon>

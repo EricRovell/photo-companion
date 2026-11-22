@@ -1,5 +1,7 @@
 import { SUPPORTED_BRIDGES_NAME_SET } from "bridge-schedule";
 
+import type { BridgeEventName } from "types";
+
 import { CITY_OPTIONS as CITIES } from "~/shared/consts";
 
 import type { SettingsStore } from "../types";
@@ -30,10 +32,10 @@ export const LANGUAGE_OPTIONS: InputSelectOption[] = [
 export const BRIDGES_EVENTS_OPTIONS = (
 	t: Translation,
 	message: BridgeEventMessageFormatter
-): InputSelectOption[] => {
+): InputSelectOption<BridgeEventName>[] => {
 	return Array
 		.from(SUPPORTED_BRIDGES_NAME_SET)
-		.flatMap(item => [
+		.flatMap<InputSelectOption<BridgeEventName>>(item => [
 			{
 				label: message(t.BRIDGE_SPB_EVENT.OPEN, {
 					bridge: t.BRIDGE_NAME_SPB[item]
@@ -49,7 +51,7 @@ export const BRIDGES_EVENTS_OPTIONS = (
 		]);
 };
 
-export const FORM_INPUT_NAME: Record<Uppercase<keyof SettingsStore>, keyof SettingsStore> = {
+export const FORM_INPUT_NAME = {
 	CITY: "city",
 	EVENTS_BRIDGES_SPB: "events_bridges_spb",
 	EVENTS_LIGHTS: "events_bridges_spb",
@@ -59,4 +61,4 @@ export const FORM_INPUT_NAME: Record<Uppercase<keyof SettingsStore>, keyof Setti
 	LATITUDE: "latitude",
 	LONGITUDE: "longitude",
 	TABS: "tabs"
-};
+} as const satisfies Record<Uppercase<keyof SettingsStore>, keyof SettingsStore>;

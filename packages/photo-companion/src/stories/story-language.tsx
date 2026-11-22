@@ -1,4 +1,4 @@
-import { createContext, createEffect, Suspense, useContext } from "solid-js";
+import { createContext, createEffect, Loading, untrack, useContext } from "solid-js";
 
 import type { ParentProps } from "solid-js";
 
@@ -10,12 +10,12 @@ import type { UserLang } from "~/features/settings/types";
 const LanguageContext = createContext<{ language: UserLang }>({ language: "en" });
 
 export function StoryLanguageProvider(props: ParentProps<{ language: UserLang }>) {
-	createEffect(() => { document.documentElement.lang = props.language; });
+	createEffect(() => props.language, language => { document.documentElement.lang = language; });
 
 	return (
-		<LanguageContext.Provider value={props}>
+		<LanguageContext value={props}>
 			{props.children}
-		</LanguageContext.Provider>
+		</LanguageContext>
 	);
 }
 
@@ -23,16 +23,18 @@ export function StoryTranslationProvider(props: ParentProps) {
 	const story = useContext(LanguageContext);
 	const { setSettings, settings } = useSettings();
 
-	createEffect(() => {
-		if (settings.language !== story.language) {
-			setSettings("language", story.language);
+	createEffect(() => story.language, language => {
+		if (untrack(() => settings.language) !== language) {
+			setSettings((draft) => {
+				draft.language = language;
+			});
 		}
 	});
 
 	return (
-		<Suspense>
+		<Loading>
 			<TranslationProvider>{props.children}</TranslationProvider>
-		</Suspense>
+		</Loading>
 	);
 }
 

@@ -42,9 +42,9 @@ export function DeviceHeadingToggle(props: Props) {
 		<div class={styles.controls}>
 			<Button
 				appearance="outline"
-				aria-busy={props.pending}
+				aria-busy={props.pending ? "true" : "false"}
 				aria-label={props.labels.align}
-				aria-pressed={props.active}
+				aria-pressed={props.active ? "true" : "false"}
 				class={styles.button}
 				disabled={props.pending}
 				onClick={() => void props.onToggle()}

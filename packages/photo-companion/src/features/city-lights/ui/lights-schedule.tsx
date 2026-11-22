@@ -20,7 +20,7 @@ export function LightsSchedule() {
 				<LinkQuery
 					aria-label={label}
 					href={ROUTES.LIGHTS}
-					noScroll
+					noscroll
 					query={new URLSearchParams({ datetime: createQueryDate(date) })}
 				>
 					{children}
