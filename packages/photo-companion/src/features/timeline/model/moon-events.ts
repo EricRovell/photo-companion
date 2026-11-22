@@ -28,6 +28,7 @@ export const getMoonEvents = (date: Date = new Date(), latitude: number, longitu
 
 	for (const event of times) {
 		if (event.name !== "MOONRISE" && event.name !== "MOONSET") {continue;}
+
 		const illumination = getMoonIllumination(event.time);
 		const position = getMoonPosition({
 			instant: event.time,

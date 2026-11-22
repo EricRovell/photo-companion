@@ -25,6 +25,7 @@ export function createRiseSetWidgetModel(props: RiseSetWidgetProps) {
 
 	const status = createMemo(() => {
 		const key = getRiseSetStatusKey(props);
+
 		return key ? t().RISE_SET[key] : null;
 	});
 

@@ -17,6 +17,7 @@ const SELECTED_DATETIME = new Date(2027, 3, 5, 12, 45, 36);
 
 function createLocation(pathname: string, params: [ string, string ][]): string {
 	const searchParams = new URLSearchParams(params);
+
 	return `${pathname}?${searchParams.toString()}`;
 }
 

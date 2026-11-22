@@ -24,6 +24,7 @@ export function Error(props: Props) {
 	const message = () => {
 		if (hasError()) {
 			const key = getInvalidFields()[0].toUpperCase() as Uppercase<ErrorFieldNames>;
+
 			return t().ERRORS[key];
 		}
 

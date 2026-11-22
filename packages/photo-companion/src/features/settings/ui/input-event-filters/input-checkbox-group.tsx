@@ -114,6 +114,7 @@ export function InputCheckboxGroup<Name extends string, T extends string>(allPro
 				next = null;
 			}
 		}
+
 		setValue(next);
 		props.onChange?.(props.name, next);
 	};

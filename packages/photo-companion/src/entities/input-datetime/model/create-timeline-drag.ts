@@ -59,6 +59,7 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 				options.setState((draft) => {
 					draft.offset = 0;
 				});
+
 				return;
 			}
 

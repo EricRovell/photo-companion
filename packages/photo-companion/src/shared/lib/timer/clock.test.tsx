@@ -25,6 +25,7 @@ function renderClocks(throttleInterval?: number) {
 
 		const calculation = createMemo(() => {
 			calculate();
+
 			return throttled.getTimestamp();
 		});
 

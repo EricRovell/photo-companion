@@ -16,6 +16,7 @@ const ASSETS = __SERVICE_WORKER_ASSETS__;
 self.addEventListener("install", event => {
 	const cacheBundles = async () => {
 		const cache = await caches.open(VERSION_HASH);
+
 		return cache.addAll(ASSETS);
 	};
 

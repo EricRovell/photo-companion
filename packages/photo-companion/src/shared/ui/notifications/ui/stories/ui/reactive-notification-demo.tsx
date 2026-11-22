@@ -22,6 +22,7 @@ export function ReactiveNotificationDemo() {
 			title: `Notification revision ${revision()}`,
 			variant: variant()
 		} : null, { center });
+
 		return null;
 	};
 

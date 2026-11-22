@@ -62,6 +62,7 @@ export function getLightsNight(date: Date, getSchedule: (date: Date) => LightsSc
 					start: activeStart
 				});
 			}
+
 			activeStart = null;
 		}
 	}

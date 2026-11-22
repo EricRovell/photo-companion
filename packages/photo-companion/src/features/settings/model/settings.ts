@@ -28,6 +28,7 @@ function createSettingsState() {
 		setSettingsStore((draft) => {
 			const replacement = update(draft);
 			storage.write(snapshot(replacement ?? draft));
+
 			return replacement;
 		});
 	};

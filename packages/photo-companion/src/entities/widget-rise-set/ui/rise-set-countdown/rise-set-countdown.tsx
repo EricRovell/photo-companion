@@ -15,6 +15,7 @@ interface Props {
 export function RiseSetCountdown(props: Props) {
 	const available = createMemo(() => {
 		const remaining = props.event ? props.event.getTime() - props.date.getTime() : NaN;
+
 		return Number.isFinite(remaining) && remaining >= 0;
 	});
 

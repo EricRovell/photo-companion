@@ -89,6 +89,7 @@ export const LinkReference = (props: LinkReferenceProps) => {
 
 export const List = (props: ListProps) => {
 	const ListElement = dynamic(() => props.ordered ? "ol" : "ul");
+
 	return <ListElement start={props.start ?? undefined}>
 		{props.children}
 	</ListElement>;

@@ -90,6 +90,7 @@ export const createTweened: CreateTweened = (target, options = DEFAULT_OPTIONS) 
 	createEffect(() => [ target(), prefersReducedMotion() ] as const, ([ targetValue, reducedMotion ]) => {
 		if (duration <= 0 || reducedMotion) {
 			setValue(targetValue);
+
 			return;
 		}
 

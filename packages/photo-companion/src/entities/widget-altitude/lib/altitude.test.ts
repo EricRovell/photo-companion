@@ -106,10 +106,12 @@ describe("altitude scale", () => {
 
 		expect(range).toEqual(expected);
 		expect(ticks.length).toBeGreaterThan(0);
+
 		for (const tick of ticks) {
 			expect(tick).toBeGreaterThanOrEqual(range.min);
 			expect(tick).toBeLessThanOrEqual(range.max);
 		}
+
 		if (range.min <= 0 && range.max >= 0) {
 			expect(ticks).toContain(0);
 		}

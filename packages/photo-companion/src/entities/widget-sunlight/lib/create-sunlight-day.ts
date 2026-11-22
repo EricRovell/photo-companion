@@ -113,6 +113,7 @@ export function createSunlightDay(date: Date, observer: Observer): SunlightDay {
 		return boundaries.slice(0, -1).map((start, index) => {
 			const end = boundaries[index + 1];
 			const middle = (start + end) / 2;
+
 			return {
 				end,
 				period: altitude(Math.min(end - 1, middle + 1000)) >= altitude(Math.max(start, middle - 1000)) ? "morning" : "evening",

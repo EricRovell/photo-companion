@@ -91,5 +91,6 @@ export function withStoryProviders(content: () => Element, options: StoryEnviron
 			path: "*"
 		}]
 	});
+
 	return <Router />;
 }

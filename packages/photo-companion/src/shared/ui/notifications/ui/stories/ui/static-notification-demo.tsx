@@ -16,6 +16,7 @@ export function StaticNotificationDemo() {
 			title: "Your photo walk is ready",
 			variant: "success"
 		}, { center });
+
 		return null;
 	};
 

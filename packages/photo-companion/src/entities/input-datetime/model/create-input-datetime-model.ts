@@ -52,8 +52,10 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 		const anchorDate = state.anchorDate;
 		const middle = Math.floor(DATETIME_CONFIG.ticks.count / 2);
 		const step = state.step;
+
 		return Array.from({ length: DATETIME_CONFIG.ticks.count }, (_, index) => {
 			const tickOffset = index - middle;
+
 			return {
 				date: shiftTimelineDate(anchorDate, step, tickOffset),
 				offset: tickOffset
@@ -157,6 +159,7 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 		if (onReset) {
 			pendingValue = null;
 			onReset();
+
 			return;
 		}
 
@@ -177,6 +180,7 @@ export function createInputDatetimeModel(options: CreateInputDatetimeModelOption
 				pendingValue = null;
 				syncedValue = value;
 			}
+
 			return;
 		}
 

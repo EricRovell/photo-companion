@@ -23,6 +23,7 @@ export function NotificationVariantDemo(props: NotificationVariantDemoProps) {
 
 	const reset = () => {
 		center.clear();
+
 		for (const variant of [ ...variants ].reverse()) {
 			show(variant);
 		}

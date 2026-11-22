@@ -25,6 +25,7 @@ function Calculator() {
 		if (hasError()) {
 			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			navigator.vibrate?.(350);
+
 			return;
 		}
 

@@ -34,6 +34,7 @@ export function mountNotifications({
 
 		entries.forEach((entry, index) => {
 			const card = cards.get(entry.id);
+
 			if (paused || index >= activeCount) {
 				card?.pause();
 			} else {
@@ -124,6 +125,7 @@ export function mountNotifications({
 
 	const init = () => {
 		mountedCenters.add(center);
+
 		return center.subscribe(syncEntries);
 	};
 

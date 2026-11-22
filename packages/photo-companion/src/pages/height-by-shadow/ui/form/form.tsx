@@ -26,6 +26,7 @@ export function Form(props: JSX.FormHTMLAttributes<HTMLFormElement> & ParentProp
 				if (!isNullable(event.target.valueAsDate)) {
 					setModel(event.target.name as FormKey, event.target.valueAsDate);
 				}
+
 				break;
 			case FORM_NAME.LATITUDE_DIRECTION:
 			case FORM_NAME.LONGITUDE_DIRECTION:

@@ -27,6 +27,7 @@ vi.mock("~/features/settings", () => ({
 
 vi.mock("~/features/translation", async () => {
 	const { t } = await import("~/features/translation/consts/translation.en");
+
 	return {
 		useTranslation: () => ({
 			format: () => ({
@@ -62,6 +63,7 @@ function renderTimes() {
 			path: "/sun"
 		}]
 	});
+
 	return render(() => (
 		<Router />
 	));
@@ -84,6 +86,7 @@ describe("SunTimes", () => {
 		expect(view.getByText("Sunrise")).toBeInTheDocument();
 		expect(view.getByText("Sunset")).toBeInTheDocument();
 		expect(times).toHaveLength(2);
+
 		for (const time of times) {
 			expect(time.getAttribute("datetime")).toMatch(/^2026-10-21T/);
 			const link = time.querySelector("a");
@@ -95,14 +98,17 @@ describe("SunTimes", () => {
 			expect(url.searchParams.get("datetime")).toBe(createQueryDate(new Date(time.getAttribute("datetime") ?? "")));
 			expect(link).toHaveAttribute("noscroll");
 		}
+
 		expect(view.container.querySelector("[data-position-marker]")).toBeInTheDocument();
 	});
 
 	it("keeps the sun dim at sunrise while its center is still below zero altitude", () => {
 		const rise = getDayEvents(state.date).find(event => event.name === "SUNRISE_START");
+
 		if (!rise) {
 			throw new Error("Expected sunrise at the equator");
 		}
+
 		state.date = rise.time;
 		const view = renderTimes();
 

@@ -46,6 +46,7 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 				draft.offset = 0;
 				draft.animating = false;
 			});
+
 			return;
 		}
 
@@ -60,6 +61,7 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 			options.setState((draft) => {
 				draft.animating = false;
 			});
+
 			return;
 		}
 
@@ -107,6 +109,7 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 
 			if (!prefersReducedMotion() && !settled && time - start < spring.maxDuration) {
 				animationFrame = requestAnimationFrame(tick);
+
 				return;
 			}
 

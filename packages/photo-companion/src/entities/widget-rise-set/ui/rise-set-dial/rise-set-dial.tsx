@@ -39,6 +39,7 @@ export function RiseSetDial(props: ParentProps<Props>) {
 
 	const markerVisible = () => {
 		const value = progress().position;
+
 		return !isNullable(value) && (props.aboveHorizon || value === 0 || value === 1);
 	};
 

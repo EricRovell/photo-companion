@@ -40,6 +40,7 @@ export function createSunlightModel(props: SunlightWidgetProps) {
 
 	const nextChange = createMemo<null | SunlightTransition>(() => {
 		const next = day().intervals.find(interval => interval.start === current().end);
+
 		return next ? {
 			phase: next.phase,
 			timestamp: next.start

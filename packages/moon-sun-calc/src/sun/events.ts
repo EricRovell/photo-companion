@@ -80,6 +80,7 @@ export function findSunAzimuthCrossings({
 		step: validateEventStep(options)
 	}).map(time => {
 		const crossing = position(time);
+
 		return {
 			altitude: crossing.altitude,
 			apparentAltitude: crossing.apparentAltitude,

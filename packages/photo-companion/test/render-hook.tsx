@@ -11,6 +11,7 @@ export function renderHook<T>(hook: () => T, options: { wrapper?: ParentComponen
 	const view = render(() => {
 		result = hook();
 		owner = getOwner();
+
 		return null;
 	}, options);
 

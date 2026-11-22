@@ -161,6 +161,7 @@ export function shiftDate(input: DateLike | string, unit: DateShiftUnit, amount:
 function getDaysInMonth(year: number, month: number): number {
 	const date = new Date(0);
 	date.setFullYear(year, month + 1, 0);
+
 	return date.getDate();
 }
 
