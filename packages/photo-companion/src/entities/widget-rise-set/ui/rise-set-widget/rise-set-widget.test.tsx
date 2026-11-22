@@ -9,6 +9,7 @@ import type { RiseSetWidgetProps } from "../../types";
 
 vi.mock("~/features/translation", async () => {
 	const { t } = await import("~/features/translation/consts/translation.en");
+
 	return {
 		useTranslation: () => ({
 			format: () => ({

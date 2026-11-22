@@ -14,6 +14,7 @@ export function parseQueryDate(input: string): Date {
 
 	if (isNullable(output)) {
 		console.warn(`Invalid date input: ${input}`);
+
 		return new Date();
 	}
 

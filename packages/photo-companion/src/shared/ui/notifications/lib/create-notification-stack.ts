@@ -57,6 +57,7 @@ export const createNotificationStack = ({ host, viewportOptions }: CreateNotific
 
 	const measure = () => {
 		const arriving: NotificationCard[] = [];
+
 		for (const card of heights.keys()) {
 			// Read layout dimensions while transforms are still animating.
 			const contentHeight = card.content.offsetHeight;
@@ -70,6 +71,7 @@ export const createNotificationStack = ({ host, viewportOptions }: CreateNotific
 				arriving.push(card);
 			}
 		}
+
 		if (arriving.length) {
 			// Commit every entrance pose before moving any cards in the stack.
 			list.getBoundingClientRect();

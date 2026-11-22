@@ -24,6 +24,7 @@ function toAccessor<T>(input: Accessor<Nullable<T>> | Nullable<T>): Accessor<Nul
 function tryOnCleanup(func: VoidFn) {
 	if (getOwner()) {
 		onCleanup(func);
+
 		return true;
 	}
 
@@ -79,6 +80,7 @@ export function createEventListener<E>(input: Input<E>): VoidFn {
 	}) => {
 		// @ts-expect-error: TODO type check
 		target.addEventListener(event, listener, options);
+
 		// @ts-expect-error: TODO type check
 		return () => target.removeEventListener(event, listener, options);
 	};

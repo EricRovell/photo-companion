@@ -18,6 +18,7 @@ export function createCityLightsWidgetModel(props: Omit<CityLightsWidgetProps, "
 
 	const night = createMemo(() => {
 		const schedule = nightSchedule();
+
 		return schedule ? getCityLightsNightGraph(schedule, props.date) : null;
 	});
 	const status = () => getLightsScheduleStatusMessage(props.schedule.status, t());
@@ -26,9 +27,11 @@ export function createCityLightsWidgetModel(props: Omit<CityLightsWidgetProps, "
 		if (!available()) {
 			return t().RISE_SET.UNAVAILABLE;
 		}
+
 		if (estimated()) {
 			return props.state.lights ? t().LIGHTS_WIDGET.EXPECTED_ON : t().LIGHTS_WIDGET.EXPECTED_OFF;
 		}
+
 		return props.state.lights ? t().LIGHTS_WIDGET.SCHEDULED_ON : t().LIGHTS_WIDGET.SCHEDULED_OFF;
 	};
 
@@ -44,6 +47,7 @@ export function createCityLightsWidgetModel(props: Omit<CityLightsWidgetProps, "
 
 	const dayLabel = (timestamp: number) => {
 		const days = getCityLightsDayOffset(new Date(timestamp), props.date);
+
 		return days === 0 ? t().RISE_SET.TODAY : relativeDay().format(days, "day");
 	};
 
@@ -62,6 +66,7 @@ export function createCityLightsWidgetModel(props: Omit<CityLightsWidgetProps, "
 		countdownLabel: () => props.state.lights ? t().LABEL.TILL_TURNED_OFF : t().LABEL.TILL_TURNED_ON,
 		duration: () => {
 			const value = nightSchedule();
+
 			return value ? formatCityLightsDuration(value.duration) : "—";
 		},
 		durationLabel: () => t().LABEL.DURATION_LIGHTS,

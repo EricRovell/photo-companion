@@ -32,7 +32,10 @@ const showCustomNotification = (center: NotificationCenter) => {
 			details.textContent = "18:42–19:16 · Bring your tripod";
 			details.style.cssText = "margin: 6px 0 0; color: var(--color-text-secondary); font-size: 13px";
 			element.append(heading, details);
-			return { element };
+
+			return {
+				element
+			};
 		},
 		duration: Infinity,
 		title: "Golden hour is approaching",

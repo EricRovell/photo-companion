@@ -27,6 +27,7 @@ vi.mock("~/features/settings", () => ({
 
 vi.mock("~/features/translation", async () => {
 	const { t } = await import("~/features/translation/consts/translation.en");
+
 	return {
 		useTranslation: () => ({
 			format: () => ({
@@ -41,6 +42,7 @@ vi.mock("~/features/translation", async () => {
 
 function getDayEvents(date: DateLike) {
 	const start = getDayStart(date);
+
 	return getMoonEvents({
 		interval: {
 			end: shiftDate(start, "day", 1).getTime(),
@@ -80,6 +82,7 @@ describe("MoonTimes", () => {
 		const day = getDayStart(state.date);
 		const events = [ -1, 0, 1 ].flatMap(offset => {
 			const start = shiftDate(day, "day", offset).getTime();
+
 			return getMoonEvents({
 				interval: {
 					end: shiftDate(start, "day", 1).getTime(),
@@ -104,6 +107,7 @@ describe("MoonTimes", () => {
 		expect(times[0]).toHaveAttribute("datetime", rise?.time.toISOString());
 		expect(times[1]).toHaveAttribute("datetime", set?.time.toISOString());
 		expect(view.getByText("Previous day")).toBeInTheDocument();
+
 		for (const time of times) {
 			const link = time.querySelector("a");
 			const url = new URL(link?.getAttribute("href") ?? "", "https://example.com");
@@ -114,14 +118,17 @@ describe("MoonTimes", () => {
 			expect(url.searchParams.get("datetime")).toBe(createQueryDate(new Date(time.getAttribute("datetime") ?? "")));
 			expect(link).toHaveAttribute("noscroll");
 		}
+
 		expect(view.container.querySelector("[data-position-marker]")).toBeInTheDocument();
 	});
 
 	it("keeps the center dim at the actual rise event while its altitude is still below zero", () => {
 		const rise = getDayEvents(state.date).find(event => event.name === "MOONRISE");
+
 		if (!rise) {
 			throw new Error("Expected moonrise at the equator");
 		}
+
 		state.date = rise.time;
 		const view = renderTimes();
 

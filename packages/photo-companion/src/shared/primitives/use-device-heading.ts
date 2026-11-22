@@ -210,6 +210,7 @@ export function useDeviceHeading(options: DeviceHeadingOptions = {}): {
 	async function requestHeading() {
 		if (!supported()) {
 			setStatus("unsupported");
+
 			return;
 		}
 
@@ -225,6 +226,7 @@ export function useDeviceHeading(options: DeviceHeadingOptions = {}): {
 
 				if (permission !== "granted") {
 					setStatus("denied");
+
 					return;
 				}
 			}
@@ -246,6 +248,7 @@ export function useDeviceHeading(options: DeviceHeadingOptions = {}): {
 	onSettled(() => {
 		if (!supported()) {
 			setStatus("unsupported");
+
 			return;
 		}
 

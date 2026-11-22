@@ -66,6 +66,7 @@ export const createNotificationCard = ({
 
 			button.onclick = () => {
 				action.onClick();
+
 				if (action.dismiss !== false) {
 					center.dismiss(current.id, "action");
 				}
@@ -127,6 +128,7 @@ export const createNotificationCard = ({
 
 		if (!element.dataset.dragging && Math.abs(event.clientY - pointer.y) > Math.abs(distance)) {
 			resetSwipe();
+
 			return;
 		}
 
@@ -174,6 +176,7 @@ export const createNotificationCard = ({
 
 		if (hadFocus) {
 			const buttons = element.querySelectorAll("button");
+
 			return closing ? buttons[buttons.length - 1] : buttons[0];
 		}
 	};

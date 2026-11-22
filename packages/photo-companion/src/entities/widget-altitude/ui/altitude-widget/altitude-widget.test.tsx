@@ -13,6 +13,7 @@ const degrees = degreesFormatter("en");
 
 vi.mock("~/features/translation", async () => {
 	const { t } = await import("~/features/translation/consts/translation.en");
+
 	return {
 		useTranslation: () => ({
 			format: () => ({
@@ -40,6 +41,7 @@ moon?: boolean }) {
 			label: "Moon"
 		}
 	];
+
 	return (
 		<AltitudeWidget
 			date={props.date}
@@ -90,10 +92,12 @@ describe("compound altitude widget", () => {
 		</>);
 		const ids = Array.from(view.container.querySelectorAll("[id]"), element => element.id);
 		expect(new Set(ids).size).toBe(ids.length);
+
 		for (const path of view.container.querySelectorAll("[clip-path]")) {
 			const id = path.getAttribute("clip-path")?.slice(5, -1);
 			expect(ids).toContain(id);
 		}
+
 		expect(view.getAllByRole("img")).toHaveLength(2);
 	});
 

@@ -37,6 +37,7 @@ export function createTweenedAzimuthPath(target: Accessor<AzimuthPathPoint[]>) {
 
 		if (initialPath.length !== targetPath.length || reducedMotion) {
 			setPath(targetPath);
+
 			return;
 		}
 

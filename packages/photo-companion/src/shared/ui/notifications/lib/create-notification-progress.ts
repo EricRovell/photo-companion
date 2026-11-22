@@ -13,6 +13,7 @@ export const createNotificationProgress = (host: HTMLElement) => {
 		if (element.hidden) {
 			animation?.cancel();
 			animation = undefined;
+
 			return;
 		}
 

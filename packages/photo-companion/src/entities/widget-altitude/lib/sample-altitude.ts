@@ -10,6 +10,7 @@ export function sampleAltitude(start: number, end: number, getAltitude: (timesta
 
 	const points: AltitudePoint[] = Array.from({ length: count + 1 }, (_, index) => {
 		const timestamp = start + (end - start) * index / count;
+
 		return {
 			altitude: getAltitude(timestamp),
 			timestamp

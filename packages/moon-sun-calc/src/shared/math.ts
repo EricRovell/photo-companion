@@ -17,6 +17,7 @@ export function normalizeDegrees(value: Degree): Degree {
 
 export function normalizeSignedDegrees(value: Degree): Degree {
 	const normalized = normalizeDegrees(value);
+
 	return normalized > 180 ? normalized - 360 : normalized;
 }
 

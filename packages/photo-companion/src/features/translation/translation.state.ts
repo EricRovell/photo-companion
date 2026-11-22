@@ -33,6 +33,7 @@ export function createTranslationState() {
 
 	const t = createMemo(async () => {
 		const dict = await TRANSLATIONS[lang()]();
+
 		return dict.t;
 	});
 

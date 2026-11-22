@@ -90,6 +90,7 @@ export function roots({
 						left: previousTime,
 						right: time
 					});
+
 			if (root >= start && root < end && (result.length === 0 || root - result[result.length - 1] > 1000)) {
 				result.push(root);
 			}

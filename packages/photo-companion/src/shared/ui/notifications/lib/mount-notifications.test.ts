@@ -22,6 +22,7 @@ function mockCountdownAnimations() {
 	const animate = vi.fn(() => {
 		const animation = createAnimation();
 		animations.push(animation);
+
 		return animation;
 	});
 
@@ -866,6 +867,7 @@ describe("notifications", () => {
 		};
 		vi.stubGlobal("ResizeObserver", vi.fn(function (callback: () => void) {
 			notifyResize = callback;
+
 			return observer;
 		}));
 		vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockImplementation(function (this: HTMLElement) {

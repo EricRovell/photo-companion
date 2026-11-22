@@ -20,6 +20,7 @@ vi.mock("~/features/settings", () => ({
 
 vi.mock("~/features/translation", async () => {
 	const { t } = await import("~/features/translation/consts/translation.en");
+
 	return {
 		useTranslation: () => ({
 			format: () => ({
@@ -68,6 +69,7 @@ describe("LightsSchedule links", () => {
 		const { view } = renderSchedule(datetime);
 		const on = view.getByRole("link", { name: /^Turn-on time:/ });
 		const off = view.getByRole("link", { name: /^Turn-off time:/ });
+
 		for (const [ link, timestamp ] of [
 			[ on, "2026-10-24T17:21:00" ],
 			[ off, "2026-10-25T06:59:00" ]

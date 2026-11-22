@@ -10,6 +10,7 @@ export function createAltitudeToggle(entities: Accessor<AltitudeEntity[]>) {
 	const selected = createMemo(() => {
 		const available = entities().map(entity => entity.id);
 		const active = available.filter(id => !inactive().includes(id));
+
 		return active.length > 0 ? active : available.slice(0, 1);
 	});
 

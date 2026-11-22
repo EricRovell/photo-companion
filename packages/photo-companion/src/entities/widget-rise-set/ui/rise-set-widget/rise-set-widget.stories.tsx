@@ -72,6 +72,7 @@ const meta = {
 					path: "*"
 				}]
 			});
+
 			return <Router />;
 		})
 	],

@@ -24,6 +24,7 @@ export function CityLightsLegend(props: Props) {
 				{event => {
 					const reservedDetails = () => {
 						const reserved = props.reservedEvents.find(item => item.name === event.name) ?? event;
+
 						return [ reserved.day, reserved.range ].filter(Boolean).join(" · ");
 					};
 

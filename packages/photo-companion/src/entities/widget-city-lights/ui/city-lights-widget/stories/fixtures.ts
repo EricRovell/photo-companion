@@ -32,6 +32,7 @@ export const defaults: StoryArgs = {
 function at(date: Date, hour: number) {
 	const result = new Date(date);
 	result.setHours(Math.floor(hour), Math.round(hour % 1 * 60), 0, 0);
+
 	return result;
 }
 
@@ -58,6 +59,7 @@ function createScheduleScenario(options: ScenarioOptions): Omit<CityLightsWidget
 				status: args.status
 			};
 		}
+
 		const LIGHTS_START = at(day, args.onHour).getTime();
 		const LIGHTS_END = at(day, day.getDate() === 25 ? options.nextDayOffHour ?? args.offHour : args.offHour).getTime();
 

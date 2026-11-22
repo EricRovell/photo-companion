@@ -24,6 +24,7 @@ beforeEach(() => {
 	vi.spyOn(performance, "now").mockImplementation(() => now);
 	vi.stubGlobal("requestAnimationFrame", vi.fn((callback: FrameRequestCallback) => {
 		frames.set(++frameId, callback);
+
 		return frameId;
 	}));
 	vi.stubGlobal("cancelAnimationFrame", vi.fn((id: number) => frames.delete(id)));
@@ -194,7 +195,9 @@ describe("altitude day transitions", () => {
 			const date = new Date(instant);
 			const amplitude = date.getDate() === 21 ? 20 : 40;
 
-			return { apparentAltitude: amplitude * Math.sin(date.getHours() * Math.PI / 12) + (date.getDate() - 21) * 10 };
+			return {
+				apparentAltitude: amplitude * Math.sin(date.getHours() * Math.PI / 12) + (date.getDate() - 21) * 10
+			};
 		});
 		const state = createRoot(dispose => {
 			disposers.push(dispose);

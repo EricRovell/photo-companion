@@ -219,6 +219,7 @@ describe("Sun", () => {
 		});
 
 		expect(crossings.length).toBeGreaterThan(0);
+
 		for (const crossing of crossings) {
 			expect(getSunPosition({
 				instant: crossing.time,

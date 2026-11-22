@@ -7,6 +7,7 @@ export function getNormalizedPhase(phase: number) {
 export function getNormalizedAngleRad(phase: number) {
 	const norm = getNormalizedPhase(phase);
 	const radians = (Math.PI * norm) / 0.5;
+
 	return radians;
 }
 
@@ -19,6 +20,7 @@ export function getNormalizedAngleRad(phase: number) {
  */
 export function getMoonRotation(zenithAngle: number, waxing: boolean) {
 	const phaseAxisOffset = waxing ? -90 : 90;
+
 	return normalizeAngleDegrees(-zenithAngle + phaseAxisOffset);
 }
 

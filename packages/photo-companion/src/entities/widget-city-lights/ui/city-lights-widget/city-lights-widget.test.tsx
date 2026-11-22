@@ -10,6 +10,7 @@ import { CityLightsWidget } from "./city-lights-widget";
 
 vi.mock("~/features/translation", async () => {
 	const { t } = await import("~/features/translation/consts/translation.en");
+
 	return {
 		useTranslation: () => ({
 			format: () => ({

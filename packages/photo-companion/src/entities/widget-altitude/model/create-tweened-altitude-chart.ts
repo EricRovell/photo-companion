@@ -72,6 +72,7 @@ export function createTweenedAltitudeChart(target: Accessor<AltitudeChartFrame>)
 				start: revision,
 				to: next
 			});
+
 			return;
 		}
 

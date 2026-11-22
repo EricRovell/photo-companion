@@ -8,6 +8,7 @@ import perfectionist from "eslint-plugin-perfectionist";
 
 import relativeImportsWithinSlices from "./tooling/eslint/fsd-relative-imports.js";
 import jsxWrapProps from "./tooling/eslint/rules/jsx-wrap-props.js";
+import returnObjectNewline from "./tooling/eslint/rules/return-object-newline.js";
 
 export default tseslint.config(
 	{
@@ -68,6 +69,7 @@ export default tseslint.config(
 		plugins: {
 			"@stylistic": stylistic,
 			"@typescript-eslint": tseslint.plugin,
+			format: { rules: { "return-object-newline": returnObjectNewline } },
 			perfectionist: perfectionist
 		},
 		languageOptions: {
@@ -154,6 +156,20 @@ export default tseslint.config(
 				}
 			}],
 			"@stylistic/object-property-newline": "error",
+			"@stylistic/padding-line-between-statements": [
+				"error",
+				{
+					blankLine: "always",
+					prev: "*",
+					next: [ "if", "for", "while", "do", "switch", "try", "return", "throw" ]
+				},
+				{
+					blankLine: "always",
+					prev: [ "if", "for", "while", "do", "switch", "try" ],
+					next: "*"
+				}
+			],
+			"format/return-object-newline": "error",
 			"comma-dangle": ["error", {
 				"arrays": "never",
 				"objects": "never",

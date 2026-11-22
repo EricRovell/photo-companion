@@ -31,6 +31,7 @@ function refinePhase({ left, right, target }: RefinePhaseInput): Millisecond {
 	for (let index = 0; index < 50 && right - left > 100; index += 1) {
 		const middle = (left + right) / 2;
 		const middleValue = angularDifference(elongation(middle), target);
+
 		if (Math.sign(leftValue) === Math.sign(middleValue)) {
 			left = middle;
 			leftValue = middleValue;

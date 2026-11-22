@@ -9,6 +9,7 @@ function getSchedule(date: Date, uncertaintyMinutes = 0): ScheduledLightsSchedul
 	start.setHours(18, 20, 0, 0);
 	const end = new Date(date);
 	end.setHours(6, date.getDate() === 25 ? 10 : 20, 0, 0);
+
 	return {
 		duration: 12 * 60 * 60_000,
 		LIGHTS_END: end.getTime(),
@@ -46,11 +47,13 @@ describe("getLightsNight", () => {
 
 	it.each([ 30, 60 ])("uses the full ±%i minute span at both estimated switches", (minutes) => {
 		const night = getLightsNight(new Date(2026, 9, 24, 20), date => getSchedule(date, minutes));
+
 		for (const event of night.events) {
 			expect(event.uncertaintyMinutes).toBe(minutes);
 			expect(event.windowStart).toBe(event.timestamp - minutes * 60_000);
 			expect(event.windowEnd).toBe(event.timestamp + minutes * 60_000);
 		}
+
 		expect(night.intervals[0].start).toBe(night.events[0]);
 		expect(night.intervals[0].end).toBe(night.events[1]);
 	});
@@ -60,6 +63,7 @@ describe("getLightsNight", () => {
 			...getSchedule(date),
 			uncertaintyMinutes: 30
 		}));
+
 		for (const event of night.events) {
 			expect(event.windowStart).toBe(event.timestamp);
 			expect(event.windowEnd).toBe(event.timestamp);
@@ -108,6 +112,7 @@ describe("getLightsNight", () => {
 			const schedule = getSchedule(date, 60);
 			const end = new Date(date);
 			end.setHours(11, 40, 0, 0);
+
 			return {
 				...schedule,
 				LIGHTS_END: end.getTime()

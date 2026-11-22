@@ -36,6 +36,7 @@ function renderLocationQueryHook(location: string) {
 
 	const hook = renderHook(() => {
 		useLocationQuery();
+
 		return useSettings();
 	}, { wrapper });
 

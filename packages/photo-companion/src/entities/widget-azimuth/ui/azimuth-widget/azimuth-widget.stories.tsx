@@ -80,6 +80,7 @@ function AzimuthPreview(args: StoryArgs) {
 					heading: () => args.heading,
 					requestHeading: () => {
 						setAligned(true);
+
 						return Promise.resolve();
 					},
 					status: () => args.pending ? "requesting" : aligned() ? "active" : "idle",

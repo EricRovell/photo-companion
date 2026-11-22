@@ -58,6 +58,7 @@ describe("Versioned Local Storage", () => {
 			// @ts-expect-error: Actually, there should be a number
 			getItemSpy.mockImplementationOnce(key => {
 				expect(key).toBe(STORAGE_NAME);
+
 				return STORAGE_VERSION;
 			});
 
@@ -67,6 +68,7 @@ describe("Versioned Local Storage", () => {
 
 			getItemSpy.mockImplementationOnce((key) => {
 				expect(key).toBe(STORAGE_VERSIONED_KEY);
+
 				return TEST_OBJECT_STRING;
 			});
 
@@ -77,6 +79,7 @@ describe("Versioned Local Storage", () => {
 			// @ts-expect-error: for testing purposes
 			getItemSpy.mockImplementationOnce(key => {
 				expect(key).toBe(STORAGE_NAME);
+
 				return undefined;
 			});
 
@@ -88,6 +91,7 @@ describe("Versioned Local Storage", () => {
 		it("Will throw if existing version is corrupted", () => {
 			getItemSpy.mockImplementationOnce(key => {
 				expect(key).toBe(STORAGE_NAME);
+
 				return `ABC${STORAGE_VERSION}`;
 			});
 
@@ -134,6 +138,7 @@ describe("Versioned Local Storage", () => {
 
 			getItemSpy.mockImplementationOnce((key) => {
 				expect(key).toBe(STORAGE_VERSIONED_KEY);
+
 				return `//${STORAGE_VERSION}`;
 			});
 

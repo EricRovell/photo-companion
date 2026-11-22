@@ -13,6 +13,7 @@ function getEntries(center: NotificationCenter) {
 	let entries: readonly NotificationEntry[] = [];
 	const unsubscribe = center.subscribe(value => { entries = value; });
 	unsubscribe();
+
 	return entries;
 }
 
@@ -136,6 +137,7 @@ describe("createNotification", () => {
 		const getOptions = vi.fn();
 		renderHook(() => createNotification(() => {
 			getOptions();
+
 			return visible() ? {
 				onDismiss,
 				title: "An update is ready"

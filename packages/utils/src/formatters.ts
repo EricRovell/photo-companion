@@ -167,5 +167,6 @@ export const timeShortFormatter = getDateTimeFormatter({
 
 export function timeShortDurationFormatter(locale?: string) {
 	const formatter = timeShortFormatter(locale);
+
 	return (start: DateLike, end: DateLike) => `${formatter(start)} — ${formatter(end)}}`;
 }

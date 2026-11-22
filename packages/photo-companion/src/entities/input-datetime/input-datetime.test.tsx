@@ -28,6 +28,7 @@ function renderAnimatingTimeline() {
 	const step = view.getByRole("combobox", { name: "Date and time step" });
 
 	flush(() => fireEvent.keyDown(slider, { key: "ArrowRight" }));
+
 	for (let frame = 0; frame < 15 && slider.getAttribute("aria-valuenow") !== NEXT_DAY; frame++) {
 		flush(() => vi.advanceTimersToNextFrame());
 	}

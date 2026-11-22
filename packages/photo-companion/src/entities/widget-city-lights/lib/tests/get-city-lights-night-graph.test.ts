@@ -10,6 +10,7 @@ function getSchedule(date: Date): ScheduledLightsSchedule {
 	start.setHours(18, 20, 0, 0);
 	const end = new Date(date);
 	end.setHours(6, 10, 0, 0);
+
 	return {
 		duration: (11 * 60 + 50) * 60_000,
 		LIGHTS_END: end.getTime(),

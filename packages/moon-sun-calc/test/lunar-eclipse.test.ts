@@ -55,6 +55,7 @@ function differenceMinutes(actual: Date, expected: string): number {
 function expectContact(actual: Date | undefined, expected: string | undefined): void {
 	if (expected === undefined) {
 		expect(actual).toBeUndefined();
+
 		return;
 	}
 

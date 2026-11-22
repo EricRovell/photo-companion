@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { findMoonRiseSetIntervals, findSunRiseSetIntervals, getMoonEvents, getSunEvents } from "../src";
 import { searchRiseSetIntervals } from "../src/rise-set/search";
 
-import type { RiseSetSearchInput } from "../src";
+import type { MoonEvent, RiseSetSearchInput, SunEvent } from "../src";
 import type { RiseSetCrossing, RiseSetInterval } from "../src/rise-set/types";
 
 const DAY = 86_400_000;
@@ -38,21 +38,25 @@ describe.each(bodies)("$name rise/set interval search", ({ find, getEvents, name
 			end: start + 3 * DAY,
 			start
 		};
+
 		const result = find({
 			interval,
 			observer
 		});
-		const events = [ 0, 1, 2 ].flatMap(day => getEvents({
+
+		const events = [ 0, 1, 2 ].flatMap<MoonEvent | SunEvent>(day => getEvents({
 			interval: {
 				end: start + (day + 1) * DAY,
 				start: start + day * DAY
 			},
 			observer
 		}));
+
 		expect(result.flatMap(interval => interval.rise ? [ interval.rise ] : []))
 			.toEqual(events.filter(event => event.name === rise).map(event => event.time));
 		expect(result.flatMap(interval => interval.set ? [ interval.set ] : []))
 			.toEqual(events.filter(event => event.name === set).map(event => event.time));
+
 		for (const interval of result) {
 			if (interval.rise && interval.set) {
 				expect(interval.set.getTime()).toBeGreaterThan(interval.rise.getTime());
@@ -71,9 +75,11 @@ describe.each(bodies)("$name rise/set interval search", ({ find, getEvents, name
 		const complete = cycles.find((interval): interval is { rise: Date;
 set: Date } => !!interval.rise && !!interval.set);
 		expect(complete).toBeDefined();
+
 		if (!complete) {
 			return;
 		}
+
 		const input = (time: Date): RiseSetSearchInput => ({
 			interval: {
 				end: time.getTime() + 60_000,
@@ -123,6 +129,7 @@ set: Date } => !!interval.rise && !!interval.set);
 			},
 			observer
 		};
+
 		for (const interval of [
 			{
 				end: start,
@@ -146,6 +153,7 @@ set: Date } => !!interval.rise && !!interval.set);
 				interval
 			})).toThrow(RangeError);
 		}
+
 		expect(() => find({
 			...input,
 			observer: {
