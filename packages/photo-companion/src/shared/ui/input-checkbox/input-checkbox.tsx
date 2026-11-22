@@ -1,7 +1,6 @@
-import { createEffect, mergeProps, Show, splitProps  } from "solid-js";
-import { classnames } from "utils";
+import { createEffect, merge, omit, Show } from "solid-js";
 
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 import type { Classes } from "../../types";
 
@@ -10,7 +9,7 @@ import styles from "./input-checkbox.module.css";
 type SymbolType = Nullish<"CHECK" | "CROSS" | "MINUS">;
 
 interface CheckboxIconProps {
-	class?: string;
+	class?: JSX.HTMLAttributes<HTMLElement>["class"];
 	symbolChecked?: SymbolType;
 	symbolIndeterminate?: SymbolType;
 	symbolUnchecked?: SymbolType;
@@ -37,7 +36,7 @@ const ICON_PATH = {
 function CheckboxIcon(props: CheckboxIconProps) {
 	return (
 		<svg
-			class={classnames(styles.box, props.class)}
+			class={[ styles.box, props.class ]}
 			viewBox="0 0 256 256"
 		>
 			<Show when={props.symbolChecked}>
@@ -54,40 +53,33 @@ function CheckboxIcon(props: CheckboxIconProps) {
 }
 
 export function InputCheckbox(allProps: InputCheckboxProps) {
-	const merged = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, symbols, rest ] = splitProps(merged,
-		[
-			"checked",
-			"classes",
-			"indeterminate",
-			"label"
-		],
-		[
-			"symbolChecked",
-			"symbolUnchecked",
-			"symbolIndeterminate"
-		]
-	);
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "checked", "classes", "indeterminate", "label", "symbolChecked", "symbolUnchecked", "symbolIndeterminate");
 
 	let inputRef: HTMLInputElement;
 
 	const indeterminate = () => Boolean(!props.checked && props.indeterminate);
 	const checked = () => !props.indeterminate && props.checked;
 
-	createEffect(() => {
-		inputRef.indeterminate = indeterminate();
+	createEffect(indeterminate, value => {
+		inputRef.indeterminate = value;
 	});
 
 	return (
-		<label class={classnames(styles.label, props.classes?.label)}>
+		<label class={[ styles.label, props.classes?.label ]}>
 			<input
 				checked={checked()}
-				class={classnames(styles.input, props.classes?.input)}
+				class={[ styles.input, props.classes?.input ]}
 				ref={el => inputRef = el}
 				type="checkbox"
 				{...rest}
 			/>
-			<CheckboxIcon class={props.classes?.icon} {...symbols} />
+			<CheckboxIcon
+				class={props.classes?.icon}
+				symbolChecked={props.symbolChecked}
+				symbolIndeterminate={props.symbolIndeterminate}
+				symbolUnchecked={props.symbolUnchecked}
+			/>
 			<Show when={props.label}>
 				{label => <span class={props.classes?.title}>{label()}</span>}
 			</Show>

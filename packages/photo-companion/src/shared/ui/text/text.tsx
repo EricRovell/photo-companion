@@ -1,8 +1,8 @@
-import { mergeProps, splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
-import { classnames, setAttribute } from "utils";
+import { dynamic } from "@solidjs/web";
+import { merge, omit } from "solid-js";
+import { setAttribute } from "utils";
 
-import type { ComponentProps, JSX, ValidComponent } from "solid-js";
+import type { ComponentProps, JSX, ValidComponent } from "@solidjs/web";
 
 import styles from "./text.module.css";
 
@@ -17,7 +17,7 @@ interface TextOwnProps<T extends ValidComponent> {
 	align?: TextAlign;
 	as?: T;
 	balance?: boolean;
-	class?: string;
+	class?: JSX.HTMLAttributes<HTMLElement>["class"];
 	color?: TextColor;
 	leading?: TextLeading;
 	numeric?: boolean;
@@ -34,14 +34,10 @@ const DEFAULT_PROPS = {
 	variant: "text-m"
 } as const;
 
-const TextElement = Dynamic as (props: {
-	component: ValidComponent;
-} & Record<string, unknown>) => JSX.Element;
 
 export function Text<T extends ValidComponent = "span">(allProps: TextProps<T>) {
-	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(mergedProps, [
-		"align",
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "align",
 		"as",
 		"balance",
 		"class",
@@ -49,12 +45,13 @@ export function Text<T extends ValidComponent = "span">(allProps: TextProps<T>) 
 		"leading",
 		"numeric",
 		"variant"
-	]);
+	);
+
+	const TextElement = dynamic(() => props.as) as (props: Record<string, unknown>) => JSX.Element;
 
 	return (
 		<TextElement
-			class={classnames(styles.text, props.class)}
-			component={props.as}
+			class={[ styles.text, props.class ]}
 			data-align={props.align}
 			data-balance={setAttribute(props.balance)}
 			data-color={props.color}

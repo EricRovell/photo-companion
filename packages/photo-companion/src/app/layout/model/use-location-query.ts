@@ -14,16 +14,17 @@ export function useLocationQuery() {
 
 	const { setSettings } = useSettings();
 
-	createEffect(() => {
-		const { latitude, longitude } = searchParams;
-
+	createEffect(() => ({
+		latitude: searchParams.latitude,
+		longitude: searchParams.longitude
+	}), ({ latitude, longitude }) => {
 		if (isNullable(latitude) || isNullable(longitude)) {
 			return;
 		}
 
-		setSettings({
-			latitude,
-			longitude
+		setSettings((draft) => {
+			draft.latitude = latitude;
+			draft.longitude = longitude;
 		});
 	});
 }

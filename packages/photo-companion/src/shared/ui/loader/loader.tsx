@@ -1,14 +1,15 @@
-import { type JSX, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { omit } from "solid-js";
+
+import type { JSX } from "@solidjs/web";
 
 import styles from "./loader.module.css";
 
 type Props = JSX.HTMLAttributes<HTMLDivElement>;
 
-export function Loader(allProps: Props) {
-	const [ props, rest ] = splitProps(allProps, [ "class" ]);
+export function Loader(props: Props) {
+	const rest = omit(props, "class");
 
 	return (
-		<div class={classnames(styles.loader, props.class)} {...rest} />
+		<div class={[ styles.loader, props.class ]} {...rest} />
 	);
 }

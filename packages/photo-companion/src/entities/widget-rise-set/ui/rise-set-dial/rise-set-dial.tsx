@@ -120,7 +120,7 @@ export function RiseSetDial(props: ParentProps<Props>) {
 			<div
 				aria-hidden="true"
 				class={styles.body}
-				data-below-horizon={!props.aboveHorizon || undefined}
+				data-below-horizon={!props.aboveHorizon ? "true" : undefined}
 			>
 				{props.children}
 			</div>

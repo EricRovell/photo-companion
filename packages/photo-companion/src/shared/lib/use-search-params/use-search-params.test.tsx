@@ -1,5 +1,6 @@
-import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
-import { renderHook, waitFor } from "@solidjs/testing-library";
+import { createRouter, memoryHistory } from "@solidjs/router";
+import { waitFor } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
 import { describe, expect, it } from "vitest";
 
 import type { ParentProps } from "solid-js";
@@ -7,7 +8,7 @@ import type { ParentProps } from "solid-js";
 import { useParsedSearchParams } from "./use-search-params";
 
 function renderSearchParamsHook(location: string) {
-	const history = createMemoryHistory();
+	const history = memoryHistory();
 
 	history.set({
 		replace: true,
@@ -15,10 +16,13 @@ function renderSearchParamsHook(location: string) {
 		value: location
 	});
 
+	const Router = createRouter({
+		history,
+		routes: [{ path: "/moon" }]
+	});
+
 	const wrapper = (props: ParentProps) => (
-		<MemoryRouter history={history}>
-			<Route component={() => props.children} path="/moon" />
-		</MemoryRouter>
+		<Router>{() => props.children}</Router>
 	);
 
 	const hook = renderHook(() => useParsedSearchParams({

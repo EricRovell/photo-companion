@@ -16,7 +16,7 @@ export function createAltitudeState(
 	props: AltitudeWidgetProps,
 	isSelected: (id: AltitudeEntity["id"]) => boolean = () => true
 ) {
-	const day = createMemo(() => getDayBounds(props.date), undefined, {
+	const day = createMemo(() => getDayBounds(props.date), {
 		equals: (previous, next) => previous.start === next.start && previous.end === next.end
 	});
 

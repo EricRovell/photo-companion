@@ -34,7 +34,7 @@ export type TimelineEvent =
 
 export type EventName = TimelineEvent["name"];
 
-export interface EventComponent<Props> {
+export interface EventComponent<Props extends Record<string, unknown>> {
 	component: Component<Props>;
 	message?: string;
 	props: Props;

@@ -1,5 +1,5 @@
 import { createMemo, createSignal, Show } from "solid-js";
-import { unwrap } from "solid-js/store";
+import { snapshot } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import { useTranslation } from "~/features/translation";
@@ -29,7 +29,7 @@ function Calculator() {
 		}
 
 		setShowOutput(true);
-		setOutput(calcOutput(unwrap(model)));
+		setOutput(calcOutput(snapshot(model)));
 	};
 
 	const handleInput = () => {

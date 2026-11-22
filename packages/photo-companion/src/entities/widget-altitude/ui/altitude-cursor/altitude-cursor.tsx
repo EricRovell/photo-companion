@@ -37,7 +37,7 @@ export function Cursor() {
 								class={styles.marker}
 								cx={cursorX()}
 								cy={markerY()}
-								data-above={altitude() >= 0}
+								data-above={String(altitude() >= 0)}
 								r={CONFIG.marker.radius}
 							/>
 						</g>

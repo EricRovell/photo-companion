@@ -11,9 +11,9 @@ function DatetimeStateProvider(props: ParentProps) {
 	const state = createDatetimeState();
 
 	return (
-		<DatetimeContext.Provider value={state}>
+		<DatetimeContext value={state}>
 			{props.children}
-		</DatetimeContext.Provider>
+		</DatetimeContext>
 	);
 }
 

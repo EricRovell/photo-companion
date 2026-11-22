@@ -21,8 +21,8 @@ export function createDatetimeState() {
 		};
 	});
 
-	createEffect(() => {
-		if (isAutoplay()) {
+	createEffect(isAutoplay, (autoplay) => {
+		if (autoplay) {
 			clock.setNow();
 		}
 	});

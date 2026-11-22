@@ -1,4 +1,4 @@
-import { createMemo, createSignal, onCleanup, onMount, untrack } from "solid-js";
+import { createMemo, createSignal, onCleanup, onSettled, untrack } from "solid-js";
 import { normalizeDegrees } from "utils/math";
 import { isNullable } from "utils/validators";
 
@@ -51,7 +51,14 @@ function getRequestError(error: unknown): DeviceHeadingError {
 	return error.name === "SecurityError" ? "blocked" : "unavailable";
 }
 
-export function useDeviceHeading(options: DeviceHeadingOptions = {}) {
+export function useDeviceHeading(options: DeviceHeadingOptions = {}): {
+    canAlign: () => boolean;
+    error: () => DeviceHeadingError | null;
+    heading: () => null | number;
+    requestHeading: () => Promise<void>;
+    status: () => DeviceHeadingStatus;
+    stopHeading: () => void;
+} {
 	const [ heading, setHeading ] = createSignal<null | number>(null);
 	const [ status, setStatus ] = createSignal<DeviceHeadingStatus>("idle");
 
@@ -236,7 +243,7 @@ export function useDeviceHeading(options: DeviceHeadingOptions = {}) {
 		}
 	}
 
-	onMount(() => {
+	onSettled(() => {
 		if (!supported()) {
 			setStatus("unsupported");
 			return;

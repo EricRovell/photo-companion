@@ -1,7 +1,7 @@
-import { mergeProps, splitProps } from "solid-js";
-import { classnames, setAttribute } from "utils";
+import { merge, omit } from "solid-js";
+import { setAttribute } from "utils";
 
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 import styles from "./button.module.css";
 
@@ -19,19 +19,18 @@ const DEFAULT_PROPS: ButtonProps = {
 };
 
 export function Button(allProps: ButtonProps) {
-	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(mergedProps, [
-		"appearance",
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "appearance",
 		"children",
 		"class",
 		"icon",
 		"pending",
 		"variant"
-	]);
+	);
 
 	return (
 		<button
-			class={classnames(styles.button, props.class)}
+			class={[ styles.button, props.class ]}
 			data-appearance={props.appearance}
 			data-icon={setAttribute(props.icon)}
 			data-pending={setAttribute(props.pending)}

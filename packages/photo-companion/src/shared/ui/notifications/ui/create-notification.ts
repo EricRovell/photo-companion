@@ -11,30 +11,23 @@ export const createNotification = (source: NotificationSource, { center = notifi
 	const id = createUniqueId();
 	const dismiss = () => center.dismiss(id);
 
-	const sync = () => {
+	createEffect(() => {
 		const value = isAccessor(source) ? source() : source;
 
 		// Read object getters inside the effect so they can track reactive values too.
-		const options = value ? {
+		return value ? {
 			...value,
 			id
 		} : null;
 
-		untrack(() => {
-			if (options) {
-				center.show(options);
-			} else {
-				dismiss();
-			}
-		});
-	};
-
-	const init = () => {
-		createEffect(sync);
-		onCleanup(() => untrack(dismiss));
-	};
-
-	init();
+	}, (options) => {
+		if (options) {
+			untrack(() => center.show(options));
+		} else {
+			untrack(dismiss);
+		}
+	});
+	onCleanup(() => untrack(dismiss));
 
 	return id;
 };

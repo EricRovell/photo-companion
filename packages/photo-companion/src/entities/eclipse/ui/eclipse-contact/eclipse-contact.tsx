@@ -1,4 +1,6 @@
-import { type JSX, Show } from "solid-js";
+import { Show } from "solid-js";
+
+import type { JSX } from "@solidjs/web";
 
 import { Text } from "~/shared/ui";
 

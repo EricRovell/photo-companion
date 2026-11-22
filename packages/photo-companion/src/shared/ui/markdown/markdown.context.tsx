@@ -13,15 +13,15 @@ function makeDefinitionContext() {
 	} as const;
 }
 
-const DefinitionContext = createContext<ReturnType<typeof makeDefinitionContext>>();
+const DefinitionContext = createContext<null | ReturnType<typeof makeDefinitionContext>>(null);
 
 export function DefinitionProvider(props: ParentProps) {
 	const value = makeDefinitionContext();
 
 	return (
-		<DefinitionContext.Provider value={value}>
+		<DefinitionContext value={value}>
 			{props.children}
-		</DefinitionContext.Provider>
+		</DefinitionContext>
 	);
 }
 

@@ -1,9 +1,4 @@
-/**
- * Utility type to describe classes object to pass class names into
- * component parts:
- *
- * ```
- * Classes<"input" | "label"> -> { input?: string, label?: string };
- * ```
- */
-export type Classes<T extends string> = Partial<Record<T, string>>;
+import type { JSX } from "@solidjs/web";
+
+/** Maps component parts to native class values: strings, arrays, or objects. */
+export type Classes<T extends string> = Partial<Record<T, JSX.HTMLAttributes<HTMLElement>["class"]>>;

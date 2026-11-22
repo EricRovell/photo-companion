@@ -1,5 +1,7 @@
-import { type JSX, splitProps  } from "solid-js";
-import { classnames, setAttribute } from "utils";
+import { omit } from "solid-js";
+import { setAttribute } from "utils";
+
+import type { JSX } from "@solidjs/web";
 
 import type { Classes } from "../../types";
 
@@ -11,16 +13,16 @@ export interface InputProps extends Omit<JSX.InputHTMLAttributes<HTMLInputElemen
 	label?: string;
 }
 
-export function Input(allProps: InputProps) {
-	const [ props, rest ] = splitProps(allProps, [ "classes", "children", "error" ]);
+export function Input(props: InputProps) {
+	const rest = omit(props, "classes", "children", "error");
 
 	return (
-		<label class={classnames(styles.root, props.classes?.root)}>
-			<span class={classnames(styles.label, props.classes?.label)}>
+		<label class={[ styles.root, props.classes?.root ]}>
+			<span class={[ styles.label, props.classes?.label ]}>
 				{props.children}
 			</span>
 			<input
-				class={classnames(styles.input, props.classes?.input)}
+				class={[ styles.input, props.classes?.input ]}
 				data-error={setAttribute(props.error)}
 				type="text"
 				{...rest}

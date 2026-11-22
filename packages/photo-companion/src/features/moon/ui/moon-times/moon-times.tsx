@@ -24,7 +24,7 @@ export function MoonTimes() {
 				<LinkQuery
 					aria-label={label}
 					href="/moon"
-					noScroll
+					noscroll
 					query={new URLSearchParams({ datetime: createQueryDate(date) })}
 				>
 					{children}

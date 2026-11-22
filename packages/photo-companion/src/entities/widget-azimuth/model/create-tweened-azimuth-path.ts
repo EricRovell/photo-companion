@@ -1,5 +1,5 @@
-import { createEffect, createSignal, on, onCleanup } from "solid-js";
-import { isServer } from "solid-js/web";
+import { isServer } from "@solidjs/web";
+import { createEffect, createSignal, untrack } from "solid-js";
 import { cubicInOut } from "utils/easing";
 import { normalizeDegrees } from "utils/math";
 
@@ -30,10 +30,10 @@ export function createTweenedAzimuthPath(target: Accessor<AzimuthPathPoint[]>) {
 	}
 
 	const prefersReducedMotion = createMediaQuery("(prefers-reduced-motion: reduce)");
-	const [ path, setPath ] = createSignal(target());
+	const [ path, setPath ] = createSignal(untrack(target));
 
-	createEffect(on([ target, prefersReducedMotion ], ([ targetPath, reducedMotion ]) => {
-		const initialPath = path();
+	createEffect(() => [ target(), prefersReducedMotion() ] as const, ([ targetPath, reducedMotion ]) => {
+		const initialPath = untrack(path);
 
 		if (initialPath.length !== targetPath.length || reducedMotion) {
 			setPath(targetPath);
@@ -56,8 +56,8 @@ export function createTweenedAzimuthPath(target: Accessor<AzimuthPathPoint[]>) {
 
 		frameId = requestAnimationFrame(tick);
 
-		onCleanup(() => cancelAnimationFrame(frameId));
-	}, { defer: true }));
+		return () => cancelAnimationFrame(frameId);
+	}, { defer: true });
 
 	return path;
 }

@@ -57,7 +57,8 @@ export default tseslint.config(
 		plugins: {
 			"solid": solid.configs["flat/typescript"].plugins.solid
 		},
-		rules: solid.configs["flat/typescript"].rules,
+		rules: { ...solid.configs["flat/typescript"].rules, ...solid.configs.v2.rules },
+		settings: solid.configs.v2.settings,
 		languageOptions: {
 			parser: tseslint.parser
 		}

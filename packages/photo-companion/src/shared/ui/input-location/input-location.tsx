@@ -1,13 +1,13 @@
-import { createSignal, Show, splitProps } from "solid-js";
+import { createSignal, omit, Show } from "solid-js";
 
-import type { JSX, ParentProps } from "solid-js";
+import type { JSX } from "@solidjs/web";
 import type { Degrees } from "utils/math";
 
 import { Input } from "../input/input";
 
 import styles from "./input-location.module.css";
 
-interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement>, "onChange"> {
+interface Props extends Omit<JSX.HTMLAttributes<HTMLFieldSetElement>, "onChange"> {
 	/**
 	 * Should the value have sign?
 	 */
@@ -25,9 +25,8 @@ interface Props extends ParentProps, Omit<JSX.HTMLAttributes<HTMLFieldSetElement
 	value?: Degrees;
 }
 
-export function InputLocation(allProps: Props) {
-	const [ props, rest ] = splitProps(allProps, [
-		"abs",
+export function InputLocation(props: Props) {
+	const rest = omit(props, "abs",
 		"children",
 		"name",
 		"onChange",
@@ -36,7 +35,7 @@ export function InputLocation(allProps: Props) {
 		"value",
 		"required",
 		"error"
-	]);
+	);
 
 	const [ refDegrees, setRefDegrees ] = createSignal<HTMLInputElement>();
 	const [ refMinutes, setRefMinutes ] = createSignal<HTMLInputElement>();

@@ -30,7 +30,7 @@ export function LunarEclipseContact(props: LunarEclipseContactProps) {
 			peak={props.position === "peak"}
 			visible={props.contact.visible}
 		>
-			<LinkQuery href="/moon" noScroll query={query()}>
+			<LinkQuery href="/moon" noscroll query={query()}>
 				<Text
 					as="time"
 					datetime={props.contact.time.toISOString()}

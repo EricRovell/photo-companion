@@ -1,5 +1,5 @@
-import { onMount } from "solid-js";
-import { createStore } from "solid-js/store";
+import { onSettled } from "solid-js";
+import { createStore } from "solid-js";
 import { isNullable } from "utils/validators";
 
 interface GeolocationStore {
@@ -19,31 +19,33 @@ const INITIAL_STATE: GeolocationStore = {
 export function createGeolocationState() {
 	const [ store, setStore ] = createStore<GeolocationStore>(INITIAL_STATE);
 
-	onMount(() => {
+	onSettled(() => {
 		if (!isNullable(navigator.geolocation)) {
-			setStore("supports", true);
+			setStore((draft) => {
+				draft.supports = true;
+			});
 		}
 	});
 
 	function getGeolocation(onSuccess?: PositionCallback, onError?: PositionErrorCallback) {
-		setStore({
-			error: null,
-			status: "pending"
+		setStore((draft) => {
+			draft.error = null;
+			draft.status = "pending";
 		});
 
 		function handleSuccess(position: GeolocationPosition) {
-			setStore({
-				coordinates: position.coords,
-				status: "fulfilled"
+			setStore((draft) => {
+				draft.coordinates = position.coords;
+				draft.status = "fulfilled";
 			});
 
 			onSuccess?.(position);
 		}
 
 		function handleError(error: GeolocationPositionError) {
-			setStore({
-				error: error,
-				status: "error"
+			setStore((draft) => {
+				draft.error = error;
+				draft.status = "error";
 			});
 
 			onError?.(error);

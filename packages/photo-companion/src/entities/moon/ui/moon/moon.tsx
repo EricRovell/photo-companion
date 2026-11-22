@@ -1,4 +1,6 @@
-import { type JSX, mergeProps, splitProps } from "solid-js";
+import { merge, omit } from "solid-js";
+
+import type { JSX } from "@solidjs/web";
 
 import { circular, createTweened } from "~/shared/primitives";
 
@@ -36,8 +38,8 @@ function createCircle(commonProps: CircleCommonProps) {
 }
 
 export function Moon(allProps: MoonProps) {
-	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(mergedProps, [ "size", "precision", "phase", "rotation" ]);
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "size", "precision", "phase", "rotation");
 
 	const phase = createTweened(() => props.phase, {
 		interpolate: circular(1),
@@ -53,9 +55,15 @@ export function Moon(allProps: MoonProps) {
 	const dark = () => 0.5 / getNormalizedPhase(phase()) > 2;
 
 	const Circle = createCircle({
-		cx: center(),
-		cy: center(),
-		r: radius()
+		get cx() {
+			return center();
+		},
+		get cy() {
+			return center();
+		},
+		get r() {
+			return radius();
+		}
 	});
 
 	return (
@@ -71,23 +79,23 @@ export function Moon(allProps: MoonProps) {
 		>
 			<Circle class={styles.shadow} />
 			<Circle
-				class={styles.semicircle}
-				classList={{
+				class={{
+					[styles.semicircle]: true,
 					[styles.visible]: visibleLeft()
 				}}
 				data-left
 			/>
 			<Circle
-				class={styles.semicircle}
-				classList={{
+				class={{
+					[styles.semicircle]: true,
 					[styles.visible]: visibleRight()
 				}}
 				data-right
 			/>
 			<Circle
-				class={styles.diff}
-				classList={{
-					[styles.dark]: dark()
+				class={{
+					[styles.dark]: dark(),
+					[styles.diff]: true
 				}}
 			/>
 		</svg>

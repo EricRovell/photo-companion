@@ -1,8 +1,8 @@
-import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
+import { createRouter, memoryHistory } from "@solidjs/router";
 import { createEffect } from "solid-js";
 
-import type { MemoryHistory } from "@solidjs/router";
-import type { JSXElement } from "solid-js";
+import type { MemoryHistoryAdapter } from "@solidjs/router";
+import type { Element } from "solid-js";
 
 import { useLocationQuery } from "~/app/layout/model";
 import { DatetimeProvider } from "~/features/datetime-query";
@@ -19,15 +19,17 @@ import { StoryTranslationProvider } from "./story-language";
 import type { StoryEnvironmentArgs } from "./story-controls";
 
 function StoryLocationQuery(props: {
-	children: JSXElement;
+	children: Element;
 	options: StoryEnvironmentArgs
 }) {
 	useLocationQuery();
 	const { setSettings } = useSettings();
 
-	createEffect(() => {
-		if (props.options.city) {
-			setSettings("city", props.options.city);
+	createEffect(() => props.options.city, city => {
+		if (city) {
+			setSettings((draft) => {
+				draft.city = city;
+			});
 		}
 	});
 
@@ -50,44 +52,44 @@ function createStoryPath(options: StoryEnvironmentArgs): string {
 }
 
 function StoryQuerySync(props: {
-	children: JSXElement;
-	history: MemoryHistory;
+	children: Element;
+	history: MemoryHistoryAdapter;
 	options: StoryEnvironmentArgs;
 }) {
-	createEffect(() => {
-		props.history.set({ value: createStoryPath(props.options) });
+	createEffect(() => createStoryPath(props.options), value => {
+		props.history.set({ value });
 	});
 
 	return <>{props.children}</>;
 }
 
-export function withStoryProviders(content: () => JSXElement, options: StoryEnvironmentArgs = {}) {
-	const history = createMemoryHistory();
+export function withStoryProviders(content: () => Element, options: StoryEnvironmentArgs = {}) {
+	const history = memoryHistory();
 
 	history.set({
 		value: createStoryPath(options)
 	});
 
-	return (
-		<MemoryRouter history={history}>
-			<Route
-				component={() => (
-					<StoryQuerySync history={history} options={options}>
-						<DatetimeProvider>
-							<SettingsProvider>
-								<StoryLocationQuery options={options}>
-									<StoryTranslationProvider>
-										<div class="storybook-canvas">
-											{content()}
-										</div>
-									</StoryTranslationProvider>
-								</StoryLocationQuery>
-							</SettingsProvider>
-						</DatetimeProvider>
-					</StoryQuerySync>
-				)}
-				path="*"
-			/>
-		</MemoryRouter>
-	);
+	const Router = createRouter({
+		history,
+		routes: [{
+			component: () => (
+				<StoryQuerySync history={history} options={options}>
+					<DatetimeProvider>
+						<SettingsProvider>
+							<StoryLocationQuery options={options}>
+								<StoryTranslationProvider>
+									<div class="storybook-canvas">
+										{content()}
+									</div>
+								</StoryTranslationProvider>
+							</StoryLocationQuery>
+						</SettingsProvider>
+					</DatetimeProvider>
+				</StoryQuerySync>
+			),
+			path: "*"
+		}]
+	});
+	return <Router />;
 }

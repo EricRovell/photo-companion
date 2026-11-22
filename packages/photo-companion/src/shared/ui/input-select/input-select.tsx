@@ -1,6 +1,6 @@
-export interface InputSelectOption {
+export interface InputSelectOption<T extends string = string> {
 	disabled?: boolean,
 	label: string;
 	selected?: boolean;
-	value: string;
+	value: T;
 }

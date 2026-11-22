@@ -1,5 +1,6 @@
-import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
-import { renderHook, waitFor } from "@solidjs/testing-library";
+import { createRouter, memoryHistory } from "@solidjs/router";
+import { waitFor } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import type { ParentProps } from "solid-js";
@@ -14,7 +15,7 @@ const STORED_COORDINATES = {
 };
 
 function renderLocationQueryHook(location: string) {
-	const history = createMemoryHistory();
+	const history = memoryHistory();
 
 	history.set({
 		replace: true,
@@ -22,11 +23,14 @@ function renderLocationQueryHook(location: string) {
 		value: location
 	});
 
+	const Router = createRouter({
+		history,
+		routes: [{ path: "/moon" }]
+	});
+
 	const wrapper = (props: ParentProps) => (
 		<SettingsProvider>
-			<MemoryRouter history={history}>
-				<Route component={() => props.children} path="/moon" />
-			</MemoryRouter>
+			<Router>{() => props.children}</Router>
 		</SettingsProvider>
 	);
 

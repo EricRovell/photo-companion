@@ -1,4 +1,4 @@
-import { Index } from "solid-js";
+import { For } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import { createQueryDate } from "~/shared/lib/query-date";
@@ -40,14 +40,14 @@ export function DatetimeTimeline(props: DatetimeTimelineProps) {
 				onPointerMove={event => props.model.handlePointerMove(event)}
 				onPointerUp={event => props.model.handlePointerUp(event)}
 				role="slider"
-				tabIndex={props.disabled ? -1 : 0}
+				tabindex={props.disabled ? -1 : 0}
 			>
 				<div
 					aria-hidden="true"
 					class={styles.track}
 					style={{ transform: `translate3d(calc(-50% + ${props.model.offset()}px), 0, 0)` }}
 				>
-					<Index each={props.model.ticks()}>
+					<For each={props.model.ticks()} keyed={false}>
 						{tick => {
 							const selected = () => tick().offset === props.model.selectedStep();
 
@@ -67,7 +67,7 @@ export function DatetimeTimeline(props: DatetimeTimelineProps) {
 								</Text>
 							);
 						}}
-					</Index>
+					</For>
 				</div>
 			</div>
 		</div>

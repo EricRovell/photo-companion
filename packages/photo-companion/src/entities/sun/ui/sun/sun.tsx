@@ -1,5 +1,6 @@
+import { merge, omit } from "solid-js";
 
-import { type JSX, mergeProps, splitProps } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 import { SUN_COLOR } from "../../consts";
 
@@ -19,8 +20,8 @@ const DEFAULT_PROPS = {
 };
 
 export function Sun(allProps: SunProps) {
-	const merged = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(merged, [ "event", "size" ]);
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "event", "size");
 
 	const center = () => props.size / 2;
 	const radius = () => props.size / 2 - 5;

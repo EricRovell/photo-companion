@@ -1,7 +1,7 @@
 import { onCleanup } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { SetStoreFunction, Store } from "solid-js/store";
+import type { Store, StoreSetter } from "solid-js";
 
 import { createMediaQuery } from "~/shared/primitives";
 
@@ -13,7 +13,7 @@ import type { TimelineState } from "../types";
 
 interface CreateTimelineAnimationOptions {
 	commitDate: (date: Date) => void;
-	setState: SetStoreFunction<TimelineState>;
+	setState: StoreSetter<TimelineState>;
 	state: Store<TimelineState>;
 }
 
@@ -24,7 +24,9 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 	const cancel = () => {
 		cancelAnimationFrame(animationFrame);
 		animationFrame = 0;
-		options.setState("animating", false);
+		options.setState((draft) => {
+			draft.animating = false;
+		});
 	};
 
 	const animateToStep = (targetStep: number, initialVelocity = 0) => {
@@ -40,18 +42,24 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 		}
 
 		if (isNullable(targetDate)) {
-			options.setState("offset", 0);
-			options.setState("animating", false);
+			options.setState((draft) => {
+				draft.offset = 0;
+				draft.animating = false;
+			});
 			return;
 		}
 
 		let endOffset = -resolvedStep * ticks.width;
 
 		if (prefersReducedMotion() || Math.abs(endOffset - startOffset) < 0.5) {
-			options.setState("anchorDate", targetDate);
-			options.setState("offset", 0);
+			options.setState((draft) => {
+				draft.anchorDate = targetDate;
+				draft.offset = 0;
+			});
 			options.commitDate(targetDate);
-			options.setState("animating", false);
+			options.setState((draft) => {
+				draft.animating = false;
+			});
 			return;
 		}
 
@@ -59,7 +67,10 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 		let position = startOffset;
 		let previousTime = start;
 		let springVelocity = initialVelocity * 1000;
-		options.setState("animating", true);
+
+		options.setState((draft) => {
+			draft.animating = true;
+		});
 
 		const tick = (time: number) => {
 			const elapsed = Math.min((time - previousTime) / 1000, 0.032);
@@ -78,11 +89,16 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 					springAnchor = rebasedDate;
 					position += rebaseStep * ticks.width;
 					endOffset += rebaseStep * ticks.width;
-					options.setState("anchorDate", rebasedDate);
+
+					options.setState((draft) => {
+						draft.anchorDate = rebasedDate;
+					});
 				}
 			}
 
-			options.setState("offset", position);
+			options.setState((draft) => {
+				draft.offset = position;
+			});
 
 			const settled = (
 				Math.abs(position - endOffset) <= spring.settleDistance &&
@@ -97,18 +113,26 @@ export function createTimelineAnimation(options: CreateTimelineAnimationOptions)
 			animationFrame = 0;
 
 			if (springAnchor.getTime() !== targetDate.getTime()) {
-				options.setState("anchorDate", targetDate);
+				options.setState((draft) => {
+					draft.anchorDate = targetDate;
+				});
 			}
 
-			options.setState("offset", 0);
+			options.setState((draft) => {
+				draft.offset = 0;
+			});
+
 			options.commitDate(targetDate);
-			options.setState("animating", false);
+
+			options.setState((draft) => {
+				draft.animating = false;
+			});
 		};
 
 		animationFrame = requestAnimationFrame(tick);
 	};
 
-	onCleanup(cancel);
+	onCleanup(() => cancelAnimationFrame(animationFrame));
 
 	return {
 		animateToStep,

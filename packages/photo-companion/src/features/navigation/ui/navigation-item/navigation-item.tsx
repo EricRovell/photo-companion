@@ -1,5 +1,5 @@
 import { useMatch } from "@solidjs/router";
-import { Dynamic } from "solid-js/web";
+import { dynamic } from "@solidjs/web";
 
 import type { Component } from "solid-js";
 
@@ -23,6 +23,7 @@ interface NavigationItemProps {
 }
 
 export function NavigationItem(props: NavigationItemProps) {
+	const Icon = dynamic(() => props.icon);
 	const match = useMatch(() => props.href);
 	const { t } = useTranslation();
 
@@ -32,7 +33,7 @@ export function NavigationItem(props: NavigationItemProps) {
 			class={props.classes?.link}
 			href={props.href}
 		>
-			<Dynamic class={props.classes?.icon} component={props.icon} />
+			<Icon class={props.classes?.icon} />
 			<Text class={props.classes?.label} variant="text-s">
 				{t().TITLE[props.label]}
 			</Text>

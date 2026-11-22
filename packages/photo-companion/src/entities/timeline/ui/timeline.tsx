@@ -1,4 +1,4 @@
-import { type JSXElement, type ParentProps, Show } from "solid-js";
+import { type Element, type ParentProps, Show } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import { Text } from "~/shared/ui";
@@ -11,7 +11,7 @@ export const TimelineGroup = (props: ParentProps) => (
 	</div>
 );
 
-export const Timeline = (props: ParentProps<{ date?: JSXElement; }>) => (
+export const Timeline = (props: ParentProps<{ date?: Element; }>) => (
 	<article class={styles.timeline}>
 		<Show when={!isNullable(props.date)}>
 			<Text as="time" class={styles.datetime} numeric variant="text-m">

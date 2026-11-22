@@ -14,9 +14,9 @@ export function GeolocationButton() {
 
 	const handleGeolocation = () => {
 		getGeolocation(position => {
-			setSettingsStore({
-				latitude: position.coords.latitude,
-				longitude: position.coords.longitude
+			setSettingsStore((draft) => {
+				draft.latitude = position.coords.latitude;
+				draft.longitude = position.coords.longitude;
 			});
 		});
 	};

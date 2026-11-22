@@ -1,3 +1,4 @@
+import { flush } from "solid-js";
 import { createRoot, createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -39,6 +40,7 @@ function advanceFrame(elapsed: number) {
 	const callbacks = Array.from(frames.values());
 	frames.clear();
 	callbacks.forEach(callback => callback(now));
+	flush();
 }
 
 function frame(day: number, offset: number): AltitudeChartFrame {
@@ -94,6 +96,7 @@ describe("altitude day transitions", () => {
 
 		expect(state.chart()).toBe(initial);
 		state.setTarget(next);
+		flush();
 		expect(state.chart()).toBe(next);
 		expect(requestAnimationFrame).not.toHaveBeenCalled();
 	});
@@ -104,6 +107,7 @@ describe("altitude day transitions", () => {
 		const next = frame(22, 40);
 
 		state.setTarget(next);
+		flush();
 		expect(state.chart()).toBe(initial);
 		advanceFrame(DURATION / 2);
 
@@ -122,11 +126,13 @@ describe("altitude day transitions", () => {
 	it("retargets from the displayed curve during rapid and backward date changes", () => {
 		const state = setup(frame(21, 0));
 		state.setTarget(frame(23, 40));
+		flush();
 		advanceFrame(DURATION / 2);
 		const displayed = state.chart();
 		const next = frame(20, -20);
 
 		state.setTarget(next);
+		flush();
 		expect(state.chart()).toBe(displayed);
 		expect(frames.size).toBe(1);
 		advanceFrame(DURATION / 2);
@@ -138,10 +144,12 @@ describe("altitude day transitions", () => {
 	it("keeps same-day changes immediate during an active transition", () => {
 		const state = setup(frame(21, 0));
 		state.setTarget(frame(22, 40));
+		flush();
 		advanceFrame(DURATION / 2);
 		const next = frame(22, 45);
 
 		state.setTarget(next);
+		flush();
 		expect(state.chart()).toBe(next);
 		advanceFrame(DURATION);
 		expect(state.chart()).toBe(next);
@@ -153,6 +161,7 @@ describe("altitude day transitions", () => {
 		const next = frame(22, 40);
 
 		state.setTarget(next);
+		flush();
 		expect(state.chart()).toBe(next);
 		expect(requestAnimationFrame).not.toHaveBeenCalled();
 	});
@@ -161,10 +170,12 @@ describe("altitude day transitions", () => {
 		const state = setup(frame(21, 0));
 		const next = frame(22, 40);
 		state.setTarget(next);
+		flush();
 		advanceFrame(DURATION / 2);
 
 		media.matches = true;
 		media.dispatchEvent(new Event("change"));
+		flush();
 		expect(state.chart()).toBe(next);
 		expect(frames.size).toBe(0);
 	});
@@ -172,6 +183,7 @@ describe("altitude day transitions", () => {
 	it("cancels the pending animation frame when disposed", () => {
 		const state = setup(frame(21, 0));
 		state.setTarget(frame(22, 40));
+		flush();
 		expect(frames.size).toBe(1);
 		state.dispose();
 		expect(frames.size).toBe(0);
@@ -206,6 +218,7 @@ describe("altitude day transitions", () => {
 		const initialPath = state.getPath("sun");
 
 		state.setDate(new Date(2026, 9, 22, 18));
+		flush();
 		const positionCalls = getPosition.mock.calls.length;
 		expect(state.getAltitude("sun")).toBeCloseTo(-30);
 		expect(state.getMarkerAltitude("sun")).toBeCloseTo(0);

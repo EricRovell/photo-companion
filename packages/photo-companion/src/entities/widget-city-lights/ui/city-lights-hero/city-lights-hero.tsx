@@ -28,7 +28,7 @@ export function CityLightsHero(props: Props) {
 				{props.state}
 			</Text>
 			<Text
-				aria-hidden={!props.withinWindow}
+				aria-hidden={!props.withinWindow ? "true" : "false"}
 				as="p"
 				class={styles.window}
 				color="secondary"

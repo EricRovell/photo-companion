@@ -1,4 +1,4 @@
-import { MemoryRouter, Route } from "@solidjs/router";
+import { createRouter, memoryHistory } from "@solidjs/router";
 import { createJSXDecorator } from "storybook-solidjs-vite";
 
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
@@ -64,11 +64,16 @@ const meta = {
 	},
 	// Async providers stay inside the previews so Story runs during the initial render.
 	decorators: [
-		createJSXDecorator(Story => (
-			<MemoryRouter>
-				<Route component={Story} path="*" />
-			</MemoryRouter>
-		))
+		createJSXDecorator(Story => {
+			const Router = createRouter({
+				history: memoryHistory(),
+				routes: [{
+					component: Story,
+					path: "*"
+				}]
+			});
+			return <Router />;
+		})
 	],
 	render: args => <RiseSetPlayground {...args} />,
 	title: "Widgets/Rise set"

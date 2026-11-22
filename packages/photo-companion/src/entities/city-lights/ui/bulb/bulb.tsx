@@ -1,5 +1,7 @@
-import { type JSX, mergeProps, Show, splitProps } from "solid-js";
-import { classnames, setAttribute } from "utils";
+import { merge, omit, Show } from "solid-js";
+import { setAttribute } from "utils";
+
+import type { JSX } from "@solidjs/web";
 
 import styles from "./bulb.module.css";
 
@@ -15,12 +17,12 @@ const DEFAULT_PROPS: Props = {
 };
 
 export const Bulb = (allProps: Props) => {
-	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(mergedProps, [ "class", "hoverGlow", "glow", "title" ]);
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "class", "hoverGlow", "glow", "title");
 
 	return (
 		<svg
-			class={classnames(styles.bulb, props.class)}
+			class={[ styles.bulb, props.class ]}
 			data-glow={setAttribute(props.glow)}
 			data-hover-glow={setAttribute(props.hoverGlow)}
 			viewBox="0 0 128 128"

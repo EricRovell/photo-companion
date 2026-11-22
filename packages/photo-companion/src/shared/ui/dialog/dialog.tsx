@@ -1,7 +1,8 @@
-import { createRenderEffect, createSignal, type JSX, mergeProps, splitProps } from "solid-js";
-import { classnames } from "utils";
+import { merge, omit } from "solid-js";
 
-import { preventPageScroll } from "./dialog.helpers";
+import type { JSX } from "@solidjs/web";
+
+import { createDialogState } from "./dialog.state";
 
 import type { Classes } from "../../types";
 
@@ -20,63 +21,27 @@ const DEFAULT_PROPS = {
 };
 
 export function Dialog(allProps: DialogProps) {
-	const mergedProps = mergeProps(DEFAULT_PROPS, allProps);
-	const [ props, rest ] = splitProps(mergedProps, [
-		"classes",
+	const props = merge(DEFAULT_PROPS, allProps);
+	const rest = omit(props, "classes",
 		"lightDismiss",
 		"children",
 		"onClose",
 		"open",
 		"preventPageScroll",
 		"title"
-	]);
+	);
 
-	const [ getRef, setRef ] = createSignal<Nullish<HTMLDialogElement>>(null);
-
-	const handleOpen = () => {
-		getRef()?.showModal();
-		document.documentElement.setAttribute("inert", "");
-	};
-
-	const handleClose = () => {
-		props.onClose?.();
-		getRef()?.close();
-		document.documentElement.removeAttribute("inert");
-	};
-
-	const handleLightDismiss = (event: MouseEvent) => {
-		const target = event.target as HTMLDivElement;
-
-		if (target.hasAttribute("data-backdrop") && props.lightDismiss) {
-			handleClose();
-		}
-	};
-
-	createRenderEffect(() => {
-		if (!getRef()) {
-			return;
-		}
-
-		if (props.open) {
-			handleOpen();
-		} else {
-			handleClose();
-		}
-
-		if (props.preventPageScroll) {
-			preventPageScroll(props.open);
-		}
-	});
+	const { handleClose, handleLightDismiss, setRef } = createDialogState(props);
 
 	return (
 		<dialog
-			class={classnames(styles.dialog, props.classes?.dialog)}
+			class={[ styles.dialog, props.classes?.dialog ]}
 			onClose={handleClose}
 			ref={setRef}
 			{...rest}
 		>
 			<div
-				class={classnames(styles.backdrop, props.classes?.backdrop)}
+				class={[ styles.backdrop, props.classes?.backdrop ]}
 				data-backdrop
 				onClick={handleLightDismiss}
 			>

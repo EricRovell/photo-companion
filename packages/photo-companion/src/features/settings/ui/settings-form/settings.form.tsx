@@ -51,7 +51,6 @@ export function SettingsForm() {
 				<div class={styles.submit}>
 					<Button
 						appearance="outline"
-						color="success"
 						onClick={handleSubmit}
 						variant="success"
 					>

@@ -55,7 +55,9 @@ export function InputTabsSelect(props: InputTabsSelectProps) {
 		value[index - step] = tab;
 		value[index] = temp;
 
-		setSettingsStore(FORM_INPUT_NAME.TABS, value);
+		setSettingsStore((draft) => {
+			draft[FORM_INPUT_NAME.TABS] = value;
+		});
 	};
 
 	const handleSelect = (event: Event) => {
@@ -67,7 +69,9 @@ export function InputTabsSelect(props: InputTabsSelectProps) {
 			? [ ...settingsStore.tabs, tab ]
 			: [ ...settingsStore.tabs ].filter(item => item !== tab);
 
-		setSettingsStore(FORM_INPUT_NAME.TABS, value);
+		setSettingsStore((draft) => {
+			draft[FORM_INPUT_NAME.TABS] = value;
+		});
 	};
 
 	return (

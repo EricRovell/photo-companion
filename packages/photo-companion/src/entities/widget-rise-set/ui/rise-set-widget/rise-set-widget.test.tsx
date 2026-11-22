@@ -1,4 +1,5 @@
 import { render } from "@solidjs/testing-library";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -58,6 +59,7 @@ describe("RiseSetWidget countdown", () => {
 		expect(view.getByText("Below horizon")).toBeInTheDocument();
 		expect(view.getByText("12h")).toBeInTheDocument();
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("01:02:02")).toBeInTheDocument();
 	});
 
@@ -76,6 +78,7 @@ describe("RiseSetWidget countdown", () => {
 		expect(view.getByText(entity === "moon" ? "Until moonset" : "Until sunset")).toBeInTheDocument();
 		expect(view.getByText("05:02:03")).toBeInTheDocument();
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("05:02:02")).toBeInTheDocument();
 	});
 
@@ -107,8 +110,10 @@ describe("RiseSetWidget countdown", () => {
 		/>);
 
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("00:00:00")).toBeInTheDocument();
 		vi.advanceTimersByTime(5000);
+		flush();
 		expect(view.getByText("00:00:00")).toBeInTheDocument();
 	});
 
@@ -137,10 +142,12 @@ describe("RiseSetWidget countdown", () => {
 		const view = render(() => <RiseSetWidget {...props()} />);
 
 		vi.advanceTimersByTime(3000);
+		flush();
 		setProps({
 			...defaults,
 			date: new Date("2026-10-21T05:00:00Z")
 		});
+		flush();
 		expect(view.getByText("01:00:00")).toBeInTheDocument();
 
 		setProps({
@@ -148,6 +155,7 @@ describe("RiseSetWidget countdown", () => {
 			aboveHorizon: true,
 			date: new Date("2026-10-21T12:00:00Z")
 		});
+		flush();
 		expect(view.getByText("06:00:00")).toBeInTheDocument();
 		expect(view.queryByText("Until sunrise")).toBeNull();
 
@@ -155,8 +163,10 @@ describe("RiseSetWidget countdown", () => {
 			...value,
 			set: new Date("2026-10-22T18:00:00Z")
 		}));
+		flush();
 		expect(view.getByText("30:00:00")).toBeInTheDocument();
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("29:59:59")).toBeInTheDocument();
 	});
 
@@ -165,6 +175,7 @@ describe("RiseSetWidget countdown", () => {
 
 		vi.setSystemTime(new Date("2026-10-24T12:00:30Z"));
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("01:01:32")).toBeInTheDocument();
 	});
 
@@ -178,8 +189,10 @@ describe("RiseSetWidget countdown", () => {
 
 		expect(view.getByText("01:01:33")).toBeInTheDocument();
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("01:01:33")).toBeInTheDocument();
 		setTimerTimestamp(defaults.date.getTime() + 31_000);
+		flush();
 		expect(view.getByText("01:01:32")).toBeInTheDocument();
 
 		view.unmount();

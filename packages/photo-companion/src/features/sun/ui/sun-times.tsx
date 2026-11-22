@@ -24,7 +24,7 @@ export function SunTimes() {
 				<LinkQuery
 					aria-label={label}
 					href="/sun"
-					noScroll
+					noscroll
 					query={new URLSearchParams({ datetime: createQueryDate(date) })}
 				>
 					{children}

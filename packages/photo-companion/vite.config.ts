@@ -1,11 +1,11 @@
 import replace from "@rollup/plugin-replace";
+import solid from "@solidjs/vite-plugin";
 import * as child from "child_process";
 import { resolve } from "node:path";
 import pluginPostCssNesting from "postcss-nesting";
 import { visualizer } from "rollup-plugin-visualizer";
+import solidMarkedPlugin from "unplugin-solid-marked";
 import { defineConfig } from "vite";
-import solid from "vite-plugin-solid";
-import solidMarkedPlugin from "vite-plugin-solid-marked";
 
 import { compileServiceWorker } from "./plugins/compile-service-worker.ts";
 
@@ -34,8 +34,8 @@ export default defineConfig({
 				"__COMMIT_HASH__": () => getCommitHash(true)
 			}
 		}),
-		solid({ extensions: [ ".md" ] }),
-		solidMarkedPlugin({}),
+		solidMarkedPlugin.vite({}),
+		solid(),
 		compileServiceWorker,
 		visualizer()
 	],

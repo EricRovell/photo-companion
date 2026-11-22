@@ -1,8 +1,8 @@
-import { type Accessor, onCleanup } from "solid-js";
+import { type Accessor, flush, onCleanup } from "solid-js";
 import { isNullable } from "utils/validators";
 
-import type { JSX } from "solid-js";
-import type { SetStoreFunction, Store } from "solid-js/store";
+import type { JSX } from "@solidjs/web";
+import type { Store, StoreSetter } from "solid-js";
 
 import { getNearestStep } from "../lib/get-nearest-step";
 import { shiftTimelineDate } from "../lib/shift-timeline-date";
@@ -16,7 +16,7 @@ interface CreateTimelineDragOptions {
 	disabled: Accessor<boolean>;
 	moveBy: (amount: number) => void;
 	selectedStep: Accessor<number>;
-	setState: SetStoreFunction<TimelineState>;
+	setState: StoreSetter<TimelineState>;
 	state: Store<TimelineState>;
 }
 
@@ -41,7 +41,9 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 	const cancel = () => {
 		cancelPendingMove();
 		activePointer = null;
-		options.setState("dragging", false);
+		options.setState((draft) => {
+			draft.dragging = false;
+		});
 	};
 
 	const applyDragOffset = (initialOffset: number) => {
@@ -54,15 +56,21 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 
 			if (isNullable(nextDate)) {
 				velocity = 0;
-				options.setState("offset", 0);
+				options.setState((draft) => {
+					draft.offset = 0;
+				});
 				return;
 			}
 
-			options.setState("anchorDate", nextDate);
+			options.setState((draft) => {
+				draft.anchorDate = nextDate;
+			});
 			nextOffset += stepCount * width;
 		}
 
-		options.setState("offset", nextOffset);
+		options.setState((draft) => {
+			draft.offset = nextOffset;
+		});
 	};
 
 	const releaseTimeline = (withVelocity: boolean) => {
@@ -73,7 +81,9 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 			Math.min(fling.maxSteps, getNearestStep(projectedOffset, ticks.width))
 		);
 		options.animateToStep(targetStep, velocity);
-		options.setState("dragging", false);
+		options.setState((draft) => {
+			draft.dragging = false;
+		});
 	};
 
 	const handlePointerDown: JSX.EventHandlerUnion<HTMLDivElement, PointerEvent> = (event) => {
@@ -90,7 +100,9 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 		lastPointerX = event.clientX;
 		pointerOriginX = event.clientX;
 		velocity = 0;
-		options.setState("dragging", true);
+		options.setState((draft) => {
+			draft.dragging = true;
+		});
 		event.currentTarget.setPointerCapture(event.pointerId);
 	};
 
@@ -127,7 +139,7 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 		if (moveFrame !== 0) {
 			cancelAnimationFrame(moveFrame);
 			moveFrame = 0;
-			applyDragOffset(options.state.offset + pendingDelta);
+			flush(() => applyDragOffset(options.state.offset + pendingDelta));
 			pendingDelta = 0;
 		}
 
@@ -149,7 +161,9 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 		} else if (resumeAfterTap) {
 			releaseTimeline(false);
 		} else {
-			options.setState("dragging", false);
+			options.setState((draft) => {
+				draft.dragging = false;
+			});
 		}
 	};
 
@@ -175,7 +189,7 @@ export function createTimelineDrag(options: CreateTimelineDragOptions) {
 		options.moveBy(clickedStep - options.selectedStep());
 	};
 
-	onCleanup(cancel);
+	onCleanup(cancelPendingMove);
 
 	return {
 		cancel,

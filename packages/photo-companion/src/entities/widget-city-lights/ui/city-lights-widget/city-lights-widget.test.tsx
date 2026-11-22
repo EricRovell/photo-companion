@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@solidjs/testing-library";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -137,6 +138,7 @@ describe("CityLightsWidget", () => {
 		expect(view.getByRole("img")).not.toHaveTextContent(/18:00|06:00|12:00/);
 		expect(view.getByRole("img").compareDocumentPosition(view.getByText("09:30:00"))).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
 		vi.advanceTimersByTime(1000);
+		flush();
 		expect(view.getByText("09:29:59")).toBeInTheDocument();
 	});
 
@@ -150,6 +152,7 @@ describe("CityLightsWidget", () => {
 		expect(official).toBeChecked();
 		expect(solar).not.toBeChecked();
 		fireEvent.click(solar);
+		flush();
 		expect(solar).toBeChecked();
 		expect(official).not.toBeChecked();
 		expect(view.getAllByRole("img")).toHaveLength(1);
@@ -158,6 +161,7 @@ describe("CityLightsWidget", () => {
 		expect(view.container.querySelectorAll("[data-uncertainty-minutes]")).toHaveLength(2);
 		expect(graph.querySelector("[data-switch=LIGHTS_START]")).toBe(switchMarker);
 		fireEvent.click(official);
+		flush();
 		expect(official).toBeChecked();
 		expect(solar).not.toBeChecked();
 		expect(view.getByText("Lights scheduled on")).toBeInTheDocument();
@@ -176,6 +180,7 @@ describe("CityLightsWidget", () => {
 	it("starts with the default source after remounting", () => {
 		const view = render(() => <TestWidget />);
 		fireEvent.click(view.getByRole("radio", { name: "Solar estimate" }));
+		flush();
 		view.unmount();
 		const remounted = render(() => <TestWidget />);
 		expect(remounted.getByRole("radio", { name: "Official schedule" })).toBeChecked();
@@ -185,11 +190,13 @@ describe("CityLightsWidget", () => {
 		const [ city, setCity ] = createSignal<City>("MOSCOW");
 		const view = render(() => <TestWidget city={city()} />);
 		setCity("OTHER");
+		flush();
 		expect(view.getByRole("radio", { name: "Official schedule" })).toBeDisabled();
 		expect(view.getByRole("radio", { name: "Solar estimate" })).toBeChecked();
 		expect(view.getByText("Lights expected on")).toBeInTheDocument();
 		expect(view.getByRole("img")).toHaveAccessibleName(/Solar estimate/);
 		setCity("MOSCOW");
+		flush();
 		expect(view.getByRole("radio", { name: "Official schedule" })).toBeEnabled();
 	});
 
@@ -254,10 +261,13 @@ describe("CityLightsWidget", () => {
 		selected = date;
 		const view = render(() => <TestWidget />);
 		vi.advanceTimersByTime(2000);
+		flush();
 		setDate(new Date(2026, 9, 24, 18, 19, 59));
+		flush();
 		expect(view.getByText("Lights scheduled off")).toBeInTheDocument();
 		expect(view.getByText("00:00:01")).toBeInTheDocument();
 		vi.advanceTimersByTime(5000);
+		flush();
 		expect(view.getByText("00:00:00")).toBeInTheDocument();
 	});
 
@@ -267,8 +277,10 @@ describe("CityLightsWidget", () => {
 
 		expect(view.getByText("09:29:57")).toBeInTheDocument();
 		setTimerTimestamp(selected().getTime() + 4000);
+		flush();
 		expect(view.getByText("09:29:56")).toBeInTheDocument();
 		fireEvent.click(view.getByRole("radio", { name: "Solar estimate" }));
+		flush();
 		expect(view.getByText("≈ 09:29:56")).toBeInTheDocument();
 	});
 

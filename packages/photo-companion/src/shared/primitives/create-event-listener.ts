@@ -1,4 +1,4 @@
-import { createEffect, createSignal, getOwner, on, onCleanup } from "solid-js";
+import { createEffect, getOwner, onCleanup } from "solid-js";
 import { isNullable } from "utils/validators";
 
 import type { Accessor } from "solid-js";
@@ -12,8 +12,7 @@ type MaybeAccessor<T> = Accessor<T> | T;
  */
 function toAccessor<T>(input: Accessor<Nullable<T>> | Nullable<T>): Accessor<Nullable<T>> {
 	if (isNullable(input) || !isAccessor(input)) {
-		const [ getter ] = createSignal(input);
-		return getter;
+		return () => input;
 	}
 
 	return input;
@@ -84,7 +83,7 @@ export function createEventListener<E>(input: Input<E>): VoidFn {
 		return () => target.removeEventListener(event, listener, options);
 	};
 
-	createEffect(on(toAccessor(target), (target) => {
+	createEffect(toAccessor(target), (target) => {
 		cleanup();
 
 		if (!target) {
@@ -99,7 +98,7 @@ export function createEventListener<E>(input: Input<E>): VoidFn {
 				target
 			})
 		);
-	}));
+	});
 
 	tryOnCleanup(cleanup);
 

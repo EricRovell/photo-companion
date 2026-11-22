@@ -26,7 +26,7 @@ export function CityLightsGraph(props: Props) {
 			aria-label={`${t().LIGHTS_WIDGET.NIGHT_SCHEDULE}, ${props.source}`}
 			class={styles.schedule}
 			role="img"
-			tabIndex={0}
+			tabindex={0}
 			title={`${t().LIGHTS_WIDGET.SELECTED_TIME}: ${format().datetime(props.date)}`}
 		>
 			<div

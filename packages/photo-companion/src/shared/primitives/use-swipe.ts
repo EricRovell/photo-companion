@@ -1,5 +1,5 @@
-import { type Accessor, createMemo } from "solid-js";
-import { createStore } from "solid-js/store";
+import { type Accessor, createMemo, flush } from "solid-js";
+import { createStore } from "solid-js";
 
 import { createEventListener } from "./create-event-listener";
 
@@ -92,12 +92,12 @@ export function useSwipe(target: MaybeAccessor<Nullable<HTMLElement>>, options: 
 
 		const [ x, y ] = getTouchCoords(event);
 
-		setCoords({
-			t1: Date.now(),
-			x1: x,
-			x2: x,
-			y1: y,
-			y2: y
+		setCoords((draft) => {
+			draft.t1 = Date.now();
+			draft.x1 = x;
+			draft.x2 = x;
+			draft.y1 = y;
+			draft.y2 = y;
 		});
 		onSwipeStart?.(event);
 	};
@@ -109,14 +109,16 @@ export function useSwipe(target: MaybeAccessor<Nullable<HTMLElement>>, options: 
 
 		const [ x, y ] = getTouchCoords(event);
 
-		setCoords({
-			x2: x,
-			y2: y
+		setCoords((draft) => {
+			draft.x2 = x;
+			draft.y2 = y;
 		});
 	};
 
 	const handleTouchEnd = (event: TouchEvent) => {
-		setCoords({ t2: Date.now() });
+		flush(() => setCoords((draft) => {
+			draft.t2 = Date.now();
+		}));
 
 		if (isOverThreshold()) {
 			onSwipeEnd?.(event, getDirection());

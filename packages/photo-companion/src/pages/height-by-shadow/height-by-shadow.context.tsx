@@ -1,9 +1,9 @@
-import { createContext, createSignal, useContext } from "solid-js";
-import { createStore, unwrap } from "solid-js/store";
+import { createContext, createMemo, useContext } from "solid-js";
+import { createStore, snapshot } from "solid-js";
 import { convertIntoDegrees, type Degrees } from "utils/math";
 import { isNullable } from "utils/validators";
 
-import type { ParentProps} from "solid-js";
+import type { ParentProps } from "solid-js";
 
 import { useSettings } from "~/features/settings";
 
@@ -37,7 +37,7 @@ const FORM_NAME = {
 
 function createFormState() {
 	const { settings } = useSettings();
-	const { latitude, longitude } = unwrap(settings);
+	const { latitude, longitude } = snapshot(settings);
 
 	const [ model, setModel ] = createStore<Model>({
 		date: new Date(),
@@ -51,7 +51,7 @@ function createFormState() {
 		solar_azimuth_angle: 0
 	});
 
-	const [ getValidity, setValidity ] = createSignal<Partial<Record<FormKey, boolean>>>(validate(model));
+	const getValidity = createMemo(() => validate(model));
 
 	const getInvalidFields = () => {
 		const fields: FormKey[] = [];
@@ -68,8 +68,9 @@ function createFormState() {
 	const hasError = () => getInvalidFields().length > 0;
 
 	const update = <T extends FormKey>(name: T, value: Model[T]) => {
-		setModel(name, value);
-		setValidity(validate(unwrap(model)));
+		setModel((draft) => {
+			draft[name] = value;
+		});
 	};
 
 	return {
@@ -88,9 +89,9 @@ export function FormProvider(props: ParentProps) {
 	const state = createFormState();
 
 	return (
-		<FormContext.Provider value={state}>
+		<FormContext value={state}>
 			{props.children}
-		</FormContext.Provider>
+		</FormContext>
 	);
 }
 

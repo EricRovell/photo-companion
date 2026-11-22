@@ -1,5 +1,5 @@
+import { dynamic } from "@solidjs/web";
 import { Show } from "solid-js";
-import { Dynamic } from "solid-js/web";
 import { setAttribute } from "utils";
 
 import { useDatetime } from "~/features/datetime-query";
@@ -26,6 +26,7 @@ export function TimelineEvent(props: TimelineEventProps) {
 	const { getTimestamp } = useDatetime();
 	const { format, t } = useTranslation();
 	const data = () => buildEventComponent(props.event);
+	const EventIcon = dynamic(() => data().component);
 
 	const linkTitle = () => format().message(t().TIMELINE_EVENT.LINK_TITLE, {
 		datetime: format().datetime(props.event.timestamp),
@@ -59,7 +60,7 @@ export function TimelineEvent(props: TimelineEventProps) {
 					})}
 					title={linkTitle()}
 				>
-					<Dynamic component={data().component} {...data().props} />
+					<EventIcon {...data().props} />
 				</LinkQuery>
 			</div>
 			<article>

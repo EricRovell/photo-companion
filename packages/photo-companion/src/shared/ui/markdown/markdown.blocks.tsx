@@ -1,5 +1,5 @@
-import { type ParentProps, Show } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import { dynamic } from "@solidjs/web";
+import { createEffect, type ParentProps, Show } from "solid-js";
 
 import { Link as Anchor, Text, type TextVariant } from "~/shared/ui";
 
@@ -19,16 +19,17 @@ import styles from "./markdown.module.css";
 export const Definition = (props: DefinitionProps) => {
 	const { setDefinitions } = useDefinition();
 
-	// No need for reactivity here, just set the data
-	// eslint-disable-next-line solid/reactivity
-	setDefinitions(state => ({
-		...state,
-		[props.identifier]: {
-			label: props.label,
-			title: props.title,
-			url: props.url
-		}
-	}));
+	createEffect(() => ({
+		identifier: props.identifier,
+		label: props.label,
+		title: props.title,
+		url: props.url
+	}), ({ identifier, ...definition }) => {
+		setDefinitions(state => ({
+			...state,
+			[identifier]: definition
+		}));
+	});
 
 	return <></>;
 };
@@ -86,14 +87,12 @@ export const LinkReference = (props: LinkReferenceProps) => {
 	);
 };
 
-export const List = (props: ListProps) => (
-	<Dynamic
-		component={props.ordered ? "ol" : "ul"}
-		start={props.start ?? undefined}
-	>
+export const List = (props: ListProps) => {
+	const ListElement = dynamic(() => props.ordered ? "ol" : "ul");
+	return <ListElement start={props.start ?? undefined}>
 		{props.children}
-	</Dynamic>
-);
+	</ListElement>;
+};
 
 export const ListItem = (props: ListItemProps) => (
 	<li>

@@ -1,7 +1,6 @@
-import { MetaProvider } from "@solidjs/meta";
-import { Suspense } from "solid-js";
 
-import { NavigationServiceProvider } from "~/features/navigation";
+import { Loading } from "solid-js";
+
 import { ServiceWorkerProvider } from "~/features/service-worker";
 import { SettingsProvider } from "~/features/settings";
 import { TranslationProvider } from "~/features/translation";
@@ -16,17 +15,13 @@ import "../styles/tokens.css";
 
 export const App = () => (
 	<ServiceWorkerProvider>
-		<MetaProvider>
-			<SettingsProvider>
-				<NavigationServiceProvider>
-					<Suspense>
-						<TranslationProvider>
-							<Routes />
-							<Notifications center={notifications} position="bottom-center" />
-						</TranslationProvider>
-					</Suspense>
-				</NavigationServiceProvider>
-			</SettingsProvider>
-		</MetaProvider>
+		<SettingsProvider>
+			<Loading>
+				<TranslationProvider>
+					<Routes />
+					<Notifications center={notifications} position="bottom-center" />
+				</TranslationProvider>
+			</Loading>
+		</SettingsProvider>
 	</ServiceWorkerProvider>
 );

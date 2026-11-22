@@ -1,5 +1,5 @@
 import { isSupportedCity } from "lights-schedule";
-import { createSignal, createUniqueId, mergeProps, Show, untrack } from "solid-js";
+import { createSignal, createUniqueId, merge, Show, untrack } from "solid-js";
 
 import type { LightsScheduleSource } from "types";
 
@@ -23,7 +23,7 @@ export function CityLightsWidget(props: CityLightsWidgetProps) {
 	const officialAvailable = () => isSupportedCity(props.city);
 	const selectedSource = () => officialAvailable() ? source() : "SOLAR_ESTIMATE";
 	const officialModel = createCityLightsWidgetModel(props);
-	const solarModel = createCityLightsWidgetModel(mergeProps(props, {
+	const solarModel = createCityLightsWidgetModel(merge(props, {
 		get getScheduleForDate() { return props.solar.getScheduleForDate; },
 		get schedule() { return props.solar.schedule; },
 		get state() { return props.solar.state; }

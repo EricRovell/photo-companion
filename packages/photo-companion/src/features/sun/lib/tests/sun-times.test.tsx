@@ -1,4 +1,4 @@
-import { createMemoryHistory, MemoryRouter, Route } from "@solidjs/router";
+import { createRouter, memoryHistory } from "@solidjs/router";
 import { render } from "@solidjs/testing-library";
 import { getSunEvents } from "moon-sun-calc";
 import { getDayStart, shiftDate } from "utils/date";
@@ -52,15 +52,18 @@ function getDayEvents(date: DateLike) {
 }
 
 function renderTimes() {
-	const history = createMemoryHistory();
+	const history = memoryHistory();
 	history.set({ value: "/sun?latitude=0&longitude=0&source=test" });
+
+	const Router = createRouter({
+		history,
+		routes: [{
+			component: () => <SunProvider><SunTimes /></SunProvider>,
+			path: "/sun"
+		}]
+	});
 	return render(() => (
-		<MemoryRouter history={history}>
-			<Route
-				component={() => <SunProvider><SunTimes /></SunProvider>}
-				path="/sun"
-			/>
-		</MemoryRouter>
+		<Router />
 	));
 }
 

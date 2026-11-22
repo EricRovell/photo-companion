@@ -1,4 +1,6 @@
-import { createMemo, createUniqueId, For, type JSX, Show } from "solid-js";
+import { createMemo, createUniqueId, For, Show } from "solid-js";
+
+import type { JSX } from "@solidjs/web";
 
 import styles from "./eclipse-graph-frame.module.css";
 
@@ -32,7 +34,7 @@ export function EclipseGraphFrame(props: EclipseGraphFrameProps) {
 	return (
 		<svg
 			aria-labelledby={`${titleId} ${descriptionId}`}
-			class={`${styles.graph} ${props.class ?? ""}`}
+			class={[ styles.graph, props.class ]}
 			role="img"
 			viewBox={viewBox()}
 		>

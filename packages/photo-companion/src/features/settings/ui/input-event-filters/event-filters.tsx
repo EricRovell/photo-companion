@@ -9,7 +9,7 @@ import { LIGHTS_EVENT_NAMES, MOON_EVENT_NAMES, SUN_EVENT_NAMES } from "./input-e
 
 export const InputEventFilters = () => {
 	const { format, t } = useTranslation();
-	const { setSettingsStore, settingsStore } = useSettingsForm();
+	const { handleChange, settingsStore } = useSettingsForm();
 
 	return (
 		<>
@@ -18,7 +18,7 @@ export const InputEventFilters = () => {
 					groupLabel={t().LABEL.BRIDGES_SPB}
 					groupValue="bridges"
 					name="events_bridges_spb"
-					onChange={setSettingsStore}
+					onChange={handleChange}
 					options={BRIDGES_EVENTS_OPTIONS(t(), format().message)}
 					value={settingsStore.events_bridges_spb}
 				/>
@@ -27,7 +27,7 @@ export const InputEventFilters = () => {
 				groupLabel={t().LABEL.LIGHTS_CITY}
 				groupValue="lights"
 				name="events_lights"
-				onChange={setSettingsStore}
+				onChange={handleChange}
 				options={LIGHTS_EVENT_NAMES.map(value => ({
 					label: t().LIGHTS_EVENTS[value],
 					value
@@ -38,7 +38,7 @@ export const InputEventFilters = () => {
 				groupLabel={t().TITLE.SUN}
 				groupValue="sun"
 				name="events_sun"
-				onChange={setSettingsStore}
+				onChange={handleChange}
 				options={SUN_EVENT_NAMES.map(value => ({
 					label: t().SUN_TIMES[value],
 					value
@@ -49,7 +49,7 @@ export const InputEventFilters = () => {
 				groupLabel={t().TITLE.MOON}
 				groupValue="moon"
 				name="events_moon"
-				onChange={setSettingsStore}
+				onChange={handleChange}
 				options={MOON_EVENT_NAMES.map(value => ({
 					label: t().MOON_TIMES[value],
 					value

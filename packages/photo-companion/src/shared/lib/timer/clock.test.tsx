@@ -1,4 +1,6 @@
-import { cleanup, fireEvent, renderHook } from "@solidjs/testing-library";
+import { cleanup, fireEvent } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
+import { flush } from "solid-js";
 import { createMemo } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -60,14 +62,17 @@ describe("useClock", () => {
 		expect(calculate).toHaveBeenCalledTimes(1);
 
 		vi.advanceTimersByTime(14_999);
+		flush();
 		expect(result.clock.getTimestamp()).toBe(NOW + 14_000);
 		expect(result.throttled.getTimestamp()).toBe(NOW);
 		expect(calculate).toHaveBeenCalledTimes(1);
 
 		vi.advanceTimersByTime(1);
+		flush();
 		expect(result.calculation()).toBe(NOW + 15_000);
 		expect(calculate).toHaveBeenCalledTimes(2);
 		vi.advanceTimersByTime(15_000);
+		flush();
 		expect(result.calculation()).toBe(NOW + 30_000);
 		expect(calculate).toHaveBeenCalledTimes(3);
 		expect(vi.getTimerCount()).toBe(1);
@@ -77,8 +82,10 @@ describe("useClock", () => {
 		const { result } = renderClocks(5000);
 
 		vi.advanceTimersByTime(4999);
+		flush();
 		expect(result.throttled.getTimestamp()).toBe(NOW);
 		vi.advanceTimersByTime(1);
+		flush();
 		expect(result.throttled.getTimestamp()).toBe(NOW + 5000);
 		expect(vi.getTimerCount()).toBe(1);
 	});
@@ -86,14 +93,18 @@ describe("useClock", () => {
 	it("sets now immediately for every consumer and starts a new throttle window", () => {
 		const { calculate, result } = renderClocks();
 		vi.advanceTimersByTime(3000);
+		flush();
 		result.clock.setNow();
+		flush();
 
 		expect(result.throttled.getTimestamp()).toBe(NOW + 3000);
 		expect(result.peer.getTimestamp()).toBe(NOW + 3000);
 		expect(calculate).toHaveBeenCalledTimes(2);
 		vi.advanceTimersByTime(14_999);
+		flush();
 		expect(result.throttled.getTimestamp()).toBe(NOW + 3000);
 		vi.advanceTimersByTime(1);
+		flush();
 		expect(result.throttled.getTimestamp()).toBe(NOW + 18_000);
 		expect(vi.getTimerCount()).toBe(1);
 	});
@@ -105,10 +116,13 @@ describe("useClock", () => {
 
 		visibility = "hidden";
 		fireEvent(document, new Event("visibilitychange"));
+		flush();
 		expect(vi.getTimerCount()).toBe(0);
 		vi.advanceTimersByTime(2000);
+		flush();
 		visibility = "visible";
 		fireEvent(document, new Event("visibilitychange"));
+		flush();
 
 		expect(result.clock.getTimestamp()).toBe(NOW + 2000);
 		expect(result.throttled.getTimestamp()).toBe(NOW + 2000);
@@ -121,6 +135,7 @@ describe("useClock", () => {
 		const { result } = renderClocks();
 		vi.setSystemTime(NOW + 60_000);
 		vi.advanceTimersByTime(1000);
+		flush();
 
 		expect(result.clock.getTimestamp()).toBe(NOW + 61_000);
 		expect(result.throttled.getTimestamp()).toBe(NOW + 61_000);
@@ -130,6 +145,7 @@ describe("useClock", () => {
 		const { result } = renderClocks();
 		vi.setSystemTime(NOW - 10_000);
 		vi.advanceTimersByTime(1000);
+		flush();
 
 		expect(result.clock.getTimestamp()).toBe(NOW - 9000);
 		expect(result.throttled.getTimestamp()).toBe(NOW - 9000);

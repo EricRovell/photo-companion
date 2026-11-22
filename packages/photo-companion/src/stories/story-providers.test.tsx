@@ -1,5 +1,5 @@
 import { render, waitFor } from "@solidjs/testing-library";
-import { createStore } from "solid-js/store";
+import { createStore } from "solid-js";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { useDatetime } from "~/features/datetime-query";
@@ -39,10 +39,10 @@ describe("story providers", () => {
 			expect(view.container.querySelector("output")).toHaveAttribute("data-datetime", "2026-06-21T12:00:00");
 		});
 
-		setOptions({
-			datetime: new Date(2027, 3, 5, 12, 45, 36).getTime(),
-			latitude: -33.8688,
-			longitude: 151.2093
+		setOptions((draft) => {
+			draft.datetime = new Date(2027, 3, 5, 12, 45, 36).getTime();
+			draft.latitude = -33.8688;
+			draft.longitude = 151.2093;
 		});
 
 		await waitFor(() => {

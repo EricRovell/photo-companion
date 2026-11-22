@@ -1,4 +1,5 @@
 import { fireEvent, render, within } from "@solidjs/testing-library";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { degreesFormatter } from "utils/formatters";
 import { describe, expect, it, vi } from "vitest";
@@ -73,6 +74,7 @@ describe("compound altitude widget", () => {
 		expect(sun.getByText(degrees(-2))).toBeInTheDocument();
 
 		setDate(new Date("2026-10-21T14:00:00Z"));
+		flush();
 
 		expect(view.getByRole("img")).toHaveAccessibleName("Altitude, 14:00");
 		expect(view.getByRole("img")).toHaveAccessibleDescription(`Sun: ${degrees(2)}, Above horizon. Moon: ${degrees(-30)}, Below horizon`);
@@ -111,6 +113,7 @@ describe("compound altitude widget", () => {
 		expect(moon).toBeChecked();
 
 		fireEvent.click(sun);
+		flush();
 		expect(sun).not.toBeChecked();
 		expect(moon).toBeChecked();
 		expect(moon).toBeDisabled();
@@ -124,10 +127,12 @@ describe("compound altitude widget", () => {
 		moon.click();
 		expect(moon).toBeChecked();
 		fireEvent.click(sun);
+		flush();
 		expect(sun).toBeChecked();
 		expect(view.container.querySelectorAll("svg [data-entity=\"sun\"]")).toHaveLength(2);
 		expect(moon).not.toBeDisabled();
 		fireEvent.click(moon);
+		flush();
 		expect(moon).not.toBeChecked();
 		expect(view.container.querySelectorAll("svg [data-entity=\"moon\"]")).toHaveLength(0);
 		expect(sun).toBeChecked();
@@ -147,6 +152,7 @@ describe("compound altitude widget", () => {
 			}
 
 			fireEvent.click(target);
+			flush();
 			expect(checkbox).not.toBeChecked();
 			expect(row).toHaveAttribute("data-selected", "false");
 			expect(view.getByRole("img")).toHaveAccessibleDescription(`Moon: ${degrees(-30)}, Below horizon`);
@@ -156,6 +162,7 @@ describe("compound altitude widget", () => {
 			}
 
 			fireEvent.click(target);
+			flush();
 			expect(checkbox).toBeChecked();
 			expect(row).toHaveAttribute("data-selected", "true");
 			expect(view.getByRole("img")).toHaveAccessibleDescription(`Sun: ${degrees(-2)}, Below horizon. Moon: ${degrees(-30)}, Below horizon`);
@@ -169,9 +176,13 @@ describe("compound altitude widget", () => {
 		const moon = within(moonRow).getByRole("checkbox", { name: "Moon" });
 
 		fireEvent.click(view.getByRole("row", { name: /Sun/ }));
+		flush();
 		fireEvent.click(moonRow);
+		flush();
 		fireEvent.click(within(moonRow).getAllByRole("cell")[0]);
+		flush();
 		fireEvent.click(within(moonRow).getByText("Moon"));
+		flush();
 
 		expect(sun).not.toBeChecked();
 		expect(moon).toBeChecked();
@@ -219,7 +230,9 @@ describe("compound altitude widget", () => {
 		const [ moon, setMoon ] = createSignal(true);
 		const view = render(() => <Preview date={new Date("2026-10-21T10:00:00Z")} moon={moon()} />);
 		fireEvent.click(view.getByRole("checkbox", { name: "Sun" }));
+		flush();
 		setMoon(false);
+		flush();
 		expect(view.getByRole("checkbox", { name: "Sun" })).toBeChecked();
 		expect(view.getByRole("checkbox", { name: "Sun" })).toBeDisabled();
 		expect(view.queryByRole("checkbox", { name: "Moon" })).not.toBeInTheDocument();

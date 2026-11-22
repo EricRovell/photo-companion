@@ -1,6 +1,7 @@
 import { isNullable } from "utils/validators";
 
-import type { Accessor, JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
+import type { Accessor } from "solid-js";
 
 import { createQueryDate } from "~/shared/lib/query-date";
 

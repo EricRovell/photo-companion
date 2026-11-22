@@ -1,4 +1,6 @@
-import { cleanup, renderHook } from "@solidjs/testing-library";
+import { cleanup } from "@solidjs/testing-library";
+import { renderHook } from "~test/render-hook";
+import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -50,6 +52,7 @@ describe("createNotification", () => {
 
 		expect(getEntries(center)[0]?.title).toBe("Compass blocked");
 		setTitle("Compass permission denied");
+		flush();
 		expect(getEntries(center)).toEqual([ expect.objectContaining({
 			id: hook.result,
 			title: "Compass permission denied"
@@ -72,6 +75,7 @@ describe("createNotification", () => {
 			variant: "error"
 		}) ]);
 		setTitle("Compass permission denied");
+		flush();
 		expect(getEntries(center)).toEqual([ expect.objectContaining({
 			id: hook.result,
 			title: "Compass permission denied"
@@ -82,6 +86,7 @@ describe("createNotification", () => {
 		expect(getEntries(center)).toEqual([]);
 		expect(onDismiss).toHaveBeenCalledExactlyOnceWith("dismiss");
 		setTitle("Unmounted");
+		flush();
 		expect(getEntries(center)).toEqual([]);
 	});
 
@@ -96,11 +101,14 @@ describe("createNotification", () => {
 
 		expect(getEntries(center)).toEqual([]);
 		setVisible(true);
+		flush();
 		expect(getEntries(center)).toHaveLength(1);
 		setVisible(false);
+		flush();
 		expect(getEntries(center)).toEqual([]);
 		expect(onDismiss).toHaveBeenCalledExactlyOnceWith("dismiss");
 		setVisible(true);
+		flush();
 		expect(getEntries(center)[0]?.id).toBe(hook.result);
 	});
 
@@ -135,10 +143,13 @@ describe("createNotification", () => {
 		}, { center }));
 
 		setIncidental(1);
+		flush();
 		expect(getOptions).toHaveBeenCalledOnce();
 		setVisible(false);
+		flush();
 		expect(onDismiss).toHaveBeenCalledOnce();
 		setIncidental(2);
+		flush();
 		expect(getOptions).toHaveBeenCalledTimes(2);
 		unsubscribe();
 	});
@@ -153,6 +164,7 @@ describe("createNotification", () => {
 		center.show({ title: "Unrelated notification" });
 		expect(getEntries(center).some(entry => entry.id === hook.result)).toBe(false);
 		setTitle("Compass permission denied");
+		flush();
 		expect(getEntries(center).find(entry => entry.id === hook.result)?.title).toBe("Compass permission denied");
 	});
 });

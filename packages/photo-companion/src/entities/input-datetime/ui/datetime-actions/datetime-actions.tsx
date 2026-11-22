@@ -1,6 +1,6 @@
 import { createMemo, createSignal } from "solid-js";
 
-import type { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 
 import { Button } from "~/shared/ui";
 import { IconCalendar, IconTimeline } from "~/shared/ui/icons";
@@ -39,7 +39,7 @@ export function DatetimeActions(props: DatetimeActionsProps) {
 					onFocus={() => setEditing(true)}
 					ref={props.model.setInputRef}
 					step={1}
-					tabIndex={-1}
+					tabindex={-1}
 					type="datetime-local"
 					value={inputValue()}
 				/>
