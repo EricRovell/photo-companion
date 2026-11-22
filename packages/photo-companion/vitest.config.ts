@@ -15,6 +15,7 @@ export default defineConfig({
 	test: {
 		env: { TZ: "UTC" },
 		environment: "jsdom",
+		pool: "vmForks",
 		server: {
 			deps: {
 				inline: [ /solid-js/, /@solidjs/ ]

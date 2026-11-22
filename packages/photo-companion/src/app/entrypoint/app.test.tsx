@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, waitFor } from "@solidjs/testing-library";
+import { cleanup, fireEvent, render, waitFor, within } from "@solidjs/testing-library";
 import { flush } from "solid-js";
 import { afterEach, expect, it, vi } from "vitest";
 
@@ -59,48 +59,70 @@ function renderApp(
 	};
 }
 
-it("redirects home, navigates, saves settings, and loads translated Markdown", async () => {
+it("redirects home and navigates to the Sun and Moon pages", async () => {
 	const view = renderApp();
 
-	await waitFor(() => expect(location.pathname).toBe("/now"));
-	await waitFor(() => expect(view.container.querySelector("main")).toHaveTextContent("Sun"));
+	await waitFor(() => {
+		expect(location.pathname).toBe(ROUTES.NOW);
+		expect(view.container.querySelector("main")).toHaveTextContent("Sun");
+	});
 
-	for (const [ label, pathname ] of [ [ "Sun", "/sun" ], [ "Moon", "/moon" ] ]) {
-		fireEvent.click(view.getAllByRole("link", { name: `The ${label}` })[0]);
+	const navigation = within(view.getAllByRole("navigation")[0]);
 
-		await waitFor(() => expect(location.pathname).toBe(pathname));
-		await waitFor(() => expect(view.container.querySelector("main")).toHaveTextContent(label));
+	for (const [ label, pathname ] of [ [ "Sun", ROUTES.SUN ], [ "Moon", ROUTES.MOON ] ]) {
+		fireEvent.click(navigation.getByRole("link", { name: `The ${label}` }));
+
+		await waitFor(() => {
+			expect(location.pathname).toBe(pathname);
+			expect(view.container.querySelector("main")).toHaveTextContent(label);
+		});
 	}
 
-	const settingsLink = view.getAllByRole("link", { name: "Settings" })[0];
+	expect(view.errors).not.toHaveBeenCalled();
+	expect(view.warnings).not.toHaveBeenCalled();
+});
+
+it("saves the selected city and renders the chosen language", async () => {
+	const view = renderApp(ROUTES.NOT_FOUND);
+	const [ settingsLink ] = await view.findAllByRole("link", { name: "Settings" });
 
 	fireEvent.click(settingsLink);
 
-	await waitFor(() => expect(view.getByRole("button", { name: "Save" })).toBeInTheDocument());
+	const save = await view.findByRole("button", { name: "Save" });
+	expect(location.pathname).toBe(ROUTES.SETTINGS);
 
-	flush(() => fireEvent.click(view.getByRole("radio", { name: "Moscow, Russia" })));
-	flush(() => fireEvent.click(view.getByRole("button", { name: "Save" })));
+	flush(() => fireEvent.click(view.getByLabelText("Moscow, Russia")));
+	flush(() => fireEvent.click(save));
 
 	expect(JSON.parse(localStorage.getItem("settings:4") ?? "null").city).toBe("MOSCOW");
 
-	flush(() => fireEvent.click(view.getByRole("radio", { name: "Русский" })));
+	flush(() => fireEvent.click(view.getByLabelText("Русский")));
+	fireEvent.click(save);
 
-	fireEvent.click(view.getByRole("button", { name: "Save" }));
+	const russianSave = await view.findByRole("button", { name: "Сохранить" });
+	expect(document.documentElement.lang).toBe("ru");
 
-	await waitFor(() => expect(document.documentElement.lang).toBe("ru"));
+	flush(() => fireEvent.click(view.getByLabelText("English")));
+	fireEvent.click(russianSave);
 
-	flush(() => fireEvent.click(view.getByRole("radio", { name: "English" })));
+	await view.findByRole("button", { name: "Save" });
+	expect(document.documentElement.lang).toBe("en");
 
-	fireEvent.click(view.getByRole("button", { name: "Сохранить" }));
+	expect(view.errors).not.toHaveBeenCalled();
+	expect(view.warnings).not.toHaveBeenCalled();
+});
 
-	await waitFor(() => expect(document.documentElement.lang).toBe("en"));
+it("loads translated Markdown from the navigation drawer", async () => {
+	const view = renderApp(ROUTES.NOT_FOUND);
+	const menu = await view.findByRole("button", { name: "Menu" });
 
-	flush(() => fireEvent.click(view.getByRole("button", { name: "Menu" })));
+	flush(() => fireEvent.click(menu));
+	fireEvent.click(await view.findByRole("link", { name: "FAQ" }));
 
-	fireEvent.click(view.getByRole("link", { name: "FAQ" }));
-
-	await waitFor(() => expect(location.pathname).toBe("/about"));
-	await waitFor(() => expect(view.container.querySelector("main article")).toHaveTextContent(/photograph/i));
+	await waitFor(() => {
+		expect(location.pathname).toBe(ROUTES.ABOUT);
+		expect(view.container.querySelector("main article")).toHaveTextContent(/photograph/i);
+	});
 
 	expect(view.errors).not.toHaveBeenCalled();
 	expect(view.warnings).not.toHaveBeenCalled();
