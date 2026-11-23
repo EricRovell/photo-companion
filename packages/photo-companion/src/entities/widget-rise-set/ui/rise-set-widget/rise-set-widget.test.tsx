@@ -3,6 +3,7 @@ import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { RISE_SET_WIDGET_CONFIG } from "../../config";
 import { RiseSetWidget } from "./rise-set-widget";
 
 import type { RiseSetWidgetProps } from "../../types";
@@ -219,4 +220,47 @@ describe("RiseSetWidget countdown", () => {
 		expect(view.container.querySelector("[data-rise-set-countdown] dd")).toHaveTextContent("—");
 		expect(view.container.querySelectorAll("dl > div")).toHaveLength(2);
 	});
+});
+
+it("slides the midnight divider along the arc between overnight intervals", () => {
+	vi.useFakeTimers({ toFake: [ "cancelAnimationFrame", "performance", "requestAnimationFrame" ] });
+
+	try {
+		const { animation, dial } = RISE_SET_WIDGET_CONFIG;
+		const [ props, setProps ] = createSignal<RiseSetWidgetProps>({
+			aboveHorizon: true,
+			date: new Date(2026, 9, 21, 23),
+			entity: "moon",
+			rise: new Date(2026, 9, 21, 20),
+			set: new Date(2026, 9, 22, 8)
+		});
+		const view = render(() => <RiseSetWidget {...props()} />);
+		const divider = view.container.querySelector("[data-rise-set-midnight]");
+		const line = divider?.querySelector("line");
+		const rotation = () => Number.parseFloat(line?.getAttribute("transform")?.slice("rotate(".length) ?? "");
+		const initialAngle = dial.angleSpan / 3;
+		const finalAngle = 2 * dial.angleSpan / 3;
+
+		expect(rotation()).toBeCloseTo(initialAngle);
+
+		setProps(current => ({
+			...current,
+			date: new Date(2026, 9, 22, 23),
+			rise: new Date(2026, 9, 22, 16),
+			set: new Date(2026, 9, 23, 4)
+		}));
+		flush();
+
+		expect(divider).toHaveAttribute("data-rise-set-midnight", new Date(2026, 9, 23).toISOString());
+		expect(rotation()).toBeCloseTo(initialAngle);
+
+		flush(() => vi.advanceTimersByTime(animation.transitionDuration / 2));
+		expect(rotation()).toBeGreaterThan(initialAngle);
+		expect(rotation()).toBeLessThan(finalAngle);
+
+		flush(() => vi.advanceTimersByTime(animation.transitionDuration));
+		expect(rotation()).toBeCloseTo(finalAngle);
+	} finally {
+		vi.useRealTimers();
+	}
 });
