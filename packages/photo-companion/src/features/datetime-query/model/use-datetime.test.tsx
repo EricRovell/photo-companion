@@ -1,8 +1,7 @@
 import { createRouter, memoryHistory } from "@solidjs/router";
 import { cleanup, fireEvent } from "@solidjs/testing-library";
 import { renderHook } from "~test/render-hook";
-import { flush } from "solid-js";
-import { createSignal } from "solid-js";
+import { createEffect, createSignal, flush } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { Accessor, ParentProps } from "solid-js";
@@ -24,6 +23,7 @@ function createLocation(pathname: string, params: [ string, string ][]): string 
 function renderDatetimeHook(location: string, options: {
 	autoplayInterval?: number;
 	getCountdownEnd?: Accessor<Nullable<number>>;
+	onAutoplayTime?: (timestamp: number, timerTimestamp: number) => void;
 } = {}) {
 	const history = memoryHistory();
 
@@ -49,6 +49,17 @@ function renderDatetimeHook(location: string, options: {
 
 	const hook = renderHook(() => {
 		const state = useDatetime();
+		const { onAutoplayTime } = options;
+
+		if (onAutoplayTime) {
+			createEffect(() => state.isAutoplay()
+				? [ state.getTimestamp(), state.getTimerDatetime().getTime() ] as const
+				: null, time => {
+				if (time) {
+					onAutoplayTime(...time);
+				}
+			});
+		}
 
 		return {
 			...state,
@@ -98,6 +109,7 @@ describe("useDatetime", () => {
 		expect(result.countdown()).toBe(59_000);
 		expect(result.getTimerTimestamp()).toBe(NOW.getTime() + 1000);
 		expect(result.getTimerDatetime().getTime()).toBe(NOW.getTime() + 1000);
+		expect(result.getDisplayedDatetime().getTime()).toBe(NOW.getTime() + 1000);
 		expect(result.getDatetime()).toBe(initialDate);
 
 		vi.advanceTimersByTime(13_999);
@@ -191,6 +203,7 @@ describe("useDatetime", () => {
 		vi.advanceTimersByTime(15_000);
 		flush();
 		expect(result.getTimestamp()).toBe(SELECTED_DATETIME.getTime());
+		expect(result.getDisplayedDatetime().getTime()).toBe(SELECTED_DATETIME.getTime());
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 15_000);
 	});
 
@@ -271,18 +284,20 @@ describe("useDatetime", () => {
 		expect(result.getTimerTimestamp()).toBe(SELECTED_DATETIME.getTime() + 4000);
 	});
 
-	it("resumes autoplay when navigation removes the explicit date", async () => {
-		const { history, result } = renderDatetimeHook("/moon?datetime=2027-04-05T12:45:36");
+	it("resumes autoplay with fresh clock values in the first update after navigation", async () => {
+		const onAutoplayTime = vi.fn();
+		const { history, result } = renderDatetimeHook("/moon?datetime=2027-04-05T12:45:36", { onAutoplayTime });
 		vi.advanceTimersByTime(3000);
 		flush();
+		vi.setSystemTime(RESET_NOW);
 		history.set({ value: "/moon?param=1" });
 		await vi.advanceTimersByTimeAsync(0);
 
 		expect(result.isAutoplay()).toBe(true);
-		expect(result.getTimestamp()).toBe(NOW.getTime() + 3000);
+		expect(onAutoplayTime.mock.calls).toEqual([[ RESET_NOW.getTime(), RESET_NOW.getTime() ]]);
 		vi.advanceTimersByTime(15_000);
 		flush();
-		expect(result.getTimestamp()).toBe(NOW.getTime() + 18_000);
+		expect(result.getTimestamp()).toBe(RESET_NOW.getTime() + 15_000);
 	});
 
 	it.each([ false, true ])("resynchronizes after a hidden tab wakes up (selected: %s)", (selected) => {

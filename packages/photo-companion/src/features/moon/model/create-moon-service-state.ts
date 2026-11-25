@@ -1,4 +1,4 @@
-import { findMoonRiseSetIntervals, getMoonAge, getMoonIllumination, getMoonPosition, getMoonZenithAngle, getNextMoonPhases } from "moon-sun-calc";
+import { findMoonRiseSetIntervals, getMoonAge, getMoonIllumination, getMoonPosition, getMoonZenithAngle } from "moon-sun-calc";
 import { createMemo } from "solid-js";
 import { calcDuration } from "utils/date";
 
@@ -7,7 +7,7 @@ import { useDatetime } from "~/features/datetime-query";
 import { useSettings } from "~/features/settings";
 import { createRiseSetEvents } from "~/shared/lib/rise-set";
 
-import { FULL_MOON_NAMES, PHASE_VALUES } from "../consts";
+import { FULL_MOON_NAMES } from "../consts";
 
 export function createMoonServiceState() {
 	const { settings } = useSettings();
@@ -20,12 +20,6 @@ export function createMoonServiceState() {
 
 	const age = createMemo(() => getMoonAge(getDatetime()));
 	const illumination = createMemo(() => getMoonIllumination(getDatetime()));
-
-	const phases = createMemo(() => getNextMoonPhases(getDatetime()).map(event => ({
-		phaseName: event.phase,
-		phaseValue: PHASE_VALUES[event.phase],
-		timestamp: event.time.getTime()
-	})));
 
 	const position = createMemo(() => getMoonPosition({
 		instant: getDatetime(),
@@ -57,7 +51,6 @@ export function createMoonServiceState() {
 		nextRise,
 		parallacticAngle: () => position().parallacticAngle,
 		phaseName: () => illumination().phase,
-		phases,
 		phaseValue: () => illumination().phaseValue,
 		riseSetTimes,
 		rotation: () => getMoonRotation(zenithAngle(), illumination().waxing),

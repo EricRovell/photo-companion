@@ -226,6 +226,10 @@ export const t = {
 		TAB_LIMITS: "Выберите хотя бы 1 активный раздел",
 		UPDATE: "Обновление готово к установке."
 	},
+	MOON_CALENDAR: {
+		NEXT_MONTH: "Следующий месяц",
+		PREVIOUS_MONTH: "Предыдущий месяц"
+	},
 	MOON_NAME: {
 		BEAVER: "Бобровая",
 		BUCK: "Грозовая",

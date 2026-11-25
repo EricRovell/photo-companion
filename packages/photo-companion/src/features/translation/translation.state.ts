@@ -9,11 +9,14 @@ import {
 	listFormatter,
 	metersFormatter,
 	minutesFormatter,
+	monthYearFormatter,
 	percentFormatter,
 	timeDurationFormatter,
 	timeFormatter,
 	timeShortDurationFormatter,
-	timeShortFormatter
+	timeShortFormatter,
+	utcWeekdayFormatter,
+	utcWeekdayShortFormatter
 } from "utils/formatters";
 import { isNullable } from "utils/validators";
 
@@ -48,11 +51,14 @@ export function createTranslationState() {
 		message: formatMessage,
 		meters: metersFormatter(lang()),
 		minutes: minutesFormatter(lang()),
+		monthYear: monthYearFormatter(lang()),
 		percent: percentFormatter(lang()),
 		time: timeFormatter(lang()),
 		timeDuration: timeDurationFormatter(lang()),
 		timeShort: timeShortFormatter(lang()),
-		timeShortDuration: timeShortDurationFormatter(lang())
+		timeShortDuration: timeShortDurationFormatter(lang()),
+		utcWeekday: utcWeekdayFormatter(lang()),
+		utcWeekdayShort: utcWeekdayShortFormatter(lang())
 	}));
 
 	createEffect(lang, (language) => {

@@ -1,6 +1,7 @@
 import { For } from "solid-js";
 
 import { useTranslation } from "~/features/translation";
+import { createTweened } from "~/shared/primitives";
 
 import { RISE_SET_WIDGET_CONFIG } from "../../config";
 import { getRiseSetDialPoint } from "../../lib";
@@ -14,7 +15,9 @@ interface Props {
 	midnights: ReturnType<typeof getRiseSetMidnights>;
 }
 
-const { dial, midnight: config, track } = RISE_SET_WIDGET_CONFIG;
+const { animation, dial, midnight: config, track } = RISE_SET_WIDGET_CONFIG;
+const TICK_START = getRiseSetDialPoint(dial.angleStart, track.radius - config.tickLength / 2);
+const TICK_END = getRiseSetDialPoint(dial.angleStart, track.radius + config.tickLength / 2);
 
 export function RiseSetDialMidnights(props: Props) {
 	const { format, t } = useTranslation();
@@ -31,22 +34,21 @@ export function RiseSetDialMidnights(props: Props) {
 			<desc id={props.descriptionId}>
 				{props.midnights.map(({ date }) => describe(date)).join("; ")}
 			</desc>
-			<For each={props.midnights}>
+			<For each={props.midnights} keyed={false}>
 				{midnight => {
-					const angle = dial.angleStart + midnight.progress * dial.angleSpan;
-					const start = getRiseSetDialPoint(angle, track.radius - config.tickLength / 2);
-					const end = getRiseSetDialPoint(angle, track.radius + config.tickLength / 2);
+					const position = createTweened(() => midnight().progress, { duration: animation.transitionDuration });
 
 					return (
-						<g data-rise-set-midnight={midnight.date.toISOString()}>
+						<g data-rise-set-midnight={midnight().date.toISOString()}>
 							<title>
-								{describe(midnight.date)}
+								{describe(midnight().date)}
 							</title>
 							<line
-								x1={start.x}
-								x2={end.x}
-								y1={start.y}
-								y2={end.y}
+								transform={`rotate(${position() * dial.angleSpan} ${dial.center} ${dial.center})`}
+								x1={TICK_START.x}
+								x2={TICK_END.x}
+								y1={TICK_START.y}
+								y2={TICK_END.y}
 							/>
 						</g>
 					);

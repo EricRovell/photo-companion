@@ -18,6 +18,8 @@ import {
 	IconSettings,
 	IconShadow,
 	IconSun,
+	IconSunrise,
+	IconSunset,
 	IconTimeline,
 	IconWarning
 } from "../icons";
@@ -73,6 +75,8 @@ export const Gallery: Story = {
 			<IconSettings height="32" title="Settings" width="32" />
 			<IconShadow height="32" title="Shadow" width="32" />
 			<IconSun height="32" title="Sun" width="32" />
+			<IconSunrise height="32" title="Sunrise" width="32" />
+			<IconSunset height="32" title="Sunset" width="32" />
 			<IconTimeline height="32" title="Timeline" width="32" />
 			<IconWarning height="32" title="Warning" width="32" />
 		</div>

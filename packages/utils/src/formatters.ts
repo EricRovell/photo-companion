@@ -123,6 +123,12 @@ export const minutesFormatter = getNumberFormatter({
 	unitDisplay: "short"
 });
 
+/** Formats the localized month and year in the local time zone. */
+export const monthYearFormatter = getDateTimeFormatter({
+	month: "long",
+	year: "numeric"
+});
+
 /**
  * Formats a numeric value into % unit.
  */
@@ -170,3 +176,15 @@ export function timeShortDurationFormatter(locale?: string) {
 
 	return (start: DateLike, end: DateLike) => `${formatter(start)} — ${formatter(end)}}`;
 }
+
+/** Formats the full weekday name for a UTC date. */
+export const utcWeekdayFormatter = getDateTimeFormatter({
+	timeZone: "UTC",
+	weekday: "long"
+});
+
+/** Formats the abbreviated weekday name for a UTC date. */
+export const utcWeekdayShortFormatter = getDateTimeFormatter({
+	timeZone: "UTC",
+	weekday: "short"
+});

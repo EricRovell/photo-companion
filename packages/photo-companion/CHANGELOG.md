@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.54.0
+
+- Update moon phases calendar.
+
 ## 2.53.0
 
 - Update notifications implementation and design.

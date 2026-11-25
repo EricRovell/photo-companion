@@ -1,0 +1,28 @@
+.body {
+	padding: 0 var(--space-4) var(--space-4);
+}
+
+.navigation {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: var(--space-2);
+	padding-block: var(--space-2);
+	border-block-start: 1px solid var(--card-divider-color);
+
+	& > button {
+		--icon-size: 1.125rem;
+
+		width: 2.75rem;
+	}
+
+	& > h3 {
+		text-transform: capitalize;
+	}
+}
+
+@media screen and (width <= 420px) {
+	.body {
+		padding-inline: var(--space-2);
+	}
+}

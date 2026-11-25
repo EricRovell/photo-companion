@@ -136,6 +136,35 @@ export const IconSun = (props: IconProps) => (
 	</Icon>
 );
 
+const IconSunHorizon = (props: IconProps) => (
+	<Icon {...props} viewBox="0 0 28 28">
+		<g
+			fill="none"
+			stroke="var(--icon-color, currentColor)"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			stroke-width="1.75"
+		>
+			<path d="M1.5 24h25" />
+			{props.children}
+			<path d="M3 19h3m-.5-7 2.5 2.5m12 0 2.5-2.5M22 19h3" />
+		</g>
+		<path d="M8 21v-1a6 6 0 0 1 12 0v1Z" />
+	</Icon>
+);
+
+export const IconSunrise = (props: IconProps) => (
+	<IconSunHorizon {...props}>
+		<path d="M14 11V4m-3.5 3.5L14 4l3.5 3.5" />
+	</IconSunHorizon>
+);
+
+export const IconSunset = (props: IconProps) => (
+	<IconSunHorizon {...props}>
+		<path d="M14 4v7m-3.5-3.5L14 11l3.5-3.5" />
+	</IconSunHorizon>
+);
+
 export const IconTimeline = (props: IconProps) => (
 	<Icon {...props}>
 		<path
