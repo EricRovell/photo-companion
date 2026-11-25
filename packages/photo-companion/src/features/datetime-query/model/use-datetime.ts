@@ -1,5 +1,5 @@
 import { useSearchParams } from "@solidjs/router";
-import { createContext, createEffect, createMemo, useContext } from "solid-js";
+import { createContext, createMemo, useContext } from "solid-js";
 import { isNonEmptyString, isNullable } from "utils/validators";
 
 import { createQueryDate, parseQueryDate } from "~/shared/lib/query-date";
@@ -21,19 +21,9 @@ export function createDatetimeState() {
 		};
 	});
 
-	createEffect(isAutoplay, (autoplay) => {
-		if (autoplay) {
-			clock.setNow();
-		}
-	});
-
-	const getDatetimeQuery = createMemo(() => {
-		if (isNullable(searchParams.datetime)) {
-			return createQueryDate(autoplayClock.getTimestamp());
-		}
-
-		return searchParams.datetime;
-	});
+	const getDatetimeQuery = createMemo(() => (
+		searchParams.datetime ?? createQueryDate(autoplayClock.getTimestamp())
+	));
 
 	const getDatetime = createMemo(() => getSelection()?.date ?? parseQueryDate(getDatetimeQuery()));
 	const getTimestamp = createMemo(() => getDatetime().getTime());
@@ -49,10 +39,14 @@ export function createDatetimeState() {
 	});
 
 	const getTimerDatetime = createMemo(() => new Date(getTimerTimestamp()));
+	const getDisplayedDatetime = createMemo(() => isAutoplay() ? getTimerDatetime() : getDatetime());
 
 	const setDatetimeQuery = (input?: DateLike | string): void => {
 		if (isNullable(input)) {
-			clock.setNow();
+			if (isAutoplay()) {
+				clock.setNow();
+			}
+
 			setSearchParams({ datetime: null });
 
 			return;
@@ -68,6 +62,7 @@ export function createDatetimeState() {
 	return {
 		getDatetime,
 		getDatetimeQuery,
+		getDisplayedDatetime,
 		getTimerDatetime,
 		getTimerTimestamp,
 		getTimestamp,

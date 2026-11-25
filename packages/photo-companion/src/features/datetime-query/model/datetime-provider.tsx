@@ -1,3 +1,6 @@
+import { useLocation } from "@solidjs/router";
+import { isNullable } from "utils/validators";
+
 import type { ParentProps } from "solid-js";
 
 import { ClockProvider } from "~/shared/lib/timer";
@@ -18,8 +21,11 @@ function DatetimeStateProvider(props: ParentProps) {
 }
 
 export function DatetimeProvider(props: Props) {
+	const location = useLocation();
+
 	return (
 		<ClockProvider
+			refreshWhen={isNullable(location.query.datetime)}
 			throttleInterval={props.autoplayInterval ?? DATETIME_CONFIG.autoplayInterval}
 		>
 			<DatetimeStateProvider>

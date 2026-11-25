@@ -227,6 +227,10 @@ export interface Translation {
 		TAB_LIMITS: string;
 		UPDATE: string;
 	};
+	MOON_CALENDAR: {
+		NEXT_MONTH: string;
+		PREVIOUS_MONTH: string;
+	};
 	MOON_NAME: {
 		BEAVER: string;
 		BUCK: string;

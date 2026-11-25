@@ -226,6 +226,10 @@ export const t = {
 		TAB_LIMITS: "Select at least 1 tab",
 		UPDATE: "Update is ready to be installed."
 	},
+	MOON_CALENDAR: {
+		NEXT_MONTH: "Next month",
+		PREVIOUS_MONTH: "Previous month"
+	},
 	MOON_NAME: {
 		BEAVER: "Beaver",
 		BUCK: "Buck",

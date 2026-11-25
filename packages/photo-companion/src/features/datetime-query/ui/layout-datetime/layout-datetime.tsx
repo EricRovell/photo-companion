@@ -10,11 +10,11 @@ import { useDatetime } from "../../model";
 import styles from "./layout-datetime.module.css";
 
 export function LayoutDatetime(props: ParentProps) {
-	const { getDatetime, getTimerDatetime, isAutoplay, setDatetimeQuery } = useDatetime();
+	const { getDisplayedDatetime, setDatetimeQuery } = useDatetime();
 	const { lang, t } = useTranslation();
 
 	// Preserve seconds
-	const value = () => createQueryDate(isAutoplay() ? getTimerDatetime() : getDatetime());
+	const value = () => createQueryDate(getDisplayedDatetime());
 
 	const handleDatetimeChange = (input: string) => {
 		setDatetimeQuery(parseDateTimeString(input));

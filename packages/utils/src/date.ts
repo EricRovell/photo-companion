@@ -1,5 +1,7 @@
 import { isInteger, isNullable } from "./validators";
 
+export const DAYS_IN_WEEK = 7;
+
 /**
  * Calculates the duration between two dates in seconds:
  *
@@ -82,6 +84,13 @@ interface DateFromOptions {
 	year?: number;
 }
 
+export interface CalendarDate {
+	day: number;
+	/** Zero-based, like Date.getMonth(). */
+	month: number;
+	year: number;
+}
+
 export type DateShiftUnit = "day" | "hour" | "minute" | "month" | "year";
 
 /**
@@ -130,6 +139,41 @@ export function getDayStart(date: DateLike) {
 	}).getTime();
 }
 
+export function getMonthStart(date: DateLike): number {
+	return dateFrom(date, {
+		date: 1,
+		hours: 0,
+		minutes: 0,
+		seconds: 0
+	}).getTime();
+}
+
+/** Returns complete weeks for a local month, including adjacent dates. Weekday 0 is Sunday. */
+export function getMonthWeeks(date: DateLike, firstWeekday: number): CalendarDate[][] {
+	const month = new Date(date);
+	const year = month.getFullYear();
+	const monthIndex = month.getMonth();
+	// Use UTC for civil date arithmetic so clock changes do not move dates between columns.
+	const firstOfMonth = new Date(0);
+	firstOfMonth.setUTCFullYear(year, monthIndex, 1);
+	const days = getDaysInMonth(year, monthIndex);
+	const offset = (firstOfMonth.getUTCDay() - firstWeekday + DAYS_IN_WEEK) % DAYS_IN_WEEK;
+	const weekCount = Math.ceil((offset + days) / DAYS_IN_WEEK);
+
+	return Array.from({ length: weekCount }, (_, week) => (
+		Array.from({ length: DAYS_IN_WEEK }, (_, weekday) => {
+			const cell = new Date(firstOfMonth);
+			cell.setUTCDate(week * DAYS_IN_WEEK + weekday - offset + 1);
+
+			return {
+				day: cell.getUTCDate(),
+				month: cell.getUTCMonth(),
+				year: cell.getUTCFullYear()
+			};
+		})
+	));
+}
+
 /**
  * Returns a new date shifted by a local calendar unit.
  * Month and year shifts clamp the day to the last valid day of the target month.
@@ -160,9 +204,9 @@ export function shiftDate(input: DateLike | string, unit: DateShiftUnit, amount:
 
 function getDaysInMonth(year: number, month: number): number {
 	const date = new Date(0);
-	date.setFullYear(year, month + 1, 0);
+	date.setUTCFullYear(year, month + 1, 0);
 
-	return date.getDate();
+	return date.getUTCDate();
 }
 
 /**

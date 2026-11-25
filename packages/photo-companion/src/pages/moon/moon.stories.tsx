@@ -2,7 +2,8 @@ import type { Element } from "solid-js";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 
 import { LunarEclipse } from "~/features/lunar-eclipse";
-import { Earthshine, MoonAltitude, MoonAzimuth, MoonInfo, MoonPhases, MoonProvider, MoonTimeline, MoonTimes } from "~/features/moon";
+import { Earthshine, MoonAltitude, MoonAzimuth, MoonInfo, MoonProvider, MoonTimeline, MoonTimes } from "~/features/moon";
+import { MoonPhasesCalendar } from "~/features/moon-phases-calendar";
 import { SunProvider } from "~/features/sun";
 import { storyDatetimeConfig, storyLocationConfig } from "~/stories/story-controls";
 import { withStoryProviders } from "~/stories/story-providers";
@@ -61,7 +62,7 @@ export const Timeline: Story = {
 };
 
 export const Phases: Story = {
-	render: args => withStoryProviders(() => <Widget><MoonPhases /></Widget>, args)
+	render: args => withStoryProviders(() => <Widget><MoonPhasesCalendar /></Widget>, args)
 };
 
 export const EarthshineProbability: Story = {
@@ -79,7 +80,7 @@ export const AllWidgets: Story = {
 			<LunarEclipse />
 			<MoonInfo />
 			<MoonTimeline />
-			<MoonPhases />
+			<MoonPhasesCalendar />
 			<Earthshine />
 		</Widget>
 	), args)

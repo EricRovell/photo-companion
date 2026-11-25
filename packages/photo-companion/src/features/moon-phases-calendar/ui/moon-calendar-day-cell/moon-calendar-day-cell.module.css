@@ -1,0 +1,55 @@
+.day,
+.day.link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0;
+	min-height: 3.25rem;
+	padding-block: var(--space-1);
+	border-radius: var(--radius);
+	color: var(--color-text);
+	text-decoration: none;
+
+	&.selected {
+		background-color: var(--color-surface-3);
+		box-shadow: inset 0 0 0 1px var(--color-border);
+	}
+}
+
+.day.link {
+	&:hover {
+		background-color: var(--color-surface-4);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--color-link-hover);
+		outline-offset: -2px;
+	}
+}
+
+.day-number {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 1.5rem;
+	height: 1.5rem;
+
+	&.principal-phase::after {
+		content: "";
+		position: absolute;
+		inset-block-start: 50%;
+		inset-inline-start: calc(100% + 1px);
+		width: 0.25rem;
+		height: 0.25rem;
+		border-radius: 50%;
+		background-color: var(--color-link);
+		transform: translateY(-50%);
+	}
+}
+
+.moon {
+	display: block;
+	width: min(100%, 2.75rem);
+	aspect-ratio: 1;
+}

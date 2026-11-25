@@ -39,7 +39,7 @@ function createCircle(commonProps: CircleCommonProps) {
 
 export function Moon(allProps: MoonProps) {
 	const props = merge(DEFAULT_PROPS, allProps);
-	const rest = omit(props, "size", "precision", "phase", "rotation");
+	const rest = omit(props, "class", "size", "precision", "phase", "rotation");
 
 	const phase = createTweened(() => props.phase, {
 		interpolate: circular(1),
@@ -68,7 +68,7 @@ export function Moon(allProps: MoonProps) {
 
 	return (
 		<svg
-			class={styles.moon}
+			class={[ styles.moon, props.class ]}
 			style={{
 				"--moon-disk-angle": `${getNormalizedAngleRad(phase())}rad`,
 				"--moon-rotation": `${props.rotation}deg`,
