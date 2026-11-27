@@ -26,3 +26,7 @@ Your app is ready to be deployed!
 ## Deployment
 
 Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
+
+## Service worker
+
+Offline behavior, caching, and updates are documented in the [service worker README](src/features/service-worker/README.md).
