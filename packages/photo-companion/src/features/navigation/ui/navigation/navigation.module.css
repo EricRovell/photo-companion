@@ -141,6 +141,13 @@
 		height: auto;
 		width: 100%;
 		font-size: var(--font-size-0);
+		transition: opacity 200ms ease-out, translate 200ms ease-out;
+
+		&:not(:has(:focus-visible, .dialog[open])) {
+			opacity: var(--bottom-controls-opacity, 1);
+			pointer-events: var(--bottom-controls-pointer-events, auto);
+			translate: var(--bottom-controls-translate, none);
+		}
 	}
 
 	.label.label {
@@ -232,5 +239,11 @@
 	.backdrop {
 		justify-content: center;
 		align-items: flex-end;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.navigation {
+		transition: none;
 	}
 }
