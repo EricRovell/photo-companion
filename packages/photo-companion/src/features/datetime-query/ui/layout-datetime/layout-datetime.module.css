@@ -4,6 +4,12 @@
 	position: sticky;
 	bottom: var(--space-5);
 	margin-block-end: var(--space-5);
+
+	&:not(:has(:focus-visible, input:focus, [data-dragging])) {
+		opacity: var(--bottom-controls-opacity, 1);
+		pointer-events: var(--bottom-controls-pointer-events, auto);
+		translate: var(--bottom-controls-translate, none);
+	}
 }
 
 .date-input-spacer {

@@ -18,7 +18,9 @@
 	overflow: hidden;
 	transition:
 		border-color 180ms ease-out,
-		box-shadow 180ms ease-out;
+		box-shadow 180ms ease-out,
+		opacity 200ms ease-out,
+		translate 200ms ease-out;
 	view-transition-name: input-datetime;
 
 	&:focus-within {

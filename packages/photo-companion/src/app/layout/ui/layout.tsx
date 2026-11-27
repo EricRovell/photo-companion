@@ -7,6 +7,7 @@ import { LinkQuery, Navigation } from "~/features/navigation";
 import { useUpdateNotification } from "~/features/service-worker";
 import { useSettings } from "~/features/settings";
 import { TITLE } from "~/shared/consts";
+import { useScrollDirection } from "~/shared/primitives";
 import { Text } from "~/shared/ui";
 
 import { useLocationQuery } from "../model";
@@ -33,6 +34,14 @@ function Header() {
 
 export const Layout = (props: ParentProps) => {
 	useLocationQuery();
+
+	useScrollDirection({
+		enabled: () => getComputedStyle(document.body).getPropertyValue("--scroll-direction-supported").trim() !== "true",
+		ignoreScroll: () => document.body.hasAttribute("data-locked"),
+		onCleanup: () => document.body.removeAttribute("data-scrolled-down"),
+		onDirection: direction => document.body.toggleAttribute("data-scrolled-down", direction === "down")
+	});
+
 	useUpdateNotification();
 
 	return (

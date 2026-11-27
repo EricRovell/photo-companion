@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.56.0
+
+- Hide mobile navigation & date time picker on scroll.
+
 ## 2.55.0
 
 - Updated service worker, so invalid response won't be cached.

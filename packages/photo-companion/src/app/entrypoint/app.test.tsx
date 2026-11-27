@@ -82,6 +82,37 @@ it("redirects home and navigates to the Sun and Moon pages", async () => {
 	expect(view.warnings).not.toHaveBeenCalled();
 });
 
+it("tracks scroll direction when the CSS query is unavailable", async () => {
+	vi.spyOn(document.documentElement, "scrollHeight", "get").mockReturnValue(1600);
+	vi.spyOn(document.documentElement, "clientHeight", "get").mockReturnValue(600);
+	vi.stubGlobal("scrollY", 0);
+
+	const view = renderApp(ROUTES.NOT_FOUND);
+	await view.findByRole("link", { name: "Go Home" });
+
+	const scrollTo = (scrollY: number) => {
+		vi.stubGlobal("scrollY", scrollY);
+		fireEvent.scroll(window);
+	};
+
+	scrollTo(150);
+	expect(document.body).toHaveAttribute("data-scrolled-down");
+	scrollTo(90);
+	expect(document.body).not.toHaveAttribute("data-scrolled-down");
+
+	scrollTo(1000);
+	scrollTo(1040);
+	scrollTo(1000);
+	expect(document.body).toHaveAttribute("data-scrolled-down");
+	scrollTo(0);
+	expect(document.body).not.toHaveAttribute("data-scrolled-down");
+
+	scrollTo(150);
+	view.unmount();
+	scrollTo(200);
+	expect(document.body).not.toHaveAttribute("data-scrolled-down");
+});
+
 it("saves the selected city and renders the chosen language", async () => {
 	const view = renderApp(ROUTES.NOT_FOUND);
 	const [ settingsLink ] = await view.findAllByRole("link", { name: "Settings" });
