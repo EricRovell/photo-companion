@@ -248,6 +248,8 @@
 }
 
 .action {
+	display: block;
+	width: fit-content;
 	padding: 6px 12px;
 	margin-top: 12px;
 	border: 1px solid var(--notification-border);

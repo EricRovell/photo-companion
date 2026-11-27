@@ -4,65 +4,83 @@ import { isNullable } from "utils/validators";
 const SW_PATH = "/service-worker.js";
 
 export function createContextState() {
-	const [ getServiceWorker, setServiceWorker ] = createSignal<Nullable<ServiceWorker>>(null);
-	const [ getRegistration, setRegistration ] = createSignal<Nullable<ServiceWorkerRegistration>>(null);
-	const [ getIsUpdating, setIsUpdating ] = createSignal(false);
 	const [ getSuggestUpdate, setSuggestUpdate ] = createSignal(false);
 
+	let activateWaitingWorker: Nullable<() => void> = null;
+	let registering = false;
+
 	async function initServiceWorker() {
-		if (!isNullable(getRegistration())) {
+		if (activateWaitingWorker || registering || !("serviceWorker" in navigator)) {
 			return;
 		}
 
-		if (!("serviceWorker" in navigator)) {
-			return;
-		}
+		registering = true;
 
-		navigator.serviceWorker.addEventListener("controllerchange", () => {
-			if (!getIsUpdating()) {
+		const serviceWorkers = navigator.serviceWorker;
+		let controller = serviceWorkers.controller;
+
+		let reloading = false;
+
+		function handleControllerChange() {
+			const nextController = serviceWorkers.controller;
+			const isUpdate = (
+				!isNullable(controller) &&
+				!isNullable(nextController)
+				&& nextController !== controller
+			);
+
+			controller = nextController;
+
+			if (isUpdate && !reloading) {
+				reloading = true;
 				window.location.reload();
-				setIsUpdating(true);
 			}
-		});
+		}
+
+		serviceWorkers.addEventListener("controllerchange", handleControllerChange);
 
 		try {
-			const registration = await navigator.serviceWorker.register(SW_PATH, {
-				scope: "/"
-			});
+			const registration = await serviceWorkers.register(SW_PATH, { scope: "/" });
 
-			setRegistration(registration);
+			activateWaitingWorker = () => registration.waiting?.postMessage({ action: "skipWaiting" });
 
-			registration.addEventListener("updatefound", () => {
+			let watchedWorker: Nullable<ServiceWorker> = null;
+
+			function showWaitingWorker() {
+				setSuggestUpdate(!isNullable(registration.waiting) && !isNullable(serviceWorkers.controller));
+			}
+
+			function watchInstallation() {
+				showWaitingWorker();
 				const worker = registration.installing;
-				setServiceWorker(worker);
 
-				if (isNullable(worker)) {
+				if (isNullable(worker) || worker === watchedWorker) {
 					return;
 				}
 
+				watchedWorker = worker;
+
 				worker.addEventListener("statechange", () => {
-					if (worker.state === "installed" && navigator.serviceWorker.controller) {
-						setSuggestUpdate(true);
+					if (worker.state === "installed") {
+						showWaitingWorker();
 					}
 				});
-			});
+			}
+
+			registration.addEventListener("updatefound", watchInstallation);
+
+			watchInstallation();
 		} catch (error) {
+			serviceWorkers.removeEventListener("controllerchange", handleControllerChange);
 			console.error(`Service worker registration failed with ${error}`);
+		} finally {
+			registering = false;
 		}
 	}
 
-	function handleReload() {
-		getServiceWorker()?.postMessage({
-			action: "skipWaiting"
-		});
-	};
-
 	return {
-		getIsUpdating,
-		getRegistration,
-		getServiceWorker,
 		getSuggestUpdate,
-		handleReload,
+		handleReload: () => activateWaitingWorker?.(),
 		initServiceWorker,
 		setSuggestUpdate
 	};

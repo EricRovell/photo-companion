@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.55.0
+
+- Updated service worker, so invalid response won't be cached.
+- Fixed update notification button alignment.
+
 ## 2.54.0
 
 - Update moon phases calendar.
