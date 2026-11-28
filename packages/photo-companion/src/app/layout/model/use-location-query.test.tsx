@@ -1,6 +1,6 @@
 import { createRouter, memoryHistory } from "@solidjs/router";
 import { waitFor } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import type { ParentProps } from "solid-js";

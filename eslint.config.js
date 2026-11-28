@@ -2,6 +2,7 @@
 
 import eslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
+import vitest from "@vitest/eslint-plugin";
 import tseslint from "typescript-eslint";
 import solid from "eslint-plugin-solid";
 import perfectionist from "eslint-plugin-perfectionist";
@@ -185,6 +186,34 @@ export default tseslint.config(
 		}
 	},
 	...relativeImportsWithinSlices,
+	{
+		files: [ "**/*.{test,spec}.{js,jsx,ts,tsx}" ],
+		...vitest.configs.recommended,
+		rules: {
+			...vitest.configs.recommended.rules,
+			"vitest/consistent-each-for": "error",
+			"vitest/consistent-test-it": "error",
+			"vitest/no-conditional-tests": "error",
+			"vitest/no-duplicate-hooks": "error",
+			"vitest/no-restricted-matchers": [ "error", {
+				"not.toBeCalledTimes": "Use not.toHaveBeenCalledTimes().",
+				"not.toBeCalledWith": "Use not.toHaveBeenCalledWith().",
+				toBeCalledTimes: "Use toHaveBeenCalledTimes().",
+				toBeCalledWith: "Use toHaveBeenCalledWith()."
+			} ],
+			"vitest/padding-around-after-each-blocks": "error",
+			"vitest/padding-around-before-each-blocks": "error",
+			"vitest/padding-around-describe-blocks": "error",
+			"vitest/padding-around-test-blocks": "error",
+			"vitest/prefer-hooks-on-top": "error",
+			"vitest/prefer-import-in-mock": "error",
+			"vitest/prefer-spy-on": "error",
+			"vitest/prefer-strict-equal": "error",
+			"vitest/prefer-to-have-length": "error",
+			"vitest/prefer-vi-mocked": "error",
+			"vitest/require-awaited-expect-poll": "error"
+		}
+	},
 	{
 		files: [ "**/*.tsx" ],
 		name: "jsx/formatting",

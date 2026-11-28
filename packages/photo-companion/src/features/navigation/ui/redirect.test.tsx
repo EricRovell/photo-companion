@@ -1,6 +1,6 @@
 import { createRouter, memoryHistory } from "@solidjs/router";
 import { cleanup, render, waitFor } from "@solidjs/testing-library";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterEach, expect, test, vi } from "vitest";
 
 import { Redirect } from "./redirect";
 
@@ -11,7 +11,7 @@ afterEach(async () => {
 	vi.unstubAllGlobals();
 });
 
-it("replaces the current history entry so Back skips the rejected page", async () => {
+test("replaces the current history entry so Back skips the rejected page", async () => {
 	vi.stubGlobal("scrollTo", vi.fn());
 
 	const history = memoryHistory("/previous");

@@ -35,3 +35,7 @@ export interface SettingsStore {
 export interface CitySettingsPreset extends Pick<SettingsStore, "city" | "latitude" | "longitude"> {
 	tabs: ROUTE_PRIMARY_LABEL[];
 }
+
+export interface SettingsMock<Keys extends keyof SettingsStore = "latitude" | "longitude"> {
+	useSettings: () => { settings: Pick<SettingsStore, Keys> };
+}

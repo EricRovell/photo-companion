@@ -1,14 +1,18 @@
 import { createRouter, memoryHistory } from "@solidjs/router";
 import { cleanup, fireEvent, render, waitFor } from "@solidjs/testing-library";
+import { formatTestTime } from "~test";
 import { flush } from "solid-js";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { DatetimeProvider } from "~/features/datetime-query";
+import { configureTranslationMock } from "~/features/translation/test";
 
 import { CityLightsProvider } from "../model";
 import { LightsSchedule } from "./lights-schedule";
 
-vi.mock("~/features/settings", () => ({
+import type { SettingsMock } from "~/features/settings/types";
+
+vi.mock<SettingsMock<"city" | "latitude" | "longitude">>(import("~/features/settings"), () => ({
 	useSettings: () => ({
 		settings: {
 			city: "MOSCOW",
@@ -18,23 +22,7 @@ vi.mock("~/features/settings", () => ({
 	})
 }));
 
-vi.mock("~/features/translation", async () => {
-	const { t } = await import("~/features/translation/consts/translation.en");
-
-	return {
-		useTranslation: () => ({
-			format: () => ({
-				dateShort: (date: Date | number) => new Date(date).toISOString().slice(0, 10),
-				datetime: (date: Date | number) => new Date(date).toISOString(),
-				message: (message: string, values: Record<string, string>) => message.replace(/\{(\w+)\}/g, (_, key: string) => values[key]),
-				minutes: (minutes: number) => `${minutes} min`,
-				timeShort: (date: Date | number) => new Date(date).toISOString().slice(11, 16)
-			}),
-			lang: () => "en",
-			t: () => t
-		})
-	};
-});
+vi.mock(import("~/features/translation"));
 
 function renderSchedule(datetime: string) {
 	const history = memoryHistory();
@@ -63,6 +51,10 @@ function renderSchedule(datetime: string) {
 }
 
 describe("LightsSchedule links", () => {
+	beforeEach(() => {
+		configureTranslationMock({ format: { timeShort: formatTestTime } });
+	});
+
 	afterEach(cleanup);
 
 	it.each([ "2026-10-24T20:40:00", "2026-10-25T04:00:00" ])("links each night switch to its actual calendar date at %s", (datetime) => {

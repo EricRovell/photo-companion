@@ -57,7 +57,7 @@ describe("Solar illumination estimate", () => {
 		)).toBeLessThan(0.1);
 		expect(schedule.duration).toBeGreaterThan(0);
 
-		expect(provider.getEventsByDate(new Date(2026, 2, 20))).toEqual([
+		expect(provider.getEventsByDate(new Date(2026, 2, 20))).toStrictEqual([
 			expect.objectContaining({
 				data: {
 					city: "OTHER",
@@ -127,12 +127,13 @@ describe("Solar illumination estimate", () => {
 		const daylight = new Date((schedule.LIGHTS_END + schedule.LIGHTS_START) / 2);
 		const afterSwitchOn = new Date(schedule.LIGHTS_START + 60 * 60 * 1000);
 
-		expect(provider.getStateByDate(daylight)).toEqual({
+		expect(provider.getStateByDate(daylight)).toStrictEqual({
 			event: "LIGHTS_START",
 			lights: false,
 			timestamp: schedule.LIGHTS_START
 		});
-		expect(provider.getStateByDate(afterSwitchOn)).toEqual({
+
+		expect(provider.getStateByDate(afterSwitchOn)).toStrictEqual({
 			event: "LIGHTS_END",
 			lights: true,
 			timestamp: expect.any(Number)
@@ -143,7 +144,7 @@ describe("Solar illumination estimate", () => {
 		const provider = initLightsProvider("OTHER", LONGYEARBYEN);
 		const date = new Date(2026, 5, 21, 12);
 
-		expect(provider.getScheduleByDate(date)).toEqual({
+		expect(provider.getScheduleByDate(date)).toStrictEqual({
 			duration: null,
 			LIGHTS_END: null,
 			LIGHTS_START: null,
@@ -151,12 +152,14 @@ describe("Solar illumination estimate", () => {
 			status: "CONTINUOUS_DAYLIGHT",
 			uncertaintyMinutes: 60
 		});
-		expect(provider.getStateByDate(date)).toEqual({
+
+		expect(provider.getStateByDate(date)).toStrictEqual({
 			event: null,
 			lights: false,
 			timestamp: null
 		});
-		expect(provider.getEventsByDate(date)).toEqual([]);
+
+		expect(provider.getEventsByDate(date)).toStrictEqual([]);
 	});
 
 	it("handles continuous darkness without invalid timestamps", () => {
@@ -164,19 +167,22 @@ describe("Solar illumination estimate", () => {
 		const date = new Date(2026, 11, 21, 12);
 
 		expect(provider.getScheduleByDate(date).status).toBe("CONTINUOUS_DARKNESS");
-		expect(provider.getStateByDate(date)).toEqual({
+
+		expect(provider.getStateByDate(date)).toStrictEqual({
 			event: null,
 			lights: true,
 			timestamp: null
 		});
-		expect(provider.getEventsByDate(date)).toEqual([]);
+
+		expect(provider.getEventsByDate(date)).toStrictEqual([]);
 	});
 
 	it("returns an unavailable estimate when coordinates are missing", () => {
 		const provider = initLightsProvider("OTHER");
 
 		expect(provider.getScheduleByDate().status).toBe("UNAVAILABLE");
-		expect(provider.getStateByDate()).toEqual({
+
+		expect(provider.getStateByDate()).toStrictEqual({
 			event: null,
 			lights: false,
 			timestamp: null

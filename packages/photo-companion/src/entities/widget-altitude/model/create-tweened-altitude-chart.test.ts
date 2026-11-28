@@ -114,11 +114,11 @@ describe("altitude day transitions", () => {
 
 		expect(state.chart().current.get("sun")).toBeCloseTo(20);
 		expect(state.chart().cursorX).toBeCloseTo(120);
-		expect(state.chart().range).toEqual({
+		expect(state.chart().range).toStrictEqual({
 			max: 45,
 			min: -5 
 		});
-		expect(state.chart().series.get("sun")?.map(point => point.altitude)).toEqual([ 0, 20, 40 ]);
+		expect(state.chart().series.get("sun")?.map(point => point.altitude)).toStrictEqual([ 0, 20, 40 ]);
 		advanceFrame(DURATION / 2);
 		expect(state.chart()).toBe(next);
 		expect(frames.size).toBe(0);
@@ -230,7 +230,7 @@ describe("altitude day transitions", () => {
 		const middlePath = state.getPath("sun");
 
 		expect(state.getMarkerAltitude("sun")).toBeCloseTo(-15);
-		expect(state.range()).toEqual({
+		expect(state.range()).toStrictEqual({
 			max: 40,
 			min: -30 
 		});

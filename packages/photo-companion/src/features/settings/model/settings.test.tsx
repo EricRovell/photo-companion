@@ -1,5 +1,5 @@
 import { cleanup } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { flush } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
@@ -7,6 +7,7 @@ import { SETTINGS_DEFAULT } from "../consts/model";
 import { SettingsProvider, useSettings } from "./settings";
 
 beforeEach(() => localStorage.clear());
+
 afterEach(cleanup);
 
 describe("settings persistence", () => {
@@ -29,7 +30,7 @@ describe("settings persistence", () => {
 		});
 
 		flush();
-		expect(result.settings.tabs).toEqual([ "SUN", "MOON" ]);
+		expect(result.settings.tabs).toStrictEqual([ "SUN", "MOON" ]);
 		expect(SETTINGS_DEFAULT.tabs).toContain("NOW");
 	});
 
@@ -48,7 +49,7 @@ describe("settings persistence", () => {
 		expect(result.settings.city).toBe("MOSCOW");
 
 		result.resetSettings();
-		expect(JSON.parse(localStorage.getItem("settings:4") ?? "null")).toEqual(SETTINGS_DEFAULT);
+		expect(JSON.parse(localStorage.getItem("settings:4") ?? "null")).toStrictEqual(SETTINGS_DEFAULT);
 
 		flush();
 		expect(result.settings.city).toBe(SETTINGS_DEFAULT.city);

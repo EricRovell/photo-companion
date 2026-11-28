@@ -18,13 +18,11 @@ describe("sunlight daily intervals", () => {
 		expect(day.intervals[0].start).toBe(day.start);
 		expect(day.intervals[day.intervals.length - 1].end).toBe(day.end);
 		expect(new Set(day.intervals.map(interval => interval.phase)).size).toBe(7);
+		expect(day.intervals.slice(1).map(interval => interval.start))
+			.toStrictEqual(day.intervals.slice(0, -1).map(interval => interval.end));
 
-		for (const [ index, interval ] of day.intervals.entries()) {
+		for (const interval of day.intervals) {
 			expect(interval.end).toBeGreaterThan(interval.start);
-
-			if (index > 0) {
-				expect(interval.start).toBe(day.intervals[index - 1].end);
-			}
 
 			const altitude = getSunPosition({
 				instant: (interval.start + interval.end) / 2,
@@ -53,8 +51,8 @@ describe("sunlight daily intervals", () => {
 		expect(morningGolden?.end).toBe(eventTime("GOLDEN_HOUR_END_DAWN"));
 		expect(eveningBlue?.start).toBe(eventTime("BLUE_HOUR_START_DUSK"));
 		expect(eveningBlue?.end).toBe(eventTime("BLUE_HOUR_END_DUSK"));
-		expect(day.markers.map(marker => marker.timestamp)).toEqual([ eventTime("SUNRISE_START"), eventTime("SUNSET_END") ]);
-		expect(day.markers.map(marker => marker.type)).toEqual([ "sunrise", "sunset" ]);
+		expect(day.markers.map(marker => marker.timestamp)).toStrictEqual([ eventTime("SUNRISE_START"), eventTime("SUNSET_END") ]);
+		expect(day.markers.map(marker => marker.type)).toStrictEqual([ "sunrise", "sunset" ]);
 		const morningAstronomical = day.periods.find(interval => interval.phase === "astronomical" && interval.period === "morning");
 		const morningNautical = day.periods.find(interval => interval.phase === "nautical" && interval.period === "morning");
 
@@ -89,13 +87,13 @@ describe("sunlight daily intervals", () => {
 			longitude: 0
 		});
 
-		expect(day.intervals).toEqual([ {
+		expect(day.intervals).toStrictEqual([ {
 			end: day.end,
 			phase,
 			start: day.start
 		} ]);
 
-		expect(day.markers).toEqual([]);
+		expect(day.markers).toStrictEqual([]);
 		expect(getFollowingSunlightChange(day, {
 			latitude: 90,
 			longitude: 0 
@@ -117,7 +115,7 @@ describe("sunlight daily intervals", () => {
 		const next = createSunlightDay(new Date(day.end), observer);
 		const change = getFollowingSunlightChange(day, observer);
 
-		expect(change).toEqual({
+		expect(change).toStrictEqual({
 			phase: "astronomical",
 			timestamp: next.intervals[0].end
 		});

@@ -28,6 +28,9 @@
 			"~/*": [
 				"./src/*"
 			],
+			"~test": [
+				"./test/index.ts"
+			],
 			"~test/*": [
 				"./test/*"
 			]

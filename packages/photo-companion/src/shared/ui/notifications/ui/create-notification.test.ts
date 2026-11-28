@@ -1,5 +1,5 @@
 import { cleanup } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -32,14 +32,14 @@ describe("createNotification", () => {
 			variant: "info"
 		}, { center }));
 
-		expect(getEntries(center)).toEqual([ expect.objectContaining({
+		expect(getEntries(center)).toStrictEqual([ expect.objectContaining({
 			id: hook.result,
 			title: "An update is ready",
 			variant: "info"
 		}) ]);
 		expect(onDismiss).not.toHaveBeenCalled();
 		hook.cleanup();
-		expect(getEntries(center)).toEqual([]);
+		expect(getEntries(center)).toStrictEqual([]);
 		expect(onDismiss).toHaveBeenCalledExactlyOnceWith("dismiss");
 	});
 
@@ -54,7 +54,7 @@ describe("createNotification", () => {
 		expect(getEntries(center)[0]?.title).toBe("Compass blocked");
 		setTitle("Compass permission denied");
 		flush();
-		expect(getEntries(center)).toEqual([ expect.objectContaining({
+		expect(getEntries(center)).toStrictEqual([ expect.objectContaining({
 			id: hook.result,
 			title: "Compass permission denied"
 		}) ]);
@@ -70,25 +70,25 @@ describe("createNotification", () => {
 			variant: "error"
 		}), { center }));
 
-		expect(getEntries(center)).toEqual([ expect.objectContaining({
+		expect(getEntries(center)).toStrictEqual([ expect.objectContaining({
 			id: hook.result,
 			title: "Compass blocked",
 			variant: "error"
 		}) ]);
 		setTitle("Compass permission denied");
 		flush();
-		expect(getEntries(center)).toEqual([ expect.objectContaining({
+		expect(getEntries(center)).toStrictEqual([ expect.objectContaining({
 			id: hook.result,
 			title: "Compass permission denied"
 		}) ]);
 		expect(onDismiss).not.toHaveBeenCalled();
 
 		hook.cleanup();
-		expect(getEntries(center)).toEqual([]);
+		expect(getEntries(center)).toStrictEqual([]);
 		expect(onDismiss).toHaveBeenCalledExactlyOnceWith("dismiss");
 		setTitle("Unmounted");
 		flush();
-		expect(getEntries(center)).toEqual([]);
+		expect(getEntries(center)).toStrictEqual([]);
 	});
 
 	it.each([ false, null, undefined ] as const)("dismisses when the source returns %s and can show again", (hidden) => {
@@ -100,13 +100,13 @@ describe("createNotification", () => {
 			title: "An update is ready"
 		} : hidden, { center }));
 
-		expect(getEntries(center)).toEqual([]);
+		expect(getEntries(center)).toStrictEqual([]);
 		setVisible(true);
 		flush();
 		expect(getEntries(center)).toHaveLength(1);
 		setVisible(false);
 		flush();
-		expect(getEntries(center)).toEqual([]);
+		expect(getEntries(center)).toStrictEqual([]);
 		expect(onDismiss).toHaveBeenCalledExactlyOnceWith("dismiss");
 		setVisible(true);
 		flush();
@@ -121,9 +121,9 @@ describe("createNotification", () => {
 		expect(getEntries(notifications)).toHaveLength(3);
 		expect(first.result).not.toBe(second.result);
 		first.cleanup();
-		expect(getEntries(notifications).map(entry => entry.id)).toEqual([ second.result, externalId ]);
+		expect(getEntries(notifications).map(entry => entry.id)).toStrictEqual([ second.result, externalId ]);
 		second.cleanup();
-		expect(getEntries(notifications).map(entry => entry.id)).toEqual([ externalId ]);
+		expect(getEntries(notifications).map(entry => entry.id)).toStrictEqual([ externalId ]);
 	});
 
 	it("does not track reactive reads in channel listeners or dismissal callbacks", () => {
@@ -162,7 +162,7 @@ describe("createNotification", () => {
 		const hook = renderHook(() => createNotification(() => ({ title: title() }), { center }));
 
 		center.dismiss(hook.result, "timeout");
-		expect(getEntries(center)).toEqual([]);
+		expect(getEntries(center)).toStrictEqual([]);
 		center.show({ title: "Unrelated notification" });
 		expect(getEntries(center).some(entry => entry.id === hook.result)).toBe(false);
 		setTitle("Compass permission denied");

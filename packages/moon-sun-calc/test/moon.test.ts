@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
 	getMoonAge,
@@ -176,7 +176,7 @@ const MOON_BOUNDARY_CASES = [
 ];
 
 describe("Moon", () => {
-	test("matches a JPL Horizons topocentric position fixture", () => {
+	it("matches a JPL Horizons topocentric position fixture", () => {
 		// JPL Horizons DE441, airless apparent coordinates, 2025-01-01 00:00 UTC.
 		const position = getMoonPosition({
 			instant: Date.parse("2025-01-01T00:00:00Z"),
@@ -187,7 +187,7 @@ describe("Moon", () => {
 		expect(position.altitude).toBeCloseTo(-62.105703, 1);
 	});
 
-	test("matches Meeus chapter 47's lunar distance example", () => {
+	it("matches Meeus chapter 47's lunar distance example", () => {
 		const position = getMoonPosition({
 			instant: Date.parse("1992-04-12T00:00:00Z"),
 			observer: {
@@ -199,7 +199,7 @@ describe("Moon", () => {
 		expect(position.distance).toBeCloseTo(368_409.7, -1);
 	});
 
-	test("reports illumination and the third quarter consistently", () => {
+	it("reports illumination and the third quarter consistently", () => {
 		const illumination = getMoonIllumination(Date.parse("2013-03-05T00:00:00Z"));
 
 		expect(illumination.fraction).toBeCloseTo(0.4912, 3);
@@ -207,24 +207,24 @@ describe("Moon", () => {
 		expect(illumination.waxing).toBe(false);
 	});
 
-	test("reports age as elapsed time since the previous new Moon", () => {
+	it("reports age as elapsed time since the previous new Moon", () => {
 		expect(getMoonAge(Date.parse("2025-01-30T12:36:00Z"))).toBeCloseTo(1, 2);
 	});
 
-	test("reports the October 2026 lunar age to the minute", () => {
+	it("reports the October 2026 lunar age to the minute", () => {
 		const age = getMoonAge(Date.parse("2026-10-18T21:19:40Z"));
 
 		expect(Math.round(age * 24 * 60)).toBe((8 * 24 + 5) * 60 + 30);
 	});
 
-	test.each(MOON_PHASE_CASES)("$description", ({ input, output }) => {
+	it.each(MOON_PHASE_CASES)("$description", ({ input, output }) => {
 		const phase = getNextMoonPhases(input.instant, input.count)[input.index];
 
 		expect(phase.phase).toBe(output.phase);
 		expect(Math.abs(phase.time.getTime() - output.time)).toBeLessThan(120_000);
 	});
 
-	test.each(MOON_EVENT_CASES)("$description", ({ input, output }) => {
+	it.each(MOON_EVENT_CASES)("$description", ({ input, output }) => {
 		const events = getMoonEvents({
 			interval: {
 				end: Date.parse("2025-01-02T00:00:00Z"),
@@ -238,15 +238,15 @@ describe("Moon", () => {
 		expect(Math.abs((actual ?? 0) - output)).toBeLessThan(60_000);
 	});
 
-	test("uses degree-only zenith-angle inputs", () => {
+	it("uses degree-only zenith-angle inputs", () => {
 		expect(getMoonZenithAngle(90, -10)).toBe(100);
 	});
 
-	test.each(MOON_VALIDATION_CASES)("$description", ({ input, output }) => {
+	it.each(MOON_VALIDATION_CASES)("$description", ({ input, output }) => {
 		expect(input).toThrow(output);
 	});
 
-	test.each(MOON_BOUNDARY_CASES)("$description", ({ input, output }) => {
+	it.each(MOON_BOUNDARY_CASES)("$description", ({ input, output }) => {
 		const position = getMoonPosition({
 			instant: input,
 			observer: LONDON

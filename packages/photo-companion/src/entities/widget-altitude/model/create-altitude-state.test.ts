@@ -1,5 +1,5 @@
 import { cleanup } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -76,7 +76,7 @@ describe("altitude state updates", () => {
 		const plot = ALTITUDE_WIDGET_CONFIG.plot;
 		const initialSeries = state.series();
 		const initialPath = state.getPath("sun");
-		expect(state.range()).toEqual({
+		expect(state.range()).toStrictEqual({
 			max: 25,
 			min: -35
 		});
@@ -86,7 +86,7 @@ describe("altitude state updates", () => {
 		getMoonPosition.mockClear();
 		setSelected("moon");
 		flush();
-		expect(state.range()).toEqual({
+		expect(state.range()).toStrictEqual({
 			max: -25,
 			min: -35
 		});
@@ -97,7 +97,7 @@ describe("altitude state updates", () => {
 		expect(state.series()).toBe(initialSeries);
 		setSelected("sun");
 		flush();
-		expect(state.range()).toEqual({
+		expect(state.range()).toStrictEqual({
 			max: 25,
 			min: 15
 		});

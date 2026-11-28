@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@solidjs/testing-library";
+import { formatTestDate, formatTestTime } from "~test";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -6,28 +7,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Accessor } from "solid-js";
 import type { City, IlluminationState, LightsSchedule, LightsScheduleStatus } from "types";
 
+import { configureTranslationMock } from "~/features/translation/test";
+
 import { CityLightsWidget } from "./city-lights-widget";
 
-vi.mock("~/features/translation", async () => {
-	const { t } = await import("~/features/translation/consts/translation.en");
+import type { UserLang } from "~/features/settings/types";
 
-	return {
-		useTranslation: () => ({
-			format: () => ({
-				dateShort: (date: Date | number) => new Date(date).toISOString().slice(0, 10),
-				datetime: (date: Date | number) => new Date(date).toISOString(),
-				message: (message: string, values: Record<string, string>) => message.replace(/\{(\w+)\}/g, (_, key: string) => values[key]),
-				minutes: (minutes: number) => `${minutes} min`,
-				timeDuration: (duration: number) => new Date(duration).toISOString().slice(11, 19),
-				timeShort: (date: Date | number) => new Date(date).toISOString().slice(11, 16)
-			}),
-			lang: () => language,
-			t: () => t
-		})
-	};
-});
+vi.mock(import("~/features/translation"));
 
-let language = "en";
+let language: UserLang = "en";
 let uncertainty = 0;
 let status: LightsScheduleStatus = "SCHEDULED";
 let selected = () => new Date(2026, 9, 24, 20, 40);
@@ -118,10 +106,20 @@ describe("CityLightsWidget", () => {
 	beforeEach(() => {
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-10-24T12:00:00Z"));
+
 		uncertainty = 0;
 		language = "en";
 		status = "SCHEDULED";
+
 		selected = () => new Date(2026, 9, 24, 20, 40);
+
+		configureTranslationMock({
+			format: {
+				timeDuration: duration => formatTestDate(duration).slice(11, 19),
+				timeShort: formatTestTime
+			},
+			lang: () => language
+		});
 	});
 
 	afterEach(() => { vi.useRealTimers(); });
@@ -232,7 +230,7 @@ describe("CityLightsWidget", () => {
 			label: "yesterday",
 			locale: "en"
 		}
-	])("labels adjacent calendar days as $label in $locale", ({ date, label, locale }) => {
+	] as const)("labels adjacent calendar days as $label in $locale", ({ date, label, locale }) => {
 		language = locale;
 		selected = () => date;
 		const view = render(() => <TestWidget />);
@@ -292,9 +290,6 @@ describe("CityLightsWidget", () => {
 		expect(view.queryByRole("img")).not.toBeInTheDocument();
 		expect(view.queryByText("09:30:00")).not.toBeInTheDocument();
 		expect(view.queryByText("Turn-on time")).not.toBeInTheDocument();
-
-		if (value === "UNAVAILABLE") {
-			expect(view.getByText("Unavailable")).toBeInTheDocument();
-		}
+		expect(view.queryAllByText("Unavailable")).toHaveLength(value === "UNAVAILABLE" ? 1 : 0);
 	});
 });

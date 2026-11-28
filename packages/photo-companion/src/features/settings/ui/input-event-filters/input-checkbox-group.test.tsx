@@ -7,6 +7,7 @@ import { SettingsFormProvider, useSettingsForm } from "../../model/settings-form
 import { InputCheckboxGroup } from "./input-checkbox-group";
 
 afterEach(cleanup);
+
 beforeEach(() => localStorage.clear());
 
 function Filters() {
@@ -62,7 +63,7 @@ describe("InputCheckboxGroup", () => {
 		expect(view.getByTestId("form")).toHaveTextContent("[\"LIGHTS_START\"]");
 		flush(() => fireEvent.click(view.getByText("Save")));
 		expect(view.getByTestId("saved")).toHaveTextContent("[\"LIGHTS_START\"]");
-		expect(JSON.parse(localStorage.getItem("settings:4") ?? "null").events_lights).toEqual([ "LIGHTS_START" ]);
+		expect(JSON.parse(localStorage.getItem("settings:4") ?? "null").events_lights).toStrictEqual([ "LIGHTS_START" ]);
 	});
 
 	it("preserves all, individual, and empty filter states", () => {

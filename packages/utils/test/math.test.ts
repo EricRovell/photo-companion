@@ -7,42 +7,50 @@ describe("Project's core math utilities", () => {
 		it("returns values within the range unchanged", () => {
 			expect(clamp(5, 0, 10)).toBe(5);
 		});
+
 		it("restricts values to the closest range boundary", () => {
 			expect(clamp(-1, 0, 10)).toBe(0);
 			expect(clamp(11, 0, 10)).toBe(10);
 		});
+
 		it("propagates NaN", () => {
 			expect(clamp(NaN, 0, 10)).toBeNaN();
 			expect(clamp(5, NaN, 10)).toBeNaN();
 			expect(clamp(5, 0, NaN)).toBeNaN();
 		});
 	});
+
 	describe("round", () => {
 		it("Returns NaN if any argument is NaN", () => {
 			expect(round(1.12345, 3, NaN)).toBeNaN();
 			expect(round(1.12345, NaN)).toBeNaN();
 			expect(round(NaN, 3)).toBeNaN();
 		});
+
 		it("Returns NaN if the number of digits are infinite", () => {
 			expect(round(1.256, Infinity)).toBeNaN();
 			expect(round(1.256, -Infinity)).toBeNaN();
 		});
+
 		it("Returns a value back if is is an Infinity", () => {
 			expect(round(Infinity, 3)).toBe(Infinity);
 			expect(round(-Infinity, 3)).toBe(-Infinity);
 		});
+
 		it("Rounds the positive values with no arguments to the closest integer", () => {
 			expect(round(1.123)).toBe(1);
 			expect(round(1.789)).toBe(2);
 			expect(round(0.5)).toBe(1);
 			expect(round(0.49)).toBe(0);
 		});
+
 		it("Rounds the negative values with no arguments to the closest integer", () => {
 			expect(round(-1.123)).toBe(-1);
 			expect(round(-1.789)).toBe(-2);
 			expect(round(-1.51)).toBe(-2);
 			expect(round(-1.49)).toBe(-1);
 		});
+
 		it("Rounds the positive values up till specified digits", () => {
 			expect(round(1.12345, 1)).toBe(1.1);
 			expect(round(1.12345, 2)).toBe(1.12);
@@ -51,6 +59,7 @@ describe("Project's core math utilities", () => {
 			expect(round(1.12345, 5)).toBe(1.12345);
 			expect(round(1.12345, 6)).toBe(1.12345);
 		});
+
 		it("Rounds the negative values up till specified digits", () => {
 			expect(round(-1.12345, 1)).toBe(-1.1);
 			expect(round(-1.12345, 2)).toBe(-1.12);
@@ -59,11 +68,13 @@ describe("Project's core math utilities", () => {
 			expect(round(-1.12345, 5)).toBe(-1.12345);
 			expect(round(-1.12345, 6)).toBe(-1.12345);
 		});
+
 		it("Zero do not get the sign", () => {
 			expect(round(-0.49)).toBe(0);
 			expect(round(0.49)).toBe(0);
 		});
 	});
+
 	describe("scale", () => {
 		it("Returns NaN if any argument is NaN", () => {
 			expect(scale(NaN, 0, 1, 10, 100)).toBeNaN();
@@ -72,10 +83,12 @@ describe("Project's core math utilities", () => {
 			expect(scale(0.5, 0, 1, NaN, 100)).toBeNaN();
 			expect(scale(0.5, 0, 1, 10, NaN)).toBeNaN();
 		});
+
 		it("Returns a value back if is is an Infinity", () => {
 			expect(scale(Infinity, 1, 10, 10, 100)).toBe(Infinity);
 			expect(scale(-Infinity, 1, 10, 10, 100)).toBe(-Infinity);
 		});
+
 		it("Scales the value from one range to another", () => {
 			expect(scale(0.5, 0, 1, 0, 100)).toBeCloseTo(50);
 			expect(scale(10, 0, 100, 0, 1)).toBeCloseTo(0.1);

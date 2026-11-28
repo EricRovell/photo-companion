@@ -1,6 +1,6 @@
 import { createRouter, memoryHistory } from "@solidjs/router";
 import { cleanup, fireEvent } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { createEffect, createSignal, flush } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -294,7 +294,7 @@ describe("useDatetime", () => {
 		await vi.advanceTimersByTimeAsync(0);
 
 		expect(result.isAutoplay()).toBe(true);
-		expect(onAutoplayTime.mock.calls).toEqual([[ RESET_NOW.getTime(), RESET_NOW.getTime() ]]);
+		expect(onAutoplayTime.mock.calls).toStrictEqual([[ RESET_NOW.getTime(), RESET_NOW.getTime() ]]);
 		vi.advanceTimersByTime(15_000);
 		flush();
 		expect(result.getTimestamp()).toBe(RESET_NOW.getTime() + 15_000);

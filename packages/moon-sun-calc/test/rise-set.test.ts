@@ -53,15 +53,12 @@ describe.each(bodies)("$name rise/set interval search", ({ find, getEvents, name
 		}));
 
 		expect(result.flatMap(interval => interval.rise ? [ interval.rise ] : []))
-			.toEqual(events.filter(event => event.name === rise).map(event => event.time));
+			.toStrictEqual(events.filter(event => event.name === rise).map(event => event.time));
 		expect(result.flatMap(interval => interval.set ? [ interval.set ] : []))
-			.toEqual(events.filter(event => event.name === set).map(event => event.time));
+			.toStrictEqual(events.filter(event => event.name === set).map(event => event.time));
 
-		for (const interval of result) {
-			if (interval.rise && interval.set) {
-				expect(interval.set.getTime()).toBeGreaterThan(interval.rise.getTime());
-			}
-		}
+		const outOfOrder = result.filter(({ rise, set }) => rise && set && !(set > rise));
+		expect(outOfOrder).toHaveLength(0);
 	});
 
 	it("preserves an isolated rise or set and returns no cycles without crossings", () => {
@@ -102,7 +99,7 @@ set: Date } => !!interval.rise && !!interval.set);
 			},
 			observer
 		}))
-			.toEqual([]);
+			.toStrictEqual([]);
 	});
 
 	it("returns no invented crossings in polar intervals without rise or set events", () => {
@@ -117,7 +114,7 @@ set: Date } => !!interval.rise && !!interval.set);
 					latitude: 90,
 					longitude: 0
 				}
-			})).toEqual([]);
+			})).toStrictEqual([]);
 		}
 	});
 
@@ -193,7 +190,7 @@ describe("searchRiseSetIntervals", () => {
 			start: at(0)
 		}, interval => crossings.filter(crossing =>
 			crossing.time >= new Date(interval.start) && crossing.time < new Date(interval.end)));
-		expect(result).toEqual([
+		expect(result).toStrictEqual([
 			{
 				rise: null,
 				set: at(8)
@@ -226,7 +223,7 @@ describe("searchRiseSetIntervals", () => {
 				direction: "setting",
 				time: at(18)
 			}
-		])).toEqual([
+		])).toStrictEqual([
 			{
 				rise: at(6),
 				set: null
@@ -256,6 +253,6 @@ describe("searchRiseSetIntervals", () => {
 					time: at(36)
 				} ]);
 		expect(result).toHaveLength(1);
-		expect(result[0].set).toEqual(at(36));
+		expect(result[0].set).toStrictEqual(at(36));
 	});
 });

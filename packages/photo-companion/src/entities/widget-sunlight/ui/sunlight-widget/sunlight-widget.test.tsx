@@ -1,29 +1,21 @@
 import { render, within } from "@solidjs/testing-library";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
-import { assert, describe, expect, it, vi } from "vitest";
+import { timeShortFormatter } from "utils/formatters";
+import { assert, beforeEach, describe, expect, it, vi } from "vitest";
+
+import { configureTranslationMock } from "~/features/translation/test";
 
 import { createSunlightDay } from "../../lib";
 import { SunlightWidget } from "./sunlight-widget";
 
-vi.mock("~/features/translation", async () => {
-	const { timeShortFormatter } = await import("utils/formatters");
-	const { t } = await import("~/features/translation/consts/translation.en");
-	const { formatMessage } = await import("~/features/translation/lib/format-message");
-
-	return {
-		useTranslation: () => ({
-			format: () => ({
-				message: formatMessage,
-				timeShort: timeShortFormatter("en")
-			}),
-			lang: () => "en",
-			t: () => t
-		})
-	};
-});
+vi.mock(import("~/features/translation"));
 
 describe("SunlightWidget", () => {
+	beforeEach(() => {
+		configureTranslationMock({ format: { timeShort: timeShortFormatter("en") } });
+	});
+
 	it("rounds the next phase countdown up to whole minutes and carries full hours", () => {
 		const day = createSunlightDay(new Date("2026-09-21T12:00:00Z"), {
 			latitude: 51.5,

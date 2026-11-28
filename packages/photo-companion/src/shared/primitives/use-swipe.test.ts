@@ -1,7 +1,7 @@
 import { cleanup, fireEvent } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { flush } from "solid-js";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterEach, expect, test, vi } from "vitest";
 
 import { useSwipe } from "./use-swipe";
 
@@ -10,7 +10,7 @@ afterEach(() => {
 	vi.useRealTimers();
 });
 
-it("uses the final gesture timestamp before deciding whether to navigate", () => {
+test("uses the final gesture timestamp before deciding whether to navigate", () => {
 	vi.useFakeTimers();
 	vi.setSystemTime(1000);
 

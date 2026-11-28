@@ -16,12 +16,12 @@ describe("altitude curve interpolation", () => {
 			const points = interpolateAltitudePoints(from, to, 0.5);
 
 			expect(points).toHaveLength(to.length);
-			expect(points[0]).toEqual({
+			expect(points[0]).toStrictEqual({
 				altitude: 10,
 				timestamp: start 
 			});
 			expect(points[(points.length - 1) / 2].altitude).toBeCloseTo(35);
-			expect(points[points.length - 1]).toEqual({
+			expect(points[points.length - 1]).toStrictEqual({
 				altitude: 60,
 				timestamp: end 
 			});

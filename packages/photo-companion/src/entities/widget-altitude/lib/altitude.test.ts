@@ -27,7 +27,7 @@ describe("altitude day geometry", () => {
 		expect(end - start).toBe(hours * HOUR);
 		expect(ticks[0].timestamp).toBe(start);
 		expect(ticks[6].timestamp).toBe(end);
-		expect(ticks.slice(0, -1).map(tick => new Date(tick.timestamp).getHours())).toEqual([ 0, 4, 8, 12, 16, 20 ]);
+		expect(ticks.slice(0, -1).map(tick => new Date(tick.timestamp).getHours())).toStrictEqual([ 0, 4, 8, 12, 16, 20 ]);
 		expect(altitudeX(end, start, end)).toBe(PLOT.right);
 	});
 
@@ -104,7 +104,7 @@ describe("altitude scale", () => {
 		})));
 		const ticks = getAltitudeTicks(range);
 
-		expect(range).toEqual(expected);
+		expect(range).toStrictEqual(expected);
 		expect(ticks.length).toBeGreaterThan(0);
 
 		for (const tick of ticks) {
@@ -112,9 +112,7 @@ describe("altitude scale", () => {
 			expect(tick).toBeLessThanOrEqual(range.max);
 		}
 
-		if (range.min <= 0 && range.max >= 0) {
-			expect(ticks).toContain(0);
-		}
+		expect(ticks.includes(0)).toBe(expected.min <= 0 && expected.max >= 0);
 	});
 });
 

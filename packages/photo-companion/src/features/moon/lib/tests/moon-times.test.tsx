@@ -9,6 +9,9 @@ import { createQueryDate } from "~/shared/lib/query-date";
 import { MoonProvider } from "../../model/moon.context";
 import { MoonTimes } from "../../ui/moon-times/moon-times";
 
+import type { DatetimeMock } from "~/features/datetime-query/types";
+import type { SettingsMock } from "~/features/settings/types";
+
 const state = vi.hoisted(() => ({
 	date: new Date("2026-10-21T00:00:00Z"),
 	settings: {
@@ -17,28 +20,15 @@ const state = vi.hoisted(() => ({
 	}
 }));
 
-vi.mock("~/features/datetime-query", () => ({
+vi.mock<DatetimeMock>(import("~/features/datetime-query"), () => ({
 	useDatetime: () => ({ getDatetime: () => state.date })
 }));
 
-vi.mock("~/features/settings", () => ({
+vi.mock<SettingsMock>(import("~/features/settings"), () => ({
 	useSettings: () => ({ settings: state.settings })
 }));
 
-vi.mock("~/features/translation", async () => {
-	const { t } = await import("~/features/translation/consts/translation.en");
-
-	return {
-		useTranslation: () => ({
-			format: () => ({
-				dateShort: (date: Date) => date.toISOString().slice(0, 10),
-				timeShort: (date: Nullish<Date>) => date?.toISOString() ?? ""
-			}),
-			lang: () => "en",
-			t: () => t
-		})
-	};
-});
+vi.mock(import("~/features/translation"));
 
 function getDayEvents(date: DateLike) {
 	const start = getDayStart(date);
