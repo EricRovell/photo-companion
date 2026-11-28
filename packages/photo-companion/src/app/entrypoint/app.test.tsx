@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, waitFor, within } from "@solidjs/testing-library";
 import { flush } from "solid-js";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterEach, expect, test, vi } from "vitest";
 
 import { SETTINGS_DEFAULT } from "~/features/settings";
 import { ROUTES } from "~/shared/consts";
@@ -59,7 +59,7 @@ function renderApp(
 	};
 }
 
-it("redirects home and navigates to the Sun and Moon pages", async () => {
+test("redirects home and navigates to the Sun and Moon pages", async () => {
 	const view = renderApp();
 
 	await waitFor(() => {
@@ -82,7 +82,7 @@ it("redirects home and navigates to the Sun and Moon pages", async () => {
 	expect(view.warnings).not.toHaveBeenCalled();
 });
 
-it("tracks scroll direction when the CSS query is unavailable", async () => {
+test("tracks scroll direction when the CSS query is unavailable", async () => {
 	vi.spyOn(document.documentElement, "scrollHeight", "get").mockReturnValue(1600);
 	vi.spyOn(document.documentElement, "clientHeight", "get").mockReturnValue(600);
 	vi.stubGlobal("scrollY", 0);
@@ -113,7 +113,7 @@ it("tracks scroll direction when the CSS query is unavailable", async () => {
 	expect(document.body).not.toHaveAttribute("data-scrolled-down");
 });
 
-it("saves the selected city and renders the chosen language", async () => {
+test("saves the selected city and renders the chosen language", async () => {
 	const view = renderApp(ROUTES.NOT_FOUND);
 	const [ settingsLink ] = await view.findAllByRole("link", { name: "Settings" });
 
@@ -143,7 +143,7 @@ it("saves the selected city and renders the chosen language", async () => {
 	expect(view.warnings).not.toHaveBeenCalled();
 });
 
-it("loads translated Markdown from the navigation drawer", async () => {
+test("loads translated Markdown from the navigation drawer", async () => {
 	const view = renderApp(ROUTES.NOT_FOUND);
 	const menu = await view.findByRole("button", { name: "Menu" });
 
@@ -159,7 +159,7 @@ it("loads translated Markdown from the navigation drawer", async () => {
 	expect(view.warnings).not.toHaveBeenCalled();
 });
 
-it("opens City Lights with valid query coordinates when saved coordinates are invalid", async () => {
+test("opens City Lights with valid query coordinates when saved coordinates are invalid", async () => {
 	const view = renderApp(ROUTES.LIGHTS, {
 		city: "OTHER",
 		latitude: 91,
@@ -179,7 +179,7 @@ it("opens City Lights with valid query coordinates when saved coordinates are in
 	expect(view.warnings).not.toHaveBeenCalled();
 });
 
-it.each([
+test.each([
 	{
 		pathname: ROUTES.BRIDGES,
 		settings: { city: "MOSCOW" }

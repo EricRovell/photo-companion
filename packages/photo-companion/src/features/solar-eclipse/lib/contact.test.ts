@@ -1,9 +1,9 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { getSolarEclipseContactLinkTime } from "./contact";
 
 describe("Solar eclipse contact links", () => {
-	test.each([
+	it.each([
 		{
 			description: "rounds C1 into the eclipse",
 			input: {

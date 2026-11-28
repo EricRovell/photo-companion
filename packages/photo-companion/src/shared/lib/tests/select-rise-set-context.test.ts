@@ -28,7 +28,7 @@ describe("selectRiseSetContext", () => {
 		[ 20, at(21, 18), at(22, 7), at(22, 7) ]
 	] as const)("selects the below-horizon interval and next rise at hour %i", (hour, start, end, nextRise) => {
 		expect(selectRiseSetContext(at(21, hour), intervals))
-			.toEqual({
+			.toStrictEqual({
 				belowHorizonInterval: {
 					end,
 					start
@@ -44,7 +44,7 @@ describe("selectRiseSetContext", () => {
 		};
 		const context = selectRiseSetContext(at(21, event === "rise" ? 6 : 18), [ intervals[0], cycle, intervals[2] ]);
 
-		expect(context).toEqual({
+		expect(context).toStrictEqual({
 			belowHorizonInterval: {
 				end: event === "rise" ? cycle.rise : at(22, 7),
 				start: event === "rise" ? at(20, 18) : cycle.set
@@ -64,7 +64,7 @@ describe("selectRiseSetContext", () => {
 			set: null
 		} ]);
 
-		expect(context).toEqual({
+		expect(context).toStrictEqual({
 			belowHorizonInterval: {
 				end: rise,
 				start: set
@@ -76,7 +76,7 @@ describe("selectRiseSetContext", () => {
 
 	it("does not invent missing neighboring events", () => {
 		expect(selectRiseSetContext(at(21, 5), [ intervals[1] ]))
-			.toEqual({
+			.toStrictEqual({
 				belowHorizonInterval: {
 					end: at(21, 6),
 					start: null
@@ -84,7 +84,7 @@ describe("selectRiseSetContext", () => {
 				nextRise: at(21, 6)
 			});
 		expect(selectRiseSetContext(at(21, 20), [ intervals[1] ]))
-			.toEqual({
+			.toStrictEqual({
 				belowHorizonInterval: {
 					end: null,
 					start: at(21, 18)
@@ -92,7 +92,7 @@ describe("selectRiseSetContext", () => {
 				nextRise: null
 			});
 		expect(selectRiseSetContext(at(21, 12), []))
-			.toEqual({
+			.toStrictEqual({
 				belowHorizonInterval: {
 					end: null,
 					start: null

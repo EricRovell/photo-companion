@@ -1,6 +1,6 @@
 import { cleanup } from "@solidjs/testing-library";
 import { createEffect, createSignal } from "solid-js";
-import { afterEach, expect, it } from "vitest";
+import { afterEach, expect, test } from "vitest";
 
 import type { ParentProps } from "solid-js";
 
@@ -23,7 +23,7 @@ function Wrapper(props: ParentProps) {
 	);
 }
 
-it("flushes wrapper effects outside component execution", () => {
+test("flushes wrapper effects outside component execution", () => {
 	renderHook(() => true, { wrapper: Wrapper });
 
 	expect(document.body).toHaveTextContent("1");

@@ -13,3 +13,4 @@ ignore:
   - .git
   - node_modules
   - "**/dist"
+  - "**/__mocks__"

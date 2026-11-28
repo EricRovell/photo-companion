@@ -118,14 +118,11 @@ describe("Dialog", () => {
 		</Dialog>);
 
 		fireEvent.click(view.getByText("Content"));
+		await Promise.resolve();
 
-		if (lightDismiss) {
-			await waitFor(() => expect(onClose).toHaveBeenCalledOnce());
-			expect(close).toHaveBeenCalledOnce();
-		} else {
-			expect(onClose).not.toHaveBeenCalled();
-			expect(close).not.toHaveBeenCalled();
-		}
+		const expectedCalls = lightDismiss ? 1 : 0;
+		expect(onClose).toHaveBeenCalledTimes(expectedCalls);
+		expect(close).toHaveBeenCalledTimes(expectedCalls);
 	});
 
 	it("updates scroll locking without reopening the dialog", () => {

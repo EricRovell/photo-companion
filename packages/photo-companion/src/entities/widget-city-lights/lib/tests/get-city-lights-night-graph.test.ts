@@ -29,7 +29,7 @@ describe("getCityLightsNightGraph", () => {
 		expect(graph.position).toBeCloseTo(100 * 16 / 24);
 		expect(graph.events[0].position).toBeCloseTo(100 * (6 + 20 / 60) / 24);
 		expect(graph.events[1].position).toBeCloseTo(100 * (18 + 10 / 60) / 24);
-		expect(graph.ticks.map(tick => [ tick.time.getHours(), tick.position ])).toEqual([
+		expect(graph.ticks.map(tick => [ tick.time.getHours(), tick.position ])).toStrictEqual([
 			[ 12, 0 ], [ 18, 25 ], [ 0, 50 ], [ 6, 75 ], [ 12, 100 ]
 		]);
 	});

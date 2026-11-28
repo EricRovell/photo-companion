@@ -38,6 +38,7 @@
 		"@typescript/native": "catalog:typescript",
 		"@types/node": "^22.18.13",
 		"@vitest/coverage-v8": "catalog:testing",
+		"@vitest/eslint-plugin": "^1.6.28",
 		"eslint": "^10.13.0",
 		"eslint-plugin-perfectionist": "^5.12.1",
 		"eslint-plugin-solid": "^0.20.0",

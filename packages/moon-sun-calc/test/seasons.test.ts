@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { getSeasonEvents } from "../src";
 
@@ -10,20 +10,20 @@ const SEASON_CASES = [
 ] as const;
 
 describe("Seasons", () => {
-	test.each(SEASON_CASES)("matches the USNO 2025 %s minute fixture", (name, expected) => {
+	it.each(SEASON_CASES)("matches the USNO 2025 %s minute fixture", (name, expected) => {
 		const event = getSeasonEvents(2025).find(item => item.name === name);
 
 		expect(event).toBeDefined();
 		expect(Math.abs((event?.time.getTime() ?? 0) - Date.parse(expected))).toBeLessThan(60_000);
 	});
 
-	test("returns events in chronological order", () => {
+	it("returns events in chronological order", () => {
 		const timestamps = getSeasonEvents(2025).map(event => event.time.getTime());
 
-		expect(timestamps).toEqual(timestamps.toSorted((left, right) => left - right));
+		expect(timestamps).toStrictEqual(timestamps.toSorted((left, right) => left - right));
 	});
 
-	test.each([ 1799, 2025.5, 2201, Number.NaN ])("rejects an invalid year: %s", (year) => {
+	it.each([ 1799, 2025.5, 2201, Number.NaN ])("rejects an invalid year: %s", (year) => {
 		expect(() => getSeasonEvents(year)).toThrow(RangeError);
 	});
 });

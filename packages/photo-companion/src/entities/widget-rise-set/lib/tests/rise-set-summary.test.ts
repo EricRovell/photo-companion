@@ -148,7 +148,7 @@ describe("getRiseSetSummary", () => {
 			}
 		}
 	])("$description", ({ input, output }) => {
-		expect(getRiseSetSummary(input)).toEqual(output);
+		expect(getRiseSetSummary(input)).toStrictEqual(output);
 	});
 
 	it("uses the set and next rise across a change in UTC offset", () => {
@@ -166,8 +166,8 @@ describe("getRiseSetSummary", () => {
 			set
 		});
 
-		expect(summary.start).toEqual(set);
-		expect(summary.end).toEqual(rise);
+		expect(summary.start).toStrictEqual(set);
+		expect(summary.end).toStrictEqual(rise);
 		expect((summary.end?.getTime() ?? NaN) - (summary.start?.getTime() ?? NaN)).toBe(13 * 3_600_000);
 	});
 

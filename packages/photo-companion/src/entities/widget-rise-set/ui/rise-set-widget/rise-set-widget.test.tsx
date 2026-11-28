@@ -1,27 +1,14 @@
 import { render } from "@solidjs/testing-library";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, test, vi } from "vitest";
 
 import { RISE_SET_WIDGET_CONFIG } from "../../config";
 import { RiseSetWidget } from "./rise-set-widget";
 
 import type { RiseSetWidgetProps } from "../../types";
 
-vi.mock("~/features/translation", async () => {
-	const { t } = await import("~/features/translation/consts/translation.en");
-
-	return {
-		useTranslation: () => ({
-			format: () => ({
-				dateShort: (date: Date) => date.toISOString().slice(0, 10),
-				timeShort: (date: Nullish<Date>) => date?.toISOString() ?? ""
-			}),
-			lang: () => "en",
-			t: () => t
-		})
-	};
-});
+vi.mock(import("~/features/translation"));
 
 const defaults: RiseSetWidgetProps = {
 	aboveHorizon: false,
@@ -222,7 +209,7 @@ describe("RiseSetWidget countdown", () => {
 	});
 });
 
-it("slides the midnight divider along the arc between overnight intervals", () => {
+test("slides the midnight divider along the arc between overnight intervals", () => {
 	vi.useFakeTimers({ toFake: [ "cancelAnimationFrame", "performance", "requestAnimationFrame" ] });
 
 	try {

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
 	findSunAltitudeCrossings,
@@ -158,7 +158,7 @@ const SUN_BOUNDARY_CASES = [
 ];
 
 describe("Sun", () => {
-	test("matches a JPL Horizons topocentric position fixture", () => {
+	it("matches a JPL Horizons topocentric position fixture", () => {
 		// JPL Horizons DE441, airless apparent coordinates, 2025-01-01 12:00 UTC.
 		const position = getSunPosition({
 			instant: Date.parse("2025-01-01T12:00:00Z"),
@@ -170,7 +170,7 @@ describe("Sun", () => {
 		expect(position.apparentAltitude).toBeGreaterThan(position.altitude);
 	});
 
-	test("matches Meeus chapter 25's solar distance example", () => {
+	it("matches Meeus chapter 25's solar distance example", () => {
 		const position = getSunPosition({
 			instant: Date.parse("1992-10-13T00:00:00Z"),
 			observer: LONDON
@@ -179,7 +179,7 @@ describe("Sun", () => {
 		expect(position.distance / 149_597_870.7).toBeCloseTo(0.99766, 5);
 	});
 
-	test.each(SUN_EVENT_CASES)("$description", ({ input, output }) => {
+	it.each(SUN_EVENT_CASES)("$description", ({ input, output }) => {
 		const events = getSunEvents({
 			interval: input.interval,
 			observer: input.observer
@@ -189,7 +189,7 @@ describe("Sun", () => {
 		expect(event?.time.toISOString().slice(11, 16)).toBe(output);
 	});
 
-	test("finds requested altitude crossings without mixing degrees and radians", () => {
+	it("finds requested altitude crossings without mixing degrees and radians", () => {
 		const crossings = findSunAltitudeCrossings({
 			altitude: 6,
 			interval: NEW_YEAR_2025,
@@ -197,7 +197,7 @@ describe("Sun", () => {
 		});
 
 		expect(crossings).toHaveLength(2);
-		expect(crossings.map(crossing => crossing.direction)).toEqual([ "rising", "setting" ]);
+		expect(crossings.map(crossing => crossing.direction)).toStrictEqual([ "rising", "setting" ]);
 
 		for (const crossing of crossings) {
 			expect(getSunPosition({
@@ -207,7 +207,7 @@ describe("Sun", () => {
 		}
 	});
 
-	test("solves azimuth across the north wrap instead of assuming monotonicity", () => {
+	it("solves azimuth across the north wrap instead of assuming monotonicity", () => {
 		const sydney = {
 			latitude: -33.8688,
 			longitude: 151.2093
@@ -228,7 +228,7 @@ describe("Sun", () => {
 		}
 	});
 
-	test("returns no fabricated polar events", () => {
+	it("returns no fabricated polar events", () => {
 		const polar = getSunEvents({
 			interval: NEW_YEAR_2025,
 			observer: {
@@ -240,11 +240,11 @@ describe("Sun", () => {
 		expect(polar.some(event => event.name === "SUNRISE_START" || event.name === "SUNSET_END")).toBe(false);
 	});
 
-	test.each(SUN_VALIDATION_CASES)("$description", ({ input, output }) => {
+	it.each(SUN_VALIDATION_CASES)("$description", ({ input, output }) => {
 		expect(input).toThrow(output);
 	});
 
-	test.each(SUN_BOUNDARY_CASES)("$description", ({ input, output }) => {
+	it.each(SUN_BOUNDARY_CASES)("$description", ({ input, output }) => {
 		const position = getSunPosition(input);
 
 		expect(Object.values(position).every(Number.isFinite)).toBe(output);

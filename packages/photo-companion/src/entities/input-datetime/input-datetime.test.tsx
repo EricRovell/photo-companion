@@ -55,17 +55,17 @@ describe("InputDatetime", () => {
 			value={value()}
 		/>);
 		const input = view.getByLabelText<HTMLInputElement>("Date and time");
+		const showPicker = vi.fn();
+		Object.defineProperty(input, "showPicker", { value: showPicker });
 
 		if (interaction === "picker") {
-			const showPicker = vi.fn();
-			Object.defineProperty(input, "showPicker", { value: showPicker });
 			fireEvent.click(view.getByRole("button", { name: "Open date and time picker" }));
-			flush();
-			expect(showPicker).toHaveBeenCalledOnce();
 		} else {
 			input.focus();
-			flush();
 		}
+
+		flush();
+		expect(showPicker).toHaveBeenCalledTimes(interaction === "picker" ? 1 : 0);
 
 		fireEvent.input(input, { target: { value: "2027-04-05T12:45:36" } });
 		flush();

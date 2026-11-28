@@ -1,5 +1,5 @@
 import { isNullable } from "utils/validators";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
 	findNextLocalLunarEclipse,
@@ -80,7 +80,7 @@ function getEvent(instant: string, observer: Observer = DALLAS): LocalLunarEclip
 }
 
 describe("Lunar eclipses", () => {
-	test.each<LunarEclipseCase>([
+	it.each<LunarEclipseCase>([
 		{
 			description: "matches the 2025 March total eclipse",
 			input: "2025-03-14T06:58:43Z",
@@ -138,7 +138,7 @@ describe("Lunar eclipses", () => {
 		expectContact(event.partialEnd?.time, output.partialEnd);
 	});
 
-	test.each([
+	it.each([
 		{
 			expected: "FULL",
 			observer: DALLAS
@@ -157,41 +157,43 @@ describe("Lunar eclipses", () => {
 		expect(event.visibility).toBe(expected);
 	});
 
-	test("classifies penumbral noticeability", () => {
+	it("classifies penumbral noticeability", () => {
 		expect(getEvent("2024-03-25T07:12:49Z").noticeability).toBe("SUBTLE");
 		expect(getEvent("2027-07-18T16:03:00Z").noticeability).toBe("UNLIKELY");
 	});
 
-	test.each<{ expected: LunarEclipsePhase;
-instant: string }>([
-	{
-		expected: "NONE",
-		instant: "2025-01-01T12:00:00Z"
-	},
-	{
-		expected: "PENUMBRAL",
-		instant: "2025-03-14T04:30:00Z"
-	},
-	{
-		expected: "PARTIAL",
-		instant: "2025-03-14T05:30:00Z"
-	},
-	{
-		expected: "TOTAL",
-		instant: "2025-03-14T06:58:43Z"
-	}
-])("returns the $expected current phase", ({ expected, instant }) => {
-	const state = getLunarEclipseState({
-		instant: Date.parse(instant),
-		observer: DALLAS
+	it.each<{
+		expected: LunarEclipsePhase;
+		instant: string
+	}>([
+		{
+			expected: "NONE",
+			instant: "2025-01-01T12:00:00Z"
+		},
+		{
+			expected: "PENUMBRAL",
+			instant: "2025-03-14T04:30:00Z"
+		},
+		{
+			expected: "PARTIAL",
+			instant: "2025-03-14T05:30:00Z"
+		},
+		{
+			expected: "TOTAL",
+			instant: "2025-03-14T06:58:43Z"
+		}
+	])("returns the $expected current phase", ({ expected, instant }) => {
+		const state = getLunarEclipseState({
+			instant: Date.parse(instant),
+			observer: DALLAS
+		});
+
+		expect(state.phase).toBe(expected);
+		expect(Number.isFinite(state.moon.offset.altitude)).toBe(true);
+		expect(Number.isFinite(state.moon.offset.azimuth)).toBe(true);
 	});
 
-	expect(state.phase).toBe(expected);
-	expect(Number.isFinite(state.moon.offset.altitude)).toBe(true);
-	expect(Number.isFinite(state.moon.offset.azimuth)).toBe(true);
-});
-
-	test("supports nearby context without weakening exact lookup", () => {
+	it("supports nearby context without weakening exact lookup", () => {
 		const instant = Date.parse("2025-03-13T20:00:00Z");
 		const observer = DALLAS;
 
@@ -206,7 +208,7 @@ instant: string }>([
 		})?.type).toBe("TOTAL");
 	});
 
-	test("finds eclipses in both directions and skips the same peak", () => {
+	it("finds eclipses in both directions and skips the same peak", () => {
 		const atPeak = Date.parse("2025-03-14T06:58:43Z");
 		const previous = findPreviousLocalLunarEclipse({
 			instant: atPeak,
@@ -223,7 +225,7 @@ instant: string }>([
 		expect(next?.peak.time.getTime()).toBeGreaterThan(atPeak);
 	});
 
-	test("returns null at supported search boundaries", () => {
+	it("returns null at supported search boundaries", () => {
 		expect(findPreviousLocalLunarEclipse({
 			instant: Date.parse("1800-01-01T00:00:00Z"),
 			observer: DALLAS,

@@ -1,5 +1,5 @@
 import { isNullable } from "utils/validators";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
 	findNextLocalSolarEclipse,
@@ -21,6 +21,11 @@ const DALLAS = {
 	longitude: -96.797
 };
 
+const DALLAS_TOTAL_ECLIPSE = {
+	instant: Date.parse("2024-04-08T18:42:00Z"),
+	observer: DALLAS
+};
+
 const ALBUQUERQUE = {
 	latitude: 35.0844,
 	longitude: -106.6504
@@ -39,7 +44,6 @@ interface LocalEclipseCase {
 		partialBegin: string;
 		partialEnd: string;
 		peak: string;
-		sunAltitude?: number;
 		type: SolarEclipseType;
 	};
 }
@@ -68,20 +72,16 @@ function differenceMinutes(actual: Date, expected: string): number {
 }
 
 describe("Solar eclipses", () => {
-	test.each<LocalEclipseCase>([
+	it.each<LocalEclipseCase>([
 		// NASA local circumstances: https://science.nasa.gov/eclipses/future-eclipses/eclipse-2024/where-when/
 		{
 			description: "matches the 2024 total eclipse in Dallas",
-			input: {
-				instant: Date.parse("2024-04-08T18:42:00Z"),
-				observer: DALLAS
-			},
+			input: DALLAS_TOTAL_ECLIPSE,
 			output: {
 				obscuration: 1,
 				partialBegin: "2024-04-08T17:23:00Z",
 				partialEnd: "2024-04-08T20:02:00Z",
 				peak: "2024-04-08T18:42:00Z",
-				sunAltitude: 65,
 				type: "TOTAL"
 			}
 		},
@@ -129,13 +129,15 @@ describe("Solar eclipses", () => {
 		expect(differenceMinutes(event.partialBegin.time, output.partialBegin)).toBeLessThan(2);
 		expect(differenceMinutes(event.peak.time, output.peak)).toBeLessThan(2);
 		expect(differenceMinutes(event.partialEnd.time, output.partialEnd)).toBeLessThan(2);
-
-		if (!isNullable(output.sunAltitude)) {
-			expect(event.peak.sunAltitude).toBeCloseTo(output.sunAltitude, 0);
-		}
 	});
 
-	test("marks an eclipse interrupted by the horizon as partially visible", () => {
+	it("matches the peak sun altitude of the 2024 total eclipse in Dallas", () => {
+		const event = getLocalSolarEclipse(DALLAS_TOTAL_ECLIPSE);
+
+		expect(event?.peak.sunAltitude).toBeCloseTo(65, 0);
+	});
+
+	it("marks an eclipse interrupted by the horizon as partially visible", () => {
 		const event = getLocalSolarEclipse({
 			instant: Date.parse("2021-06-10T09:45:00Z"),
 			observer: NEW_YORK
@@ -148,7 +150,7 @@ describe("Solar eclipses", () => {
 		expect(event?.partialEnd.visible).toBe(true);
 	});
 
-	test.each([
+	it.each([
 		{
 			description: "includes the local eclipse shortly before C1",
 			input: {
@@ -190,7 +192,7 @@ describe("Solar eclipses", () => {
 		expect(event?.type ?? null).toBe(output);
 	});
 
-	test("keeps the exact local eclipse lookup strict outside C1 to C4", () => {
+	it("keeps the exact local eclipse lookup strict outside C1 to C4", () => {
 		const event = getLocalSolarEclipse({
 			instant: Date.parse("2024-04-08T17:00:00Z"),
 			observer: DALLAS
@@ -199,7 +201,7 @@ describe("Solar eclipses", () => {
 		expect(event).toBeNull();
 	});
 
-	test.each<EclipseStateCase>([
+	it.each<EclipseStateCase>([
 		{
 			description: "returns the current geometry outside an eclipse",
 			input: {
@@ -232,14 +234,11 @@ describe("Solar eclipses", () => {
 
 		expect(state.phase).toBe(output.phase);
 		expect(state.obscuration).toBe(output.obscuration);
-		expect(Number.isFinite(offsetFromCenter)).toBe(true);
-
-		if (!isNullable(output.minimumOffsetFromCenter)) {
-			expect(offsetFromCenter).toBeGreaterThan(output.minimumOffsetFromCenter);
-		}
+		expect(offsetFromCenter).toBeLessThan(Infinity);
+		expect(offsetFromCenter).toBeGreaterThan(output.minimumOffsetFromCenter ?? -Infinity);
 	});
 
-	test("finds eclipses in both directions and skips the same peak", () => {
+	it("finds eclipses in both directions and skips the same peak", () => {
 		const atPeak = Date.parse("2024-04-08T18:42:28Z");
 		const previous = findPreviousLocalSolarEclipse({
 			instant: atPeak,
@@ -256,7 +255,7 @@ describe("Solar eclipses", () => {
 		expect(next?.peak.time.getTime()).toBeGreaterThan(atPeak);
 	});
 
-	test.each<DirectionalBoundaryCase>([
+	it.each<DirectionalBoundaryCase>([
 		{
 			description: "returns null at the minimum supported search boundary",
 			input: {

@@ -25,9 +25,9 @@ describe("getLightsNight", () => {
 
 	it("joins this evening to the following morning's own schedule", () => {
 		const night = getLightsNight(new Date(2026, 9, 24, 20, 40), getSchedule);
-		expect(night.start).toEqual(new Date(2026, 9, 24, 12));
-		expect(night.end).toEqual(new Date(2026, 9, 25, 12));
-		expect(night.events.map(event => [ event.name, new Date(event.timestamp) ])).toEqual([
+		expect(night.start).toStrictEqual(new Date(2026, 9, 24, 12));
+		expect(night.end).toStrictEqual(new Date(2026, 9, 25, 12));
+		expect(night.events.map(event => [ event.name, new Date(event.timestamp) ])).toStrictEqual([
 			[ "LIGHTS_START", new Date(2026, 9, 24, 18, 20) ],
 			[ "LIGHTS_END", new Date(2026, 9, 25, 6, 10) ]
 		]);
@@ -41,8 +41,8 @@ describe("getLightsNight", () => {
 		const night = getLightsNight(new Date(2026, 9, 25, 4), getSchedule);
 		expect(night.events[0].timestamp).toBe(new Date(2026, 9, 24, 18, 20).getTime());
 		expect(night.events[1].timestamp).toBe(new Date(2026, 9, 25, 6, 10).getTime());
-		expect(night.start).toEqual(new Date(2026, 9, 24, 12));
-		expect(night.end).toEqual(new Date(2026, 9, 25, 12));
+		expect(night.start).toStrictEqual(new Date(2026, 9, 24, 12));
+		expect(night.end).toStrictEqual(new Date(2026, 9, 25, 12));
 	});
 
 	it.each([ 30, 60 ])("uses the full ±%i minute span at both estimated switches", (minutes) => {
@@ -73,7 +73,7 @@ describe("getLightsNight", () => {
 
 	it("uses calendar dates across month and year boundaries", () => {
 		const night = getLightsNight(new Date(2026, 11, 31, 23), getSchedule);
-		expect(night.end).toEqual(new Date(2027, 0, 1, 12));
+		expect(night.end).toStrictEqual(new Date(2027, 0, 1, 12));
 		expect(night.events[1].timestamp).toBe(new Date(2027, 0, 1, 6, 20).getTime());
 	});
 
@@ -88,6 +88,7 @@ describe("getLightsNight", () => {
 				LIGHTS_START: start.getTime()
 			};
 		});
+
 		expect(night.events[0].windowStart).toBe(new Date(2026, 9, 24, 11, 10).getTime());
 		expect(night.events[0].windowEnd).toBe(new Date(2026, 9, 24, 13, 10).getTime());
 	});
@@ -101,9 +102,10 @@ describe("getLightsNight", () => {
 			status,
 			uncertaintyMinutes: 30
 		}));
-		expect(night.events).toEqual([]);
-		expect(night.intervals).toEqual([]);
-		expect(night.windows).toEqual([]);
+
+		expect(night.events).toStrictEqual([]);
+		expect(night.intervals).toStrictEqual([]);
+		expect(night.windows).toStrictEqual([]);
 		expect(night.duration).toBe(0);
 	});
 
@@ -135,9 +137,10 @@ describe("getLightsNight", () => {
 				uncertaintyMinutes: 30
 			}
 			: getSchedule(date));
+
 		expect(night.intervals).toHaveLength(1);
 		expect(night.intervals[0].end).toBeNull();
-		expect(night.events.map(event => event.name)).toEqual([ "LIGHTS_START" ]);
+		expect(night.events.map(event => event.name)).toStrictEqual([ "LIGHTS_START" ]);
 		expect(night.duration).toBe((17 * 60 + 40) * 60_000);
 	});
 
@@ -157,6 +160,7 @@ describe("getLightsNight", () => {
 	])("uses elapsed time across a $hours-hour daylight-saving night", ({ day, hours, lightsMinutes, month }) => {
 		vi.stubEnv("TZ", "Europe/Berlin");
 		const night = getLightsNight(new Date(2026, month, day, 20), getSchedule);
+
 		expect(night.start.getHours()).toBe(12);
 		expect(night.end.getHours()).toBe(12);
 		expect(night.end.getTime() - night.start.getTime()).toBe(hours * 60 * 60_000);

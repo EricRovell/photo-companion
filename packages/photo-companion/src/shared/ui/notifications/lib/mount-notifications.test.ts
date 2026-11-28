@@ -96,21 +96,25 @@ afterEach(() => {
 describe("notifications", () => {
 	it("commits a full-size entrance pose before moving the existing stack", () => {
 		const view = setup();
-		let entrances = 0;
+
+		const entrances: {
+			arrivingHeight?: string;
+			arrivingScale?: string;
+			previousObscured?: null | string;
+			previousOffset?: string;
+		}[] = [];
 
 		vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function (this: HTMLElement) {
 			if (this.localName === "ol") {
 				const arriving = this.querySelector<HTMLLIElement>("li[data-state=entering]");
 				const previous = this.querySelector<HTMLLIElement>("li[data-state=open]");
-				expect(arriving?.style.getPropertyValue("--notification-height")).toBe("88px");
-				expect(arriving?.style.getPropertyValue("--notification-scale")).toBe("1");
 
-				if (previous) {
-					expect(previous.style.getPropertyValue("--notification-offset")).toBe("0px");
-					expect(previous).toHaveAttribute("data-obscured", "false");
-				}
-
-				entrances += 1;
+				entrances.push({
+					arrivingHeight: arriving?.style.getPropertyValue("--notification-height"),
+					arrivingScale: arriving?.style.getPropertyValue("--notification-scale"),
+					previousObscured: previous?.getAttribute("data-obscured"),
+					previousOffset: previous?.style.getPropertyValue("--notification-offset")
+				});
 			}
 
 			return new DOMRect();
@@ -132,7 +136,20 @@ describe("notifications", () => {
 		expect(view.host.querySelector("li[data-obscured=true]")).toBe(item);
 		expect(item).toHaveAttribute("data-state", "open");
 		expect(itemFor(within(view.getByRole("list")).getByText("Next arrival"))).toHaveAttribute("data-state", "open");
-		expect(entrances).toBe(2);
+		expect(entrances).toStrictEqual([
+			{
+				arrivingHeight: "88px",
+				arrivingScale: "1",
+				previousObscured: undefined,
+				previousOffset: undefined
+			},
+			{
+				arrivingHeight: "88px",
+				arrivingScale: "1",
+				previousObscured: "false",
+				previousOffset: "0px"
+			}
+		]);
 	});
 
 	it("keeps a dismissed card mounted until its exit finishes, even while another arrives", () => {
@@ -482,7 +499,7 @@ describe("notifications", () => {
 			title: "Dragging"
 		});
 		const item = itemFor(view.getByText("Dragging"));
-		item.setPointerCapture = vi.fn();
+		Object.assign(item, { setPointerCapture: vi.fn() });
 		const event = new Event("pointerdown", { bubbles: true });
 		Object.assign(event, {
 			button: 0,
@@ -517,18 +534,18 @@ describe("notifications", () => {
 		}
 
 		vi.advanceTimersByTime(1000);
-		expect(dismissed.mock.calls).toEqual([ [ "Third" ] ]);
+		expect(dismissed.mock.calls).toStrictEqual([ [ "Third" ] ]);
 		expect(animations[0].currentTime).toBe(0);
 		expect(animations[1].currentTime).toBe(0);
 
 		vi.advanceTimersByTime(1000);
-		expect(dismissed.mock.calls).toEqual([ [ "Third" ], [ "Second" ] ]);
+		expect(dismissed.mock.calls).toStrictEqual([ [ "Third" ], [ "Second" ] ]);
 		expect(animations[0].currentTime).toBe(0);
 
 		vi.advanceTimersByTime(999);
 		expect(dismissed).toHaveBeenCalledTimes(2);
 		vi.advanceTimersByTime(1);
-		expect(dismissed.mock.calls).toEqual([ [ "Third" ], [ "Second" ], [ "First" ] ]);
+		expect(dismissed.mock.calls).toStrictEqual([ [ "Third" ], [ "Second" ], [ "First" ] ]);
 	});
 
 	it("preserves elapsed time when a newer notification covers a running countdown", () => {
@@ -913,7 +930,7 @@ describe("notifications", () => {
 		});
 
 		const item = itemFor(view.getByText("Swipe me"));
-		item.setPointerCapture = vi.fn();
+		Object.assign(item, { setPointerCapture: vi.fn() });
 
 		const pointer = (type: string, x: number) => {
 			const event = new Event(type, { bubbles: true });

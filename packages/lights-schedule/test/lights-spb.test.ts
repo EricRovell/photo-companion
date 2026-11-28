@@ -10,13 +10,15 @@ describe("Illumination schedule, Moscow, Russia", () => {
 	describe("Data validation", () => {
 		it("Has the correct record length", () => {
 			// check data README to understand the number of records
-			expect(data.schedule.length).toBe(4 * 6 * 12);
+			expect(data.schedule).toHaveLength(4 * 6 * 12);
 		});
+
 		it("Has the correct types", () => {
 			for (const record of data.schedule) {
 				expect(Number.isInteger(record)).toBe(true);
 			}
 		});
+
 		it("Has the correct hours values", () => {
 			for (let i = 0; i < data.schedule.length; i += 2) {
 				expect(data.schedule[i]).toBeGreaterThanOrEqual(0);
@@ -25,6 +27,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				expect(data.schedule[i]).toBeLessThanOrEqual(23);
 			}
 		});
+
 		it("Has the correct minutes values", () => {
 			for (let i = 1; i < data.schedule.length; i += 2) {
 				expect(data.schedule[i]).toBeGreaterThanOrEqual(0);
@@ -34,6 +37,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 			}
 		});
 	});
+
 	describe("schedule retrievement", () => {
 		it("Retrieves the right schedule for each date", () => {
 			const fullYearDateList = getFullYearDaysList(data.year);
@@ -63,6 +67,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 			}
 		});
 	});
+
 	describe("Nearest illumination event", () => {
 		it("The time is before the lights end today", () => {
 			const input = new Date(data.year, 0, 5, 7, 30);
@@ -72,8 +77,9 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				timestamp: new Date(data.year, 0, 5, 9, 50).getTime()
 			};
 
-			expect(getStateByDate(input)).toEqual(output);
+			expect(getStateByDate(input)).toStrictEqual(output);
 		});
+
 		it("The time is before the lights start today", () => {
 			const input = new Date(data.year, 0, 5, 15, 0);
 			const output = {
@@ -82,8 +88,9 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				timestamp: new Date(data.year, 0, 5, 16, 15).getTime()
 			};
 
-			expect(getStateByDate(input)).toEqual(output);
+			expect(getStateByDate(input)).toStrictEqual(output);
 		});
+
 		it("The time is during the lights today, they will turn off the next day", () => {
 			const input = new Date(data.year, 0, 5, 18, 0);
 			const output = {
@@ -92,7 +99,7 @@ describe("Illumination schedule, Moscow, Russia", () => {
 				timestamp: new Date(data.year, 0, 6, 9, 45).getTime()
 			};
 
-			expect(getStateByDate(input)).toEqual(output);
+			expect(getStateByDate(input)).toStrictEqual(output);
 		});
 	});
 });

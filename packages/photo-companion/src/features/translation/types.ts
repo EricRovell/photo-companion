@@ -1,3 +1,5 @@
+import type { useTranslation } from "./translation.context";
+
 export interface Translation {
 	ALTITUDE: {
 		AXIS_ALTITUDE: string;
@@ -390,5 +392,15 @@ export interface Translation {
 		SUN: string;
 		SUN_TIMES: string;
 		TIMELINE: string;
+	};
+}
+
+type TranslationContext = ReturnType<typeof useTranslation>;
+
+export interface TranslationMock {
+	useTranslation: () => {
+		format?: () => Partial<ReturnType<TranslationContext["format"]>>;
+		lang?: TranslationContext["lang"];
+		t: TranslationContext["t"];
 	};
 }

@@ -95,7 +95,7 @@ const parityCases = Array.from(translations.en, ([ path, message ]) => ({
 describe("translation dictionary contract", () => {
 	it("contains the same message paths in every locale", () => {
 		expect(Array.from(translations.ru.keys()).sort())
-			.toEqual(Array.from(translations.en.keys()).sort());
+			.toStrictEqual(Array.from(translations.en.keys()).sort());
 	});
 
 	it.each(templateCases)("$locale template $path is valid", ({ message, path }) => {
@@ -107,7 +107,7 @@ describe("translation dictionary contract", () => {
 			throw new Error(`Missing Russian translation for ${path}`);
 		}
 
-		expect(getTemplateSignature(translatedMessage, path), path)
-			.toEqual(getTemplateSignature(message, path));
+		expect(getTemplateSignature(translatedMessage, path))
+			.toStrictEqual(getTemplateSignature(message, path));
 	});
 });

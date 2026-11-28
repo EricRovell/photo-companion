@@ -17,17 +17,17 @@ describe("datetime-local adapter", () => {
 
 	it("adds zero seconds to a minute-precision browser value", () => {
 		expect(parseDateTimeString("2027-04-05T12:45"))
-			.toEqual(new Date(2027, 3, 5, 12, 45, 0));
+			.toStrictEqual(new Date(2027, 3, 5, 12, 45, 0));
 	});
 
 	it("preserves seconds from a second-precision browser value", () => {
 		expect(parseDateTimeString("2027-04-05T12:45:36"))
-			.toEqual(new Date(2027, 3, 5, 12, 45, 36));
+			.toStrictEqual(new Date(2027, 3, 5, 12, 45, 36));
 		expect(parseDateTimeString("2027-04-05T12:45:36.000"))
-			.toEqual(new Date(2027, 3, 5, 12, 45, 36));
+			.toStrictEqual(new Date(2027, 3, 5, 12, 45, 36));
 	});
 
 	it("falls back to now for invalid browser input", () => {
-		expect(parseDateTimeString("invalid")).toEqual(NOW);
+		expect(parseDateTimeString("invalid")).toStrictEqual(NOW);
 	});
 });

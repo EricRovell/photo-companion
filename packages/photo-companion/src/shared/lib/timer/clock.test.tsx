@@ -1,5 +1,5 @@
 import { cleanup, fireEvent } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { flush } from "solid-js";
 import { createMemo } from "solid-js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";

@@ -1,7 +1,7 @@
 // @ts-check
 
 import { Linter, RuleTester } from "eslint";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, test } from "vitest";
 import tseslint from "typescript-eslint";
 import perfectionist from "eslint-plugin-perfectionist";
 
@@ -180,7 +180,7 @@ ruleTester.run("jsx-wrap-props", jsxWrapProps, {
 	]
 });
 
-it.each([
+test.each([
 	{
 		code: '<Text z="3" x="1" test="test" g="6" y="2">text</Text>',
 		maxWidth: 40,
@@ -208,7 +208,7 @@ it.each([
 	} ];
 	const result = linter.verifyAndFix(code, config);
 
-	expect(result.messages).toEqual([]);
+	expect(result.messages).toStrictEqual([]);
 	expect(result.output).toBe(output);
 	expect(linter.verifyAndFix(result.output, config).fixed).toBe(false);
 });

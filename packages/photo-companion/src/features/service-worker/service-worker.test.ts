@@ -228,7 +228,7 @@ describe("service worker lifecycle", () => {
 		await runLifecycle("install");
 		expect(cacheStorage.open).toHaveBeenCalledWith(CURRENT_CACHE);
 		expect(fetchResponse).toHaveBeenCalledTimes(2);
-		expect([ ...entries.keys() ]).toEqual([ `${ORIGIN}${SCRIPT}`, `${ORIGIN}${STYLESHEET}` ]);
+		expect([ ...entries.keys() ]).toStrictEqual([ `${ORIGIN}${SCRIPT}`, `${ORIGIN}${STYLESHEET}` ]);
 	});
 
 	it("rejects installation when a required bundle returns HTML", async () => {
@@ -251,7 +251,7 @@ describe("service worker lifecycle", () => {
 		]);
 
 		await runLifecycle("activate");
-		expect(cacheStorage.delete.mock.calls).toEqual([[ "photo-companion-build-old" ]]);
+		expect(cacheStorage.delete.mock.calls).toStrictEqual([[ "photo-companion-build-old" ]]);
 		expect(claim).toHaveBeenCalledOnce();
 	});
 });

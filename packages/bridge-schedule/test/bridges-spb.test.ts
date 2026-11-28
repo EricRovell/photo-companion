@@ -93,12 +93,14 @@ describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 			expect(isNavigationTime(beforeNavigation)).toBe(false);
 			expect(isNavigationTime(afterNavigation)).toBe(false);
 		});
+
 		it("Detects the navigation time", () => {
 			expect(isNavigationTime(startingNavigation)).toBe(true);
 			expect(isNavigationTime(duringNavigation)).toBe(true);
 			expect(isNavigationTime(endingNavigation)).toBe(true);
 		});
 	});
+
 	describe("Bridge state with navigation time", () => {
 		it("Detects the navigation time", () => {
 			// bridge name is not relevant here
@@ -108,6 +110,7 @@ describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 			expect(getBridgeState("PALACE", endingNavigation)).not.toBeNull();
 			expect(getBridgeState("PALACE", afterNavigation)).toBeNull();
 		});
+
 		it("Ignores the navigation schedule when specified", () => {
 			// bridge name is not relevant here
 			expect(getBridgeState("PALACE", beforeNavigation, true)).not.toBeNull();
@@ -117,13 +120,14 @@ describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 			expect(getBridgeState("PALACE", afterNavigation, true)).not.toBeNull();
 		});
 	});
+
 	describe("Bridge schedule state", () => {
 		for (const bridgeName of SUPPORTED_BRIDGES_NAME_SET) {
 			it(`Getting the schedule of ${bridgeName}`, () => {
 				const fixtures = generateBridgeScheduleFixtures(bridgeName);
 
 				for (const { date, open, timestamp } of fixtures) {
-					expect(getBridgeState(bridgeName, date, true)).toEqual({
+					expect(getBridgeState(bridgeName, date, true)).toStrictEqual({
 						name: bridgeName,
 						open,
 						timestamp
@@ -132,6 +136,7 @@ describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 			});
 		}
 	});
+
 	describe("Checks if all drawbridges are lifted down", () => {
 		let firstTimeMinutes = Infinity;
 		let lastTimeMinutes = -Infinity;
@@ -147,14 +152,17 @@ describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 		it("The first lifting up values is taken correctly", () => {
 			expect(firstTimeMinutes).toBe(FIRST_OPENING_MINUTES);
 		});
+
 		it("The latest lifting up values is taken correctly", () => {
 			expect(lastTimeMinutes).toBe(LAST_CLOSING_MINUTES);
 		});
+
 		it("Checks if all the drawbridges are lifted down before/after first lift", () => {
 			const timestamp = new Date(2000, 1, 1, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
 			expect(isAllBridgesLiftedDown(timestamp - 1000, true)).toBe(true);
 			expect(isAllBridgesLiftedDown(timestamp + 1000, true)).toBe(false);
 		});
+
 		it("Checks if all the drawbridges are lifted down taking navigation period into consideration", () => {
 			const timestampBefore = new Date(2000, data.navigation[0] - 1, data.navigation[1] - 1, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
 			expect(isAllBridgesLiftedDown(timestampBefore)).toBe(true);
@@ -165,6 +173,7 @@ describe("Drawbridges schedule, Saint-Petersburg, Russia", () => {
 			const timestampAfter = new Date(2000, data.navigation[2] - 1, data.navigation[3] + 1, 0, 0, 0, 0).getTime() + firstTimeMinutes * 60 * 1000;
 			expect(isAllBridgesLiftedDown(timestampAfter)).toBe(true);
 		});
+
 		it("Checks if all the drawbridges are lifted down before/after last lift", () => {
 			const timestamp = new Date(2000, 1, 1, 0, 0, 0, 0).getTime() + lastTimeMinutes * 60 * 1000;
 			expect(isAllBridgesLiftedDown(timestamp - 1000, true)).toBe(false);

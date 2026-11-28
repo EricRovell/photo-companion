@@ -1,8 +1,11 @@
 import { fireEvent, render, within } from "@solidjs/testing-library";
+import { formatTestTime } from "~test";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { degreesFormatter } from "utils/formatters";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import { configureTranslationMock } from "~/features/translation/test";
 
 import { ALTITUDE_WIDGET_CONFIG } from "../../config";
 import { AltitudeWidget } from "../../index";
@@ -11,21 +14,7 @@ import type { AltitudeEntity } from "../../types";
 
 const degrees = degreesFormatter("en");
 
-vi.mock("~/features/translation", async () => {
-	const { t } = await import("~/features/translation/consts/translation.en");
-
-	return {
-		useTranslation: () => ({
-			format: () => ({
-				dateShort: (date: Date) => date.toISOString().slice(0, 10),
-				degrees: degreesFormatter("en"),
-				timeShort: (date: DateLike) => new Date(date).toISOString().slice(11, 16)
-			}),
-			lang: () => "en",
-			t: () => t
-		})
-	};
-});
+vi.mock(import("~/features/translation"));
 
 function Preview(props: { date: Date;
 moon?: boolean }) {
@@ -64,6 +53,15 @@ moon?: boolean }) {
 }
 
 describe("compound altitude widget", () => {
+	beforeEach(() => {
+		configureTranslationMock({
+			format: {
+				degrees,
+				timeShort: formatTestTime
+			}
+		});
+	});
+
 	it("updates the chart description, cursor and current readouts when the selected time changes", () => {
 		const [ date, setDate ] = createSignal(new Date("2026-10-21T10:00:00Z"));
 		const view = render(() => <Preview date={date()} />);
@@ -161,9 +159,7 @@ describe("compound altitude widget", () => {
 			expect(row).toHaveAttribute("data-selected", "false");
 			expect(view.getByRole("img")).toHaveAccessibleDescription(`Moon: ${degrees(-30)}, Below horizon`);
 
-			if (!selector.startsWith("label")) {
-				expect(checkbox).toHaveFocus();
-			}
+			expect(document.activeElement === checkbox).toBe(!selector.startsWith("label"));
 
 			fireEvent.click(target);
 			flush();

@@ -1,5 +1,5 @@
 import { cleanup, fireEvent, render, within } from "@solidjs/testing-library";
-import { renderHook } from "~test/render-hook";
+import { renderHook } from "~test";
 import { flush } from "solid-js";
 import { createSignal } from "solid-js";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -13,8 +13,8 @@ const { useServiceWorker, useTranslation } = vi.hoisted(() => ({
 	useTranslation: vi.fn()
 }));
 
-vi.mock("./service-worker-context", () => ({ useServiceWorker }));
-vi.mock("~/features/translation", () => ({ useTranslation }));
+vi.mock(import("./service-worker-context"), () => ({ useServiceWorker }));
+vi.mock(import("~/features/translation"), () => ({ useTranslation }));
 
 function setup() {
 	const [ suggestUpdate, setSuggestUpdate ] = createSignal(false);

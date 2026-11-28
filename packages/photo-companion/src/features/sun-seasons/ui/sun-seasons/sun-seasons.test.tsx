@@ -1,36 +1,32 @@
 import { createRouter, memoryHistory } from "@solidjs/router";
 import { render } from "@solidjs/testing-library";
-import { describe, expect, it, vi } from "vitest";
+import { isNullable } from "utils/validators";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import { configureTranslationMock } from "~/features/translation/test";
 
 import { SunSeasons } from "./sun-seasons";
 
-vi.mock("~/features/datetime-query", () => ({
+import type { DatetimeMock } from "~/features/datetime-query/types";
+
+vi.mock<DatetimeMock>(import("~/features/datetime-query"), () => ({
 	useDatetime: () => ({
 		getDatetime: () => new Date(2040, 6, 15)
 	})
 }));
 
-vi.mock("~/features/translation", () => ({
-	useTranslation: () => ({
-		format: () => ({
-			dateShort: (date: Date) => `20.03.${date.getFullYear()}`,
-			timeShort: () => "12:34"
-		}),
-		t: () => ({
-			SEASONS: {
-				AXIS_DECLINATION: "Solar declination",
-				AXIS_MONTH: "Month",
-				EQUINOX_MARCH: "March equinox",
-				EQUINOX_SEPTEMBER: "September equinox",
-				SOLSTICE_DECEMBER: "December solstice",
-				SOLSTICE_JUNE: "June solstice",
-				TITLE: "Equinoxes & Solstices"
-			}
-		})
-	})
-}));
+vi.mock(import("~/features/translation"));
 
 describe("SunSeasons", () => {
+	beforeEach(() => {
+		configureTranslationMock({
+			format: {
+				dateShort: date => isNullable(date) ? "" : `20.03.${new Date(date).getFullYear()}`,
+				timeShort: () => "12:34"
+			}
+		});
+	});
+
 	it("renders the four events for the selected datetime's local year", () => {
 		const history = memoryHistory();
 

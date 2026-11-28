@@ -20,12 +20,12 @@ const overnight: RiseSetInterval[] = [
 describe("selectRiseSetInterval", () => {
 	it("keeps the active overnight cycle on either side of midnight", () => {
 		for (const date of [ at(20, 23), at(21, 2), at(21, 8) ]) {
-			expect(selectRiseSetInterval(date, overnight)).toEqual(overnight[0]);
+			expect(selectRiseSetInterval(date, overnight)).toStrictEqual(overnight[0]);
 		}
 	});
 
 	it("previews today's upcoming rise between overnight cycles", () => {
-		expect(selectRiseSetInterval(at(21, 12), overnight)).toEqual(overnight[1]);
+		expect(selectRiseSetInterval(at(21, 12), overnight)).toStrictEqual(overnight[1]);
 	});
 
 	it("keeps the completed cycle after a same-day set", () => {
@@ -38,7 +38,7 @@ describe("selectRiseSetInterval", () => {
 			rise: at(22, 7),
 			set: at(22, 19)
 		} ]))
-			.toEqual(completed);
+			.toStrictEqual(completed);
 	});
 
 	it("uses the previous cycle after a day with only a set", () => {
@@ -46,7 +46,7 @@ describe("selectRiseSetInterval", () => {
 			rise: at(22, 0),
 			set: at(22, 9)
 		} ]))
-			.toEqual(overnight[0]);
+			.toStrictEqual(overnight[0]);
 	});
 
 	it("uses the following set on a day with only a rise", () => {
@@ -55,7 +55,7 @@ describe("selectRiseSetInterval", () => {
 			set: at(22, 8)
 		};
 
-		expect(selectRiseSetInterval(at(21, 12), [ interval ])).toEqual(interval);
+		expect(selectRiseSetInterval(at(21, 12), [ interval ])).toStrictEqual(interval);
 	});
 
 	it("does not select an earlier set for an upcoming incomplete cycle", () => {
@@ -68,7 +68,7 @@ describe("selectRiseSetInterval", () => {
 				rise: at(21, 21),
 				set: null
 			}
-		])).toEqual({
+		])).toStrictEqual({
 			rise: at(21, 21),
 			set: null
 		});
@@ -85,18 +85,18 @@ describe("selectRiseSetInterval", () => {
 			set: at(22, 8)
 		};
 
-		expect(selectRiseSetInterval(at(21, 12), [ riseOnly ])).toEqual(riseOnly);
+		expect(selectRiseSetInterval(at(21, 12), [ riseOnly ])).toStrictEqual(riseOnly);
 		expect(selectRiseSetInterval(at(21, 12), [ setOnly, {
 			rise: at(22, 20),
 			set: null
-		} ])).toEqual(setOnly);
+		} ])).toStrictEqual(setOnly);
 	});
 
 	it("keeps the active cycle at its endpoints without mutating the input", () => {
 		const intervals = Object.freeze([ ...overnight ]);
 		expect(selectRiseSetInterval(at(21, 8), intervals)).toBe(overnight[0]);
 		expect(selectRiseSetInterval(at(21, 21), intervals)).toBe(overnight[1]);
-		expect(intervals).toEqual(overnight);
+		expect(intervals).toStrictEqual(overnight);
 	});
 
 	it.each([
@@ -135,7 +135,7 @@ describe("selectRiseSetInterval", () => {
 				rise: null,
 				set: at(21, 18)
 			}
-		])).toEqual({
+		])).toStrictEqual({
 			rise: null,
 			set: at(21, expected)
 		});
@@ -153,14 +153,14 @@ describe("selectRiseSetInterval", () => {
 		};
 
 		const intervals = [ first, second ];
-		expect(selectRiseSetInterval(new Date(2026, 3, 17, 0), intervals)).toEqual(first);
-		expect(selectRiseSetInterval(new Date(2026, 3, 17, 12), intervals)).toEqual(first);
-		expect(selectRiseSetInterval(new Date(2026, 3, 17, 23), intervals)).toEqual(second);
-		expect(selectRiseSetInterval(new Date(2026, 3, 18, 12), intervals)).toEqual(second);
+		expect(selectRiseSetInterval(new Date(2026, 3, 17, 0), intervals)).toStrictEqual(first);
+		expect(selectRiseSetInterval(new Date(2026, 3, 17, 12), intervals)).toStrictEqual(first);
+		expect(selectRiseSetInterval(new Date(2026, 3, 17, 23), intervals)).toStrictEqual(second);
+		expect(selectRiseSetInterval(new Date(2026, 3, 18, 12), intervals)).toStrictEqual(second);
 	});
 
 	it("preserves missing events instead of inventing times", () => {
-		expect(selectRiseSetInterval(at(21, 12), [])).toEqual({
+		expect(selectRiseSetInterval(at(21, 12), [])).toStrictEqual({
 			rise: null,
 			set: null
 		});
@@ -168,7 +168,7 @@ describe("selectRiseSetInterval", () => {
 			rise: null,
 			set: at(21, 8)
 		} ]))
-			.toEqual({
+			.toStrictEqual({
 				rise: null,
 				set: at(21, 8)
 			});
@@ -176,7 +176,7 @@ describe("selectRiseSetInterval", () => {
 			rise: at(21, 6),
 			set: null
 		} ]))
-			.toEqual({
+			.toStrictEqual({
 				rise: at(21, 6),
 				set: null
 			});

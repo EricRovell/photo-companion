@@ -1,23 +1,11 @@
 import { render } from "@solidjs/testing-library";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import type { LunarEclipseState } from "moon-sun-calc";
 
 import { LunarEclipseGraph } from "./lunar-eclipse-graph";
 
-vi.mock("~/features/translation", () => ({
-	useTranslation: () => ({
-		t: () => ({
-			ECLIPSE: {
-				HORIZON: "Horizon"
-			},
-			LUNAR_ECLIPSE: {
-				GRAPH_DESCRIPTION: "Description",
-				GRAPH_TITLE: "Title"
-			}
-		})
-	})
-}));
+vi.mock(import("~/features/translation"));
 
 const STATE: LunarEclipseState = {
 	moon: {
@@ -45,7 +33,7 @@ const STATE: LunarEclipseState = {
 };
 
 describe("LunarEclipseGraph", () => {
-	test("uses unique gradient and Moon clip identifiers for every graph", () => {
+	it("uses unique gradient and Moon clip identifiers for every graph", () => {
 		const view = render(() => (
 			<>
 				<LunarEclipseGraph
